@@ -3,6 +3,7 @@ Factory for creating document store backends from configuration.
 """
 
 import os
+from config import config
 from .base import DocumentStore
 
 
@@ -10,8 +11,7 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
     """Create a document store backend instance.
 
     Args:
-        backend: Backend name. If *None*, reads the ``RAG_BACKEND``
-                 environment variable (default: ``"julep"``).
+        backend: Backend name. If *None*, reads from config (default: ``"julep"``).
         **kwargs: Extra keyword arguments forwarded to the backend
                   constructor.
 
@@ -21,7 +21,7 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
     Raises:
         ValueError: If the backend name is not recognised.
     """
-    backend = backend or os.getenv("RAG_BACKEND", "julep")
+    backend = backend or config.RAG_BACKEND
 
     if backend == "julep":
         from .backends.julep import JulepDocStore

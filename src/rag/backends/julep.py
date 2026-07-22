@@ -5,11 +5,8 @@ Uses the Julep SDK's built-in document storage and search API.
 """
 
 import os
-from dotenv import load_dotenv
-
+from config import config
 from rag.base import DocumentStore, Document, SearchResult
-
-load_dotenv()
 
 
 class JulepDocStore(DocumentStore):
@@ -30,15 +27,11 @@ class JulepDocStore(DocumentStore):
         self._ConflictError = ConflictError
 
         self._client = Julep(
-            api_key=api_key or os.getenv("JULEP_API_KEY"),
-            environment=environment or os.getenv("JULEP_ENVIRONMENT", "production"),
+            api_key=api_key or config.JULEP_API_KEY,
+            environment=environment or config.JULEP_ENVIRONMENT,
         )
 
-        _model = (
-            model
-            or os.getenv("AGENT_MODEL")
-            or os.getenv("JULEP_MODEL", "claude-3.5-sonnet")
-        )
+        _model = model or config.JULEP_MODEL
 
         # Create a dedicated agent for doc storage
         self._agent = self._client.agents.create(

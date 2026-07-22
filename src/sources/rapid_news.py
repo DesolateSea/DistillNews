@@ -2,13 +2,11 @@ import os
 import json
 import http.client
 from datetime import datetime
-from dotenv import load_dotenv
+from config import config
 
 class RapidNewsFetcher:
     def __init__(self):
-        # Load API key from .env file
-        load_dotenv()
-        self.api_key = os.getenv("RAPIDAPI_KEY")
+        self.api_key = config.RAPIDAPI_KEY
         self.api_host = "real-time-news-data.p.rapidapi.com"
         self.base_path = "api_data/rapid_news"
 

@@ -1,8 +1,5 @@
 """
-Abstract base class for all LLM agent providers.
-
-This interface covers ONLY text completion / chat.
-RAG (document storage & search) is a separate concern — see rag.base.
+Abstract base class for all LLM chat completions.
 """
 
 import re

@@ -1,6 +1,5 @@
 const nodemailer = require("nodemailer");
 const generateNewsEmailHTML = require("./generateEmail.js");
-require('dotenv').config();
 
 // Load HTML template and replace placeholders
 async function loadTemplate(filePath, replacements) {

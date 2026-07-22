@@ -1,11 +1,9 @@
 import os, praw, json
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
+from config import config
 
-load_dotenv()
-
-REDDIT_SECRET = os.getenv("REDDIT_SECRET")
-REDDIT_CLIENT_ID = os.getenv("REDDIT_CLIENT_ID")
+REDDIT_SECRET = config.REDDIT_SECRET
+REDDIT_CLIENT_ID = config.REDDIT_CLIENT_ID
 
 reddit = praw.Reddit(
     client_id=REDDIT_CLIENT_ID,

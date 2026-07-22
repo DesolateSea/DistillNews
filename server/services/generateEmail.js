@@ -1,4 +1,3 @@
-require("dotenv").config();
 const WEBSITE_URL = process.env.WEBSITE_URL;
 function generateNewsEmailHTML(newsItems) {
   const grouped = {};

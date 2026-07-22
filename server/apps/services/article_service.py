@@ -7,10 +7,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from apps.models.articles_model import DurationRequest, ArticleInDB, PaginatedArticlesResponse
 from apps.core.config import DB_URL
 from apps.utils.recommendation import sort_articles, update_weights
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
 
 # Initialize scheduler for daily migrations
 scheduler = AsyncIOScheduler()

@@ -3,12 +3,11 @@ import json
 from datetime import datetime
 import urllib.request
 from urllib.parse import urlencode
-from dotenv import load_dotenv
+from config import config
 
 class GNewsClient:
     def __init__(self, base_dir="api_data/gnews"):
-        load_dotenv()
-        self.api_key = os.getenv("GNEWS_API_KEY")
+        self.api_key = config.GNEWS_API_KEY
         if not self.api_key:
             raise ValueError("GNEWS_API_KEY not found in .env file.")
         self.base_url = "https://gnews.io/api/v4/search"

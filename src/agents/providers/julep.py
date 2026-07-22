@@ -12,11 +12,8 @@ import yaml
 from pathlib import Path
 from functools import lru_cache
 
-from dotenv import load_dotenv
-
+from config import config
 from agents.base import AgentProvider, CompletionResult
-
-load_dotenv()
 
 
 class JulepAgent(AgentProvider):
@@ -36,15 +33,9 @@ class JulepAgent(AgentProvider):
     ):
         from julep import Julep  # defer import so the SDK is optional
 
-        self._api_key = api_key or os.getenv("JULEP_API_KEY")
-        self._model = (
-            model
-            or os.getenv("AGENT_MODEL")
-            or os.getenv("JULEP_MODEL", "claude-3.5-sonnet")
-        )
-        self._environment = environment or os.getenv(
-            "JULEP_ENVIRONMENT", "production"
-        )
+        self._api_key = api_key or config.JULEP_API_KEY
+        self._model = model or config.JULEP_MODEL
+        self._environment = environment or config.JULEP_ENVIRONMENT
 
         self._client = Julep(
             api_key=self._api_key,

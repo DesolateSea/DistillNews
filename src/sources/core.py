@@ -1,11 +1,10 @@
-from dotenv import load_dotenv
 import requests
 import json
 import os
 from datetime import datetime
-load_dotenv()
+from config import config
 
-CORE_API_KEY = os.getenv("CORE_API_KEY")
+CORE_API_KEY = config.CORE_API_KEY
 
 keywords = [
     "Artificial intelligence",

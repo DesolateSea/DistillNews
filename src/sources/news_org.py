@@ -2,12 +2,11 @@ import os
 import json
 from datetime import datetime
 from newsapi import NewsApiClient
-from dotenv import load_dotenv
+from config import config
 
 class NewsFetcher:
     def __init__(self, base_dir="api_data"):
-        load_dotenv()
-        api_key = os.getenv("NEWS_API_KEY")
+        api_key = config.NEWS_API_KEY
         if not api_key:
             raise ValueError("API key not found in .env")
         self.newsapi = NewsApiClient(api_key=api_key)

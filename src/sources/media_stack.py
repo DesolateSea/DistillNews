@@ -1,14 +1,11 @@
 import os
 import json
 from datetime import datetime
-from dotenv import load_dotenv
-
-# Load environment variables from .env
-load_dotenv()
+from config import config
 
 class MediaStack:
     def __init__(self, access_key: str = None, base_url: str = "http://api.mediastack.com/v1"):
-        self.access_key = access_key or os.getenv("MEDIASTACK_API_KEY")
+        self.access_key = access_key or config.MEDIASTACK_API_KEY
         if not self.access_key:
             raise ValueError("MediaStack API key not found. Set MEDIASTACK_API_KEY in your .env file.")
         self.base_url = base_url
