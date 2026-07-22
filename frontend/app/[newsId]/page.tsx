@@ -5,7 +5,9 @@ import { ArrowLeft } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useEffect, useState, useRef } from "react";
-import Location from "./location";
+import dynamic from "next/dynamic";
+
+const Location = dynamic(() => import("./location"), { ssr: false });
 import { Button } from "@/components/ui/button";
 import { MessageCircle, X, Send } from "lucide-react";
 

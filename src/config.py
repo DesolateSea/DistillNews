@@ -26,11 +26,11 @@ class Config:
 
     @property
     def AGENT_PROVIDER(self) -> str:
-        return os.getenv("AGENT_PROVIDER", "julep")
+        return os.getenv("AGENT_PROVIDER", "openai")
 
     @property
     def RAG_BACKEND(self) -> str:
-        return os.getenv("RAG_BACKEND", "julep")
+        return os.getenv("RAG_BACKEND", "none")
 
     # OpenAI / Foundry Provider
     @property

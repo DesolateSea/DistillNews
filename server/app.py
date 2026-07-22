@@ -6,12 +6,18 @@ from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Storing all new articles")
-    await store_article()
-    print("Stored all new articles")
-    start_scheduler()
+    try:
+        print("Storing all new articles")
+        await store_article()
+        print("Stored all new articles")
+        start_scheduler()
+    except Exception as e:
+        print(f"Warning: startup tasks failed ({e}). Server will run without scheduled article ingestion.")
     yield
-    shutdown_scheduler()
+    try:
+        shutdown_scheduler()
+    except Exception:
+        pass
 
 app = FastAPI(lifespan=lifespan)
 
