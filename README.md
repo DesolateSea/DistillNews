@@ -118,6 +118,23 @@ npm run dev
 
 Make sure to add `.env` file and API keys
 
+### Microsoft Foundry setup
+
+The OpenAI provider supports Microsoft Foundry's OpenAI-compatible endpoint
+with an API key. Copy `.env.example` to `.env`, then replace the placeholders
+with the Foundry API key and the model deployment name from your resource:
+
+```env
+AGENT_PROVIDER=openai
+FOUNDRY_API_KEY=your-foundry-api-key
+FOUNDRY_BASE_URL=https://your-resource.openai.azure.com/openai/v1/
+FOUNDRY_MODEL=your-model-deployment-name
+```
+
+`FOUNDRY_BASE_URL` may also be the resource URL without `/openai/v1`; the
+provider adds that path automatically. Keep `.env` private and do not commit
+the API key.
+
 ## Contributors:
 
 Team Name: SNAP_back_to_reality

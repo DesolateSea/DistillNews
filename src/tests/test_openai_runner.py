@@ -23,13 +23,16 @@ load_dotenv(SRC_DIR.parent / ".env")
 
 def main():
     print("--- Testing OpenAI Agent Setup ---")
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("FOUNDRY_API_KEY") or os.getenv("OPENAI_API_KEY")
     if not api_key:
-        print("❌ Error: OPENAI_API_KEY is not set in your .env file!")
+        print(
+            "❌ Error: FOUNDRY_API_KEY or OPENAI_API_KEY is not set "
+            "in your .env file!"
+        )
         return
 
     print(f"Key detected: {api_key[:8]}... (hidden)")
-    model = os.getenv("AGENT_MODEL", "gpt-4o-mini")
+    model = os.getenv("AGENT_MODEL") or os.getenv("FOUNDRY_MODEL", "gpt-4o-mini")
     print(f"Using model: {model}")
 
     try:
