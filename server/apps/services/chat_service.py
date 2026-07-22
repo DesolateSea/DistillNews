@@ -2,8 +2,8 @@ import sys
 import os
 import secrets
 from typing import Optional
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../src/julep')))
-from run_chatbot import get_chatbot_response
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../src')))
+from pipeline.chatbot import get_chatbot_response, ensure_articles_uploaded
 from fastapi import APIRouter
 from apps.core.config import DB_URL
 from motor.motor_asyncio import AsyncIOMotorClient
