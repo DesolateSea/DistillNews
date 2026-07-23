@@ -33,7 +33,14 @@ test_dir = SRC_DIR / "tests" / "fixtures"
 agent = create_agent()
 
 
-def _extract_news(input_data, prompt, source=None, debug=False):
+def _get_article_path(input_data):
+    """Compute target article JSON path from title and publication_date."""
+    key = input_data["title"] + str(input_data["publication_date"])
+    hashed_key = sha256(key.encode("utf-8")).hexdigest()
+    return articles_dir / (hashed_key + ".json")
+
+
+def _extract_news(input_data, prompt, source=None, debug=False, article_path=None):
     """
     Extract structured news from input data using an LLM agent.
 
@@ -42,13 +49,13 @@ def _extract_news(input_data, prompt, source=None, debug=False):
         prompt: YAML template filename under ``prompts_dir``
         source: optional source metadata
         debug: if True, print intermediate outputs
+        article_path: optional pre-calculated Path to target JSON file
     """
-    key = input_data["title"] + str(input_data["publication_date"])
-    hashed_key = sha256(key.encode("utf-8")).hexdigest()
-    article_path = articles_dir / (hashed_key + ".json")
+    if article_path is None:
+        article_path = _get_article_path(input_data)
 
     if article_path.exists():
-        log.save_skip("Article already exists", str(article_path.name))
+        log.save_skip("Article already exists", str(article_path.resolve()))
         return None
 
     log.ai_call("extract_news", input_data["title"])
@@ -113,8 +120,9 @@ def extract_news(obj, parser, prompt, assured_news=True, debug=False):
     Full extraction pipeline for a single news item.
 
     1. Parse the raw object via ``parser``
-    2. Optionally classify as news
-    3. Extract structured data via LLM
+    2. Check if article already exists on disk (BEFORE any AI calls)
+    3. Optionally classify as news via LLM
+    4. Extract structured data via LLM
     """
     log.divider()
     # Convert input to standard format
@@ -124,7 +132,13 @@ def extract_news(obj, parser, prompt, assured_news=True, debug=False):
         log.parse_fail("unknown", "parser returned None")
         return None
 
-    # Check if news or not
+    # Article existence check BEFORE any AI calls
+    article_path = _get_article_path(formatted)
+    if article_path.exists():
+        log.save_skip("Article already exists", str(article_path.resolve()))
+        return None
+
+    # Check if news or not (AI call)
     if not assured_news:
         is_news = _is_news(formatted)
         if is_news is None:
@@ -133,8 +147,8 @@ def extract_news(obj, parser, prompt, assured_news=True, debug=False):
             log.save_skip("Not a news post", formatted.get("title", ""))
             return None
 
-    # Generate article
-    article = _extract_news(formatted, prompt=prompt, source=source or obj, debug=debug)
+    # Generate article (AI call)
+    article = _extract_news(formatted, prompt=prompt, source=source or obj, debug=debug, article_path=article_path)
     return article
 
 

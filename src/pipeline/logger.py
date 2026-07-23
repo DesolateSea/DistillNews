@@ -55,7 +55,8 @@ def truncate(text: str, max_len: int = MAX_INLINE) -> str:
 # ── Badge builders ──────────────────────────────────────────────────────────
 
 def _badge(label: str, bg: str, fg: str = _C.WHITE) -> str:
-    return f"{bg}{fg}{_C.BOLD} {label} {_C.RESET}"
+    padded = label.center(6)
+    return f"{bg}{fg}{_C.BOLD} {padded} {_C.RESET}"
 
 
 # ── Logger class ────────────────────────────────────────────────────────────
@@ -65,29 +66,30 @@ class PipelineLogger:
 
     # Pre-built badges
     _BADGES = {
-        "scrape":   _badge("SCRAPE",   _C.BG_CYAN,    _C.WHITE),
-        "fetch":    _badge("FETCH",    _C.BG_BLUE,    _C.WHITE),
-        "parse":    _badge("PARSE",    _C.BG_MAGENTA, _C.WHITE),
-        "ai":       _badge("  AI  ",   _C.BG_YELLOW,  _C.WHITE),
-        "save":     _badge(" SAVE ",   _C.BG_GREEN,   _C.WHITE),
-        "skip":     _badge(" SKIP ",   _C.BG_BLUE,    _C.WHITE),
-        "ok":       _badge("  OK  ",   _C.BG_GREEN,   _C.WHITE),
-        "fail":     _badge(" FAIL ",   _C.BG_RED,     _C.WHITE),
-        "warn":     _badge(" WARN ",   _C.BG_YELLOW,  _C.WHITE),
-        "info":     _badge(" INFO ",   _C.BG_BLUE,    _C.WHITE),
-        "chat":     _badge(" CHAT ",   _C.BG_MAGENTA, _C.WHITE),
-        "rag":      _badge(" RAG  ",   _C.BG_CYAN,    _C.WHITE),
-        "db":       _badge("  DB  ",   _C.BG_GREEN,   _C.WHITE),
+        "scrape":   _badge("SCRAPE", _C.BG_CYAN,    _C.WHITE),
+        "fetch":    _badge("FETCH",  _C.BG_BLUE,    _C.WHITE),
+        "parse":    _badge("PARSE",  _C.BG_MAGENTA, _C.WHITE),
+        "ai":       _badge("AI",     _C.BG_YELLOW,  _C.WHITE),
+        "save":     _badge("SAVE",   _C.BG_GREEN,   _C.WHITE),
+        "skip":     _badge("SKIP",   _C.BG_BLUE,    _C.WHITE),
+        "ok":       _badge("OK",     _C.BG_GREEN,   _C.WHITE),
+        "fail":     _badge("FAIL",   _C.BG_RED,     _C.WHITE),
+        "warn":     _badge("WARN",   _C.BG_YELLOW,  _C.WHITE),
+        "info":     _badge("INFO",   _C.BG_BLUE,    _C.WHITE),
+        "chat":     _badge("CHAT",   _C.BG_MAGENTA, _C.WHITE),
+        "rag":      _badge("RAG",    _C.BG_CYAN,    _C.WHITE),
+        "db":       _badge("DB",     _C.BG_GREEN,   _C.WHITE),
     }
 
     # ── core print ──────────────────────────────────────────────────────
 
     @staticmethod
-    def _print(badge_key: str, message: str, detail: str | None = None):
+    def _print(badge_key: str, message: str, detail: str | None = None, truncate_detail: bool = True):
         badge = PipelineLogger._BADGES.get(badge_key, f"[{badge_key.upper()}]")
         line = f"{badge} {message}"
         if detail is not None:
-            line += f"  {_C.DIM}{truncate(detail)}{_C.RESET}"
+            detail_str = truncate(detail) if truncate_detail else str(detail).replace("\n", " ").replace("\r", "")
+            line += f"  {_C.DIM}{detail_str}{_C.RESET}"
         print(line)
 
     # ── public helpers ──────────────────────────────────────────────────
@@ -148,11 +150,11 @@ class PipelineLogger:
 
     @staticmethod
     def save(path: str, label: str = "Saved"):
-        PipelineLogger._print("save", f"{_C.GREEN}{label}{_C.RESET}", truncate(path, 90))
+        PipelineLogger._print("save", f"{_C.GREEN}{label}{_C.RESET}", path, truncate_detail=False)
 
     @staticmethod
     def save_skip(reason: str, detail: str | None = None):
-        PipelineLogger._print("skip", f"{_C.GRAY}{reason}{_C.RESET}", truncate(detail, 80) if detail else None)
+        PipelineLogger._print("skip", f"{_C.GRAY}{reason}{_C.RESET}", detail, truncate_detail=False)
 
     # --- General ---
 
