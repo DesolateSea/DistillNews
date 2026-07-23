@@ -9,6 +9,11 @@ from apps.core.config import DB_URL
 from apps.utils.recommendation import sort_articles, update_weights
 import os
 
+try:
+    from pipeline.logger import log
+except ImportError:
+    log = None
+
 # Initialize scheduler for daily migrations
 scheduler = AsyncIOScheduler()
 client = AsyncIOMotorClient(DB_URL)
@@ -19,7 +24,11 @@ data_dir = Path(__file__).resolve().parent.parent.parent.parent / "src" / "data"
 
 async def store_article():
     """Load articles from JSON files into MongoDB if not present."""
-    for file in sorted(data_dir.glob("*.json")):
+    files = sorted(data_dir.glob("*.json"))
+    if log:
+        log.db("Syncing articles to MongoDB", f"{len(files)} JSON files found")
+    inserted = 0
+    for file in files:
         with open(file, "r", encoding="utf-8") as f:
             article = json.load(f)
             article["id"] = file.stem
@@ -27,6 +36,9 @@ async def store_article():
             existing = await articles_collection.find_one({"id": article["id"]})
             if not existing:
                 await articles_collection.insert_one(article)
+                inserted += 1
+    if log:
+        log.db("Sync complete", f"{inserted} new articles inserted")
 
 
 def start_scheduler():
@@ -91,7 +103,7 @@ async def update_article_duration(article_id: str, duration: DurationRequest, cu
         {"id": article_id},
         {"$set": {"duration": new_duration}}
     )
-    print(current_user)
+    # current_user logged for debugging
     # Optionally update user's interaction and weights
     if current_user:
         user_id = current_user.get("email")
@@ -109,7 +121,8 @@ async def update_article_duration(article_id: str, duration: DurationRequest, cu
         # Save back
         # Denormalize weights back to category_scores scale
         updated_scores = {c: new_weights.get(c, 0) for c in prefs}
-        print("Updated Scores", updated_scores)
+        if log:
+            log.db("Updated user scores", str({k: f"{v:.3f}" for k, v in updated_scores.items()}))
         await users_collection.update_one(
             {"email": user_id},
             {"$set": {"bias": new_weights, "category_scores": inter}}

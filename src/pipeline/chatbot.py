@@ -17,6 +17,8 @@ from agents import create_agent
 from rag import create_doc_store
 from rag.base import Document
 
+from pipeline.logger import log
+
 # Resolve directories relative to src/
 SRC_DIR = Path(__file__).resolve().parent.parent
 prompts_dir = SRC_DIR / "prompts"
@@ -34,6 +36,9 @@ def _load_and_upload_articles(folder_path=None):
     """Load processed articles from JSON and upload to the document store."""
     folder_path = folder_path or processed_dir
     documents = []
+
+    log.section("RAG Document Upload")
+    log.info("Scanning for articles", str(folder_path))
 
     for root, _, files in os.walk(folder_path):
         for file in files:
@@ -68,15 +73,16 @@ def _load_and_upload_articles(folder_path=None):
 
     if documents:
         doc_store.upload(documents)
-        print(f"Uploaded {len(documents)} articles to document store.")
+        log.success(f"Uploaded {len(documents)} articles to document store")
 
 
 def _filter_prompts(prompt):
     """Extract keywords from a user query using the filter prompt."""
+    log.ai_call("keyword_extraction", prompt)
     result = agent.complete_from_template(
         prompts_dir / "filter_prompt.yaml", {"query": prompt}
     )
-    print("Filter Output:\n", result.content)
+    log.ai_result("keyword_extraction", result.content)
     return result.content
 
 
@@ -93,6 +99,7 @@ def get_chatbot_response(query, user_id="debug", reading=None, prompt="chatbot.y
         reading: Article content the user is currently reading (optional)
         prompt: YAML template filename for the chatbot response
     """
+    log.chat_query(user_id, query)
     memory = user_memory[user_id]
 
     # Step 1: Extract keywords
@@ -100,19 +107,21 @@ def get_chatbot_response(query, user_id="debug", reading=None, prompt="chatbot.y
 
     # Step 2: Search documents
     search_results = doc_store.search(filtered, limit=5)
+    log.rag_search(filtered, len(search_results))
 
     if not search_results:
         context = "No relevant articles found."
+        log.warn("No RAG results for query")
     else:
         context = "\n\n".join(
             r.snippet if r.snippet else r.content for r in search_results
         )
 
-    print("Filtered Prompt:\n", context)
     if not context:
         return None
 
     # Step 3: Generate response
+    log.ai_call("chatbot_response", query)
     result = agent.complete_from_template(
         prompts_dir / prompt,
         {
@@ -124,7 +133,7 @@ def get_chatbot_response(query, user_id="debug", reading=None, prompt="chatbot.y
     )
 
     response = result.content
-    print("Chatbot Output:\n", response)
+    log.chat_response(response)
 
     # Update conversation memory
     memory.append(f"User: {query}")

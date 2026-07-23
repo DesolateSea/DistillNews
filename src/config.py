@@ -49,6 +49,13 @@ class Config:
     def OPENAI_BASE_URL(self) -> str | None:
         return os.getenv("FOUNDRY_BASE_URL") or os.getenv("OPENAI_BASE_URL")
 
+    @property
+    def OPENAI_EMBEDDING_MODEL(self) -> str:
+        return (
+            os.getenv("FOUNDRY_EMBEDDING_MODEL")
+            or os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+        )
+
     # Julep Provider
     @property
     def JULEP_API_KEY(self) -> str | None:

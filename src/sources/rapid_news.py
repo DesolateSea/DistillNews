@@ -4,6 +4,11 @@ import http.client
 from datetime import datetime
 from config import config
 
+try:
+    from pipeline.logger import log
+except ImportError:
+    log = None
+
 class RapidNewsFetcher:
     def __init__(self):
         self.api_key = config.RAPIDAPI_KEY
@@ -23,16 +28,21 @@ class RapidNewsFetcher:
         # Construct the endpoint URL using the category
         endpoint = f"/topic-news-by-section?topic={category.upper()}&limit=500&country=IN&lang=en"
         
+        if log:
+            log.fetch_start("RapidNews", category)
+
         try:
             conn.request("GET", endpoint, headers=headers)
             res = conn.getresponse()
             if res.status != 200:
-                print(f"Failed to fetch {category}: HTTP {res.status}")
+                if log:
+                    log.fetch_fail("RapidNews", f"HTTP {res.status} for {category}")
                 return None
             data = res.read()
             return json.loads(data.decode("utf-8"))
         except Exception as e:
-            print(f"Error fetching {category}: {e}")
+            if log:
+                log.fetch_fail("RapidNews", str(e))
             return None
 
     def save_data(self, category, data):
@@ -46,7 +56,8 @@ class RapidNewsFetcher:
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         
-        print(f"Saved data for {category} to {file_path}")
+        if log:
+            log.save(file_path, f"Saved {category} data")
 
 
 if __name__ == "__main__":
@@ -63,7 +74,8 @@ if __name__ == "__main__":
         "HEALTH",
     ]
     for category in categories:        
-        print(f"Fetching category: {category}")
         data = fetcher.fetch_news(category)
         if data:
             fetcher.save_data(category, data)
+            if log:
+                log.fetch_done("RapidNews", len(data.get("data", [])))

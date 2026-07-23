@@ -8,6 +8,7 @@ Replaces the old ``src/julep/generate_articles.py``.
 
 from parsers.api_handlers import api_handlers
 from pipeline.extraction import extract_news
+from pipeline.logger import log
 from pathlib import Path
 
 SRC_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +23,8 @@ todo = [
 
 
 def generate_articles(api_root=API_ROOT):
+    log.section("Article Generation Pipeline")
+
     for api_name, func in api_handlers.items():
         if api_name not in todo:
             continue
@@ -29,12 +32,20 @@ def generate_articles(api_root=API_ROOT):
         base_path = Path(api_root) / api_name
 
         if not base_path.exists():
+            log.warn(f"No data directory for {api_name}", str(base_path))
             continue
-        for json_file in base_path.rglob("*.json"):
+
+        json_files = list(base_path.rglob("*.json"))
+        log.subsection(f"{api_name}  ({len(json_files)} files)")
+
+        for json_file in json_files:
+            log.info(f"Processing {api_name}", str(json_file.name))
             try:
                 func(json_file, extract_news)
             except Exception as e:
-                print(f"[ERROR] {api_name}: {json_file} -> {e}")
+                log.error(f"[{api_name}] {json_file.name}", str(e))
+
+    log.success("Article generation complete")
 
 
 if __name__ == "__main__":

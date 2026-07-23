@@ -4,6 +4,11 @@ from datetime import datetime
 from newsapi import NewsApiClient
 from config import config
 
+try:
+    from pipeline.logger import log
+except ImportError:
+    log = None
+
 class NewsFetcher:
     def __init__(self, base_dir="api_data"):
         api_key = config.NEWS_API_KEY
@@ -26,6 +31,10 @@ class NewsFetcher:
                            language='en', sort_by='relevancy', page=1):
         from_date = from_date or datetime.now().strftime("%Y-%m-%d")
         to_date = to_date or datetime.now().strftime("%Y-%m-%d")
+
+        if log:
+            log.fetch_start("NewsAPI", topic)
+
         articles = self.newsapi.get_everything(q=topic,
                                                sources=sources,
                                                domains=domains,
@@ -37,6 +46,10 @@ class NewsFetcher:
         org = "everything"
         save_path = self._make_dir(org, topic)
         self._save_to_file(save_path, 'everything.json', articles)
+
+        count = len(articles.get("articles", []))
+        if log:
+            log.fetch_done("NewsAPI", count)
         return articles
 
 if __name__ == "__main__":
@@ -57,5 +70,4 @@ if __name__ == "__main__":
     }
 
     for topic, keyword in TOPIC_KEYWORDS.items():
-        print(f"Fetching articles for: {topic} -> '{keyword}'")
         fetcher.fetch_all_articles(topic=keyword)

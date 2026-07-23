@@ -5,6 +5,11 @@ import urllib.request
 from urllib.parse import urlencode
 from config import config
 
+try:
+    from pipeline.logger import log
+except ImportError:
+    log = None
+
 class GNewsClient:
     def __init__(self, base_dir="api_data/gnews"):
         self.api_key = config.GNEWS_API_KEY
@@ -43,6 +48,9 @@ class GNewsClient:
 
         url = f"{self.base_url}?{urlencode(params)}"
 
+        if log:
+            log.fetch_start("GNews", q)
+
         try:
             with urllib.request.urlopen(url) as response:
                 data = json.loads(response.read().decode("utf-8"))
@@ -51,10 +59,12 @@ class GNewsClient:
                 save_path = self._make_dir(q)
                 self._save_to_file(save_path, "results.json", data)
 
-                print(f"Saved {len(articles)} articles for query '{q}'")
+                if log:
+                    log.fetch_done("GNews", len(articles))
                 return articles
         except Exception as e:
-            print(f"Error fetching articles: {e}")
+            if log:
+                log.fetch_fail("GNews", str(e))
             return []
 
 if __name__ == "__main__":
@@ -78,6 +88,4 @@ if __name__ == "__main__":
     ]
 
     for query in QUERIES:
-        print(f"Fetching articles for: {query}")
         articles = client.fetch_articles(query)
-        print(f"Fetched {len(articles)} articles for query '{query}'")

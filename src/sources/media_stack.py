@@ -3,6 +3,11 @@ import json
 from datetime import datetime
 from config import config
 
+try:
+    from pipeline.logger import log
+except ImportError:
+    log = None
+
 class MediaStack:
     def __init__(self, access_key: str = None, base_url: str = "http://api.mediastack.com/v1"):
         self.access_key = access_key or config.MEDIASTACK_API_KEY
@@ -21,14 +26,19 @@ class MediaStack:
     def get_news(self, **filters):
         import requests
         url = self.build_url("news", **filters)
+        if log:
+            log.fetch_start("MediaStack", str(filters))
         response = requests.get(url)
         if response.status_code != 200:
+            if log:
+                log.fetch_fail("MediaStack", f"HTTP {response.status_code}")
             raise Exception(f"API Error: {response.status_code} - {response.text}")
         return response.json()
 
     def save_data(self, data: dict, topic: str, base_path: str = "api_data/Media_stack"):
         if "data" not in data or not data["data"]:
-            print("No data to save.")
+            if log:
+                log.warn("No data to save", topic)
             return
 
         try:
@@ -43,7 +53,8 @@ class MediaStack:
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
 
-        print(f"Data saved to {file_path}")
+        if log:
+            log.save(file_path, f"Saved {len(data['data'])} articles")
 
 if __name__ == "__main__":
     categories = [
@@ -59,9 +70,13 @@ if __name__ == "__main__":
     stack = MediaStack()
 
     for category in categories:
-        print(f"Fetching category: {category}")
+        if log:
+            log.fetch_start("MediaStack", category)
         try:
             data = stack.get_news(categories=category)
             stack.save_data(data, topic=category)
+            if log:
+                log.fetch_done("MediaStack", len(data.get("data", [])))
         except Exception as e:
-            print(f"Failed to fetch/save {category}: {e}")
+            if log:
+                log.fetch_fail("MediaStack", str(e))

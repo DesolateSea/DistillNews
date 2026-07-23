@@ -2,6 +2,11 @@ import os, praw, json
 from datetime import datetime, timedelta
 from config import config
 
+try:
+    from pipeline.logger import log
+except ImportError:
+    log = None
+
 REDDIT_SECRET = config.REDDIT_SECRET
 REDDIT_CLIENT_ID = config.REDDIT_CLIENT_ID
 
@@ -90,6 +95,8 @@ output_dir = f'api_data/reddit/{cur_date}'
 os.makedirs(output_dir, exist_ok=True)
 
 for subreddit in indian_subreddits:
+    if log:
+        log.fetch_start("Reddit", f"r/{subreddit}")
     posts = fetch_recent_posts(subreddit)
     for post in posts:
         tags = [post.link_flair_text] if post.link_flair_text else []
@@ -106,3 +113,5 @@ for subreddit in indian_subreddits:
             news_posts.append(news_post)
     with open(f'api_data/reddit/{cur_date}/{subreddit}.json', 'w+') as f:
         json.dump(news_posts, f, indent=4)
+    if log:
+        log.fetch_done("Reddit", len(posts))
