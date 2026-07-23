@@ -20,3 +20,4 @@ bcrypt==4.0.1
 apscheduler==3.9.1
 setuptools==80.9.0
 tqdm==4.66.4
+redis==5.0.1

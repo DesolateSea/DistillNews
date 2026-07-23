@@ -19,6 +19,14 @@ class PreferencesModel(BaseModel):
 class UserModel(RegisterModel):
     preferences: PreferencesModel
 
+class SendOTPRequest(BaseModel):
+    email: EmailStr
+
+class VerifyOTPRequest(BaseModel):
+    email: EmailStr
+    otp: str
+    session_token: str
+
 if __name__ == "__main__":
     prefs = PreferencesModel(preferences=["travel", "economics"])
     user = UserModel(email="user@example.com", password="securepass", preferences=prefs)

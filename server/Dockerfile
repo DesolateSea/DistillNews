@@ -1,6 +1,13 @@
 # syntax=docker/dockerfile:1.7
 
+FROM node:20-slim AS node_image
 FROM python:3.12-slim AS runtime
+
+# Copy Node.js from official image
+COPY --from=node_image /usr/local/bin/node /usr/local/bin/node
+COPY --from=node_image /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
+    ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -17,6 +24,9 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 COPY server ./server
 COPY src ./src
+
+# Install JavaScript email service dependencies
+RUN cd /app/server/services && npm install --omit=dev
 
 RUN chown -R app:app /app
 USER app

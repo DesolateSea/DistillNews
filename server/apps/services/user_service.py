@@ -1,11 +1,52 @@
 from fastapi import HTTPException
 from apps.core.security import get_password_hash, verify_password, create_access_token
-from apps.models.user_model import RegisterModel, LoginModel
+from apps.models.user_model import RegisterModel, LoginModel, SendOTPRequest, VerifyOTPRequest
 from apps.core.config import DB_URL
 from motor.motor_asyncio import AsyncIOMotorClient
 from apps.core.config import CATEGORY
 client = AsyncIOMotorClient(DB_URL)
 users_collection = client.news_db.SNAPUsers
+
+async def send_otp(data: SendOTPRequest):
+    from apps.services.otp_service import generate_otp, store_otp, send_otp_email
+    import logging
+    logger = logging.getLogger("apps.services.user_service")
+
+    otp = generate_otp()
+    session_token = await store_otp(data.email, otp)
+    if not session_token:
+        raise HTTPException(status_code=500, detail="Failed to store OTP")
+
+    # Always log the OTP + session token for development/testing
+    logger.info(f"🔑 [OTP LOG] Code for {data.email} → OTP: {otp}  session: {session_token[:8]}…")
+
+    email_sent = await send_otp_email(data.email, otp)
+    if not email_sent:
+        logger.warning(
+            f"⚠️ Email delivery failed. OTP={otp} session={session_token[:8]}… stored in Redis."
+        )
+
+    return {
+        "session_token": session_token,
+        "message": "OTP sent successfully" if email_sent else "OTP generated (email delivery failed, check server logs)",
+    }
+
+async def verify_otp_and_login(data: VerifyOTPRequest):
+    from apps.services.otp_service import verify_otp
+    if not await verify_otp(data.email, data.otp, data.session_token):
+        raise HTTPException(status_code=401, detail="Invalid or expired OTP")
+
+    user = await users_collection.find_one({"email": data.email})
+    if not user:
+        await users_collection.insert_one({
+            "email": data.email,
+            "preferences": [],
+            "category_scores": {},
+            "bias": {}
+        })
+
+    token = create_access_token({"email": data.email})
+    return {"access_token": token, "token_type": "bearer"}
 
 async def register_user(data: RegisterModel):
     if await users_collection.find_one({"email": data.email}):

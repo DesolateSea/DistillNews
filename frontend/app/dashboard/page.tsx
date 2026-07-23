@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 import {
   Card,
-  CardContent,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import {
@@ -35,7 +33,7 @@ export default function DashboardPage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const bottomSentinel = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isFetchingRef = useRef(false);
   const ITEMS_PER_PAGE = 9;
 
@@ -58,9 +56,7 @@ export default function DashboardPage() {
       const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE);
       const newArticles = feeds as NewsItem[];
 
-      // update hasMore from API or fallback
       setHasMore(has_more ?? newArticles.length === ITEMS_PER_PAGE);
-
       setNews((prev) =>
         pageNum === 1 ? newArticles : [...prev, ...newArticles]
       );
@@ -73,7 +69,15 @@ export default function DashboardPage() {
     }
   }, []);
 
-  // 1) On mount, check auth and load first page
+  const handleScroll = () => {
+    if (!containerRef.current || isFetchingRef.current || !hasMore) return;
+    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      setPage((p) => p + 1);
+    }
+  };
+
+  // On mount: check auth and load page 1
   useEffect(() => {
     if (!localStorage.getItem("SNAPtoken")) {
       router.push("/register");
@@ -82,16 +86,14 @@ export default function DashboardPage() {
     fetchNews(1);
   }, [router, fetchNews]);
 
-  // Auto-scroll chat to bottom when messages change
+  // Auto-scroll chat to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Focus input when chat opens
+  // Focus chat input when opened
   useEffect(() => {
-    if (isChatOpen) {
-      inputRef.current?.focus();
-    }
+    if (isChatOpen) inputRef.current?.focus();
   }, [isChatOpen]);
 
   const handleLogout = () => {
@@ -99,73 +101,50 @@ export default function DashboardPage() {
     router.push("/");
   };
 
+  // Fetch subsequent pages — guard page > 1 to avoid double-fetch on mount
   useEffect(() => {
-    if (hasMore) {
+    if (hasMore && page > 1) {
       fetchNews(page);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  useEffect(() => {
-    const sentinel = bottomSentinel.current;
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && hasMore && !loadingMore && !isFetchingRef.current) {
-          setPage((currentPage) => currentPage + 1);
-        }
-      },
-      { rootMargin: "300px" }
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [hasMore, loadingMore]);
-
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
+  const toggleChat = () => setIsChatOpen((prev) => !prev);
 
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!inputMessage.trim()) return;
 
     const token = localStorage.getItem("SNAPtoken");
     if (!token) return;
 
-    // Add user message to chat
     const userMessage: ChatMessage = {
       text: inputMessage,
       isUser: true,
       timestamp: new Date(),
     };
-
     setMessages((prev) => [...prev, userMessage]);
     setInputMessage("");
     setIsTyping(true);
 
     try {
       const data = await chatApi.send(inputMessage, token);
-      // Add bot response to chat
       const botMessage: ChatMessage = {
         text: data.response || "Sorry, I couldn't process your request.",
         isUser: false,
         timestamp: new Date(),
       };
-
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
-
-      // Add error message
-      const errorMessage: ChatMessage = {
-        text: "Sorry, there was an error processing your request. Please try again.",
-        isUser: false,
-        timestamp: new Date(),
-      };
-
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: "Sorry, there was an error processing your request. Please try again.",
+          isUser: false,
+          timestamp: new Date(),
+        },
+      ]);
     } finally {
       setIsTyping(false);
     }
@@ -174,7 +153,6 @@ export default function DashboardPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
-        {/* ... your existing loading UI ... */}
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-semibold mb-2">
@@ -188,10 +166,11 @@ export default function DashboardPage() {
       </div>
     );
   }
+
   return (
-    <div className="min-h-screen flex flex-col bg-muted/20">
-      <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
-        <div className="container mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+    <div className="min-h-screen flex flex-col">
+      <header className="border-b">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
             <h1 className="text-2xl font-bold">DistillNews</h1>
@@ -211,33 +190,28 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      <main className="container mx-auto max-w-7xl flex-1 px-4 py-10">
-        <div className="mb-8">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">Your daily briefing</p>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Your News Feed</h1>
-          <p className="mt-2 text-muted-foreground">Personalized stories, distilled for you.</p>
-        </div>
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-8">Your News Feed</h1>
 
         <div
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          ref={containerRef}
+          onScroll={handleScroll}
+          className="overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          style={{ height: "70vh" }}
         >
           {news.map((item, idx) => (
             <NewsCard key={`${item.id}-${idx}`} newsItem={item} />
           ))}
-        </div>
 
-        {/* bottom sentinel */}
-        <div ref={bottomSentinel} className="h-1" />
-
-        {/* loading indicator or end message */}
-        <div className="mt-4 text-center">
+          {/* Loading spinner inside the scroll container */}
           {loadingMore && (
-            <div className="flex justify-center">
+            <div className="col-span-full flex justify-center py-6">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
             </div>
           )}
+
           {!hasMore && (
-            <p className="text-muted-foreground">
+            <p className="col-span-full text-center text-muted-foreground py-4">
               You've reached the end of your feed
             </p>
           )}
@@ -286,9 +260,7 @@ export default function DashboardPage() {
                   {messages.map((msg, index) => (
                     <div
                       key={index}
-                      className={`mb-4 flex ${
-                        msg.isUser ? "justify-end" : "justify-start"
-                      }`}
+                      className={`mb-4 flex ${msg.isUser ? "justify-end" : "justify-start"}`}
                     >
                       <div
                         className={`max-w-3/4 p-3 rounded-lg ${
@@ -312,18 +284,9 @@ export default function DashboardPage() {
                   {isTyping && (
                     <div className="mb-4 flex justify-start">
                       <div className="max-w-3/4 p-3 rounded-lg bg-muted flex space-x-1">
-                        <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
-                          style={{ animationDelay: "0ms" }}
-                        ></div>
-                        <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
-                          style={{ animationDelay: "200ms" }}
-                        ></div>
-                        <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
-                          style={{ animationDelay: "400ms" }}
-                        ></div>
+                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
+                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
                       </div>
                     </div>
                   )}

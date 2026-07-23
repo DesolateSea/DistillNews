@@ -17,36 +17,57 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Newspaper } from "lucide-react";
-import { authApi } from "@/lib/api";
+import { authApi, preferencesApi } from "@/lib/api";
 
 export default function AuthPage() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(false);
+  const [step, setStep] = useState<"email" | "otp">("email");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
+  const [sessionToken, setSessionToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const data = isLogin
-        ? await authApi.login(email, password)
-        : await authApi.register(email, password);
+      const res = await authApi.sendOtp(email);
+      setSessionToken(res.session_token);
+      setStep("otp");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Unable to send verification code. Please try again.");
+      console.error("Send OTP error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const data = await authApi.verifyOtp(email, otp, sessionToken);
+      
       // Save JWT token
       localStorage.setItem("SNAPtoken", data.access_token);
 
-      // Redirect based on login/register
-      if (isLogin) {
-        router.push("/dashboard");
-      } else {
+      // Check if user already has preferences to decide redirect target
+      try {
+        const prefRes = await preferencesApi.get(data.access_token);
+        if (prefRes.preferences && prefRes.preferences.length > 0) {
+          router.push("/dashboard");
+        } else {
+          router.push("/preferences");
+        }
+      } catch (err) {
         router.push("/preferences");
       }
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Unable to complete the request.");
-      console.error("Auth error:", error);
+      alert(error instanceof Error ? error.message : "Invalid or expired verification code.");
+      console.error("Verify OTP error:", error);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -69,19 +90,19 @@ export default function AuthPage() {
               <Newspaper className="h-5 w-5" />
             </div>
             <CardTitle className="text-2xl tracking-tight">
-              {isLogin ? "Welcome Back" : "Create an Account"}
+              {step === "email" ? "Sign In / Register" : "Verify Email"}
             </CardTitle>
             <CardDescription>
-              {isLogin
-                ? "Sign in to access your personalized news feed"
-                : "Join DistillNews to start receiving tailored news updates"}
+              {step === "email"
+                ? "Join DistillNews or sign in to receive tailored daily news updates"
+                : `We sent a 6-digit verification code to ${email}`}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="space-y-5">
+            {step === "email" ? (
+              <form onSubmit={handleSendOtp} className="space-y-5">
                 <div className="space-y-2.5">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">Email Address</Label>
                   <Input
                     id="email"
                     type="email"
@@ -91,52 +112,45 @@ export default function AuthPage() {
                     required
                   />
                 </div>
+                <Button type="submit" className="h-11 w-full" disabled={isLoading}>
+                  {isLoading ? "Sending Code..." : "Send Verification Code"}
+                </Button>
+              </form>
+            ) : (
+              <form onSubmit={handleVerifyOtp} className="space-y-5">
                 <div className="space-y-2.5">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="otp">Verification Code (OTP)</Label>
                   <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    id="otp"
+                    type="text"
+                    placeholder="123456"
+                    maxLength={6}
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
                     required
                   />
                 </div>
                 <Button type="submit" className="h-11 w-full" disabled={isLoading}>
-                  {isLoading
-                    ? "Processing..."
-                    : isLogin
-                    ? "Sign In"
-                    : "Create Account"}
+                  {isLoading ? "Verifying..." : "Verify & Continue"}
                 </Button>
-              </div>
-            </form>
+                <div className="text-center mt-4">
+                  <Button
+                    variant="link"
+                    type="button"
+                    className="text-sm p-0"
+                    onClick={() => {
+                      setStep("email");
+                      setOtp("");
+                    }}
+                  >
+                    Change Email / Re-send Code
+                  </Button>
+                </div>
+              </form>
+            )}
           </CardContent>
-          <CardFooter>
-            <div className="text-center w-full">
-              {isLogin ? (
-                <p>
-                  Don't have an account?{" "}
-                  <Button
-                    variant="link"
-                    className="p-0"
-                    onClick={() => setIsLogin(false)}
-                  >
-                    Sign up
-                  </Button>
-                </p>
-              ) : (
-                <p>
-                  Already have an account?{" "}
-                  <Button
-                    variant="link"
-                    className="p-0"
-                    onClick={() => setIsLogin(true)}
-                  >
-                    Sign in
-                  </Button>
-                </p>
-              )}
-            </div>
+          <CardFooter className="flex justify-center border-t pt-4 text-xs text-muted-foreground">
+            By continuing, you agree to our Terms and Privacy Policy.
           </CardFooter>
         </Card>
       </main>

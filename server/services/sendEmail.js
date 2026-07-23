@@ -1,5 +1,10 @@
 const nodemailer = require("nodemailer");
 const generateNewsEmailHTML = require("./generateEmail.js");
+const fs = require("fs");
+const path = require("path");
+
+// Load environment variables
+require("dotenv").config();
 
 // Load HTML template and replace placeholders
 async function loadTemplate(filePath, replacements) {
@@ -19,7 +24,8 @@ async function loadTemplate(filePath, replacements) {
     throw error;
   }
 }
-
+console.log("process.env.EMAIL:", process.env.EMAIL);
+console.log("process.env.PASS:", process.env.PASS);
 // Configure Nodemailer
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -55,17 +61,50 @@ const transporter = nodemailer.createTransport({
 
 
 
+const sendOTPEmail = async (recipientEmail, otp) => {
+console.log("process.env.EMAIL:", process.env.EMAIL);
+console.log("process.env.PASS:", process.env.PASS);
+
+  try {
+    const htmlContent = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <h2 style="color: #333; text-align: center;">Verify Your Email</h2>
+        <p>Hello,</p>
+        <p>Your one-time password (OTP) for DistillNews is:</p>
+        <div style="font-size: 32px; font-weight: bold; letter-spacing: 5px; text-align: center; margin: 30px 0; color: #007bff;">
+          ${otp}
+        </div>
+        <p>This OTP is valid for 5 minutes. Please do not share this code with anyone.</p>
+        <p>Best regards,<br/>The DistillNews Team</p>
+      </div>
+    `;
+
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: recipientEmail,
+      subject: `🔑 Your OTP Verification Code`,
+      html: htmlContent,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log("OTP sent to", recipientEmail);
+  } catch (error) {
+    console.error("Error sending OTP email:", error);
+    throw error;
+  }
+};
+
 const sendNewsLetterEmail = async (recipientEmail) => {
   try {
     var data = null;
     try {
       const res = await fetch("http://localhost:8000/feeds")
       data = (await res.json()).feeds;
-    } catch (e){
+    } catch (e) {
       console.log("Error sending email");
       return;
     }
-    if (data === null){
+    if (data === null) {
       console.log("Error sending email");
       return;
     }
@@ -85,10 +124,33 @@ const sendNewsLetterEmail = async (recipientEmail) => {
   }
 };
 
-sendNewsLetterEmail("nishant040305@gmail.com")
-.then(res => console.log(res))
-.catch(err => console.log(err))
+const mode = process.argv[2]; // "otp" or email recipient
+const recipient = process.argv[3];
+const otpValue = process.argv[4];
+
+if (mode === "otp") {
+  if (!recipient || !otpValue) {
+    console.error("Usage: node sendEmail.js otp <email> <otp>");
+    process.exit(1);
+  }
+  sendOTPEmail(recipient, otpValue)
+    .then(() => process.exit(0))
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
+} else {
+  // Fallback mode for backward compatibility
+  const emailToSend = mode || "nishant040305@gmail.com";
+  sendNewsLetterEmail(emailToSend)
+    .then(() => process.exit(0))
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
+}
 
 module.exports = {
   sendNewsLetterEmail,
+  sendOTPEmail,
 };

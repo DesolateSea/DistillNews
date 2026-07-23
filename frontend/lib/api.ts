@@ -52,6 +52,16 @@ export const authApi = {
       method: "POST",
       body: { email, password },
     }),
+  sendOtp: (email: string) =>
+    apiRequest<{ message: string; session_token: string }>("/send-otp", {
+      method: "POST",
+      body: { email },
+    }),
+  verifyOtp: (email: string, otp: string, session_token: string) =>
+    apiRequest<{ access_token: string }>("/verify-otp", {
+      method: "POST",
+      body: { email, otp, session_token },
+    }),
 };
 
 export const preferencesApi = {

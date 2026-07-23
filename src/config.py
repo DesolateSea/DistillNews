@@ -120,6 +120,10 @@ class Config:
     def JWT_SECRET(self) -> str | None:
         return os.getenv("JWT_SECRET")
 
+    @property
+    def REDIS_URL(self) -> str:
+        return os.getenv("REDIS_URL", "redis://redis:6379/0")
+
 
 # Shared singleton configuration instance
 config = Config()

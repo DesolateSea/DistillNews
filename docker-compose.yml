@@ -10,6 +10,15 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   backend:
     build:
       context: .
@@ -23,8 +32,13 @@ services:
       DB_URL: ${DB_URL:-mongodb://mongo:27017/evolution}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
       PORT: 8000
+      EMAIL: ${EMAIL}
+      PASS: ${PASS}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
     depends_on:
       mongo:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     restart: unless-stopped
 
