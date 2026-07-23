@@ -11,10 +11,28 @@ yarn dev
 # or
 pnpm dev
 # or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Environment variables
+
+Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_API_URL` to the URL of
+the FastAPI service. Production deployments must provide the same variable in
+their hosting environment.
+
+## Docker
+
+Build and run the production container from this directory:
+
+	export NEXT_PUBLIC_API_URL=https://api.example.com
+	docker compose up --build
+
+The application is then available at `http://localhost:3000`. `NEXT_PUBLIC_API_URL`
+is a public client-side value supplied as a Docker build argument, so rebuild the
+image whenever it changes. OpenWeather is called through the backend and its key
+must never be added to the frontend environment. The image uses Next.js
+standalone output, runs as a non-root user, and includes a container health check.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

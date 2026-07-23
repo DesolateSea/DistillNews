@@ -20,25 +20,7 @@ import {
   X,
   Send,
 } from "lucide-react";
-
-interface NewsItem {
-  title: string;
-  author: string;
-  publication_date: string;
-  summary: string;
-  content: string;
-  category: string;
-  tags: string[];
-  source: {
-    title: string;
-    url: string;
-    created_utc: number;
-    subreddit: string;
-    media: string[];
-    content: string;
-  };
-  id: string;
-}
+import { chatApi, feedsApi, type NewsItem } from "@/lib/api";
 
 interface ChatMessage {
   text: string;
@@ -54,7 +36,6 @@ export default function DashboardPage() {
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const bottomSentinel = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const isFetchingRef = useRef(false);
   const ITEMS_PER_PAGE = 9;
 
@@ -66,13 +47,6 @@ export default function DashboardPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-      console.log(scrollTop, scrollHeight, clientHeight);
-    }
-  }, [containerRef]);
-
   const fetchNews = useCallback(async (pageNum: number) => {
     const token = localStorage.getItem("SNAPtoken");
     if (!token) return;
@@ -81,16 +55,7 @@ export default function DashboardPage() {
       isFetchingRef.current = true;
       setLoadingMore(pageNum > 1);
 
-      const res = await fetch(
-        `http://localhost:8000/feeds/${pageNum}/${ITEMS_PER_PAGE}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      if (!res.ok) throw new Error("Failed to fetch news");
-
-      const { feeds, has_more } = await res.json();
-      console.log("HAS MORE", has_more);
+      const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE);
       const newArticles = feeds as NewsItem[];
 
       // update hasMore from API or fallback
@@ -107,16 +72,6 @@ export default function DashboardPage() {
       setLoadingMore(false);
     }
   }, []);
-
-  const handleScroll = () => {
-    if (containerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-      console.log(scrollHeight, scrollHeight, scrollTop, clientHeight);
-      if (scrollTop + clientHeight >= scrollHeight - 100) {
-        setPage((p) => p + 1);
-      }
-    }
-  };
 
   // 1) On mount, check auth and load first page
   useEffect(() => {
@@ -146,10 +101,26 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (hasMore) {
-      console.log(page);
       fetchNews(page);
     }
   }, [page]);
+
+  useEffect(() => {
+    const sentinel = bottomSentinel.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && hasMore && !loadingMore && !isFetchingRef.current) {
+          setPage((currentPage) => currentPage + 1);
+        }
+      },
+      { rootMargin: "300px" }
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [hasMore, loadingMore]);
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
@@ -175,21 +146,7 @@ export default function DashboardPage() {
     setIsTyping(true);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ message: inputMessage }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-
-      const data = await response.json();
-      console.log(data);
+      const data = await chatApi.send(inputMessage, token);
       // Add bot response to chat
       const botMessage: ChatMessage = {
         text: data.response || "Sorry, I couldn't process your request.",
@@ -232,9 +189,9 @@ export default function DashboardPage() {
     );
   }
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div className="min-h-screen flex flex-col bg-muted/20">
+      <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
+        <div className="container mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
           <Link href="/" className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
             <h1 className="text-2xl font-bold">DistillNews</h1>
@@ -254,14 +211,15 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      <main className="flex-1 container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Your News Feed</h1>
+      <main className="container mx-auto max-w-7xl flex-1 px-4 py-10">
+        <div className="mb-8">
+          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">Your daily briefing</p>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Your News Feed</h1>
+          <p className="mt-2 text-muted-foreground">Personalized stories, distilled for you.</p>
+        </div>
 
         <div
-          ref={containerRef}
-          onScroll={handleScroll}
-          className="overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          style={{ height: "70vh" }}
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
           {news.map((item, idx) => (
             <NewsCard key={`${item.id}-${idx}`} newsItem={item} />

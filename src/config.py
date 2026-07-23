@@ -104,6 +104,10 @@ class Config:
     def REDDIT_SECRET(self) -> str | None:
         return os.getenv("REDDIT_SECRET")
 
+    @property
+    def OPENWEATHER_API_KEY(self) -> str | None:
+        return os.getenv("OPENWEATHER_API_KEY")
+
     # ------------------------------------------------------------------
     # Database & Server Settings
     # ------------------------------------------------------------------

@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Newspaper } from "lucide-react";
+import { authApi } from "@/lib/api";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -30,22 +31,9 @@ export default function AuthPage() {
     setIsLoading(true);
 
     try {
-      const endpoint = isLogin ? "/login" : "/register";
-      const response = await fetch(`http://localhost:8000${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert(data.message || "An error occurred");
-        setIsLoading(false);
-        return;
-      }
+      const data = isLogin
+        ? await authApi.login(email, password)
+        : await authApi.register(email, password);
 
       // Save JWT token
       localStorage.setItem("SNAPtoken", data.access_token);
@@ -57,27 +45,30 @@ export default function AuthPage() {
         router.push("/preferences");
       }
     } catch (error) {
-      alert("Failed to connect to the server. Please try again.");
+      alert(error instanceof Error ? error.message : "Unable to complete the request.");
       console.error("Auth error:", error);
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen flex flex-col bg-muted/30">
+      <header className="border-b bg-background/80 backdrop-blur">
+        <div className="container mx-auto flex max-w-6xl items-center px-4 py-5">
           <Link href="/" className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold">DistillNews</h1>
+            <h1 className="text-xl font-bold tracking-tight">DistillNews</h1>
           </Link>
         </div>
       </header>
 
-      <main className="flex-1 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>
+      <main className="flex flex-1 items-center justify-center px-4 py-12">
+        <Card className="w-full max-w-md border-border/60 shadow-xl shadow-primary/5">
+          <CardHeader className="space-y-3 pb-6">
+            <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+              <Newspaper className="h-5 w-5" />
+            </div>
+            <CardTitle className="text-2xl tracking-tight">
               {isLogin ? "Welcome Back" : "Create an Account"}
             </CardTitle>
             <CardDescription>
@@ -87,9 +78,9 @@ export default function AuthPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit}>
-              <div className="space-y-4">
-                <div className="space-y-2">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="space-y-5">
+                <div className="space-y-2.5">
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
@@ -100,7 +91,7 @@ export default function AuthPage() {
                     required
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   <Label htmlFor="password">Password</Label>
                   <Input
                     id="password"
@@ -110,7 +101,7 @@ export default function AuthPage() {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button type="submit" className="h-11 w-full" disabled={isLoading}>
                   {isLoading
                     ? "Processing..."
                     : isLogin

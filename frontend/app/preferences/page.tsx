@@ -17,6 +17,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Newspaper, ArrowLeft } from "lucide-react"; // Import ArrowLeft icon (optional)
+import { preferencesApi } from "@/lib/api";
 
 const newsCategories = [
   { id: "Technology", label: "Technology" },
@@ -44,44 +45,15 @@ export default function PreferencesPage() {
     const fetchUserPreferences = async () => {
       setIsFetchingPrefs(true);
       try {
-        const response = await fetch("http://localhost:8000/preferences", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          if (response.status === 404) {
-            console.log("No preferences found for user, starting fresh.");
-          } else {
-            const errorData = await response.json().catch(() => ({}));
-            console.error(
-              "Failed to fetch preferences:",
-              response.status,
-              errorData.message || response.statusText
-            );
-            alert(
-              `Could not load your saved preferences. Status: ${response.status}`
-            );
-          }
-          return;
-        }
-
-        const data = await response.json();
-        if (data && Array.isArray(data.preferences)) {
-          setSelectedCategories(data.preferences);
-        } else {
-          console.warn(
-            "Fetched preferences data is not in the expected format:",
-            data
-          );
-        }
+        const data = await preferencesApi.get(token);
+        if (Array.isArray(data.preferences)) setSelectedCategories(data.preferences);
       } catch (error) {
-        alert(
-          "Failed to connect to the server to load preferences. Please try again."
-        );
-        console.error("Fetch preferences error:", error);
+        if (error instanceof Error && error.message.includes("404")) {
+          console.log("No preferences found for user, starting fresh.");
+        } else {
+          console.error("Failed to fetch preferences:", error);
+          alert("Could not load your saved preferences. Please try again.");
+        }
       } finally {
         setIsFetchingPrefs(false);
       }
@@ -117,21 +89,7 @@ export default function PreferencesPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/preferences", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ preferences: selectedCategories }),
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        alert(data.message || "Failed to save preferences");
-        setIsLoading(false);
-        return;
-      }
+      await preferencesApi.save(selectedCategories, token);
 
       router.push("/dashboard"); // Navigate to dashboard after successful save
     } catch (error) {

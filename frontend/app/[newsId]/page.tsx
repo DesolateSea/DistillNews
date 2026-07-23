@@ -10,30 +10,8 @@ import dynamic from "next/dynamic";
 const Location = dynamic(() => import("./location"), { ssr: false });
 import { Button } from "@/components/ui/button";
 import { MessageCircle, X, Send } from "lucide-react";
+import { chatApi, feedsApi, type NewsItem } from "@/lib/api";
 
-interface NewsItem {
-  _id: string;
-  title: string;
-  author: string;
-  publication_date: string;
-  summary: string;
-  content: string;
-  markdown_content: string;
-  category: string;
-  tags: string[];
-  source: {
-    title: string;
-    url: string;
-    created_utc: number;
-    subreddit: string;
-    media: string[];
-    content: string;
-  };
-  location: string | null;
-  duration: number;
-  popularity: number;
-  id: string;
-}
 interface ChatMessage {
   text: string;
   isUser: boolean;
@@ -62,14 +40,7 @@ export default function NewsDetailPage() {
     const durationMs = Date.now() - startTimeRef.current;
 
     try {
-      await fetch(`http://localhost:8000/feeds/${newsId}/track_time`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ durationMs }),
-      });
+      if (token) await feedsApi.trackTime(newsId, durationMs, token);
     } catch (err) {
       console.error("Failed to track article duration:", err);
     }
@@ -98,21 +69,7 @@ export default function NewsDetailPage() {
     setIsTyping(true);
 
     try {
-      const response = await fetch(`http://localhost:8000/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ message: inputMessage }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-
-      const data = await response.json();
-      console.log(data);
+      const data = await chatApi.send(inputMessage, token);
       // Add bot response to chat
       const botMessage: ChatMessage = {
         text: data.response || "Sorry, I couldn't process your request.",
@@ -150,35 +107,12 @@ export default function NewsDetailPage() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`http://localhost:8000/feeds/${newsId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-          signal: controller.signal,
-        });
-
-        if (!res.ok) {
-          if (res.status === 404) {
-            setNewsItem(null);
-            setMoreNewsItems([]);
-            return;
-          }
-          throw new Error("Failed to fetch news feed");
-        }
-
-        const newsData: NewsItem = await res.json();
+        const newsData = await feedsApi.get(newsId, token);
         setNewsItem(newsData);
         startTimeRef.current = Date.now();
 
-        const allFeedsRes = await fetch("http://localhost:8000/feeds", {
-          headers: { Authorization: `Bearer ${token}` },
-          signal: controller.signal,
-        });
-
-        if (allFeedsRes.ok) {
-          const feeds: { feeds: NewsItem[] } = await allFeedsRes.json();
-          setMoreNewsItems(feeds.feeds.filter((item) => item.id !== newsId));
-        } else {
-          setMoreNewsItems([]);
-        }
+        const feeds = await feedsApi.list(token);
+        setMoreNewsItems(feeds.feeds.filter((item) => item.id !== newsId));
       } catch (err) {
         if (err instanceof Error && err.name === "AbortError") return;
         console.error("Error fetching news:", err);

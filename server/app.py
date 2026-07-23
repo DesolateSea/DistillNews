@@ -1,6 +1,8 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from apps.routes import auth_routes, user_routes, feed_routes, chat_routes
+from apps.routes import auth_routes, user_routes, feed_routes, chat_routes, weather_routes
 from apps.services.article_service import start_scheduler, shutdown_scheduler, store_article
 from contextlib import asynccontextmanager
 
@@ -21,7 +23,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-origins = ["*"]
+origins = [
+    origin.strip()
+    for origin in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -34,3 +40,9 @@ app.include_router(auth_routes.router)
 app.include_router(user_routes.router)
 app.include_router(feed_routes.router)
 app.include_router(chat_routes.router)
+app.include_router(weather_routes.router)
+
+
+@app.get("/health", include_in_schema=False)
+async def health_check():
+    return {"status": "ok"}

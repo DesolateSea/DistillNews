@@ -118,6 +118,26 @@ npm run dev
 
 Make sure to add `.env` file and API keys
 
+### Docker deployment
+
+The backend and its MongoDB dependency can be run with the full stack from the
+repository root:
+
+```bash
+cp .env.example .env
+# Add the required API keys, JWT_SECRET, and database settings to .env.
+docker compose up --build
+```
+
+The frontend is available at `http://localhost:3000` and the backend at
+`http://localhost:8000`. The backend container runs as a non-root user, waits
+for MongoDB to become healthy, exposes `/health` for container health checks,
+and persists MongoDB data in the `mongo-data` volume.
+
+For production, set `NEXT_PUBLIC_API_URL` to the public backend URL and
+`CORS_ORIGINS` to the public frontend URL before building. Do not commit `.env`
+or any API keys.
+
 ### Microsoft Foundry setup
 
 The OpenAI provider supports Microsoft Foundry's OpenAI-compatible endpoint
