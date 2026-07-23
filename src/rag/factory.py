@@ -31,6 +31,14 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
         from .backends.openai import OpenAIDocStore
 
         return OpenAIDocStore(**kwargs)
+    elif backend == "ollama":
+        from .backends.ollama import OllamaDocStore
+
+        return OllamaDocStore(**kwargs)
+    elif backend in ("huggingface", "hf"):
+        from .backends.huggingface import HuggingFaceDocStore
+
+        return HuggingFaceDocStore(**kwargs)
     elif backend == "none":
         from .backends.noop import NoOpDocStore
 
@@ -38,5 +46,5 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
     else:
         raise ValueError(
             f"Unknown RAG backend: {backend!r}. "
-            f"Available: openai, foundry, julep, none"
+            f"Available: openai, foundry, ollama, huggingface, julep, none"
         )

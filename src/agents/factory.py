@@ -32,8 +32,16 @@ def create_agent(provider: str | None = None, **kwargs) -> AgentProvider:
         from .providers.openai import OpenAIAgent
 
         return OpenAIAgent(**kwargs)
+    elif provider == "ollama":
+        from .providers.ollama import OllamaAgent
+
+        return OllamaAgent(**kwargs)
+    elif provider in ("huggingface", "hf"):
+        from .providers.huggingface import HuggingFaceAgent
+
+        return HuggingFaceAgent(**kwargs)
     else:
         raise ValueError(
             f"Unknown agent provider: {provider!r}. "
-            f"Available: julep, openai"
+            f"Available: julep, openai, ollama, huggingface"
         )
