@@ -1,41 +1,34 @@
 import requests
-import json
-import os
 from datetime import datetime
 from config import config
+from db import FileStore
+from pipeline.sources.config import CORE_KEYWORDS
 
 CORE_API_KEY = config.CORE_API_KEY
 
-keywords = [
-    "Artificial intelligence",
-    "Computer science",
-    "Technology",
-    "Machine learning",
-    "Physics",
-    "Biology",
-    "Chemistry",
-    "Mathematics",
-    "Bio technology",
-    "Finance",
-    "Cryptography",
-    "Network",
-    "Statistics",
-    "Economics"
-]
 
-cur_date = datetime.now().strftime("%Y-%m-%d")
-output_dir = f'api_data/core/{cur_date}'
-os.makedirs(output_dir, exist_ok=True)
+def run_core_fetch():
+    cur_date = datetime.now().strftime("%Y-%m-%d")
 
-for keyword in keywords:
-    r = requests.get(f"https://api.core.ac.uk/v3/search/works?q={keyword}&limit=20", headers={"Authorization": "Bearer " + CORE_API_KEY})
-    results = r.json()["results"]
-    papers = []
-    for i in results:
-        papers.append({
-            "content": i["fullText"],
-            "title": i["title"],
-            "citationCount": i["citationCount"]
-        })
-    with open(f'api_data/core/{cur_date}/{keyword}.json', 'w+') as f:
-        json.dump(papers, f, indent=4)
+    for keyword in CORE_KEYWORDS:
+        r = requests.get(
+            f"https://api.core.ac.uk/v3/search/works?q={keyword}&limit=20",
+            headers={"Authorization": "Bearer " + CORE_API_KEY},
+        )
+        results = r.json().get("results", [])
+        papers = []
+        for i in results:
+            papers.append(
+                {
+                    "content": i.get("fullText", ""),
+                    "title": i.get("title", ""),
+                    "citationCount": i.get("citationCount", 0),
+                }
+            )
+
+        rel_path = f"api_data/core/{cur_date}/{keyword}.json"
+        FileStore.write_json(rel_path, papers)
+
+
+if __name__ == "__main__":
+    run_core_fetch()

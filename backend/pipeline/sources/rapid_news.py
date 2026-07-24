@@ -1,13 +1,14 @@
-import os
-import json
 import http.client
 from datetime import datetime
 from config import config
+from db import FileStore
+from pipeline.sources.config import RAPID_NEWS_SECTIONS
 
 try:
     from pipeline.logger import log
 except ImportError:
     log = None
+
 
 class RapidNewsFetcher:
     def __init__(self):
@@ -18,16 +19,14 @@ class RapidNewsFetcher:
     def fetch_news(self, category):
         """Fetch news for a specific category"""
         conn = http.client.HTTPSConnection(self.api_host)
-        
-        # Setting headers with the provided API key
+
         headers = {
-            'x-rapidapi-key': self.api_key,
-            'x-rapidapi-host': self.api_host
+            "x-rapidapi-key": self.api_key,
+            "x-rapidapi-host": self.api_host,
         }
 
-        # Construct the endpoint URL using the category
         endpoint = f"/topic-news-by-section?topic={category.upper()}&limit=500&country=IN&lang=en"
-        
+
         if log:
             log.fetch_start("RapidNews", category)
 
@@ -39,6 +38,8 @@ class RapidNewsFetcher:
                     log.fetch_fail("RapidNews", f"HTTP {res.status} for {category}")
                 return None
             data = res.read()
+            import json
+
             return json.loads(data.decode("utf-8"))
         except Exception as e:
             if log:
@@ -46,34 +47,18 @@ class RapidNewsFetcher:
             return None
 
     def save_data(self, category, data):
-        """Save the fetched news data to a file"""
+        """Save the fetched news data using FileStore"""
         date_str = datetime.now().strftime("%Y-%m-%d")
-        save_path = os.path.join(self.base_path, date_str, category)
-        os.makedirs(save_path, exist_ok=True)
-        
-        # Save data as a JSON file
-        file_path = os.path.join(save_path, "news.json")
-        with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        
+        rel_path = f"{self.base_path}/{date_str}/{category}/news.json"
+        saved = FileStore.write_json(rel_path, data)
+
         if log:
-            log.save(file_path, f"Saved {category} data")
+            log.save(str(saved), f"Saved {category} data")
 
 
 if __name__ == "__main__":
-    # Instantiate the fetcher class and fetch news for all categories
     fetcher = RapidNewsFetcher()
-    categories = [
-        "WORLD",
-        "NATIONAL",
-        "BUSINESS",
-        "TECHNOLOGY",
-        "ENTERTAINMENT",
-        "SPORTS",
-        "SCIENCE",
-        "HEALTH",
-    ]
-    for category in categories:        
+    for category in RAPID_NEWS_SECTIONS:
         data = fetcher.fetch_news(category)
         if data:
             fetcher.save_data(category, data)

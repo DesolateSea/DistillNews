@@ -1,13 +1,14 @@
-import os
-import json
 from datetime import datetime
 from newsapi import NewsApiClient
 from config import config
+from db import FileStore
+from pipeline.sources.config import NEWS_ORG_TOPICS
 
 try:
     from pipeline.logger import log
 except ImportError:
     log = None
+
 
 class NewsFetcher:
     def __init__(self, base_dir="api_data"):
@@ -17,57 +18,48 @@ class NewsFetcher:
         self.newsapi = NewsApiClient(api_key=api_key)
         self.base_dir = base_dir
 
-    def _make_dir(self, org, topic):
+    def _get_save_path(self, org, topic):
         date_str = datetime.now().strftime("%Y-%m-%d")
-        path = os.path.join(self.base_dir, org, date_str, topic)
-        os.makedirs(path, exist_ok=True)
-        return path
+        return f"{self.base_dir}/{org}/{date_str}/{topic}/everything.json"
 
-    def _save_to_file(self, path, filename, data):
-        with open(os.path.join(path, filename), 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
-
-    def fetch_all_articles(self, topic, sources='', domains='', from_date=None, to_date=None,
-                           language='en', sort_by='relevancy', page=1):
+    def fetch_all_articles(
+        self,
+        topic,
+        sources="",
+        domains="",
+        from_date=None,
+        to_date=None,
+        language="en",
+        sort_by="relevancy",
+        page=1,
+    ):
         from_date = from_date or datetime.now().strftime("%Y-%m-%d")
         to_date = to_date or datetime.now().strftime("%Y-%m-%d")
 
         if log:
             log.fetch_start("NewsAPI", topic)
 
-        articles = self.newsapi.get_everything(q=topic,
-                                               sources=sources,
-                                               domains=domains,
-                                               from_param=from_date,
-                                               to=to_date,
-                                               language=language,
-                                               sort_by=sort_by,
-                                               page=page)
+        articles = self.newsapi.get_everything(
+            q=topic,
+            sources=sources,
+            domains=domains,
+            from_param=from_date,
+            to=to_date,
+            language=language,
+            sort_by=sort_by,
+            page=page,
+        )
         org = "everything"
-        save_path = self._make_dir(org, topic)
-        self._save_to_file(save_path, 'everything.json', articles)
+        save_path = self._get_save_path(org, topic)
+        FileStore.write_json(save_path, articles)
 
         count = len(articles.get("articles", []))
         if log:
             log.fetch_done("NewsAPI", count)
         return articles
 
+
 if __name__ == "__main__":
     fetcher = NewsFetcher()
-
-    TOPIC_KEYWORDS = {
-        "government_policy": "india government policy",
-        "markets_crypto": "india crypto market",
-        "business_finance": "indian economy",
-        "national_international_news": "india news",
-        "tech_science_innovation": "india technology science",
-        "health_medicine": "india health",
-        "sports": "india sports",
-        "travel_lifestyle_culture": "india travel culture",
-        "regional_news": "india regional news",
-        "community_social_news": "india social news",
-        "fact_checking": "india fact checking",
-    }
-
-    for topic, keyword in TOPIC_KEYWORDS.items():
+    for topic, keyword in NEWS_ORG_TOPICS.items():
         fetcher.fetch_all_articles(topic=keyword)

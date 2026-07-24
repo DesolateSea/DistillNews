@@ -1,12 +1,13 @@
-import os
-import json
 from datetime import datetime
 from config import config
+from db import FileStore
+from pipeline.sources.config import MEDIA_STACK_CATEGORIES
 
 try:
     from pipeline.logger import log
 except ImportError:
     log = None
+
 
 class MediaStack:
     def __init__(self, access_key: str = None, base_url: str = "http://api.mediastack.com/v1"):
@@ -46,30 +47,17 @@ class MediaStack:
         except Exception:
             date_str = datetime.utcnow().strftime("%Y-%m-%d")
 
-        dir_path = os.path.join(base_path, date_str, topic)
-        os.makedirs(dir_path, exist_ok=True)
-
-        file_path = os.path.join(dir_path, "news.json")
-        with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
+        rel_path = f"{base_path}/{date_str}/{topic}/news.json"
+        saved = FileStore.write_json(rel_path, data)
 
         if log:
-            log.save(file_path, f"Saved {len(data['data'])} articles")
+            log.save(str(saved), f"Saved {len(data['data'])} articles")
+
 
 if __name__ == "__main__":
-    categories = [
-        "general",
-        "business",
-        "entertainment",
-        "health",
-        "science",
-        "sports",
-        "technology",
-    ]
-
     stack = MediaStack()
 
-    for category in categories:
+    for category in MEDIA_STACK_CATEGORIES:
         if log:
             log.fetch_start("MediaStack", category)
         try:

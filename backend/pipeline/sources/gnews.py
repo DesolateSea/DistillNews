@@ -1,14 +1,15 @@
-import os
-import json
 from datetime import datetime
 import urllib.request
 from urllib.parse import urlencode
 from config import config
+from db import FileStore
+from pipeline.sources.config import GNEWS_QUERIES
 
 try:
     from pipeline.logger import log
 except ImportError:
     log = None
+
 
 class GNewsClient:
     def __init__(self, base_dir="api_data/gnews"):
@@ -18,27 +19,22 @@ class GNewsClient:
         self.base_url = "https://gnews.io/api/v4/search"
         self.base_dir = base_dir
 
-    def _make_dir(self, query):
+    def _get_save_path(self, query):
         date_str = datetime.now().strftime("%Y-%m-%d")
-        path = os.path.join(self.base_dir, date_str, query.replace(" ", "_"))
-        os.makedirs(path, exist_ok=True)
-        return path
+        return f"{self.base_dir}/{date_str}/{query.replace(' ', '_')}/results.json"
 
-    def _save_to_file(self, path, filename, data):
-        with open(os.path.join(path, filename), 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
-
-    def fetch_articles(self, q, lang='en', country='india', category=None, sources=None, pageSize=100, page=1):
+    def fetch_articles(
+        self, q, lang="en", country="india", category=None, sources=None, pageSize=100, page=1
+    ):
         params = {
             "q": q,
             "lang": lang,
             "apikey": self.api_key,
             "max": pageSize,
             "country": country,
-            "page": page
+            "page": page,
         }
 
-        # GNews does not support mixing sources with category or country
         if sources:
             params.pop("country", None)
             params.pop("category", None)
@@ -56,8 +52,8 @@ class GNewsClient:
                 data = json.loads(response.read().decode("utf-8"))
                 articles = data.get("articles", [])
 
-                save_path = self._make_dir(q)
-                self._save_to_file(save_path, "results.json", data)
+                save_path = self._get_save_path(q)
+                FileStore.write_json(save_path, data)
 
                 if log:
                     log.fetch_done("GNews", len(articles))
@@ -67,25 +63,9 @@ class GNewsClient:
                 log.fetch_fail("GNews", str(e))
             return []
 
+
 if __name__ == "__main__":
+    import json
     client = GNewsClient()
-
-    QUERIES = [
-        "indian economy",
-        "india government policy",
-        "india health",
-        "india news",
-        "india social news",
-        "india technology science",
-        "india travel culture",
-        "indian economy",
-        "india government policy",
-        "india health",
-        "india news",
-        "india social news",
-        "india technology science",
-        "india travel culture",
-    ]
-
-    for query in QUERIES:
-        articles = client.fetch_articles(query)
+    for query in GNEWS_QUERIES:
+        client.fetch_articles(query)
