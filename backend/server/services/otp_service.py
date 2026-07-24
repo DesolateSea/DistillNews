@@ -8,7 +8,6 @@ import smtplib
 import asyncio
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from redis.asyncio import Redis
 
 logger = logging.getLogger(__name__)
 
