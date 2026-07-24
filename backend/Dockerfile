@@ -12,11 +12,15 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app \
-    PORT=8000
+    PORT=8000 \
+    HOME=/app \
+    HF_HOME=/app/.cache/huggingface \
+    TORCH_HOME=/app/.cache/torch \
+    SENTENCE_TRANSFORMERS_HOME=/app/.cache/sentence_transformers
 
 WORKDIR /app
 
-RUN addgroup --system app && adduser --system --ingroup app app
+RUN addgroup --system app && adduser --system --ingroup app --home /app app
 
 # Install Python dependencies first for build layer caching
 COPY requirements.txt ./
@@ -29,7 +33,7 @@ COPY . /app
 # Install JavaScript email service dependencies
 RUN cd /app/server/email && npm install --omit=dev
 
-RUN chown -R app:app /app
+RUN mkdir -p /app/.cache && chown -R app:app /app
 USER app
 
 EXPOSE 8000

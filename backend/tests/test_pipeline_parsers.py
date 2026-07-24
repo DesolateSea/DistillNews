@@ -17,7 +17,7 @@ def test_gnews_parser():
     formatted, source = gnews_parser(data[0], no_repeat=False)
     assert formatted is not None
     assert "EV policy" in formatted["title"]
-    assert formatted["publication_date"] == 1714073017
+    assert formatted["publication_date"] == 1714092817
     assert formatted["source"] == "CNBC"
 
 
@@ -38,7 +38,7 @@ def test_rapid_news_parser():
     formatted, source = rapid_news_parser(data[0], no_repeat=False)
     assert formatted is not None
     assert "Bengaluru airport" in formatted["title"]
-    assert formatted["publication_date"] == 1744963529
+    assert formatted["publication_date"] == 1744983329
 
 
 def test_reddit_parser():

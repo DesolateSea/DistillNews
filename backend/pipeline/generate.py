@@ -7,6 +7,7 @@ Replaces the old ``src/julep/generate_articles.py``.
 """
 
 from db import FileStore
+from config import config
 from pipeline.parsers.api_handlers import api_handlers
 from pipeline.extraction import extract_news
 from pipeline.logger import log
@@ -14,19 +15,13 @@ from pathlib import Path
 
 API_ROOT = FileStore.api_data_dir()
 
-todo = [
-    "reddit",
-    "rapid_news",
-    "gnews",
-    "media_stack",
-]
-
 
 def generate_articles(api_root=API_ROOT):
     log.section("Article Generation Pipeline")
 
     for api_name, func in api_handlers.items():
-        if api_name not in todo:
+        if not config.is_source_enabled(api_name):
+            log.warn(f"Skipping disabled pipeline service: {api_name}")
             continue
 
         base_path = Path(api_root) / api_name

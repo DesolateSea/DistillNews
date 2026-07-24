@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from pipeline.scrapers.scraper import scrape_target, cache_hit
 from .paragraph_extractor import clean_html
 from copy import deepcopy
@@ -21,7 +21,7 @@ def rapid_news_parser(news_item, no_repeat=True):
     published_date = news_item.get("published_datetime_utc")
     if published_date:
         try:
-            dt = datetime.strptime(published_date, "%Y-%m-%dT%H:%M:%S.%fZ")
+            dt = datetime.strptime(published_date, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
             formatted["publication_date"] = int(dt.timestamp())
         except (ValueError, TypeError):
             formatted["publication_date"] = "Unknown"

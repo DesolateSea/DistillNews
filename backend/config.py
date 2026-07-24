@@ -188,6 +188,35 @@ class Config:
     def REDIS_URL(self) -> str:
         return os.getenv("REDIS_URL", "redis://redis:6379/0")
 
+    # ------------------------------------------------------------------
+    # Pipeline Source & Service Controls
+    # ------------------------------------------------------------------
+
+    @property
+    def DISABLED_PIPELINE_SOURCES(self) -> set[str]:
+        """Comma-separated list of pipeline sources/services to disable (e.g., 'reddit,scrape,rapid_news')."""
+        raw = os.getenv("DISABLED_PIPELINE_SOURCES", "")
+        return {s.strip().lower() for s in raw.split(",") if s.strip()}
+
+    @property
+    def ENABLED_PIPELINE_SOURCES(self) -> set[str] | None:
+        """Comma-separated list of explicitly enabled pipeline sources/services. If unset, all non-disabled sources are active."""
+        raw = os.getenv("ENABLED_PIPELINE_SOURCES")
+        if raw is None:
+            return None
+        return {s.strip().lower() for s in raw.split(",") if s.strip()}
+
+    def is_source_enabled(self, source_name: str) -> bool:
+        """Check whether a pipeline source or service (e.g., 'gnews', 'reddit', 'scrape', 'media_stack') is enabled."""
+        name = source_name.strip().lower()
+        if name in self.DISABLED_PIPELINE_SOURCES:
+            return False
+        enabled = self.ENABLED_PIPELINE_SOURCES
+        if enabled is not None:
+            return name in enabled
+        return True
+
 
 # Shared singleton configuration instance
 config = Config()
+
