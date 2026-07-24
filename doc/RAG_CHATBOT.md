@@ -47,6 +47,7 @@ Available providers:
 Configured via `RAG_BACKEND`:
 
 - `memory` — In-process vector store using `EmbeddingProvider` for similarity search.
+- `bm25` — Pure Python Okapi BM25 lexical ranking store requiring **0 API calls, 0 vector embeddings, and 0 LLM costs**.
 - `julep` — Julep managed document search platform.
 - `none` — Default base class implementation returning `[]` search results (no-op).
 

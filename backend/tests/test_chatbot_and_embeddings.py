@@ -71,13 +71,36 @@ def test_memory_store_uses_injected_embedder_and_preserves_metadata():
     assert result.score == 1.0
 
 
+def test_bm25_doc_store_lexical_retrieval():
+    store = create_doc_store("bm25")
+    store.upload(
+        [
+            Document(
+                title="Electric Vehicles Policy",
+                content="India introduces new EV manufacturing subsidies and tariff reductions.",
+                metadata={"category": "auto"},
+            ),
+            Document(
+                title="Cricket World Cup",
+                content="India wins cricket match against Australia in final overs.",
+                metadata={"category": "sports"},
+            ),
+        ]
+    )
+
+    results = store.search("electric vehicle EV subsidies", limit=1)
+    assert len(results) == 1
+    assert results[0].title == "Electric Vehicles Policy"
+    assert results[0].score > 0.0
+
+
 def test_noop_embedding_provider_makes_no_vectors():
     assert create_embedding_provider("none").embed("anything") == []
 
 
 def test_embedding_backends_are_not_rag_backends():
     for backend in ("openai", "foundry", "ollama", "huggingface", "in_memory"):
-        with pytest.raises(ValueError, match="Available: memory, julep, none"):
+        with pytest.raises(ValueError, match="Available: memory, bm25, julep, none"):
             create_doc_store(backend)
 
 

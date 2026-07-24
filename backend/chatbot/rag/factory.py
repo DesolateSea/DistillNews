@@ -26,10 +26,14 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
 
         embedder = kwargs.pop("embedder", None) or create_embedding_provider()
         return InMemoryVectorStore(embedder=embedder, **kwargs)
+    elif backend == "bm25":
+        from .backends.bm25 import BM25DocStore
+
+        return BM25DocStore(**kwargs)
     elif backend == "none":
         return DocumentStore()
     else:
         raise ValueError(
             f"Unknown RAG backend: {backend!r}. "
-            "Available: memory, julep, none"
+            "Available: memory, bm25, julep, none"
         )
