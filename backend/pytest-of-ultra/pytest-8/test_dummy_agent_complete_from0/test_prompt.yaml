@@ -1,0 +1,8 @@
+
+name: test_task
+main:
+  - prompt:
+      - role: system
+        content: "System prompt"
+      - role: user
+        content: "Input: {steps[0].input.query}"

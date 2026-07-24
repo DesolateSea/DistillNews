@@ -21,8 +21,8 @@ services:
 
   backend:
     build:
-      context: .
-      dockerfile: server/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     image: distillnews-backend:latest
     ports:
       - "${BACKEND_PORT:-8000}:8000"
