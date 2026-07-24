@@ -8,3 +8,5 @@ __pycache__/
 *.env
 venv
 .cph
+.pytest_cache/
+pytest-of-*/
