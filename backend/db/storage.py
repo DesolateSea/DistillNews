@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 from hashlib import sha256
+from datetime import datetime, timezone
 
 
 class FileStore:
@@ -26,7 +27,7 @@ class FileStore:
 
     @classmethod
     def raw_dir(cls) -> Path:
-        p = cls._root_dir / "raw"
+        p = cls._root_dir / "pipeline" / "raw"
         p.mkdir(parents=True, exist_ok=True)
         return p
 
@@ -36,7 +37,7 @@ class FileStore:
         p.mkdir(parents=True, exist_ok=True)
         return p
 
-    # --- Processed Article Methods ---
+    # --- Processed Articles Repository ---
 
     @classmethod
     def compute_article_id(cls, title: str, pub_date: str | int | float) -> str:
@@ -61,6 +62,9 @@ class FileStore:
             article_id = cls.compute_article_id(
                 article_data.get("title", ""), article_data.get("publication_date", "")
             )
+        if "created_at" not in article_data:
+            article_data["created_at"] = datetime.now(timezone.utc).isoformat()
+
         filepath = cls.processed_dir() / f"{article_id}.json"
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(article_data, f, indent=2)

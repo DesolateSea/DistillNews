@@ -8,7 +8,7 @@ Screen {
     layout: grid;
     grid-size: 2 2;
     grid-columns: 35 1fr;
-    grid-rows: 1fr 12;
+    grid-rows: 1fr 20;
     height: 100%;
     width: 100%;
 }
@@ -37,10 +37,11 @@ Screen {
 }
 
 .source-card {
-    padding: 1;
-    margin-bottom: 1;
+    padding: 0 1;
+    margin-bottom: 0;
     border: solid #30363d;
     background: #0d1117;
+    height: 3;
 }
 
 .source-enabled {
@@ -50,6 +51,22 @@ Screen {
 .source-disabled {
     border-left: thick #8b949e;
     color: #8b949e;
+}
+
+.source-name {
+    width: 1fr;
+}
+
+.source-status-on {
+    color: #3fb950;
+    text-style: bold;
+    width: auto;
+}
+
+.source-status-off {
+    color: #8b949e;
+    text-style: bold;
+    width: auto;
 }
 
 .stage-panel {
@@ -103,10 +120,22 @@ Button {
     background: #21262d;
     border: none;
     color: #c9d1d9;
+    text-style: none;
 }
 
 Button:hover {
     background: #30363d;
+}
+
+Button:focus {
+    text-style: bold;
+    background: #30363d;
+    color: #ffffff;
+}
+
+Button.-active {
+    background: #30363d;
+    text-style: bold;
 }
 
 Button.-primary {
@@ -118,6 +147,18 @@ Button.-primary:hover {
     background: #388bfd;
 }
 
+Button.-primary:focus {
+    background: #388bfd;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Button.-primary.-active {
+    background: #1553b7;
+    color: #ffffff;
+    text-style: bold;
+}
+
 Button.-success {
     background: #238636;
     color: #ffffff;
@@ -125,6 +166,39 @@ Button.-success {
 
 Button.-success:hover {
     background: #2ea043;
+}
+
+Button.-success:focus {
+    background: #2ea043;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Button.-success.-active {
+    background: #1b6628;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Button.-error {
+    background: #da3633;
+    color: #ffffff;
+}
+
+Button.-error:hover {
+    background: #f85149;
+}
+
+Button.-error:focus {
+    background: #f85149;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Button.-error.-active {
+    background: #b62324;
+    color: #ffffff;
+    text-style: bold;
 }
 
 RichLog {

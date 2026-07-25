@@ -83,17 +83,37 @@ SOURCE_REGISTRY = {
 }
 
 
+class PipelineCancelled(Exception):
+    pass
+
+
 class PipelineRunner:
-    def __init__(self, callback: Callable[[PipelineEvent], None] | None = None):
+    def __init__(
+        self,
+        callback: Callable[[PipelineEvent], None] | None = None,
+        stop_checker: Callable[[], bool] | None = None,
+    ):
         self.callback = callback
+        self.stop_checker = stop_checker
+
+    def _is_stopped(self) -> bool:
+        return bool(self.stop_checker and self.stop_checker())
 
     def _emit(self, event: PipelineEvent):
+        if self._is_stopped():
+            raise PipelineCancelled("Pipeline task was cancelled")
         if self.callback:
             self.callback(event)
 
     def run_all(self, sources: list[str] | None = None):
+        if self._is_stopped():
+            return
         self.run_fetch(sources=sources)
+        if self._is_stopped():
+            return
         self.run_scrape()
+        if self._is_stopped():
+            return
         self.run_generate()
 
     def run_fetch(self, sources: list[str] | None = None):
@@ -103,6 +123,8 @@ class PipelineRunner:
         current = 0
         
         for source_name in sources_to_run:
+            if self._is_stopped():
+                break
             if not config.is_source_enabled(source_name):
                 self._emit(LogEvent(badge="skip", message=f"Skipping {source_name}", detail="Source disabled"))
                 continue
@@ -121,28 +143,63 @@ class PipelineRunner:
                     mod = importlib.import_module(mod_name)
                     func = getattr(mod, func_name)
                 func()
+            except PipelineCancelled:
+                break
             except Exception as e:
                 self._emit(LogEvent(badge="fail", message=f"Fetch failed for {source_name}", detail=str(e)))
                 
             current += 1
             self._emit(StageProgress(stage="fetch", current=current, total=len(sources_to_run), detail=source_name))
             
-        self._emit(StageCompleted(stage="fetch"))
+        if not self._is_stopped():
+            self._emit(StageCompleted(stage="fetch"))
 
     def run_scrape(self):
-        self._emit(StageStarted(stage="scrape"))
+        if self._is_stopped():
+            return
+        try:
+            from db import FileStore
+            from pipeline.scrapers.config import TARGET_URLS_JSON
+            targets = FileStore.read_json(TARGET_URLS_JSON)
+            total = sum(len(urls) for urls in targets.values()) if targets else 1
+        except Exception:
+            total = 1
+
+        self._emit(StageStarted(stage="scrape", total=max(total, 1)))
+
+        def _on_scrape_progress(current: int, total: int, detail: str):
+            if self._is_stopped():
+                raise PipelineCancelled("Pipeline task was cancelled")
+            self._emit(StageProgress(stage="scrape", current=current, total=total, detail=detail))
+
         try:
             from pipeline.scrape import run_scrape
-            run_scrape()
+            run_scrape(progress_callback=_on_scrape_progress)
+        except PipelineCancelled:
+            pass
         except Exception as e:
             self._emit(LogEvent(badge="fail", message="Scrape failed", detail=str(e)))
-        self._emit(StageCompleted(stage="scrape"))
-        
+
+        if not self._is_stopped():
+            self._emit(StageCompleted(stage="scrape"))
+
     def run_generate(self):
-        self._emit(StageStarted(stage="generate"))
+        if self._is_stopped():
+            return
+        self._emit(StageStarted(stage="generate", total=100))
+
+        def _on_generate_progress(current: int, total: int, detail: str):
+            if self._is_stopped():
+                raise PipelineCancelled("Pipeline task was cancelled")
+            self._emit(StageProgress(stage="generate", current=current, total=total, detail=detail))
+
         try:
             from pipeline.generate import generate_articles
-            generate_articles()
+            generate_articles(progress_callback=_on_generate_progress)
+        except PipelineCancelled:
+            pass
         except Exception as e:
             self._emit(LogEvent(badge="fail", message="Generate failed", detail=str(e)))
-        self._emit(StageCompleted(stage="generate"))
+
+        if not self._is_stopped():
+            self._emit(StageCompleted(stage="generate"))

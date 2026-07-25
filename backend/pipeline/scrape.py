@@ -12,7 +12,7 @@ from pipeline.scrapers.scraper import scrape_target
 from pipeline.scrapers.config import TARGET_URLS_JSON
 from utils.logger import log
 
-def run_scrape():
+def run_scrape(progress_callback=None):
     log.section("Web Scraping Pipeline")
 
     if not config.is_source_enabled("scrape"):
@@ -20,13 +20,20 @@ def run_scrape():
         return
 
     targets = FileStore.read_json(TARGET_URLS_JSON)
+    if not targets:
+        log.warn("No scrape targets found.")
+        return
 
     total = sum(len(urls) for urls in targets.values())
     log.info(f"Loaded {len(targets)} categories, {total} URLs total")
 
+    current = 0
     for category, urls in targets.items():
         log.subsection(f"{category}  ({len(urls)} URLs)")
         for url in urls:
+            current += 1
+            if progress_callback:
+                progress_callback(current, max(total, 1), f"[{category}] {url}")
             scrape_target(url, category)
 
     log.success("Scraping pipeline complete")

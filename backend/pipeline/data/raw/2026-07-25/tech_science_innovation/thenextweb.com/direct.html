@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<!--
+Development:
+JULIO FOULQUIE, @j3j5@hachyderm.io, ✈Montevideo, UY
+MARC TORAL, ✈Amsterdam, NL
+JULIAN SZNAIDER, ✈Buenos Aires, AR
+——————————
+Concept and Design by:
+ALEXANDER GRIFFIOEN, @oscaralexander, ✈Amsterdam, NL
+SÄINA SEEDORF, ✈Amsterdam, NL
+——————————
+Alumni:
+JACK DUNN, ✈Amsterdam, NL
+JULIAN AIJAL, @Jaijal, ✈Amsterdam, NL
+SAM BLOK, ✈Amsterdam, NL
+LAURA GENNO, ✈Amsterdam, NL
+IRENE DE NICOLO, ✈Amsterdam, NL
+DANIEL TARA, ✈Amsterdam, NL
+EVGENY ASTAPOV, ✈Rotterdam, NL
+RONAN O'LEARY, @ro_oleary, ✈Amsterdam, NL
+PABLO ROMÁN, ✈Amsterdam, NL
+JAMES SCOTT, ✈Amsterdam, NL
+JELLE VAN WIJHE, ✈Amsterdam, NL
+MATTHEW ELWORTHY, ✈Amsterdam, NL
+OSCAR VAN ZIJVERDEN, ✈Amsterdam, NL
+STEPHAN LAGERWAARD, ✈Amsterdam, NL
+-->
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="unsafe-url" name="referrer">
+        <meta content="The Next Web" name="apple-mobile-web-app-title">
+
+                <link rel="preload" href="//static.thenextweb.com/assets/next/css/base.css?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" as="style">
+        <link rel="preload" as="script" href="//static.thenextweb.com/assets/next/js/base.js?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" >
+                    <link rel="preload" href="//static.thenextweb.com/assets/next/css/media.css?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" as="style">
+                <link rel="preload" href='https://static.thenextweb.com/assets/next/fonts/graphik-wide-black.woff2' as='font' type='font/woff2' crossorigin='anonymous'>
+
+        
+        
+                
+                            
+                                                                                                
+                                            <title>TNW | The heart of tech</title>
+                        
+        
+            
+        <link rel="apple-touch-icon" sizes="57x57" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="//static.thenextweb.com/assets/img/favicon/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="//static.thenextweb.com/assets/img/favicon/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="//static.thenextweb.com/assets/img/favicon/favicon-48x48.png" sizes="48x48">
+        <link rel="icon" type="image/png" href="//static.thenextweb.com/assets/img/favicon/favicon-194x194.png" sizes="194x194">
+        <link rel="icon" type="image/png" href="//static.thenextweb.com/assets/img/favicon/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="//static.thenextweb.com/assets/img/favicon/favicon-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="//static.thenextweb.com/assets/img/favicon/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="//static.thenextweb.com/assets/img/favicon/favicon-16x16.png">
+        <link rel="icon" href="/favicon.ico">
+        <script src="//static.thenextweb.com/assets/js/lib/modernizr-custom.js?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" async></script>
+        <link rel="manifest" href="/manifest.json">
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.3.1/lite-youtube.js"></script>
+
+        <style>body{visibility:hidden;}</style>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NNKTCH4W');</script>
+        <!-- End Google Tag Manager -->
+
+        <script type="text/javascript">
+            window.dataLayer = window.dataLayer || [];
+        </script>
+
+            <script type="text/javascript" async> window.dataLayer = window.dataLayer || []; dataLayer.push({"page":[{"homepage":"3"}]});</script>
+
+        <script>
+            !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init ts ns yi rs os Qr es capture Hi calculateEventProperties hs register register_once register_for_session unregister unregister_for_session fs getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty vs us createPersonProfile cs Yr ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing ls debug O ds getPageViewId captureTraceFeedback captureTraceMetric Vr".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+            posthog.init('phc_U6GxCW1e025EJZwgZdk8dI6LjxInuuygM3K2AswPHYW', {
+                api_host: 'https://eu.i.posthog.com',
+                defaults: '2025-11-30',
+                person_profiles: 'identified_only'
+            })
+        </script>
+
+        <!-- Calendly embed script and styles -->
+        <link href="https://calendly.com/assets/external/widget.css" rel="stylesheet">
+        <script src="https://calendly.com/assets/external/widget.js" type="text/javascript"></script>
+
+        <link href="//static.thenextweb.com/assets/next/css/base.css?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" rel="stylesheet" type="text/css">
+                    <link href="//static.thenextweb.com/assets/next/css/media.css?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" rel="stylesheet" type="text/css">
+            <noscript>
+                <link href="//static.thenextweb.com/assets/next/css/media.css?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" rel="stylesheet" type="text/css">
+            </noscript>
+        
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <link rel="dns-prefetch" href="//media.thenextweb.com/">
+        <link rel="dns-prefetch" href="//static.thenextweb.com/">
+        <link rel="preconnect" href="//media.thenextweb.com/">
+        <link rel="preconnect" href="//static.thenextweb.com/">
+        <link rel="stylesheet preload" as="style" href="//use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" async>
+                    <link rel="canonical" href="https://thenextweb.com"/>
+        
+        
+                        
+                
+                                        
+                                    <script>
+            var APP_ENV = {
+                'site_url': 'https://next.thenextweb.com/' + '',
+                'cookie_domain': '.thenextweb.com'
+            };
+        </script>
+                                            <script type="application/ld+json">
+    {
+    "@context": "http:\/\/schema.org",
+    "@type": "WebSite",
+    "@id": "https:\/\/thenextweb.com\/#website",
+    "name": "The Next Web",
+    "alternateName": "TNW",
+    "url": "https:\/\/thenextweb.com\/",
+    "publisher": {
+        "@type": "Organization",
+        "@id": "http:\/\/data.thenextweb.com\/tnw\/entity\/the_next_web",
+        "name": "The Next Web",
+        "sameAs": [
+            "https:\/\/en.wikipedia.org\/wiki\/The_Next_Web",
+            "https:\/\/www.facebook.com\/thenextweb",
+            "https:\/\/www.twitter.com\/thenextweb",
+            "https:\/\/instagram.com\/thenextweb",
+            "https:\/\/www.youtube.com\/user\/thenextweb",
+            "https:\/\/www.pinterest.com\/thenextweb\/",
+            "https:\/\/www.linkedin.com\/company\/the-next-web",
+            "https:\/\/vine.co\/thenextweb",
+            "https:\/\/thenextweb.tumblr.com",
+            "https:\/\/soundcloud.com\/thenextweb",
+            "https:\/\/vimeo.com\/thenextweb",
+            "https:\/\/vk.com\/thenextweb",
+            "https:\/\/www.slideshare.net\/thenextweb",
+            "https:\/\/flipboard.com\/@thenextweb",
+            "https:\/\/storify.com\/thenextweb",
+            "https:\/\/www.stumbleupon.com\/channel\/thenextweb",
+            "https:\/\/www.flickr.com\/photos\/thenextweb\/",
+            "https:\/\/foursquare.com\/thenextweb"
+        ]
+    },
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https:\/\/thenextweb.com\/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+<script type="application/ld+json">
+    {
+    "@context": "https:\/\/schema.org",
+    "@id": "#Publisher",
+    "@type": "Organization",
+    "name": "The Next Web",
+    "logo": "https:\/\/media.thenextweb.com\/plus\/img\/tnw-brandmark.svg",
+    "url": "https:\/\/thenextweb.com",
+    "sameAs": [
+        "https:\/\/en.wikipedia.org\/wiki\/The_Next_Web",
+        "https:\/\/www.facebook.com\/thenextweb",
+        "https:\/\/www.twitter.com\/thenextweb",
+        "https:\/\/instagram.com\/thenextweb",
+        "https:\/\/www.youtube.com\/user\/thenextweb",
+        "https:\/\/www.pinterest.com\/thenextweb\/",
+        "https:\/\/www.linkedin.com\/company\/the-next-web",
+        "https:\/\/vine.co\/thenextweb",
+        "https:\/\/thenextweb.tumblr.com",
+        "https:\/\/soundcloud.com\/thenextweb",
+        "https:\/\/vimeo.com\/thenextweb",
+        "https:\/\/vk.com\/thenextweb",
+        "https:\/\/www.slideshare.net\/thenextweb",
+        "https:\/\/flipboard.com\/@thenextweb",
+        "https:\/\/storify.com\/thenextweb",
+        "https:\/\/www.stumbleupon.com\/channel\/thenextweb",
+        "https:\/\/www.flickr.com\/photos\/thenextweb\/",
+        "https:\/\/foursquare.com\/thenextweb"
+    ]
+}
+</script>
+                	
+	
+	
+<!-- OpenGraph -->
+<meta content="https://thenextweb.com/" property="og:url"/>
+<meta content="" property="og:description"/>
+<meta content="TNW | The heart of tech" property="og:site_name"/>
+<meta content="TNW | The heart of tech" property="og:title"/>
+<meta content="https://media.thenextweb.com/events/hardfork-2018/uploads/social/tnw_191007_110526.png" property="og:image"/>
+<meta content="630" property="og:image:height"/>
+<meta content="1200" property="og:image:width"/>
+<meta property="og:locale" content="en_US">
+<meta content="website" property="og:type"/>
+<meta content="378011798897423" property="fb:app_id"/>
+
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@thenextweb"/>
+<meta name="twitter:title" content="TNW | The heart of tech"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:image" content="https://media.thenextweb.com/events/hardfork-2018/uploads/social/tnw_191007_110526.png"/>
+<meta name="twitter:creator" content="@thenextweb"/>
+                    
+        <script>
+        
+        (function () {
+          window.dataLayer = window.dataLayer || [];
+
+          window.dataLayer.push(arguments);
+
+          window.dataLayer.push({
+            event: 'defaultConsentSet',
+            consentStatus: arguments[2],
+          });
+
+          window.dispatchEvent(new CustomEvent('defaultConsentSet', {
+            detail: {
+              consent: arguments[2],
+            },
+          }));
+        }('consent', 'default', (function () {
+          const defaults = {
+            ad_storage: 'denied',
+            analytics_storage: 'denied'
+          };
+
+          let cookie = document.cookie.split('; ').find(function(row) {
+            return row.startsWith('__tnw_cookieConsent=');
+          });
+
+          if (typeof cookie === 'undefined') {
+            return defaults;
+          }
+
+          cookie = cookie.slice(20);
+
+          try {
+            cookie = JSON.parse(decodeURIComponent(cookie));
+          } catch (e) {
+            return defaults;
+          }
+
+          return cookie;
+        }())));
+        
+        </script>
+    </head>
+
+                    
+        
+        
+            
+    
+    
+    
+    
+    <body class="site-tnwNext" id="next-top">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNKTCH4W"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        
+
+        <div id="fb-root"></div>
+        
+                <nav class="c-nav has-level2" id="nav" role="navigation" style="top: 0;">
+        <div class="c-nav__level1">
+        <button class="c-nav__menuToggle c-nav__menuToggle--level-1 js-menuToggleLevel" data-nav-level="1" id="nav-menuLevel1" type="button" aria-haspopup="true" aria-controls="overlay__hook" aria-expanded="false">
+          <span class="visually-hidden">Toggle Navigation</span>
+        </button>
+
+        <div class="navLabel_dt">
+            <a class="c-nav__logo" href="/" data-event-category="Article" data-event-action="Navigation bar" data-event-label="TNW Logo" name="TNW Logo" data-event-non-interaction="false">
+                <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 66 16">
+                    <path d="M32.23993 5A6.00284 6.00284 0 0 1 34 9.24261V16h-6v-5.929a2.00249 2.00249 0 0 0-.58856-1.41424l-2.07239-2.07101A2.00315 2.00315 0 0 0 23.92346 6H22v10h-6V0h8.75189a6 6 0 0 1 4.24268 1.75739zM60 0v5.929a2.00245 2.00245 0 0 1-.58856 1.41418l-2.07385 2.071A1.99969 1.99969 0 0 1 55.9234 10h-2.88214A5.99166 5.99166 0 0 0 54 6.75732V0h-6v5.929a2.00245 2.00245 0 0 1-.58856 1.41418l-2.07385 2.071A1.99969 1.99969 0 0 1 43.9234 10H42V0h-6v16h8.75189a6.003 6.003 0 0 0 4.244-1.75739L51 12.23938V16h5.75189a6.003 6.003 0 0 0 4.244-1.75739l3.244-3.24267A6.00264 6.00264 0 0 0 66 6.75732V0zM0 6h4v10h6V6h4V0H0z"></path>
+                </svg>
+            </a>
+
+                                            
+            
+            
+                    
+                                                
+                                                                                                                            
+                
+                        </div>
+
+        <div class="c-nav__menuContainer c-nav__menuContainer--1" id="overlay__hook">
+            
+            <ul class="c-nav__menu">
+
+                
+                                                                
+                                                    
+                        
+                                                                                                                                                                                                                
+                                        
+                            
+                        
+                                                                                <li class="c-nav__menuItem c-nav__menuItem--current">
+                                <a class="c-nav__menuLink" data-event-category="Navigation bar" data-event-action="News" data-event-label="/" data-event-non-interaction="false" href="/" >
+                                    News
+                                </a>
+                            </li>
+                        
+                                                        
+                        
+                                                            
+                            
+                        
+                        
+                                                        
+                                                                    
+                            
+                                                                                                                            
+
+                                                        <li class="c-nav__menuItem has-menu">
+                                <button class="c-nav__menuLink" type="button" aria-haspopup="true" aria-expanded="false">Events</button>
+
+                                <ul class="c-nav__submenu" role="menu">
+                                                                            
+                                        
+                                        <li class="c-nav__submenuItem">
+                                            <a class="c-nav__submenuLink" href="/conference" data-event-category="Navigation bar" data-event-action="TNW Conference" data-event-label="/conference" data-event-non-interaction="false"  >
+                                                <span class="c-nav__submenuLinkTitle" data-event-category="Navigation bar" data-event-action="TNW Conference" data-event-label="/conference" data-event-non-interaction="false">TNW Conference</span>
+                                                <span class="c-nav__submenuLinkNote">June 19 &amp; 20, 2025</span>
+                                            </a>
+                                        </li>
+                                                                            
+                                        
+                                        <li class="c-nav__submenuItem">
+                                            <a class="c-nav__submenuLink" href="/events" data-event-category="Navigation bar" data-event-action="All events" data-event-label="/events" data-event-non-interaction="false"  >
+                                                <span class="c-nav__submenuLinkTitle" data-event-category="Navigation bar" data-event-action="All events" data-event-label="/events" data-event-non-interaction="false">All events</span>
+                                                <span class="c-nav__submenuLinkNote"></span>
+                                            </a>
+                                        </li>
+                                                                    </ul>
+                            </li>
+                        
+                                                                                                                        </ul>
+
+            
+                                    
+                            <hr class="mobile_menu_divider "/>
+                <ul class="c-nav__menu c-nav__icons">
+                                                      					
+              					
+                        
+                                        						              					
+              					<li class="c-nav__menuItem c-nav__iconsItem">
+                						<a href="/newsletters" class="c-nav__menuLink" data-event-category="Navigation bar" data-event-action="Newsletter" data-event-label="Newsletters top right - click" data-event-non-interaction="false">
+                               			    <span data-event-category="Navigation bar" data-event-action="Newsletters" data-event-label="/newsletters" data-event-non-interaction="false" class="c-nav__iconsItem--label">Newsletters</span>
+                						</a>
+              					</li>
+                                  					
+              					
+                        
+                        
+              					<li class="c-nav__menuItem c-nav__iconsItem">
+                						<a href="/partnerships" class="c-nav__menuLink">
+                               			    <span data-event-category="Navigation bar" data-event-action="Partner with us" data-event-label="/partnerships" data-event-non-interaction="false" class="c-nav__iconsItem--label">Partner with us</span>
+                						</a>
+              					</li>
+                            				</ul>
+
+
+            
+                        
+            <footer class="c-nav__footer">
+                <ul class="c-nav__social">
+                    <li class="c-nav__socialItem">
+                        <a class="c-nav__socialLink" href="https://facebook.com/thenextweb" target="_blank" rel="noopener noreferrer" name="Facebook Social Link">
+                            <svg class="c-nav__socialIcon"><use xlink:href="/assets/next/img/icons.svg#facebook"></use></svg>
+                        </a>
+                    </li>
+                    <li class="c-nav__socialItem">
+                        <a class="c-nav__socialLink" href="https://www.instagram.com/thenextweb" target="_blank" rel="noopener noreferrer" name="Instagram Social Link">
+                            <svg class="c-nav__socialIcon"><use xlink:href="/assets/next/img/icons.svg#instagram"></use></svg>
+                        </a>
+                    </li>
+                    <li class="c-nav__socialItem">
+                        <a class="c-nav__socialLink" href="https://twitter.com/thenextweb" target="_blank" rel="noopener noreferrer" name="Twitter Social Link">
+                            <svg class="c-nav__socialIcon"><use xlink:href="/assets/next/img/icons.svg#twitter"></use></svg>
+                        </a>
+                    </li>
+                    <li class="c-nav__socialItem">
+                        <a class="c-nav__socialLink" href="https://youtube.com/user/thenextweb" target="_blank" rel="noopener noreferrer" name="Youtube Social Link">
+                            <svg class="c-nav__socialIcon"><use xlink:href="/assets/next/img/icons.svg#youtube"></use></svg>
+                        </a>
+                    </li>
+                    <li class="c-nav__socialItem">
+                        <a class="c-nav__socialLink" href="https://flipboard.com/@thenextweb" target="_blank" rel="noopener noreferrer" name="Flipboard Social Link">
+                            <svg class="c-nav__socialIcon"><use xlink:href="/assets/next/img/icons.svg#flipboard"></use></svg>
+                        </a>
+                    </li>
+                    <li class="c-nav__socialItem">
+                        <a class="c-nav__socialLink" href="/newsletters" name="Email Social Link">
+                            <svg class="c-nav__socialIcon"><use xlink:href="/assets/next/img/icons.svg#mail"></use></svg>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="c-nav__company">
+                    <li class="c-nav__companyItem">
+                        <a class="c-nav__companyLink" href="https://thenextweb.homerun.co/" target="_blank" rel="noopener noreferrer">Jobs</a>
+                    </li>
+                    <li class="c-nav__companyItem"><a class="c-nav__companyLink" href="/cdn-cgi/l/email-protection#83e0ecede5e6f1e6ede0e6c3f7ebe6ede6fbf7f4e6e1ade0ecee">Contact</a></li>
+                </ul>
+            </footer>
+
+        </div>
+    </div>
+    
+    
+    
+    
+    
+        
+            <div class="c-nav__level2 tnw news">
+                <div class="c-nav__pwd">
+                                        <h1 class="mb-none">
+                                            <a class="c-nav__pwdLogo" href="/">
+                            <svg class="tnwLogo__ft"><use xlink:href="/assets/next/img/icons.svg#tnwFT"></use></svg>
+                            <svg class="tnwLogo__tnw"><use xlink:href="/assets/next/img/icons.svg#tnw"></use></svg>
+                        </a>
+                                        </h1>
+                                                                                    
+                    <span class="c-nav__pwdSection">News</span>
+                </div>
+
+                                
+                
+                                    <div class="c-nav__menuContainer c-nav__menuContainer--2">
+                        <ul class="c-nav__menu">
+                            
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="/latest" data-event-category="Navigation bar" data-event-action="Latest" data-event-label="/latest" data-event-non-interaction="false">Latest</a>
+                                </li>
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="/deep-tech" data-event-category="Navigation bar" data-event-action="Deep tech" data-event-label="/deep-tech" data-event-non-interaction="false">Deep tech</a>
+                                </li>
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="/sustainability" data-event-category="Navigation bar" data-event-action="Sustainability" data-event-label="/sustainability" data-event-non-interaction="false">Sustainability</a>
+                                </li>
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="/ecosystems" data-event-category="Navigation bar" data-event-action="Ecosystems" data-event-label="/ecosystems" data-event-non-interaction="false">Ecosystems</a>
+                                </li>
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="/data-security" data-event-category="Navigation bar" data-event-action="Data and security" data-event-label="/data-security" data-event-non-interaction="false">Data and security</a>
+                                </li>
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="/fintech-ecommerce" data-event-category="Navigation bar" data-event-action="Fintech and ecommerce" data-event-label="/fintech-ecommerce" data-event-non-interaction="false">Fintech and ecommerce</a>
+                                </li>
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="/future-of-work" data-event-category="Navigation bar" data-event-action="Future of work" data-event-label="/future-of-work" data-event-non-interaction="false">Future of work</a>
+                                </li>
+                                                            
+                                
+                                <li class="c-nav__menuItem">
+                                    <a class="c-nav__menuLink" href="https://thenextweb.com/topic/tnw-conference" data-event-category="Navigation bar" data-event-action="Conference media hub" data-event-label="https://thenextweb.com/topic/tnw-conference" data-event-non-interaction="false">Conference media hub</a>
+                                </li>
+                            
+                            
+                                                            
+                                                                                                                                                                                                                                                                                                                                                                                    
+                                <li class="c-nav__menuItem has-menu">
+                                    <button class="c-nav__menuLink" type="button" aria-haspopup="true" aria-expanded="false">More</button>
+
+                                    <ul class="c-nav__submenu">
+                                                                                    
+                                            
+                                            <li class="c-nav__submenuItem">
+                                                <a class="c-nav__submenuLink" href="/startups-technology">
+                                                    <span class="c-nav__submenuLinkTitle" data-event-category="Navigation bar" data-event-action="Startups and technology" data-event-label="/startups-technology" data-event-non-interaction="false">Startups and technology</span>
+                                                </a>
+                                            </li>
+                                                                                    
+                                            
+                                            <li class="c-nav__submenuItem">
+                                                <a class="c-nav__submenuLink" href="/investors-funding">
+                                                    <span class="c-nav__submenuLinkTitle" data-event-category="Navigation bar" data-event-action="Investors and funding" data-event-label="/investors-funding" data-event-non-interaction="false">Investors and funding</span>
+                                                </a>
+                                            </li>
+                                                                                    
+                                            
+                                            <li class="c-nav__submenuItem">
+                                                <a class="c-nav__submenuLink" href="/government-policy">
+                                                    <span class="c-nav__submenuLinkTitle" data-event-category="Navigation bar" data-event-action="Government and policy" data-event-label="/government-policy" data-event-non-interaction="false">Government and policy</span>
+                                                </a>
+                                            </li>
+                                                                                    
+                                            
+                                            <li class="c-nav__submenuItem">
+                                                <a class="c-nav__submenuLink" href="/corporates-innovation">
+                                                    <span class="c-nav__submenuLinkTitle" data-event-category="Navigation bar" data-event-action="Corporates and innovation" data-event-label="/corporates-innovation" data-event-non-interaction="false">Corporates and innovation</span>
+                                                </a>
+                                            </li>
+                                                                                    
+                                            
+                                            <li class="c-nav__submenuItem">
+                                                <a class="c-nav__submenuLink" href="https://fast.wistia.com/embed/channel/hckmzyzq7e">
+                                                    <span class="c-nav__submenuLinkTitle" data-event-category="Navigation bar" data-event-action="Podcast" data-event-label="https://fast.wistia.com/embed/channel/hckmzyzq7e" data-event-non-interaction="false">Podcast</span>
+                                                </a>
+                                            </li>
+                                                                            </ul>
+                                </li>
+                                                    </ul>
+
+                        <button class="c-nav__menuScroller" type="button" aria-hidden="true"></button>
+                    </div>
+                            </div>
+
+        
+        </nav>
+                        <div class="o-page" id="main">
+            <div class="o-page__main">
+                        <main class="nextHome" id="nextHome">
+        <section class="c-showcase c-nextHomeHeaderGrid c-homeLead">
+            <div class="o-wrapper o-wrapper--wide hdrtab">
+                <div class="c-showcase__grid">
+                    <div class="c-showcase__grid c-showcase__scroller js-parallaxRoot">
+	                                                	                        	                                                                                                                                        
+                                                                                                                                                                                                                                                                            <article class="c-showcase__article">
+			                            <div class="c-card c-card--visual">
+			                                <a class="c-card__image js-parallax o-media md:o-media--stretch" data-event-category="Homepage" data-event-action="Top story" data-event-label="Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped" data-event-non-interaction="false" href="/news/anthropic-claude-opus-5-launch-frontier-bench-coding">
+			                                    <img
+			                                        alt="Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped"
+			                                        class="c-card__imageImage js-parallaxLayer o-parallax__layer js-lazy"
+			                                        src="https://media.thenextweb.com/2026/07/anthropic-claude-opus-5-launch-frontier-bench-coding.avif"
+                                                >
+			                                </a>
+			                                <header class="c-card__header">
+			                                    <h2 class="c-card__heading"><a href="/news/anthropic-claude-opus-5-launch-frontier-bench-coding" data-event-category="Homepage" data-event-action="Top story" data-event-label="Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped" tabindex="-1">Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped</a></h2>
+                                          <span class="c-nextHeader_topic featured_grid">Anthropic</span>
+                                            </header>
+			                            </div>
+			                        </article>
+			                    			                                                                                                                                                                                                                                                                <article class="c-showcase__article">
+			                            <div class="c-card c-card--visual">
+			                                <a class="c-card__image js-parallax o-media md:o-media--stretch" data-event-category="Homepage" data-event-action="Top story" data-event-label="Oracle wins Pentagon software deal worth up to $7bn" data-event-non-interaction="false" href="/news/oracle-pentagon-software-consolidation-7bn">
+			                                    <img
+			                                        alt="Oracle wins Pentagon software deal worth up to $7bn"
+			                                        class="c-card__imageImage js-parallaxLayer o-parallax__layer js-lazy"
+			                                        src="https://media.thenextweb.com/2026/06/Oracle.avif"
+                                                >
+			                                </a>
+			                                <header class="c-card__header">
+			                                    <h2 class="c-card__heading"><a href="/news/oracle-pentagon-software-consolidation-7bn" data-event-category="Homepage" data-event-action="Top story" data-event-label="Oracle wins Pentagon software deal worth up to $7bn" tabindex="-1">Oracle wins Pentagon software deal worth up to $7bn</a></h2>
+                                          <span class="c-nextHeader_topic featured_grid">Government and policy</span>
+                                            </header>
+			                            </div>
+			                        </article>
+			                    			                                                                                                                			                                                                                                                                                                                                                                                                            
+				                        <article class="c-showcase__article">
+				                            <div class="c-card c-card--visual">
+				                                <a class="c-card__image js-parallax o-media md:o-media--stretch" href="https://thenextweb.com/partnerships" tabindex="-1">
+				                                    <img
+				                                        alt="Ad panel _index"
+				                                        class="c-card__imageImage js-parallaxLayer o-parallax__layer js-lazy"
+				                                        src="https://media.thenextweb.com/hardfork-2018/uploads/visuals/864A3585-1.jpg"
+                                                    >
+				                                </a>
+				                                <header class="c-card__header advertPane" data-file="_index.twig">
+				                                    <h2 class="c-card__heading adpanel">Launch your PR campaign on TNW <span>Reach founders, executives, and tech decision-makers across the US and Europe.</span></h2>
+				                                    <a class="c-button adpanel c-button--rounded" data-event-category="Homepage" data-event-action="Top story - CTA" data-event-label="TNW2022" href="https://thenextweb.com/partnerships" target="_blank" rel="noopener noreferrer">
+				                                    Learn More
+				                                    </a>
+				                                </header>
+				                            </div>
+				                        </article>
+			                        			                    			                                                                                                                                                                                                                                                                <article class="c-showcase__article">
+			                            <div class="c-card c-card--visual">
+			                                <a class="c-card__image js-parallax o-media md:o-media--stretch" data-event-category="Homepage" data-event-action="Top story" data-event-label="AMD is investing $5 billion in Anthropic and deploying 2 gigawatts of Helios GPUs to run Claude" data-event-non-interaction="false" href="/news/amd-anthropic-5-billion-investment-2gw-helios-mi450">
+			                                    <img
+			                                        alt="AMD is investing $5 billion in Anthropic and deploying 2 gigawatts of Helios GPUs to run Claude"
+			                                        class="c-card__imageImage js-parallaxLayer o-parallax__layer js-lazy"
+			                                        src="https://media.thenextweb.com/2026/07/amd-anthropic-5-billion-investment-2gw-helios-mi450.avif"
+                                                >
+			                                </a>
+			                                <header class="c-card__header">
+			                                    <h2 class="c-card__heading"><a href="/news/amd-anthropic-5-billion-investment-2gw-helios-mi450" data-event-category="Homepage" data-event-action="Top story" data-event-label="AMD is investing $5 billion in Anthropic and deploying 2 gigawatts of Helios GPUs to run Claude" tabindex="-1">AMD is investing $5 billion in Anthropic and deploying 2 gigawatts of Helios GPUs to run Claude</a></h2>
+                                          <span class="c-nextHeader_topic featured_grid">Anthropic</span>
+                                            </header>
+			                            </div>
+			                        </article>
+			                    			                                                                                                                                                                                                                                                                <article class="c-showcase__article">
+			                            <div class="c-card c-card--visual">
+			                                <a class="c-card__image js-parallax o-media md:o-media--stretch" data-event-category="Homepage" data-event-action="Top story" data-event-label="White House accuses Moonshot of distilling Anthropic’s Fable to build Kimi K3" data-event-non-interaction="false" href="/news/white-house-moonshot-banned-nvidia-chips-kimi-k3">
+			                                    <img
+			                                        alt="White House accuses Moonshot of distilling Anthropic’s Fable to build Kimi K3"
+			                                        class="c-card__imageImage js-parallaxLayer o-parallax__layer js-lazy"
+			                                        src="https://media.thenextweb.com/2026/06/white-house-ai-preemption-kosa-no-fakes-deal.avif"
+                                                >
+			                                </a>
+			                                <header class="c-card__header">
+			                                    <h2 class="c-card__heading"><a href="/news/white-house-moonshot-banned-nvidia-chips-kimi-k3" data-event-category="Homepage" data-event-action="Top story" data-event-label="White House accuses Moonshot of distilling Anthropic’s Fable to build Kimi K3" tabindex="-1">White House accuses Moonshot of distilling Anthropic’s Fable to build Kimi K3</a></h2>
+                                          <span class="c-nextHeader_topic featured_grid">Artificial Intelligence</span>
+                                            </header>
+			                            </div>
+			                        </article>
+			                    			                
+                                            </div>
+                </div>
+            </div>
+        </section>
+                                                <section class="c-showcase advert">
+            <div class="c-showcase__article">
+                <div class="c-card c-card--visual">
+                    <a class="c-card__image js-parallax o-media md:o-media--stretch" href="https://thenextweb.com/partnerships" arget="_blank" rel="noopener noreferrer">
+                                                                    
+                        <img
+                            alt="Ad panel"
+                            class="c-card__imageImage js-parallaxLayer o-parallax__content js-lazy"
+                            src="https://media.thenextweb.com/events/hardfork-2018/uploads/visuals/864A3585-1.jpg"
+                        >
+                                        </a>
+                    <header class="c-card__header smallAdvertPane">
+                        <h2 class="c-card__heading adpanel">Launch your PR campaign on TNW
+                        <br><span>Reach founders, executives, and tech decision-makers across the US and Europe.</span></h2>                        <a class="c-button c-button--rounded text-white mobileHomeCta" data-event-category="Homepage" data-event-action="Top story - CTA" data-event-label="Launch your PR campaign on TNW" data-event-non-interaction="false" href="https://thenextweb.com/partnerships" target="_blank" rel="noopener noreferrer">
+                            Learn More
+                        </a>
+                    </header>
+                </div>
+            </div>
+        </section>
+                
+
+        
+
+        
+        <div class="tnw-ad tnw-ad--channel-top" id="tnw-next-top" data-args='{"networkCode":5117602,"slot":"TNW_NEXT_TOP","googletagAttempts":20,"animate":false,"fallback":false,"sizes":[[300,250],[300,50],[320,100],[728,90]],"sizeMapping":[[[1024,0],[[728,90]]],[[0,0],[[300,250],[300,50],[320,100]]]],"targeting":{"nsc":["false"]},"lazyLoad":"true","refreshEvery":"","debugMode":false}'></div>
+
+                <section class="c-homeStories">
+    <div class="o-wrapper c-homeStoriesWrapper">
+                <div class="c-bodyNews__header m-none">
+            <h2 class="c-bodyNews__heading text-xl mb-xl font-graphikwide">
+                Latest news
+            </h2>
+        </div>
+        
+        <ul class="o-grid o-grid--centered o-grid--gap-l sm:o-grid--gap-xl">
+                                                    
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/uk-tribunal-camera-on-disability-discrimination-remote-work"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/uk-tribunal-camera-on-disability-discrimination-remote-work.avif"
+                                                                        alt="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/uk-tribunal-camera-on-disability-discrimination-remote-work"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/future-of-work"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Future of work"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Future of work</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/volkswagen-engineers-insider-trading-rivian-joint-venture"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/volkswagen-engineers-insider-trading-rivian-joint-venture.avif"
+                                                                        alt="Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/volkswagen-engineers-insider-trading-rivian-joint-venture"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/cars"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Cars"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Cars</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/anthropic-claude-opus-5-launch-frontier-bench-coding"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/anthropic-claude-opus-5-launch-frontier-bench-coding.avif"
+                                                                        alt="Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/anthropic-claude-opus-5-launch-frontier-bench-coding"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Claude Opus 5 matches Fable on coding at half the price, and Anthropic says it is the most aligned model it has ever shipped
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/anthropic"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Anthropic"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Anthropic</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/tesla-fsd-subscribers-nearly-1-5-million-q2-2026"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Tesla’s self-driving software is selling faster than ever, and it still needs a human driver"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/tesla-fsd-subscribers-nearly-1-5-million-q2-2026.avif"
+                                                                        alt="Tesla’s self-driving software is selling faster than ever, and it still needs a human driver"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/tesla-fsd-subscribers-nearly-1-5-million-q2-2026"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Tesla’s self-driving software is selling faster than ever, and it still needs a human driver"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Tesla’s self-driving software is selling faster than ever, and it still needs a human driver
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/artificial-intelligence"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Artificial Intelligence"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Artificial Intelligence</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/10-platforms-ai-visibility-link-building-2026"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="10 Platforms for AI Visibility and Link Building in 2026"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/10-platforms-ai-visibility-link-building-2026.avif"
+                                                                        alt="10 Platforms for AI Visibility and Link Building in 2026"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/10-platforms-ai-visibility-link-building-2026"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="10 Platforms for AI Visibility and Link Building in 2026"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    10 Platforms for AI Visibility and Link Building in 2026
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/artificial-intelligence"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Artificial Intelligence"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Artificial Intelligence</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/bots-outnumber-humans-internet-ai-agents-traffic"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Dead internet theory becomes measurable fact as AI agents flood the web"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/bots-outnumber-humans-internet-ai-agents-traffic.avif"
+                                                                        alt="Dead internet theory becomes measurable fact as AI agents flood the web"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/bots-outnumber-humans-internet-ai-agents-traffic"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Dead internet theory becomes measurable fact as AI agents flood the web"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Dead internet theory becomes measurable fact as AI agents flood the web
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/artificial-intelligence"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Artificial Intelligence"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Artificial Intelligence</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/intel-q2-2026-earnings-revenue-ai-data-centre"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Intel Q2 earnings double estimates as AI data centre revenue surges 59 percent"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/intel-q2-2026-earnings-revenue-ai-data-centre.avif"
+                                                                        alt="Intel Q2 earnings double estimates as AI data centre revenue surges 59 percent"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/intel-q2-2026-earnings-revenue-ai-data-centre"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Intel Q2 earnings double estimates as AI data centre revenue surges 59 percent"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Intel Q2 earnings double estimates as AI data centre revenue surges 59 percent
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/artificial-intelligence"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Artificial Intelligence"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Artificial Intelligence</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/sap-q2-2026-cloud-beat-profit-guidance-cut-ai-enterprise-software"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/SAP-Locations-Walldorf-1.avif"
+                                                                        alt="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/sap-q2-2026-cloud-beat-profit-guidance-cut-ai-enterprise-software"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    SAP’s cloud is still booming, and that was enough to calm the AI-doom fears
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/artificial-intelligence"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Artificial Intelligence"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Artificial Intelligence</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/amazon-shuts-agi-lab-frontier-model-retreat-layoffs"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Amazon just shut its AGI Lab, and quit a race it never led"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/06/amazon-human-in-the-loop-ai-governance-normalization-deviance.avif"
+                                                                        alt="Amazon just shut its AGI Lab, and quit a race it never led"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/amazon-shuts-agi-lab-frontier-model-retreat-layoffs"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Amazon just shut its AGI Lab, and quit a race it never led"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Amazon just shut its AGI Lab, and quit a race it never led
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/amazon"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Amazon"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Amazon</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/stripe-openrouter-10-billion-ai-model-marketplace-acquisition"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Stripe wants to own the toll booth between AI models, for ~$10bn"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/05/stripe-collison-agentic-commerce-reshape-internet.avif"
+                                                                        alt="Stripe wants to own the toll booth between AI models, for ~$10bn"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/stripe-openrouter-10-billion-ai-model-marketplace-acquisition"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="Stripe wants to own the toll booth between AI models, for ~$10bn"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    Stripe wants to own the toll booth between AI models, for ~$10bn
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/artificial-intelligence"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Artificial Intelligence"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Artificial Intelligence</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/world-foundation-52-million-token-sale-proof-of-human-ai"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="World Foundation raises $52 million in token sale as proof-of-human demand accelerates"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/world-foundation-52-million-token-sale-proof-of-human-ai.avif"
+                                                                        alt="World Foundation raises $52 million in token sale as proof-of-human demand accelerates"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/world-foundation-52-million-token-sale-proof-of-human-ai"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="World Foundation raises $52 million in token sale as proof-of-human demand accelerates"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    World Foundation raises $52 million in token sale as proof-of-human demand accelerates
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/artificial-intelligence"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Artificial Intelligence"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Artificial Intelligence</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                                                
+            <li class="o-grid__col md:o-grid__col--1/2 lg:o-grid__col--1/4">
+                <div class="flex md:flex-col">
+                    <div class="flex-basis-1/4 sm:flex-basis-1/4 mr-sm sm:mr-l md:m-none">
+                        <a
+                            href="/news/open-weights-american-ai-leadership-letter-huang-nvidia-openai-absent"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="The AI giants just broke with OpenAI and Anthropic on open weights"
+                            data-event-non-interaction="false"
+                            tabindex="-1"
+                        >
+                            <div class="o-media o-media--1:1 md:o-media--16:9">
+                                <img
+                                    class="js-lazy"
+                                                                        src="https://media.thenextweb.com/2026/07/jensen-huang-75-million-vanderbilt-art-school-san-francisco.avif"
+                                                                        alt="The AI giants just broke with OpenAI and Anthropic on open weights"
+                                />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="c-showcaseSubbrandsArticleHeader flex-1 md:mt-m">
+                                                                        <h3 class="c-showcaseSubbrandsArticleTitle flex md:flex-col mt-xs text-s leading-snug sm:text-m sm:leading-normal">
+                            <a
+                                href="/news/open-weights-american-ai-leadership-letter-huang-nvidia-openai-absent"
+                                class="c-showcaseSubbrandsArticleTitleLink"
+                                data-event-category="Homepage"
+                                data-event-action="Latest stories"
+                                data-event-label="The AI giants just broke with OpenAI and Anthropic on open weights"
+                                data-event-non-interaction="false"
+                            >
+                                <span class="transition duration-150 ease-out hover:shadow-0-2-0-brand-conference-purple-25 cursor-pointer">
+                                    The AI giants just broke with OpenAI and Anthropic on open weights
+                                </span>
+                            </a>
+                        </h3>
+                        <a href="/anthropic"
+                            class="c-showcaseSubbrandsArticleListItemLink"
+                            data-event-category="Homepage"
+                            data-event-action="Latest stories"
+                            data-event-label="Anthropic"
+                            data-event-non-interaction="false">
+                            <span class="c-card__label c-showcaseSubbrandsArticleListItemTag">Anthropic</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+
+        <div class="c-bodyNews__buttons mt-xxl md:justify-center md:mt-2xl">
+            <a
+                class="c-button c-button--rounded text-white homeCTA"
+                href="/latest"
+                data-event-category="Homepage"
+                data-event-action="See latest news button"
+                data-event-label="See latest news - click"
+                data-event-non-interaction="false"
+            >
+                See all latest news
+            </a>
+        </div>
+    </div>
+</section>
+
+        <section class="c-divider-cta js-parallax c-bodyBlock next-newsletter-home" id="newslettersignup">
+            <div class="c-announcement__message flex flex-col" id="hp-container">
+                <h2 class="c-channel__ctaHeading">Get the TNW newsletter</h2>
+                <p></p>
+                <div id="hp-nl-container"></div>
+            </div>
+            <br>
+                        <div class="socials-homepage" style="display: flex; flex-direction: column; align-items: center">
+                <ul class="c-footer__contact">
+                    <li class="c-footer__contactItem">
+                        <a class="c-footer__contactLink" data-event-category="Homepage" data-event-action="Newsletter" data-event-label="Facebook" data-event-non-interaction="false" href="https://facebook.com/thenextweb" target="_blank" rel="noopener noreferrer">
+                            <svg class="c-footer__contactIcon">
+                                <use xlink:href="/assets/next/img/icons.svg#facebook"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="c-footer__contactItem">
+                        <a class="c-footer__contactLink" data-event-category="Homepage" data-event-action="Newsletter" data-event-label="Instagram" data-event-non-interaction="false" href="https://www.instagram.com/thenextweb/" target="_blank" rel="noopener noreferrer">
+                            <svg class="c-footer__contactIcon">
+                                <use xlink:href="/assets/next/img/icons.svg#instagram"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="c-footer__contactItem">
+                        <a class="c-footer__contactLink" data-event-category="Homepage" data-event-action="Newsletter" data-event-label="Twitter" data-event-non-interaction="false" href="https://twitter.com/thenextweb" target="_blank" rel="noopener noreferrer">
+                            <svg class="c-footer__contactIcon">
+                                <use xlink:href="/assets/next/img/icons.svg#twitter"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="c-footer__contactItem">
+                        <a class="c-footer__contactLink" data-event-category="Homepage" data-event-action="Newsletter" data-event-label="Youtube" data-event-non-interaction="false" href="https://youtube.com/user/thenextweb" target="_blank" rel="noopener noreferrer">
+                            <svg class="c-footer__contactIcon">
+                                <use xlink:href="/assets/next/img/icons.svg#youtube"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="c-footer__contactItem">
+                        <a class="c-footer__contactLink" data-event-category="Homepage" data-event-action="Newsletter" data-event-label="Flipboard" data-event-non-interaction="false" href="https://flipboard.com/@thenextweb" target="_blank" rel="noopener noreferrer">
+                            <svg class="c-footer__contactIcon">
+                                <use xlink:href="/assets/next/img/icons.svg#flipboard"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="c-footer__contactItem">
+                        <a class="c-footer__contactLink" data-event-category="Homepage" data-event-action="Newsletter" data-event-label="Mail" data-event-non-interaction="false" href="/newsletters" target="_blank" rel="noopener noreferrer">
+                            <svg class="c-footer__contactIcon">
+                                <use xlink:href="/assets/next/img/icons.svg#mail"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="c-footer__contactItem">
+                        <a class="c-footer__contactLink" data-event-category="Homepage" data-event-action="Newsletter" data-event-label="Linkedin" data-event-non-interaction="false" href="https://www.linkedin.com/company/the-next-web/" target="_blank" rel="noopener noreferrer">
+                            <svg class="c-footer__contactIcon">
+                                <use xlink:href="/assets/next/img/icons.svg#linkedin"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+                    </section>
+
+                        <section class="c-showcase" style="padding-bottom: 0!important">
+            <div class="o-wrapper">
+                <ol class="c-split">
+                    <main class="bdrTop">
+                                            
+
+
+<div class="c-showcaseSubbrands">
+	<div class="c-showcaseSubbrandsHeader">
+		<h2>
+			<a href="startups-technology" class="c-showcaseSubbrandsTitle">
+				Startups and technology
+			</a>
+		</h2>
+	</div>
+	<div class="c-showcaseSubbrandsList c-channel--">
+		
+														<div class="c-showcaseSubbrandsArticleMain">
+			<a href="/news/10-platforms-ai-visibility-link-building-2026"
+				data-event-category="Homepage"
+				data-event-action="startups-technology"
+				data-event-label="10 Platforms for AI Visibility and Link Building in 2026"
+				data-event-non-interaction="false"
+        		tabindex="-1"
+			>
+				<img
+					class="js-lazy w-full"
+					alt="10 Platforms for AI Visibility and Link Building in 2026"
+										src="https://media.thenextweb.com/2026/07/10-platforms-ai-visibility-link-building-2026.avif"
+										data-event-category="Homepage"
+					data-event-action="startups-technology"
+					data-event-label="10 Platforms for AI Visibility and Link Building in 2026"
+					data-event-non-interaction="false"
+				/>
+			</a>
+			<small class="md:mt-m sm:mt-m mb-none">
+				<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+			</small>
+			<h3 class="c-showcaseSubbrandsArticleTitle c-card__heading  mb-s">
+				<a class="c-showcaseSubbrandsArticleTitleLink" data-event-category="Homepage" data-event-action="10 Platforms for AI Visibility and Link Building in 2026" data-event-label="10 Platforms for AI Visibility and Link Building in 2026" data-event-non-interaction="false" href="/news/10-platforms-ai-visibility-link-building-2026">10 Platforms for AI Visibility and Link Building in 2026</a>
+			</h3>
+			<p></p>
+		</div>
+
+				<div class="bu_content_list">
+			<ol class="c-split startups-technology ">
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="startups-technology" data-event-label="Stripe wants to own the toll booth between AI models, for ~$10bn" data-event-non-interaction="false" href="/news/stripe-openrouter-10-billion-ai-model-marketplace-acquisition" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/05/stripe-collison-agentic-commerce-reshape-internet.avif"
+																		alt="Stripe wants to own the toll booth between AI models, for ~$10bn"
+									data-event-category="Homepage"
+									data-event-action="startups-technology"
+									data-event-label="Stripe wants to own the toll booth between AI models, for ~$10bn"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/stripe-openrouter-10-billion-ai-model-marketplace-acquisition" data-event-category="Homepage" data-event-action="stripe-openrouter-10-billion-ai-model-marketplace-acquisition" data-event-label="Stripe wants to own the toll booth between AI models, for ~$10bn" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Stripe wants to own the toll booth between AI models, for ~$10bn</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="startups-technology" data-event-label="World Foundation raises $52 million in token sale as proof-of-human demand accelerates" data-event-non-interaction="false" href="/news/world-foundation-52-million-token-sale-proof-of-human-ai" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/world-foundation-52-million-token-sale-proof-of-human-ai.avif"
+																		alt="World Foundation raises $52 million in token sale as proof-of-human demand accelerates"
+									data-event-category="Homepage"
+									data-event-action="startups-technology"
+									data-event-label="World Foundation raises $52 million in token sale as proof-of-human demand accelerates"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/world-foundation-52-million-token-sale-proof-of-human-ai" data-event-category="Homepage" data-event-action="world-foundation-52-million-token-sale-proof-of-human-ai" data-event-label="World Foundation raises $52 million in token sale as proof-of-human demand accelerates" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">World Foundation raises $52 million in token sale as proof-of-human demand accelerates</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="startups-technology" data-event-label="Patreon cut 20% of its staff. Its CEO insists AI isn’t replacing them." data-event-non-interaction="false" href="/news/patreon-20-percent-layoffs-jack-conte-ai-creator-economy" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/patreon-logo.avif"
+																		alt="Patreon cut 20% of its staff. Its CEO insists AI isn’t replacing them."
+									data-event-category="Homepage"
+									data-event-action="startups-technology"
+									data-event-label="Patreon cut 20% of its staff. Its CEO insists AI isn’t replacing them."
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/patreon-20-percent-layoffs-jack-conte-ai-creator-economy" data-event-category="Homepage" data-event-action="patreon-20-percent-layoffs-jack-conte-ai-creator-economy" data-event-label="Patreon cut 20% of its staff. Its CEO insists AI isn’t replacing them." data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Patreon cut 20% of its staff. Its CEO insists AI isn’t replacing them.</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="startups-technology" data-event-label="A Chinese model split Silicon Valley. Now the startups are fighting back." data-event-non-interaction="false" href="/news/little-tech-association-chinese-open-weight-ai-ban-anthropic-startups" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/06/US-China-AI.avif"
+																		alt="A Chinese model split Silicon Valley. Now the startups are fighting back."
+									data-event-category="Homepage"
+									data-event-action="startups-technology"
+									data-event-label="A Chinese model split Silicon Valley. Now the startups are fighting back."
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/anthropic" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Anthropic" data-event-non-interaction="false">ANTHROPIC</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/little-tech-association-chinese-open-weight-ai-ban-anthropic-startups" data-event-category="Homepage" data-event-action="little-tech-association-chinese-open-weight-ai-ban-anthropic-startups" data-event-label="A Chinese model split Silicon Valley. Now the startups are fighting back." data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">A Chinese model split Silicon Valley. Now the startups are fighting back.</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+							</ol>
+		</div>
+	</div>
+</div>
+                                            
+
+
+<div class="c-showcaseSubbrands">
+	<div class="c-showcaseSubbrandsHeader">
+		<h2>
+			<a href="investors-funding" class="c-showcaseSubbrandsTitle">
+				Investors and funding
+			</a>
+		</h2>
+	</div>
+	<div class="c-showcaseSubbrandsList c-channel--">
+		
+														<div class="c-showcaseSubbrandsArticleMain">
+			<a href="/news/genesis-ai-500m-raise-robotics-foundation-model"
+				data-event-category="Homepage"
+				data-event-action="investors-funding"
+				data-event-label="Genesis AI is in talks to raise about $500m for its robot brains"
+				data-event-non-interaction="false"
+        		tabindex="-1"
+			>
+				<img
+					class="js-lazy w-full"
+					alt="Genesis AI is in talks to raise about $500m for its robot brains"
+										src="https://media.thenextweb.com/2026/06/genesis-ai-eno-robot-humanoid-alternative.avif"
+										data-event-category="Homepage"
+					data-event-action="investors-funding"
+					data-event-label="Genesis AI is in talks to raise about $500m for its robot brains"
+					data-event-non-interaction="false"
+				/>
+			</a>
+			<small class="md:mt-m sm:mt-m mb-none">
+				<a href="/investors-funding" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Investors and funding" data-event-non-interaction="false">INVESTORS AND FUNDING</a>
+			</small>
+			<h3 class="c-showcaseSubbrandsArticleTitle c-card__heading  mb-s">
+				<a class="c-showcaseSubbrandsArticleTitleLink" data-event-category="Homepage" data-event-action="Genesis AI is in talks to raise about $500m for its robot brains" data-event-label="Genesis AI is in talks to raise about $500m for its robot brains" data-event-non-interaction="false" href="/news/genesis-ai-500m-raise-robotics-foundation-model">Genesis AI is in talks to raise about $500m for its robot brains</a>
+			</h3>
+			<p>A year on from its $105m seed, the physical-AI startup is reportedly chasing a raise that would value it at around $3bn. The talks may not close.</p>
+		</div>
+
+				<div class="bu_content_list">
+			<ol class="c-split investors-funding ">
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="investors-funding" data-event-label="Nvidia commits $1.5B to Amkor to expand US chip packaging" data-event-non-interaction="false" href="/news/nvidia-amkor-15bn-chip-packaging-arizona" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/02/Nvidias-Q4-results-could-make-or-break-confidence-in-the-AI-hardware-market.avif"
+																		alt="Nvidia commits $1.5B to Amkor to expand US chip packaging"
+									data-event-category="Homepage"
+									data-event-action="investors-funding"
+									data-event-label="Nvidia commits $1.5B to Amkor to expand US chip packaging"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/nvidia" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Nvidia" data-event-non-interaction="false">NVIDIA</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/nvidia-amkor-15bn-chip-packaging-arizona" data-event-category="Homepage" data-event-action="nvidia-amkor-15bn-chip-packaging-arizona" data-event-label="Nvidia commits $1.5B to Amkor to expand US chip packaging" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Nvidia commits $1.5B to Amkor to expand US chip packaging</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="investors-funding" data-event-label="Four former DOGE staffers raised $160 million at a $1.4 billion valuation for an AI military cyber startup" data-event-non-interaction="false" href="/news/cathedral-doge-alumni-military-cyber-startup-1-4-billion" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/cathedral-doge-alumni-military-cyber-startup-1-4-billion.avif"
+																		alt="Four former DOGE staffers raised $160 million at a $1.4 billion valuation for an AI military cyber startup"
+									data-event-category="Homepage"
+									data-event-action="investors-funding"
+									data-event-label="Four former DOGE staffers raised $160 million at a $1.4 billion valuation for an AI military cyber startup"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/data-security" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Data and security" data-event-non-interaction="false">DATA AND SECURITY</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/cathedral-doge-alumni-military-cyber-startup-1-4-billion" data-event-category="Homepage" data-event-action="cathedral-doge-alumni-military-cyber-startup-1-4-billion" data-event-label="Four former DOGE staffers raised $160 million at a $1.4 billion valuation for an AI military cyber startup" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Four former DOGE staffers raised $160 million at a $1.4 billion valuation for an AI military cyber startup</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="investors-funding" data-event-label="Travis Kalanick raised $1.7B for his robotics comeback, and Uber chipped in" data-event-non-interaction="false" href="/news/travis-kalanick-atoms-1-7-billion-industrial-ai-a16z-uber" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/03/Travis-Kalanick-launches-robotics-company-Atoms.avif"
+																		alt="Travis Kalanick raised $1.7B for his robotics comeback, and Uber chipped in"
+									data-event-category="Homepage"
+									data-event-action="investors-funding"
+									data-event-label="Travis Kalanick raised $1.7B for his robotics comeback, and Uber chipped in"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/travis-kalanick-atoms-1-7-billion-industrial-ai-a16z-uber" data-event-category="Homepage" data-event-action="travis-kalanick-atoms-1-7-billion-industrial-ai-a16z-uber" data-event-label="Travis Kalanick raised $1.7B for his robotics comeback, and Uber chipped in" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Travis Kalanick raised $1.7B for his robotics comeback, and Uber chipped in</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="investors-funding" data-event-label="Nvidia rival Etched doubles its value to $10.3B in seven months" data-event-non-interaction="false" href="/news/etched-300m-series-c-10-3b-valuation-sequoia-sk-hynix" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/etched-team.avif"
+																		alt="Nvidia rival Etched doubles its value to $10.3B in seven months"
+									data-event-category="Homepage"
+									data-event-action="investors-funding"
+									data-event-label="Nvidia rival Etched doubles its value to $10.3B in seven months"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/etched-300m-series-c-10-3b-valuation-sequoia-sk-hynix" data-event-category="Homepage" data-event-action="etched-300m-series-c-10-3b-valuation-sequoia-sk-hynix" data-event-label="Nvidia rival Etched doubles its value to $10.3B in seven months" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Nvidia rival Etched doubles its value to $10.3B in seven months</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+							</ol>
+		</div>
+	</div>
+</div>
+                                            
+
+
+<div class="c-showcaseSubbrands">
+	<div class="c-showcaseSubbrandsHeader">
+		<h2>
+			<a href="corporates-innovation" class="c-showcaseSubbrandsTitle">
+				Corporates and innovation
+			</a>
+		</h2>
+	</div>
+	<div class="c-showcaseSubbrandsList c-channel--">
+		
+														<div class="c-showcaseSubbrandsArticleMain">
+			<a href="/news/sap-q2-2026-cloud-beat-profit-guidance-cut-ai-enterprise-software"
+				data-event-category="Homepage"
+				data-event-action="corporates-innovation"
+				data-event-label="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears"
+				data-event-non-interaction="false"
+        		tabindex="-1"
+			>
+				<img
+					class="js-lazy w-full"
+					alt="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears"
+										src="https://media.thenextweb.com/2026/07/SAP-Locations-Walldorf-1.avif"
+										data-event-category="Homepage"
+					data-event-action="corporates-innovation"
+					data-event-label="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears"
+					data-event-non-interaction="false"
+				/>
+			</a>
+			<small class="md:mt-m sm:mt-m mb-none">
+				<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+			</small>
+			<h3 class="c-showcaseSubbrandsArticleTitle c-card__heading  mb-s">
+				<a class="c-showcaseSubbrandsArticleTitleLink" data-event-category="Homepage" data-event-action="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears" data-event-label="SAP’s cloud is still booming, and that was enough to calm the AI-doom fears" data-event-non-interaction="false" href="/news/sap-q2-2026-cloud-beat-profit-guidance-cut-ai-enterprise-software">SAP’s cloud is still booming, and that was enough to calm the AI-doom fears</a>
+			</h3>
+			<p>SAP's cloud business is still growing fast, and that was the number investors wanted. Europe's biggest software company beat cloud-revenue forecasts and lifted its backlog 26%, easing fears that AI will hollow out enterprise-software subscriptions. The stock, down 35% this year on that very worry, jumped, even as SAP trimmed its 2026 profit guidance.</p>
+		</div>
+
+				<div class="bu_content_list">
+			<ol class="c-split corporates-innovation ">
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="corporates-innovation" data-event-label="AppLovin Backs Velocity As The AI Industry Looks Beyond Subscriptions For Growth" data-event-non-interaction="false" href="/news/applovin-velocity-ai-monetization-beyond-subscriptions" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/applovin-velocity-ai-monetization-beyond-subscriptions.avif"
+																		alt="AppLovin Backs Velocity As The AI Industry Looks Beyond Subscriptions For Growth"
+									data-event-category="Homepage"
+									data-event-action="corporates-innovation"
+									data-event-label="AppLovin Backs Velocity As The AI Industry Looks Beyond Subscriptions For Growth"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/applovin-velocity-ai-monetization-beyond-subscriptions" data-event-category="Homepage" data-event-action="applovin-velocity-ai-monetization-beyond-subscriptions" data-event-label="AppLovin Backs Velocity As The AI Industry Looks Beyond Subscriptions For Growth" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">AppLovin Backs Velocity As The AI Industry Looks Beyond Subscriptions For Growth</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="corporates-innovation" data-event-label="Jack Dorsey’s Block takes on Slack with Buzz, a workspace for humans and AI agents" data-event-non-interaction="false" href="/news/block-buzz-humans-ai-agents-workspace" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/buzz-xyz.avif"
+																		alt="Jack Dorsey’s Block takes on Slack with Buzz, a workspace for humans and AI agents"
+									data-event-category="Homepage"
+									data-event-action="corporates-innovation"
+									data-event-label="Jack Dorsey’s Block takes on Slack with Buzz, a workspace for humans and AI agents"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/block-buzz-humans-ai-agents-workspace" data-event-category="Homepage" data-event-action="block-buzz-humans-ai-agents-workspace" data-event-label="Jack Dorsey’s Block takes on Slack with Buzz, a workspace for humans and AI agents" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Jack Dorsey’s Block takes on Slack with Buzz, a workspace for humans and AI agents</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="corporates-innovation" data-event-label="Google and Ford are funding a push into the trades, the jobs their AI can’t do" data-event-non-interaction="false" href="/news/google-and-ford-are-funding-a-push-into-the-trades-the-jobs-their-ai-cant-do" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/blackrock-carhartt-ford-and-google-launch-new-alliance.avif"
+																		alt="Google and Ford are funding a push into the trades, the jobs their AI can’t do"
+									data-event-category="Homepage"
+									data-event-action="corporates-innovation"
+									data-event-label="Google and Ford are funding a push into the trades, the jobs their AI can’t do"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/google-and-ford-are-funding-a-push-into-the-trades-the-jobs-their-ai-cant-do" data-event-category="Homepage" data-event-action="google-and-ford-are-funding-a-push-into-the-trades-the-jobs-their-ai-cant-do" data-event-label="Google and Ford are funding a push into the trades, the jobs their AI can’t do" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Google and Ford are funding a push into the trades, the jobs their AI can’t do</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="corporates-innovation" data-event-label="A British AI lab signed up Nvidia, Meta and Samsung to invent materials that don’t exist yet" data-event-non-interaction="false" href="/news/cuspai-ai-materials-foundry-coalition-450m" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/06/CuspAI-team.avif"
+																		alt="A British AI lab signed up Nvidia, Meta and Samsung to invent materials that don’t exist yet"
+									data-event-category="Homepage"
+									data-event-action="corporates-innovation"
+									data-event-label="A British AI lab signed up Nvidia, Meta and Samsung to invent materials that don’t exist yet"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/artificial-intelligence" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Artificial Intelligence" data-event-non-interaction="false">ARTIFICIAL INTELLIGENCE</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/cuspai-ai-materials-foundry-coalition-450m" data-event-category="Homepage" data-event-action="cuspai-ai-materials-foundry-coalition-450m" data-event-label="A British AI lab signed up Nvidia, Meta and Samsung to invent materials that don’t exist yet" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">A British AI lab signed up Nvidia, Meta and Samsung to invent materials that don’t exist yet</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+							</ol>
+		</div>
+	</div>
+</div>
+                                            
+
+
+<div class="c-showcaseSubbrands">
+	<div class="c-showcaseSubbrandsHeader">
+		<h2>
+			<a href="government-policy" class="c-showcaseSubbrandsTitle">
+				Government and policy
+			</a>
+		</h2>
+	</div>
+	<div class="c-showcaseSubbrandsList c-channel--">
+		
+														<div class="c-showcaseSubbrandsArticleMain">
+			<a href="/news/uk-tribunal-camera-on-disability-discrimination-remote-work"
+				data-event-category="Homepage"
+				data-event-action="government-policy"
+				data-event-label="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera"
+				data-event-non-interaction="false"
+        		tabindex="-1"
+			>
+				<img
+					class="js-lazy w-full"
+					alt="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera"
+										src="https://media.thenextweb.com/2026/07/uk-tribunal-camera-on-disability-discrimination-remote-work.avif"
+										data-event-category="Homepage"
+					data-event-action="government-policy"
+					data-event-label="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera"
+					data-event-non-interaction="false"
+				/>
+			</a>
+			<small class="md:mt-m sm:mt-m mb-none">
+				<a href="/future-of-work" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Future of work" data-event-non-interaction="false">FUTURE OF WORK</a>
+			</small>
+			<h3 class="c-showcaseSubbrandsArticleTitle c-card__heading  mb-s">
+				<a class="c-showcaseSubbrandsArticleTitleLink" data-event-category="Homepage" data-event-action="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera" data-event-label="Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera" data-event-non-interaction="false" href="/news/uk-tribunal-camera-on-disability-discrimination-remote-work">Remote worker with anxiety wins discrimination case after employer refused to let her turn off her camera</a>
+			</h3>
+			<p>The Croydon employment tribunal found Holiday Extras failed to make reasonable adjustments for Laura Tait, whose anxiety, ADHD, and autism made video calls particularly distressing, though lawyers stress the ruling does not ban camera-on policies outright</p>
+		</div>
+
+				<div class="bu_content_list">
+			<ol class="c-split government-policy ">
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="government-policy" data-event-label="Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced" data-event-non-interaction="false" href="/news/volkswagen-engineers-insider-trading-rivian-joint-venture" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/volkswagen-engineers-insider-trading-rivian-joint-venture.avif"
+																		alt="Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced"
+									data-event-category="Homepage"
+									data-event-action="government-policy"
+									data-event-label="Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/cars" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Cars" data-event-non-interaction="false">CARS</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/volkswagen-engineers-insider-trading-rivian-joint-venture" data-event-category="Homepage" data-event-action="volkswagen-engineers-insider-trading-rivian-joint-venture" data-event-label="Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">Two Volkswagen engineers charged with insider trading after buying Rivian stock before the joint venture they helped build was announced</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="government-policy" data-event-label="The AI giants just broke with OpenAI and Anthropic on open weights" data-event-non-interaction="false" href="/news/open-weights-american-ai-leadership-letter-huang-nvidia-openai-absent" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/jensen-huang-75-million-vanderbilt-art-school-san-francisco.avif"
+																		alt="The AI giants just broke with OpenAI and Anthropic on open weights"
+									data-event-category="Homepage"
+									data-event-action="government-policy"
+									data-event-label="The AI giants just broke with OpenAI and Anthropic on open weights"
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/anthropic" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Anthropic" data-event-non-interaction="false">ANTHROPIC</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/open-weights-american-ai-leadership-letter-huang-nvidia-openai-absent" data-event-category="Homepage" data-event-action="open-weights-american-ai-leadership-letter-huang-nvidia-openai-absent" data-event-label="The AI giants just broke with OpenAI and Anthropic on open weights" data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">The AI giants just broke with OpenAI and Anthropic on open weights</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="government-policy" data-event-label="A Chinese model split Silicon Valley. Now the startups are fighting back." data-event-non-interaction="false" href="/news/little-tech-association-chinese-open-weight-ai-ban-anthropic-startups" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/06/US-China-AI.avif"
+																		alt="A Chinese model split Silicon Valley. Now the startups are fighting back."
+									data-event-category="Homepage"
+									data-event-action="government-policy"
+									data-event-label="A Chinese model split Silicon Valley. Now the startups are fighting back."
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/anthropic" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Anthropic" data-event-non-interaction="false">ANTHROPIC</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/little-tech-association-chinese-open-weight-ai-ban-anthropic-startups" data-event-category="Homepage" data-event-action="little-tech-association-chinese-open-weight-ai-ban-anthropic-startups" data-event-label="A Chinese model split Silicon Valley. Now the startups are fighting back." data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">A Chinese model split Silicon Valley. Now the startups are fighting back.</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+								<li class="c-showcaseSubbrandsArticleList">
+																							
+					<article class="c-listArticle c-showcaseSubbrandsArticleListItem">
+						<figure class="c-listArticle__image">
+							<a class="o-media o-media--1:1 md:o-media--16:9" data-event-category="Homepage" data-event-action="government-policy" data-event-label="A rogue AI hacked Hugging Face. Now Congress wants a kill switch." data-event-non-interaction="false" href="/news/ai-kill-switch-act-lieu-moran-dhs-openai-hugging-face" tabindex="-1">
+								<img
+									class="js-lazy"
+																		src="https://media.thenextweb.com/2026/07/kill-switch.avif"
+																		alt="A rogue AI hacked Hugging Face. Now Congress wants a kill switch."
+									data-event-category="Homepage"
+									data-event-action="government-policy"
+									data-event-label="A rogue AI hacked Hugging Face. Now Congress wants a kill switch."
+									data-event-non-interaction="false"
+								/>
+							</a>
+						</figure>
+						<div class="c-listArticle__text">
+							<small>
+								<a href="/anthropic" class="c-showcaseSubbrandsArticleListItemTag" data-event-category="Homepage" data-event-action="Tags" data-event-label="Anthropic" data-event-non-interaction="false">ANTHROPIC</a>
+							</small>
+							<h3 class="c-showcaseSubbrandsThumbnailArticleTitle">
+								<a href="/news/ai-kill-switch-act-lieu-moran-dhs-openai-hugging-face" data-event-category="Homepage" data-event-action="ai-kill-switch-act-lieu-moran-dhs-openai-hugging-face" data-event-label="A rogue AI hacked Hugging Face. Now Congress wants a kill switch." data-event-non-interaction="false" class="c-showcaseSubbrandsArticleListHeading text-black title_link">A rogue AI hacked Hugging Face. Now Congress wants a kill switch.</a>
+							</h3>
+						</div>
+					</article>
+				</li>
+							</ol>
+		</div>
+	</div>
+</div>
+                                        </main>
+                    
+                                    </ol>
+            </div>
+        </section>
+        
+
+        <section class="c-showcase c-showcasePartner c-bodyBlock">
+            <div class="o-wrapper">
+                <div class="o-grid md:o-grid--gap-m lg:o-grid--gap-l">
+                    <div class="o-grid__col md:o-grid__col--1/2 mb-xl text-center md:mb-none md:text-left">
+                        <header class="c-bodyBlock__header c-bodyNews__header md:c-sectionHeader--left mb-xl md:mb-none md:pr-l">
+                            <h2 class="c-bodyNews__heading o-bodyBlock__heading text-burple" style="margin-bottom: 1rem !important;">
+                                Work with us
+                            </h2>
+
+                            <div class="c-bodyBlock__subheading">
+                                Reach your goals
+                            </div>
+
+                            <p class="c-sectionHeader__intro mb-xl">
+                                
+                            </p>
+
+                            <a
+                                class="c-button c-button--primary hstrigger"
+                                data-event-category="Programs"
+                                data-event-action="CTA"
+                                data-event-label="TNW X Newsletter"
+                                href="#modalNewsletter--33478"
+                            >
+                                Get in touch
+                            </a>
+                        </header>
+                    </div>
+
+                    <div class="o-grid__col md:o-grid__col--1/2 md:flex md:items-center">
+                        <div class="o-grid o-grid--gap-l o-grid--gap-xl">
+                                                            
+                                <div class="o-grid__col o-grid__col--1/2 flex flex-col lg:flex-row lg:items-center">
+                                    <div class="mx-auto w-5xl md:w-6xl lg:m-none">
+                                        <div class="o-media o-media--1:1">
+                                            <img
+                                                class="js-lazy"
+                                                alt="Media"
+                                                src="https://media.thenextweb.com/events/hardfork-2018/uploads/visuals/pillar-media.svg">
+                                        </div>
+                                    </div>
+                                    <div class="mt-m text-center text-m lg:text-l lg:mt-none lg:ml-m font-medium">
+                                        Media
+                                    </div>
+                                </div>
+                                                            
+                                <div class="o-grid__col o-grid__col--1/2 flex flex-col lg:flex-row lg:items-center">
+                                    <div class="mx-auto w-5xl md:w-6xl lg:m-none">
+                                        <div class="o-media o-media--1:1">
+                                            <img
+                                                class="js-lazy"
+                                                alt="Events"
+                                                src="https://media.thenextweb.com/events/hardfork-2018/uploads/companies/pillar-events.svg">
+                                        </div>
+                                    </div>
+                                    <div class="mt-m text-center text-m lg:text-l lg:mt-none lg:ml-m font-medium">
+                                        Events
+                                    </div>
+                                </div>
+                                                            
+                                <div class="o-grid__col o-grid__col--1/2 flex flex-col lg:flex-row lg:items-center">
+                                    <div class="mx-auto w-5xl md:w-6xl lg:m-none">
+                                        <div class="o-media o-media--1:1">
+                                            <img
+                                                class="js-lazy"
+                                                alt="Spaces"
+                                                src="https://media.thenextweb.com/events/hardfork-2018/uploads/visuals/pillar-spaces.svg">
+                                        </div>
+                                    </div>
+                                    <div class="mt-m text-center text-m lg:text-l lg:mt-none lg:ml-m font-medium">
+                                        Spaces
+                                    </div>
+                                </div>
+                                                            
+                                <div class="o-grid__col o-grid__col--1/2 flex flex-col lg:flex-row lg:items-center">
+                                    <div class="mx-auto w-5xl md:w-6xl lg:m-none">
+                                        <div class="o-media o-media--1:1">
+                                            <img
+                                                class="js-lazy"
+                                                alt="Programs"
+                                                src="https://media.thenextweb.com/events/hardfork-2018/uploads/companies/pillar-programs.svg">
+                                        </div>
+                                    </div>
+                                    <div class="mt-m text-center text-m lg:text-l lg:mt-none lg:ml-m font-medium">
+                                        Programs
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                </div>
+
+                                
+                
+                <div class="o-wrapper mt-xl md:mt-3xl lg:mt-3xl lg:mb-xl">
+                    <ul class="o-grid o-grid--centered o-grid--gap-s justify-center">
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.google.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="Google"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="Google"
+                                        src="//static.thenextweb.com/assets/next/img/partners/google.svg"
+                                    >
+                                </a>
+                            </li>
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.etoro.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="Etoro"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="Etoro"
+                                        src="//static.thenextweb.com/assets/next/img/partners/etoro.svg"
+                                    >
+                                </a>
+                            </li>
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.ibm.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="IBM"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="IBM"
+                                        src="//static.thenextweb.com/assets/next/img/partners/ibm.svg"
+                                    >
+                                </a>
+                            </li>
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.microsoft.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="Microsoft"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="Microsoft"
+                                        src="//static.thenextweb.com/assets/next/img/partners/microsoft.svg"
+                                    >
+                                </a>
+                            </li>
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.paypal.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="PayPal"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="PayPal"
+                                        src="//static.thenextweb.com/assets/next/img/partners/paypal.svg"
+                                    >
+                                </a>
+                            </li>
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.vodafone.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="Vodafone"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="Vodafone"
+                                        src="//static.thenextweb.com/assets/next/img/partners/vodafone.svg"
+                                    >
+                                </a>
+                            </li>
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.accenture.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="Accenture"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="Accenture"
+                                        src="//static.thenextweb.com/assets/next/img/partners/accenture.svg"
+                                    >
+                                </a>
+                            </li>
+                                                    <li class="o-grid__col o-grid__col--1/2 md:o-grid__col--1/3 lg:o-grid__col--1/8">
+                                <a
+                                    class="c-showcasePartner__link o-media o-media--16:9"
+                                    href="https://www.mckinsey.com/"
+                                    data-event-category="TNW"
+                                    rel="nofollow noopener"
+                                    target="_blank"
+                                >
+                                    <img
+                                        class="js-lazy"
+                                        alt="McKinsey Company"
+                                        data-event-category="TNW"
+                                        data-event-action="Companies"
+                                        data-event-label="McKinsey Company"
+                                        src="//static.thenextweb.com/assets/next/img/partners/mckinsey-company.svg"
+                                    >
+                                </a>
+                            </li>
+                                            </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        var classListener = setInterval(function(){
+            if(document.body.classList.contains('is-canvas')){
+                document.getElementById('nextHome').classList.add('render-canvas');
+            };
+        }, 750);
+    </script>
+            </div>
+        </div>
+        <footer class="c-footer">
+            <div class="o-wrapper">
+                <div class="o-grid o-grid--gap-l">
+                    <div class="o-grid__col lg:o-grid__col--1/2">
+                        <div class="c-footer__logoContact">
+                                <div>
+                                    <a class="c-footer__logo" data-event-category="Footer" data-event-action="TNW Logo" data-event-label="Navigation" data-event-non-interaction="false" href="https://thenextweb.com/" title="TNW" tabindex="-1">
+                                        <svg preserveAspectRatio="xMidYMid meet" viewbox="0 0 66 16">
+                                            <path fill="#fff" d="M32.23993 5A6.00284 6.00284 0 0 1 34 9.24261V16h-6v-5.929a2.00249 2.00249 0 0 0-.58856-1.41424l-2.07239-2.07101A2.00315 2.00315 0 0 0 23.92346 6H22v10h-6V0h8.75189a6 6 0 0 1 4.24268 1.75739zM60 0v5.929a2.00245 2.00245 0 0 1-.58856 1.41418l-2.07385 2.071A1.99969 1.99969 0 0 1 55.9234 10h-2.88214A5.99166 5.99166 0 0 0 54 6.75732V0h-6v5.929a2.00245 2.00245 0 0 1-.58856 1.41418l-2.07385 2.071A1.99969 1.99969 0 0 1 43.9234 10H42V0h-6v16h8.75189a6.003 6.003 0 0 0 4.244-1.75739L51 12.23938V16h5.75189a6.003 6.003 0 0 0 4.244-1.75739l3.244-3.24267A6.00264 6.00264 0 0 0 66 6.75732V0zM0 6h4v10h6V6h4V0H0z"></path>
+                                        </svg>
+                                    </a>
+                                    <p class="c-footer__tagline">The heart of tech</p>
+                                </div>
+                            <div>
+                                <ul class="c-footer__contact">
+                                                                        <li class="c-footer__contactItem"><a class="c-footer__contactLink" data-event-category="Footer" data-event-action="Socials" data-event-label="Faaaaebook" href="https://facebook.com/thenextweb" target="_blank" rel="noopener noreferrer" name="Facebook Contact Icon"><svg class="c-footer__contactIcon"><use xlink:href="/assets/next/img/icons.svg#facebook"></use></svg></a></li>
+                                    <li class="c-footer__contactItem"><a class="c-footer__contactLink" data-event-category="Footer" data-event-action="Socials" data-event-label="Instagram" href="https://www.instagram.com/thenextweb/" target="_blank" rel="noopener noreferrer" name="Instagram Contact Icon"><svg class="c-footer__contactIcon"><use xlink:href="/assets/next/img/icons.svg#instagram"></use></svg></a></li>
+                                    <li class="c-footer__contactItem"><a class="c-footer__contactLink" data-event-category="Footer" data-event-action="Socials" data-event-label="Twitter" href="https://twitter.com/thenextweb" target="_blank" rel="noopener noreferrer" name="Twitter Contact Icon"><svg class="c-footer__contactIcon"><use xlink:href="/assets/next/img/icons.svg#twitter"></use></svg></a></li>
+                                    <li class="c-footer__contactItem"><a class="c-footer__contactLink" data-event-category="Footer" data-event-action="Socials" data-event-label="Youtube" href="https://youtube.com/user/thenextweb" target="_blank" rel="noopener noreferrer" name="Youtube Contact Icon"><svg class="c-footer__contactIcon"><use xlink:href="/assets/next/img/icons.svg#youtube"></use></svg></a></li>
+                                    <li class="c-footer__contactItem"><a class="c-footer__contactLink" data-event-category="Footer" data-event-action="Socials" data-event-label="Flipboard" href="https://flipboard.com/@thenextweb" target="_blank" rel="noopener noreferrer" name="Flipboard Contact Icon"><svg class="c-footer__contactIcon"><use xlink:href="/assets/next/img/icons.svg#flipboard"></use></svg></a></li>
+                                    <li class="c-footer__contactItem"><a class="c-footer__contactLink" data-event-category="Footer" data-event-action="Socials" data-event-label="Mail" href="/newsletters" name="Email Footer Link"><svg class="c-footer__contactIcon"><use xlink:href="/assets/next/img/icons.svg#mail"></use></svg></a></li>
+                                                                        <li class="c-footer__contactItem"><a class="c-footer__contactLink" data-event-category="Footer" data-event-action="Socials" data-event-label="Linkedin" href="https://www.linkedin.com/company/the-next-web" target="_blank" rel="noopener noreferrer" name="LinkedIn Contact Icon"><svg class="c-footer__contactIcon"><use xlink:href="/assets/next/img/icons.svg#linkedin"></use></svg></a></li>
+                                                                                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="o-grid__col--1/2 lg:o-grid__col--1/4 more">
+                                                <h2 class="c-footer__heading">More TNW</h2>
+                        <ul class="c-footer__menu">
+                            <li><a class="c-footer__menuLink" href="/latest" data-event-category="Footer" data-event-action="More TNW" data-event-label="Media" data-event-non-interaction="false">Media</a></li>
+                            <li><a class="c-footer__menuLink" href="/events" data-event-category="Footer" data-event-action="More TNW" data-event-label="Events" data-event-non-interaction="false">Events</a></li>
+                            <li><a class="c-footer__menuLink" href="/spaces" data-event-category="Footer" data-event-action="More TNW" data-event-label="Spaces" data-event-non-interaction="false">Spaces</a></li>
+                            <li><a class="c-footer__menuLink" href="/newsletters" data-event-category="Footer" data-event-action="More TNW" data-event-label="Newsletters" data-event-non-interaction="false">Newsletters</a></li>
+                        </ul>
+                                            </div>
+                    <div class="o-grid__col--1/2 lg:o-grid__col--1/4 about">
+                        <h2 class="c-footer__heading">About TNW</h2>
+                        <ul class="c-footer__menu">
+                                                        <li><a class="c-footer__menuLink" data-event-category="Footer" data-event-action="About TNW" data-event-label="Partner with us" data-event-non-interaction="false" href="/partnerships" name="Partner with us">Partner with us</a></li>
+                            <li><a class="c-footer__menuLink" data-event-category="Footer" data-event-action="About TNW" data-event-label="Terms &amp; Conditions" data-event-non-interaction="false" href="/terms-and-conditions" name="Terms &amp; Conditions">Terms &amp; Conditions</a></li>
+                            <li><a class="c-footer__menuLink" data-event-category="Footer" data-event-action="About TNW" data-event-label="Cookie Statement" data-event-non-interaction="false" href="/cookie-statement" name="Cookie Statement">Cookie Statement</a></li>
+                            <li><a class="c-footer__menuLink" data-event-category="Footer" data-event-action="About TNW" data-event-label="Privacy Statement" data-event-non-interaction="false" href="/privacy-statement " name="Privacy Statement">Privacy Statement</a></li>
+                                                    </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="c-footer__legal max-md:px-l">
+		<p>A Tekpon Company</p>
+		<p>Copyright &copy; 2006&mdash;2026, Cogneve, INC. Made with <3 in Amsterdam.</p>
+
+            </div>
+        </footer>
+
+        <script src="//static.thenextweb.com/assets/next/js/base.js?af24e65ec70ba6a3571bc69de0e8f4e09ff399ea" async defer></script>
+
+        <script type="text/javascript">
+            window.csrfTokenName = "CRAFT_CSRF_TOKEN";
+            window.csrfTokenValue = "d57tpKTTeSef1DnnxjbqxdqCnlQvVnTubA\u002Ddy5kymLRe5YOuiSRgIAXuhvvdsAFq9KBjuKJ\u002DmpHvtdwjHQUOuQZC1rH3eKzmH9aunOUTCWY\u003D";
+        </script>
+        <script>
+            var ENV = {
+                "paths": {
+                    "assets": "/assets"
+                }
+            };
+        </script>
+                    <script>
+        var pageTitle = document.title;
+        var attentionMessage = `TNW | <3`;
+        window.onload = function() {
+        document.addEventListener('visibilitychange', (e) => {
+            var isPageActive = !document.hidden;
+                if(!isPageActive){
+                    document.title = attentionMessage;
+                } else {
+                    document.title = pageTitle;
+                }
+            });
+        };
+    </script>
+                <div class="cookie-consent-banner" id="cookie-consent-banner" data-args='{"cookieName":"__tnw_cookieConsent","cookieExpirationDays":"365","consentChoices":["ad_storage","analytics_storage"],"redirectOnSave":true,"honorDoNotTrack":false,"stylesheet":"https:\/\/thenextweb.com\/cpresources\/7aa73511\/style.css?v=1781777959","titleText":"Cookies","descriptionText":"<p>We use <a href=\"\/cookie-statement\">cookies<\/a> and other data for a number of reasons, such as keeping TNW sites reliable and secure, personalizing content and ads, providing social media features and to analyze how our sites are used.<\/p>","linkColor":"6644ff","linkHoverColor":"7755ff","primaryBtnText":"Accept & continue","primaryBtnBgColor":"","primaryBtnBgHoverColor":"","primaryBtnColor":"","primaryBtnHoverColor":"","secondaryBtnText":"Manage cookies","secondaryBtnURL":"\/cookie-statement","secondaryBtnRedirectURL":"https:\/\/thenextweb.com\/","secondaryBtnColor":"6644ff","secondaryBtnHoverColor":"7755ff","debugMode":false}'></div><script src="https://thenextweb.com/cpresources/2c16970e/main.js?v=1781777959" async="async" defer="defer"></script>
+
+        <script>
+            (function() {
+                function initCalendlyButtons() {
+                    // Get all Calendly buttons
+                    const calendlyButtons = document.querySelectorAll('.book-call[data-platform="calendly"][data-calendly]');
+                    
+                    // If no buttons found, exit
+                    if (!calendlyButtons.length) return;
+                    
+                    // Add click handler to each button
+                    calendlyButtons.forEach(button => {
+                        button.addEventListener('click', openCalendly);
+                    });
+                }
+                
+                function openCalendly(e) {
+                    const button = e.currentTarget;
+                    const url = button.dataset.calendly;
+                    
+                    if (url && typeof Calendly !== 'undefined') {
+                        Calendly.initPopupWidget({url: url});
+                    } else {
+                        console.error('Calendly URL missing or Calendly not loaded');
+                    }
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initCalendlyButtons);
+                } else {
+                    initCalendlyButtons();
+                }
+            })();
+        </script>
+    </body>
+</html>
