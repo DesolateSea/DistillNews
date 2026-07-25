@@ -1,23 +1,27 @@
 """Redis connection lifecycle manager."""
+
 from redis.asyncio import Redis
 from config import config
+from utils.logger import log
 
 
 class RedisHandle:
     """Single shared Redis connection for the entire application."""
+
     _client: Redis | None = None
 
     @classmethod
     async def connect(cls, url: str | None = None):
-        cls._client = Redis.from_url(
-            url or config.REDIS_URL, decode_responses=True
-        )
+        target_url = url or config.REDIS_URL
+        cls._client = Redis.from_url(target_url, decode_responses=True)
+        log.db("Redis Connected", target_url)
 
     @classmethod
     async def disconnect(cls):
         if cls._client:
             await cls._client.close()
             cls._client = None
+            log.db("Redis Disconnected")
 
     @classmethod
     def client(cls) -> Redis:

@@ -2,6 +2,7 @@ services:
   mongo:
     image: mongo:6-jammy
     restart: unless-stopped
+    attach: false
     volumes:
       - mongo-data:/data/db
     healthcheck:
@@ -13,6 +14,7 @@ services:
   redis:
     image: redis:7.2-alpine
     restart: unless-stopped
+    attach: false
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s

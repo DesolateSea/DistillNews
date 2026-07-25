@@ -1,5 +1,5 @@
 """
-Pipeline Logger — colored, structured terminal output for pipeline stages.
+Logger — colored, structured terminal output for system, pipeline, db, and server events.
 
 Zero external dependencies — uses ANSI escape codes directly.
 Automatically truncates long strings to keep the terminal readable.
@@ -56,13 +56,13 @@ def truncate(text: str, max_len: int = MAX_INLINE) -> str:
 
 def _badge(label: str, bg: str, fg: str = _C.WHITE) -> str:
     padded = label.center(6)
-    return f"{bg}{fg}{_C.BOLD} {padded} {_C.RESET}"
+    return f"{bg}{fg}{_C.BOLD}[{padded}]{_C.RESET}"
 
 
 # ── Logger class ────────────────────────────────────────────────────────────
 
-class PipelineLogger:
-    """Structured, colored logger for DistillNews pipeline stages."""
+class Logger:
+    """Structured, colored logger for DistillNews system events."""
 
     # Pre-built badges
     _BADGES = {
@@ -85,7 +85,7 @@ class PipelineLogger:
 
     @staticmethod
     def _print(badge_key: str, message: str, detail: str | None = None, truncate_detail: bool = True):
-        badge = PipelineLogger._BADGES.get(badge_key, f"[{badge_key.upper()}]")
+        badge = Logger._BADGES.get(badge_key, f"[{badge_key.upper()}]")
         line = f"{badge} {message}"
         if detail is not None:
             detail_str = truncate(detail) if truncate_detail else str(detail).replace("\n", " ").replace("\r", "")
@@ -99,100 +99,100 @@ class PipelineLogger:
     @staticmethod
     def scrape_start(url: str, dest: str | None = None):
         msg = f"{_C.CYAN}Scraping{_C.RESET} {_C.BOLD}{truncate(url, 80)}{_C.RESET}"
-        PipelineLogger._print("scrape", msg, f"→ {dest}" if dest else None)
+        Logger._print("scrape", msg, f"→ {dest}" if dest else None)
 
     @staticmethod
     def scrape_skip(url: str, reason: str = "already scraped"):
-        PipelineLogger._print("skip", f"{_C.GRAY}{truncate(url, 80)}{_C.RESET}  ({reason})")
+        Logger._print("skip", f"{_C.GRAY}{truncate(url, 80)}{_C.RESET}  ({reason})")
 
     @staticmethod
     def fetch_start(source: str, query: str | None = None):
         msg = f"{_C.BLUE}Fetching from {_C.BOLD}{source}{_C.RESET}"
-        PipelineLogger._print("fetch", msg, query)
+        Logger._print("fetch", msg, query)
 
     @staticmethod
     def fetch_done(source: str, count: int):
-        PipelineLogger._print("ok", f"{_C.GREEN}Fetched {_C.BOLD}{count}{_C.RESET}{_C.GREEN} items from {source}{_C.RESET}")
+        Logger._print("ok", f"{_C.GREEN}Fetched {_C.BOLD}{count}{_C.RESET}{_C.GREEN} items from {source}{_C.RESET}")
 
     @staticmethod
     def fetch_fail(source: str, error: str):
-        PipelineLogger._print("fail", f"{_C.RED}Fetch failed for {source}{_C.RESET}", truncate(str(error), 100))
+        Logger._print("fail", f"{_C.RED}Fetch failed for {source}{_C.RESET}", truncate(str(error), 100))
 
     # --- Parsing ---
 
     @staticmethod
     def parse_start(parser_name: str, title: str | None = None):
         msg = f"{_C.MAGENTA}Parsing{_C.RESET} with {_C.BOLD}{parser_name}{_C.RESET}"
-        PipelineLogger._print("parse", msg, truncate(title, 60) if title else None)
+        Logger._print("parse", msg, truncate(title, 60) if title else None)
 
     @staticmethod
     def parse_fail(title: str, error: str):
-        PipelineLogger._print("fail", f"{_C.RED}Parse error{_C.RESET}  {truncate(title, 50)}", truncate(str(error), 80))
+        Logger._print("fail", f"{_C.RED}Parse error{_C.RESET}  {truncate(title, 50)}", truncate(str(error), 80))
 
     # --- AI / LLM ---
 
     @staticmethod
     def ai_call(task: str, title: str | None = None):
         msg = f"{_C.YELLOW}LLM call:{_C.RESET} {_C.BOLD}{task}{_C.RESET}"
-        PipelineLogger._print("ai", msg, truncate(title, 60) if title else None)
+        Logger._print("ai", msg, truncate(title, 60) if title else None)
 
     @staticmethod
     def ai_result(task: str, output_preview: str | None = None):
         msg = f"{_C.GREEN}LLM done:{_C.RESET} {task}"
-        PipelineLogger._print("ok", msg, truncate(output_preview, 80) if output_preview else None)
+        Logger._print("ok", msg, truncate(output_preview, 80) if output_preview else None)
 
     @staticmethod
     def ai_classify(title: str, is_news: bool | None):
         label = {True: f"{_C.GREEN}✓ is news{_C.RESET}", False: f"{_C.RED}✗ not news{_C.RESET}", None: f"{_C.YELLOW}? ambiguous{_C.RESET}"}[is_news]
-        PipelineLogger._print("ai", f"Classify → {label}", truncate(title, 60))
+        Logger._print("ai", f"Classify → {label}", truncate(title, 60))
 
     # --- Saving ---
 
     @staticmethod
     def save(path: str, label: str = "Saved"):
-        PipelineLogger._print("save", f"{_C.GREEN}{label}{_C.RESET}", path, truncate_detail=False)
+        Logger._print("save", f"{_C.GREEN}{label}{_C.RESET}", path, truncate_detail=False)
 
     @staticmethod
     def save_skip(reason: str, detail: str | None = None):
-        PipelineLogger._print("skip", f"{_C.GRAY}{reason}{_C.RESET}", detail, truncate_detail=False)
+        Logger._print("skip", f"{_C.GRAY}{reason}{_C.RESET}", detail, truncate_detail=False)
 
     # --- General ---
 
     @staticmethod
     def info(message: str, detail: str | None = None):
-        PipelineLogger._print("info", message, detail)
+        Logger._print("info", message, detail)
 
     @staticmethod
     def warn(message: str, detail: str | None = None):
-        PipelineLogger._print("warn", f"{_C.YELLOW}{message}{_C.RESET}", detail)
+        Logger._print("warn", f"{_C.YELLOW}{message}{_C.RESET}", detail)
 
     @staticmethod
     def error(message: str, detail: str | None = None):
-        PipelineLogger._print("fail", f"{_C.RED}{message}{_C.RESET}", detail)
+        Logger._print("fail", f"{_C.RED}{message}{_C.RESET}", detail)
 
     @staticmethod
     def success(message: str, detail: str | None = None):
-        PipelineLogger._print("ok", f"{_C.GREEN}{message}{_C.RESET}", detail)
+        Logger._print("ok", f"{_C.GREEN}{message}{_C.RESET}", detail)
 
     # --- Chat / RAG ---
 
     @staticmethod
     def chat_query(user_id: str, query: str):
-        PipelineLogger._print("chat", f"{_C.MAGENTA}Query{_C.RESET} from {_C.BOLD}{truncate(user_id, 16)}{_C.RESET}", truncate(query, 80))
+        Logger._print("chat", f"{_C.MAGENTA}Query{_C.RESET} from {_C.BOLD}{truncate(user_id, 16)}{_C.RESET}", truncate(query, 80))
 
     @staticmethod
     def rag_search(keywords: str, n_results: int):
-        PipelineLogger._print("rag", f"{_C.CYAN}Search{_C.RESET} → {_C.BOLD}{n_results}{_C.RESET} results", truncate(keywords, 60))
+        Logger._print("rag", f"{_C.CYAN}Search{_C.RESET} → {_C.BOLD}{n_results}{_C.RESET} results", truncate(keywords, 60))
 
     @staticmethod
     def chat_response(preview: str):
-        PipelineLogger._print("chat", f"{_C.GREEN}Response ready{_C.RESET}", truncate(preview, 80))
+        Logger._print("chat", f"{_C.GREEN}Response ready{_C.RESET}", truncate(preview, 80))
 
     # --- DB ---
 
     @staticmethod
     def db(action: str, detail: str | None = None):
-        PipelineLogger._print("db", f"{_C.GREEN}{action}{_C.RESET}", detail)
+        Logger._print("db", f"{_C.GREEN}{action}{_C.RESET}", detail)
 
     # ── Section banners ─────────────────────────────────────────────────
 
@@ -220,7 +220,7 @@ class PipelineLogger:
     def timed(label: str):
         """Context manager that prints elapsed time on exit."""
         start = time.time()
-        PipelineLogger._print("info", f"{_C.BLUE}Starting:{_C.RESET} {label}")
+        Logger._print("info", f"{_C.BLUE}Starting:{_C.RESET} {label}")
         try:
             yield
         finally:
@@ -232,8 +232,8 @@ class PipelineLogger:
             else:
                 mins, secs = divmod(elapsed, 60)
                 time_str = f"{int(mins)}m {secs:.0f}s"
-            PipelineLogger._print("ok", f"{_C.GREEN}Finished:{_C.RESET} {label}  {_C.DIM}({time_str}){_C.RESET}")
+            Logger._print("ok", f"{_C.GREEN}Finished:{_C.RESET} {label}  {_C.DIM}({time_str}){_C.RESET}")
 
 
 # Convenience alias
-log = PipelineLogger
+log = Logger

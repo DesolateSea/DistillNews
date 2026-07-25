@@ -4,10 +4,7 @@ import math
 import re
 from chatbot.rag.base import Document, DocumentStore, SearchResult
 
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 
 class BM25DocStore(DocumentStore):

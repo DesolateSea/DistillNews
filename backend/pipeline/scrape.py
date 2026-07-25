@@ -10,7 +10,7 @@ from db import FileStore
 from config import config
 from pipeline.scrapers.scraper import scrape_target
 from pipeline.scrapers.config import TARGET_URLS_JSON
-from pipeline.logger import log
+from utils.logger import log
 
 def run_scrape():
     log.section("Web Scraping Pipeline")

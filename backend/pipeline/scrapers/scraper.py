@@ -5,10 +5,7 @@ from .proxies import load_working_proxies
 from .fetcher import fetch_and_save_direct_and_via_proxy, final_rotate_scrape
 
 # Import logger — use try/except so the module works standalone too
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 working_urls = load_working_proxies()
 

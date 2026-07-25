@@ -5,10 +5,7 @@ import math
 from embeddings.base import EmbeddingProvider
 from chatbot.rag.base import Document, DocumentStore, SearchResult
 
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 
 class InMemoryVectorStore(DocumentStore):

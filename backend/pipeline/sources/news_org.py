@@ -4,10 +4,7 @@ from config import config
 from db import FileStore
 from pipeline.sources.config import NEWS_ORG_TOPICS
 
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 
 class NewsFetcher:

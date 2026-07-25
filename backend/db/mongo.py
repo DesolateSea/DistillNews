@@ -1,10 +1,13 @@
 """MongoDB connection lifecycle manager."""
+
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from config import config
+from utils.logger import log
 
 
 class MongoHandle:
     """Single shared MongoDB connection pool for the entire application."""
+
     _client: AsyncIOMotorClient | None = None
     _db: AsyncIOMotorDatabase | None = None
 
@@ -13,6 +16,7 @@ class MongoHandle:
         url = url or config.DB_URL
         cls._client = AsyncIOMotorClient(url)
         cls._db = cls._client[db_name]
+        log.db("MongoDB Connected", f"db={db_name}")
 
     @classmethod
     def disconnect(cls):
@@ -20,6 +24,7 @@ class MongoHandle:
             cls._client.close()
             cls._client = None
             cls._db = None
+            log.db("MongoDB Disconnected")
 
     @classmethod
     def get_db(cls) -> AsyncIOMotorDatabase:

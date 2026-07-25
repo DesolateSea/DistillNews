@@ -5,10 +5,7 @@ from config import config
 from db import FileStore
 from pipeline.sources.config import GNEWS_QUERIES
 
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 
 class GNewsClient:

@@ -7,18 +7,20 @@ from server.services.article_service import start_scheduler, shutdown_scheduler,
 from contextlib import asynccontextmanager
 from db.mongo import MongoHandle
 from db.redis import RedisHandle
+from utils.logger import log
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     MongoHandle.connect()
     await RedisHandle.connect()
     try:
-        print("Storing all new articles")
+        log.info("Storing all new articles")
         await store_article()
-        print("Stored all new articles")
+        log.success("Stored all new articles")
         start_scheduler()
     except Exception as e:
-        print(f"Warning: startup tasks failed ({e}). Server will run without scheduled article ingestion.")
+        log.warn(f"Startup tasks failed ({e}). Running without scheduler.")
     yield
     try:
         shutdown_scheduler()
@@ -26,6 +28,7 @@ async def lifespan(app: FastAPI):
         pass
     MongoHandle.disconnect()
     await RedisHandle.disconnect()
+
 
 app = FastAPI(lifespan=lifespan)
 

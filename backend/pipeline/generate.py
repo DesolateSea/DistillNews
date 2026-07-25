@@ -10,7 +10,7 @@ from db import FileStore
 from config import config
 from pipeline.parsers.api_handlers import api_handlers
 from pipeline.extraction import extract_news
-from pipeline.logger import log
+from utils.logger import log
 from pathlib import Path
 
 API_ROOT = FileStore.api_data_dir()

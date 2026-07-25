@@ -3,10 +3,7 @@ from config import config
 from db import FileStore
 from pipeline.sources.config import MEDIA_STACK_CATEGORIES
 
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 
 class MediaStack:

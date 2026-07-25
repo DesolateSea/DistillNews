@@ -5,10 +5,7 @@ from server.models.articles_model import DurationRequest, ArticleInDB, Paginated
 from server.utils.recommendation import sort_articles, update_weights
 from db import FileStore, MongoHandle
 
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 scheduler = AsyncIOScheduler()
 

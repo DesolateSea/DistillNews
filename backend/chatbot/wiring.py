@@ -6,9 +6,7 @@ from agents import create_agent
 from db import FileStore
 from chatbot.service import ChatbotService
 from chatbot.rag import create_doc_store
-from chatbot.rag.base import Document
-
-from pipeline.logger import log
+from utils.logger import log
 
 prompts_dir = Path(__file__).resolve().parent / "prompts"
 

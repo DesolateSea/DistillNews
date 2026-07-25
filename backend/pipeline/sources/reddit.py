@@ -4,10 +4,7 @@ from config import config
 from db import FileStore
 from pipeline.sources.config import SUBREDDITS
 
-try:
-    from pipeline.logger import log
-except ImportError:
-    log = None
+from utils.logger import log
 
 REDDIT_SECRET = config.REDDIT_SECRET
 REDDIT_CLIENT_ID = config.REDDIT_CLIENT_ID

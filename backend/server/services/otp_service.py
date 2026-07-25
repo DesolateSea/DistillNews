@@ -1,17 +1,13 @@
-from db.redis import RedisHandle
 import os
 import uuid
 import json
 import random
-import logging
 import smtplib
 import asyncio
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
-logger = logging.getLogger(__name__)
-
-# Initialize Redis client using connection URL
+from db.redis import RedisHandle
+from utils.logger import log
 
 
 def generate_otp() -> str:
@@ -34,10 +30,10 @@ async def store_otp(email: str, otp: str, expire_seconds: int = 300) -> str | No
         key = f"otp_session:{session_token}"
         payload = json.dumps({"email": email, "otp": otp})
         await RedisHandle.client().set(key, payload, ex=expire_seconds)
-        logger.info(f"OTP stored for {email} under session {session_token[:8]}…")
+        log.info(f"Stored OTP for {email} under session {session_token[:8]}…")
         return session_token
     except Exception as e:
-        logger.error(f"Failed to store OTP in Redis: {e}")
+        log.error(f"Failed to store OTP in Redis: {e}")
         return None
 
 
@@ -50,22 +46,22 @@ async def verify_otp(email: str, otp_to_verify: str, session_token: str) -> bool
         key = f"otp_session:{session_token}"
         raw = await RedisHandle.client().get(key)
         if not raw:
-            logger.warning(f"No OTP session found for token {session_token[:8]}…")
+            log.warn(f"No OTP session found for token {session_token[:8]}…")
             return False
 
         data = json.loads(raw)
         if data.get("email") != email:
-            logger.warning(f"Email mismatch for session {session_token[:8]}…")
+            log.warn(f"Email mismatch for session {session_token[:8]}…")
             return False
         if data.get("otp") != otp_to_verify:
-            logger.warning(f"OTP mismatch for session {session_token[:8]}…")
+            log.warn(f"OTP mismatch for session {session_token[:8]}…")
             return False
 
         await RedisHandle.client().delete(key)
-        logger.info(f"OTP verified successfully for {email}")
+        log.success(f"OTP verified successfully for {email}")
         return True
     except Exception as e:
-        logger.error(f"Failed to verify OTP: {e}")
+        log.error(f"Failed to verify OTP: {e}")
         return False
 
 
@@ -91,7 +87,7 @@ def _send_smtp(to_email: str, otp: str) -> None:
     sender = os.environ.get("EMAIL")
     password = os.environ.get("PASS")
 
-    logger.info(f"SMTP sender resolved: {sender!r}")
+    log.info(f"SMTP sender resolved: {sender!r}")
 
     if not sender or not password:
         raise ValueError(
@@ -104,7 +100,6 @@ def _send_smtp(to_email: str, otp: str) -> None:
     msg["To"] = to_email
     msg.attach(MIMEText(_build_otp_html(otp), "html"))
 
-    # Try port 587 (STARTTLS) first, fall back to port 465 (SSL)
     try:
         with smtplib.SMTP("smtp.gmail.com", 587, timeout=15) as server:
             server.ehlo()
@@ -112,16 +107,16 @@ def _send_smtp(to_email: str, otp: str) -> None:
             server.ehlo()
             server.login(sender, password)
             server.sendmail(sender, to_email, msg.as_string())
-            logger.info(f"OTP email sent via port 587 to {to_email}")
+            log.success(f"OTP email sent via port 587 to {to_email}")
             return
     except Exception as e587:
-        logger.warning(f"Port 587 failed ({e587}), trying port 465 …")
+        log.warn(f"Port 587 failed ({e587}), trying port 465…")
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=15) as server:
         server.ehlo()
         server.login(sender, password)
         server.sendmail(sender, to_email, msg.as_string())
-        logger.info(f"OTP email sent via port 465 to {to_email}")
+        log.success(f"OTP email sent via port 465 to {to_email}")
 
 
 async def send_otp_email(email: str, otp: str) -> bool:
@@ -130,5 +125,5 @@ async def send_otp_email(email: str, otp: str) -> bool:
         await asyncio.to_thread(_send_smtp, email, otp)
         return True
     except Exception as e:
-        logger.error(f"Failed to send OTP email to {email}: {e}")
+        log.error(f"Failed to send OTP email to {email}: {e}")
         return False

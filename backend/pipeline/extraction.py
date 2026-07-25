@@ -21,7 +21,7 @@ from pipeline.parsers.rapid_news_parser import rapid_news_parser
 from pipeline.parsers.media_stack_parser import media_stack_parser
 from pipeline.parsers.gnews_parser import gnews_parser
 
-from pipeline.logger import log
+from utils.logger import log
 
 # Resolve directories
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
