@@ -14,6 +14,7 @@ from pathlib import Path
 
 from agents import create_agent
 from db import FileStore
+from config import config
 
 from pipeline.parsers.paragraph_extractor import clean_html
 from pipeline.parsers.reddit_parser import reddit_parser
@@ -37,7 +38,7 @@ def _get_article_id(input_data) -> str:
     return FileStore.compute_article_id(input_data["title"], input_data["publication_date"])
 
 
-def _extract_news(input_data, prompt, source=None, debug=False, article_id=None, raw_source_file=None):
+def _extract_news(input_data, prompt, source=None, debug=None, article_id=None, raw_source_file=None):
     """
     Extract structured news from input data using an LLM agent.
 
@@ -49,6 +50,9 @@ def _extract_news(input_data, prompt, source=None, debug=False, article_id=None,
         article_id: optional pre-calculated article ID string
         raw_source_file: optional raw source file path string
     """
+    if debug is None:
+        debug = config.DEBUG
+
     if article_id is None:
         article_id = _get_article_id(input_data)
 
@@ -63,7 +67,6 @@ def _extract_news(input_data, prompt, source=None, debug=False, article_id=None,
         parsed = json.loads(result.content)
         parsed["source"] = source
         parsed["prompt_used"] = str(prompt)
-        from config import config
         parsed["agent_provider"] = getattr(agent, "provider_name", config.AGENT_PROVIDER)
         if raw_source_file:
             parsed["raw_source_file"] = str(raw_source_file)
@@ -105,8 +108,11 @@ def _is_news(input_data, prompt="is_news.yaml") -> bool | None:
     return is_news
 
 
-def _format_news(content, prompt="markdown_formatter.yaml", debug=False) -> str | None:
+def _format_news(content, prompt="markdown_formatter.yaml", debug=None) -> str | None:
     """Format plain-text news content as Markdown."""
+    if debug is None:
+        debug = config.DEBUG
+
     result = agent.complete_from_template(prompts_dir / prompt, {"content": content})
 
     formatted = result.content.replace("\n", "\\n")  # escape newlines
@@ -115,7 +121,7 @@ def _format_news(content, prompt="markdown_formatter.yaml", debug=False) -> str 
     return formatted
 
 
-def extract_news(obj, parser, prompt, assured_news=True, debug=False, raw_source_file=None):
+def extract_news(obj, parser, prompt, assured_news=True, debug=None, raw_source_file=None):
     """
     Full extraction pipeline for a single news item.
 
@@ -124,6 +130,9 @@ def extract_news(obj, parser, prompt, assured_news=True, debug=False, raw_source
     3. Optionally classify as news via LLM
     4. Extract structured data via LLM
     """
+    if debug is None:
+        debug = config.DEBUG
+
     log.divider()
     # Convert input to standard format
     log.parse_start(parser.__name__ if hasattr(parser, '__name__') else str(parser))

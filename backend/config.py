@@ -216,6 +216,15 @@ class Config:
             return name in enabled
         return True
 
+    @property
+    def DEBUG(self) -> bool:
+        """Returns True if DEBUG environment variable is enabled ('true', '1', 'yes')."""
+        return os.getenv("DEBUG", "false").lower() in ("true", "1", "yes")
+
+    def is_debug(self) -> bool:
+        """Check whether application debug mode is enabled."""
+        return self.DEBUG
+
 
 # Shared singleton configuration instance
 config = Config()

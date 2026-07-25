@@ -27,7 +27,7 @@ class FileStore:
 
     @classmethod
     def raw_dir(cls) -> Path:
-        p = cls._root_dir / "pipeline" / "raw"
+        p = cls._root_dir / "raw"
         p.mkdir(parents=True, exist_ok=True)
         return p
 
@@ -36,6 +36,11 @@ class FileStore:
         p = cls._root_dir / "api_data"
         p.mkdir(parents=True, exist_ok=True)
         return p
+
+    @classmethod
+    def get_iso_timestamp(cls) -> str:
+        """Returns an ISO 8601 UTC timestamp of start (e.g. '2026-07-25T11-30-48Z') formatted safely for directory names."""
+        return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H-%M-%SZ")
 
     # --- Processed Articles Repository ---
 

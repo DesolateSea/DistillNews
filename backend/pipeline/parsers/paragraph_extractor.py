@@ -1,7 +1,12 @@
 from bs4 import BeautifulSoup
 from datetime import datetime
+from config import config
+from utils.logger import log
 
-def clean_html(html_path, debug=False):
+def clean_html(html_path, debug=None):
+    if debug is None:
+        debug = config.DEBUG
+
     with open(html_path, 'r', encoding='utf-8') as f:
         soup = BeautifulSoup(f, 'html.parser')
 
@@ -29,11 +34,7 @@ def clean_html(html_path, debug=False):
     content = "\n\n".join(p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True))
 
     if debug:
-        print("\nCleaned HTML:")
-        print(f"Title: {title}")
-        print(f"Author: {author}")
-        print(f"Date: {date}")
-        print(f"Content: {content}")
+        log.info("Cleaned HTML parsed", f"Title: {title} | Author: {author} | Date: {date}")
 
     parsed = {
         "title": title,

@@ -1,0 +1,31 @@
+{
+  "title": "OpenAI Releases a Practical Guide to Building LLM Agents for Real-World Applications",
+  "publication_date": "2025-04-18T06:46:30Z",
+  "summary": "OpenAI published \"A Practical Guide to Building Agents\", a technical guide for engineering and product teams on designing, evaluating, and deploying LLM-based agents. It offers architectural patterns, tooling notes, safety and evaluation practices, and deployment considerations to help organizations build reliable, scalable agents for real-world applications.",
+  "content": "OpenAI has published a detailed and technically grounded guide, \"A Practical Guide to Building Agents\", tailored for engineering and product teams. The guide focuses on practical patterns and considerations for designing LLM-driven agents intended to operate in production settings, with emphasis on reliability, observability, and real-world constraints.\n\nTopics covered include agent architectures and control flows, tool use and external integrations, state management, prompt engineering patterns, evaluation strategies and metrics, safety best practices, and trade-offs when balancing autonomy and human oversight. The guide emphasizes measurable evaluation and common failure modes when agents interact with external systems.\n\nOn deployment, the guide walks through operational concerns such as API integration, latency and cost trade-offs, monitoring and logging, access control, and strategies for gradual rollout and rollback. It highlights the importance of human-in-the-loop workflows, testing with realistic workloads, and designing for recoverability and safe defaults.\n\nOpenAI positions the guide as a resource for teams building assistants, automation flows, and decision-support agents. While not a one-size-fits-all prescription, it provides patterns, checklists and recommendations to help practitioners move from prototypes to maintainable, auditable systems. Readers are encouraged to evaluate the guidance against their domain-specific requirements and safety needs.",
+  "category": "Technology",
+  "tags": [
+    "OpenAI",
+    "LLM",
+    "agents",
+    "AI",
+    "guide",
+    "software engineering",
+    "product",
+    "deployment",
+    "safety",
+    "evaluation"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "OpenAI Releases a Practical Guide to Building LLM Agents for Real-World Applications",
+    "publication_date": 1744958790,
+    "content": "OpenAI has published a detailed and technically grounded guide, A Practical Guide to Building Agents, tailored for engineering and product\u00a0...",
+    "authors": [],
+    "source": "MarkTechPost",
+    "image_url": "http://www.marktechpost.com/wp-content/uploads/2025/04/a-digital-illustration-of-an-open-book-w_8QSSNEMdQx-4WmKW4sVoOA__ZIxHjjXTFSXziTaC-K5Kg.jpeg",
+    "url": "https://www.marktechpost.com/2025/04/17/openai-releases-a-practical-guide-to-building-llm-agents-for-real-world-applications/"
+  },
+  "markdown_content": "## Overview\\n\\nOpenAI has published a detailed and technically grounded guide, \u201cA Practical Guide to Building Agents\u201d, tailored for engineering and product teams. The guide focuses on practical patterns and considerations for designing LLM-driven agents intended to operate in production settings, with emphasis on reliability, observability, and real-world constraints.\\n\\n## Topics covered\\n\\nTopics covered include agent architectures and control flows, tool use and external integrations, state management, prompt engineering patterns, evaluation strategies and metrics, safety best practices, and trade-offs when balancing autonomy and human oversight. The guide emphasizes measurable evaluation and common failure modes when agents interact with external systems.\\n\\n- Agent architectures and control flows\\n- Tool use and external integrations\\n- State management\\n- Prompt engineering patterns\\n- Evaluation strategies and metrics\\n- Safety best practices\\n- Trade-offs between autonomy and human oversight\\n- Measurable evaluation and common failure modes with external systems\\n\\n## Deployment and operational concerns\\n\\nOn deployment, the guide walks through operational concerns such as API integration, latency and cost trade-offs, monitoring and logging, access control, and strategies for gradual rollout and rollback. It highlights the importance of human-in-the-loop workflows, testing with realistic workloads, and designing for recoverability and safe defaults.\\n\\n- API integration\\n- Latency and cost trade-offs\\n- Monitoring and logging\\n- Access control\\n- Gradual rollout and rollback strategies\\n- Human-in-the-loop workflows\\n- Testing with realistic workloads\\n- Designing for recoverability and safe defaults\\n\\n## Positioning and use\\n\\nOpenAI positions the guide as a resource for teams building assistants, automation flows, and decision-support agents. While not a one-size-fits-all prescription, it provides patterns, checklists and recommendations to help practitioners move from prototypes to maintainable, auditable systems.\\n\\nReaders are encouraged to evaluate the guidance against their domain-specific requirements and safety needs.",
+  "created_at": "2026-07-25T05:41:11.088713+00:00"
+}

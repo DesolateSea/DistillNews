@@ -7,8 +7,8 @@ from pipeline.sources.config import CORE_KEYWORDS
 CORE_API_KEY = config.CORE_API_KEY
 
 
-def run_core_fetch():
-    cur_date = datetime.now().strftime("%Y-%m-%d")
+def run_core_fetch(run_timestamp=None):
+    cur_date = run_timestamp or FileStore.get_iso_timestamp()
 
     for keyword in CORE_KEYWORDS:
         r = requests.get(

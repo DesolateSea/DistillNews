@@ -16,8 +16,8 @@ class GNewsClient:
         self.base_url = "https://gnews.io/api/v4/search"
         self.base_dir = base_dir
 
-    def _get_save_path(self, query):
-        date_str = datetime.now().strftime("%Y-%m-%d")
+    def _get_save_path(self, query, run_timestamp=None):
+        date_str = run_timestamp or FileStore.get_iso_timestamp()
         return f"{self.base_dir}/{date_str}/{query.replace(' ', '_')}/results.json"
 
     def fetch_articles(

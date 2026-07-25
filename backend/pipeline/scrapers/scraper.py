@@ -1,6 +1,6 @@
 import os
 from urllib.parse import urlparse
-from .config import DATE_FOLDER
+from .config import get_scrape_folder
 from .proxies import load_working_proxies
 from .fetcher import fetch_and_save_direct_and_via_proxy, final_rotate_scrape
 
@@ -11,11 +11,11 @@ working_urls = load_working_proxies()
 
 cache_hit = [False]
 
-def scrape_target(target_url, category="default"):
+def scrape_target(target_url, category="default", run_timestamp=None):
     cache_hit[0] = False
 
     host = urlparse(target_url).netloc.replace(":", "_")
-    target_folder = os.path.join(DATE_FOLDER, category, host)
+    target_folder = os.path.join(get_scrape_folder(run_timestamp), category, host)
 
     if log:
         log.scrape_start(target_url, target_folder)

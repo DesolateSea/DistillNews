@@ -53,9 +53,9 @@ def extract_media(submission):
     return media
 
 
-def run_reddit_ingestion():
+def run_reddit_ingestion(run_timestamp=None):
     news_posts = []
-    cur_date = datetime.now().strftime("%Y-%m-%d")
+    cur_date = run_timestamp or FileStore.get_iso_timestamp()
 
     for subreddit in SUBREDDITS:
         if log:

@@ -33,17 +33,13 @@ class MediaStack:
             raise Exception(f"API Error: {response.status_code} - {response.text}")
         return response.json()
 
-    def save_data(self, data: dict, topic: str, base_path: str = "api_data/Media_stack"):
+    def save_data(self, data: dict, topic: str, base_path: str = "api_data/Media_stack", run_timestamp=None):
         if "data" not in data or not data["data"]:
             if log:
                 log.warn("No data to save", topic)
             return
 
-        try:
-            date_str = data["data"][0]["published_at"].split("T")[0]
-        except Exception:
-            date_str = datetime.utcnow().strftime("%Y-%m-%d")
-
+        date_str = run_timestamp or FileStore.get_iso_timestamp()
         rel_path = f"{base_path}/{date_str}/{topic}/news.json"
         saved = FileStore.write_json(rel_path, data)
 

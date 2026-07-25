@@ -121,6 +121,8 @@ class PipelineRunner:
         self._emit(StageStarted(stage="fetch", total=len(sources_to_run)))
         
         current = 0
+        from db import FileStore
+        run_timestamp = FileStore.get_iso_timestamp()
         
         for source_name in sources_to_run:
             if self._is_stopped():
@@ -142,7 +144,10 @@ class PipelineRunner:
                 else:
                     mod = importlib.import_module(mod_name)
                     func = getattr(mod, func_name)
-                func()
+                try:
+                    func(run_timestamp=run_timestamp)
+                except TypeError:
+                    func()
             except PipelineCancelled:
                 break
             except Exception as e:
@@ -165,22 +170,24 @@ class PipelineRunner:
         except Exception:
             total = 1
 
-        self._emit(StageStarted(stage="scrape", total=max(total, 1)))
+        self._emit(StageStarted(stage="scrape", total=total))
+        run_timestamp = FileStore.get_iso_timestamp()
 
-        def _on_scrape_progress(current: int, total: int, detail: str):
+        def callback(cur, tot, detail):
             if self._is_stopped():
-                raise PipelineCancelled("Pipeline task was cancelled")
-            self._emit(StageProgress(stage="scrape", current=current, total=total, detail=detail))
+                raise PipelineCancelled()
+            self._emit(StageProgress(stage="scrape", current=cur, total=tot, detail=detail))
 
         try:
-            from pipeline.scrape import run_scrape
-            run_scrape(progress_callback=_on_scrape_progress)
+            from pipeline.scrape import run_scrape as run_scrape_func
+            run_scrape_func(progress_callback=callback, run_timestamp=run_timestamp)
+            if not self._is_stopped():
+                self._emit(StageCompleted(stage="scrape"))
         except PipelineCancelled:
             pass
         except Exception as e:
             self._emit(LogEvent(badge="fail", message="Scrape failed", detail=str(e)))
 
-        if not self._is_stopped():
             self._emit(StageCompleted(stage="scrape"))
 
     def run_generate(self):

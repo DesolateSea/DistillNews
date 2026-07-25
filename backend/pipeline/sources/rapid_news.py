@@ -43,9 +43,9 @@ class RapidNewsFetcher:
                 log.fetch_fail("RapidNews", str(e))
             return None
 
-    def save_data(self, category, data):
+    def save_data(self, category, data, run_timestamp=None):
         """Save the fetched news data using FileStore"""
-        date_str = datetime.now().strftime("%Y-%m-%d")
+        date_str = run_timestamp or FileStore.get_iso_timestamp()
         rel_path = f"{self.base_path}/{date_str}/{category}/news.json"
         saved = FileStore.write_json(rel_path, data)
 

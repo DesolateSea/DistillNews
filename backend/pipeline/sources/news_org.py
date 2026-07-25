@@ -15,8 +15,8 @@ class NewsFetcher:
         self.newsapi = NewsApiClient(api_key=api_key)
         self.base_dir = base_dir
 
-    def _get_save_path(self, org, topic):
-        date_str = datetime.now().strftime("%Y-%m-%d")
+    def _get_save_path(self, org, topic, run_timestamp=None):
+        date_str = run_timestamp or FileStore.get_iso_timestamp()
         return f"{self.base_dir}/{org}/{date_str}/{topic}/everything.json"
 
     def fetch_all_articles(
