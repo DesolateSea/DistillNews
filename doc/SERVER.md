@@ -1,8 +1,8 @@
 # Server
 
-The FastAPI server in `backend/server/` exposes the product API, owns application data,
-and coordinates scheduled publication of processed articles. Its entry
-point is `backend/server/app.py`.
+The FastAPI server in `backend/server/` exposes the product API, owns application data, and coordinates scheduled publication of processed articles. Its entry point is `backend/server/app.py`.
+
+---
 
 ## Contents
 
@@ -13,13 +13,17 @@ point is `backend/server/app.py`.
 - [Routes](#routes)
 - [Container Deployment](#container-deployment)
 
+---
+
 ## Database Layer (`db/`)
 
 The server interacts with all application data through unified database and storage handles:
 
 - **`MongoHandle`** (`db/mongo.py`): Manages the `AsyncIOMotorClient` pool for product collections (`news_db.articles` and `news_db.SNAPUsers`).
 - **`RedisHandle`** (`db/redis.py`): Manages async Redis connections for short-lived email OTP verification sessions.
-- **`FileStore`** (`db/storage.py`): Manages file storage, JSON reading/writing, deduplication checks, and article list iteration.
+- **`FileStore`** (`db/storage.py`): Manages disk file storage, JSON reading/writing, automatic `created_at` UTC timestamping, deduplication checks, and article list iteration.
+
+---
 
 ## Responsibilities and Data Ownership
 
@@ -31,6 +35,8 @@ The server interacts with all application data through unified database and stor
 
 MongoDB is the news product database; it is not the RAG vector store. Semantic retrieval is owned by the `chatbot/` package and is documented in [RAG_CHATBOT.md](RAG_CHATBOT.md). The pipeline owns how processed JSON files are created; see [AGENT_PIPELINE.md](AGENT_PIPELINE.md).
 
+---
+
 ## Local Setup
 
 ```bash
@@ -39,17 +45,24 @@ source venv/bin/activate
 uvicorn server.app:app --reload --port 8000
 ```
 
+---
+
 ## Configuration
 
-Server settings are loaded via `config.py` from `.env`:
+Server settings are loaded via `config.py` from `.env` organized into structured sections:
 
-| Key | Description | Default |
-|:---|:---|:---|
-| `PORT` | FastAPI HTTP port | `8000` |
-| `DB_URL` | MongoDB connection URI | `mongodb://localhost:27017` |
-| `REDIS_URL` | Redis connection URI | `redis://localhost:6379` |
-| `JWT_SECRET` | Secret key for JWT signing | *(required)* |
-| `OPENWEATHER_API_KEY` | Key for weather proxy | *(optional)* |
+| Key | Section | Description | Default / Example |
+|:---|:---|:---|:---|
+| `PORT` | Backend Runtime | FastAPI HTTP port | `8000` |
+| `DB_URL` | Backend Runtime | MongoDB connection URI | `mongodb://mongo:27017/evolution` |
+| `REDIS_URL` | Backend Runtime | Redis connection URI | `redis://redis:6379/0` |
+| `JWT_SECRET` | Backend Runtime | Secret key for JWT signing | *(required)* |
+| `CORS_ORIGINS` | Backend Runtime | Allowed CORS origin URLs | `http://localhost:3000` |
+| `OPENWEATHER_API_KEY` | Pipeline / Data | Key for weather proxy & data | *(optional)* |
+| `EMAIL` | Email Service | Sender Gmail address for OTPs | *(optional)* |
+| `PASS` | Email Service | Sender Gmail app password | *(optional)* |
+
+---
 
 ## Routes
 
@@ -68,6 +81,8 @@ Server settings are loaded via `config.py` from `.env`:
 | `POST` | `/api/v1/chat` | Send conversational query to RAG chatbot | Optional |
 | `GET` | `/api/v1/weather` | Geocoded weather proxy | No |
 | `GET` | `/health` | Liveness health check | No |
+
+---
 
 ## Container Deployment
 

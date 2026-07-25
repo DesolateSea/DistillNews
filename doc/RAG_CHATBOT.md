@@ -13,6 +13,7 @@ The chatbot package in `backend/chatbot/` provides conversational QA grounded in
 ## Overview
 
 The chatbot is decoupled into three independent layers:
+
 1. **Agent Provider (`backend/agents/`)**: Handles LLM chat completion.
 2. **Embedding Provider (`backend/embeddings/`)**: Generates vector representations of articles and queries.
 3. **Document Store (`backend/chatbot/rag/`)**: Indexes documents and performs semantic vector search.
@@ -36,6 +37,7 @@ vector = embedder.embed("India electric vehicle policy")
 ```
 
 Available providers:
+
 - `openai` / `foundry` — OpenAI or Foundry embeddings (`text-embedding-3-small`).
 - `ollama` — Local Ollama embedding models (`nomic-embed-text`).
 - `sentence_transformers` — In-process local PyTorch/SentenceTransformers embeddings.
@@ -47,7 +49,7 @@ Available providers:
 Configured via `RAG_BACKEND`:
 
 - `memory` — In-process vector store using `EmbeddingProvider` for similarity search.
-- `bm25` — Pure Python Okapi BM25 lexical ranking store requiring **0 API calls, 0 vector embeddings, and 0 LLM costs**.
+- `bm25` — Pure Python Okapi BM25 lexical ranking store.
 - `julep` — Julep managed document search platform.
 - `none` — Default base class implementation returning `[]` search results (no-op).
 
