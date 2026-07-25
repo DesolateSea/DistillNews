@@ -7,6 +7,8 @@ Automatically truncates long strings to keep the terminal readable.
 
 import time
 import textwrap
+import re
+from typing import Callable
 from contextlib import contextmanager
 
 
@@ -64,6 +66,25 @@ def _badge(label: str, bg: str, fg: str = _C.WHITE) -> str:
 class Logger:
     """Structured, colored logger for DistillNews system events."""
 
+    _listeners: list[Callable] = []
+
+    @staticmethod
+    def _strip_ansi(text: str) -> str:
+        """Strips ANSI color codes from a string."""
+        return re.sub(r'\033\[[0-9;]*m', '', text)
+
+    @classmethod
+    def add_listener(cls, fn: Callable):
+        """Add a listener callback (badge_key, message, detail)."""
+        if fn not in cls._listeners:
+            cls._listeners.append(fn)
+
+    @classmethod
+    def remove_listener(cls, fn: Callable):
+        """Remove a listener callback."""
+        if fn in cls._listeners:
+            cls._listeners.remove(fn)
+
     # Pre-built badges
     _BADGES = {
         "scrape":   _badge("SCRAPE", _C.BG_CYAN,    _C.WHITE),
@@ -91,6 +112,13 @@ class Logger:
             detail_str = truncate(detail) if truncate_detail else str(detail).replace("\n", " ").replace("\r", "")
             line += f"  {_C.DIM}{detail_str}{_C.RESET}"
         print(line)
+        
+        for listener in Logger._listeners:
+            listener(
+                badge_key,
+                Logger._strip_ansi(message),
+                Logger._strip_ansi(str(detail)) if detail is not None else None
+            )
 
     # ── public helpers ──────────────────────────────────────────────────
 

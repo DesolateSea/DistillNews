@@ -1,0 +1,153 @@
+/* TUI Styles */
+Screen {
+    background: #0d1117;
+    color: #c9d1d9;
+}
+
+#app-grid {
+    layout: grid;
+    grid-size: 2 2;
+    grid-columns: 35 1fr;
+    grid-rows: 1fr 12;
+    height: 100%;
+    width: 100%;
+}
+
+#sidebar {
+    background: #161b22;
+    width: 100%;
+    height: 100%;
+    border-right: solid #30363d;
+    padding: 1;
+    row-span: 2;
+}
+
+#main-panel {
+    width: 100%;
+    height: 100%;
+    padding: 1 2;
+}
+
+#log-panel {
+    width: 100%;
+    height: 100%;
+    border-top: solid #30363d;
+    padding: 0 1;
+    background: #0d1117;
+}
+
+.source-card {
+    padding: 1;
+    margin-bottom: 1;
+    border: solid #30363d;
+    background: #0d1117;
+}
+
+.source-enabled {
+    border-left: thick #3fb950;
+}
+
+.source-disabled {
+    border-left: thick #8b949e;
+    color: #8b949e;
+}
+
+.stage-panel {
+    margin-bottom: 2;
+    height: auto;
+}
+
+.stage-label {
+    text-style: bold;
+    color: #58a6ff;
+    margin-bottom: 1;
+}
+
+#article-count {
+    text-style: bold;
+    color: #e3b341;
+    margin-top: 1;
+    margin-bottom: 2;
+}
+
+Header {
+    background: #161b22;
+    color: #58a6ff;
+}
+
+Footer {
+    background: #161b22;
+    color: #c9d1d9;
+}
+
+ProgressBar {
+    height: 1;
+}
+
+ProgressBar > .progress--bar {
+    color: #3fb950;
+    background: #3fb950;
+}
+
+ProgressBar > .progress--percentage {
+    color: #c9d1d9;
+}
+
+ProgressBar > .progress--eta {
+    color: #8b949e;
+}
+
+Button {
+    width: 100%;
+    margin-bottom: 1;
+    background: #21262d;
+    border: none;
+    color: #c9d1d9;
+}
+
+Button:hover {
+    background: #30363d;
+}
+
+Button.-primary {
+    background: #1f6feb;
+    color: #ffffff;
+}
+
+Button.-primary:hover {
+    background: #388bfd;
+}
+
+Button.-success {
+    background: #238636;
+    color: #ffffff;
+}
+
+Button.-success:hover {
+    background: #2ea043;
+}
+
+RichLog {
+    background: #0d1117;
+    color: #c9d1d9;
+}
+
+/* Articles Screen */
+#articles-screen {
+    layout: grid;
+    grid-size: 2 1;
+    grid-columns: 2fr 1fr;
+    height: 100%;
+    width: 100%;
+}
+
+#articles-table {
+    height: 100%;
+    border-right: solid #30363d;
+}
+
+#article-detail {
+    height: 100%;
+    padding: 1 2;
+    background: #161b22;
+}
