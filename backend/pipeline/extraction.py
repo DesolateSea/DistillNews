@@ -37,7 +37,7 @@ def _get_article_id(input_data) -> str:
     return FileStore.compute_article_id(input_data["title"], input_data["publication_date"])
 
 
-def _extract_news(input_data, prompt, source=None, debug=False, article_id=None):
+def _extract_news(input_data, prompt, source=None, debug=False, article_id=None, raw_source_file=None):
     """
     Extract structured news from input data using an LLM agent.
 
@@ -47,6 +47,7 @@ def _extract_news(input_data, prompt, source=None, debug=False, article_id=None)
         source: optional source metadata
         debug: if True, print intermediate outputs
         article_id: optional pre-calculated article ID string
+        raw_source_file: optional raw source file path string
     """
     if article_id is None:
         article_id = _get_article_id(input_data)
@@ -61,6 +62,11 @@ def _extract_news(input_data, prompt, source=None, debug=False, article_id=None)
     try:
         parsed = json.loads(result.content)
         parsed["source"] = source
+        parsed["prompt_used"] = str(prompt)
+        from config import config
+        parsed["agent_provider"] = getattr(agent, "provider_name", config.AGENT_PROVIDER)
+        if raw_source_file:
+            parsed["raw_source_file"] = str(raw_source_file)
 
         # Format content
         log.ai_call("format_markdown", input_data["title"])
@@ -109,7 +115,7 @@ def _format_news(content, prompt="markdown_formatter.yaml", debug=False) -> str 
     return formatted
 
 
-def extract_news(obj, parser, prompt, assured_news=True, debug=False):
+def extract_news(obj, parser, prompt, assured_news=True, debug=False, raw_source_file=None):
     """
     Full extraction pipeline for a single news item.
 
@@ -142,7 +148,14 @@ def extract_news(obj, parser, prompt, assured_news=True, debug=False):
             return None
 
     # Generate article (AI call)
-    article = _extract_news(formatted, prompt=prompt, source=source or obj, debug=debug, article_id=article_id)
+    article = _extract_news(
+        formatted,
+        prompt=prompt,
+        source=source or obj,
+        debug=debug,
+        article_id=article_id,
+        raw_source_file=raw_source_file
+    )
     return article
 
 
