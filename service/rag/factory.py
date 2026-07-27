@@ -21,10 +21,17 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
 
         return JulepDocStore(**kwargs)
     elif backend == "memory":
-        from pipeline.embeddings import create_embedding_provider
         from .backends.memory import InMemoryVectorStore
 
-        embedder = kwargs.pop("embedder", None) or create_embedding_provider()
+        embedder = kwargs.pop("embedder", None)
+        if embedder is None:
+            try:
+                from pipeline.embeddings import create_embedding_provider
+                embedder = create_embedding_provider()
+            except ImportError:
+                from .base import EmbeddingProvider
+                embedder = EmbeddingProvider()
+
         return InMemoryVectorStore(embedder=embedder, **kwargs)
     elif backend == "bm25":
         from .backends.bm25 import BM25DocStore

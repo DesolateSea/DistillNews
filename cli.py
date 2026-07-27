@@ -52,7 +52,7 @@ def tui():
 
 def _launch_tui():
     """Start the Textual TUI application."""
-    from tui.app import DistillNewsApp
+    from pipeline.tui.app import DistillNewsApp
     app = DistillNewsApp()
     app.run()
 
@@ -107,6 +107,20 @@ def generate():
     console.print("\n[bold green]✓ Generation complete.[/bold green]")
 
 
+# ── Embed ───────────────────────────────────────────────────────────────────
+
+@cli.command()
+def embed():
+    """Run article embedding stage."""
+    console.print("\n[bold cyan]⟫ Running article embedding stage…[/bold cyan]\n")
+
+    from pipeline.runner import PipelineRunner
+    runner = PipelineRunner()
+    runner.run_embed()
+
+    console.print("\n[bold green]✓ Embedding complete.[/bold green]")
+
+
 # ── Pipeline (full) ────────────────────────────────────────────────────────
 
 @cli.command()
@@ -116,11 +130,11 @@ def generate():
     help="Specific source(s) to fetch (e.g. reddit, gnews). Repeatable.",
 )
 def pipeline(source):
-    """Run the full pipeline: fetch → scrape → generate."""
+    """Run the full pipeline: fetch → scrape → generate → embed."""
     sources = list(source) if source else None
 
     console.print(Panel(
-        "[bold]fetch → scrape → generate[/bold]",
+        "[bold]fetch → scrape → generate → embed[/bold]",
         title="[cyan]Full Pipeline[/cyan]",
         border_style="cyan",
     ))
@@ -139,7 +153,7 @@ def pipeline(source):
 @click.option("--limit", "-n", default=25, help="Number of articles to display.")
 def articles(article_id, limit):
     """List or view processed articles."""
-    from db import FileStore
+    from service.db import FileStore
     import json
 
     if article_id:
@@ -213,7 +227,7 @@ def articles(article_id, limit):
 def status():
     """Show configuration, enabled sources, and article counts."""
     from config import config
-    from db import FileStore
+    from service.db import FileStore
     from pipeline.runner import SOURCE_REGISTRY
 
     # Header

@@ -115,13 +115,16 @@ class PipelineRunner:
         if self._is_stopped():
             return
         self.run_generate()
+        if self._is_stopped():
+            return
+        self.run_embed()
 
     def run_fetch(self, sources: list[str] | None = None):
         sources_to_run = sources if sources else list(SOURCE_REGISTRY.keys())
         self._emit(StageStarted(stage="fetch", total=len(sources_to_run)))
         
         current = 0
-        from db import FileStore
+        from service.db import FileStore
         run_timestamp = FileStore.get_iso_timestamp()
         
         for source_name in sources_to_run:
@@ -163,7 +166,7 @@ class PipelineRunner:
         if self._is_stopped():
             return
         try:
-            from db import FileStore
+            from service.db import FileStore
             from pipeline.scrapers.config import TARGET_URLS_JSON
             targets = FileStore.read_json(TARGET_URLS_JSON)
             total = sum(len(urls) for urls in targets.values()) if targets else 1
@@ -188,8 +191,6 @@ class PipelineRunner:
         except Exception as e:
             self._emit(LogEvent(badge="fail", message="Scrape failed", detail=str(e)))
 
-            self._emit(StageCompleted(stage="scrape"))
-
     def run_generate(self):
         if self._is_stopped():
             return
@@ -210,3 +211,24 @@ class PipelineRunner:
 
         if not self._is_stopped():
             self._emit(StageCompleted(stage="generate"))
+
+    def run_embed(self):
+        if self._is_stopped():
+            return
+        self._emit(StageStarted(stage="embed", total=100))
+
+        def _on_embed_progress(current: int, total: int, detail: str):
+            if self._is_stopped():
+                raise PipelineCancelled("Pipeline task was cancelled")
+            self._emit(StageProgress(stage="embed", current=current, total=total, detail=detail))
+
+        try:
+            from pipeline.embed import generate_embeddings
+            generate_embeddings(progress_callback=_on_embed_progress)
+        except PipelineCancelled:
+            pass
+        except Exception as e:
+            self._emit(LogEvent(badge="fail", message="Embed failed", detail=str(e)))
+
+        if not self._is_stopped():
+            self._emit(StageCompleted(stage="embed"))

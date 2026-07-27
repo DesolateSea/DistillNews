@@ -1,0 +1,1402 @@
+{
+  "status": "OK",
+  "request_id": "b91ad653-09b3-41ea-90eb-74f6a9fad9da",
+  "data": [
+    {
+      "article_id": "CBMi0AFBVV95cUxNVXFTc0R1RFpHVnBmVlJVbm5MLXl5T0txQWZPU1QzYUx1TDlYYzNvbEQ4SHdHRXpqOHNVQlZGUXdJdVRSRTd5TGlwaVRUQ3lncnNiVlVOZmM2cjJaOG1GUVpkSVdJOU4yNXoyX3FBQ1lnOFBFcEQ4WUNTdFZDaEhvVTB6OXhiWm50Vm84Rk0tSHNFcnVNUEZuNUJUUmFyVjA0cV9TSFNFOVowdEgxWFZaVUtjSjYtMld3eG10UmcybWRMU0tNVGJ2Wi1zNjRRVkI0",
+      "title": "Why US strikes on Hormuz suddenly stopped despite Trump's bluster",
+      "link": "https://timesofindia.indiatimes.com/world/us/why-us-strikes-on-hormuz-suddenly-stopped-despite-trumps-bluster/articleshow/132659460.cms",
+      "snippet": "Top US military commander in Middle East advised halting Hormuz bombing After \u30fb around the Strait of Hormuz \u30fb driven less by diplomacy",
+      "photo_url": "https://static.toiimg.com/thumb/msid-132659770,width-1280,height-720,imgsize-955702,resizemode-4,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iI0NnNWlRV3RsUVVkSk1XZEdRMUppVFJDZkF4ampCU2dLTWdB=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T11:11:00.000Z",
+      "authors": [],
+      "source_url": "https://timesofindia.indiatimes.com",
+      "source_name": "The Times of India",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://timesofindia.indiatimes.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://timesofindia.indiatimes.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqOggKIjRDQklTSVFnTWFoMEtHM1JwYldWemIyWnBibVJwWVM1cGJtUnBZWFJwYldWekxtTnZiU2dBUAE",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMiqAFBVV95cUxNZUFZZm52dFEzSlBYLTFReWp2elBXQlBqSGVYVXREQWFyRk1ENjcyWGJULWthN2lOU19JcEtxbXlJM0VKT0VhTkdWU2JLUjVzTlY4WDhNTUdlVWZvV2s2UGwzWUdEcEZDeDNNR3hHcm1uMlZNNG90Y3lqNUpqV3E5dnNFTmRrX01RT0FRN1ktemJYbTQ3cTJHdE9XcmoyaVJTdmxoM3FRYks",
+      "title": "From Lab to Market: The US Push to Commercialise Quantum Technology",
+      "link": "https://www.orfonline.org/expert-speak/from-lab-to-market-the-us-push-to-commercialise-quantum-technology",
+      "snippet": "Explore how Quantum technology is advancing through US investments, executive orders, quantum computing initiatives, and commercialisation\u00a0...",
+      "photo_url": "https://www.orfonline.org/public/uploads/posts/image/1785160929_img-quantum-technology.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNW5aMlV3YVVWVVdtWmFjMDk2VFJDOEFSaU1BaWdCTWdZQkVKS01tUWc=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:05:33.000Z",
+      "authors": [
+        "Prateek Tripathi"
+      ],
+      "source_url": "https://www.orfonline.org",
+      "source_name": "orfonline.org",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.orfonline.org&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.orfonline.org&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKAgKIiJDQklTRXdnTWFnOEtEVzl5Wm05dWJHbHVaUzV2Y21jb0FBUAE",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ6YzJKdFgzUnhheElDWlc0b0FBUAE",
+          "topic_name": "Prateek Tripathi"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMipgFBVV95cUxQSVNDY04wQkR0OXVOSmFwbmNhLWpxZzhnbk1aZl83Q3liRFhDMGNNY0JHcVFMTVhaNVd5MUJwQXNVc2EwRTV5TXBiZXB3UkdaYUY2cHV2ajFmYm0xM3RHeEppM0RhNjd4cFVtUXRJS0VIeFl3T2hUaDVqTDFjMDU4bXVTcEg3TTZvdUxzN0ZpMnpWUnpBUXBjVi1UWEIyNkhSUW1yLUZn0gGrAUFVX3lxTE93eHpMUzZwVTYtdmY3ZV81ekZ6RGR2V1dSVWNlZThVNnp6OTRvcXpLa1cwTGtjWUduQnVOcmlQZGY3RjdCYnNtal9rVlZXcnZsN3RLRWI4LTlQbUdmZVZtVUtROG9wVExTc2M2UlpXb2VSX2MydEQ4XzN0WkY1dllrVkJxRHdtMl9mUkttaDFvWEFaZ3hzZE5ZS1Q1cGZVU2MzbENDVFAwZmd3NA",
+      "title": "What do American liberals & conservatives think about moderates? US study finds out",
+      "link": "https://theprint.in/feature/american-liberals-conservatives-think-moderates-us-study-finds-out/2998270/",
+      "snippet": null,
+      "photo_url": "https://staticprintenglish.theprint.in/wp-content/uploads/2026/07/Untitled-design-3-3.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNTJNbUV3T0Vsdll6Qm5OVk5vVFJDZkF4ampCU2dLTWdZTlFJNUlvUWc=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:54:19.000Z",
+      "authors": [
+        "Aamaan Alam Khan"
+      ],
+      "source_url": "https://theprint.in",
+      "source_name": "ThePrint",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://theprint.in&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://theprint.in&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJQgKIh9DQklTRVFnTWFnMEtDM1JvWlhCeWFXNTBMbWx1S0FBUAE",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEYzYURsNGNqZ3dNQklDWlc0b0FBUAE",
+          "topic_name": "Aamaan Alam Khan"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMi-wFBVV95cUxPWHlSNTdhemNKUVZoanJPQVI4VjkwRF9KaEVqZkJOcnBiMXVlOXlBQWVTRHNvS2hSbllYZTE0ZXo3ZDJkS3hvTU4wenRlM2NQMDA1YVJUdkh4ZXNFLTEzei1HQ2oyNUZNRmRJWFFrUnMwX3Rhc1lKYklmbUZmMGtqVENvRmRTVXdNbXZhbVljZEZfenpyZlNuTDlSQ1RsOE9JbDFZREdLaTJWaURlREFRTHJXd0FqVG5IRFliQ0x5MDBzT3o2cUd1aXZnYi1BNDExbzQ4aXA2Z2RhNUd5QUxBX2tPMVk5X1V1VWZvRHByTHNaODY0dWI2TWl1ONIBgAJBVV95cUxQcmpmSXlFQXRRNDl0NUh0d01Ja0VfRlRRTGtsV2psZnhMTERuUEdoVXdTZ25fUmo4dGVlc3dEaDVPV2FvbE9CcWRYVEhSbHZxV0NXQzhqZVJoUWFNdmtLNE4zT2syRTN2RGJvZi1ILUdnc2lDN3o5TVgwZlBGSTR6NEVCc0M3b1dLSkdRRlM1TE90UDFtOGgzT3FyRDlmQnp4QzRlU1lNQTVhTnNTeFNHZkZfbjhyUWY1SWRyTl9TcVN0RS1kMzJZaGxjd2p5MW00cndEVkxSSF9UUjFyUURaWGEwZktCNU1GZ0ZBdVktem1uV3JOZUlULWp0UXI4UzVJ",
+      "title": "'Not engaged in any negotiations': Iran rejects Trump's claim of US talks, says restarting dialogue 'not...",
+      "link": "https://www.moneycontrol.com/world/not-engaged-in-any-negotiations-iran-rejects-trump-s-claim-of-us-talks-says-restarting-dialogue-not-in-our-dna-article-13984919.html",
+      "snippet": "Iran denies Trump's claim of talks, stating the US sought them but no diplomacy is occurring. While military strikes are paused, Iran confirms\u00a0...",
+      "photo_url": "https://images.moneycontrol.com/static-mcnews/2026/07/20260727135244_Iran-New-9.jpg?impolicy=website&width=350&height=196",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNDVTVGxmVFdoZlptTktSR3c0VFJERUFSamVBaWdLTWdhQkE1RGx1Z2M=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T13:53:00.000Z",
+      "authors": [],
+      "source_url": "https://www.moneycontrol.com",
+      "source_name": "Moneycontrol.com",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.moneycontrol.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.moneycontrol.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqLAgKIiZDQklTRmdnTWFoSUtFRzF2Ym1WNVkyOXVkSEp2YkM1amIyMG9BQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMirwFBVV95cUxQWGRFanIwTGFtanVkZ25HTkJYb1RnUG1XeXlheVFuSlVQYThieU5NSTZ4NGJIa0w0bjFoVlZFcU1fZTkzWmgyMWJoZlZUbEFzNXktZ0xoMVBuaHptX3FZNFpMZGxmZjE2UjZhdl9hbE1OWG5zQVU0UmljX3hhZVByQTVfbHVfSU1CV0VsYkYzTEdkTkV5RE1UNzVuNnFiMW1qdUpMeHRlY1lISDlRZ2FV0gG0AUFVX3lxTFB6dlJTcGRiWDRFM1BfWWQyZnA0OWU2YjN4WHlIZHU4anE3UTV1Y2xZbWFJaUVpNEkwcVNiVEZSeDRLdDhfM3ppQ1FmVmw0Ql84NkpfaUU2RTJHdE5Qc0ZUaDVic0FzV09EcVJKaWMzd1R0TFV4eGh0UndyWWxTS3B5VGxTNFJ0bUhFNlNha0NJaC13aVRZZUNDRm9icWhTMjJ0VU02amF4RW9TUzlYMFFHRXV0Sw",
+      "title": "China Rejects US 'Forced Labour' Tariffs, Calls for Cancellation",
+      "link": "https://www.deccanchronicle.com/business/china-rejects-us-forced-labour-tariffs-calls-for-cancellation-1974361",
+      "snippet": "On Friday, the \u200cUnited States imposed new tariffs of 10% and 12.5% on goods from 60 trading partners, including the EU and China, alleging those\u00a0...",
+      "photo_url": "https://www.deccanchronicle.com/h-upload/2025/11/05/1500x900_1975020-china.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iI0NnNU9OVFJTVXpGNWRWRmlielozVFJDdEF4akxCU2dLTWdB=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:02:43.000Z",
+      "authors": [],
+      "source_url": "https://www.deccanchronicle.com",
+      "source_name": "Deccan Chronicle",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.deccanchronicle.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.deccanchronicle.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqMAgKIipDQklTR1FnTWFoVUtFMlJsWTJOaGJtTm9jbTl1YVdOc1pTNWpiMjBvQUFQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMi2wFBVV95cUxNSW9GTzhFYlg3ZUlqN3htdFVJZW1ZYktsMG5GYnRaeUxCZXBQeUV1NGpWN29TSVRDTlBIQ296NHdrNHVyQzRCZDNaWE1NZnZMamNaUXVZVXpDQ0tJRWF6WEpseGNEaGpBV05MZU8zOEVIbmZvSUxmWml3MHphbXlpS215Wlp5QlltQXNXdTE5X0VLMXk4Vm1nX24xM1Q4bVNfUlBqaG9mLWVWalRxRlRweFFteUF0WVp6aXpyVnNVLUJlb2RUcjRtZ1Y4X24yNjhpM181WTBTR192LWc",
+      "title": "Gold demand may pick up as easing US-Iran tensions cool prices, encourage festive buying: Experts",
+      "link": "https://aninews.in/news/business/gold-demand-may-pick-up-as-easing-us-iran-tensions-cool-prices-encourage-festive-buying-experts20260727193239/",
+      "snippet": "\"The reported pause and de-escalation in US-Iran tensions have brought a temporary breather in terms of a natural cool-down in gold prices.",
+      "photo_url": "https://d3lzcn6mbbadaf.cloudfront.net/media/details/ANI-20260727134850.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNVFPRkJRYVdvNWJVWXlkbHBTVFJEZ0F4aUFCU2dLTWdtSkFveFBCU3VMcHdJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:02:00.000Z",
+      "authors": [],
+      "source_url": "https://aninews.in",
+      "source_name": "ANI News",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://aninews.in&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://aninews.in&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJAgKIh5DQklTRUFnTWFnd0tDbUZ1YVc1bGQzTXVhVzRvQUFQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMizgFBVV95cUxNS251TXpWTDlCcjROS0dCRmZwMnoxRFBLbC1hR0t0OG5Ud2p1WURJdEE4UEx2S0NJaVM2NFI5b2dULTJmQ2N5R3ptQzZjSE16eVFnekNMSmszTVpqMUVqSmRISURsdC1Zejh3OVJGeUZEUGd1ZE9IU2hUZWd3MVNQZ3M2Zm5LdmY3MkhhRlFyS1JWV1ZRX18wZkd2MllIdDVGUnpRNERMSGdieGxKcV8xajBSN2N1dklub21RY3piTy1sajA2LU1BTk1YRVQ4Z9IB0wFBVV95cUxOSXlmQmVpZ0JidEhySFAtekJWVzNQcFZDbDFMLVhCNVpSd3JjSjdDb0tacDJvV094TEMzZTlBcEFCd3hHQXhVdnNKYUdXVFMyWUl4NlduMGdOY1Byd1QybnU1LWNOUlZzektFZWJkX1JRQlpXVjQxb1pHU0wzQ0l3R1J3T0VhQ2h2NkI2YngtQTZySHY0OVVac2tpcnY0TDZaVXZRNGdnYUpabmRPLWgtU281NDN0Y0NuU25vVk9IRGxFRFpkNGNhMFFtWmtrRTk4aE5r",
+      "title": "US revives Dream and Promise Act: Who could qualify for a green card",
+      "link": "https://www.business-standard.com/immigration/us-revives-dream-and-promise-act-who-could-qualify-for-a-green-card-126072701086_1.html",
+      "snippet": null,
+      "photo_url": "https://bsmedia.business-standard.com/_media/bs/img/article/2025-09/25/full/1758794072-872.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNVdlRTVZUzJwbGFYaFlUSG8yVFJDdUF4aktCU2dLTWdrQklZd3NtYWF3RUFF=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T13:28:02.000Z",
+      "authors": [],
+      "source_url": "https://www.business-standard.com",
+      "source_name": "Business Standard",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.business-standard.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.business-standard.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqMggKIixDQklTR3dnTWFoY0tGV0oxYzJsdVpYTnpMWE4wWVc1a1lYSmtMbU52YlNnQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMi9wFBVV95cUxQMGxLOVRKRkc4VXRWRExKU2lBaGZ3MTFyaXQwSDcwZUNQSVZReDVuZ1RqS2JzN0VlZTJtNUQ0SHkzQmZzU3VwTmpWUDcxaUpub3VmeUlNYmxtaHpyTjNvdmlESkdyV0g2YzVXSVU0SXhaUVlRMXl6MDU1LURQQ0NOblk4MnRRNkV2cGtEcndoZWRiXzhzeWRqVjFxdEhWY2g4Q201bzBlUTRUU3ZmTkhwSU5PMGZSbGNTTEhuSTJXbXFqMHEwUi16VE5BbGJrNVNPXzhZYXp3Zl9RYTh5S0RwWVhNYnZMc0k3QjBOUTRYYTZfMU5NcFV30gH8AUFVX3lxTFBCZXZMSHUySEdaSHhSUFFnOXVEM1hEa0Zpb3MtNlpoVUhsTDNNZk1MSFpobEtWeDg4SEdDRWp0b0prNlVycE1MeTNKRThDSjNEYjd2QWx4VjE4OTYtUEVxSlRMallCT0dERXA2TlViejVzUVpZZnNBbi1iWXJ4MlpyckVzc2JCYmdJZ2s4WnR2c0JPTzlUX0dqQWs1WUhiYXZ3NXdTWE5hdHpzRlhpWjJWb0FCdlgwWEVKSFloUTVxVUM3c3VmTlRxSzJ6VGF2TkZpVE9PcGtqMWtGVzNDbFdmQlh2QlFLZ1VqMThlX2d4VG1uaHlpSW45eXJFaQ",
+      "title": "US weather forecast: Dangerous heat wave, severe thunderstorms and flash flood threat to hit multiple states",
+      "link": "https://www.livemint.com/news/us-news/us-weather-forecast-dangerous-heat-wave-severe-thunderstorms-and-flash-flood-threat-to-hit-multiple-states-11785160466636.html",
+      "snippet": "Dangerous heat wave, severe thunderstorms and flash flood threat to hit multiple states. Texas, Oklahoma, Kansas, Nebraska,",
+      "photo_url": "https://www.livemint.com/lm-img/img/2026/07/27/1600x900/logo/pexels-photo-14115729_1785161130692_1785161145275_57f84056-9f4b-4fe7-bc39-6cb0aba7d242.jpeg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXZYMDlaZEdOTVlXdGxXbkJsVFJDZkF4ampCU2dLTWdZQkFJeFpCQTA=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:08:52.000Z",
+      "authors": [
+        "Ravi Hari"
+      ],
+      "source_url": "https://www.livemint.com",
+      "source_name": "livemint.com",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.livemint.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.livemint.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJggKIiBDQklTRWdnTWFnNEtER3hwZG1WdGFXNTBMbU52YlNnQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEYzZDJKalptbzFlUklDWlc0b0FBUAE",
+          "topic_name": "Ravi Hari"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMilAFBVV95cUxNNVh1MTVpUHZlU1p6RE1yWnNqQThsUTQ3bFE3TkxCZEJ3YjBGMFlNM2lVR0U3QVpmWl9uOHYxbFlkNUZ2VHJ2ZWh0T2VLVFJTbzRLTWlGYnZhTHl6U3I4TUszOU9Db0M4cDU4bVNpTkxfN2tBLVliM0Yya0RZbjRiMnROVG1BM0c3WnVwZXNZSkdMWER2",
+      "title": "Republicans have \u2018nothing to run on\u2019 in midterms after Trump failures, Jeffries says",
+      "link": "https://www.theguardian.com/us-news/2026/jul/27/hakeem-jeffries-trump-republicans-midterms",
+      "snippet": "Top House Democrat says US president 'failed to deliver' on campaign promises to lower costs and avoid overseas wars.",
+      "photo_url": "https://i.guim.co.uk/img/media/fbfab6dd96cb7ef85ceaa24f44ec93ac82b8e7df/896_0_4481_3585/master/4481.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNTNiR2RhYUhOYVlubzNTRlJPVFJEMEFoalJBeWdLTWdhcGRZN3RxUWM=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T09:00:00.000Z",
+      "authors": [
+        "Ramon Antonio Vargas"
+      ],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEYwTVhONWMzUXpOeElDWlc0b0FBUAE",
+          "topic_name": "Ramon Antonio Vargas"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMioAFBVV95cUxOa2tTYkZZZTBuekxFR2xDbXg3SDk2NFpkTjNYUmJncnVLUGNxck5oa3R3VUJqZXZ6clRzNjFKZXpBNDRmbU1wam9JSGJ4eS1nbDd0QmJtT3hxN3NJNTloZXNHdTdQVnhxUnJwZDQwODZydm5ZdGUyNENYdDRETVJKeU5TM01NOHAzZ0Z4VTR6eWZab05UNjlQVW1XOGpUWE9j",
+      "title": "U.S. and China Are Jockeying for Drone Supremacy on Mount Everest",
+      "link": "https://www.wsj.com/world/u-s-and-china-are-jockeying-for-drone-supremacy-on-mount-everest-b5750ce2",
+      "snippet": "The U.S. is promoting a Freefly drone to challenge China's DJI in supporting climbers on Mount Everest, where tasks include delivering supplies\u00a0...",
+      "photo_url": "https://images.wsj.net/im-80365838?width=700&height=466",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNU1WM1ZDYzNjeWVXbG5RWEZoVFJERUF4aW5CU2dLTWdhQmtJalZMQWM=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-26T09:30:00.000Z",
+      "authors": [
+        "Krishna Pokharel"
+      ],
+      "source_url": "https://www.wsj.com",
+      "source_name": "WSJ",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.wsj.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.wsj.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCM2R6YWk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ1YlY5NU5XWTVOQklDWlc0b0FBUAE",
+          "topic_name": "Krishna Pokharel"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiWkFVX3lxTE9XbFpJZmowWXhfWTlHYmVNV2RwQjdCWVBZVlNETVZJdVFvb29OczZLbmpKVW1vREY0SFVhNDdkcjRSdkxCSDgyX21MZzNWWUNGa0haejl3ZFRIUQ",
+      "title": "More than 600 US military service members injured since Iran War began in February",
+      "link": "https://www.bbc.com/news/articles/c998pzd1e8xo",
+      "snippet": "At least 624 US military service members have been wounded since President Donald Trump ordered strikes against Iran in February, according to\u00a0...",
+      "photo_url": "https://ichef.bbci.co.uk/news/480/cpsprodpb/2eab/live/66b0c1c0-89b2-11f1-b8ee-9b3c26ad07bb.jpg.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iI0NnNXhhSFZ1U2s5cU9FMDJhbGhoVFJDeEFSaWRBaWdCTWdB=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T13:31:57.000Z",
+      "authors": [
+        "Brandon Drenon"
+      ],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZzWjNJeE0ySnVNUklDWlc0b0FBUAE",
+          "topic_name": "Brandon Drenon"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiogFBVV95cUxPQWVBTGtjNzFjM3FMMl9IaDBmRHhTQUlGWTFpclhRR2xqeWYwYlExeW1aU1h6UlBVbFdJMlhSdzZVRFFmbEpYNU1QMkRucmZDMzJwcWFTc3l2aUdjZlpYaDl6NTJMMnA1cThRRzU3LW1oRGpPbzBINlduakFuVGxaN1U3S3A1dXZ1Vm5uZ0VycE4tdlBCWUtZZ2s1YXRILVZGZXc",
+      "title": "Exclusive | Iran Hatched Fresh Plot to Kill Trump, Israel Told U.S.",
+      "link": "https://www.wsj.com/world/middle-east/iran-hatched-fresh-plot-to-kill-trump-israel-told-u-s-1511d9d2",
+      "snippet": "Israel recently shared new intelligence with the U.S. that it said showed Iran was considering new plan to assassinate president, sources say\u00a0...",
+      "photo_url": "https://images.wsj.net/im-27933297?width=700&height=466",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXNiME5mYzFaMVdGa3lTVkY0VFJERUF4aW5CU2dLTWdZQkpZek5GUW8=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-09T07:00:00.000Z",
+      "authors": [
+        "Anat Peled",
+        "Marianne LeVine",
+        "Alex Ward"
+      ],
+      "source_url": "https://www.wsj.com",
+      "source_name": "WSJ",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.wsj.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.wsj.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCM2R6YWk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZvTUhsNFltUTFhaElDWlc0b0FBUAE",
+          "topic_name": "Anat Peled"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuWnpWbWJXZzJaQklDWlc0b0FBUAE",
+          "topic_name": "Marianne LeVine"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuTnpBMmNIZDJjaElDWlc0b0FBUAE",
+          "topic_name": "Alex Ward"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMirwFBVV95cUxOWlVWSWY0bERsS2ZBNDdORUZuOEo4LWw5UkoyRTNQbjlpTUJWSElPcmVleFdjQkp3Q3Nzdm9GN0x2WnozXzg5ZnRtOHd3M05EMkV3UkRBeFBhR1o0eDc0dmNLa215TzV4SVBPSGxDTHhydG9sSEtqZVB6MlRsQ05MWldPWi1uYl9HeG5jMVdtVUxfaGJ5ZmY5T1FFVUhncklfNjdYOTRmenJaQ3VheW5n",
+      "title": "Trump says 'Islamic Republic of Japan' fired missiles at US ship",
+      "link": "https://www.usatoday.com/story/news/world/2026/07/08/trump-islamic-republic-of-japan-nato-remarks/90850675007/",
+      "snippet": "Donald Trump mistakenly said the \"Islamic Republic of Japan\" fired 111 missiles at a U.S. aircraft carrier \"a few months ago.\"",
+      "photo_url": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/08/USAT/90851157007-20260708-vpc-trump-mistakenly-call-iran-the-islamic-republic-of-japan-thumb-getty.jpg?crop=1919,1079,x0,y0&width=660&height=371&format=pjpg&auto=webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVNXazVMZVUxTVduZHpWVTlTVFJDb0FSaXNBaWdCTWdhcFZaak5KUWs=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-09T07:00:00.000Z",
+      "authors": [
+        "Drew Pittock"
+      ],
+      "source_url": "https://www.usatoday.com",
+      "source_name": "USA Today",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.usatoday.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.usatoday.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJggKIiBDQklTRWdnTWFnNEtESFZ6WVhSdlpHRjVMbU52YlNnQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ0TmpJMk1HdDJOUklDWlc0b0FBUAE",
+          "topic_name": "Drew Pittock"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiZ0FVX3lxTE9IQ0g3LXRVSDNHd1paWlZmWklrdHV3OTlfYWIyZlp0M25fVHQzRWl0T1hZZFNTajdOX2ZKOEdvZ2NrRHRaVGU5X0hobHU2ajY3NkFWNzNUb2dpeWp4TWN3WkxuczdrREE",
+      "title": "World Cup 2026: US striker Folarin Balogun's one-game red card ban suspended by Fifa",
+      "link": "https://www.bbc.com/sport/football/articles/cewqq5q8v41o",
+      "snippet": "Balogun is available to play for the United States in their World Cup last-16 tie against Belgium after his one-game ban was suspended by Fifa\u00a0...",
+      "photo_url": "https://ichef.bbci.co.uk/ace/standard/3840/cpsprodpb/0bf1/live/3ab6d9e0-7898-11f1-9510-1546718f668b.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNUhNWFl6UkhaMVlrcENkM2t3VFJDZkF4ampCU2dLTWdZbElwTHNsUW8=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-05T07:00:00.000Z",
+      "authors": [
+        "Adwaidh Rajan"
+      ],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ0ZG5OMk1YRm1OaElDWlc0b0FBUAE",
+          "topic_name": "Adwaidh Rajan"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMi7gFBVV95cUxNTVFBZUJfWVRnLXdqYjV4WDRSdVB6eUxuMUNKaTh6ZWV0WFRLS0VUQWFHbUJWZEphaVlYSk4yYkR0UmJXV2pUbEVSczRnSFpfSnJ4SW1SaFJsZFFFaWFpS0N6bUJKc25GVzdzUkNCQnJMSzVlU1AxT3VCQjRvbnhaOExhLXV4SEJqbEJ2SnhQNDBOTVRoMTR2MWxENnRRSGNSdWlYRzlqTF9fZ2JaZmxsR3ZsN2Nlc051dVhEQTdYakUtUWRPbF9OTlY1Zk9vdTVyMC1oNzRSbDlYTFUxcmJHT0E2UmxJTFI4N0pYZm5R",
+      "title": "The Guardian view on a US-Saudi nuclear agreement: an offer that further erodes international safeguards | Editorial",
+      "link": "https://www.theguardian.com/commentisfree/2026/jul/26/the-guardian-view-on-a-us-saudi-nuclear-agreement-an-offer-that-further-erodes-international-safeguards",
+      "snippet": "The US announced that it had signed a deal with Saudi Arabia which would potentially allow the kingdom to enrich uranium in future and to avoid\u00a0...",
+      "photo_url": "https://i.guim.co.uk/img/media/94cf8a1b71704fe8e5ef1a081f91445b152ff81b/542_0_5417_4335/master/5417.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNHpkRTlPZUhWc1ZtVTNla0ZmVFJEMEFoalJBeWdLTWdrQlFKaDVuT25JaGdJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T01:30:00.000Z",
+      "authors": [],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMiWkFVX3lxTE9mUS1jZDJRamh4djBqc2lHbkdsWXNMT3pISTJVNzhHaXNoR21neG5RS2NYb3NhaGRNOVNhbVVCMzJqdVItbU12TV80Vmx1dU03TjN0SGtuMGY4UQ",
+      "title": "US insists Strait of Hormuz is open as it exchanges strikes with Iran",
+      "link": "https://www.bbc.com/news/articles/cj9gkpp0dkeo",
+      "snippet": "The US insists the Strait of Hormuz is open, despite Iran saying it has closed the waterway amid renewed strikes.",
+      "photo_url": "https://ichef.bbci.co.uk/news/1024/branded_news/4e75/live/a70b6a10-7e07-11f1-afb0-9dae682daff3.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNW1OMU5yZEVkUlUzcFNiSHBEVFJDb0FSaXNBaWdCTWdZeGtwZ1J0UWM=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-12T07:00:00.000Z",
+      "authors": [
+        "Robert Greenall"
+      ],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ4Ym1Od2JqVjVNQklDWlc0b0FBUAE",
+          "topic_name": "Robert Greenall"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMitgFBVV95cUxPcmRkVGtOWHd6N19oakgwTW91emJPMU0tRHN5ZndfTndvdXRfb3lhRlJ0Q2pkbjBKMUNlbWhZSEpLSjg1Wi01UVU3cXZpeC1DX0MyX1ZURnpIZ0RRUXZUYkx5dmNpZDd1Q3BmUG1namRoeEgyNTR2S1NfWm1VNHdWN0JXUG1XN1htMWdScjYxeTVwZFh3SUp6c3RWcGpGendqNEZUNEJqb2EyQzBoanBabjdJNTFjZw",
+      "title": "People in Many Countries Now View China More Positively Than the U.S.",
+      "link": "https://www.pewresearch.org/global/2026/07/15/people-in-many-countries-now-view-china-more-positively-than-the-u-s/",
+      "snippet": "Views of China have improved recently while views of the U.S. have worsened, to the point where China is now seen more positively than the\u00a0...",
+      "photo_url": "https://www.pewresearch.org/wp-content/uploads/sites/20/2026/07/PG_26.07.15_ChinaComparative_featured@2x.png?w=640",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNW9NelppYkdGQ1lqaGZUazlSVFJEb0FoaUFCU2dLTWdZWkpKU3JsUWs=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-15T07:00:00.000Z",
+      "authors": [],
+      "source_url": "https://www.pewresearch.org",
+      "source_name": "Pew Research Center",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.pewresearch.org&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.pewresearch.org&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM0JsZDNKbGMyVmhjbU5vTG05eVp5Z0FQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMiggFBVV95cUxON1N6a01fYnY0TzdOQmpxMVRpcnpzbnhBdXFmS1hrb1BJT01pUXBDVHFUTFVhWWo4enlsaVBmbkU1SE9yOERxMmRDdHA0RnNDN3JFT3lpaGphLXNkQjY5SUNuclBJX19nMUVaUDZNUXJISFdIby1ZTG1wZElNRFJxNmFB",
+      "title": "Magazine: Made in the USA",
+      "link": "https://www.pharmaceutical-technology.com/features/magazine-made-in-the-usa/",
+      "snippet": "In this issue: Misumi Americas makes US manufacturing strategic priority, the celebrity brand ambassador rise in pharma, AI in the hospital\u00a0...",
+      "photo_url": "https://www.pharmaceutical-technology.com/wp-content/uploads/sites/24/2026/07/PTF-2607_web_main-430x241.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iMkNnNXhlVTV0UXpGM2FIaG5VbGRFVFJEeEFSaXVBeWdLTWdzSllvejF5R1dEYVdyc1ZB=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T10:32:02.000Z",
+      "authors": [],
+      "source_url": "https://www.pharmaceutical-technology.com",
+      "source_name": "Pharmaceutical Technology",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.pharmaceutical-technology.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.pharmaceutical-technology.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqPQgKIjdDQklTSXdnTWFoOEtIWEJvWVhKdFlXTmxkWFJwWTJGc0xYUmxZMmh1YjJ4dloza3VZMjl0S0FBUAE",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMinAFBVV95cUxOMjRmc2pGZVdpWHZVUHNwRGxxd1A1cTVfT2NPblljS2FRSkhGeklsYWxzemxBQVY0Uklubk8zRnFNTEtMcy1fd2VXdkluT05NNVZPRUQ1RDU4UG42bks3V3RUOGprNEhYTzYxdGZVZXBUMXpvVC1VZWQtQ3ZSWTc4cGQxMVllekRIT19vdFZwaE85OVJNNHNNY2h6V1Y",
+      "title": "Netanyahu and Zelenskyy to arrive in Washington for Graham funeral \u2013 with hopes of winning Trump\u2019s ear",
+      "link": "https://www.theguardian.com/us-news/2026/jul/27/netanyahu-zelenskyy-trump-lindsey-graham-funeral",
+      "snippet": null,
+      "photo_url": "https://i.guim.co.uk/img/media/c4c280879660f59198bd844a752416ff3ddb6631/0_0_5392_3592/master/5392.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNVJOSEoyVTJOYWNFTk5iR3BaVFJDMkFoalJBeWdLTWdtQlFJeVhtS25RRXdF=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:06:00.000Z",
+      "authors": [
+        "Robert T. Yamate"
+      ],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuWnpOeWVYZHdaeElDWlc0b0FBUAE",
+          "topic_name": "Robert T. Yamate"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMivwFBVV95cUxNdXZFMVJmZXhXZFRfT1hHYzluRF8zX0JXbU1BV3RxNUlnZWRWSVJ3Vmlub3RuWU1kMzRRSDJyaVhfTHRQc3RoT2p1TzFIalNJd1d6NnBsb2Q3bFFsNWliR1l5bHNGQ0s0ZnlTTy1IT3M0M0xFb2M3c1pmdWpEUWN0YWhzZ19EdGE5dmN0RzU1QlJzZG55UDBOX0xFNHVDajBPeXhvMnY1UHN2cEVmX0NmdWRMck1uWUZBQnlsQ2dSRQ",
+      "title": "Zegna gains momentum in the first half, driven by the United States and the rise of direct sales",
+      "link": "https://luxus-plus.com/en/zegna-gains-momentum-in-the-first-half-driven-by-the-united-states-and-the-rise-of-direct-sales/",
+      "snippet": null,
+      "photo_url": "https://luxus-plus.com/wp-content/uploads/2026/07/Mads-Mikkelsen-fronts-the-Zegna-spring-2024-ad-campaign-Oasi-Lino3.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVVTRjk1VkZCblNrTlRiRTlGVFJEd0JCanNBeWdLTWdhMVE0eHdvUWc=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T15:34:39.000Z",
+      "authors": [],
+      "source_url": "https://luxus-plus.com",
+      "source_name": "Luxus Plus",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://luxus-plus.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://luxus-plus.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKQgKIiNDQklTRkFnTWFoQUtEbXgxZUhWekxYQnNkWE11WTI5dEtBQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMi1wFBVV95cUxQSGktQjlieTNyeTNka3V5d2tndjFiV0Y3enNnRlc4d2U5SjVjc3poVHNSdHA0emxldTlFYzQtU2piQzZDY2ZkZlJkMld5UHE2bnVqc1VPbExBSEI4N3c4TGVPZm9ldnNvN2w5YVowWVJJTTV1bkFoUV9zVE1xZUJEb2xkX2tCTS0yMXVRd1dFRU9mYlU2RExzUXAtTHVjRE5qcENHUDYtR0dTYV9FRVp1dEMtc1pNYlQ1REE3SXNGVVhCb2VRcUlLT0RhRGVKbHRzNm9nYVZkaw",
+      "title": "From experimentation to adoption: The evolving regulatory framework for tokenized financial assets in the United States and Canada",
+      "link": "https://www.nortonrosefulbright.com/en-ca/knowledge/publications/ccda8082/from-experimentation-to-adoption-the-evolving-regulatory-framework",
+      "snippet": null,
+      "photo_url": "https://www.nortonrosefulbright.com/-/media/images/nrf/thought-leadership/canada/publications/financial-institutions-stock-cloud-building.jpg?revision=&revision=4611686018427387904",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXpSVU5oVDBkUFdsVmZVV0pHVFJDZkF4ampCU2dLTWdZSkFvcFJoUXc=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:10:11.000Z",
+      "authors": [],
+      "source_url": "https://www.nortonrosefulbright.com",
+      "source_name": "Norton Rose Fulbright",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.nortonrosefulbright.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.nortonrosefulbright.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqNQgKIi9DQklTSFFnTWFoa0tGMjV2Y25SdmJuSnZjMlZtZFd4aWNtbG5hSFF1WTI5dEtBQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMixAFBVV95cUxNNEFzWTVadzdJN2J6UlFTTjRCMWM4LU5wRlVoWnZnZGlmMWJranN5SmNXbEl5a1k4OVZYeE4xU2lsbTA2V0ZxWXEtcEVabFZCOV9halJ6ZlBsUjlQdVN6ZE1qYnlHdXZwMGdNdGxlUEhZdDdYelJHZjh2ZTk2M1N3Q2NMdnVnM3A3Yng1NFFGRmVkNzhnWXBrNTVpSUVHMWNCVzNrSzB1R2xQc3lSa3ZRWER6ejRQc0Y3UlNhcW02MTBnZjVM0gHKAUFVX3lxTFAyeHBhcTMyMUdnOF9VRFdDUy0tdjBnb0NVQ2NNWFdHUFVwdW82U1pqREdTMXIwdDRLaW4wcVN6N0NsYkk3VEdRZkpPR3l4cy1fTWM2QUNVbGlDZXhJdV9GZEtpX3FfZXlKZlZOS3NwRFdIbDhQY0g1cTZfRUNKUGVKMUxhOU5ITWRyR3hZY0pvMUpSck1GbVlYcWhqd19fMWRZUFlzbzlvaC14VkFkS2hvM284X0h6S3hXRFp3d1lDOW5sbXltRmVEUVE",
+      "title": "Houthis, Red Sea And Oil: How The US-Iran War Opened A New Front Against Saudi Arabia",
+      "link": "https://www.news18.com/world/houthis-red-sea-and-oil-how-the-us-iran-war-opened-a-new-front-against-saudi-arabia-10236613.html",
+      "snippet": null,
+      "photo_url": "https://images.news18.com/ibnlive/uploads/2026/07/Houthi-Reuters-edtt-2026-07-fba0fe0a66d6ab238616e4a5fccf00db-1200x675.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVpaRWxQWlZWVU1EVjFkazEwVFJDZkF4ampCU2dLTWdZQlVJZ0xzZ1U=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T15:33:04.000Z",
+      "authors": [
+        "Shuddhanta Patra"
+      ],
+      "source_url": "https://www.news18.com",
+      "source_name": "News18",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.news18.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.news18.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJAgKIh5DQklTRUFnTWFnd0tDbTVsZDNNeE9DNWpiMjBvQUFQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ3ZW5aalpETjZhaElDWlc0b0FBUAE",
+          "topic_name": "Shuddhanta Patra"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMipgFBVV95cUxOQk9UWU03SU5ZM2F0c3N1TEo3STZDMUExYnlMakZpZ2szZU1hbEVtZ2pjbnZMVGZEWDhRRmcwemQzeGRpeU40U0Eyb1RuS0lsbFJZMVBCaF9RQWIzYzVIcmQ0LXgzakhySzFCU1lQUk9Hc3FVT3dPb3RjQ21Ya0dma19DWG9KTU9XQkFiSktlYlZPdURNdFRZdkxJV2lSRmw3bFZIMlFR",
+      "title": "Returning Caeleb Dressel to test form at 2026 USA National Swimming Championships: Full schedule and athletes in action",
+      "link": "https://www.olympics.com/en/news/2026-usa-national-swimming-championships-preview-full-schedule-dressel",
+      "snippet": null,
+      "photo_url": "https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w1460/f_auto/primary/meyxavprn0khm88pk89q",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iI0NnNUtiazFuUVRreGFFRm9abGxDVFJDZkF4ampCU2dLTWdB=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:32:00.000Z",
+      "authors": [
+        "Lena Smirnova"
+      ],
+      "source_url": "https://www.olympics.com",
+      "source_name": "olympics.com",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.olympics.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.olympics.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJggKIiBDQklTRWdnTWFnNEtERzlzZVcxd2FXTnpMbU52YlNnQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZvTVY4eU9EVmZkeElDWlc0b0FBUAE",
+          "topic_name": "Lena Smirnova"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMijgFBVV95cUxQbXNraDQ3VGpUdzFuOVU1bUxOMDFSUUtULUlOVHpWb2hVVHNscHZiZnpIbVZVS2ZtcmdpdE94Vm9xY2hFdEtLeGxhTl9fbXZZY0tUSXk0ejRxRGxKaUhWOVVWUVhBQVJMLWYyZjRuZW16NmpZZ1c5VllBZVBmQ3RYOU4xVUYwSFkzQW55aHVB",
+      "title": "What is next for commodities?",
+      "link": "https://www.ubs.com/us/en/wealth-management/insights/market-news/article.3574254.html",
+      "snippet": "Renewed tensions in the Middle East strengthen the case for broad commodity exposure as both a source of return and an inflation hedge.",
+      "photo_url": "https://www.ubs.com/cioresearch/35/74/25/4/3574254/en/image.2067575767.img/3574254.png",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNTRWVGRtWjNWT1UweEpabFZIVFJEcEFSajVBeWdLTWdZUk1JNlFKQVU=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T03:05:00.000Z",
+      "authors": [],
+      "source_url": "https://www.ubs.com",
+      "source_name": "UBS",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.ubs.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.ubs.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCM1ZpY3k1amIyMG9BQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMifEFVX3lxTE9rN0lNMm9KTF92UHIzVW9ObFhPalVlWmVuN3JQNndGcFpORWtJLTJHUU80Vm40cHdQNVFFdTlmX2VrSkFoZnlLUGc2WENwUnhRcTl1eHI5TnJHeHYwdVN6MnctVjJRLWRfbEU4aS00eTBVREkxNHFUeTM1alA",
+      "title": "US refunds $81bn in Trump tariffs after supreme court ruled them illegal",
+      "link": "https://www.theguardian.com/us-news/2026/jul/14/trump-tariffs-us-refunds",
+      "snippet": "Government has been forced to pay back duties to companies that imported goods into the US that were hit by Trump's tariffs",
+      "photo_url": "https://i.guim.co.uk/img/media/a312a19904b3254dc8f4518a2aab7603b6ba5d11/103_0_4164_3333/master/4164.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXFRbGRzVVhJNWNEZ3hNV3RaVFJEMEFoalJBeWdLTWdhRmdKRGtyZ2M=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-13T07:00:00.000Z",
+      "authors": [
+        "Lauren Almeida"
+      ],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuYWpScmRqQmtheElDWlc0b0FBUAE",
+          "topic_name": "Lauren Almeida"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMifkFVX3lxTFBXQ3d3ME5VclhzVzFQcHhab3BZMEg4QTFTYzFVb0dnN2RqcXI4VzVpMDJkX1hsTWpjVF9GYlgzclQ5UFFIZmtpMDU2NTdvRGgzeHhvWDF4bHRPODVRQ2pWQzJtTVE4anN4MF9VUjRHckdOQ2RiNlZ0bVRaV2FMZw",
+      "title": "How Iran Devastated an American Naval Base\u2014and Caused a U.S. Recalculation",
+      "link": "https://www.wsj.com/world/middle-east/iran-us-naval-base-bahrain-e87bbca3",
+      "snippet": "The U.S. Navy base in Bahrain was hit by Iranian missiles and drones, causing extensive damage not publicly acknowledged by the Pentagon.",
+      "photo_url": "https://m.wsj.net/video-atmo/20260624/16d30991-a5c2-479e-a2e6-e832a5b5e6b8/5/bahrain-single_720x720.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iJ0NnNHRlVjlNVldGWVNEWlJhRGx6VFJDcUJCaXFCQ2dLTWdPUkF4bw=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-25T07:00:00.000Z",
+      "authors": [
+        "Shelby Holliday",
+        "Denise Blostein",
+        "Anika Seth"
+      ],
+      "source_url": "https://www.wsj.com",
+      "source_name": "WSJ",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.wsj.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.wsj.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCM2R6YWk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqJAgKIh5DQkFTRUFvS0wyMHZNRGR6TmpJd2FoSUNaVzRvQUFQAQ",
+          "topic_name": "Shelby Holliday"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuWW1vMlh6SjZlQklDWlc0b0FBUAE",
+          "topic_name": "Denise Blostein"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZzWjNGNU9XWnRiQklDWlc0b0FBUAE",
+          "topic_name": "Anika Seth"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiY0FVX3lxTE82NS1OdDJua20tMDFNQjhYZkN1SnEwWWNkUkpqSHJCT2pmenNNcm9SWUxMOGZabzh2OEFySktoQ1NGMWNadWhGM3dRSTRKMi1UZXhYX2NHRUNpRWVPYWFSdjlLdw",
+      "title": "The United States produced more crude oil than any other country in 2025 - U.S. Energy Information Administration",
+      "link": "https://www.eia.gov/todayinenergy/detail.php?id=67844",
+      "snippet": "In 2025, total energy used in the United States was 96 quadrillion British thermal units (quads), up 2% from 2024, but below 2007's record 99\u00a0...",
+      "photo_url": "https://www.eia.gov/todayinenergy/images/2026.07.09/main.svg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXFTRzQwTTFJeFJUTjViVE41VFJDZkFSaS1BaWdCTWdZQkE0eEx1Z1k=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-09T07:00:00.000Z",
+      "authors": [],
+      "source_url": "https://www.eia.gov",
+      "source_name": "U.S. Energy Information Administration (EIA) (.gov)",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.eia.gov&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.eia.gov&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMlZwWVM1bmIzWW9BQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMiWkFVX3lxTE55WWJEczNyUXZjeUZ5WkhHSl9Nd20tSGl1MzZrTmpZNFVDQlZkeFAxbEwyUk9LTmstMTFZaXBoNDdzZUZJR0M4cXBqelVHTWY1NlpOMXFiUWMtZw",
+      "title": "US and Iran exchange strikes across Middle East for second day in a row",
+      "link": "https://www.bbc.com/news/articles/c4gyp9v0e93o",
+      "snippet": "The US and Iran have exchanged strikes across the Middle East for a second consecutive day, further straining a shaky ceasefire agreed between\u00a0...",
+      "photo_url": "https://ichef.bbci.co.uk/news/480/cpsprodpb/bc34/live/e75b39d0-655f-11f1-a1f9-afd6f3de9cfa.jpg.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNWpVRGhUYTB4U1dWWm5VMEpOVFJDT0FoamdBeWdLTWdZQlFJNXNPUVU=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-11T07:00:00.000Z",
+      "authors": [
+        "Harry Sekulich"
+      ],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZyTkhCc2RtYzNhQklDWlc0b0FBUAE",
+          "topic_name": "Harry Sekulich"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMimwFBVV95cUxQM1BVeERvdHF5RUxXZkxNcDc1ZnVDS3pXVHlqNE4wdVkyLUdLUDFaYmFzZllUYzM4TXlkUUF6eDJqUmNpTGNSZHdNS0hRZmF1akZzRmt2bllHaWJFNUxvYy1URmh0RXR1WWNsc1JNU2RxbWYwMFk0UEx4cHRiaEtZb3FpeEx4bDl1azYtUThlM0Y5cjkzV3dSLWp4Zw",
+      "title": "War enters a new phase: Ukraine strikes Iranian supply lines",
+      "link": "https://www.euronews.com/2026/07/26/ukraine-strikes-russian-iran-bound-cargo-as-iran-war-widens",
+      "snippet": "Ukraine says it has struck long-range routes moving Russian military equipment linked to Iran,",
+      "photo_url": "https://images.euronews.com/articles/stories/09/85/10/24/1536x864_cmsv2_48715515-de67-5355-bd56-f9246c2391cb-9851024.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNUdOMDVCVlhaYVExOXlWbVZHVFJDZkF4ampCU2dLTWdrQlFJeWxJaWttWndJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-26T11:06:06.000Z",
+      "authors": [
+        "Babak Kamiar"
+      ],
+      "source_url": "https://www.euronews.com",
+      "source_name": "Euronews",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.euronews.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.euronews.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJggKIiBDQklTRWdnTWFnNEtER1YxY205dVpYZHpMbU52YlNnQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ0ZG5ReU1ubHJlUklDWlc0b0FBUAE",
+          "topic_name": "Babak Kamiar"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMie0FVX3lxTE00d1lvZjllSFp0aDFtUks1NU9yeWJicGEtY3FDeks0XzF5NjVWY011UVd5UnR3WWxZQnFZQlBPLWgtc0JVX3ZOQ1pxeG52dWdTOTM0NHVJcy0xSVRCeDlkbnU4VTd0aDAyZ0ZnVE8tRlZTOTB6dFBYdEJWcw",
+      "title": "US releases official agreement with Iran. Read the 14-point text",
+      "link": "https://edition.cnn.com/2026/06/17/middleeast/us-iran-war-mou-text-intl",
+      "snippet": "The United States on Wednesday released the official text of the memorandum of understanding reached over the weekend with Iran.",
+      "photo_url": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2281156251.jpg?c=16x9&q=w_800,c_fill",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNTRPRnA0YTNnd2NGcFRibEJXVFJDZkF4ampCU2dLTWdrQmdJQ2k0S0Z6REFJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-17T07:00:00.000Z",
+      "authors": [],
+      "source_url": "https://edition.cnn.com",
+      "source_name": "CNN",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://edition.cnn.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://edition.cnn.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEMlZrYVhScGIyNHVZMjV1TG1OdmJTZ0FQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMikwFBVV95cUxQSEwyWkVvTmhQUlRwREJ5SWhWS0hsNHVFc1Rsc0xKcW5xcHBNanhiSnlhRXhBYWhPVjBaRHJrX1N0eE5xSFZHWWJxZDg2MS0wZG1LamxhMFRhQjFmRDI0aDJudFI3WTI5bUJhTUsycnRXZE1XLWFWekgzUktpMWhCUGVPZHBOSnFqd18xNHdaVm4taVk",
+      "title": "US officials investigate after video appears to show person kicking sea lion",
+      "link": "https://www.theguardian.com/us-news/2026/jul/27/person-kicks-sea-lion-video-investigation",
+      "snippet": "Federal wildlife authorities are investigating after a video appeared to show a person kicking a protected sea lion at a beach in California\u00a0...",
+      "photo_url": "https://i.guim.co.uk/img/media/7e949f36580d5fc2041a4a6a4590661a3e62e9ce/0_0_4200_3007/master/4200.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNW1RMFpYY1ZrelNtOUhUVWRKVFJETkFoalJBeWdLTWdZSk5aaktIUWs=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:15:00.000Z",
+      "authors": [],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMigwJBVV95cUxOSnVRTzRVMk9CdTZxekViOFVmU0hKdUw4R1hnZVZDdzVRMVhaYk9qWXJDZ1N0elJTYVhHMkxia2x3TVpHaXFFWG5IbEhhdW1SLVdTdHRJODUtRUl5bndabnl0WW1BNkpuMnNOQVNjdDloRTdoS0x2UzVkaUd4aWZpYWQ2cUdtQVdPTzRKdGE2ZU9zQVBMMXBCNTVGallXUHRtNF9iM2NVRGVMV0dtTGVLVGZyMXhNSVprc1hPNXktQmJQT3NKMHpzVVAzendISWN4Y0FsVnROODdxVFA5VHMzcGgwa2Q3MWhoUFI3eTlxWEVQdS1kXzdDTUswblRua3ZRVjlJ",
+      "title": "Joint Statement Following the Ministerial Meeting of the United States and the Gulf Cooperation Council (GCC) - United States Department of State",
+      "link": "https://www.state.gov/releases/office-of-the-spokesperson/2026/06/joint-statement-following-the-ministerial-meeting-of-the-united-states-and-the-gulf-cooperation-council-gcc",
+      "snippet": "The Ministerial Meeting between the United States and the Gulf Cooperation Council (GCC) convened on June 25, 2026, in Manama, co-chaired by\u00a0...",
+      "photo_url": null,
+      "thumbnail_url": null,
+      "published_datetime_utc": "2026-06-25T07:00:00.000Z",
+      "authors": [],
+      "source_url": "https://www.state.gov",
+      "source_name": "U.S. Department of State (.gov)",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.state.gov&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.state.gov&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIggKIhxDQklTRHdnTWFnc0tDWE4wWVhSbExtZHZkaWdBUAE",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMigAFBVV95cUxQb3dwQVpWdEY5V28zYjAzTXY2Xzl0MDV2RDRrNTBvNVhYMGlzVzJac3k3SlRTMWh1SnpsNDJ4M0pTRXRZclkxNng0WTdCMTRLOUJ2ZkNxTE5SNG11SkZWQ3EzNWZvYnFOYVFrdmRhWGlJcGpIY0htUjVXQXFlSHM1bg",
+      "title": "Anthropic Pulls Its Most Powerful AI Models After U.S. Bars Foreign Access",
+      "link": "https://time.com/article/2026/06/13/anthropic-fable-mythos-ban-US-security/",
+      "snippet": "Anthropic disabled its two most powerful artificial intelligence models on Friday to comply with a United States government order blocking\u00a0...",
+      "photo_url": "https://static.time.com/v3/assets/bltea6093859af6183b/blt8b784eda462a2bb8/6a2d9b04092b5d97a88696a1/GettyImages-2280239409.jpg?branch=production&width=3840&quality=75&auto=webp&crop=3:2",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNWxOazE1VmkxM1lYbE9PWE5OVFJERUF4aW1CU2dLTWdhbFZZek1NUVU=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-13T07:00:00.000Z",
+      "authors": [
+        "Richard Hall"
+      ],
+      "source_url": "https://time.com",
+      "source_name": "Time Magazine",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://time.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://time.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": null,
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ4TkRNd05XaHhNeElDWlc0b0FBUAE",
+          "topic_name": "Richard Hall"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiyAFBVV95cUxQX18ybS1qUEpYZ3hIODlmR0pScXJNdldnWDRoWDRRTGFleGM4QWd4UFhuZkd5ZzBFTF9DeUJvVURJaFNaRFVDR3RmU3NUWDlNazlnNTZsU3lDMVFJb1pTclJVandUSHhuTWRGdlozSFdFLU1wZ3BoTkJLUVdZZFU3STJEUVhrRkhQUGt3N3lyTWJjY0dxVTNoNmVNd1ZhWGFtUVJrU3JDN25QR1JxaTRaSTBXTnZLVERyMFJBT2JaN2h2clJ2ekxDaw",
+      "title": "Trump Gets Negative Reviews Internationally as Fewer Say U.S. Is a Reliable Partner",
+      "link": "https://www.pewresearch.org/global/2026/06/23/trump-gets-negative-reviews-internationally-as-fewer-say-u-s-is-a-reliable-partner/",
+      "snippet": "36-country survey finds declining ratings for the U.S. amid rising concerns about its foreign policy and the health of its democracy",
+      "photo_url": "https://www.pewresearch.org/wp-content/uploads/sites/20/2026/06/PG_26.06.23_USImage_featured@2x.png?w=640",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXRZekl0ZVU1VFNWWTVVMnhYVFJEb0FoaUFCU2dLTWdaTk1aaTNIQWs=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-23T07:00:00.000Z",
+      "authors": [
+        "Jonathan Schulman",
+        "Moira Fagan",
+        "Richard Wike"
+      ],
+      "source_url": "https://www.pewresearch.org",
+      "source_name": "Pew Research Center",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.pewresearch.org&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.pewresearch.org&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM0JsZDNKbGMyVmhjbU5vTG05eVp5Z0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuWW1jM2NYUjZaeElDWlc0b0FBUAE",
+          "topic_name": "Jonathan Schulman"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtZVcwMFkyWmpkeElDWlc0b0FBUAE",
+          "topic_name": "Moira Fagan"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtTUd3NFgyUm1laElDWlc0b0FBUAE",
+          "topic_name": "Richard Wike"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiX0FVX3lxTE52YzZQWWpZa0c5WDF6V0o4T0xLWHJsM1VPUkpUakJ0cllRc2JZbU9BbUVxYzRDU2QzeTBMRWNyT3dVeXE5X2RNVDNLenYxOS1ZaDZFVUgxWloxYzNzYm13",
+      "title": "The political polarization of health outcomes in the USA",
+      "link": "https://www.nature.com/articles/s41562-026-02474-9",
+      "snippet": "Using individual-level medical data and death records, this study shows that conservative Americans experienced worsening health and higher\u00a0...",
+      "photo_url": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41562-026-02474-9/MediaObjects/41562_2026_2474_Fig1_HTML.png",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNTRObUZZVkcxbU5VTlJZMTlHVFJDSkFoaXRCU2dLTWdhQllZcUl2Z1k=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-05-14T07:00:00.000Z",
+      "authors": [
+        "Neil A. O'Brian",
+        "Elizabeth Mitchell Elder"
+      ],
+      "source_url": "https://www.nature.com",
+      "source_name": "Nature",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.nature.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.nature.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJAgKIh5DQklTRUFnTWFnd0tDbTVoZEhWeVpTNWpiMjBvQUFQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZzTW1vMVluaHNlaElDWlc0b0FBUAE",
+          "topic_name": "Neil A. O'Brian"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEY0YlY5NVp6UTJiUklDWlc0b0FBUAE",
+          "topic_name": "Elizabeth Mitchell Elder"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMihAFBVV95cUxPUXBUa2w3ZlNsSTFZd2xtOUJzMDZkVnNpaVNoMEVSNm5nMk1rT2hsSlF0U0VaeDFicGktZFo1R0FMOVdjTTRnNHZ6MGRNS1k5ZlNDM0VpOGlGOXhJZFRsbGpLWjFicDl6U21RMDN6dkdQU21MU3pFVHNHNmhLZ2RsLXdnRko",
+      "title": "US military smartphones targeted through roaming and ad tech",
+      "link": "https://www.ft.com/content/44351c74-03c8-45ab-823b-5805c0daca5f?syn-25a6b1a6=1",
+      "snippet": "Cyber attacks tried to track down American personnel in Middle East as Tehran attacked forces in the region.",
+      "photo_url": "https://images.ft.com/v3/image/raw/ftcms%3Af944d3fa-69b2-4782-9b8c-8c9d70e2f4a2?source=next-article&fit=scale-down&quality=highest&width=1440&dpr=1",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXZaRlF0UnpSWVRscG5WemxDVFJDZkF4ampCU2dLTWdZaE5Zck5uUWM=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-13T07:00:00.000Z",
+      "authors": [
+        "Mehul Srivastava",
+        "James Politi",
+        "Jacob Judah"
+      ],
+      "source_url": "https://www.ft.com",
+      "source_name": "Financial Times",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.ft.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.ft.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqHggKIhhDQklTREFnTWFnZ0tCbVowTG1OdmJTZ0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ4Ym14NWNYWjBiQklDWlc0b0FBUAE",
+          "topic_name": "Mehul Srivastava"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtTUhRNU9GOXlaQklDWlc0b0FBUAE",
+          "topic_name": "James Politi"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZzWjNGMGJIcG1NaElDWlc0b0FBUAE",
+          "topic_name": "Jacob Judah"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiqwFBVV95cUxOWlZBYkctYzdGQTQ1c2otOExWaHNBZ2w2cGVmWTF6TXpoVS13SDBzaGM1R2pqTU9vZVVYZGdNSEZaREFHMG5ZZDF1N1pna0xrbDlsM0RwOW5CMFBGQkdHMVlCUTV3OFV6bk5TTnVGaU9RaW9OOHpvUTltbXRMeVYyZWtxSFFpamJ2LTVOaFk5M3VtS3Z1WnFKS1J1NHdTVTFQbHpRbDE2VExVUnM",
+      "title": "I used to revere the great experiment that is the United States. After Trump, I'm not so sure | Jonathan Freedland",
+      "link": "https://www.theguardian.com/commentisfree/2026/jul/03/united-states-constitution-donald-trump-washington-dc",
+      "snippet": "Trump was impeached, as the constitution required \u2013 but Republican senators ducked their obligation to convict him and remove him from office.",
+      "photo_url": "https://i.guim.co.uk/img/media/b993e00535b956b17d5b830b189767c63b8378ab/573_0_4998_4000/master/4998.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNTRNVGcxYTNWemMxUk1VbGxXVFJEMEFoalJBeWdLTWdZRlFJck5GUW8=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-03T07:00:00.000Z",
+      "authors": [
+        "Jonathan Freedland"
+      ],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqIggKIhxDQkFTRHdvSkwyMHZNRFEzTTNCZkVnSmxiaWdBUAE",
+          "topic_name": "Jonathan Freedland"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMihgFBVV95cUxPX1dwU0I1bDhacy1fcGZfVkFWY1BBa2MxOXlnUnlrOElyVFBYdDIxNkRBLWtfdDc4RTNaQ3BZZmVfem9Rc3JQSDgtZHBnZktlUm9sVTVOcDhMY3kyS3dja3V4dmJzOVNWZmYxbDN6bEtwVHFVMnd5emR2RUZBVW1jb1lvUnZOdw",
+      "title": "With just a few primary elections to go, the competitive Senate map keeps shifting",
+      "link": "https://www.npr.org/2026/07/27/nx-s1-5907379/2026-midterm-election-senate-races",
+      "snippet": "For Democrats to take control of the U.S. Senate, they have to flip four seats currently held by Republicans. Republicans, meanwhile\u00a0...",
+      "photo_url": "https://npr.brightspotcdn.com/dims3/default/strip/false/crop/3600x2401+0+0/resize/1100/quality/50/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F42%2Fa2%2F98c249904ddaa793f6e311f55fc3%2Fgettyimages-2268050960.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNWllbGRaYmxCVE5WSnpTa1V3VFJERUF4aW1CU2dLTWdZQklJcXFuUVk=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T05:13:24.000Z",
+      "authors": [
+        "Maham Javaid"
+      ],
+      "source_url": "https://www.npr.org",
+      "source_name": "NPR",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.npr.org&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.npr.org&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMjV3Y2k1dmNtY29BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ4Ym1KMmFtMWtNaElDWlc0b0FBUAE",
+          "topic_name": "Maham Javaid"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiywFBVV95cUxObmZzZWxMYmx5WGZmdEFHVm9oenVXVHFDNG8yanVHLXRWRTltUGRiV2lIMk1RbGdsUXdwaU5rUi1MdWdSb192elMzX0xmTERYV0xqOENlVVRONGhtSHRoRXJzTGVIRUZqakFaWk5CcndEWEhLMzVLeTY5UEVHb1JZNlhsNnpfZUdlVkd5ZW10WThUTEVPUkMtT2d3dXlodkVzb3ktVTNicG1uYkI4czYxaFdrekxHMEFWUmZUM2JtOXFKVG1CYTJMWjNrRQ",
+      "title": "Trump may need to allow Chinese minerals as US industry struggles to meet 2027 deadline",
+      "link": "https://www.reuters.com/legal/government/trump-may-need-allow-chinese-minerals-us-industry-struggles-meet-2027-deadline-2026-07-27/",
+      "snippet": "US minerals, magnet capacity not enough to match demand Trump has set a January 2027 deadline to block Chinese imports Waivers may be required",
+      "photo_url": "https://www.reuters.com/resizer/v2/BYS6UUKOBVOXFMIBXSXX4J7A2E.jpg?auth=3d093080373e9bdb991a8d185110fd2a2f0a938130254be3b01d5637526fb6ff&width=1920&quality=80",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNWhibEF0YjJaWGNFWkNhREJaVFJERUF4aW1CU2dLTWdhZEFveXJ0UVU=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T12:27:41.000Z",
+      "authors": [
+        "Jarrett Renshaw",
+        "Ernest Scheyder"
+      ],
+      "source_url": "https://www.reuters.com",
+      "source_name": "Reuters",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.reuters.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.reuters.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJQgKIh9DQklTRVFnTWFnMEtDM0psZFhSbGNuTXVZMjl0S0FBUAE",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtZVhrMFgyMXVOeElDWlc0b0FBUAE",
+          "topic_name": "Jarrett Renshaw"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuWW1vek5tdzJheElDWlc0b0FBUAE",
+          "topic_name": "Ernest Scheyder"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMisgFBVV95cUxPZjJObjRpUnI5R0w1QlJFVDQzZmxoaExxaW1lTzkyOWRUM0p1VEF5UTBCOHVaV0RFSS10MXYyM0tLUXpLQ2Vkd0RtSEJJX01rMDFCSG85Zzg1Uk11MFV3U3VpaFBQUTJVY2tHVWNKU1pUbXQ2d3FYMGh4X1UzOWNkLVcyb293MG1JMmlZMDlMXzZfLXR4VF9fZHZ5OHNmYVZZWjgyTVpUVXpNVmxTZHJvdHF3",
+      "title": "WNBPA says it did not ask WNBA to drop USA 250 All-Star patch after union officer publicly objected",
+      "link": "https://www.foxnews.com/outkick-sports/wnbpa-did-not-ask-wnba-drop-usa-250-all-star-patch-union-officer-objected",
+      "snippet": "The WNBPA says it did not ask the WNBA to remove America 250 patches from All-Star Game uniforms, despite public criticism from treasurer\u00a0...",
+      "photo_url": "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/07/1200/675/breanna-stewart-wnba-all-star-game.jpg?ve=1&tl=1",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNURZMGRVWlZadFJsWkliVmRTVFJDZkF4ampCU2dLTWdZcEZvck5rUW8=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-26T19:56:14.000Z",
+      "authors": [
+        "Dan Zaksheske"
+      ],
+      "source_url": "https://www.foxnews.com",
+      "source_name": "Fox News",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.foxnews.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.foxnews.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJQgKIh9DQklTRVFnTWFnMEtDMlp2ZUc1bGQzTXVZMjl0S0FBUAE",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ0ZG5RMU5ETnNhQklDWlc0b0FBUAE",
+          "topic_name": "Dan Zaksheske"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMi3wFBVV95cUxPcy0tcWZiV1Q3U0Z1WmtOM0xoekMycVBSMkw4QWRlR2NXcDc1WUI5OFFjTEpyOVVaWGpRc0tGVUNsTndYUWxVRTRkNkNFbTJTUzVTTklZTE1HV0xlUUhlQWNkNTFPZkgydWgyLTltNy1GLW9JbnROSXFEQngwSmhabHlWX0J6M01JZnVVbkQ4NnlYUmpfYndKUFVwOEFOSllFcGduRlVBdFY5bXBiV1g5Vnc0SW9fMmdJVjJscUxxRHQ4am9rVGU5ZlBZQ1VqeFpHM250Y0t3bGhXUm15Z0RB",
+      "title": "Power Grids Reach Tipping Point as 100F Weather, US Data Center Boom Stress Aging Networks",
+      "link": "https://finance.yahoo.com/energy/articles/power-grids-reach-tipping-point-as-100f-weather-us-data-center-boom-stress-aging-networks-133000813.html",
+      "snippet": "Back-to-back heat waves across the US are straining electricity grids serving millions of households and businesses amid a surge in demand from\u00a0...",
+      "photo_url": "https://s.yimg.com/lo/mysterio/api/6B46E1CCA1E9D249287DC826163DF29B9D14D40DDD6CD01C7CF768C5D57CC5AB/subgraphmysterio/resizefit_w960_h640;quality_80;format_webp/https:%2F%2Fmedia-mbst-pub-ue1.s3.amazonaws.com%2Fcreatr-uploaded-images%2F2026-07%2Fd19d32f0-892d-11f1-bfff-e06053cf0968",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iJ0NnNUxPVzQzTTA5NFZUZzBiazh5VFJERUF4aW1CU2dLTWdNQnNBSQ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-26T13:30:00.000Z",
+      "authors": [
+        "Lauren Rosenthal",
+        "John Ainger"
+      ],
+      "source_url": "https://finance.yahoo.com",
+      "source_name": "Yahoo Finance",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://finance.yahoo.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://finance.yahoo.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqLQgKIidDQklTRndnTWFoTUtFV1pwYm1GdVkyVXVlV0ZvYjI4dVkyOXRLQUFQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEY1ZW5oc09XaDZkQklDWlc0b0FBUAE",
+          "topic_name": "Lauren Rosenthal"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZzWjNJMmNteHdOaElDWlc0b0FBUAE",
+          "topic_name": "John Ainger"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiWkFVX3lxTE44amExQmthMlhtb0hib0FzTVQ2ZHpWRHczcWhsQmViTTgybzBoLUY4bnNHWmtDdEVrREIxb3VNd3VkUWVLcThXYzAtR0dfV3oycTBzUkJiRldvZw",
+      "title": "'A World Cup for them not us': Fans' anger at US travel bans and visa restrictions",
+      "link": "https://www.bbc.com/news/articles/cx212p8r28eo",
+      "snippet": "Fans from more than a quarter of the countries taking part in the World Cup are facing travel bans, tighter restrictions or high visa rejection\u00a0...",
+      "photo_url": "https://ichef.bbci.co.uk/news/480/cpsprodpb/86ff/live/704cf5d0-602e-11f1-b682-cf91850925ea.jpg.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNUpNMHA2WXpZd2VqWndWVmR3VFJDT0FoamdBeWdLTWdZTkVhREhsQW8=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-07T07:00:00.000Z",
+      "authors": [
+        "Nadia Huraimi"
+      ],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ0ZG5ScWRqSmlNaElDWlc0b0FBUAE",
+          "topic_name": "Nadia Huraimi"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiqgFBVV95cUxOY0t0bGVpdVNKdkx3NHNldkI4TUJuVlNxNUd1bWU4VjBiamlkbmJadkptdmpSbGtiazJLVklxWWd2MmhCemN2QkJCM2Z3ckFublNBWUZfNVFGTnRseFdjNG9rdlNjYW4xMmdMMjBvaHR0X1F6YmJwYXBPd0xJOXhqdEJ3b1dvMG5ZTmI0bHpOQnlvdm9iQmg0WE5sQTNXVVlqckRQQVNPTEFtZw",
+      "title": "Beijing says US firms train AI models on Chinese examples",
+      "link": "https://www.channelnewsasia.com/east-asia/china-us-ai-artificial-intelligence-train-models-chinese-6280731",
+      "snippet": "Beijing accused US artificial intelligence companies on Monday (Jul 27) of using Chinese examples to train their models, days after Washington\u00a0...",
+      "photo_url": "https://dam.mediacorp.sg/image/upload/s--1ElmM4gr--/c_crop,h_1333,w_1666,x_166,y_1/fl_relative,g_south_east,l_mediacorp:cna:watermark:2023-11:afp_watermark_14112023,w_0.1/f_auto,q_auto/c_fill,g_center,h_598,w_747/v1/mediacorp/cna/image/2026/07/27/000_c2hy7t3.jpg?itok=yIwGMjTU",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVJTbU0zVTFCUVRVbFFZWEExVFJEdkF4anJCQ2dLTWdZQlVJWWp5QU0=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T12:15:00.000Z",
+      "authors": [],
+      "source_url": "https://www.channelnewsasia.com",
+      "source_name": "CNA",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.channelnewsasia.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.channelnewsasia.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqMAgKIipDQklTR1FnTWFoVUtFMk5vWVc1dVpXeHVaWGR6WVhOcFlTNWpiMjBvQUFQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMid0FVX3lxTFBTNzlRMWtFVUNTZ08zVDJTNWxJa2R1czBQR3RuX3VXSFpiUGdpQzM4NWdHSUhLV0YtUU56cnd6ekF2UjZzLWpNZWFoVHB6clN5MGFnTF9LQ2QwcE5FQXlTQmZkcHJzQWI2SWN3ekM4N0NUWjFrRG9v",
+      "title": "Saudi Arabia says it shot down Iranian drones targeting its oil facilities",
+      "link": "https://www.cbc.ca/news/world/us-iran-war-saudi-facilities-9.7285560",
+      "snippet": null,
+      "photo_url": "https://i.cbc.ca/ais/a205e07c-2707-4e47-84ad-5e13ec78d07b,1785158852515/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C158%2C5243%2C2949%29%3B",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iJ0NnNDVNR1pxVkVKcmRXOTBhWFZmVFJDZkF4ampCU2dLTWdNQmtBWQ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:20:56.000Z",
+      "authors": [],
+      "source_url": "https://www.cbc.ca",
+      "source_name": "CBC",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.cbc.ca&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.cbc.ca&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqHggKIhhDQklTREFnTWFnZ0tCbU5pWXk1allTZ0FQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMiXEFVX3lxTE40bDJtQzY0UWgteS1JRG5nRWEwbFBYRk9VX00wRGtJY3l4dnBuUlZqVEdyVE43ZXpFMU1qaGRIR1podmNtRmVLdUpDbjVNd3EyZVN1VTl6Y2RVOEJM",
+      "title": "Former US President Barack Obama to appear in Glasgow on UK tour",
+      "link": "https://www.bbc.co.uk/news/articles/c5yegn4nqvxo",
+      "snippet": "Former US President Barack Obama will appear on stage in Glasgow this year as part of a UK tour. Obama will visit the OVO Hydro venue on 14\u00a0...",
+      "photo_url": "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/6b9a/live/46289570-89a5-11f1-8a9d-b9e590fcf96d.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNUJhekZtY2t4V1Z6TTNaekpFVFJDZkF4ampCU2dLTWdhVktKQ0luZ2s=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T11:48:20.000Z",
+      "authors": [],
+      "source_url": "https://www.bbc.co.uk",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.bbc.co.uk&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.bbc.co.uk&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIggKIhxDQklTRHdnTWFnc0tDV0ppWXk1amJ5NTFheWdBUAE",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMiqAFBVV95cUxNaVVobm1DOEthQmRKWXo0RXQwR0JMMVlsTHhHUW9CaW9ZalYtdlJKekFhRzFFdVZpdERlZXdBMUVWMUo2QzJfaVhmVnUxV3NWeldScHJKaGR1UXRkUUlmRGlHQ3REWTN3QzR4WGItN1R1Y01OTW1FbTJWa3dUTGNkaDJNcExlMU9lSHR4eWNGNjVnMXNERXV0Q3YwOUhIdHZPa24wOUdMLTg",
+      "title": "WHO statement on notification of withdrawal of the United States",
+      "link": "https://www.who.int/news/item/24-01-2026-who-statement-on-notification-of-withdrawal-of-the-united-states",
+      "snippet": "WHO regrets the United States' notification of withdrawal from WHO \u2013 a decision that makes both the United States and the world less safe.",
+      "photo_url": "https://cdn.who.int/media/images/default-source/headquarters/teams/external-relations-governance-(ext)/department-of-communications-(dco)/digital-social-visual-(dsv)/who-logo-at-headquarters.tmb-1200v.jpg?sfvrsn=34ba81d2_6",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNWplRWxrVkVsQ01HSTBhVUZ2VFJERUF4aW1CU2dLTWdZaGRJcU5OUVk=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-01-24T08:00:00.000Z",
+      "authors": [],
+      "source_url": "https://www.who.int",
+      "source_name": "World Health Organization (WHO)",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.who.int&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.who.int&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCM2RvYnk1cGJuUW9BQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMitgFBVV95cUxNYkFrRzFpWFFhQ0FSQl9nYXVNa0lHYURaSDh1di1qZXN1S2dZdjJ2cWlIXzVVaVRRdnRGd1czMUhhYzl2UGE0MVJKSTlad3lUNm5kZklxMDJEQnBzZG9ybjV6b182OWlXdjFrRlhVcVdjOU42ekFuTjZBdURkLTFPM2JOdldKTUtsUGhvaG9hS1ZfOVRDT0xwMlBnSktSMjhEU3JwMzVtTU1wQnlNQTRGejlSSlFyQQ",
+      "title": "Brazil denies visas to US officials ahead of October election",
+      "link": "https://www.usatoday.com/story/news/world/2026/07/26/brazil-denies-visas-us-officials-october-election/91055996007/",
+      "snippet": "Two Trump administration officials were denied visas by Brazil ahead of a planned trip to the country, Ministry confirmed to USA TODAY on July\u00a0...",
+      "photo_url": "https://www.usatoday.com/gcdn/authoring/authoring-images/2026/07/26/USAT/91057903007-2281690969.jpg?crop=3271,1840,x499,y1172&width=660&height=371&format=pjpg&auto=webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iI0NnNWFNRk55VUhSdmNWbHFhREZoVFJDb0FSaXNBaWdCTWdB=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-26T22:20:28.000Z",
+      "authors": [
+        "James C. Powel"
+      ],
+      "source_url": "https://www.usatoday.com",
+      "source_name": "USA Today",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.usatoday.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.usatoday.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJggKIiBDQklTRWdnTWFnNEtESFZ6WVhSdlpHRjVMbU52YlNnQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZyY3pOek1IWjJaeElDWlc0b0FBUAE",
+          "topic_name": "James C. Powel"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMif0FVX3lxTFBaV1M5bVk2d1VybTlEY2JpMVJndWhrUE9PQkJpT1p2S0tJWEQ4bUxydjlPTE9vY1RoWkpHUjRldzlBdG5iRFNjOFpGYURGVWdxUmhKTk9ZMV9EUjE2eVZ5REFWNnpya2FWU19tRm04bEVRZHpvMHI2NUFVcjVxRWc",
+      "title": "U.S. Economic Confidence Improves in July",
+      "link": "https://news.gallup.com/poll/713018/economic-confidence-improves-july.aspx",
+      "snippet": "Gallup's Economic Confidence Index has risen to -31 in July, marking a modest improvement from its recent low of -45 in May.",
+      "photo_url": "https://imagekit.gallup.com/fusion/tr:n-emd_art_heroimg_md/POLL/7e3a22d1-65b8-428b-96d6-633cdfbacef6.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXdhblkyUWxZMVNEQTRlbEYwVFJEbUFoajZCQ2dLTWdhTmNZenVRQVU=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T12:18:39.000Z",
+      "authors": [
+        "Megan Brenan"
+      ],
+      "source_url": "https://news.gallup.com",
+      "source_name": "Gallup News",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://news.gallup.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://news.gallup.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": null,
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ4Ym5CeWFuQjBNeElDWlc0b0FBUAE",
+          "topic_name": "Megan Brenan"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiWkFVX3lxTE8ybTVGSGFFNDViQ0xneU5KekpqM3NmT1Y0OUJoRDNYeVVTZTZTbm9hbVhUNGZDQXhPYTRva01wQW9RaklkMU8zY1JpMmpEeHMzbmtVQjM3YzJkdw",
+      "title": "Trump threatens new Canada tariffs over wildfire smoke in US cities",
+      "link": "https://www.bbc.com/news/articles/cwyq93j34lgo",
+      "snippet": "Trump threatens new Canada tariffs over fires sending 'filthy' air into US cities \u00b7 Canada fires prompt US air quality alerts as smoke blankets\u00a0...",
+      "photo_url": "https://ichef.bbci.co.uk/news/480/cpsprodpb/d4ba/live/025cb000-821c-11f1-b966-41edf3b346b4.jpg.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNU9URlZJUXpaeFMyd3RRVkF4VFJDb0FSaXNBaWdCTWdheDFJQ3Z4UU0=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-18T07:00:00.000Z",
+      "authors": [
+        "Nadine Yousif"
+      ],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtTUY4NE9XUnhiUklDWlc0b0FBUAE",
+          "topic_name": "Nadine Yousif"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMinwFBVV95cUxNQXlDMHpMczFma2paOVJQMzZuZzVNVFZLeS04V0VXUk1zUFBSTGRaelYzaU1fQlg0azEwQ1dQQ2lfV2VmOFBMZ0ZGa0tjSWJGUWVFdDhhUTdCbmpKMy1QRHVOdE5YRnliNmJfVkRKU09zdVhYSm1hQW94MDlUbEp1OXB0ZjIzZlFtYUdZZHBQb2pHT1V5bjZtbVE0QVN3cTg",
+      "title": "US attacks Iran as Tehran fires at tankers in strait",
+      "link": "https://apnews.com/article/iran-us-hormuz-strait-war-july-13-2026-6c2c44cfdd089d6393d18fa5930ed620",
+      "snippet": "US attacks Iran and Tehran retaliates across the Middle East as both vie for control of strait. The U.S. launched strikes on Iran early Tuesday\u00a0...",
+      "photo_url": "https://dims.apnews.com/dims4/default/3d1d532/2147483647/strip/false/crop/6000x4000+0+0/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fd3%2F75%2Ff03a4bcffb8fd77a6a549133ce6d%2Fec48a42f3f85489ab27a8b28a0f15d66",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVBOelZHVlVabFQwVm1TVFZyVFJERUF4aW1CU2dLTWdhcEFZY3UwUU0=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-13T07:00:00.000Z",
+      "authors": [
+        "Jon Gambrell",
+        "Will Weissert",
+        "Josh Boak"
+      ],
+      "source_url": "https://apnews.com",
+      "source_name": "AP News",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://apnews.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://apnews.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJAgKIh5DQklTRUFnTWFnd0tDbUZ3Ym1WM2N5NWpiMjBvQUFQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtTUY4MGJqZ3liaElDWlc0b0FBUAE",
+          "topic_name": "Jon Gambrell"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuZUhCMlkzZHNlQklDWlc0b0FBUAE",
+          "topic_name": "Will Weissert"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ4Ym1Nd2QydGlkQklDWlc0b0FBUAE",
+          "topic_name": "Josh Boak"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiigFBVV95cUxNWl9hamk0aFlFWmFPRlg4MUtWZmdBTVhsanNIdkkwRXVEdHlQZ0dETzhlQngxb0JlWnNPcTdtTC1pWXFYaEN5b0E2aHE5UXpaVmxCVjJQUVlsdmlJcHlBTmF0QnhZcUxKakhHZ0psUnhhWjBPc1JFdVlERkdnYmVQZmJDX3BJN09BeWc",
+      "title": "How Marco Rubio Is Running Venezuela From Afar",
+      "link": "https://www.nytimes.com/2026/07/11/us/politics/how-marco-rubio-runs-venezuela.html",
+      "snippet": "The secretary of state effectively controls Venezuela's finances, the distribution of its natural resources and its government. Mr. Rubio has\u00a0...",
+      "photo_url": "https://static01.nyt.com/images/2026/07/06/multimedia/00dc-rubio-vz-top-01-jgbl/00dc-rubio-vz-top-01-jgbl-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVFVbTk0U1Rac1NteG1VWGhvVFJEckJCanZBeWdLTWdZSlJJeU5vUWc=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-13T07:00:00.000Z",
+      "authors": [
+        "Tyler Pager",
+        "Anatoly Kurmanaev"
+      ],
+      "source_url": "https://www.nytimes.com",
+      "source_name": "The New York Times",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.nytimes.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.nytimes.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJQgKIh9DQklTRVFnTWFnMEtDMjU1ZEdsdFpYTXVZMjl0S0FBUAE",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ0ZG5RMmNuaDNjQklDWlc0b0FBUAE",
+          "topic_name": "Tyler Pager"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ0ZG5Sb00zRm5iaElDWlc0b0FBUAE",
+          "topic_name": "Anatoly Kurmanaev"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMimgFBVV95cUxNZlFuSm5IRTh2SnM5YUgzeDZmbTZ0eElyeWFubUNvbHp6VXVhclBvQnZlcE1GODJ1bk9Sd3N0SGFqVERRaVFMWTBNS3JSenl0TmNveUd5bml5alY2bUdEUWlEUm1nTTNXNUMwT2tJbDlYVFp2MVozVGh6Tk43aHFRckxiQndZNmhJWmE0eHhZZWgtMzdtRlE1OGx3",
+      "title": "What is the United States of America now? | Rebecca Solnit",
+      "link": "https://www.theguardian.com/commentisfree/2026/jul/01/what-is-the-united-states-of-america-now",
+      "snippet": "The United States of America is a truck that has driven into a ditch. The United States of America is a program that has been hacked.",
+      "photo_url": "https://i.guim.co.uk/img/media/da44759e4ae796e96789f5ecd015676253775519/2_0_5861_4687/master/5861.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVlhWGxIZERSYWRVUXRVbEZGVFJEMEFoalJBeWdLTWdZQlFvek5IUWs=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-02T07:00:00.000Z",
+      "authors": [
+        "Rebecca Solnit"
+      ],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqJAgKIh5DQkFTRUFvS0wyMHZNREoyY1RkcU9SSUNaVzRvQUFQAQ",
+          "topic_name": "Rebecca Solnit"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMioAFBVV95cUxNTzFoN3IwZ0h4Nm9XU3ZQODdjRkYzNnZiaFNKa1JQUnl6MVV4ODh2emZHRlpwLXZGOVRPY2RjTUxlOU9DUkhnSTdHTXg5NlEzaUZZY0N5MTQzd3RNVDhtWjJrRWFDZWNJd0J3R1JBZzN2U090RnRSQ2ZsWGlnTGhlR0FScjRFcUtVbEtwaG9ESzNNVU81VGYyb3VzX0Z2OGhG",
+      "title": "Annotated full transcript of Trump\u2019s speech claiming US election vulnerabilities",
+      "link": "https://www.cnn.com/interactive/2026/07/politics/annotated-transcript-trump-speech-us-election-vis/",
+      "snippet": "President Donald Trump tried to convince Americans in a primetime address Thursday night that their elections are vulnerable to fraud and need\u00a0...",
+      "photo_url": "https://media.cnn.com/api/v1/images/stellar/prod/20260716-trump-address-annotated-final.jpg?c=6x9&q=w_1920",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNWxhemR1TFhkMmFrTTFjV042VFJDZkF4ampCU2dLTWdhaFJvb3JvZ2c=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-17T07:00:00.000Z",
+      "authors": [
+        "Zach Wolf",
+        "Annette Choi"
+      ],
+      "source_url": "https://www.cnn.com",
+      "source_name": "CNN",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.cnn.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.cnn.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMk51Ymk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqJAgKIh5DQkFTRUFvS0wyMHZNSG81ZVhZNWVCSUNaVzRvQUFQAQ",
+          "topic_name": "Zach Wolf"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtTVRCb2FtUXlheElDWlc0b0FBUAE",
+          "topic_name": "Annette Choi"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMifkFVX3lxTE8xN1hwVHFXVDhmelR3ZEpDdEpLblVhaUhtblF6MExfM2k4cFliLU1qbHlTamNuV2hSOWU3dk12aWcwSHJhcmNaS05XNFUyMFRYa0VvTEFkMXcyLWllU1FtWW9JbnJCREladTU4LXpFNEZXT2xyTE9YeV9iTDZLZ9IBgwFBVV95cUxQamFNRHJMaVhuN1dQMDlheUpKLXM3SmtlVkNtMElSVjFydnZERzVWN0NvMmhZdGlRM2U2UXY0UFZuLUhxdU5lY1h1dWdFSG1YVEtENFRPNjY0YjZTVnFjV1hmc0NacFZPZ0E5VV9ZRGp0RVVLcHRFQUJkbnR1WHNQVUZlRQ",
+      "title": "These are America\u2019s 10 worst states to live in for 2026",
+      "link": "https://www.cnbc.com/2026/07/11/worst-states-to-live-in-america-2026.html",
+      "snippet": "Crime rates, air quality, healthcare access, worker protections, and civil rights laws are among factors that can hurt a state in quality of\u00a0...",
+      "photo_url": "https://image.cnbcfm.com/api/v1/image/108323135-1781701386079-gettyimages-1448547403-_sol9018e.jpeg?v=1781701416&w=1600&h=900",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNTJkMGxVVWxKak4xcE9ZbVZ4VFJDZkF4ampCU2dLTWdtQkFvVElNV1RCQ0FJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-11T07:00:00.000Z",
+      "authors": [
+        "Scott Cohn"
+      ],
+      "source_url": "https://www.cnbc.com",
+      "source_name": "CNBC",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.cnbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.cnbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIQgKIhtDQklTRGdnTWFnb0tDR051WW1NdVkyOXRLQUFQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZvWWpGc05HdGZkeElDWlc0b0FBUAE",
+          "topic_name": "Scott Cohn"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMimgFBVV95cUxNQmZnOENNRXdELTloYWdZVG84OGRxcnFydXg5S1RNYWYyeTVkZGQ3XzkwV0hJdXRDNzBrSEp2ZUw2UkU5LVJkcWtyc0FXOHZkM1cwanhvaUFFM3g2WjJ6bkdHZmJVbE8zNGFneWF4VzM5VFdWcGNmUWo4VnljNktvSWJ3eE9XaThVZVVPM2NlQlhoUVh4T2E0cnJB",
+      "title": "US and Iran exchange intensifying fire across Mideast, threatening ceasefire deal",
+      "link": "https://apnews.com/article/iran-us-israel-war-oil-july-9-2026-0472764b119d7aa204de4f7f5e44a9bf",
+      "snippet": "The U.S. military said Thursday it had ended its latest round of airstrikes targeting Iran after hitting some 90 targets.",
+      "photo_url": "https://dims.apnews.com/dims4/default/039eb3a/2147483647/strip/true/crop/6000x3998+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fb2%2Fc4%2F19bf3ddbcbc2a07f5ac15cf2710b%2F8d977835bd8046d0b0703cdeeca35d5c",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNVNVbGxuYWtONFkwOVZWbmhuVFJERUF4aW1CU2dLTWdZQmdJeTJ2QVk=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-10T07:00:00.000Z",
+      "authors": [
+        "Jon Gambrell"
+      ],
+      "source_url": "https://apnews.com",
+      "source_name": "AP News",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://apnews.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://apnews.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJAgKIh5DQklTRUFnTWFnd0tDbUZ3Ym1WM2N5NWpiMjBvQUFQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZtTUY4MGJqZ3liaElDWlc0b0FBUAE",
+          "topic_name": "Jon Gambrell"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiaEFVX3lxTE9obm9YZVdyb285Wnpaems1MzB2RnZYbGcwaTUwbmpvUFU0cWNGdnEyQkFRblNZcnpwMmxiRnNGeXVKTUx2TnVZeHdkR1ZJT0xUT3Q5Y19DdlV1VnhqbUJDYkJNOVpobXQ10gFuQVVfeXFMTW5pSmJNYXJ0U1VCaE1XWHNFZG9zb1IxclcyMkdNWUtJSFpKeWQ0ODlpWkdKTjFxWjRBWF9Zd3c1QUFCbkRQc09SOVdKd19vcENFTGlNVkV0eDQtSVU1WTJNVXVqb243VG9wZFZzbkE",
+      "title": "Trump administration to take 10% stake in USA Rare Earth in $1.6 billion deal, sources say",
+      "link": "https://www.cnbc.com/2026/01/24/us-rare-earths-miner.html",
+      "snippet": "The Trump administration is taking a 10% stake in USA Rare Earth as part of a $1.6 billion debt-and-equity investment package",
+      "photo_url": "https://image.cnbcfm.com/api/v1/image/108244283-1766166128397-gettyimages-2220669778-MAGNETS.jpeg?v=1770401529&w=1600&h=900",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNHRRbVpCVFdJdFMxSm9ha0YwVFJDZkF4ampCU2dLTWdZQklwQVNJUWc=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-01-24T08:00:00.000Z",
+      "authors": [],
+      "source_url": "https://www.cnbc.com",
+      "source_name": "CNBC",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.cnbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.cnbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIQgKIhtDQklTRGdnTWFnb0tDR051WW1NdVkyOXRLQUFQAQ",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMihAFBVV95cUxQWVU3OHZ0Skw5b1lleHZ5dkgzT2ttUjh3VkZWd2pGR3VJdEF0ZmNDTnlGSnp4XzhRQVBlSmtYMUNIZy0xa1pja1ppWTg2d1lxVmNLRHZJaXpCVDN5ZUFQeWY2RjRQbXBVLUw3c2pFRlV4VDEzRnlPQ0I3VE02OWIxUXVKTi0",
+      "title": "US Park Police under Trump embrace high-speed chases. Two people have died",
+      "link": "https://www.cnn.com/2026/07/27/politics/us-park-police-trump-high-speed-chases",
+      "snippet": "Park Police have initiated more than 400 chases \u2014 an eight\u2010fold surge from 49 chases in the year before the policy changed, according to the\u00a0...",
+      "photo_url": "https://media.cnn.com/api/v1/images/stellar/prod/01-2026-06-25t032223z-1101897536-rc2j0mao0ogq-rtrmadp-3-usa-trump-security-washingtondc.jpg?c=original&q=w_1041,c_fill",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNUlaRVp2YTB3eFJucExSVVp3VFJERUF4aW1CU2dLTWdrQlVwQnNLU2ZZYUFJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T10:00:25.000Z",
+      "authors": [
+        "Aleena Fayaz"
+      ],
+      "source_url": "https://www.cnn.com",
+      "source_name": "CNN",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.cnn.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.cnn.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMk51Ymk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ4TVd0amJHcHJOUklDWlc0b0FBUAE",
+          "topic_name": "Aleena Fayaz"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiWkFVX3lxTE5UczJkcGFDVG1nTnQ4dUhhMjlidjhqMllTTUIwQ1FCVnFTWGVLdmpvMmVrcHdkdHA5aWVFeDdueUxFaHBkQXI3dGpXSFhvYlRQWmFHMXRNZ0FnZw",
+      "title": "Iran says staff blocked from entering US after players given World Cup visas",
+      "link": "https://www.bbc.com/news/articles/cy8286nqz87o",
+      "snippet": "Iranian officials say technical staff have been denied visas, hours after the US said players could enter the country.",
+      "photo_url": "https://ichef.bbci.co.uk/news/480/cpsprodpb/de59/live/4501e9e0-614f-11f1-89a3-d1f559421220.jpg.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNHhhM2QzV1ZaT1lVcFdRMUpLVFJDTkFoamdBeWdLTWdtRkVacW1HaXM5cUFJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-06T07:00:00.000Z",
+      "authors": [
+        "Sean Edward Seddon"
+      ],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZuWW1oMGJURnhNaElDWlc0b0FBUAE",
+          "topic_name": "Sean Edward Seddon"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMikgFBVV95cUxOd2FLbExRcUwzLVpNZmVpbGdLVUttNC1uaDFnUmxZS2lleVNqZlI2WDdTOGVvSFc4M0w2dzh4RVdyRlNQWUNnVXRqZWw1WjJDUWdfWmN6TU9XbkNRYVhTX0kzem83cHprdmc4bVRWQThSZDJ3TUVQaE5raDJwMzFMM2FJOTlNQy13UlZPTEJjWVhKdw",
+      "title": "Trump orders new round of strikes to \"hold Iranian forces accountable,\" CENTCOM says as two sides exchange threats",
+      "link": "https://www.cbsnews.com/live-updates/us-iran-war-trump-ceasefire-talks-strait-of-hormuz/",
+      "snippet": "U.S. forces on Sunday conducted another round of strikes on Iran, following another strike Saturday in retaliation for an Iranian attack on a\u00a0...",
+      "photo_url": "https://assets3.cbsnewsstatic.com/hub/i/r/2026/07/12/fe1fd49c-7205-44b0-8abb-1fd700d58682/thumbnail/640x360/78f5722126b996df096c4fbcd1387f69/screenshot-2026-07-12-at-06-03-12.png",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNXhkV1ZGZVVOSFMybHVkVVV6VFJEb0FoaUFCU2dLTWdhQllaU0NMUWc=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-13T07:00:00.000Z",
+      "authors": [
+        "Tucker Reals",
+        "Faris Tanyos",
+        "Mark Osborne"
+      ],
+      "source_url": "https://www.cbsnews.com",
+      "source_name": "CBS News",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.cbsnews.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.cbsnews.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqJQgKIh9DQklTRVFnTWFnMEtDMk5pYzI1bGQzTXVZMjl0S0FBUAE",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZzWkRSblgzWjViUklDWlc0b0FBUAE",
+          "topic_name": "Tucker Reals"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEY1TlhJM2JHWnliQklDWlc0b0FBUAE",
+          "topic_name": "Faris Tanyos"
+        },
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ3ZVdOa1gzRTFOaElDWlc0b0FBUAE",
+          "topic_name": "Mark Osborne"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMie0FVX3lxTE1sUVlDVTE4RWhxZm9adDRBMjFFZGN0TGZFUlNUT0dZdGNoR0MzYVNjdG4ybTF6Y0d3N1JBUm5rNVVwZ3ZfQXgxVVNLWWZ6Y2hLb21PRkg2WjNIYUQwQ0VvRGFmdDRtSy13ZG1PcjR2Sjd0VHRHMnBlVVlzdw",
+      "title": "Trump\u2019s deportation crackdown accelerated by potent court tool",
+      "link": "https://www.theguardian.com/us-news/2026/jul/27/trump-immigration-cases",
+      "snippet": "More than 100,000 immigration cases were closed in June alone, driven first and foremost by courts across the US issuing orders to deport.",
+      "photo_url": "https://i.guim.co.uk/img/media/4cd1af283b39ad6363e063ef2ac70424b589a9d4/500_0_5000_4000/master/5000.jpg?width=465&dpr=1&s=none&crop=none",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iL0NnNWhhSGxIVFhobFVtUTJkVTVHVFJEMEFoalJBeWdLTWdraEFZclZqQ05kaEFJ=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T13:05:00.000Z",
+      "authors": [
+        "Alexandra Villarreal"
+      ],
+      "source_url": "https://www.theguardian.com",
+      "source_name": "The Guardian",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.theguardian.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKggKIiRDQklTRlFnTWFoRUtEM1JvWldkMVlYSmthV0Z1TG1OdmJTZ0FQAQ",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZxY0RabWNIcDRiQklDWlc0b0FBUAE",
+          "topic_name": "Alexandra Villarreal"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMikgFBVV95cUxNR1NqNTltVkhhVzNqVzRpd0dPczZWc0NoeUlZcERYY1JFa09FT1l5MERwdE1PNW5GMEp3WjMtZERmSFlLQl9pOU1wbmVYSzFmWkl3ZS12aGlwY1pScFRpcnd2V0ZqWUNMYTcwWUdFVjVkRVAzU2dSUFViMDVJRFFxLVloMzNJTTduNWdYbElqYlVrdw",
+      "title": "10 Strangest Landmarks in The United States",
+      "link": "https://www.worldatlas.com/places/10-strangest-landmarks-in-the-united-states-58546.html",
+      "snippet": "These ten strange landmarks in the United States offer a uniquely strange experience, from a car-made replica of Stonehenge to a massive\u00a0...",
+      "photo_url": "https://www.worldatlas.com/upload/13/7c/30/904/shutterstock-648221659.jpg",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iJ0NnNHpVR3BoVEVaVVJqRktjVWhwVFJERUF4aW1CU2dLTWdNbFlnNA=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-26T22:30:00.000Z",
+      "authors": [
+        "Joshua Chiedu"
+      ],
+      "source_url": "https://www.worldatlas.com",
+      "source_name": "WorldAtlas",
+      "source_logo_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.worldatlas.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn0.gstatic.com/faviconV2?url=https://www.worldatlas.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKQgKIiNDQklTRkFnTWFoQUtEbmR2Y214a1lYUnNZWE11WTI5dEtBQVAB",
+      "related_topics": [
+        {
+          "topic_id": "CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZ6YlhReGNtMDNaaElDWlc0b0FBUAE",
+          "topic_name": "Joshua Chiedu"
+        }
+      ]
+    },
+    {
+      "article_id": "CBMiWkFVX3lxTE9kcHJ2M1lvRzZMQVhoT216aTFBVjNXQ1EyUkEzaWtnWWE4YTczb05vRWRhQXR1dFlZUHFaZkF0UXZWalVZQjNMZVJmZE9WcllOQUhjUy1MbmhTZw",
+      "title": "Trump says 'I love the inflation' as US prices rise at fastest rate in three years",
+      "link": "https://www.bbc.com/news/articles/c0myzxjkw99o",
+      "snippet": "Trump has said \"I love the inflation\" US prices rose last month at their fastest rate for three years. prices had gone up by 4.2% over the\u00a0...",
+      "photo_url": "https://ichef.bbci.co.uk/news/480/cpsprodpb/0c69/live/f9097760-64c8-11f1-8f51-b550443b533b.jpg.webp",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iMkNnNUpPRWRGUjI5WFRFbEdZMFJDVFJDT0FoamdBeWdLTWdzSkVJUlIyYUdoVUltSndB=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-06-11T07:00:00.000Z",
+      "authors": [],
+      "source_url": "https://www.bbc.com",
+      "source_name": "BBC",
+      "source_logo_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://www.bbc.com&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqIAgKIhpDQklTRFFnTWFna0tCMkppWXk1amIyMG9BQVAB",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMitAFBVV95cUxOcXZ1VENSdkIzUWIxY1BWcFQ4RkZwTS1nUHNmQVJCc19pVjZWV3U4OTBJb2drQTAwSlZuRnBEeXBXaXQtMUtJYVJ3anRBWlBvamt0SGxfLWhQMUozMEtTLVZYRU1DQTl3RW42T1J5ZHpIMUMwNTg3bnRhcUtBb2JYVXd3Z2RBWUJmaXpPb21wNVJQc2QxQUxwRm1rYWFKczk4ZVdZRXhBZ2wzTDJXUS13dDhwc1M",
+      "title": "\u201cThe timing is right to re-enter Canada with a brand message\u201d: Brand USA",
+      "link": "https://www.travelweek.ca/news/destinations/the-timing-is-right-to-re-enter-canada-with-a-brand-message-brand-usa/",
+      "snippet": null,
+      "photo_url": "https://www.travelweek.ca/wp-content/uploads/2026/07/brand-usa-830x526.png",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iMkNnNVdSSGRTYVhKWU16Rk5TV3huVFJDNUF4aTRCU2dLTWdzQkFJUklIQ1JxSXdzNllR=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T15:42:40.000Z",
+      "authors": [],
+      "source_url": "https://www.travelweek.ca",
+      "source_name": "Travelweek",
+      "source_logo_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.travelweek.ca&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn1.gstatic.com/faviconV2?url=https://www.travelweek.ca&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqKAgKIiJDQklTRXdnTWFnOEtEWFJ5WVhabGJIZGxaV3N1WTJFb0FBUAE",
+      "related_topics": []
+    },
+    {
+      "article_id": "CBMinAFBVV95cUxQcW1jMEZyYnRCU0IyZDJUZ294dWViTHRJM3kyWGJHTmtmbEtTVDVKYkY5cGZZQXh3RExxM1hvS2pJckJzaExHZG1oT3M4OXdrekRGU3FZRHhvZ1N6UldoR2FhbUVqemZWdXNrRGxNYTlRc0lRVUpxdEViWmVJRS1HN3hvWDI0V1djVUFyLV9CWGxZc2lWaHNnVVNrbjU",
+      "title": "Major food poisoning outbreak sweeps across 9 US states",
+      "link": "https://www.foodmanufacture.co.uk/Article/2026/07/27/major-outbreak-of-food-poisoning-grips-usa/",
+      "snippet": null,
+      "photo_url": "https://www.foodmanufacture.co.uk/resizer/v2/ZL72XSDSIBB6RKPO6RZPSC3RQM.jpg?auth=43b1bc14ad60792be50a0d9978e54c45469df960c95dde9fbc29b0729cc22332&width=1200&height=630&smart=true",
+      "thumbnail_url": "https://news.google.com/api/attachments/CC8iK0NnNWFhREI2U1RVeWVIQkVWblIxVFJDUkF4ajhCU2dLTWdZNVFvcnpMQVU=-w200-h200-p-df-rw",
+      "published_datetime_utc": "2026-07-27T14:50:24.000Z",
+      "authors": [],
+      "source_url": "https://www.foodmanufacture.co.uk",
+      "source_name": "Food Manufacture",
+      "source_logo_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.foodmanufacture.co.uk&client=NEWS_360&size=256&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_favicon_url": "https://encrypted-tbn3.gstatic.com/faviconV2?url=https://www.foodmanufacture.co.uk&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+      "source_publication_id": "CAAqMggKIixDQklTR3dnTWFoY0tGV1p2YjJSdFlXNTFabUZqZEhWeVpTNWpieTUxYXlnQVAB",
+      "related_topics": []
+    }
+  ]
+}

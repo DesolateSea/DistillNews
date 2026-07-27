@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import date
-from db import FileStore
+from service.db import FileStore
 
 # Resolve base directory
 BASE_DIR = Path(__file__).resolve().parent

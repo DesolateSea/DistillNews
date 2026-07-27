@@ -1,6 +1,1 @@
-"""
-Pipeline Terminal User Interface (TUI) package.
-"""
-from .app import main
-
-__all__ = ["main"]
+# TUI — Textual-based terminal dashboard for DistillNews

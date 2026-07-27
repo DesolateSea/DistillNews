@@ -22,14 +22,21 @@ def run_extract(args):
     print("✅ Extraction complete.")
 
 def run_generate(args):
-    from pipeline.generate import run_pipeline
+    from pipeline.generate import generate_articles
     print("🚀 Starting full news pipeline generation...")
-    run_pipeline()
+    generate_articles()
     print("✅ Pipeline generation complete.")
 
+def run_embed(args):
+    from pipeline.embed import generate_embeddings
+    print("🚀 Starting article embedding stage...")
+    generate_embeddings()
+    print("✅ Embedding stage complete.")
+
 def run_tui(args):
-    from pipeline.tui.app import main as tui_main
-    tui_main()
+    from pipeline.tui.app import DistillNewsApp
+    app = DistillNewsApp()
+    app.run()
 
 def main():
     parser = argparse.ArgumentParser(
@@ -49,6 +56,10 @@ def main():
     # Generate command
     gen_parser = subparsers.add_parser("generate", help="Run full pipeline: scraper -> extractor -> generator")
     gen_parser.set_defaults(func=run_generate)
+
+    # Embed command
+    embed_parser = subparsers.add_parser("embed", help="Generate vector embeddings for processed articles")
+    embed_parser.set_defaults(func=run_embed)
 
     # TUI command
     tui_parser = subparsers.add_parser("tui", help="Launch the interactive Terminal User Interface (TUI)")

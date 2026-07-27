@@ -38,6 +38,7 @@ def _load_and_upload_articles():
                         "location": data.get("location", ""),
                         "category": data.get("category", ""),
                         "publication_date": data.get("publication_date", ""),
+                        "embedding": data.get("embedding", []),
                     },
                 )
             )
@@ -56,6 +57,7 @@ def _load_and_upload_articles():
 
 def get_chatbot_response(query, user_id="debug", reading=None, prompt="chatbot.yaml"):
     """Delegate a query to the chatbot service."""
+    ensure_articles_uploaded()
     return chatbot.get_response(
         query=query,
         user_id=user_id,

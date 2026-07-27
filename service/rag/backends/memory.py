@@ -22,28 +22,31 @@ class InMemoryVectorStore(DocumentStore):
         self._indexed_docs: list[dict] = []
 
     def upload(self, documents: list[Document]) -> None:
-        """Generate vectors and retain documents in this process."""
+        """Retain documents and reuse pre-computed vectors or generate new ones."""
         if not documents:
             return
 
         if log:
-            log.info(f"Vector store: Embedding {len(documents)} documents")
+            log.info(f"Vector store: Indexing {len(documents)} documents")
 
-        texts = [f"{document.title}\n{document.content}" for document in documents]
-        try:
-            embeddings = self._embedder.embed_many(texts)
-            if len(embeddings) != len(documents):
-                raise RuntimeError(
-                    "Embedding provider returned a different number of vectors than inputs."
-                )
-        except Exception as error:
-            if log:
-                log.error("Document embedding failed", str(error))
-            return
+        docs_to_embed = []
+        for document in documents:
+            pre_emb = document.metadata.get("embedding") if document.metadata else None
+            if pre_emb and isinstance(pre_emb, list) and len(pre_emb) > 0:
+                self._indexed_docs.append({"doc": document, "embedding": pre_emb})
+            else:
+                docs_to_embed.append(document)
 
-        for document, embedding in zip(documents, embeddings):
-            if embedding:
-                self._indexed_docs.append({"doc": document, "embedding": embedding})
+        if docs_to_embed and self._embedder:
+            texts = [f"{document.title}\n{document.content}" for document in docs_to_embed]
+            try:
+                embeddings = self._embedder.embed_many(texts)
+                for document, embedding in zip(docs_to_embed, embeddings):
+                    if embedding:
+                        self._indexed_docs.append({"doc": document, "embedding": embedding})
+            except Exception as error:
+                if log:
+                    log.error("Document embedding failed", str(error))
 
         if log:
             log.success(f"Vector store: Indexed {len(self._indexed_docs)} documents total")
