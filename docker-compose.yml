@@ -21,6 +21,17 @@ services:
       timeout: 5s
       retries: 5
 
+  embedding-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.embedding
+    image: distillnews-embedding:latest
+    ports:
+      - "8001:8001"
+    environment:
+      EMBEDDING_MODEL_NAME: sentence-transformers/all-MiniLM-L6-v2
+    restart: unless-stopped
+
   backend:
     build:
       context: .
@@ -39,11 +50,14 @@ services:
       EMAIL: ${EMAIL}
       PASS: ${PASS}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      EMBEDDING_SERVICE_URL: http://embedding-service:8001
     depends_on:
       mongo:
         condition: service_healthy
       redis:
         condition: service_healthy
+      embedding-service:
+        condition: service_started
     restart: unless-stopped
 
   frontend:
@@ -59,4 +73,3 @@ services:
       backend:
         condition: service_healthy
     restart: unless-stopped
-

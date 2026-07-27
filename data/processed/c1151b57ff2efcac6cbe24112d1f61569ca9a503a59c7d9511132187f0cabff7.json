@@ -1,0 +1,44 @@
+{
+  "title": "This 350-million-year-old meteorite crater stayed hidden for ages in Canada\u2014until Google maps...",
+  "publication_date": "2026-07-27T05:27:18Z",
+  "summary": "The linked article is inaccessible: the page returns an Access Denied response with an EdgeSuite reference token and repeated error URLs. No substantive reporting is retrievable from the provided content, only error identifiers and a notice that author and publication date are unknown.",
+  "content": "Access Denied\\n\\nReference #18.a4014017.1785184508.db42d8a3https://errors.edgesuite.net/18.a4014017.1785184508.db42d8a3\\n\\nhttps://errors.edgesuite.net/18.a4014017.1785184508.db42d8a3\\n\\nAccess Denied\\nAuthor: Unknown Author\\nPublication_date: Unknown\\n\\nNote: The original article titled \"This 350-million-year-old meteorite crater stayed hidden for ages in Canada\u2014until Google maps...\" could not be retrieved. The server returned an access-denied response that contains only reference tokens and EdgeSuite error links. No article body, images, or reporting details were available in the provided content.",
+  "category": "Science",
+  "tags": [
+    "meteorite",
+    "crater",
+    "Canada",
+    "Google Maps",
+    "geology",
+    "satellite imagery",
+    "access denied",
+    "edgesuite",
+    "error"
+  ],
+  "location": "Canada",
+  "source": {
+    "title": "This 350-million-year-old meteorite crater stayed hidden for ages in Canada\u2014until Google maps...",
+    "publication_date": 1785130038,
+    "content": [
+      {
+        "title": "Access Denied",
+        "publication_date": "Unknown",
+        "content": "Reference #18.a4014017.1785184508.db42d8a3https://errors.edgesuite.net/18.a4014017.1785184508.db42d8a3\n\nhttps://errors.edgesuite.net/18.a4014017.1785184508.db42d8a3"
+      },
+      {
+        "title": "Access Denied",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "Moneycontrol.com",
+    "image_url": "https://images.moneycontrol.com/static-mcnews/2026/07/20260727050744_Meteor-Canada.jpg?impolicy=website&width=1600&height=900",
+    "url": "https://www.moneycontrol.com/science/this-350-million-year-old-meteorite-crater-stayed-hidden-for-ages-in-canada-until-google-maps-exposed-it-article-13984247.html"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Access Denied\\n\\n> Access Denied\\n\\n## Reference\\n\\n- Reference: #18.a4014017.1785184508.db42d8a3\\n- URLs:\\n  - https://errors.edgesuite.net/18.a4014017.1785184508.db42d8a3\\n  - https://errors.edgesuite.net/18.a4014017.1785184508.db42d8a3\\n\\n> Access Denied\\n\\n## Author and Publication\\n\\n- Author: Unknown Author\\n- Publication date: Unknown\\n\\n## Note\\n\\nThe original article titled \u201cThis 350-million-year-old meteorite crater stayed hidden for ages in Canada\u2014until Google maps...\u201d could not be retrieved. The server returned an access-denied response that contains only reference tokens and EdgeSuite error links. No article body, images, or reporting details were available in the provided content.",
+  "created_at": "2026-07-27T20:37:02.448479+00:00"
+}

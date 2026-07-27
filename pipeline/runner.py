@@ -121,25 +121,18 @@ class PipelineRunner:
 
     def run_fetch(self, sources: list[str] | None = None):
         sources_to_run = sources if sources else list(SOURCE_REGISTRY.keys())
+        active_sources = [s for s in sources_to_run if config.is_source_enabled(s) and s in SOURCE_REGISTRY]
+
         self._emit(StageStarted(stage="fetch", total=len(sources_to_run)))
         
-        current = 0
         from service.db import FileStore
+        from concurrent.futures import ThreadPoolExecutor, as_completed
         run_timestamp = FileStore.get_iso_timestamp()
-        
-        for source_name in sources_to_run:
+
+        def _fetch_single_source(source_name: str):
             if self._is_stopped():
-                break
-            if not config.is_source_enabled(source_name):
-                self._emit(LogEvent(badge="skip", message=f"Skipping {source_name}", detail="Source disabled"))
-                continue
-            
-            if source_name not in SOURCE_REGISTRY:
-                self._emit(LogEvent(badge="fail", message=f"Unknown source: {source_name}"))
-                continue
-            
+                raise PipelineCancelled("Pipeline cancelled")
             self._emit(LogEvent(badge="fetch", message=f"Starting fetch for {source_name}"))
-            
             try:
                 mod_name, func_name = SOURCE_REGISTRY[source_name]
                 if mod_name == __name__:
@@ -151,14 +144,21 @@ class PipelineRunner:
                     func(run_timestamp=run_timestamp)
                 except TypeError:
                     func()
-            except PipelineCancelled:
-                break
+                return (source_name, True, None)
             except Exception as e:
-                self._emit(LogEvent(badge="fail", message=f"Fetch failed for {source_name}", detail=str(e)))
-                
-            current += 1
-            self._emit(StageProgress(stage="fetch", current=current, total=len(sources_to_run), detail=source_name))
-            
+                return (source_name, False, str(e))
+
+        current = 0
+        if active_sources:
+            with ThreadPoolExecutor(max_workers=min(len(active_sources), 5)) as executor:
+                futures = {executor.submit(_fetch_single_source, s): s for s in active_sources}
+                for future in as_completed(futures):
+                    current += 1
+                    s_name, success, err = future.result()
+                    if not success and err:
+                        self._emit(LogEvent(badge="fail", message=f"Fetch failed for {s_name}", detail=err))
+                    self._emit(StageProgress(stage="fetch", current=current, total=len(sources_to_run), detail=s_name))
+
         if not self._is_stopped():
             self._emit(StageCompleted(stage="fetch"))
 

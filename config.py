@@ -188,6 +188,10 @@ class Config:
     def REDIS_URL(self) -> str:
         return os.getenv("REDIS_URL", "redis://redis:6379/0")
 
+    @property
+    def EMBEDDING_SERVICE_URL(self) -> str:
+        return os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-service:8001")
+
     # ------------------------------------------------------------------
     # Pipeline Source & Service Controls
     # ------------------------------------------------------------------

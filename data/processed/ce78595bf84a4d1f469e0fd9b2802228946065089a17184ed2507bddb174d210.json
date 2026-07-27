@@ -1,0 +1,41 @@
+{
+  "title": "Twisted laser light distinguishes mirror-image molecules by their fragment counts",
+  "publication_date": "2026-07-26T19:00:01Z",
+  "summary": "Access to the original science story was blocked by a site 'checking your connection' page. The retrieved content only shows a connection-check message saying 'We\u2019re checking your connection to prevent automated abuse' and metadata listing 'Unknown Author' and 'Unknown' publication date. Full article text was not available for extraction.",
+  "content": "({'title': 'Checking your connection', 'publication_date': 'Unknown', 'content': 'We\u2019re checking your connection to prevent automated abuse'}, {'title': 'Checking your connection', 'author': 'Unknown Author', 'publication_date': 'Unknown'})\nFull article text for 'Twisted laser light distinguishes mirror-image molecules by their fragment counts' was not available. The source returned a connection-check page preventing automated retrieval. The snippet above is all that could be extracted from the cleaned content; no substantive article paragraphs, experiment details, quotes, or attributions were present for further parsing.",
+  "category": "Science",
+  "tags": [
+    "chiral molecules",
+    "lasers",
+    "spectroscopy",
+    "chemistry",
+    "photonics",
+    "analytical chemistry"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "Twisted laser light distinguishes mirror-image molecules by their fragment counts",
+    "publication_date": 1785092401,
+    "content": [
+      {
+        "title": "Checking your connection",
+        "publication_date": "Unknown",
+        "content": "We\u2019re checking your connection to prevent automated abuse"
+      },
+      {
+        "title": "Checking your connection",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "Phys.org",
+    "image_url": "https://scx2.b-cdn.net/gfx/news/hires/2026/twisting-light-for-dis.jpg",
+    "url": "https://phys.org/news/2026-07-laser-distinguishes-mirror-image-molecules.html"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Checking your connection\\n\\n> We\u2019re checking your connection to prevent automated abuse",
+  "created_at": "2026-07-27T20:39:07.206088+00:00"
+}

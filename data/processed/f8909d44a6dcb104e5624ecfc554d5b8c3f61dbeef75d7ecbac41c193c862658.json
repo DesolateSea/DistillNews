@@ -1,0 +1,43 @@
+{
+  "title": "Gamma-ray pulsations reveal extreme 3.2-millisecond pulsar 3,900 light-years away",
+  "publication_date": "2026-07-21T04:40:01Z",
+  "summary": "Astronomers have identified gamma-ray pulsations from an exceptionally fast-spinning pulsar with a 3.2-millisecond rotation period, located about 3,900 light-years from Earth in the Milky Way. The detection highlights the role of high-energy observations in finding compact, rapidly rotating neutron stars and offers new opportunities to study dense matter, relativistic magnetospheres, and binary evolution in extreme environments.",
+  "content": "Researchers report the detection of gamma-ray pulsations from an exceptionally fast-spinning neutron star, a pulsar with a rotation period of just 3.2 milliseconds located roughly 3,900 light-years from Earth in the Milky Way.\n\nThe signal, identified in high-energy observations, reveals a compact object spinning hundreds of times per second. Millisecond pulsars are believed to be old neutron stars spun up through accretion of material from a companion; detecting their gamma-ray pulsations provides a direct probe of particle acceleration and magnetic field structure near the star.\n\nThis discovery underscores the power of gamma-ray instrumentation for uncovering pulsars that may be faint or obscured at radio wavelengths. Gamma-ray searches can reveal objects whose beams do not cross Earth in radio bands or whose radio signals are absorbed or scattered by surrounding material. The new pulsar adds to the growing population of extreme rotators and helps fill in distribution statistics for spin periods and energetics.\n\nStudying a 3.2-millisecond pulsar at a distance of about 3,900 light-years gives astronomers a valuable laboratory for testing models of dense-matter physics, magnetospheric emission, and the end stages of binary stellar evolution. Continued monitoring across the electromagnetic spectrum will be important for measuring timing stability, searching for a binary companion, and constraining the pulsar's energy output.\n\nFollow-up observations, including coordinated multiwavelength campaigns, will aim to refine distance estimates, characterize the pulsar's environment, and determine whether it is part of a binary system. The detection highlights advances in high-energy astrophysics and the expanding census of the Galaxy's fastest-spinning neutron stars.",
+  "category": "Science",
+  "tags": [
+    "pulsar",
+    "gamma rays",
+    "astrophysics",
+    "astronomy",
+    "millisecond pulsar",
+    "space"
+  ],
+  "location": "Milky Way",
+  "source": {
+    "title": "Gamma-ray pulsations reveal extreme 3.2-millisecond pulsar 3,900 light-years away",
+    "publication_date": 1785088801,
+    "content": [
+      {
+        "title": "Checking your connection",
+        "publication_date": "Unknown",
+        "content": "We\u2019re checking your connection to prevent automated abuse"
+      },
+      {
+        "title": "Checking your connection",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Tomasz J. Nowakowski"
+    ],
+    "source": "Phys.org",
+    "image_url": "https://scx2.b-cdn.net/gfx/news/2026/gamma-ray-pulsations-d.jpg",
+    "url": "https://phys.org/news/2026-07-gamma-ray-pulsations-reveal-extreme.html"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Discovery\\n\\nResearchers report the detection of gamma-ray pulsations from an exceptionally fast-spinning neutron star, a pulsar with a rotation period of just 3.2 milliseconds located roughly 3,900 light-years from Earth in the Milky Way.\\n\\n## Signal and nature of the object\\n\\nThe signal, identified in high-energy observations, reveals a compact object spinning hundreds of times per second. Millisecond pulsars are believed to be old neutron stars spun up through accretion of material from a companion; detecting their gamma-ray pulsations provides a direct probe of particle acceleration and magnetic field structure near the star.\\n\\n## Significance of gamma-ray detection\\n\\nThis discovery underscores the power of gamma-ray instrumentation for uncovering pulsars that may be faint or obscured at radio wavelengths. Gamma-ray searches can reveal objects whose beams do not cross Earth in radio bands or whose radio signals are absorbed or scattered by surrounding material. The new pulsar adds to the growing population of extreme rotators and helps fill in distribution statistics for spin periods and energetics.\\n\\n- Reveals pulsars faint or obscured in radio\\n- Detects objects whose radio beams miss Earth\\n- Unaffected by local absorption or scattering that can hide radio signals\\n- Contributes to statistics on spin periods and energetics\\n\\n## Scientific implications\\n\\nStudying a 3.2-millisecond pulsar at a distance of about 3,900 light-years gives astronomers a valuable laboratory for testing models of dense-matter physics, magnetospheric emission, and the end stages of binary stellar evolution. Continued monitoring across the electromagnetic spectrum will be important for measuring timing stability, searching for a binary companion, and constraining the pulsar's energy output.\\n\\n## Follow-up and next steps\\n\\nFollow-up observations, including coordinated multiwavelength campaigns, will aim to refine distance estimates, characterize the pulsar's environment, and determine whether it is part of a binary system.\\n\\nThe detection highlights advances in high-energy astrophysics and the expanding census of the Galaxy's fastest-spinning neutron stars.",
+  "created_at": "2026-07-27T21:09:33.780740+00:00"
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Scientists found that Japanese horseshoe bats living together in crowded colonies solve a noisy sonar problem by gradually shifting their echolocation calls to match each other's frequency",
+  "publication_date": "2026-07-25T07:15:00Z",
+  "summary": "Researchers report that Japanese horseshoe bats in dense colonies reduce sonar interference by gradually shifting their echolocation call frequencies to match each other. This frequency matching appears to be a behavioral solution to noisy, crowded environments, helping individuals maintain effective navigation and prey detection. The finding highlights flexible acoustic strategies in social animals and may inform bio-inspired sonar and conservation efforts.",
+  "content": "The TOI Science Desk presents coverage of a recent finding about Japanese horseshoe bats and their acoustic behavior in crowded colonies.\n\nScientists observed that when Japanese horseshoe bats live in dense colonies, individuals do not maintain fixed echolocation frequencies. Instead, bats gradually shift the frequency of their calls to more closely match the frequencies used by nearby colony members. This coordinated shift appears to be a behavioral adjustment that reduces mutual interference in a noisy acoustic environment, allowing bats to retain effective sonar-based navigation and foraging.\n\nAccording to the report, the adjustment is not instantaneous but occurs gradually as bats alter their call frequencies over time in response to the surrounding acoustic scene. Researchers studying the phenomenon used field recordings and acoustic analysis to document how call frequencies drift and converge among bats sharing the same roosting and foraging spaces. The result suggests a form of acoustic plasticity that helps individuals cope with the challenges of close-proximity living.\n\nThe study frames this frequency matching as a practical solution to a common sensory problem faced by many animals that rely on active sensing systems. In crowded conditions, overlapping signals from conspecifics can create noise and confusion; by shifting calls to align with neighbors, bats appear to reduce detrimental interference and maintain clarity in echo reception.\n\nBeyond improving understanding of bat behavior, the findings have broader implications. They shed light on social and sensory adaptations in animals that rely on sound, and they could inspire new approaches in designing sonar and acoustic communication systems that need to operate reliably in noisy, multi-source environments. The behavior may also be relevant for conservation efforts, as changes in colony density or habitat acoustics could affect bats' ability to coordinate call frequencies and thus their foraging success.\n\nThe Times of India Science Desk compiled this summary to highlight the discovery and its significance. Further research will help clarify the detailed mechanisms, time scales, and limits of frequency matching, and whether similar strategies are used by other echolocating species.",
+  "category": "Science",
+  "tags": [
+    "animals",
+    "biology",
+    "behavior",
+    "ecology",
+    "echolocation",
+    "bats",
+    "acoustics",
+    "conservation",
+    "sonar"
+  ],
+  "location": "Japan",
+  "source": {
+    "title": "Scientists found that Japanese horseshoe bats living together in crowded colonies solve a noisy sonar pro",
+    "publication_date": 1785050100,
+    "content": [
+      {
+        "title": "Scientists found that Japanese horseshoe bats living together in crowded colonies solve a noisy sonar problem by gradually shifting their echolocation calls to match each other's frequency",
+        "publication_date": "Unknown",
+        "content": "The TOI Science Desk stands as an inquisitive team of journalists, ceaselessly delving into the realms of discovery to curate a captivating collection of news, features, and articles from the vast and ever-evolving world of science for the readers of The Times of India. Consider us your scientific companion, delivering a daily dose of wonder and enlightenment. Whether it's the intricacies of genetic engineering, the marvels of space exploration, or the latest in artificial intelligence, the TOI Science Desk ensures you stay connected to the pulse of the scientific world. At the TOI Science Desk, we are not just reporters; we are storytellers of scientific narratives. We are committed to demystifying the intricacies of science, making it accessible and engaging for readers of all backgrounds. Join us as we craft knowledge with precision and passion, bringing you on a journey where the mysteries of the universe unfold with every word.Read More"
+      },
+      {
+        "title": "Scientists found that Japanese horseshoe bats living together in crowded colonies solve a noisy sonar problem by gradually shifting their echolocation calls to match each other's frequency",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "The Times of India",
+    "image_url": "https://static.toiimg.com/thumb/msid-132637367,width-1280,height-720,imgsize-124644,resizemode-4,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+    "url": "https://timesofindia.indiatimes.com/science/scientists-found-that-japanese-horseshoe-bats-living-together-in-crowded-colonies-solve-a-noisy-sonar-problem-by-gradually-shifting-their-echolocation-calls-to-match-each-others-frequency/articleshow/132636984.cms"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## TOI Science Desk summary\\n\\nThe TOI Science Desk presents coverage of a recent finding about Japanese horseshoe bats and their acoustic behavior in crowded colonies.\\n\\n## Findings\\n\\nScientists observed that when Japanese horseshoe bats live in dense colonies, individuals do not maintain fixed echolocation frequencies. Instead, bats gradually shift the frequency of their calls to more closely match the frequencies used by nearby colony members. This coordinated shift appears to be a behavioral adjustment that reduces mutual interference in a noisy acoustic environment, allowing bats to retain effective sonar-based navigation and foraging.\\n\\nAccording to the report, the adjustment is not instantaneous but occurs gradually as bats alter their call frequencies over time in response to the surrounding acoustic scene. Researchers studying the phenomenon used field recordings and acoustic analysis to document how call frequencies drift and converge among bats sharing the same roosting and foraging spaces. The result suggests a form of acoustic plasticity that helps individuals cope with the challenges of close-proximity living.\\n\\n## Interpretation\\n\\nThe study frames this frequency matching as a practical solution to a common sensory problem faced by many animals that rely on active sensing systems. In crowded conditions, overlapping signals from conspecifics can create noise and confusion; by shifting calls to align with neighbors, bats appear to reduce detrimental interference and maintain clarity in echo reception.\\n\\n## Broader implications\\n\\n- The findings improve understanding of bat behavior and social acoustic interactions.\\n- They shed light on social and sensory adaptations in animals that rely on sound.\\n- The results could inspire new approaches in designing sonar and acoustic communication systems that need to operate reliably in noisy, multi-source environments.\\n- The behavior may be relevant for conservation efforts, as changes in colony density or habitat acoustics could affect bats\u2019 ability to coordinate call frequencies and thus their foraging success.\\n\\n## Conclusion and future research\\n\\nThe Times of India Science Desk compiled this summary to highlight the discovery and its significance. Further research will help clarify the detailed mechanisms, time scales, and limits of frequency matching, and whether similar strategies are used by other echolocating species.",
+  "created_at": "2026-07-27T20:37:00.472390+00:00"
+}

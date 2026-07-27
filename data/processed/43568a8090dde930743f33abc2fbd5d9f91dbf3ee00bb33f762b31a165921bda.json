@@ -1,0 +1,43 @@
+{
+  "title": "Chinese Scientists Develop ContactSeek AI Framework Based on AlphaFold3 Contact Probability: A New Precision Paradigm for Gene Editing Tool Design Published in Nature",
+  "publication_date": "2026-07-25T02:14:09Z",
+  "summary": "Chinese researchers have introduced ContactSeek, an AI framework that leverages AlphaFold3 contact probability signals to guide the design of gene-editing tools. Reported in Nature, the approach aims to improve on-target specificity and reduce off-target effects by prioritizing predicted molecular contact patterns, accelerating safe design and validation of editing reagents.",
+  "content": "Chinese research teams have reported a new AI-driven design framework called ContactSeek that repurposes contact probability information from AlphaFold3 to guide the design of gene-editing tools. Published in Nature, the study frames ContactSeek as a precision paradigm that uses structural contact signals to prioritize and optimize editing reagents for higher specificity and reduced unintended edits.\n\nThe core idea behind ContactSeek is to mine AlphaFold3's internal contact probability outputs to infer favorable contact patterns between gene-editing effectors (such as nuclease domains or guide-RNA\u2013protein complexes) and their genomic targets. Rather than relying solely on sequence-based rules, ContactSeek integrates predicted structural contact propensities to score and rank candidate guide RNAs, engineered nucleases, or fusion constructs according to expected contact fidelity at the molecular interface.\n\nAs a computational pipeline, ContactSeek accepts target sequences and candidate editing constructs, computes contact-informed compatibility scores, and proposes prioritized designs for experimental follow-up. The framework is intended to reduce the empirical screening burden by focusing laboratory testing on candidates with higher predicted on-target contact quality and lower off-target contact likelihood.\n\nAccording to the report, the authors benchmarked ContactSeek against conventional sequence-based design strategies and observed improved specificity in their validation studies. The paper describes experimental verification in cellular models and additional in vivo-like assays showing that contact-informed designs led to measurable reductions in off-target modifications while maintaining or improving editing efficiency for intended targets.\n\nThe publication highlights practical implications for basic research, therapeutic development, and agricultural biotechnology. By incorporating structural contact information early in the design cycle, ContactSeek could accelerate the development of safer gene therapies and more reliable genome-editing reagents, potentially shortening preclinical timelines and improving candidate selection.\n\nThe authors and the Nature editorial note that, despite promising results, broad clinical application will require extensive validation, regulatory scrutiny, and ethical oversight. They emphasize continued benchmarking across diverse target types and organisms, transparent reporting of off-target profiles, and consideration of dual-use risks as more powerful design tools become available.\n\nContactSeek represents a growing trend of combining state-of-the-art protein structure prediction outputs with downstream functional design tasks, illustrating how advances in structural AI can be repurposed to address practical challenges in gene-editing technology design.",
+  "category": "Science",
+  "tags": [
+    "gene editing",
+    "AlphaFold3",
+    "artificial intelligence",
+    "structural biology",
+    "CRISPR",
+    "biotechnology",
+    "Nature",
+    "China"
+  ],
+  "location": "China",
+  "source": {
+    "title": "Chinese Scientists Develop ContactSeek AI Framework Based on AlphaFold3 Contact Probability: A New Precision Paradigm for Gene Editing Tool Design Published in Nature",
+    "publication_date": 1785032049,
+    "content": [
+      {
+        "title": "Chinese Scientists Develop ContactSeek AI Framework Based on AlphaFold3 Contact Probability: A New Precision Paradigm for Gene Editing Tool Design Published in Nature",
+        "publication_date": "Unknown",
+        "content": ""
+      },
+      {
+        "title": "Chinese Scientists Develop ContactSeek AI Framework Based on AlphaFold3 Contact Probability: A New Precision Paradigm for Gene Editing Tool Design Published in Nature",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "Pandaily",
+    "image_url": "https://cms-image.pandaily.com/1/article4_f797b9ae57.png",
+    "url": "https://pandaily.com/contactseek-alphafold3-ai-framework-jul2026"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Overview\\n\\nChinese research teams have reported a new AI-driven design framework called ContactSeek that repurposes contact probability information from AlphaFold3 to guide the design of gene-editing tools. Published in Nature, the study frames ContactSeek as a precision paradigm that uses structural contact signals to prioritize and optimize editing reagents for higher specificity and reduced unintended edits.\\n\\n## Core idea\\n\\nThe core idea behind ContactSeek is to mine AlphaFold3's internal contact probability outputs to infer favorable contact patterns between gene-editing effectors (such as nuclease domains or guide-RNA\u2013protein complexes) and their genomic targets. Rather than relying solely on sequence-based rules, ContactSeek integrates predicted structural contact propensities to score and rank candidate guide RNAs, engineered nucleases, or fusion constructs according to expected contact fidelity at the molecular interface.\\n\\n## Computational pipeline\\n\\nAs a computational pipeline, ContactSeek accepts target sequences and candidate editing constructs, computes contact-informed compatibility scores, and proposes prioritized designs for experimental follow-up. The framework is intended to reduce the empirical screening burden by focusing laboratory testing on candidates with higher predicted on-target contact quality and lower off-target contact likelihood.\\n\\n- Inputs: target sequences and candidate editing constructs\\n- Processing: extraction and use of AlphaFold3 contact probability outputs\\n- Outputs: contact-informed compatibility scores and prioritized design suggestions\\n\\n## Validation and results\\n\\nAccording to the report, the authors benchmarked ContactSeek against conventional sequence-based design strategies and observed improved specificity in their validation studies. The paper describes experimental verification in cellular models and additional in vivo-like assays showing that contact-informed designs led to measurable reductions in off-target modifications while maintaining or improving editing efficiency for intended targets.\\n\\n## Implications\\n\\nThe publication highlights practical implications for basic research, therapeutic development, and agricultural biotechnology. By incorporating structural contact information early in the design cycle, ContactSeek could accelerate the development of safer gene therapies and more reliable genome-editing reagents, potentially shortening preclinical timelines and improving candidate selection.\\n\\n> The authors and the Nature editorial note that, despite promising results, broad clinical application will require extensive validation, regulatory scrutiny, and ethical oversight. They emphasize continued benchmarking across diverse target types and organisms, transparent reporting of off-target profiles, and consideration of dual-use risks as more powerful design tools become available.\\n\\n## Broader context\\n\\nContactSeek represents a growing trend of combining state-of-the-art protein structure prediction outputs with downstream functional design tasks, illustrating how advances in structural AI can be repurposed to address practical challenges in gene-editing technology design.",
+  "created_at": "2026-07-27T21:10:12.255358+00:00"
+}

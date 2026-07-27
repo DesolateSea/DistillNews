@@ -1,0 +1,42 @@
+{
+  "title": "518 million years ago, one tiny sea creature may have started the evolution of the fangs seen in spiders today",
+  "publication_date": "2026-07-27T12:30:00Z",
+  "summary": "The supplied item contains only a brief newsroom blurb from TOI World Desk for a story with the above title. The text emphasizes the outlet's commitment to global coverage and accuracy but does not include the full article about the ancient sea creature or the evolution of spider fangs. Author and original publication date are listed as unknown.",
+  "content": "At TOI World Desk, our dedicated team of seasoned journalists and passionate writers tirelessly sifts through the vast tapestry of global events to bring you the latest news and diverse perspectives round the clock. With an unwavering commitment to accuracy, depth, and timeliness, we strive to keep you informed about the ever-evolving world, delivering a nuanced understanding of international affairs to our readers. Join us on a journey across continents as we unravel the stories that shape our interconnected world.Read More\n\nFull article text not provided in the supplied content. Metadata included with the item lists the author as \"Unknown Author\" and the publication date as \"Unknown.\" The only concrete publication timestamp available was supplied separately and converted to ISO 8601 for this record.",
+  "category": "Science",
+  "tags": [
+    "paleontology",
+    "evolution",
+    "arachnology",
+    "fossils",
+    "biology",
+    "science",
+    "research"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "518 million years ago, one tiny sea creature may have started the evolution of the fangs seen in spiders today",
+    "publication_date": 1785155400,
+    "content": [
+      {
+        "title": "518 million years ago, one tiny sea creature may have started the evolution of the fangs seen in spiders today",
+        "publication_date": "Unknown",
+        "content": "At TOI World Desk, our dedicated team of seasoned journalists and passionate writers tirelessly sifts through the vast tapestry of global events to bring you the latest news and diverse perspectives round the clock. With an unwavering commitment to accuracy, depth, and timeliness, we strive to keep you informed about the ever-evolving world, delivering a nuanced understanding of international affairs to our readers. Join us on a journey across continents as we unravel the stories that shape our interconnected world.Read More"
+      },
+      {
+        "title": "518 million years ago, one tiny sea creature may have started the evolution of the fangs seen in spiders today",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "The Times of India",
+    "image_url": "https://static.toiimg.com/thumb/msid-132660572,imgsize-1356839,width-400,height-225,resizemode-4/132660572.jpg",
+    "url": "https://timesofindia.indiatimes.com/world/china/518-million-years-ago-one-tiny-sea-creature-may-have-started-the-evolution-of-the-fangs-seen-in-spiders-today/articleshow/132660572.cms"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## About TOI World Desk\\n\\nAt TOI World Desk, our dedicated team of seasoned journalists and passionate writers tirelessly sifts through the vast tapestry of global events to bring you the latest news and diverse perspectives round the clock. With an unwavering commitment to accuracy, depth, and timeliness, we strive to keep you informed about the ever-evolving world, delivering a nuanced understanding of international affairs to our readers. Join us on a journey across continents as we unravel the stories that shape our interconnected world.\\n\\nRead More\\n\\n## Publication Details\\n\\nFull article text not provided in the supplied content. Metadata included with the item lists the author as \u201cUnknown Author\u201d and the publication date as \u201cUnknown.\u201d The only concrete publication timestamp available was supplied separately and converted to ISO 8601 for this record.\\n\\n- Author: \u201cUnknown Author\u201d\\n- Publication date: \u201cUnknown\u201d\\n- Timestamp: Converted to ISO 8601",
+  "created_at": "2026-07-27T20:30:17.979436+00:00"
+}

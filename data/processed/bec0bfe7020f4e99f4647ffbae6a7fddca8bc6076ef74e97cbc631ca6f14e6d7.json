@@ -1,0 +1,46 @@
+{
+  "title": "NASA Plans AI-Powered Mission To Collect Saturn Ring Particles Directly",
+  "publication_date": "2026-07-25T07:07:58Z",
+  "summary": "The provided article content was inaccessible due to an \"Access Denied\" response. Based on the headline, NASA reportedly plans an AI-assisted mission to collect particles directly from Saturn's rings, but the supplied data contained only error messages and no mission details. Readers should consult NASA or major outlets for the full report.",
+  "content": "Headline: NASA Plans AI-Powered Mission To Collect Saturn Ring Particles Directly\\n\\nThe full article content could not be retrieved. The source returned an \"Access Denied\" response and a CDN error reference, so no detailed reporting on proposed objectives, timeline, spacecraft design, sampling methods or AI capabilities was available in the supplied data.\\n\\nRaw response received:\\n({'title': 'Access Denied', 'publication_date': 'Unknown', 'content': 'Reference #18.87014017.1785184103.57023b6fhttps://errors.edgesuite.net/18.87014017.1785184103.57023b6f\\n\\nhttps://errors.edgesuite.net/18.87014017.1785184103.57023b6f'}, {'title': 'Access Denied', 'author': 'Unknown Author', 'publication_date': 'Unknown'})\\n\\nBecause the article body is blocked, this record contains only the headline and the error payload provided. For authoritative details and confirmation of any planned mission elements, consult NASA's official statements, press releases, or reporting from established space journalism outlets.",
+  "category": "Science",
+  "tags": [
+    "NASA",
+    "Saturn",
+    "AI",
+    "space exploration",
+    "rings",
+    "mission",
+    "aerospace",
+    "robotics",
+    "data-access"
+  ],
+  "location": "United States",
+  "source": {
+    "title": "NASA Plans AI-Powered Mission To Collect Saturn Ring Particles Directly",
+    "publication_date": 1785049678,
+    "content": [
+      {
+        "title": "Access Denied",
+        "publication_date": "Unknown",
+        "content": "Reference #18.87014017.1785184103.57023b6fhttps://errors.edgesuite.net/18.87014017.1785184103.57023b6f\n\nhttps://errors.edgesuite.net/18.87014017.1785184103.57023b6f"
+      },
+      {
+        "title": "Access Denied",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Astitva Raj"
+    ],
+    "source": "NDTV",
+    "image_url": "https://c.ndtvimg.com/2026-07/s8rf3ivs_saturn_625x300_26_July_26.jpeg",
+    "url": "https://www.ndtv.com/science/nasa-plans-ai-powered-mission-to-collect-saturn-ring-particles-directly-11823441"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Headline\\nNASA Plans AI-Powered Mission To Collect Saturn Ring Particles Directly\\n\\n## Retrieval status\\nThe full article content could not be retrieved. The source returned an \u201cAccess Denied\u201d response and a CDN error reference, so no detailed reporting on proposed objectives, timeline, spacecraft design, sampling methods or AI capabilities was available in the supplied data.\\n\\n## Raw response received\\n> ({'title': 'Access Denied', 'publication_date': 'Unknown', 'content': 'Reference #18.87014017.1785184103.57023b6fhttps://errors.edgesuite.net/18.87014017.1785184103.57023b6f\\n> \\n> https://errors.edgesuite.net/18.87014017.1785184103.57023b6f'}, {'title': 'Access Denied', 'author': 'Unknown Author', 'publication_date': 'Unknown'})\\n\\n## Notes\\n- Because the article body is blocked, this record contains only the headline and the error payload provided.\\n- For authoritative details and confirmation of any planned mission elements, consult:\\n  - NASA\u2019s official statements and press releases\\n  - Reporting from established space journalism outlets",
+  "created_at": "2026-07-27T20:30:25.657584+00:00"
+}

@@ -1,0 +1,45 @@
+{
+  "title": "200 years after the first dinosaur, scientists use brain scans on a 100-million-year-old snake fossil from Brazil",
+  "publication_date": "2026-07-27T13:00:00Z",
+  "summary": "The Times of India Science Desk reports that researchers have applied brain-scanning techniques to a 100-million-year-old snake fossil from Brazil. Using modern imaging, scientists aim to study the fossilized braincase to learn more about ancient reptile anatomy and evolutionary links to other prehistoric species.",
+  "content": "The TOI Science Desk stands as an inquisitive team of journalists, ceaselessly delving into the realms of discovery to curate a captivating collection of news, features, and articles from the vast and ever-evolving world of science for the readers of The Times of India. Consider us your scientific companion, delivering a daily dose of wonder and enlightenment. Whether it's the intricacies of genetic engineering, the marvels of space exploration, or the latest in artificial intelligence, the TOI Science Desk ensures you stay connected to the pulse of the scientific world. At the TOI Science Desk, we are not just reporters; we are storytellers of scientific narratives. We are committed to demystifying the intricacies of science, making it accessible and engaging for readers of all backgrounds. Join us as we craft knowledge with precision and passion, bringing you on a journey where the mysteries of the universe unfold with every word.Read More\n\nResearchers have used brain-scanning techniques on a 100-million-year-old snake fossil from Brazil, aiming to image the fossilized braincase and related internal structures. The work, reported by the Times of India Science Desk, seeks to shed light on prehistoric reptile anatomy and evolutionary relationships, using non-destructive imaging to access details otherwise hidden inside rare fossil specimens.",
+  "category": "Science",
+  "tags": [
+    "paleontology",
+    "fossil",
+    "snake",
+    "brain scans",
+    "CT scan",
+    "Brazil",
+    "evolution",
+    "dinosaurs",
+    "research",
+    "science desk"
+  ],
+  "location": "Brazil",
+  "source": {
+    "title": "200 years after the first dinosaur, scientists use brain scans on a 100-million-year-old snake fossil fro",
+    "publication_date": 1785157200,
+    "content": [
+      {
+        "title": "200 years after the first dinosaur, scientists use brain scans on a 100-million-year-old snake fossil from Brazil",
+        "publication_date": "Unknown",
+        "content": "The TOI Science Desk stands as an inquisitive team of journalists, ceaselessly delving into the realms of discovery to curate a captivating collection of news, features, and articles from the vast and ever-evolving world of science for the readers of The Times of India. Consider us your scientific companion, delivering a daily dose of wonder and enlightenment. Whether it's the intricacies of genetic engineering, the marvels of space exploration, or the latest in artificial intelligence, the TOI Science Desk ensures you stay connected to the pulse of the scientific world. At the TOI Science Desk, we are not just reporters; we are storytellers of scientific narratives. We are committed to demystifying the intricacies of science, making it accessible and engaging for readers of all backgrounds. Join us as we craft knowledge with precision and passion, bringing you on a journey where the mysteries of the universe unfold with every word.Read More"
+      },
+      {
+        "title": "200 years after the first dinosaur, scientists use brain scans on a 100-million-year-old snake fossil from Brazil",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "The Times of India",
+    "image_url": "https://static.toiimg.com/thumb/msid-132662023,width-1280,height-720,imgsize-131967,resizemode-4,overlay-toi_sw,pt-32,y_pad-600/photo.jpg",
+    "url": "https://timesofindia.indiatimes.com/science/200-years-after-the-first-dinosaur-scientists-use-brain-scans-on-a-100-million-year-old-snake-fossil-from-brazil/articleshow/132661926.cms"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## About the TOI Science Desk\\n\\nThe TOI Science Desk stands as an inquisitive team of journalists, ceaselessly delving into the realms of discovery to curate a captivating collection of news, features, and articles from the vast and ever-evolving world of science for the readers of The Times of India. Consider us your scientific companion, delivering a daily dose of wonder and enlightenment. Whether it's the intricacies of genetic engineering, the marvels of space exploration, or the latest in artificial intelligence, the TOI Science Desk ensures you stay connected to the pulse of the scientific world. At the TOI Science Desk, we are not just reporters; we are storytellers of scientific narratives. We are committed to demystifying the intricacies of science, making it accessible and engaging for readers of all backgrounds. Join us as we craft knowledge with precision and passion, bringing you on a journey where the mysteries of the universe unfold with every word. Read More\\n\\n## Recent Research\\n\\nResearchers have used brain-scanning techniques on a 100-million-year-old snake fossil from Brazil, aiming to image the fossilized braincase and related internal structures. The work, reported by the Times of India Science Desk, seeks to shed light on prehistoric reptile anatomy and evolutionary relationships, using non-destructive imaging to access details otherwise hidden inside rare fossil specimens.\\n\\n- Subject: 100-million-year-old snake fossil from Brazil\\n- Method: Brain-scanning and non-destructive imaging of the braincase and internal structures\\n- Goal: Reveal details of prehistoric reptile anatomy and clarify evolutionary relationships\\n- Reported by: The Times of India Science Desk",
+  "created_at": "2026-07-27T20:33:40.774085+00:00"
+}

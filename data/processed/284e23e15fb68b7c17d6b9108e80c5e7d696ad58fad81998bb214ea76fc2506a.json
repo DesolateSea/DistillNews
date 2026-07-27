@@ -1,0 +1,42 @@
+{
+  "title": "A distant planet survived the death of its star. It holds clues to our fate",
+  "publication_date": "2026-07-27T00:00:00Z",
+  "summary": "Astronomers report a distant planet that persisted after its host star died, orbiting the stellar remnant. The discovery offers a rare empirical clue about how planetary systems respond when their stars expand and shed mass, informing models of long-term stability and possible futures for the Solar System as the Sun ages.",
+  "content": "A distant planet appears to have survived the death of its host star, and researchers say the system may offer important clues about the long-term fate of planets, including those in our own Solar System.\n\nAccording to the published note, the object now orbits a stellar remnant rather than a bright, active star. While details remain sparse in the text provided, the broad interpretation is that the planet endured the dramatic changes its star underwent as it exhausted nuclear fuel, expanded and shed mass, and collapsed into a compact remnant.\n\nSuch survivals are of particular interest because they test theoretical models of planetary dynamics during late stellar evolution. As a star becomes a red giant it can engulf inner planets and alter the orbits of remaining bodies through mass loss and tidal forces. A planet found intact after that process provides a data point for how orbit migration, gravitational interactions and survivability actually play out in nature.\n\nFor scientists studying the long-term evolution of planetary systems, the survival of a planet around a dead star helps constrain timelines and mechanisms. It can indicate whether planets move outward to safer orbits, whether they can survive within a remnant's habitable zone for a time, and how common such outcomes might be across the galaxy.\n\nThe finding also resonates with questions about the Solar System's distant future. In roughly five billion years the Sun will expand into a red giant and radically alter conditions for Earth and the other planets. Systems where at least one planet endures the host star's terminal phases give astronomers real-world examples to compare with simulations of the Sun's evolution and its effects on planetary orbits.\n\nThe brief source material for this report contains mainly a copyright notice and limited metadata, so many specifics about the discovery\u2014such as the remnant type, the planet's mass and orbit, and the instruments used\u2014were not available in the text provided. Follow-up publications from the research team or observing facilities will be needed to confirm details and quantify the implications for models of planetary survival.",
+  "category": "Science",
+  "tags": [
+    "astronomy",
+    "exoplanet",
+    "stellar evolution",
+    "space",
+    "planetary science",
+    "solar system",
+    "future"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "A distant planet survived the death of its star. It holds clues to our fate",
+    "publication_date": 1785160080,
+    "content": [
+      {
+        "title": "A distant planet survived the death of its star. It holds clues to our fate",
+        "publication_date": "Unknown",
+        "content": "Copyright \u00a9 2024 Bennett, Coleman & Co. Ltd. All rights reserved. For reprint rights: Times Syndication Service."
+      },
+      {
+        "title": "A distant planet survived the death of its star. It holds clues to our fate",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "The Times of India",
+    "image_url": "https://static.toiimg.com/thumb/width-350,height-197,imgsize-13083455,msid-132663274/132663274.jpg",
+    "url": "https://timesofindia.indiatimes.com/toi-plus/science/a-distant-planet-survived-the-death-of-its-star-it-holds-clues-to-our-fate/articleshow/132662597.cms"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Overview\\n\\nA distant planet appears to have survived the death of its host star, and researchers say the system may offer important clues about the long-term fate of planets, including those in our own Solar System.\\n\\nAccording to the published note, the object now orbits a stellar remnant rather than a bright, active star. While details remain sparse in the text provided, the broad interpretation is that the planet endured the dramatic changes its star underwent as it exhausted nuclear fuel, expanded and shed mass, and collapsed into a compact remnant.\\n\\n## Why this matters for planetary evolution\\n\\nSuch survivals are of particular interest because they test theoretical models of planetary dynamics during late stellar evolution. As a star becomes a red giant it can engulf inner planets and alter the orbits of remaining bodies through mass loss and tidal forces. A planet found intact after that process provides a data point for how orbit migration, gravitational interactions and survivability actually play out in nature.\\n\\nKey questions this system can help address include:\\n\\n- Whether planets move outward to safer orbits as their host star loses mass  \\n- Whether planets can survive within a remnant\u2019s temporary habitable zone  \\n- How common such survivals are across the galaxy  \\n- How gravitational interactions and tidal forces influence final orbital architectures\\n\\n## Implications for the Solar System\\n\\nThe finding also resonates with questions about the Solar System\u2019s distant future. In roughly five billion years the Sun will expand into a red giant and radically alter conditions for Earth and the other planets. Systems where at least one planet endures the host star\u2019s terminal phases give astronomers real-world examples to compare with simulations of the Sun\u2019s evolution and its effects on planetary orbits.\\n\\n## Limitations and next steps\\n\\nThe brief source material for this report contains mainly a copyright notice and limited metadata, so many specifics about the discovery\u2014such as the remnant type, the planet\u2019s mass and orbit, and the instruments used\u2014were not available in the text provided. Follow-up publications from the research team or observing facilities will be needed to confirm details and quantify the implications for models of planetary survival.",
+  "created_at": "2026-07-27T21:11:12.890389+00:00"
+}

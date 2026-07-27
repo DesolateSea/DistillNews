@@ -1,0 +1,42 @@
+{
+  "title": "Buck Moon 2026: Will moon change its colour to 'orange' or 'red' on July 29?",
+  "publication_date": "2026-07-26T12:26:47Z",
+  "summary": "The article titled \"Buck Moon 2026: Will moon change its colour to 'orange' or 'red' on July 29?\" could not be retrieved. The source returned an \"Access Denied\" error with reference codes and EdgeSuite URLs. No substantive content about the Buck Moon colour change is available.",
+  "content": "Original retrieved content (access response):\n\n({'title': 'Access Denied', 'publication_date': 'Unknown', 'content': 'Reference #18.a4014017.1785184224.db40b7cfhttps://errors.edgesuite.net/18.a4014017.1785184224.db40b7cf\\n\\nhttps://errors.edgesuite.net/18.a4014017.1785184224.db40b7cf'}, {'title': 'Access Denied', 'author': 'Unknown Author', 'publication_date': 'Unknown'})\n\nSummary of retrieval:\n\nThe requested article could not be accessed. The remote server returned an \"Access Denied\" response including a reference code and links to EdgeSuite error pages. The retrieval metadata indicates the article's internal title but does not provide the article body or reporting about the Buck Moon or any event on July 29.\n\nImplications:\n\nBecause the source content was blocked, there is no verifiable reporting in this payload about whether the Buck Moon would appear orange or red on July 29, 2026. For reliable information about lunar appearance or predicted astronomical events, consult official observatories, meteorological services, or established astronomy organizations and websites.",
+  "category": "Science",
+  "tags": [
+    "moon",
+    "Buck Moon",
+    "astronomy",
+    "lunar colour",
+    "July 29",
+    "access denied",
+    "error"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "Buck Moon 2026: Will moon change its colour to 'orange' or 'red' on July 29?",
+    "publication_date": 1785155207,
+    "content": [
+      {
+        "title": "Access Denied",
+        "publication_date": "Unknown",
+        "content": "Reference #18.a4014017.1785184224.db40b7cfhttps://errors.edgesuite.net/18.a4014017.1785184224.db40b7cf\n\nhttps://errors.edgesuite.net/18.a4014017.1785184224.db40b7cf"
+      },
+      {
+        "title": "Access Denied",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "Moneycontrol.com",
+    "image_url": "https://images.moneycontrol.com/static-mcnews/2026/07/20260727122340_Buck-moon-2.jpg",
+    "url": "https://www.moneycontrol.com/science/buck-moon-2026-will-moon-change-its-colour-to-orange-or-red-on-july-29-article-13984783.html"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Access Denied\\n\\n- Title: Access Denied\\n- Publication date: Unknown\\n- Content:\\n> Reference #18.a4014017.1785184224.db40b7cfhttps://errors.edgesuite.net/18.a4014017.1785184224.db40b7cf\\n>\\n> https://errors.edgesuite.net/18.a4014017.1785184224.db40b7cf\\n\\n- Title: Access Denied\\n- Author: Unknown Author\\n- Publication date: Unknown\\n\\n## Summary of retrieval\\n\\nThe requested article could not be accessed. The remote server returned an \u201cAccess Denied\u201d response including a reference code and links to EdgeSuite error pages. The retrieval metadata indicates the article's internal title but does not provide the article body or reporting about the Buck Moon or any event on July 29.\\n\\n## Implications\\n\\nBecause the source content was blocked, there is no verifiable reporting in this payload about whether the Buck Moon would appear orange or red on July 29, 2026.\\n\\nFor reliable information about lunar appearance or predicted astronomical events, consult:\\n\\n- Official observatories\\n- Meteorological services\\n- Established astronomy organizations and reputable astronomy websites",
+  "created_at": "2026-07-27T20:32:16.179886+00:00"
+}

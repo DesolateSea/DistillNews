@@ -1,0 +1,42 @@
+{
+  "title": "A 360\u00b0 View: NASA astronaut Anil Menon shares \"breathtaking\" glimpse from the ISS Cupola",
+  "publication_date": "2026-07-25T06:06:31Z",
+  "summary": "The original article with this headline could not be retrieved due to access restrictions. The available record shows \"Access Denied\" error responses and links. Based on the headline, NASA astronaut Anil Menon likely shared a 360-degree view from the ISS Cupola described as \"breathtaking.\"",
+  "content": "The news item titled \"A 360\u00b0 View: NASA astronaut Anil Menon shares \"breathtaking\" glimpse from the ISS Cupola\" could not be fully retrieved from the source.\n\nThe available response returned an access error and the following message:\n\n{\"title\": \"Access Denied\", \"publication_date\": \"Unknown\", \"content\": \"Reference #18.a4014017.1785184430.db426c9dhttps://errors.edgesuite.net/18.a4014017.1785184430.db426c9d\\n\\nhttps://errors.edgesuite.net/18.a4014017.1785184430.db426c9d\"}, {\"title\": \"Access Denied\", \"author\": \"Unknown Author\", \"publication_date\": \"Unknown\"}\n\nBecause the source content was blocked, this record cannot confirm the full text, images or additional details. The headline indicates NASA astronaut Anil Menon shared a 360-degree or panoramic view from the Cupola module of the International Space Station; the word \"breathtaking\" in the headline suggests the imagery captured striking Earth or orbital views.\n\nThis summary and the inferred details above are based only on the headline and the limited, blocked response returned by the server. The provided publication timestamp in the original metadata was the Unix epoch 1785045991, converted here to 2026-07-25T06:06:31Z. For the complete article, images and confirmations, consult the original publisher or NASA's official channels once access is restored.",
+  "category": "Science",
+  "tags": [
+    "space",
+    "NASA",
+    "Anil Menon",
+    "ISS",
+    "Cupola",
+    "astronaut",
+    "photography"
+  ],
+  "location": "International Space Station",
+  "source": {
+    "title": "A 360\u00b0 View: NASA astronaut Anil Menon shares \"breathtaking\" glimpse from the ISS Cupola",
+    "publication_date": 1785045991,
+    "content": [
+      {
+        "title": "Access Denied",
+        "publication_date": "Unknown",
+        "content": "Reference #18.a4014017.1785184430.db426c9dhttps://errors.edgesuite.net/18.a4014017.1785184430.db426c9d\n\nhttps://errors.edgesuite.net/18.a4014017.1785184430.db426c9d"
+      },
+      {
+        "title": "Access Denied",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "Moneycontrol.com",
+    "image_url": "https://images.moneycontrol.com/static-mcnews/2026/07/20260726060446_Anil-NASA.png?impolicy=website&width=1600&height=900",
+    "url": "https://www.moneycontrol.com/science/a-360-view-nasa-astronaut-anil-menon-shares-breathtaking-glimpse-from-the-iss-cupola-article-13983700.html"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Article Retrieval\\n\\nThe news item titled \u201cA 360\u00b0 View: NASA astronaut Anil Menon shares \u201cbreathtaking\u201d glimpse from the ISS Cupola\u201d could not be fully retrieved from the source.\\n\\n## Access Error\\n\\n> {\u201ctitle\u201d: \u201cAccess Denied\u201d, \u201cpublication_date\u201d: \u201cUnknown\u201d, \u201ccontent\u201d: \u201cReference #18.a4014017.1785184430.db426c9dhttps://errors.edgesuite.net/18.a4014017.1785184430.db426c9d\\n> \\n> https://errors.edgesuite.net/18.a4014017.1785184430.db426c9d\u201d}, {\u201ctitle\u201d: \u201cAccess Denied\u201d, \u201cauthor\u201d: \u201cUnknown Author\u201d, \u201cpublication_date\u201d: \u201cUnknown\u201d}\\n\\nBecause the source content was blocked, this record cannot confirm the full text, images or additional details.\\n\\n## What we can infer from the headline\\n\\n* The headline indicates NASA astronaut Anil Menon shared a 360-degree or panoramic view from the Cupola module of the International Space Station.\\n* The word \u201cbreathtaking\u201d in the headline suggests the imagery captured striking Earth or orbital views.\\n* These points are inferred only from the headline and the limited, blocked response returned by the server.\\n\\n## Publication Timestamp\\n\\n* The provided publication timestamp in the original metadata was the Unix epoch 1785045991, converted here to 2026-07-25T06:06:31Z.\\n\\n## Next Steps\\n\\n* For the complete article, images and confirmations, consult the original publisher or NASA\u2019s official channels once access is restored.",
+  "created_at": "2026-07-27T20:35:35.502720+00:00"
+}

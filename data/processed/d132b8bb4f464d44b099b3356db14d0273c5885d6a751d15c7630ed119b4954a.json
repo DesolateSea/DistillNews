@@ -1,0 +1,45 @@
+{
+  "title": "This camera can help us find more merging black holes",
+  "publication_date": "2026-07-26T09:55:47Z",
+  "summary": "Researchers at LIGO used off-the-shelf thermal imaging cameras and computer models to correct tiny heat-induced mirror distortions that limit sensitivity. The technique could extend LIGO's reach by about 33 million light-years, improving detection rates for merging black holes without requiring new technology.",
+  "content": "Scientists at the Laser Interferometer Gravitational-Wave Observatory (LIGO) have found a solution to a persistent engineering problem using an off-the-shelf camera.\nThe team, led by Jonathan Richardson from theUniversity of California, has used commercially available thermal imaging cameras and computer models to correct small heat-induced distortions in the observatory's mirrors.\nThis elusive flaw currently limits how far into deep space LIGO can look for cosmic collisions like mergingblack holes.\n\nEnhanced reach\n\nRichardson said the new technique doesn't require any new technology development, which is almost unheard of for solving a LIGO instrumentation problem.\n\nOnce integrated into LIGO's next upgrade, the fix could extend the observatory's reach by about 33 million light-years.\n\nThis may seem small against the vastness of the universe, but it opens up an exponentially larger window of space due to three-dimensional expansion.\n\nDetection process\n\nLIGO detects gravitational waves using two L-shaped detectors in Washington and Louisiana.\n\nEach facility has a laser beam that travels down two 4km-long tunnels, reflecting off mirrors at each end.\n\nWhen a gravitational wave passes through Earth, it slightly stretches one tunnel and squeezes the other.\n\nThis microscopic shift alters the laser beams ever so slightly, producing a tiny flicker of light that alerts scientists to a distant cosmic event.\n\nADVERTISEMENT\n\nSensitivity issues\n\nDespite being among the purest optical components ever built, LIGO's mirrors still absorb a tiny fraction of intense laser light.\n\nThe energy from this absorbed light turns into heat, warping the mirror's surface by just a few nanometers.\n\nThis distortion is enough to alter the laser beam and reduce the observatory's overall sensitivity.\n\nTo counteract these distortions, targeted heat can be applied to the back of the mirrors with exact precision using infrared thermal images and existing computer models.\n\nADVERTISEMENT",
+  "category": "Science",
+  "tags": [
+    "gravitational waves",
+    "LIGO",
+    "astronomy",
+    "black holes",
+    "thermal imaging",
+    "optics",
+    "instrumentation",
+    "detectors"
+  ],
+  "location": "United States",
+  "source": {
+    "title": "This camera can help us find more merging black holes",
+    "publication_date": 1785059747,
+    "content": [
+      {
+        "title": "This camera can help us find more merging black holes",
+        "publication_date": "Unknown",
+        "content": "Scientists at the Laser Interferometer Gravitational-Wave Observatory (LIGO) have found a solution to a persistent engineering problem using an off-the-shelf camera.\nThe team, led by Jonathan Richardson from theUniversity of California, has used commercially available thermal imaging cameras and computer models to correct small heat-induced distortions in the observatory's mirrors.\nThis elusive flaw currently limits how far into deep space LIGO can look for cosmic collisions like mergingblack holes.\n\nEnhanced reach\n\nRichardson said the new technique doesn't require any new technology development, which is almost unheard of for solving a LIGO instrumentation problem.\n\nOnce integrated into LIGO's next upgrade, the fix could extend the observatory's reach by about 33 million light-years.\n\nThis may seem small against the vastness of the universe, but it opens up an exponentially larger window of space due to three-dimensional expansion.\n\nDetection process\n\nLIGO detects gravitational waves using two L-shaped detectors in Washington and Louisiana.\n\nEach facility has a laser beam that travels down two 4km-long tunnels, reflecting off mirrors at each end.\n\nWhen a gravitational wave passes through Earth, it slightly stretches one tunnel and squeezes the other.\n\nThis microscopic shift alters the laser beams ever so slightly, producing a tiny flicker of light that alerts scientists to a distant cosmic event.\n\nADVERTISEMENT\n\nSensitivity issues\n\nDespite being among the purest optical components ever built, LIGO's mirrors still absorb a tiny fraction of intense laser light.\n\nThe energy from this absorbed light turns into heat, warping the mirror's surface by just a few nanometers.\n\nThis distortion is enough to alter the laser beam and reduce the observatory's overall sensitivity.\n\nTo counteract these distortions, targeted heat can be applied to the back of the mirrors with exact precision using infrared thermal images and existing computer models.\n\nADVERTISEMENT"
+      },
+      {
+        "title": "This camera can help us find more merging black holes",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Dwaipayan Roy"
+    ],
+    "source": "NewsBytes",
+    "image_url": "https://i.cdn.newsbytesapp.com/images/l200_30831785049407.jpg",
+    "url": "https://www.newsbytesapp.com/news/science/ligo-now-uses-thermal-cameras-to-look-deeper-into-space/story"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Overview\\n\\nScientists at the Laser Interferometer Gravitational-Wave Observatory (LIGO) have found a solution to a persistent engineering problem using an off-the-shelf camera.\\n\\nThe team, led by Jonathan Richardson from the University of California, has used commercially available thermal imaging cameras and computer models to correct small heat-induced distortions in the observatory's mirrors.\\n\\nThis elusive flaw currently limits how far into deep space LIGO can look for cosmic collisions like merging black holes.\\n\\n## Enhanced reach\\n\\nRichardson said the new technique doesn't require any new technology development, which is almost unheard of for solving a LIGO instrumentation problem.\\n\\nOnce integrated into LIGO's next upgrade, the fix could extend the observatory's reach by about 33 million light-years.\\n\\nThis may seem small against the vastness of the universe, but it opens up an exponentially larger window of space due to three-dimensional expansion.\\n\\n## Detection process\\n\\nLIGO detects gravitational waves using two L-shaped detectors in Washington and Louisiana.\\n\\n- Each facility has a laser beam that travels down two 4 km-long tunnels, reflecting off mirrors at each end.\\n- When a gravitational wave passes through Earth, it slightly stretches one tunnel and squeezes the other.\\n- This microscopic shift alters the laser beams ever so slightly, producing a tiny flicker of light that alerts scientists to a distant cosmic event.\\n\\nADVERTISEMENT\\n\\n## Sensitivity issues\\n\\nDespite being among the purest optical components ever built, LIGO's mirrors still absorb a tiny fraction of intense laser light.\\n\\nThe energy from this absorbed light turns into heat, warping the mirror's surface by just a few nanometers.\\n\\nThis distortion is enough to alter the laser beam and reduce the observatory's overall sensitivity.\\n\\nTo counteract these distortions, targeted heat can be applied to the back of the mirrors with exact precision using infrared thermal images and existing computer models.\\n\\nADVERTISEMENT",
+  "created_at": "2026-07-27T20:35:05.162769+00:00"
+}

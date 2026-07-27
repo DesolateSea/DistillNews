@@ -1,0 +1,47 @@
+{
+  "title": "ISRO Releases NISAR S-Band SAR Data for Public Access",
+  "publication_date": "2026-07-26T21:59:00+05:30",
+  "summary": "The Indian Space Research Organisation (ISRO) has made NISAR S-band SAR daily processed data available on its Bhoonidhi portal, starting with products from Cycle 25 (began July 8, 2026). Released datasets include standard SAR, interferometric and pixel offset products to support disaster management, environmental monitoring, agriculture and geohazard assessment. Tools for visualization, conversion and SAR processing are provided.",
+  "content": "The Indian Space Research Organisation (Isro) has released the NISAR S-band Synthetic Aperture Radar (SAR) daily processed data products through its earth observation data portal Bhoonidhi, providing researchers and users access to advanced earth observation datasets.\n\nThe NASA- Isro Synthetic Aperture Radar (NISAR) mission, the world's first dual-frequency (L-band and S-band) radar satellite, is currently in its science operations phase, delivering all-weather, high-resolution imaging of Earth's surface with a 12-day repeat cycle. S-band SAR data are acquired through Isro ground stations and processed at the Integrated Multi-Mission Ground Segment for Earth Observation Satellites (IMGEOS) at NRSC, Shadnagar.\n\nIsro said all S-band SAR products acquired from Cycle 25, which began on July 8, 2026, are now being generated from the operational production system and made available for download, while earlier datasets will be reprocessed and added to the archive in phases.\n\nThe released products include standard SAR datasets, interferometric products and pixel offset products to support applications such as disaster management, environmental monitoring, agriculture, land-use studies and geohazard assessment.\n\nRegistered users can search, visualise and download NISAR datasets through the Bhoonidhi portal, which also offers tools for data conversion, geospatial analysis and SAR processing to facilitate scientific research and operational applications.",
+  "category": "Science",
+  "tags": [
+    "ISRO",
+    "NISAR",
+    "S-band",
+    "SAR",
+    "earth observation",
+    "Bhoonidhi",
+    "remote sensing",
+    "NRSC",
+    "satellite",
+    "geospatial",
+    "disaster management",
+    "agriculture"
+  ],
+  "location": "India",
+  "source": {
+    "title": "ISRO Releases NISAR S-Band SAR Data for Public Access",
+    "publication_date": 1785083340,
+    "content": [
+      {
+        "title": "ISRO Releases NISAR S-Band SAR Data for Public Access",
+        "publication_date": "2026-07-26T21:59:00+05:30",
+        "content": "The Indian Space Research Organisation (Isro) has released the NISAR S-band Synthetic Aperture Radar (SAR) daily processed data products through its earth observation data portal Bhoonidhi, providing researchers and users access to advanced earth observation datasets.\n\nThe NASA- Isro Synthetic Aperture Radar (NISAR) mission, the world's first dual-frequency (L-band and S-band) radar satellite, is currently in its science operations phase, delivering all-weather, high-resolution imaging of Earth's surface with a 12-day repeat cycle. S-band SAR data are acquired through Isro ground stations and processed at the Integrated Multi-Mission Ground Segment for Earth Observation Satellites (IMGEOS) at NRSC, Shadnagar.\n\nIsro said all S-band SAR products acquired from Cycle 25, which began on July 8, 2026, are now being generated from the operational production system and made available for download, while earlier datasets will be reprocessed and added to the archive in phases.\n\nThe released products include standard SAR datasets, interferometric products and pixel offset products to support applications such as disaster management, environmental monitoring, agriculture, land-use studies and geohazard assessment.\n\nRegistered users can search, visualise and download NISAR datasets through the Bhoonidhi portal, which also offers tools for data conversion, geospatial analysis and SAR processing to facilitate scientific research and operational applications."
+      },
+      {
+        "title": "ISRO Releases NISAR S-Band SAR Data for Public Access",
+        "author": "DC Correspondent",
+        "publication_date": "2026-07-26T21:59:00+05:30"
+      }
+    ],
+    "authors": [],
+    "source": "Deccan Chronicle",
+    "image_url": "https://www.deccanchronicle.com/h-upload/2026/07/26/1500x900_2068792-img4262.webp",
+    "url": "https://www.deccanchronicle.com/southern-states/andhra-pradesh/isro-releases-nisar-s-band-sar-data-for-public-access-1974131"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Overview\\n\\nThe Indian Space Research Organisation (Isro) has released the NISAR S-band Synthetic Aperture Radar (SAR) daily processed data products through its earth observation data portal Bhoonidhi, providing researchers and users access to advanced earth observation datasets.\\n\\n## Mission and Data Acquisition\\n\\nThe NASA\u2011Isro Synthetic Aperture Radar (NISAR) mission, the world\u2019s first dual-frequency (L-band and S-band) radar satellite, is currently in its science operations phase, delivering all\u2011weather, high\u2011resolution imaging of Earth\u2019s surface with a 12\u2011day repeat cycle. S\u2011band SAR data are acquired through Isro ground stations and processed at the Integrated Multi\u2011Mission Ground Segment for Earth Observation Satellites (IMGEOS) at NRSC, Shadnagar.\\n\\n> \u201cAll S\u2011band SAR products acquired from Cycle 25, which began on July 8, 2026, are now being generated from the operational production system and made available for download, while earlier datasets will be reprocessed and added to the archive in phases.\u201d\\n\\n## Released Products\\n\\nThe released products include:\\n- Standard SAR datasets\\n- Interferometric products\\n- Pixel offset products\\n\\nThese products support applications such as:\\n- Disaster management\\n- Environmental monitoring\\n- Agriculture\\n- Land\u2011use studies\\n- Geohazard assessment\\n\\n## Access and Tools\\n\\nRegistered users can search, visualise and download NISAR datasets through the Bhoonidhi portal, which also offers tools for data conversion, geospatial analysis and SAR processing to facilitate scientific research and operational applications.",
+  "created_at": "2026-07-27T20:31:32.408099+00:00"
+}

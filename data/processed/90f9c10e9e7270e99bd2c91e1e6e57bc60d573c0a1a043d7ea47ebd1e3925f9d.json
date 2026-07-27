@@ -1,0 +1,43 @@
+{
+  "title": "The hunt for a natural molecule that can release cellular energy",
+  "publication_date": "2026-07-25T16:00:02Z",
+  "summary": "The original article could not be retrieved due to a connection check. Based on the headline, the piece likely covered efforts to identify a natural molecule that can store and release cellular energy, the challenges researchers face, and possible implications for medicine and bioenergetics.",
+  "content": "Title: The hunt for a natural molecule that can release cellular energy\nPublication date: 2026-07-25T16:00:02Z\n\nThe original article content was not available at the time of retrieval. The page returned messages indicating an automated connection check was in effect, preventing access to the full story.\n\nCaptured page messages:\n- Checking your connection \u2014 We\u2019re checking your connection to prevent automated abuse\n- Checking your connection \u2014 author: Unknown Author; publication_date: Unknown\n\nNote: The full article could not be retrieved. The following contextual overview is inferred from the headline and is not a direct extract from the unavailable article.\n\nContextual overview:\nResearchers have long sought naturally occurring molecules that can safely and reversibly store and release chemical energy inside cells. Molecules that mediate cellular energy exchange, such as ATP, play central roles in metabolism, but scientists continue to explore alternative or supplementary compounds that could modulate bioenergetics. Such work involves biochemistry, enzymology and molecular biology to identify candidate compounds, characterize their stability and reaction mechanisms, and assess how they interact with cellular systems. Discovering a novel, naturally occurring energy carrier could have implications for understanding metabolism, treating metabolic disorders, and developing bio-inspired technologies. Challenges include detecting low-abundance molecules, proving physiological relevance, and demonstrating controlled release of usable energy without toxic byproducts.",
+  "category": "Science",
+  "tags": [
+    "biology",
+    "biochemistry",
+    "cellular energy",
+    "molecules",
+    "research",
+    "metabolism"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "The hunt for a natural molecule that can release cellular energy",
+    "publication_date": 1784995202,
+    "content": [
+      {
+        "title": "Checking your connection",
+        "publication_date": "Unknown",
+        "content": "We\u2019re checking your connection to prevent automated abuse"
+      },
+      {
+        "title": "Checking your connection",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Robert Egan"
+    ],
+    "source": "Phys.org",
+    "image_url": "https://scx2.b-cdn.net/gfx/news/hires/2026/the-hunt-for-a-natural.jpg",
+    "url": "https://phys.org/news/2026-07-natural-molecule-cellular-energy.html"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Title\\nThe hunt for a natural molecule that can release cellular energy\\n\\n## Publication date\\n2026-07-25T16:00:02Z\\n\\n## Retrieval status\\nThe original article content was not available at the time of retrieval. The page returned messages indicating an automated connection check was in effect, preventing access to the full story.\\n\\n## Captured page messages\\n> Checking your connection \u2014 We\u2019re checking your connection to prevent automated abuse\\n> \\n> Checking your connection \u2014 author: Unknown Author; publication_date: Unknown\\n\\n## Note\\nThe full article could not be retrieved. The following contextual overview is inferred from the headline and is not a direct extract from the unavailable article.\\n\\n## Contextual overview\\nResearchers have long sought naturally occurring molecules that can safely and reversibly store and release chemical energy inside cells. Molecules that mediate cellular energy exchange, such as ATP, play central roles in metabolism, but scientists continue to explore alternative or supplementary compounds that could modulate bioenergetics. Such work involves biochemistry, enzymology and molecular biology to identify candidate compounds, characterize their stability and reaction mechanisms, and assess how they interact with cellular systems. Discovering a novel, naturally occurring energy carrier could have implications for understanding metabolism, treating metabolic disorders, and developing bio-inspired technologies.\\n\\nChallenges include:\\n- Detecting low-abundance molecules\\n- Proving physiological relevance\\n- Demonstrating controlled release of usable energy without toxic byproducts",
+  "created_at": "2026-07-27T20:37:43.355583+00:00"
+}

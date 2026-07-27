@@ -1,0 +1,41 @@
+{
+  "title": "From Living Systematic Reviews to Fully AI-Driven Reviews",
+  "publication_date": "2026-07-27T06:52:21Z",
+  "summary": "An article titled \"From Living Systematic Reviews to Fully AI-Driven Reviews\" dated 2026-07-27 could not be retrieved in full. The scraped data contains placeholder pages reading \"Just a moment...\" and metadata showing unknown authorship. This extraction documents the missing content and offers contextual background on the topic of AI-assisted systematic reviews.",
+  "content": "Available metadata\nThe record provides the title \"From Living Systematic Reviews to Fully AI-Driven Reviews\" and a publication timestamp corresponding to 2026-07-27T06:52:21Z. Attempts to retrieve the article body returned placeholder responses: two items titled \"Just a moment...\" with publication_date listed as \"Unknown\" and no substantive content in either entry.\n\nObserved placeholders\nThe source material appears to be protected or temporarily blocked. The visible entries contain no article text \u2014 only placeholder messages and minimal metadata. No author, affiliation, abstract, or body paragraphs were available for extraction from the supplied content.\n\nContext (general, not from the unavailable article)\nLiving systematic reviews are continuously updated syntheses of research evidence that incorporate new findings as they become available. Interest in applying artificial intelligence and machine learning to systematic review workflows has grown because AI tools can assist with literature searching, citation screening, data extraction, deduplication, risk-of-bias assessment, and automated updating. A transition toward more automated or AI-driven review processes aims to reduce manual workload and shorten the time from new evidence generation to incorporation in reviews.\n\nLimitations and what is not claimed\nBecause the original article text was not accessible in the provided data, no claims about the article's arguments, results, or recommendations are made here. The contextual paragraph above summarizes general trends and potential applications of AI in evidence synthesis and is not a substitute for the missing article content.\n\nNext steps to obtain the full article\nRecommended actions include: checking the original publisher or DOI, retrying the request at a later time (the site may have presented a transient protection page), using a cached or archived version, or contacting the publisher for access. If more raw data or a direct URL is supplied, a follow-up extraction can be attempted.",
+  "category": "Technology",
+  "tags": [
+    "AI",
+    "systematic_reviews",
+    "research",
+    "automation",
+    "machine_learning",
+    "evidence_synthesis"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "From Living Systematic Reviews to Fully AI-Driven Reviews",
+    "publication_date": 1785135141,
+    "content": [
+      {
+        "title": "Just a moment...",
+        "publication_date": "Unknown",
+        "content": ""
+      },
+      {
+        "title": "Just a moment...",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [],
+    "source": "Cureus",
+    "image_url": "https://public.cureus.com/fallback/new_default_article_image_0.png",
+    "url": "https://www.cureus.com/articles/508694-from-living-systematic-reviews-to-fully-ai-driven-reviews?score_article=true"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/rapid_news/2026-07-27T21-28-16Z/SCIENCE/news.json",
+  "markdown_content": "## Available metadata\\n\\nThe record provides the title \u201cFrom Living Systematic Reviews to Fully AI-Driven Reviews\u201d and a publication timestamp corresponding to 2026-07-27T06:52:21Z. Attempts to retrieve the article body returned placeholder responses: two items titled \u201cJust a moment...\u201d with publication_date listed as \u201cUnknown\u201d and no substantive content in either entry.\\n\\n## Observed placeholders\\n\\nThe source material appears to be protected or temporarily blocked. The visible entries contain no article text \u2014 only placeholder messages and minimal metadata. No author, affiliation, abstract, or body paragraphs were available for extraction from the supplied content.\\n\\n> \u201cJust a moment...\u201d\\n> publication_date: \u201cUnknown\u201d\\n\\n> \u201cJust a moment...\u201d\\n> publication_date: \u201cUnknown\u201d\\n\\n## Context (general, not from the unavailable article)\\n\\nLiving systematic reviews are continuously updated syntheses of research evidence that incorporate new findings as they become available. Interest in applying artificial intelligence and machine learning to systematic review workflows has grown because AI tools can assist with literature searching, citation screening, data extraction, deduplication, risk-of-bias assessment, and automated updating. A transition toward more automated or AI-driven review processes aims to reduce manual workload and shorten the time from new evidence generation to incorporation in reviews.\\n\\n## Limitations and what is not claimed\\n\\nBecause the original article text was not accessible in the provided data, no claims about the article\u2019s arguments, results, or recommendations are made here. The contextual paragraph above summarizes general trends and potential applications of AI in evidence synthesis and is not a substitute for the missing article content.\\n\\n## Next steps to obtain the full article\\n\\nRecommended actions include:\\n- Check the original publisher or DOI.\\n- Retry the request at a later time (the site may have presented a transient protection page).\\n- Use a cached or archived version.\\n- Contact the publisher for access.\\n- If more raw data or a direct URL is supplied, a follow-up extraction can be attempted.",
+  "created_at": "2026-07-27T21:05:46.999728+00:00"
+}
