@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Newspaper, ArrowLeft } from "lucide-react"; // Import ArrowLeft icon (optional)
+import { Newspaper, ArrowLeft, LogIn, Sparkles } from "lucide-react";
 import { preferencesApi } from "@/lib/api";
 
 const newsCategories = [
@@ -34,14 +34,17 @@ export default function PreferencesPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isFetchingPrefs, setIsFetchingPrefs] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("SNAPtoken");
     if (!token) {
-      router.push("/register");
+      setIsLoggedIn(false);
+      setIsFetchingPrefs(false);
       return;
     }
 
+    setIsLoggedIn(true);
     const fetchUserPreferences = async () => {
       setIsFetchingPrefs(true);
       try {
@@ -60,7 +63,7 @@ export default function PreferencesPage() {
     };
 
     fetchUserPreferences();
-  }, [router]);
+  }, []);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategories((prev) =>
@@ -137,49 +140,73 @@ export default function PreferencesPage() {
       {/* ===== END HEADER MODIFICATION ===== */}
 
       <main className="flex-1 flex items-center justify-center p-4 mt-4">
-        {" "}
-        {/* Add margin-top if header is sticky */}
-        <Card className="w-full max-w-lg">
-          <CardHeader>
-            <CardTitle>Set Your News Preferences</CardTitle>
-            <CardDescription>
-              Select the topics you're interested in to personalize your news
-              feed
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                {newsCategories.map((category) => (
-                  <div
-                    key={category.id}
-                    className="flex items-center space-x-2"
-                  >
-                    <Checkbox
-                      id={category.id}
-                      checked={selectedCategories.includes(category.id)}
-                      onCheckedChange={() => handleCategoryChange(category.id)}
-                      // disabled={isFetchingPrefs || isLoading} // Keep disabled state if needed
-                    />
-                    <Label htmlFor={category.id}>{category.label}</Label>
-                  </div>
-                ))}
+        {!isLoggedIn ? (
+          <Card className="w-full max-w-md shadow-lg border-border/60 text-center">
+            <CardHeader className="space-y-3 pb-4">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <Sparkles className="h-6 w-6" />
               </div>
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={isLoading || isFetchingPrefs}
-              >
-                {isLoading ? "Saving..." : "Save Preferences"}
-              </Button>
-            </form>
-          </CardContent>
-          <CardFooter className="flex justify-center">
-            <p className="text-sm text-muted-foreground">
-              You can always update your preferences later
-            </p>
-          </CardFooter>
-        </Card>
+              <CardTitle className="text-2xl">Personalize Your Feed</CardTitle>
+              <CardDescription className="text-sm">
+                Sign in to set your favorite news topics, train your recommendation engine, and get a tailored feed.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Link href="/register" className="w-full block">
+                <Button size="lg" className="w-full">
+                  <LogIn className="mr-2 h-4 w-4" />
+                  Sign In / Register
+                </Button>
+              </Link>
+              <Link href="/dashboard" className="w-full block">
+                <Button variant="outline" className="w-full">
+                  Continue Browsing as Guest
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card className="w-full max-w-lg">
+            <CardHeader>
+              <CardTitle>Set Your News Preferences</CardTitle>
+              <CardDescription>
+                Select the topics you're interested in to personalize your news
+                feed
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  {newsCategories.map((category) => (
+                    <div
+                      key={category.id}
+                      className="flex items-center space-x-2"
+                    >
+                      <Checkbox
+                        id={category.id}
+                        checked={selectedCategories.includes(category.id)}
+                        onCheckedChange={() => handleCategoryChange(category.id)}
+                      />
+                      <Label htmlFor={category.id}>{category.label}</Label>
+                    </div>
+                  ))}
+                </div>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isLoading || isFetchingPrefs}
+                >
+                  {isLoading ? "Saving..." : "Save Preferences"}
+                </Button>
+              </form>
+            </CardContent>
+            <CardFooter className="flex justify-center">
+              <p className="text-sm text-muted-foreground">
+                You can always update your preferences later
+              </p>
+            </CardFooter>
+          </Card>
+        )}
       </main>
     </div>
   );

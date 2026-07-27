@@ -14,6 +14,7 @@ import {
   Newspaper,
   Settings,
   LogOut,
+  LogIn,
   MessageCircle,
   X,
   Send,
@@ -29,6 +30,7 @@ interface ChatMessage {
 export default function DashboardPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [news, setNews] = useState<NewsItem[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -47,7 +49,7 @@ export default function DashboardPage() {
 
   const fetchNews = useCallback(async (pageNum: number) => {
     const token = localStorage.getItem("SNAPtoken");
-    if (!token) return;
+    setIsLoggedIn(!!token);
 
     try {
       isFetchingRef.current = true;
@@ -77,14 +79,10 @@ export default function DashboardPage() {
     }
   };
 
-  // On mount: check auth and load page 1
+  // On mount: load page 1
   useEffect(() => {
-    if (!localStorage.getItem("SNAPtoken")) {
-      router.push("/register");
-      return;
-    }
     fetchNews(1);
-  }, [router, fetchNews]);
+  }, [fetchNews]);
 
   // Auto-scroll chat to bottom
   useEffect(() => {
@@ -98,7 +96,8 @@ export default function DashboardPage() {
 
   const handleLogout = () => {
     localStorage.removeItem("SNAPtoken");
-    router.push("/");
+    setIsLoggedIn(false);
+    fetchNews(1);
   };
 
   // Fetch subsequent pages — guard page > 1 to avoid double-fetch on mount
@@ -116,7 +115,6 @@ export default function DashboardPage() {
     if (!inputMessage.trim()) return;
 
     const token = localStorage.getItem("SNAPtoken");
-    if (!token) return;
 
     const userMessage: ChatMessage = {
       text: inputMessage,
@@ -156,7 +154,7 @@ export default function DashboardPage() {
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-semibold mb-2">
-              Loading your personalized news feed...
+              Loading news feed...
             </h2>
             <p className="text-muted-foreground">
               Please wait while we gather the latest news for you.
@@ -182,16 +180,46 @@ export default function DashboardPage() {
                 Preferences
               </Button>
             </Link>
-            <Button variant="ghost" size="sm" onClick={handleLogout}>
-              <LogOut className="h-4 w-4 mr-2" />
-              Sign Out
-            </Button>
+            {isLoggedIn ? (
+              <Button variant="ghost" size="sm" onClick={handleLogout}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </Button>
+            ) : (
+              <Link href="/register">
+                <Button size="sm">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </header>
 
       <main className="flex-1 container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Your News Feed</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+          <h1 className="text-3xl font-bold">
+            {isLoggedIn ? "Your Personalized News Feed" : "Latest News"}
+          </h1>
+        </div>
+
+        {!isLoggedIn && (
+          <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-semibold text-sm text-foreground">Browsing as Guest</p>
+              <p className="text-xs text-muted-foreground">
+                Sign in to set your favorite news topics and enjoy an AI-personalized feed.
+              </p>
+            </div>
+            <Link href="/register">
+              <Button size="sm" className="whitespace-nowrap">
+                <LogIn className="h-4 w-4 mr-2" />
+                Sign In to Personalize
+              </Button>
+            </Link>
+          </div>
+        )}
 
         <div
           ref={containerRef}

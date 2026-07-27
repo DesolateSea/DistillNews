@@ -149,8 +149,11 @@ export default function AuthPage() {
               </form>
             )}
           </CardContent>
-          <CardFooter className="flex justify-center border-t pt-4 text-xs text-muted-foreground">
-            By continuing, you agree to our Terms and Privacy Policy.
+          <CardFooter className="flex flex-col items-center gap-2 border-t pt-4 text-xs text-muted-foreground">
+            <Link href="/dashboard" className="text-sm font-medium text-primary hover:underline">
+              Continue reading as Guest &rarr;
+            </Link>
+            <span>By continuing, you agree to our Terms and Privacy Policy.</span>
           </CardFooter>
         </Card>
       </main>

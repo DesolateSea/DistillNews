@@ -98,11 +98,6 @@ export default function NewsDetailPage() {
     const controller = new AbortController();
     const token = localStorage.getItem("SNAPtoken");
 
-    if (!token) {
-      router.push("/register");
-      return;
-    }
-
     const fetchNews = async () => {
       setLoading(true);
       setError(null);

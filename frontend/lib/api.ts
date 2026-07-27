@@ -76,26 +76,28 @@ export const preferencesApi = {
 };
 
 export const feedsApi = {
-  list: (token: string, page?: number, limit?: number) =>
+  list: (token?: string | null, page?: number, limit?: number) =>
     apiRequest<{ feeds: NewsItem[]; has_more?: boolean }>(
       page && limit ? `/feeds/${page}/${limit}` : "/feeds",
-      { token }
+      { token: token || undefined }
     ),
-  get: (articleId: string, token: string) =>
-    apiRequest<NewsItem>(`/feeds/${encodeURIComponent(articleId)}`, { token }),
-  trackTime: (articleId: string, durationMs: number, token: string) =>
+  get: (articleId: string, token?: string | null) =>
+    apiRequest<NewsItem>(`/feeds/${encodeURIComponent(articleId)}`, {
+      token: token || undefined,
+    }),
+  trackTime: (articleId: string, durationMs: number, token?: string | null) =>
     apiRequest(`/feeds/${encodeURIComponent(articleId)}/track_time`, {
       method: "POST",
-      token,
+      token: token || undefined,
       body: { durationMs },
     }),
 };
 
 export const chatApi = {
-  send: (message: string, token: string) =>
+  send: (message: string, token?: string | null) =>
     apiRequest<{ response?: string }>("/chat", {
       method: "POST",
-      token,
+      token: token || undefined,
       body: { message },
     }),
 };
