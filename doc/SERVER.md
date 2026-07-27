@@ -1,12 +1,6 @@
 # Server
 
-<<<<<<< HEAD
-The FastAPI server in `backend/server/` exposes the product API, owns application data, and coordinates scheduled publication of processed articles. Its entry point is `backend/server/app.py`.
-
----
-=======
 The FastAPI server in `server/` exposes the product API, owns application data, and coordinates scheduled publication of processed articles. Its entry point is `server/app.py`.
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
 
 ## Contents
 
@@ -17,19 +11,8 @@ The FastAPI server in `server/` exposes the product API, owns application data, 
 - [Routes](#routes)
 - [Container Deployment](#container-deployment)
 
-<<<<<<< HEAD
 ---
 
-## Database Layer (`db/`)
-
-The server interacts with all application data through unified database and storage handles:
-
-- **`MongoHandle`** (`db/mongo.py`): Manages the `AsyncIOMotorClient` pool for product collections (`news_db.articles` and `news_db.SNAPUsers`).
-- **`RedisHandle`** (`db/redis.py`): Manages async Redis connections for short-lived email OTP verification sessions.
-- **`FileStore`** (`db/storage.py`): Manages disk file storage, JSON reading/writing, automatic `created_at` UTC timestamping, deduplication checks, and article list iteration.
-
----
-=======
 ## Database Layer (`service/db/`)
 
 The server interacts with all application data through unified database and storage handles:
@@ -37,7 +20,8 @@ The server interacts with all application data through unified database and stor
 - **`MongoHandle`** (`service/db/mongo.py`): Manages the `AsyncIOMotorClient` pool for product collections (`news_db.articles` and `news_db.SNAPUsers`).
 - **`RedisHandle`** (`service/db/redis.py`): Manages async Redis connections for short-lived email OTP verification sessions.
 - **`FileStore`** (`service/db/storage.py`): Manages file storage, JSON reading/writing, deduplication checks, and article list iteration.
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
+
+---
 
 ## Responsibilities and Data Ownership
 

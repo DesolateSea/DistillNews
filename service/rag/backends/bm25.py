@@ -4,14 +4,10 @@ import math
 import re
 from service.rag.base import Document, DocumentStore, SearchResult
 
-<<<<<<< HEAD:backend/chatbot/rag/backends/bm25.py
-from utils.logger import log
-=======
 try:
     from service.logger import log
 except ImportError:
     log = None
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):service/rag/backends/bm25.py
 
 
 class BM25DocStore(DocumentStore):

@@ -4,14 +4,10 @@ import math
 
 from service.rag.base import Document, DocumentStore, SearchResult, EmbeddingProvider
 
-<<<<<<< HEAD:backend/chatbot/rag/backends/memory.py
-from utils.logger import log
-=======
 try:
     from service.logger import log
 except ImportError:
     log = None
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):service/rag/backends/memory.py
 
 
 class InMemoryVectorStore(DocumentStore):

@@ -6,18 +6,11 @@ Reads target URLs from config and scrapes each one.
 Replaces the old ``src/julep/run_scrape.py``.
 """
 
-<<<<<<< HEAD:backend/pipeline/scrape.py
-from db import FileStore
+from service.db import FileStore
 from config import config
 from pipeline.scrapers.scraper import scrape_target
 from pipeline.scrapers.config import TARGET_URLS_JSON
-from utils.logger import log
-=======
-from service.db import FileStore
-from pipeline.scrapers.scraper import scrape_target
-from pipeline.scrapers.config import TARGET_URLS_JSON
 from service.logger import log
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/scrape.py
 
 def run_scrape(progress_callback=None, run_timestamp=None):
     log.section("Web Scraping Pipeline")

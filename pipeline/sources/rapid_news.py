@@ -4,14 +4,10 @@ from config import config
 from service.db import FileStore
 from pipeline.sources.config import RAPID_NEWS_SECTIONS
 
-<<<<<<< HEAD:backend/pipeline/sources/rapid_news.py
-from utils.logger import log
-=======
 try:
     from service.logger import log
 except ImportError:
     log = None
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/sources/rapid_news.py
 
 
 class RapidNewsFetcher:

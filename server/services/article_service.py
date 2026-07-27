@@ -5,14 +5,10 @@ from server.models.articles_model import DurationRequest, ArticleInDB, Paginated
 from server.utils.recommendation import sort_articles, update_weights
 from service.db import FileStore, MongoHandle
 
-<<<<<<< HEAD:backend/server/services/article_service.py
-from utils.logger import log
-=======
 try:
     from service.logger import log
 except ImportError:
     log = None
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):server/services/article_service.py
 
 scheduler = AsyncIOScheduler()
 

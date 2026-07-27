@@ -6,18 +6,11 @@ Iterates over API data files and runs the extraction pipeline on each.
 Replaces the old ``src/julep/generate_articles.py``.
 """
 
-<<<<<<< HEAD:backend/pipeline/generate.py
-from db import FileStore
+from service.db import FileStore
 from config import config
 from pipeline.parsers.api_handlers import api_handlers
 from pipeline.extraction import extract_news
-from utils.logger import log
-=======
-from service.db import FileStore
-from pipeline.parsers.api_handlers import api_handlers
-from pipeline.extraction import extract_news
 from service.logger import log
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/generate.py
 from pathlib import Path
 
 API_ROOT = FileStore.api_data_dir()

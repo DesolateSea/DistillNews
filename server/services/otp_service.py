@@ -1,7 +1,3 @@
-<<<<<<< HEAD:backend/server/services/otp_service.py
-=======
-from service.db.redis import RedisHandle
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):server/services/otp_service.py
 import os
 import uuid
 import json
@@ -10,8 +6,8 @@ import smtplib
 import asyncio
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from db.redis import RedisHandle
-from utils.logger import log
+from service.db.redis import RedisHandle
+from service.logger import log
 
 
 def generate_otp() -> str:

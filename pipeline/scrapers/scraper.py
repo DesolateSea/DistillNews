@@ -5,14 +5,10 @@ from .proxies import load_working_proxies
 from .fetcher import fetch_and_save_direct_and_via_proxy, final_rotate_scrape
 
 # Import logger — use try/except so the module works standalone too
-<<<<<<< HEAD:backend/pipeline/scrapers/scraper.py
-from utils.logger import log
-=======
 try:
     from service.logger import log
 except ImportError:
     log = None
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/scrapers/scraper.py
 
 working_urls = load_working_proxies()
 

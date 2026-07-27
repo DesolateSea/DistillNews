@@ -1,31 +1,29 @@
 import os
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from server.routes import auth_routes, user_routes, feed_routes, chat_routes, weather_routes
 from server.services.article_service import start_scheduler, shutdown_scheduler, store_article
-from contextlib import asynccontextmanager
-<<<<<<< HEAD:backend/server/app.py
-from db.mongo import MongoHandle
-from db.redis import RedisHandle
-from utils.logger import log
-
-=======
 from service.db.mongo import MongoHandle
 from service.db.redis import RedisHandle
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):server/app.py
+from service.logger import log
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     MongoHandle.connect()
     await RedisHandle.connect()
     try:
-        log.info("Storing all new articles")
+        if log:
+            log.info("Storing all new articles")
         await store_article()
-        log.success("Stored all new articles")
+        if log:
+            log.success("Stored all new articles")
         start_scheduler()
     except Exception as e:
-        log.warn(f"Startup tasks failed ({e}). Running without scheduler.")
+        if log:
+            log.warn(f"Startup tasks failed ({e}). Running without scheduler.")
     yield
     try:
         shutdown_scheduler()

@@ -87,37 +87,3 @@ def update_weights(
                 weights[cat] /= total
     
     return weights
-<<<<<<< HEAD
-
-# Example usage
-if __name__ == "__main__":
-    from utils.logger import log
-
-    preferences = ["sports", "technology", "health", "business"]
-    weights = {"sports": 0.25, "technology": 0.25, "health": 0.25, "business": 0.25}
-
-    interactions = {
-        "sports": (0, 0),
-        "technology": (0, 0),
-        "health": (0, 0),
-        "business": (0, 0),
-    }
-
-    articles = [
-        {"id": 1, "category": "sports", "popularity": 15, "duration": 200.0},
-        {"id": 2, "category": "technology", "popularity": 5, "duration": 50.0},
-        {"id": 3, "category": "health", "popularity": 2, "duration": 2000.0},
-        {"id": 4, "category": "business", "popularity": 8, "duration": 100.0},
-        {"id": 5, "category": "technology", "popularity": 10, "duration": 120.0},
-    ]
-
-    log.info("Recommendation", "Sorted Articles:")
-    sorted_articles = sort_articles(preferences, weights, interactions, articles)
-    for article in sorted_articles:
-        log.info("Article", str(article))
-
-    log.info("Recommendation", "Updated Weights:")
-    updated_weights = update_weights(weights, interactions, "sports", True, 30.0)
-    log.info("Weights", str(updated_weights))
-=======
->>>>>>> e2b4959 (fix: Bug resolved for the recommendation system)

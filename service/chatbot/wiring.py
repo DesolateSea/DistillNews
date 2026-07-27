@@ -2,21 +2,12 @@
 
 from pathlib import Path
 
-<<<<<<< HEAD:backend/chatbot/wiring.py
-from agents import create_agent
-from db import FileStore
-from chatbot.service import ChatbotService
-from chatbot.rag import create_doc_store
-from utils.logger import log
-=======
 from service.agents import create_agent
 from service.db import FileStore
 from service.chatbot.service import ChatbotService
 from service.rag import create_doc_store
 from service.rag.base import Document
-
 from service.logger import log
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):service/chatbot/wiring.py
 
 prompts_dir = Path(__file__).resolve().parent / "prompts"
 

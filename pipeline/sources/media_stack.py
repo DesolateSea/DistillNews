@@ -3,14 +3,10 @@ from config import config
 from service.db import FileStore
 from pipeline.sources.config import MEDIA_STACK_CATEGORIES
 
-<<<<<<< HEAD:backend/pipeline/sources/media_stack.py
-from utils.logger import log
-=======
 try:
     from service.logger import log
 except ImportError:
     log = None
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/sources/media_stack.py
 
 
 class MediaStack:

@@ -4,14 +4,10 @@ from config import config
 from service.db import FileStore
 from pipeline.sources.config import SUBREDDITS
 
-<<<<<<< HEAD:backend/pipeline/sources/reddit.py
-from utils.logger import log
-=======
 try:
     from service.logger import log
 except ImportError:
     log = None
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/sources/reddit.py
 
 REDDIT_SECRET = config.REDDIT_SECRET
 REDDIT_CLIENT_ID = config.REDDIT_CLIENT_ID

@@ -12,14 +12,9 @@ import json
 import sys
 from pathlib import Path
 
-<<<<<<< HEAD:backend/pipeline/extraction.py
-from agents import create_agent
-from db import FileStore
-from config import config
-=======
 from service.agents import create_agent
 from service.db import FileStore
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/extraction.py
+from config import config
 
 from pipeline.parsers.paragraph_extractor import clean_html
 from pipeline.parsers.reddit_parser import reddit_parser
@@ -27,11 +22,7 @@ from pipeline.parsers.rapid_news_parser import rapid_news_parser
 from pipeline.parsers.media_stack_parser import media_stack_parser
 from pipeline.parsers.gnews_parser import gnews_parser
 
-<<<<<<< HEAD:backend/pipeline/extraction.py
-from utils.logger import log
-=======
 from service.logger import log
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the):pipeline/extraction.py
 
 # Resolve directories
 PROJECT_ROOT = Path(__file__).resolve().parent.parent

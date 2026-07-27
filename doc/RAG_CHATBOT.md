@@ -13,16 +13,10 @@ The chatbot package in `service/chatbot/` provides conversational QA grounded in
 ## Overview
 
 The chatbot is decoupled into three independent layers:
-<<<<<<< HEAD
 
-1. **Agent Provider (`backend/agents/`)**: Handles LLM chat completion.
-2. **Embedding Provider (`backend/embeddings/`)**: Generates vector representations of articles and queries.
-3. **Document Store (`backend/chatbot/rag/`)**: Indexes documents and performs semantic vector search.
-=======
 1. **Agent Provider (`service/agents/`)**: Handles LLM chat completion.
 2. **Embedding Provider (`pipeline/embeddings/`)**: Generates vector representations of articles and queries.
 3. **Document Store (`service/rag/`)**: Indexes documents and performs semantic vector search.
->>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
 
 ## Database & Storage Integration (`service/db/`)
 
