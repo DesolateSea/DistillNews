@@ -2,7 +2,10 @@ from datetime import datetime, timezone
 from pipeline.scrapers.scraper import scrape_target, cache_hit
 from .paragraph_extractor import clean_html
 from copy import deepcopy
-from utils.logger import log
+try:
+    from service.logger import log
+except ImportError:
+    log = None
 
 
 def rapid_news_parser(news_item, no_repeat=True):

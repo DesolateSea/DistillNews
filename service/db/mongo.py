@@ -2,7 +2,11 @@
 
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from config import config
-from utils.logger import log
+
+try:
+    from service.logger import log
+except ImportError:
+    log = None
 
 
 class MongoHandle:
@@ -16,7 +20,8 @@ class MongoHandle:
         url = url or config.DB_URL
         cls._client = AsyncIOMotorClient(url)
         cls._db = cls._client[db_name]
-        log.db("MongoDB Connected", f"db={db_name}")
+        if log:
+            log.db("MongoDB Connected", f"db={db_name}")
 
     @classmethod
     def disconnect(cls):
@@ -24,7 +29,8 @@ class MongoHandle:
             cls._client.close()
             cls._client = None
             cls._db = None
-            log.db("MongoDB Disconnected")
+            if log:
+                log.db("MongoDB Disconnected")
 
     @classmethod
     def get_db(cls) -> AsyncIOMotorDatabase:

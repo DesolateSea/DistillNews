@@ -28,7 +28,7 @@ class VerifyOTPRequest(BaseModel):
     session_token: str
 
 if __name__ == "__main__":
-    from utils.logger import log
+    from service.logger import log
 
     prefs = PreferencesModel(preferences=["travel", "economics"])
     user = UserModel(email="user@example.com", password="securepass", preferences=prefs)

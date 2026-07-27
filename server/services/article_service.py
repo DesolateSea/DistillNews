@@ -99,25 +99,20 @@ async def update_article_duration(article_id: str, duration: DurationRequest, cu
     if current_user:
         user_id = current_user.get("email")
         cat = article.get("category")
-        # Fetch latest user doc
         user_doc = await MongoHandle.collection("SNAPUsers").find_one({"email": user_id})
-        prefs = user_doc.get("preferences", [])
-        raw_weights = user_doc.get("bias", {})
-        # Normalize existing weights
-        total_w = sum(raw_weights.values()) or 1.0
-        weights = {c: raw_weights.get(c, 0) / total_w for c in prefs}
-        inter = user_doc.get("category_scores", {c: (0,0.0) for c in prefs})
-        # Update weights based on view
-        new_weights = update_weights(weights, inter, cat, clicked=True, duration=added_seconds)
-        # Save back
-        # Denormalize weights back to category_scores scale
-        updated_scores = {c: new_weights.get(c, 0) for c in prefs}
-        if log:
-            log.db("Updated user scores", str({k: f"{v:.3f}" for k, v in updated_scores.items()}))
-        await MongoHandle.collection("SNAPUsers").update_one(
-            {"email": user_id},
-            {"$set": {"bias": new_weights, "category_scores": inter}}
-        )
+        if user_doc:
+            raw_weights = user_doc.get("bias", {})
+            inter = user_doc.get("category_scores", {})
+
+            # Update weights & interaction history dynamically
+            new_weights = update_weights(raw_weights, inter, cat, clicked=True, duration=added_seconds)
+
+            if log:
+                log.db("Updated user scores", str({k: f"{v:.3f}" for k, v in new_weights.items()}))
+            await MongoHandle.collection("SNAPUsers").update_one(
+                {"email": user_id},
+                {"$set": {"bias": new_weights, "category_scores": inter}}
+            )
 
     return {
         "message": "Duration updated",

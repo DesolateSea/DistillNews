@@ -1,6 +1,4 @@
-"""Unit tests for utils.logger ANSI badge logger using pytest."""
-
-from utils.logger import log, Logger, truncate
+from service.logger import log, Logger, truncate
 
 
 def test_truncate_helper():

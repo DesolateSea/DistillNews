@@ -2,7 +2,10 @@ from service.db.mongo import MongoHandle
 from fastapi import HTTPException
 from server.security import get_password_hash, verify_password, create_access_token
 from server.models.user_model import RegisterModel, LoginModel, SendOTPRequest, VerifyOTPRequest
-from utils.logger import log
+try:
+    from service.logger import log
+except ImportError:
+    log = None
 
 CATEGORY = ["World", "Sports", "Technology", "Health", "Business", "Science", "Entertainment"]
 

@@ -2,7 +2,11 @@
 
 from redis.asyncio import Redis
 from config import config
-from utils.logger import log
+
+try:
+    from service.logger import log
+except ImportError:
+    log = None
 
 
 class RedisHandle:
@@ -14,14 +18,16 @@ class RedisHandle:
     async def connect(cls, url: str | None = None):
         target_url = url or config.REDIS_URL
         cls._client = Redis.from_url(target_url, decode_responses=True)
-        log.db("Redis Connected", target_url)
+        if log:
+            log.db("Redis Connected", target_url)
 
     @classmethod
     async def disconnect(cls):
         if cls._client:
             await cls._client.close()
             cls._client = None
-            log.db("Redis Disconnected")
+            if log:
+                log.db("Redis Disconnected")
 
     @classmethod
     def client(cls) -> Redis:

@@ -1,7 +1,10 @@
 from datetime import datetime
 from pipeline.scrapers.scraper import scrape_target, cache_hit
 from .paragraph_extractor import clean_html
-from utils.logger import log
+try:
+    from service.logger import log
+except ImportError:
+    log = None
 
 
 def reddit_parser(post, no_repeat=True):

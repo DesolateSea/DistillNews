@@ -3,7 +3,10 @@ from .reddit_parser import reddit_parser
 from .rapid_news_parser import rapid_news_parser
 from .gnews_parser import gnews_parser
 from .media_stack_parser import media_stack_parser
-from utils.logger import log
+try:
+    from service.logger import log
+except ImportError:
+    log = None
 import json
 
 def reddit_handler(json_path, extract_news):

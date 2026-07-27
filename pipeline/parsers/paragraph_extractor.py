@@ -1,7 +1,10 @@
 from bs4 import BeautifulSoup
 from datetime import datetime
 from config import config
-from utils.logger import log
+try:
+    from service.logger import log
+except ImportError:
+    log = None
 
 def clean_html(html_path, debug=None):
     if debug is None:
