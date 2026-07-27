@@ -29,8 +29,8 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
                 from pipeline.embeddings import create_embedding_provider
                 embedder = create_embedding_provider()
             except ImportError:
-                from .base import EmbeddingProvider
-                embedder = EmbeddingProvider()
+                from .providers.remote_embedding import RemoteEmbeddingProvider
+                embedder = RemoteEmbeddingProvider()
 
         return InMemoryVectorStore(embedder=embedder, **kwargs)
     elif backend == "bm25":

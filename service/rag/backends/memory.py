@@ -1,7 +1,7 @@
 """Provider-agnostic, in-process semantic document store."""
 
 import math
-
+import re
 from service.rag.base import Document, DocumentStore, SearchResult, EmbeddingProvider
 
 try:
@@ -44,43 +44,78 @@ class InMemoryVectorStore(DocumentStore):
                 for document, embedding in zip(docs_to_embed, embeddings):
                     if embedding:
                         self._indexed_docs.append({"doc": document, "embedding": embedding})
+                    else:
+                        self._indexed_docs.append({"doc": document, "embedding": []})
             except Exception as error:
                 if log:
                     log.error("Document embedding failed", str(error))
+                for document in docs_to_embed:
+                    self._indexed_docs.append({"doc": document, "embedding": []})
 
         if log:
             log.success(f"Vector store: Indexed {len(self._indexed_docs)} documents total")
 
     def search(self, query: str, limit: int = 5) -> list[SearchResult]:
-        """Return the nearest documents by cosine similarity."""
+        """Return the nearest documents by cosine similarity, falling back to lexical matching."""
         if not query or limit <= 0 or not self._indexed_docs:
-            return []
-
-        try:
-            query_embedding = self._embedder.embed(query)
-        except Exception as error:
             if log:
-                log.error("Query embedding failed", str(error))
-            return []
-        if not query_embedding:
+                log.warn("RAG Search aborted", f"Empty query or 0 indexed docs (total indexed: {len(self._indexed_docs)})")
             return []
 
-        scored_documents = [
-            (self._cosine_similarity(query_embedding, item["embedding"]), item["doc"])
-            for item in self._indexed_docs
-        ]
-        scored_documents.sort(key=lambda item: item[0], reverse=True)
+        query_embedding = []
+        if self._embedder:
+            try:
+                query_embedding = self._embedder.embed(query)
+            except Exception as error:
+                if log:
+                    log.error("Query embedding failed", str(error))
 
-        return [
+        scored_documents = []
+
+        if query_embedding:
+            if log:
+                log.info("RAG Search Mode: Vector Cosine Similarity", f"Query vector dims: {len(query_embedding)}")
+            for item in self._indexed_docs:
+                doc_emb = item.get("embedding")
+                if doc_emb and len(doc_emb) == len(query_embedding):
+                    sim = self._cosine_similarity(query_embedding, doc_emb)
+                    if sim > 0:
+                        scored_documents.append((sim, item["doc"]))
+            scored_documents.sort(key=lambda item: item[0], reverse=True)
+        else:
+            query_terms = [t.lower() for t in re.findall(r"\w+", query) if len(t) > 2]
+            if log:
+                log.info("RAG Search Mode: Lexical Keyword Fallback", f"Search terms: {query_terms}")
+            if not query_terms:
+                return []
+            
+            for item in self._indexed_docs:
+                doc = item["doc"]
+                text = f"{doc.title} {doc.content}".lower()
+                matches = sum(text.count(term) for term in query_terms)
+                if matches > 0:
+                    score = min(1.0, matches / (len(query_terms) * 2.0))
+                    scored_documents.append((score, doc))
+            scored_documents.sort(key=lambda item: item[0], reverse=True)
+
+        results = [
             SearchResult(
                 title=document.title,
                 content=document.content,
                 snippet=self._snippet(document.content),
-                score=score,
+                score=round(score, 4),
                 metadata=document.metadata or {},
             )
             for score, document in scored_documents[:limit]
         ]
+
+        if log:
+            if results:
+                log.success(f"RAG Search Found {len(results)} matches", f"Top match: '{results[0].title[:45]}' (score: {results[0].score})")
+            else:
+                log.warn("RAG Search → 0 results found", f"Searched {len(self._indexed_docs)} documents for: '{query[:50]}'")
+
+        return results
 
     @staticmethod
     def _cosine_similarity(left: list[float], right: list[float]) -> float:
