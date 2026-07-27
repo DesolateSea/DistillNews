@@ -137,61 +137,53 @@ async def get_all_articles_pagination(
 ) -> PaginatedArticlesResponse:
     skip = (page - 1) * limit
 
-    # 1) Fetch one page of raw docs
-    raw = await MongoHandle.collection("articles").find().skip(skip).limit(limit).to_list(length=limit)
+    # 1) Fetch candidate pool of documents from MongoDB
+    raw = await MongoHandle.collection("articles").find().limit(500).to_list(length=500)
     clean: list[dict] = []
     for doc in raw:
-        # ——————————————————————————————————————————————
-        # 1) _id must be a string
         doc["_id"] = str(doc["_id"])
-
-        # 3) optional top‑level defaults
         doc.setdefault("markdown_content", None)
         doc.setdefault("location", None)
 
-        # ——————————————————————————————————————————————
-        # 4) clean nested source
         src = doc.get("source", {})
-
-        #    a) if `source` is a list, take the first element
         if isinstance(src, list):
             src = src[0] if src else {}
 
-        #    b) join list‑of‑strings in `content` into one string
         content = src.get("content")
         if isinstance(content, list):
             src["content"] = " ".join(str(x) for x in content)
 
-        #    c) ensure `media` is always a list
         media = src.get("media")
         if not isinstance(media, list):
             src["media"] = []
 
         doc["source"] = src
-        # ——————————————————————————————————————————————
-
         clean.append(doc)
 
-    # 3) Sort / personalize
+    # 2) Personalize & rank entire article pool
     if not current_user:
         sorted_list = sorted(clean, key=lambda a: a.get("popularity", 0), reverse=True)
     else:
         user = await MongoHandle.collection("SNAPUsers").find_one({"email": current_user["email"]})
-        prefs = user.get("preferences", [])
-        weights = user.get("bias", {})
-        interactions = user.get("category_scores", {c: (0, 0.0) for c in prefs})
-        sorted_list = sort_articles(prefs, weights, interactions, clean)
+        if user:
+            prefs = user.get("preferences", [])
+            weights = user.get("bias", {})
+            interactions = user.get("category_scores", {c: (0, 0.0) for c in prefs})
+            sorted_list = sort_articles(prefs, weights, interactions, clean)
+        else:
+            sorted_list = sorted(clean, key=lambda a: a.get("popularity", 0), reverse=True)
 
-    # 4) Count & has_more
-    total = await MongoHandle.collection("articles").count_documents({})
-    has_more = (skip + len(sorted_list)) < total
+    # 3) Slice for requested page
+    paged = sorted_list[skip : skip + limit]
+    total = len(sorted_list)
+    has_more = (skip + len(paged)) < total
 
     return {
-        "page":page,
-        "limit":limit,
-        "has_more":has_more,
-        "total":total,
-        "feeds":sorted_list,
+        "page": page,
+        "limit": limit,
+        "has_more": has_more,
+        "total": total,
+        "feeds": paged,
     }
 
 

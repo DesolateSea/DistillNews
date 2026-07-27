@@ -1,5 +1,9 @@
 from typing import List, Dict, Tuple
 
+def _normalize_cat(cat_name: str | None) -> str:
+    """Normalize category string for case-insensitive matching."""
+    return str(cat_name or "").strip().lower()
+
 def sort_articles(
     preferences: List[str],
     weights: Dict[str, float],
@@ -17,24 +21,25 @@ def sort_articles(
     """
     scored = []
     
+    # Map normalized weights and interactions
+    norm_weights = {_normalize_cat(k): v for k, v in weights.items()}
+    norm_interactions = {_normalize_cat(k): v for k, v in interactions.items()}
+    
     max_popularity = max((art.get('popularity', 0) for art in articles), default=1)
     max_duration = max((art.get('duration', 0.0) for art in articles), default=1.0)
     
     for art in articles:
-        cat = art.get('category')
+        cat = _normalize_cat(art.get('category'))
         
-        if cat in weights:
+        if cat in norm_weights and norm_weights[cat] > 0:
             art_popularity = art.get('popularity', 0) / max_popularity if max_popularity > 0 else 0
             art_time = art.get('duration', 0.0) / max_duration if max_duration > 0 else 0
             
-            preference_score = weights[cat]
-            
+            preference_score = norm_weights[cat]
             popularity_score = 0.6 * art_popularity + 0.4 * art_time
             
-            user_popularity, user_time = interactions.get(cat, (0, 0.0))
-            engagement_bonus = 0.0
-            if user_popularity > 0 or user_time > 0:
-                engagement_bonus = 0.2
+            user_popularity, user_time = norm_interactions.get(cat, (0, 0.0))
+            engagement_bonus = 0.2 if (user_popularity > 0 or user_time > 0) else 0.0
             
             score = preference_score * (1.0 + popularity_score + engagement_bonus)
         else:
@@ -64,13 +69,17 @@ def update_weights(
     :param learning_rate: Weight adjustment rate.
     :return: Updated weights normalized to sum to 1.
     """
-    prev_popularity, prev_time = interactions.get(article_category, (0, 0.0))
-    interactions[article_category] = (prev_popularity + (1 if clicked else 0), prev_time + duration)
+    norm_cat = _normalize_cat(article_category)
     
-    if article_category in weights:
+    # Find matching key in weights (preserve original key casing in weights dict)
+    target_key = next((k for k in weights if _normalize_cat(k) == norm_cat), article_category)
+    
+    prev_popularity, prev_time = interactions.get(target_key, (0, 0.0))
+    interactions[target_key] = (prev_popularity + (1 if clicked else 0), prev_time + duration)
+    
+    if target_key in weights:
         feedback = (1.0 if clicked else 0.0) + min(duration / 60.0, 1.0)
-        
-        weights[article_category] += learning_rate * feedback
+        weights[target_key] += learning_rate * feedback
         
         total = sum(weights.values())
         if total > 0:
@@ -78,6 +87,7 @@ def update_weights(
                 weights[cat] /= total
     
     return weights
+<<<<<<< HEAD
 
 # Example usage
 if __name__ == "__main__":
@@ -109,3 +119,5 @@ if __name__ == "__main__":
     log.info("Recommendation", "Updated Weights:")
     updated_weights = update_weights(weights, interactions, "sports", True, 30.0)
     log.info("Weights", str(updated_weights))
+=======
+>>>>>>> e2b4959 (fix: Bug resolved for the recommendation system)
