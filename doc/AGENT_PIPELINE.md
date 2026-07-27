@@ -1,5 +1,6 @@
 # Agent & News Ingestion Pipeline & TUI Dashboard
 
+<<<<<<< HEAD
 The news ingestion pipeline in `backend/pipeline/` collects raw news articles, cleans HTML and social posts, calls LLM agents to classify and extract structured news metadata, and formats articles as Markdown.
 
 In addition to programmatic CLI commands (`backend/cli.py`), the platform includes a **Textual Terminal User Interface (TUI)** in `backend/tui/` for real-time monitoring, live progress tracking, source toggling, and article browsing.
@@ -7,10 +8,16 @@ In addition to programmatic CLI commands (`backend/cli.py`), the platform includ
 All storage access (article JSONs, raw HTML, API responses, deduplication checks, and creation timestamps) is managed via the unified `FileStore` repository (`backend/db/storage.py`).
 
 ---
+=======
+The news ingestion pipeline in `pipeline/` collects raw news articles, cleans HTML and social posts, calls LLM agents to classify and extract structured news metadata, and formats articles as Markdown. Its entry points are `pipeline/cli.py`, `pipeline/tui/`, `pipeline/generate.py`, and `pipeline/scrape.py`.
+
+All storage access (article JSONs, raw HTML, API responses, deduplication checks) is managed via the unified `FileStore` repository (`service/db/storage.py`).
+>>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
 
 ## Contents
 
 - [Overview](#overview)
+<<<<<<< HEAD
 - [Terminal User Interface (TUI) (`tui/`)](#terminal-user-interface-tui-tui)
 - [Pipeline Event Runner (`pipeline/runner.py`)](#pipeline-event-runner-pipelinerunnerpy)
 - [LLM Agent Layer (`agents/`)](#llm-agent-layer-agents)
@@ -18,11 +25,17 @@ All storage access (article JSONs, raw HTML, API responses, deduplication checks
 - [Running the Pipeline & TUI](#running-the-pipeline--tui)
 
 ---
+=======
+- [LLM Agent Layer (`service/agents/`)](#llm-agent-layer-serviceagents)
+- [Storage Layer (`service/db/storage.py`)](#storage-layer-servicedbstoragepy)
+- [Running the Pipeline & TUI](#running-the-pipeline--tui)
+>>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
 
 ## Overview
 
-The pipeline operates independently from the web server and chatbot. It processes raw API responses and web scrapes into structured JSON files stored in `backend/data/processed/` via `FileStore`.
+The pipeline operates independently from the web server and chatbot. It processes raw API responses and web scrapes into structured JSON files stored in `pipeline/data/processed/` via `FileStore`.
 
+<<<<<<< HEAD
 ```
 Raw API Payloads / Scrapes  ──>  Parser & HTML Cleaner
                                          │
@@ -90,11 +103,14 @@ runner.run_all()
 ---
 
 ## LLM Agent Layer (`agents/`)
+=======
+## LLM Agent Layer (`service/agents/`)
+>>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
 
-The agent layer in `backend/agents/` decouples LLM completion calls from provider implementations:
+The agent layer in `service/agents/` decouples LLM completion calls from provider implementations:
 
 ```python
-from agents import create_agent
+from service.agents import create_agent
 
 agent = create_agent()  # Selected by AGENT_PROVIDER env var
 result = agent.complete_from_template("pipeline/prompts/is_news.yaml", input_data)
@@ -107,14 +123,18 @@ Supported providers:
 - `julep` — Julep AI platform task execution.
 - `huggingface` — Hugging Face Inference API.
 
+<<<<<<< HEAD
 ---
 
 ## Article Storage (`db/storage.py`)
+=======
+## Storage Layer (`service/db/storage.py`)
+>>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
 
 All file interactions are encapsulated behind the `FileStore` repository handle:
 
 ```python
-from db import FileStore
+from service.db import FileStore
 
 # Deduplication check
 if FileStore.article_exists(article_id):
@@ -127,6 +147,7 @@ FileStore.save_processed_article(parsed_data, article_id=article_id)
 targets = FileStore.read_json("pipeline/scrapers/config/target_urls.json")
 ```
 
+<<<<<<< HEAD
 ```json
 {
   "title": "Example Article Title",
@@ -145,6 +166,24 @@ targets = FileStore.read_json("pipeline/scrapers/config/target_urls.json")
 
 ```bash
 backend/cli.py
+=======
+## Running the Pipeline & TUI
+
+Use the independent CLI entrypoint `pipeline/cli.py`:
+
+```bash
+# Launch interactive Terminal User Interface (TUI)
+python pipeline/cli.py tui
+
+# Run web scrapers
+python pipeline/cli.py scrape
+
+# Run news extraction
+python pipeline/cli.py extract
+
+# Run full pipeline generation
+python pipeline/cli.py generate
+>>>>>>> 582a92f (refactor: The code base has sperated the pipelines completely from the)
 ```
 
 To run via CLI, see `backend/cli.py --help`

@@ -1,0 +1,12 @@
+# News Ingestion Pipeline Dependencies
+beautifulsoup4==4.13.4
+fake_useragent==2.2.0
+praw==7.8.1
+newsapi-python==0.2.7
+requests==2.32.3
+httpx==0.28.1
+pyyaml==6.0.2
+python-dotenv==1.0.1
+tqdm==4.66.4
+julep==1.78.1
+openai==1.99.9

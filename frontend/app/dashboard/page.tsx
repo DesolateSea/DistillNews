@@ -71,13 +71,43 @@ export default function DashboardPage() {
     }
   }, []);
 
-  const handleScroll = () => {
-    if (!containerRef.current || isFetchingRef.current || !hasMore) return;
-    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
-      setPage((p) => p + 1);
-    }
-  };
+  // Infinite scroll observer using IntersectionObserver on bottom sentinel
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const sentinelRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (isLoading || loadingMore || !hasMore) return;
+      if (observerRef.current) observerRef.current.disconnect();
+
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasMore && !isFetchingRef.current) {
+            setPage((p) => p + 1);
+          }
+        },
+        { rootMargin: "300px" }
+      );
+
+      if (node) observerRef.current.observe(node);
+    },
+    [isLoading, loadingMore, hasMore]
+  );
+
+  // Window scroll fallback as additional backup for page scrolling
+  useEffect(() => {
+    const handleWindowScroll = () => {
+      if (isFetchingRef.current || !hasMore || loadingMore) return;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const clientHeight = window.innerHeight;
+
+      if (scrollTop + clientHeight >= scrollHeight - 300) {
+        setPage((p) => p + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleWindowScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleWindowScroll);
+  }, [hasMore, loadingMore]);
 
   // On mount: load page 1
   useEffect(() => {
@@ -167,7 +197,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b">
+      <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
@@ -221,25 +251,34 @@ export default function DashboardPage() {
           </div>
         )}
 
-        <div
-          ref={containerRef}
-          onScroll={handleScroll}
-          className="overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          style={{ height: "70vh" }}
-        >
+        {/* Main News Feed Grid - Unconstrained page scrolling */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {news.map((item, idx) => (
             <NewsCard key={`${item.id}-${idx}`} newsItem={item} />
           ))}
+        </div>
 
-          {/* Loading spinner inside the scroll container */}
+        {/* Loading Spinner & Sentinel Observer for Infinite Scroll */}
+        <div ref={sentinelRef} className="py-6 flex flex-col items-center justify-center">
           {loadingMore && (
-            <div className="col-span-full flex justify-center py-6">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+            <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary" />
+              <span className="text-sm font-medium">Loading more news...</span>
             </div>
           )}
 
-          {!hasMore && (
-            <p className="col-span-full text-center text-muted-foreground py-4">
+          {hasMore && !loadingMore && (
+            <Button
+              variant="outline"
+              onClick={() => setPage((p) => p + 1)}
+              className="px-6"
+            >
+              Load More News
+            </Button>
+          )}
+
+          {!hasMore && news.length > 0 && (
+            <p className="text-center text-muted-foreground text-sm py-4">
               You've reached the end of your feed
             </p>
           )}

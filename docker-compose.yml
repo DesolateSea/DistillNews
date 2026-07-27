@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     attach: false
     volumes:
-      - mongo-data:/data/db
+      - ./data/db:/data/db
     healthcheck:
       test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
       interval: 10s
@@ -23,13 +23,15 @@ services:
 
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile.backend
     image: distillnews-backend:latest
     ports:
       - "${BACKEND_PORT:-8000}:8000"
     env_file:
       - .env
+    volumes:
+      - ./data:/app/data
     environment:
       DB_URL: ${DB_URL:-mongodb://mongo:27017/evolution}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
@@ -58,5 +60,3 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
-volumes:
-  mongo-data:

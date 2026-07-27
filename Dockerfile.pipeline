@@ -1,0 +1,21 @@
+# Independent News Ingestion Pipeline Container
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app
+
+WORKDIR /app
+
+# Install pipeline Python dependencies
+COPY requirements-pipeline.txt ./requirements.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
+
+# Copy config, shared domain services, and independent pipeline
+COPY config.py ./
+COPY service ./service
+COPY pipeline ./pipeline
+
+# Default command launches pipeline CLI
+CMD ["python", "pipeline/cli.py", "--help"]
