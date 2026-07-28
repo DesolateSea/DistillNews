@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head><meta charset="UTF-8" /><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>(()=>{class RocketLazyLoadScripts{constructor(){this.v="2.0.5",this.userEvents=["keydown","keyup","mousedown","mouseup","mousemove","mouseover","mouseout","touchmove","touchstart","touchend","touchcancel","wheel","click","dblclick","input"],this.attributeEvents=["onblur","onclick","oncontextmenu","ondblclick","onfocus","onmousedown","onmouseenter","onmouseleave","onmousemove","onmouseout","onmouseover","onmouseup","onmousewheel","onscroll","onsubmit"]}async t(){this.i(),this.o(),/iP(ad|hone)/.test(navigator.userAgent)&&this.h(),this.u(),this.l(this),this.m(),this.k(this),this.p(this),this._(),await Promise.all([this.R(),this.L()]),this.lastBreath=Date.now(),this.S(this),this.P(),this.D(),this.O(),this.M(),await this.C(this.delayedScripts.normal),await this.C(this.delayedScripts.defer),await this.C(this.delayedScripts.async),await this.T(),await this.F(),await this.j(),await this.A(),window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this.everythingLoaded=!0,this.lastTouchEnd&&await new Promise(t=>setTimeout(t,500-Date.now()+this.lastTouchEnd)),this.I(),this.H(),this.U(),this.W()}i(){this.CSPIssue=sessionStorage.getItem("rocketCSPIssue"),document.addEventListener("securitypolicyviolation",t=>{this.CSPIssue||"script-src-elem"!==t.violatedDirective||"data"!==t.blockedURI||(this.CSPIssue=!0,sessionStorage.setItem("rocketCSPIssue",!0))},{isRocket:!0})}o(){window.addEventListener("pageshow",t=>{this.persisted=t.persisted,this.realWindowLoadedFired=!0},{isRocket:!0}),window.addEventListener("pagehide",()=>{this.onFirstUserAction=null},{isRocket:!0})}h(){let t;function e(e){t=e}window.addEventListener("touchstart",e,{isRocket:!0}),window.addEventListener("touchend",function i(o){o.changedTouches[0]&&t.changedTouches[0]&&Math.abs(o.changedTouches[0].pageX-t.changedTouches[0].pageX)<10&&Math.abs(o.changedTouches[0].pageY-t.changedTouches[0].pageY)<10&&o.timeStamp-t.timeStamp<200&&(window.removeEventListener("touchstart",e,{isRocket:!0}),window.removeEventListener("touchend",i,{isRocket:!0}),"INPUT"===o.target.tagName&&"text"===o.target.type||(o.target.dispatchEvent(new TouchEvent("touchend",{target:o.target,bubbles:!0})),o.target.dispatchEvent(new MouseEvent("mouseover",{target:o.target,bubbles:!0})),o.target.dispatchEvent(new PointerEvent("click",{target:o.target,bubbles:!0,cancelable:!0,detail:1,clientX:o.changedTouches[0].clientX,clientY:o.changedTouches[0].clientY})),event.preventDefault()))},{isRocket:!0})}q(t){this.userActionTriggered||("mousemove"!==t.type||this.firstMousemoveIgnored?"keyup"===t.type||"mouseover"===t.type||"mouseout"===t.type||(this.userActionTriggered=!0,this.onFirstUserAction&&this.onFirstUserAction()):this.firstMousemoveIgnored=!0),"click"===t.type&&t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),"touchstart"===this.lastEvent&&"touchend"===t.type&&(this.lastTouchEnd=Date.now()),"click"===t.type&&(this.lastTouchEnd=0),this.lastEvent=t.type,t.composedPath&&t.composedPath()[0].getRootNode()instanceof ShadowRoot&&(t.rocketTarget=t.composedPath()[0]),this.savedUserEvents.push(t)}u(){this.savedUserEvents=[],this.userEventHandler=this.q.bind(this),this.userEvents.forEach(t=>window.addEventListener(t,this.userEventHandler,{passive:!1,isRocket:!0})),document.addEventListener("visibilitychange",this.userEventHandler,{isRocket:!0})}U(){this.userEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!1,isRocket:!0})),document.removeEventListener("visibilitychange",this.userEventHandler,{isRocket:!0}),this.savedUserEvents.forEach(t=>{(t.rocketTarget||t.target).dispatchEvent(new window[t.constructor.name](t.type,t))})}m(){const t="return false",e=Array.from(this.attributeEvents,t=>"data-rocket-"+t),i="["+this.attributeEvents.join("],[")+"]",o="[data-rocket-"+this.attributeEvents.join("],[data-rocket-")+"]",s=(e,i,o)=>{o&&o!==t&&(e.setAttribute("data-rocket-"+i,o),e["rocket"+i]=new Function("event",o),e.setAttribute(i,t))};new MutationObserver(t=>{for(const n of t)"attributes"===n.type&&(n.attributeName.startsWith("data-rocket-")||this.everythingLoaded?n.attributeName.startsWith("data-rocket-")&&this.everythingLoaded&&this.N(n.target,n.attributeName.substring(12)):s(n.target,n.attributeName,n.target.getAttribute(n.attributeName))),"childList"===n.type&&n.addedNodes.forEach(t=>{if(t.nodeType===Node.ELEMENT_NODE)if(this.everythingLoaded)for(const i of[t,...t.querySelectorAll(o)])for(const t of i.getAttributeNames())e.includes(t)&&this.N(i,t.substring(12));else for(const e of[t,...t.querySelectorAll(i)])for(const t of e.getAttributeNames())this.attributeEvents.includes(t)&&s(e,t,e.getAttribute(t))})}).observe(document,{subtree:!0,childList:!0,attributeFilter:[...this.attributeEvents,...e]})}I(){this.attributeEvents.forEach(t=>{document.querySelectorAll("[data-rocket-"+t+"]").forEach(e=>{this.N(e,t)})})}N(t,e){const i=t.getAttribute("data-rocket-"+e);i&&(t.setAttribute(e,i),t.removeAttribute("data-rocket-"+e))}k(t){Object.defineProperty(HTMLElement.prototype,"onclick",{get(){return this.rocketonclick||null},set(e){this.rocketonclick=e,this.setAttribute(t.everythingLoaded?"onclick":"data-rocket-onclick","this.rocketonclick(event)")}})}S(t){function e(e,i){let o=e[i];e[i]=null,Object.defineProperty(e,i,{get:()=>o,set(s){t.everythingLoaded?o=s:e["rocket"+i]=o=s}})}e(document,"onreadystatechange"),e(window,"onload"),e(window,"onpageshow");try{Object.defineProperty(document,"readyState",{get:()=>t.rocketReadyState,set(e){t.rocketReadyState=e},configurable:!0}),document.readyState="loading"}catch(t){console.log("WPRocket DJE readyState conflict, bypassing")}}l(t){this.originalAddEventListener=EventTarget.prototype.addEventListener,this.originalRemoveEventListener=EventTarget.prototype.removeEventListener,this.savedEventListeners=[],EventTarget.prototype.addEventListener=function(e,i,o){o&&o.isRocket||!t.B(e,this)&&!t.userEvents.includes(e)||t.B(e,this)&&!t.userActionTriggered||e.startsWith("rocket-")||t.everythingLoaded?t.originalAddEventListener.call(this,e,i,o):(t.savedEventListeners.push({target:this,remove:!1,type:e,func:i,options:o}),"mouseenter"!==e&&"mouseleave"!==e||t.originalAddEventListener.call(this,e,t.savedUserEvents.push,o))},EventTarget.prototype.removeEventListener=function(e,i,o){o&&o.isRocket||!t.B(e,this)&&!t.userEvents.includes(e)||t.B(e,this)&&!t.userActionTriggered||e.startsWith("rocket-")||t.everythingLoaded?t.originalRemoveEventListener.call(this,e,i,o):t.savedEventListeners.push({target:this,remove:!0,type:e,func:i,options:o})}}J(t,e){this.savedEventListeners=this.savedEventListeners.filter(i=>{let o=i.type,s=i.target||window;return e!==o||t!==s||(this.B(o,s)&&(i.type="rocket-"+o),this.$(i),!1)})}H(){EventTarget.prototype.addEventListener=this.originalAddEventListener,EventTarget.prototype.removeEventListener=this.originalRemoveEventListener,this.savedEventListeners.forEach(t=>this.$(t))}$(t){t.remove?this.originalRemoveEventListener.call(t.target,t.type,t.func,t.options):this.originalAddEventListener.call(t.target,t.type,t.func,t.options)}p(t){let e;function i(e){return t.everythingLoaded?e:e.split(" ").map(t=>"load"===t||t.startsWith("load.")?"rocket-jquery-load":t).join(" ")}function o(o){function s(e){const s=o.fn[e];o.fn[e]=o.fn.init.prototype[e]=function(){return this[0]===window&&t.userActionTriggered&&("string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=i(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(t=>{const e=arguments[0][t];delete arguments[0][t],arguments[0][i(t)]=e})),s.apply(this,arguments),this}}if(o&&o.fn&&!t.allJQueries.includes(o)){const e={DOMContentLoaded:[],"rocket-DOMContentLoaded":[]};for(const t in e)document.addEventListener(t,()=>{e[t].forEach(t=>t())},{isRocket:!0});o.fn.ready=o.fn.init.prototype.ready=function(i){function s(){parseInt(o.fn.jquery)>2?setTimeout(()=>i.bind(document)(o)):i.bind(document)(o)}return"function"==typeof i&&(t.realDomReadyFired?!t.userActionTriggered||t.fauxDomReadyFired?s():e["rocket-DOMContentLoaded"].push(s):e.DOMContentLoaded.push(s)),this},s("on"),s("one"),s("off"),t.allJQueries.push(o)}e=o}t.allJQueries=[],o(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){o(t)}})}P(){const t=new Map;document.write=document.writeln=function(e){const i=document.currentScript,o=document.createRange(),s=i.parentElement;let n=t.get(i);void 0===n&&(n=i.nextSibling,t.set(i,n));const c=document.createDocumentFragment();o.setStart(c,0),c.appendChild(o.createContextualFragment(e)),s.insertBefore(c,n)}}async R(){return new Promise(t=>{this.userActionTriggered?t():this.onFirstUserAction=t})}async L(){return new Promise(t=>{document.addEventListener("DOMContentLoaded",()=>{this.realDomReadyFired=!0,t()},{isRocket:!0})})}async j(){return this.realWindowLoadedFired?Promise.resolve():new Promise(t=>{window.addEventListener("load",t,{isRocket:!0})})}M(){this.pendingScripts=[];this.scriptsMutationObserver=new MutationObserver(t=>{for(const e of t)e.addedNodes.forEach(t=>{"SCRIPT"!==t.tagName||!t.src||t.noModule||t.isWPRocket||this.pendingScripts.push({script:t,promise:new Promise(e=>{const i=()=>{const i=this.pendingScripts.findIndex(e=>e.script===t);i>=0&&this.pendingScripts.splice(i,1),e()};t.addEventListener("load",i,{isRocket:!0}),t.addEventListener("error",i,{isRocket:!0}),setTimeout(i,1e3)})})})}),this.scriptsMutationObserver.observe(document,{childList:!0,subtree:!0})}async F(){await this.X(),this.pendingScripts.length?(await this.pendingScripts[0].promise,await this.F()):this.scriptsMutationObserver.disconnect()}D(){this.delayedScripts={normal:[],async:[],defer:[]},document.querySelectorAll("script[type$=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _(){await this.L();let t=[];document.querySelectorAll("script[type$=rocketlazyloadscript][data-rocket-src]").forEach(e=>{let i=e.getAttribute("data-rocket-src");if(i&&!i.startsWith("data:")){i.startsWith("//")&&(i=location.protocol+i);try{const o=new URL(i).origin;o!==location.origin&&t.push({src:o,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}catch(t){}}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this.Y(t,"preconnect")}async G(t){if(await this.K(),!0!==t.noModule||!("noModule"in HTMLScriptElement.prototype))return new Promise(e=>{let i;function o(){(i||t).setAttribute("data-rocket-status","executed"),e()}try{if(navigator.userAgent.includes("Firefox/")||""===navigator.vendor||this.CSPIssue)i=document.createElement("script"),[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),i.setAttribute(e,t.nodeValue))}),t.text&&(i.text=t.text),t.nonce&&(i.nonce=t.nonce),i.hasAttribute("src")?(i.addEventListener("load",o,{isRocket:!0}),i.addEventListener("error",()=>{i.setAttribute("data-rocket-status","failed-network"),e()},{isRocket:!0}),setTimeout(()=>{i.isConnected||e()},1)):(i.text=t.text,o()),i.isWPRocket=!0,t.parentNode.replaceChild(i,t);else{const i=t.getAttribute("data-rocket-type"),s=t.getAttribute("data-rocket-src");i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",o,{isRocket:!0}),t.addEventListener("error",i=>{this.CSPIssue&&i.target.src.startsWith("data:")?(console.log("WPRocket: CSP fallback activated"),t.removeAttribute("src"),this.G(t).then(e)):(t.setAttribute("data-rocket-status","failed-network"),e())},{isRocket:!0}),s?(t.fetchPriority="high",t.removeAttribute("data-rocket-src"),t.src=s):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}}catch(i){t.setAttribute("data-rocket-status","failed-transform"),e()}});t.setAttribute("data-rocket-status","skipped")}async C(t){const e=t.shift();return e?(e.isConnected&&await this.G(e),this.C(t)):Promise.resolve()}O(){this.Y([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}Y(t,e){this.trash=this.trash||[];let i=!0;var o=document.createDocumentFragment();t.forEach(t=>{const s=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(s&&!s.startsWith("data:")){const n=document.createElement("link");n.href=s,n.rel=e,"preconnect"!==e&&(n.as="script",n.fetchPriority=i?"high":"low"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),t.nonce&&(n.nonce=t.nonce),o.appendChild(n),this.trash.push(n),i=!1}}),document.head.appendChild(o)}W(){this.trash.forEach(t=>t.remove())}async T(){try{document.readyState="interactive"}catch(t){}this.fauxDomReadyFired=!0;try{await this.K(),this.J(document,"readystatechange"),document.dispatchEvent(new Event("rocket-readystatechange")),await this.K(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.K(),this.J(document,"DOMContentLoaded"),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this.K(),this.J(window,"DOMContentLoaded"),window.dispatchEvent(new Event("rocket-DOMContentLoaded"))}catch(t){console.error(t)}}async A(){try{document.readyState="complete"}catch(t){}try{await this.K(),this.J(document,"readystatechange"),document.dispatchEvent(new Event("rocket-readystatechange")),await this.K(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.K(),this.J(window,"load"),window.dispatchEvent(new Event("rocket-load")),await this.K(),window.rocketonload&&window.rocketonload(),await this.K(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this.K(),this.J(window,"pageshow");const t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this.K(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}catch(t){console.error(t)}}async K(){Date.now()-this.lastBreath>45&&(await this.X(),this.lastBreath=Date.now())}async X(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}B(t,e=window){return e===document&&"readystatechange"===t||(e===document&&"DOMContentLoaded"===t||(e===window&&"DOMContentLoaded"===t||(e===window&&"load"===t||e===window&&"pageshow"===t)))}static run(){(new RocketLazyLoadScripts).t()}}RocketLazyLoadScripts.run()})();
+</script>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="profile" href="https://gmpg.org/xfn/11" />
+	
+<!-- Author Meta Tags by Molongui Authorship, visit: https://wordpress.org/plugins/molongui-authorship/ -->
+<meta name="author" content="Johnkennedy Uzoma">
+<!-- /Molongui Authorship -->
+
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO Premium plugin v28.0 (Yoast SEO v28.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->
+	<title>One killed, another injured in Ebonyi crash - Tribune Online</title>
+	<meta name="description" content="A fatal crash has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of Ebonyi State, while another person" />
+	<link rel="canonical" href="https://tribuneonlineng.com/one-killed-another-injured-in-ebonyi-crash/" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="One killed, another injured in Ebonyi crash" />
+	<meta property="og:description" content="A fatal crash has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of Ebonyi State, while another person" />
+	<meta property="og:url" content="https://tribuneonlineng.com/one-killed-another-injured-in-ebonyi-crash/" />
+	<meta property="og:site_name" content="Tribune Online" />
+	<meta property="article:publisher" content="https://www.facebook.com/NigerianTribune" />
+	<meta property="article:published_time" content="2026-07-27T15:25:02+00:00" />
+	<meta property="article:modified_time" content="2026-07-27T15:25:06+00:00" />
+	<meta property="og:image" content="https://tribuneonlineng.com/wp-content/uploads/2026/07/IMG-20260727-WA0243-1.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="906" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="author" content="Johnkennedy Uzoma" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content="@nigeriantribune" />
+	<meta name="twitter:site" content="@nigeriantribune" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Johnkennedy Uzoma" />
+	<meta name="twitter:label2" content="Estimated reading time" />
+	<meta name="twitter:data2" content="2 minutes" />
+	<!-- / Yoast SEO Premium plugin. -->
+
+
+<link rel="amphtml" href="https://tribuneonlineng.com/one-killed-another-injured-in-ebonyi-crash/amp/" /><link rel='dns-prefetch' href='//widgets.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//0.gravatar.com' />
+<link rel='dns-prefetch' href='//1.gravatar.com' />
+<link rel='dns-prefetch' href='//2.gravatar.com' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+
+<link rel="alternate" type="application/rss+xml" title="Tribune Online &raquo; Feed" href="https://tribuneonlineng.com/feed/" />
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "legalName": "Tribune Online",
+    "url": "https://tribuneonlineng.com/",
+    "logo": "https://tribuneonlineng.com/wp-content/uploads/2023/02/Tribune-Online-Cropped-Logo-e1675299213489.png"
+}</script>
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<link rel='stylesheet' id='foxiz-elements-css' href='https://tribuneonlineng.com/wp-content/plugins/foxiz-core/lib/foxiz-elements/public/style.css?ver=3.1' media='all' />
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<style id="jetpack_likes-inline-css">
+#jp-post-flair{padding-top:.5em}#content div.sharedaddy,#main div.sharedaddy,div.sharedaddy{clear:both}div.sharedaddy h3.sd-title{display:inline-block;font-size:9pt;font-weight:700;line-height:1.2;margin:0 0 1em}div.sharedaddy h3.sd-title:before{border-top:1px solid #dcdcde;content:"";display:block;margin-bottom:1em;min-width:30px;width:100%}div.jetpack-likes-widget-wrapper{min-height:50px;position:relative;width:100%}div.jetpack-likes-widget-wrapper .sd-link-color{font-size:12px}div.jetpack-comment-likes-widget-wrapper{min-height:31px;position:relative;width:100%}div.jetpack-comment-likes-widget-wrapper iframe{margin-bottom:0}#likes-other-gravatars{background-color:#fff;border:1px solid #dcdcde;border-radius:4px;box-shadow:none;display:none;height:auto;max-height:240px;min-width:220px;overflow:auto;padding:9px 12px 10px;position:absolute;z-index:1000}#likes-other-gravatars *{line-height:normal}#likes-other-gravatars .likes-text{color:#101517;font-size:12px;font-weight:500;padding-bottom:8px}#likes-other-gravatars :is(li,ul){list-style-type:none;margin:0;padding:0;text-indent:0}#likes-other-gravatars li:before{content:""}#likes-other-gravatars ul.wpl-avatars{display:block;max-height:190px;overflow:auto}#likes-other-gravatars ul.wpl-avatars li{float:none;height:28px;margin:0 0 4px;width:196px}#likes-other-gravatars ul.wpl-avatars li a{align-items:center;border-bottom:none!important;display:flex;gap:8px;margin:0 2px 0 0;text-decoration:none}#likes-other-gravatars ul.wpl-avatars li a span{color:#2c3338;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#likes-other-gravatars ul.wpl-avatars li a img{background:none;border:none;border-radius:50%;box-sizing:border-box;margin:0!important;padding:1px!important;position:static}div.sd-box{border-top:1px solid #00000021}.jetpack-likes-widget-loaded iframe,.jetpack-likes-widget-loading .likes-widget-placeholder,.jetpack-likes-widget-unloaded .likes-widget-placeholder{display:block}.jetpack-likes-widget-loaded .likes-widget-placeholder,.jetpack-likes-widget-loading iframe,.jetpack-likes-widget-unloaded iframe{display:none}.comment-likes-widget,.entry-content .post-likes-widget,.post-likes-widget{border-width:0;margin:0}.comment-likes-widget-placeholder,.post-likes-widget-placeholder{border-width:0;margin:0;position:relative}.comment-likes-widget-placeholder{display:flex;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;height:18px;position:absolute}.comment-likes-widget-placeholder:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath fill='%232ea2cc' d='m12 2 2.582 6.953L22 9.257l-5.822 4.602L18.18 21 12 16.89 5.82 21l2.002-7.14L2 9.256l7.418-.304'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:16px 16px;color:#2ea2cc;content:"";display:inline-block;height:16px;padding-right:5px;position:relative;top:3px;width:16px}.post-likes-widget-placeholder .button{display:none}:is(.comment-likes-widget-placeholder,.post-likes-widget-placeholder) .loading{color:#999;font-size:12px}.comment-likes-widget-placeholder .loading{align-self:center;color:#4e4e4e;margin-top:4px;padding-left:5px}div.sharedaddy.sd-like-enabled .sd-like h3{display:none}div.sharedaddy.sd-like-enabled .sd-like .post-likes-widget{float:none;position:absolute;top:0;width:100%}.comment-likes-widget{width:100%}.cs-rating,.pd-rating{display:block!important}.sd-gplus .sd-title{display:none}@media print{.jetpack-likes-widget-wrapper{display:none}}
+/*# sourceURL=https://tribuneonlineng.com/wp-content/plugins/jetpack/_inc/build/likes/style.min.css */
+</style>
+<style id="kadence-blocks-global-variables-inline-css">
+:root {--global-kb-font-size-sm:clamp(0.8rem, 0.73rem + 0.217vw, 0.9rem);--global-kb-font-size-md:clamp(1.1rem, 0.995rem + 0.326vw, 1.25rem);--global-kb-font-size-lg:clamp(1.75rem, 1.576rem + 0.543vw, 2rem);--global-kb-font-size-xl:clamp(2.25rem, 1.728rem + 1.63vw, 3rem);--global-kb-font-size-xxl:clamp(2.5rem, 1.456rem + 3.26vw, 4rem);--global-kb-font-size-xxxl:clamp(2.75rem, 0.489rem + 7.065vw, 6rem);}:root {--global-palette1: #3182CE;--global-palette2: #2B6CB0;--global-palette3: #1A202C;--global-palette4: #2D3748;--global-palette5: #4A5568;--global-palette6: #718096;--global-palette7: #EDF2F7;--global-palette8: #F7FAFC;--global-palette9: #ffffff;}
+/*# sourceURL=kadence-blocks-global-variables-inline-css */
+</style>
+<link rel='stylesheet' id='foxiz-main-css' href='https://tribuneonlineng.com/wp-content/themes/foxiz/assets/css/main.css?ver=2.7.7' media='all' />
+<style id="foxiz-main-inline-css">
+:root {--body-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--body-fweight:400;--body-fcolor:#000000;--body-fsize:15px;--h1-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--h1-fweight:600;--h1-fsize:42px;--h1-fspace:-0.02857em;--h2-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--h2-fweight:600;--h2-fsize:34px;--h2-fspace:-0.03529em;--h3-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--h3-fweight:600;--h3-fsize:22px;--h3-fspace:-0.03636em;--h4-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--h4-fweight:500;--h4-fsize:17px;--h4-fspace:-0.02941em;--h5-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--h5-fweight:500;--h5-fsize:15px;--h5-fspace:-0.03333em;--h6-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--h6-fweight:500;--h6-fsize:14px;--h6-fspace:-0.03571em;--cat-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--cat-fweight:600;--cat-transform:uppercase;--cat-fsize:10px;--cat-fspace:-0.05000em;--meta-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--meta-fweight:400;--meta-fsize:11px;--meta-fspace:-0.04545em;--meta-b-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--meta-b-fweight:600;--meta-b-fcolor:#;--meta-b-fspace:-.5px;--input-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--input-fweight:400;--input-fsize:12px;--btn-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--btn-fweight:600;--btn-fsize:10px;--menu-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--menu-fweight:600;--menu-fsize:12px;--submenu-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--submenu-fweight:600;--submenu-fsize:11px;--dwidgets-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--dwidgets-fweight:600;--dwidgets-fsize:13px;--dwidgets-fspace:-0.03846em;--headline-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--headline-fweight:700;--headline-fsize:54px;--headline-fspace:-0.02778em;--tagline-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--tagline-fweight:600;--tagline-fsize:24px;--tagline-fspace:-0.04167em;--heading-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--heading-fweight:700;--quote-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--quote-fweight:700;--quote-fspace:-1px;--bcrumb-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;--bcrumb-fweight:500;--bcrumb-fsize:10px;--readmore-fsize : 10px;--headline-s-fsize : 42px;--tagline-s-fsize : 24px;}@media (max-width: 1024px) {body {--body-fsize : 15px;--h1-fsize : 30px;--h2-fsize : 26px;--h3-fsize : 19px;--h4-fsize : 16px;--h5-fsize : 15px;--h6-fsize : 13px;--input-fsize : 12px;--btn-fsize : 10px;--bcrumb-fsize : 10px;--excerpt-fsize : 13px;--dwidgets-fsize : 12px;--headline-fsize : 40px;--headline-s-fsize : 40px;--tagline-fsize : 20px;--tagline-s-fsize : 20px;}}@media (max-width: 767px) {body {--body-fsize : 15px;--h1-fsize : 24px;--h2-fsize : 24px;--h3-fsize : 18px;--h4-fsize : 16px;--h5-fsize : 15px;--h6-fsize : 13px;--input-fsize : 12px;--btn-fsize : 10px;--bcrumb-fsize : 10px;--excerpt-fsize : 13px;--dwidgets-fsize : 12px;--headline-fsize : 30px;--headline-s-fsize : 30px;--tagline-fsize : 16px;--tagline-s-fsize : 16px;}}:root {--g-color :#ff3030;--g-color-90 :#ff3030e6;}[data-theme="dark"], .light-scheme {--solid-white :#0e0e0e;}.is-hd-4 {--nav-height :36px;--hd-logo-height :70px;}[data-theme="dark"].is-hd-4 {--nav-bg: #0e0e0e;--nav-bg-from: #0e0e0e;--nav-bg-to: #0e0e0e;--nav-bg-glass: #0e0e0e11;--nav-bg-glass-from: #0e0e0e11;--nav-bg-glass-to: #0e0e0e11;}:root {--privacy-bg-color :#000000;--privacy-color :#ffffff;--topad-spacing :15px;--round-3 :0px;--round-5 :0px;--round-7 :0px;--hyperlink-line-color :var(--g-color);--single-category-fsize :13px;--s-content-width : 760px;--max-width-wo-sb : 840px;--s10-feat-ratio :45%;--s11-feat-ratio :45%;--login-popup-w : 350px;}.p-readmore { font-family:Montserrat;font-weight:600;letter-spacing:-.5px;}.mobile-menu > li > a  { font-family:Montserrat;font-weight:600;font-size:12px;}.mobile-menu .sub-menu a, .logged-mobile-menu a { font-family:Montserrat;font-weight:600;font-size:11px;}.mobile-qview a { font-family:Montserrat;font-weight:600;font-size:14px;}.search-header:before { background-repeat : no-repeat;background-size : cover;background-image : var(--wpr-bg-6ac7b911-2445-41d0-b5ba-0e40ac56e856);background-attachment : scroll;background-position : center center;}[data-theme="dark"] .search-header:before { background-repeat : no-repeat;background-size : cover;background-image : var(--wpr-bg-696ed4b3-25c3-421e-b1cc-927ae2979ca1);background-attachment : scroll;background-position : center center;}.footer-has-bg { background-color : #000000;}[data-theme="dark"] .footer-has-bg { background-color : #080808;}.copyright-menu a { font-size:11px; }.copyright-inner .copyright { font-size:12px; }.footer-col .widget_nav_menu a > span { font-size:15px; }#amp-mobile-version-switcher { display: none; }.notification-icon-svg { -webkit-mask-image: url(https://sportingtribune.com/wp-content/uploads/2025/03/notification.svg);mask-image: url(https://sportingtribune.com/wp-content/uploads/2025/03/notification.svg); }.login-icon-svg { -webkit-mask-image: url(https://sportingtribune.com/wp-content/uploads/2025/03/signin.svg);mask-image: url(https://sportingtribune.com/wp-content/uploads/2025/03/signin.svg); }.login-icon-svg, .rbi-user.wnav-icon { font-size: 16px;}.notification-icon-svg, .rbi-notification.wnav-icon { font-size: 20px;}@media (min-width: 1025px) { .grid-container > .sidebar-wrap { flex: 0 0 30%; width: 30%; } .grid-container > .s-ct { flex: 0 0 69.9%; width: 69.9%; } }@media (max-width: 767px) { .login-icon-svg, .rbi-user.wnav-icon { font-size: 13.6px;}.notification-icon-svg, .rbi-notification.wnav-icon { font-size: 17px;} }
+/*# sourceURL=foxiz-main-inline-css */
+</style>
+<link rel='stylesheet' id='foxiz-print-css' href='https://tribuneonlineng.com/wp-content/themes/foxiz/assets/css/print.css?ver=2.7.7' media='all' />
+<link rel='stylesheet' id='foxiz-style-css' href='https://tribuneonlineng.com/wp-content/themes/foxiz-child/style.css?ver=2.7.7' media='all' />
+<style id="rocket-lazyload-inline-css">
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:var(--wpr-bg-d1722d6b-fb33-4cae-95f4-49fd9d321d86) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}.wp-embed-responsive .wp-has-aspect-ratio .rll-youtube-player{position:absolute;padding-bottom:0;width:100%;height:100%;top:0;bottom:0;left:0;right:0}
+/*# sourceURL=rocket-lazyload-inline-css */
+</style>
+<script type="text/rocketlazyloadscript" id="jquery-core-js" data-rocket-src="https://tribuneonlineng.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" id="jquery-migrate-js" data-rocket-src="https://tribuneonlineng.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" data-rocket-defer defer></script>
+<link rel="preload" href="https://tribuneonlineng.com/wp-content/themes/foxiz/assets/fonts/icons.woff2?ver=2.5.0" as="font" type="font/woff2" crossorigin="anonymous"> 	<style>img#wpstats{display:none}</style>
+		            <style>
+                .molongui-disabled-link
+                {
+                    border-bottom: none !important;
+                    text-decoration: none !important;
+                    color: inherit !important;
+                    cursor: inherit !important;
+                }
+                .molongui-disabled-link:hover,
+                .molongui-disabled-link:hover span
+                {
+                    border-bottom: none !important;
+                    text-decoration: none !important;
+                    color: inherit !important;
+                    cursor: inherit !important;
+                }
+            </style>
+            
+<!-- Schema & Structured Data For WP v1.62 - -->
+<script type="application/ld+json" class="saswp-schema-markup-output">
+[{"@context":"https:\/\/schema.org\/","@graph":[{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#home","name":"Home","url":"https:\/\/tribuneonlineng.com"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#news","name":"News","url":"https:\/\/tribuneonlineng.com\/category\/latest-news\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#columns","name":"Columns","url":"https:\/\/tribuneonlineng.com\/category\/columns\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#editorial","name":"Editorial","url":"https:\/\/tribuneonlineng.com\/category\/editorial\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#videos","name":"VIDEOS","url":"https:\/\/tribuneonlineng.com\/category\/tribune-tv\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#entertainment","name":"Entertainment","url":"https:\/\/tribuneonlineng.com\/category\/entertainment\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#politics","name":"Politics","url":"https:\/\/tribuneonlineng.com\/category\/politics\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#health","name":"Health","url":"https:\/\/tribuneonlineng.com\/category\/health\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#opinions","name":"Opinions","url":"https:\/\/tribuneonlineng.com\/category\/opinion\/"},{"@context":"https:\/\/schema.org\/","@type":"SiteNavigationElement","@id":"https:\/\/tribuneonlineng.com\/#sporting-tribune","name":"SPORTING TRIBUNE","url":"https:\/\/sportingtribune.com\/"}]},
+
+{"@context":"https:\/\/schema.org\/","@type":"BreadcrumbList","@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/tribuneonlineng.com","name":"Tribune Online"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/tribuneonlineng.com\/category\/metro\/","name":"Metro"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/","name":"One killed, another injured in Ebonyi crash - Tribune Online"}}]},
+
+{"@context":"https:\/\/schema.org\/","@type":"WebPage","@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/#webpage","name":"One killed, another injured in Ebonyi crash - Tribune Online","url":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/","lastReviewed":"2026-07-27T16:25:06+01:00","dateCreated":"2026-07-27T16:25:02+01:00","inLanguage":"en-GB","description":"A fatal crash has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of Ebonyi State, while another person","keywords":"Ebonyi, ","mainEntity":{"@type":"NewsArticle","mainEntityOfPage":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/","headline":"One killed, another injured in Ebonyi crash - Tribune Online","description":"A fatal crash has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of Ebonyi State, while another person","keywords":"Ebonyi, ","datePublished":"2026-07-27T16:25:02+01:00","dateModified":"2026-07-27T16:25:06+01:00","author":{"@type":"Person","name":"Johnkennedy Uzoma","url":"https:\/\/tribuneonlineng.com\/author\/johnkennedy-uzoma\/","sameAs":[]},"publisher":{"@type":"Organization","name":"Tribune Online","url":"https:\/\/tribuneonlineng.com","logo":{"@type":"ImageObject","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/2025\/03\/Tribune-Online-Website-Cropped-Logo-1.webp","width":160,"height":50}},"image":[{"@type":"ImageObject","@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/#primaryimage","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/schema-and-structured-data-for-wp\/IMG-20260727-WA0243-1.jpg","width":"1200","height":"906","caption":"The suspect arrested after the fatal road incident in Owerri"}]},"reviewedBy":{"@type":"Organization","name":"Tribune Online","url":"https:\/\/tribuneonlineng.com","logo":{"@type":"ImageObject","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/2025\/03\/Tribune-Online-Website-Cropped-Logo-1.webp","width":160,"height":50}},"publisher":{"@type":"Organization","name":"Tribune Online","url":"https:\/\/tribuneonlineng.com","logo":{"@type":"ImageObject","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/2025\/03\/Tribune-Online-Website-Cropped-Logo-1.webp","width":160,"height":50}}},
+
+{"@context":"https:\/\/schema.org\/","@type":"NewsMediaOrganization","@id":"https:\/\/tribuneonlineng.com#Organization","name":"Tribune Online","url":"https:\/\/tribuneonlineng.com","sameAs":["https:\/\/www.instagram.com\/tribuneonlineng\/","https:\/\/www.youtube.com\/@NigerianTribuneTV","https:\/\/api.whatsapp.com\/message\/XUVA7X3M7T4IG1","https:\/\/t.me\/+PzWY-NZ7kNg3MTBk","https:\/\/whatsapp.com\/channel\/0029VaAVWVPChq6Tp9D1mC3w","https:\/\/tribuneonlineng.com\/subscribe-to-our-e-copies-by-clicking-here\/","https:\/\/www.facebook.com\/NigerianTribune\/"],"legalName":"Tribune Online","logo":{"@type":"ImageObject","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/2025\/03\/Tribune-Online-Website-Cropped-Logo-1.webp","width":"160","height":"50"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","telephone":"+2348039515726","url":"https:\/\/tribuneonlineng.com\/contact-us-tribune-online\/"},"image":[{"@type":"ImageObject","@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/#primaryimage","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/schema-and-structured-data-for-wp\/IMG-20260727-WA0243-1.jpg","width":"1200","height":"906","caption":"The suspect arrested after the fatal road incident in Owerri"}]},
+
+{"@context":"https:\/\/schema.org\/","@type":"NewsArticle","@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/#newsarticle","url":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/","headline":"One killed, another injured in Ebonyi crash - Tribune Online","mainEntityOfPage":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/","datePublished":"2026-07-27T16:25:02+01:00","dateModified":"2026-07-27T16:25:06+01:00","description":"A fatal crash has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of Ebonyi State, while another person","articleSection":"Metro","articleBody":"A fatal crash has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of Ebonyi State, while another person, Bright Ukwuoma, sustained injuries. The incident occurred at about 6:30 p.m. last Sunday at the front gate of Imo State University (IMSU). The Imo State Police Command has arrested 30-year-old Dike Chibuike Michael from Umuolowu, Ejemekuru, Oguta Local Government Area of Imo State, in connection with the fatal road crash. In a statement issued on Monday, the Imo State Police Command Public Relations Officer, DSP Okoye Henry, said preliminary investigation revealed that the suspect was driving a Lexus ES 350 saloon car with registration number KWU 766 AE at excessive speed. Okoye said the suspect allegedly engaged in an unauthorised street racing activity at the IMSU front gate when he struck Chibuike Friday, who was attempting to cross the road. According to him, the impact caused the driver to lose control of the vehicle, which subsequently struck Bright Ukwuoma, inflicting injuries on him. The PPRO said that, upon receiving the distress report, the Divisional Police Officer (DPO) promptly mobilised officers to the scene and arrested the suspect, rescuing him from an angry mob. He said both victims were taken to hospital, where Chibuike Friday was confirmed dead, while Bright Ukwuoma is receiving treatment. According to him, the deceased's body has been deposited in the morgue for preservation and autopsy. The Commissioner of Police, Imo State Command, CP Audu Garba Bosso, condemned the reckless act that resulted in the loss of life. He expressed condolences to the family of the deceased, wished the injured victim a speedy recovery and assured the public that justice would be served. The CP directed the State Traffic Department to carry out a comprehensive investigation to determine the immediate and remote causes of the crash. He assured that the suspect would be prosecuted in accordance with the law upon the conclusion of the investigation. The Commissioner also warned motorists against excessive speeding, reckless driving and other traffic violations. He urged all road users to obey traffic laws and reaffirmed the Command's commitment to protecting lives and property, enforcing the law and ensuring the safety of all residents of Imo State.","keywords":["Ebonyi"," "],"name":"One killed, another injured in Ebonyi crash - Tribune Online","thumbnailUrl":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/2026\/07\/IMG-20260727-WA0243-1-150x150.jpg","wordCount":"352","timeRequired":"PT1M33S","mainEntity":{"@type":"WebPage","@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/"},"author":{"@type":"Person","name":"Johnkennedy Uzoma","url":"https:\/\/tribuneonlineng.com\/author\/johnkennedy-uzoma\/","sameAs":[]},"editor":{"@type":"Person","name":"Johnkennedy Uzoma","url":"https:\/\/tribuneonlineng.com\/author\/johnkennedy-uzoma\/","sameAs":[]},"publisher":{"@type":"Organization","name":"Tribune Online","url":"https:\/\/tribuneonlineng.com","logo":{"@type":"ImageObject","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/2025\/03\/Tribune-Online-Website-Cropped-Logo-1.webp","width":160,"height":50}},"image":[{"@type":"ImageObject","@id":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash\/#primaryimage","url":"https:\/\/tribuneonlineng.com\/wp-content\/uploads\/schema-and-structured-data-for-wp\/IMG-20260727-WA0243-1.jpg","width":"1200","height":"906","caption":"The suspect arrested after the fatal road incident in Owerri"}]}]
+</script>
+
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://tribuneonlineng.com/#website",
+    "url": "https://tribuneonlineng.com/",
+    "name": "Tribune Online",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://tribuneonlineng.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}</script>
+      <meta name="onesignal" content="wordpress-plugin"/>
+            <script type="text/rocketlazyloadscript">
+
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+      OneSignalDeferred.push(function(OneSignal) {
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['serviceWorkerParam'] = { scope: '/' };
+oneSignal_options['serviceWorkerPath'] = 'OneSignalSDKWorker.js.php';
+
+        OneSignal.Notifications.setDefaultUrl("https://tribuneonlineng.com");
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = 'e9d1f0e1-fda0-493c-bec4-7ed3996de5b8';
+oneSignal_options['allowLocalhostAsSecureOrigin'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "";
+oneSignal_options['welcomeNotification']['message'] = "";
+oneSignal_options['path'] = "https://tribuneonlineng.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.2460cc6e-4b7f-44ed-bf33-fcc5c16bd2af";
+oneSignal_options['persistNotification'] = true;
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['notifyButton'] = { };
+oneSignal_options['notifyButton']['enable'] = true;
+oneSignal_options['notifyButton']['position'] = 'bottom-right';
+oneSignal_options['notifyButton']['theme'] = 'default';
+oneSignal_options['notifyButton']['size'] = 'large';
+oneSignal_options['notifyButton']['showCredit'] = true;
+oneSignal_options['notifyButton']['offset'] = {};
+oneSignal_options['notifyButton']['offset']['bottom'] = '150px';
+oneSignal_options['notifyButton']['offset']['left'] = '20px';
+              OneSignal.init(window._oneSignalInitOptions);
+                    });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.Notifications.requestPermission(); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "One killed, another injured in Ebonyi crash",
+    "description": "A fatal crash has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of Ebonyi State, while another person...",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://tribuneonlineng.com/one-killed-another-injured-in-ebonyi-crash/"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Johnkennedy Uzoma",
+        "url": "https://tribuneonlineng.com/author/johnkennedy-uzoma/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Tribune Online",
+        "url": "https://tribuneonlineng.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://tribuneonlineng.com/wp-content/uploads/2023/02/Tribune-Online-Cropped-Logo-e1675299213489.png"
+        }
+    },
+    "dateModified": "2026-07-27T16:25:06+01:00",
+    "datePublished": "2026-07-27T16:25:02+01:00",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://tribuneonlineng.com/wp-content/uploads/2026/07/IMG-20260727-WA0243-1.jpg",
+        "width": "1200",
+        "height": "906"
+    },
+    "commentCount": 0,
+    "articleSection": [
+        "Metro"
+    ]
+}</script>
+<link rel="icon" href="https://tribuneonlineng.com/wp-content/uploads/2023/02/Favicon-75x75.png" sizes="32x32" />
+<link rel="icon" href="https://tribuneonlineng.com/wp-content/uploads/2023/02/Favicon.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://tribuneonlineng.com/wp-content/uploads/2023/02/Favicon.png" />
+<meta name="msapplication-TileImage" content="https://tribuneonlineng.com/wp-content/uploads/2023/02/Favicon.png" />
+<!--
+<script data-minify="1" data-no-optimize="1" data-no-defer="1" async src="https://tribuneonlineng.com/wp-content/cache/min/1/tag/js/gpt.js?ver=1785168268"></script> <script> window.googletag = window.googletag || { cmd: [] }; googletag.cmd.push(function () { 
+// 1. Identify Page Type (Wait for body if necessary) 
+var bodyClass = document.body ? document.body.className : ''; 
+var gpt_pagetype = 'other'; 
+if (bodyClass.includes('front-page') || bodyClass.includes('home')) { gpt_pagetype = 'homepage'; } 
+else if (bodyClass.includes('single-post')) { gpt_pagetype = 'article'; } 
+else if (bodyClass.includes('category') || bodyClass.includes('archive')) { gpt_pagetype = 'category'; } 
+// 2. Set Global Targeting 
+googletag.pubads().setTargeting('pagetype', gpt_pagetype); 
+// 3. Define Anchor Ad (Universal) 
+var anchorSlot = googletag.defineOutOfPageSlot( '/33885318/TR_HP_ANCHOR', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR ); 
+if (anchorSlot) { anchorSlot.addService(googletag.pubads()); }
+googletag.defineOutOfPageSlot( '/33885318/TR_HP_INT', googletag.enums.OutOfPageFormat.INTERSTITIAL ).addService(googletag.pubads());
+
+
+// Size Mapping
+var mapping = googletag.sizeMapping() // Desktop
+.addSize([1024, 768], [[970, 250], [970, 90], [728, 90]]) // Tablet
+.addSize([768, 1024], [[728, 90], [300, 250]]) // Mobile
+.addSize([0, 0], [[336, 280], [320, 100], [320, 50], [300, 250]]) .build();
+
+
+// Standard Article Rail 
+googletag.defineSlot('/33885318/TR_SECTION/TR_ARTICLE_SKY_RAIL1', [[300, 600], [160, 600], [120, 600], 'fluid'], 'div-gpt-ad-3423810-1').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_SECTION/TR_ARTICLE_MPU_RAIL1', [[336, 280], [300, 250], 'fluid'], 'div-gpt-ad-3423810-2').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_SECTION/TR_ARTICLE_MPU_RAIL2', [[336, 280], [300, 250], 'fluid'], 'div-gpt-ad-3423810-3').addService(googletag.pubads()); 
+
+
+
+// --- STEP 3: Define Slots based on Page Type --- 
+
+if (gpt_pagetype === 'homepage') { 
+
+
+
+googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_1', [[970, 250], [970, 90], [728, 90], [320, 50], [320, 100], 'fluid'], 'div-gpt-ad-6518425-1').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_2', [[300, 250], [336, 280], 'fluid'], 'div-gpt-ad-6518425-2').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_3', [[728, 90], [300, 250], [336, 280], 'fluid'], 'div-gpt-ad-6518425-3').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_4', [[728, 90], [300, 250], [336, 280], 'fluid'], 'div-gpt-ad-6518425-4').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_5', [[970, 250], [970, 90], [728, 90], [300, 250], [336, 280], 'fluid'], 'div-gpt-ad-6518425-5').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_6', [[970, 90], 'fluid', [728, 90], [970, 250], [336, 280], [320, 250]], 'div-gpt-ad-1765648994654-0').addService(googletag.pubads()); } 
+
+else if (gpt_pagetype === 'article') { 
+
+
+// In-Article Leaders 
+googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_1', [[728, 90], [336, 280], [300, 250], [300, 50], 'fluid'], 'div-gpt-ad-6861913-1').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_2', [[728, 90], [336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6861913-2').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_3', [[728, 90], [336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6861913-3').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_4', [[728, 90], [336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6861913-4').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_5', [[728, 90], [336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6861913-5').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_6', [[728, 90], [336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6861913-6').addService(googletag.pubads()); } 
+
+else if (gpt_pagetype === 'category') { 
+googletag.defineSlot('/33885318/TR_CAT_MPU_1', [[336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6489555-1').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_CAT_MPU_2', [[336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6489555-2').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_CAT_MPU_3', [[336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6489555-3').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_CAT_MPU_4', [[336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6489555-4').addService(googletag.pubads()); 
+googletag.defineSlot('/33885318/TR_CAT_MPU_5', [[336, 280], [300, 250], 'fluid'], 'div-gpt-ad-6489555-5').addService(googletag.pubads()); } 
+
+
+// --- STEP 4: Start Services --- 
+googletag.pubads().enableSingleRequest(); 
+googletag.pubads().collapseEmptyDivs(); // Recommended to hide empty slots 
+googletag.enableServices(); 
+
+// —STEP 5;Ad refresh for 60 sec when viewable —
+setInterval(function() { 
+if (typeof googletag !== 'undefined' && googletag.pubads) {
+googletag.pubads().refresh(); 
+console.log('GAM ads refreshed for:', gpt_pagetype); } }, 
+60000); // 60 seconds
+
+}); 
+
+</script>
+-->
+
+
+
+
+
+<script data-minify="1" data-no-optimize="1" data-no-defer="1" async src="https://tribuneonlineng.com/wp-content/cache/min/1/tag/js/gpt.js?ver=1785168268"></script>
+<script>
+  window.googletag = window.googletag || { cmd: [] };
+
+  googletag.cmd.push(function () {
+    // =========================================================================
+    // STEP 1: RELIABLE PAGE TYPE DETECTION
+    // inspection so page types never default to 'other' and suppress ad calls.
+    // =========================================================================
+    var cleanPath = window.location.pathname.replace(/\/+$|^Search\//, '');
+    var segments = cleanPath.split('/').filter(Boolean);
+    var gpt_pagetype = 'other';
+
+    if (segments.length === 0) {
+      gpt_pagetype = 'homepage';
+    } else if (segments[0] === 'category' || segments[0] === 'tag' || segments[0] === 'archive') {
+      gpt_pagetype = 'category';
+    } else if (segments.length >= 1) {
+      gpt_pagetype = 'article';
+    }
+
+    // =========================================================================
+    // STEP 2: RESPONSIVE SIZE MAPPING DEFINITIONS
+    
+    // devices stop receiving broken desktop sizes (like 970x250).
+    // =========================================================================
+    // Leaders & Main Banners
+    var leaderMapping = googletag.sizeMapping()
+    .addSize([1024, 0], [[970, 250], [970, 90], [728, 90]]) // Desktop
+    .addSize([768, 0],  [[728, 90], [300, 250]]) // Tablet
+    .addSize([0, 0],    [[300, 250], [320, 100], [320, 50], [300, 100], [300, 50]]) // Mobile
+    .build();
+
+    // Inline MPUs & Content Slots
+    var mpuMapping = googletag.sizeMapping()
+    .addSize([768, 0], [[336, 280], [300, 250]]) // Desktop & Tablet
+    .addSize([0, 0],   [[300, 250], [320, 100], [320, 50]]) // Mobile
+    .build();
+
+    // Sidebar Rail Units
+    var railMapping = googletag.sizeMapping()
+    .addSize([1024, 0], [[300, 600], [160, 600], [120, 600], [300, 250]]) // Desktop Sidebar
+    .addSize([0, 0],    []) // Suppress on Mobile/Tablet
+    .build();
+
+    // =========================================================================
+    // STEP 3: UNIVERSAL & OUT-OF-PAGE SLOTS
+    // =========================================================================
+    var anchorSlot = googletag.defineOutOfPageSlot(
+      '/33885318/TR_HP_ANCHOR', 
+      googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR
+    );
+    if (anchorSlot) { 
+      anchorSlot.addService(googletag.pubads()); 
+    }
+
+    googletag.defineOutOfPageSlot(
+      '/33885318/TR_HP_INT', 
+      googletag.enums.OutOfPageFormat.INTERSTITIAL
+    ).addService(googletag.pubads());
+
+    // =========================================================================
+    // STEP 4: STANDARD ARTICLE RAIL SLOTS
+    // FIX: Attached .defineSizeMapping(railMapping / mpuMapping) to all slots.
+    // =========================================================================
+    googletag.defineSlot('/33885318/TR_SECTION/TR_ARTICLE_SKY_RAIL1', [[300, 600], [160, 600], [120, 600]], 'div-gpt-ad-3423810-1')
+             .defineSizeMapping(railMapping)
+             .addService(googletag.pubads());
+
+    googletag.defineSlot('/33885318/TR_SECTION/TR_ARTICLE_MPU_RAIL1', [[336, 280], [300, 250]], 'div-gpt-ad-3423810-2')
+             .defineSizeMapping(mpuMapping)
+             .addService(googletag.pubads());
+
+    googletag.defineSlot('/33885318/TR_SECTION/TR_ARTICLE_MPU_RAIL2', [[336, 280], [300, 250]], 'div-gpt-ad-3423810-3')
+             .defineSizeMapping(mpuMapping)
+             .addService(googletag.pubads());
+
+    // =========================================================================
+    // STEP 5: CONDITIONAL SLOTS BASED ON PAGE TYPE
+    // =========================================================================
+    if (gpt_pagetype === 'homepage') { 
+      googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_1', [[970, 250], [970, 90], [728, 90], [320, 50], [320, 100]], 'div-gpt-ad-6518425-1').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_2', [[336, 280], [300, 250]], 'div-gpt-ad-6518425-2').defineSizeMapping(mpuMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_3', [[728, 90], [336, 280], [300, 250]], 'div-gpt-ad-6518425-3').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_4', [[728, 90], [336, 280], [300, 250]], 'div-gpt-ad-6518425-4').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_5', [[970, 250], [970, 90], [728, 90], [336, 280]], 'div-gpt-ad-6518425-5').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_HOME/TR_HP_LEADER_6', [[970, 90], [728, 90], [970, 250], [336, 280], [320, 250]], 'div-gpt-ad-1765648994654-0').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+    } 
+    else if (gpt_pagetype === 'article') { 
+      googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_1', [[728, 90], [336, 280], [300, 250], [300, 50]], 'div-gpt-ad-6861913-1').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_2', [[728, 90], [336, 280], [300, 250]], 'div-gpt-ad-6861913-2').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_3', [[728, 90], [336, 280], [300, 250]], 'div-gpt-ad-6861913-3').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_4', [[728, 90], [336, 280], [300, 250]], 'div-gpt-ad-6861913-4').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_5', [[728, 90], [336, 280], [300, 250]], 'div-gpt-ad-6861913-5').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_ARTICLE_LEADER_6', [[728, 90], [336, 280], [300, 250]], 'div-gpt-ad-6861913-6').defineSizeMapping(leaderMapping).addService(googletag.pubads());
+    } 
+    else if (gpt_pagetype === 'category') { 
+      googletag.defineSlot('/33885318/TR_CAT_MPU_1', [[336, 280], [300, 250]], 'div-gpt-ad-6489555-1').defineSizeMapping(mpuMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_CAT_MPU_2', [[336, 280], [300, 250]], 'div-gpt-ad-6489555-2').defineSizeMapping(mpuMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_CAT_MPU_3', [[336, 280], [300, 250]], 'div-gpt-ad-6489555-3').defineSizeMapping(mpuMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_CAT_MPU_4', [[336, 280], [300, 250]], 'div-gpt-ad-6489555-4').defineSizeMapping(mpuMapping).addService(googletag.pubads());
+      googletag.defineSlot('/33885318/TR_CAT_MPU_5', [[336, 280], [300, 250]], 'div-gpt-ad-6489555-5').defineSizeMapping(mpuMapping).addService(googletag.pubads());
+    } 
+
+    // =========================================================================
+    // STEP 6: PERFORMANCE & VIEWABILITY LISTENERS
+    // FIX: Replaced global setInterval(..., 60000) with event-driven refresh 
+    // that fires ONLY when an ad has been confirmed viewable for 30s AND 
+    // the tab is currently active. Prevents Invalid Traffic (IVT) flags.
+    // =========================================================================
+    var activeTimers = new Map();
+
+    googletag.pubads().addEventListener('impressionViewable', function(event) {
+      var slot = event.slot;
+      var elementId = slot.getSlotElementId();
+
+      // Clear existing timer if slot re-entered viewability
+      if (activeTimers.has(elementId)) {
+        clearTimeout(activeTimers.get(elementId));
+      }
+
+      var timerId = setTimeout(function() {
+        // Only refresh if tab is currently visible (Google Compliance Rule)
+        if (document.visibilityState === 'visible') {
+          slot.setTargeting('refreshed', 'true');
+          googletag.pubads().refresh([slot]);
+        }
+        activeTimers.delete(elementId);
+      }, 30000); // 30-second viewability refresh threshold
+
+      activeTimers.set(elementId, timerId);
+    });
+
+    // =========================================================================
+    // STEP 7: NATIVE LAZY LOADING & SERVICE ACTIVATION
+ 
+    // =========================================================================
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs(); // Lets GAM collapse empty ad slots natively
+    
+    googletag.pubads().enableLazyLoad({
+      fetchMarginPercent: 200,  // Fetch ads 2 screen heights ahead
+      renderMarginPercent: 100, // Render ads 1 screen height ahead
+      mobileScaling: 2.0        // Scale margin faster for quick mobile scrolling
+    });
+
+    googletag.enableServices();
+  }); 
+</script>
+      
+
+
+<meta name="google-site-verification" content="lTf6nNRvLiAW3GJoLWiYceb4xVY7hd_MQu2VuCB3xu4" />
+
+<!-- AMP Analytics -->
+<script type="text/rocketlazyloadscript" data-minify="1" async custom-element="amp-analytics" data-rocket-src="https://tribuneonlineng.com/wp-content/cache/min/1/v0/amp-analytics-0.1.js?ver=1785168268"></script>
+
+<!-- Google Tag Manager -->
+<script>
+  (function(w,d,s,l,i){
+    w[l]=w[l]||[];
+    w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true;
+    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W85MT89');
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- Start IdealMedia Tag -->
+<script type="text/rocketlazyloadscript" data-rocket-src="https://jsc.idealmedia.io/site/989315.js" async data-rocket-defer defer></script>
+<!-- End IdealMedia Tag -->
+<script type="text/rocketlazyloadscript">
+function ai_wait_for_functions(){function a(b,c){"undefined"!==typeof ai_functions?b(ai_functions):5E3<=Date.now()-d?c(Error("AI FUNCTIONS NOT LOADED")):setTimeout(a.bind(this,b,c),50)}var d=Date.now();return new Promise(a)};
+</script>
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><link rel='stylesheet' id='jetpack-top-posts-widget-css' href='https://tribuneonlineng.com/wp-content/plugins/jetpack/modules/widgets/top-posts/style.css?ver=20141013' media='all' />
+
+<style id="wpr-lazyload-bg-container"></style><style id="wpr-lazyload-bg-exclusion"></style>
+<noscript>
+<style id="wpr-lazyload-bg-nostyle">.search-header:before{--wpr-bg-6ac7b911-2445-41d0-b5ba-0e40ac56e856: url('https://foxiz.themeruby.com/business/wp-content/uploads/sites/6/2021/09/search-bg.jpg');}[data-theme="dark"] .search-header:before{--wpr-bg-696ed4b3-25c3-421e-b1cc-927ae2979ca1: url('https://foxiz.themeruby.com/business/wp-content/uploads/sites/6/2021/09/search-bgd.jpg');}.rll-youtube-player .play{--wpr-bg-d1722d6b-fb33-4cae-95f4-49fd9d321d86: url('https://tribuneonlineng.com/wp-content/plugins/wp-rocket/assets/img/youtube.png');}</style>
+</noscript>
+<script type="application/javascript">const rocket_pairs = [{"selector":".search-header","style":".search-header:before{--wpr-bg-6ac7b911-2445-41d0-b5ba-0e40ac56e856: url('https:\/\/foxiz.themeruby.com\/business\/wp-content\/uploads\/sites\/6\/2021\/09\/search-bg.jpg');}","hash":"6ac7b911-2445-41d0-b5ba-0e40ac56e856","url":"https:\/\/foxiz.themeruby.com\/business\/wp-content\/uploads\/sites\/6\/2021\/09\/search-bg.jpg"},{"selector":"[data-theme=\"dark\"] .search-header","style":"[data-theme=\"dark\"] .search-header:before{--wpr-bg-696ed4b3-25c3-421e-b1cc-927ae2979ca1: url('https:\/\/foxiz.themeruby.com\/business\/wp-content\/uploads\/sites\/6\/2021\/09\/search-bgd.jpg');}","hash":"696ed4b3-25c3-421e-b1cc-927ae2979ca1","url":"https:\/\/foxiz.themeruby.com\/business\/wp-content\/uploads\/sites\/6\/2021\/09\/search-bgd.jpg"},{"selector":".rll-youtube-player .play","style":".rll-youtube-player .play{--wpr-bg-d1722d6b-fb33-4cae-95f4-49fd9d321d86: url('https:\/\/tribuneonlineng.com\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png');}","hash":"d1722d6b-fb33-4cae-95f4-49fd9d321d86","url":"https:\/\/tribuneonlineng.com\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png"}]; const rocket_excluded_pairs = [];</script><meta name="generator" content="WP Rocket 3.23" data-wpr-features="wpr_lazyload_css_bg_img wpr_delay_js wpr_defer_js wpr_minify_js wpr_lazyload_images wpr_lazyload_iframes wpr_cdn wpr_preload_links wpr_host_fonts_locally wpr_mobile" /></head>
+<body class="wp-singular post-template-default single single-post postid-1288456 single-format-standard wp-embed-responsive wp-theme-foxiz wp-child-theme-foxiz-child personalized-all menu-ani-1 hover-ani-3 btn-ani-1 btn-transform-1 is-rm-1 lmeta-dot loader-1 dark-sw-1 mtax-1 is-hd-4 is-standard-1 is-mstick yes-tstick is-backtop none-m-backtop  is-mstick is-smart-sticky" data-theme="default">
+<div data-rocket-location-hash="7e4f4a3adee48df92822953dbaffab3d" class="site-outer">
+			<header data-rocket-location-hash="d93216db017d2d63b2b15320c4ac2596" id="site-header" class="header-wrap rb-section header-4 header-wrapper has-quick-menu">
+					<div data-rocket-location-hash="bf588db960b64fe2d3b70204ea757e70" class="reading-indicator"><span id="reading-progress"></span></div>
+					<div data-rocket-location-hash="eaf1f195b4aae053ed5d930ce5d3c91f" class="logo-sec">
+				<div class="logo-sec-inner rb-container edge-padding">
+					<div class="logo-sec-left">		<div class="logo-wrap is-image-logo site-branding">
+			<a href="https://tribuneonlineng.com/" class="logo" title="Tribune Online">
+				<img class="logo-default" data-mode="default" height="83" width="300" src="https://tribuneonlineng.com/wp-content/uploads/2023/02/Tribune-Online-Cropped-Logo-e1675299213489.png" alt="Tribune Online" decoding="async" loading="eager" fetchpriority="high"><img class="logo-dark" data-mode="dark" height="83" width="300" src="https://tribuneonlineng.com/wp-content/uploads/2023/02/Tribune-Online-Cropped-Logo-e1675299213489.png" alt="Tribune Online" decoding="async" loading="eager" fetchpriority="high"><img class="logo-transparent" height="83" width="300" src="https://tribuneonlineng.com/wp-content/uploads/2023/02/Tribune-Online-Cropped-Logo-e1675299213489.png" alt="Tribune Online" decoding="async" loading="eager" fetchpriority="high">			</a>
+		</div>
+		</div>
+					<div class="logo-sec-right">
+									<div class="header-social-list wnav-holder"><a class="social-link-facebook" aria-label="Facebook" data-title="Facebook" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-facebook" aria-hidden="true"></i></a><a class="social-link-twitter" aria-label="X" data-title="X" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-twitter" aria-hidden="true"></i></a><a class="social-link-youtube" aria-label="YouTube" data-title="YouTube" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-youtube" aria-hidden="true"></i></a><a class="social-link-rss" aria-label="Rss" data-title="Rss" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-rss" aria-hidden="true"></i></a></div>
+					<div class="header-search-form is-form-layout">
+			<form method="get" action="https://tribuneonlineng.com/" class="rb-search-form"  data-search="post" data-limit="0" data-follow="0" data-tax="category" data-dsource="0"  data-ptype=""><div class="search-form-inner"><span class="search-icon"><i class="rbi rbi-search" aria-hidden="true"></i></span><span class="search-text"><input type="text" class="field" placeholder="Search Headlines, News..." value="" name="s"/></span><span class="rb-search-submit"><input type="submit" value="Search"/><i class="rbi rbi-cright" aria-hidden="true"></i></span></div></form>		</div>
+								</div>
+				</div>
+			</div>
+			<div id="navbar-outer" class="navbar-outer">
+				<div id="sticky-holder" class="sticky-holder">
+					<div class="navbar-wrap">
+						<div class="rb-container edge-padding">
+							<div class="navbar-inner">
+								<div class="navbar-left">
+											<nav id="site-navigation" class="main-menu-wrap" aria-label="main menu"><ul id="menu-main-navigation-1" class="main-menu rb-menu large-menu"  ><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-141145"><a href="https://tribuneonlineng.com"><span>Home</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639147"><a href="https://tribuneonlineng.com/category/latest-news/"><span>News</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639678"><a href="https://tribuneonlineng.com/category/columns/"><span>Columns</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201303"><a href="https://tribuneonlineng.com/category/editorial/"><span>Editorial</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-851697"><a href="https://tribuneonlineng.com/category/tribune-tv/"><span>VIDEOS</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639150"><a href="https://tribuneonlineng.com/category/entertainment/"><span>Entertainment</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639149"><a href="https://tribuneonlineng.com/category/politics/"><span>Politics</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639151"><a href="https://tribuneonlineng.com/category/health/"><span>Health</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201305"><a href="https://tribuneonlineng.com/category/opinion/"><span>Opinions</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29395"><a href="https://sportingtribune.com/"><span>SPORTING TRIBUNE</span></a></li>
+</ul></nav>
+				<div id="s-title-sticky" class="s-title-sticky">
+			<div class="s-title-sticky-left">
+				<span class="sticky-title-label">Reading:</span>
+				<span class="h4 sticky-title">One killed, another injured in Ebonyi crash</span>
+			</div>
+					<div class="sticky-share-list">
+			<div class="t-shared-header meta-text">
+				<i class="rbi rbi-share" aria-hidden="true"></i>					<span class="share-label">Share</span>			</div>
+			<div class="sticky-share-list-items effect-fadeout is-color">			<a class="share-action share-trigger icon-facebook" aria-label="Share on Facebook" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwp.me%2Fp7ZDOE-5pby" data-title="Facebook" data-gravity=n  rel="nofollow noopener"><i class="rbi rbi-facebook" aria-hidden="true"></i>
+							</a>
+						<a class="share-action share-trigger icon-twitter" aria-label="Share on X" href="https://twitter.com/intent/tweet?text=One+killed%2C+another+injured+in+Ebonyi+crash&amp;url=https%3A%2F%2Fwp.me%2Fp7ZDOE-5pby&amp;via=" data-title="X" data-gravity=n  rel="nofollow noopener">
+				<i class="rbi rbi-twitter" aria-hidden="true"></i></a>
+						<a class="share-action icon-email" aria-label="Email" href="/cdn-cgi/l/email-protection#c0ffb3b5a2aaa5a3b4fd8faea5e0aba9acaca5a4ece0a1aeafb4a8a5b2e0a9aeaab5b2a5a4e0a9aee085a2afaeb9a9e0a3b2a1b3a8e0bce094b2a9a2b5aea5e08faeaca9aea5e6a2afa4b9fd89e0a6afb5aea4e0b4a8a9b3e0a1b2b4a9a3aca5e0a9aeb4a5b2a5b3b4a9aea7e0a1aea4e0b4a8afb5a7a8b4e0afa6e0b3a8a1b2a9aea7e0a9b4e0b7a9b4a8e0b9afb5eee083a8a5a3abe0a9b4e0afb5b4fae5f081e5f081a8b4b4b0b3e5f381e5f286e5f286b7b0eeada5e5f286b0f79a848f85edf5b0a2b9" data-title="Email" data-gravity=n rel="nofollow">
+				<i class="rbi rbi-email" aria-hidden="true"></i>
+								</a>
+						<a class="share-action icon-copy copy-trigger" aria-label="Copy Link" href="#" rel="nofollow" role="button" data-copied="Copied!" data-link="https://wp.me/p7ZDOE-5pby" data-copy="Copy Link" data-gravity=n ><i class="rbi rbi-link-o" aria-hidden="true"></i>
+							</a>
+						<a class="share-action icon-print" aria-label="Print" rel="nofollow" role="button" href="javascript:if(window.print)window.print()" data-title="Print" data-gravity=n ><i class="rbi rbi-print" aria-hidden="true"></i>
+							</a>
+						<a class="share-action native-share-trigger more-icon" aria-label="More" href="#" rel="nofollow" role="button" data-link="https://wp.me/p7ZDOE-5pby" data-ptitle="One killed, another injured in Ebonyi crash" data-title="More"  data-gravity=n ><i class="rbi rbi-more" aria-hidden="true"></i></a>
+			</div>
+		</div>
+				</div>
+										</div>
+								<div class="navbar-right">
+											<div class="wnav-holder widget-h-login header-dropdown-outer">
+								<a href="https://tribuneonlineng.com/tonline-access/?redirect_to=https%3A%2F%2Ftribuneonlineng.com%2Fone-killed-another-injured-in-ebonyi-crash" class="login-toggle is-login header-element" data-title="Sign In"
+					 role="button"					rel="nofollow" aria-label="Sign In">
+					<span class="login-icon-svg"></span>					</a>
+						</div>
+				<div class="wnav-holder header-dropdown-outer">
+			<div class="dropdown-trigger notification-icon notification-trigger">
+			<span class="notification-icon-inner" data-title="Notification">
+				<span class="notification-icon-holder">
+									<span class="notification-icon-svg"></span>
+								<span class="notification-info"></span>
+				</span>
+			</span>
+			</div>
+			<div class="header-dropdown notification-dropdown">
+				<div class="notification-popup">
+					<div class="notification-header">
+						<span class="h4">Notification</span>
+													<a class="notification-url meta-text" href="https://foxiz.themeruby.com/business/customize-interests/">Show More								<i class="rbi rbi-cright" aria-hidden="true"></i></a>
+											</div>
+					<div class="notification-content">
+						<div class="scroll-holder">
+							<div class="rb-notification ecat-l-dot is-feat-right" data-interval="15"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="wnav-holder font-resizer">
+			<a href="#" role="button" class="font-resizer-trigger" data-title="Font Resizer"><span class="screen-reader-text">Font Resizer</span><strong>Aa</strong></a>
+		</div>
+				<div class="dark-mode-toggle-wrap">
+			<div class="dark-mode-toggle">
+				<span class="dark-mode-slide">
+					<i class="dark-mode-slide-btn mode-icon-dark" data-title="Switch to Light"><svg class="svg-icon svg-mode-dark" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewbox="-26 -26 1076 1076"><path fill="currentColor" d="M968.172 426.83c-2.349-12.673-13.274-21.954-26.16-22.226-12.876-0.22-24.192 8.54-27.070 21.102-27.658 120.526-133.48 204.706-257.334 204.706-145.582 0-264.022-118.44-264.022-264.020 0-123.86 84.18-229.676 204.71-257.33 12.558-2.88 21.374-14.182 21.102-27.066s-9.548-23.81-22.22-26.162c-27.996-5.196-56.654-7.834-85.176-7.834-123.938 0-240.458 48.266-328.098 135.904-87.638 87.638-135.902 204.158-135.902 328.096s48.264 240.458 135.902 328.096c87.64 87.638 204.16 135.904 328.098 135.904s240.458-48.266 328.098-135.904c87.638-87.638 135.902-204.158 135.902-328.096 0-28.498-2.638-57.152-7.828-85.17z"></path></svg></i>
+					<i class="dark-mode-slide-btn mode-icon-default" data-title="Switch to Dark"><svg class="svg-icon svg-mode-light" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 232.447 232.447"><path fill="currentColor" d="M116.211,194.8c-4.143,0-7.5,3.357-7.5,7.5v22.643c0,4.143,3.357,7.5,7.5,7.5s7.5-3.357,7.5-7.5V202.3 C123.711,198.157,120.354,194.8,116.211,194.8z" /><path fill="currentColor" d="M116.211,37.645c4.143,0,7.5-3.357,7.5-7.5V7.505c0-4.143-3.357-7.5-7.5-7.5s-7.5,3.357-7.5,7.5v22.641 C108.711,34.288,112.068,37.645,116.211,37.645z" /><path fill="currentColor" d="M50.054,171.78l-16.016,16.008c-2.93,2.929-2.931,7.677-0.003,10.606c1.465,1.466,3.385,2.198,5.305,2.198 c1.919,0,3.838-0.731,5.302-2.195l16.016-16.008c2.93-2.929,2.931-7.677,0.003-10.606C57.731,168.852,52.982,168.851,50.054,171.78 z" /><path fill="currentColor" d="M177.083,62.852c1.919,0,3.838-0.731,5.302-2.195L198.4,44.649c2.93-2.929,2.931-7.677,0.003-10.606 c-2.93-2.932-7.679-2.931-10.607-0.003l-16.016,16.008c-2.93,2.929-2.931,7.677-0.003,10.607 C173.243,62.12,175.163,62.852,177.083,62.852z" /><path fill="currentColor" d="M37.645,116.224c0-4.143-3.357-7.5-7.5-7.5H7.5c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5,7.5,7.5h22.645 C34.287,123.724,37.645,120.366,37.645,116.224z" /><path fill="currentColor" d="M224.947,108.724h-22.652c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5,7.5,7.5h22.652c4.143,0,7.5-3.357,7.5-7.5 S229.09,108.724,224.947,108.724z" /><path fill="currentColor" d="M50.052,60.655c1.465,1.465,3.384,2.197,5.304,2.197c1.919,0,3.839-0.732,5.303-2.196c2.93-2.929,2.93-7.678,0.001-10.606 L44.652,34.042c-2.93-2.93-7.679-2.929-10.606-0.001c-2.93,2.929-2.93,7.678-0.001,10.606L50.052,60.655z" /><path fill="currentColor" d="M182.395,171.782c-2.93-2.929-7.679-2.93-10.606-0.001c-2.93,2.929-2.93,7.678-0.001,10.607l16.007,16.008 c1.465,1.465,3.384,2.197,5.304,2.197c1.919,0,3.839-0.732,5.303-2.196c2.93-2.929,2.93-7.678,0.001-10.607L182.395,171.782z" /><path fill="currentColor" d="M116.22,48.7c-37.232,0-67.523,30.291-67.523,67.523s30.291,67.523,67.523,67.523s67.522-30.291,67.522-67.523 S153.452,48.7,116.22,48.7z M116.22,168.747c-28.962,0-52.523-23.561-52.523-52.523S87.258,63.7,116.22,63.7 c28.961,0,52.522,23.562,52.522,52.523S145.181,168.747,116.22,168.747z" /></svg></i>
+				</span>
+			</div>
+		</div>
+										</div>
+							</div>
+						</div>
+					</div>
+							<div id="header-mobile" class="header-mobile mh-style-shadow">
+			<div class="header-mobile-wrap">
+						<div class="mbnav edge-padding">
+			<div class="navbar-left">
+						<div class="mobile-toggle-wrap">
+							<a href="#" class="mobile-menu-trigger" role="button" rel="nofollow" aria-label="Open mobile menu">		<span class="burger-icon"><span></span><span></span><span></span></span>
+		</a>
+					</div>
+				<div class="mobile-logo-wrap is-image-logo site-branding">
+			<a href="https://tribuneonlineng.com/" title="Tribune Online">
+				<img class="logo-default" data-mode="default" height="83" width="300" src="https://tribuneonlineng.com/wp-content/uploads/2023/02/Tribune-Online-Cropped-Logo-e1675299213489.png" alt="Tribune Online" decoding="async" loading="eager" fetchpriority="high"><img class="logo-dark" data-mode="dark" height="83" width="300" src="https://tribuneonlineng.com/wp-content/uploads/2023/02/Tribune-Online-Cropped-Logo-e1675299213489.png" alt="Tribune Online" decoding="async" loading="eager" fetchpriority="high">			</a>
+		</div>
+					</div>
+			<div class="navbar-right">
+							<a role="button" href="#" class="mobile-menu-trigger mobile-search-icon" aria-label="search"><i class="rbi rbi-search wnav-icon" aria-hidden="true"></i></a>
+					<div class="wnav-holder font-resizer">
+			<a href="#" role="button" class="font-resizer-trigger" data-title="Font Resizer"><span class="screen-reader-text">Font Resizer</span><strong>Aa</strong></a>
+		</div>
+				<div class="dark-mode-toggle-wrap">
+			<div class="dark-mode-toggle">
+				<span class="dark-mode-slide">
+					<i class="dark-mode-slide-btn mode-icon-dark" data-title="Switch to Light"><svg class="svg-icon svg-mode-dark" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewbox="-26 -26 1076 1076"><path fill="currentColor" d="M968.172 426.83c-2.349-12.673-13.274-21.954-26.16-22.226-12.876-0.22-24.192 8.54-27.070 21.102-27.658 120.526-133.48 204.706-257.334 204.706-145.582 0-264.022-118.44-264.022-264.020 0-123.86 84.18-229.676 204.71-257.33 12.558-2.88 21.374-14.182 21.102-27.066s-9.548-23.81-22.22-26.162c-27.996-5.196-56.654-7.834-85.176-7.834-123.938 0-240.458 48.266-328.098 135.904-87.638 87.638-135.902 204.158-135.902 328.096s48.264 240.458 135.902 328.096c87.64 87.638 204.16 135.904 328.098 135.904s240.458-48.266 328.098-135.904c87.638-87.638 135.902-204.158 135.902-328.096 0-28.498-2.638-57.152-7.828-85.17z"></path></svg></i>
+					<i class="dark-mode-slide-btn mode-icon-default" data-title="Switch to Dark"><svg class="svg-icon svg-mode-light" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 232.447 232.447"><path fill="currentColor" d="M116.211,194.8c-4.143,0-7.5,3.357-7.5,7.5v22.643c0,4.143,3.357,7.5,7.5,7.5s7.5-3.357,7.5-7.5V202.3 C123.711,198.157,120.354,194.8,116.211,194.8z" /><path fill="currentColor" d="M116.211,37.645c4.143,0,7.5-3.357,7.5-7.5V7.505c0-4.143-3.357-7.5-7.5-7.5s-7.5,3.357-7.5,7.5v22.641 C108.711,34.288,112.068,37.645,116.211,37.645z" /><path fill="currentColor" d="M50.054,171.78l-16.016,16.008c-2.93,2.929-2.931,7.677-0.003,10.606c1.465,1.466,3.385,2.198,5.305,2.198 c1.919,0,3.838-0.731,5.302-2.195l16.016-16.008c2.93-2.929,2.931-7.677,0.003-10.606C57.731,168.852,52.982,168.851,50.054,171.78 z" /><path fill="currentColor" d="M177.083,62.852c1.919,0,3.838-0.731,5.302-2.195L198.4,44.649c2.93-2.929,2.931-7.677,0.003-10.606 c-2.93-2.932-7.679-2.931-10.607-0.003l-16.016,16.008c-2.93,2.929-2.931,7.677-0.003,10.607 C173.243,62.12,175.163,62.852,177.083,62.852z" /><path fill="currentColor" d="M37.645,116.224c0-4.143-3.357-7.5-7.5-7.5H7.5c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5,7.5,7.5h22.645 C34.287,123.724,37.645,120.366,37.645,116.224z" /><path fill="currentColor" d="M224.947,108.724h-22.652c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5,7.5,7.5h22.652c4.143,0,7.5-3.357,7.5-7.5 S229.09,108.724,224.947,108.724z" /><path fill="currentColor" d="M50.052,60.655c1.465,1.465,3.384,2.197,5.304,2.197c1.919,0,3.839-0.732,5.303-2.196c2.93-2.929,2.93-7.678,0.001-10.606 L44.652,34.042c-2.93-2.93-7.679-2.929-10.606-0.001c-2.93,2.929-2.93,7.678-0.001,10.606L50.052,60.655z" /><path fill="currentColor" d="M182.395,171.782c-2.93-2.929-7.679-2.93-10.606-0.001c-2.93,2.929-2.93,7.678-0.001,10.607l16.007,16.008 c1.465,1.465,3.384,2.197,5.304,2.197c1.919,0,3.839-0.732,5.303-2.196c2.93-2.929,2.93-7.678,0.001-10.607L182.395,171.782z" /><path fill="currentColor" d="M116.22,48.7c-37.232,0-67.523,30.291-67.523,67.523s30.291,67.523,67.523,67.523s67.522-30.291,67.522-67.523 S153.452,48.7,116.22,48.7z M116.22,168.747c-28.962,0-52.523-23.561-52.523-52.523S87.258,63.7,116.22,63.7 c28.961,0,52.522,23.562,52.522,52.523S145.181,168.747,116.22,168.747z" /></svg></i>
+				</span>
+			</div>
+		</div>
+					</div>
+		</div>
+		<div class="mobile-qview"><ul id="menu-main-navigation-2" class="mobile-qview-inner"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-141145"><a href="https://tribuneonlineng.com"><span>Home</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639147"><a href="https://tribuneonlineng.com/category/latest-news/"><span>News</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639678"><a href="https://tribuneonlineng.com/category/columns/"><span>Columns</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201303"><a href="https://tribuneonlineng.com/category/editorial/"><span>Editorial</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-851697"><a href="https://tribuneonlineng.com/category/tribune-tv/"><span>VIDEOS</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639150"><a href="https://tribuneonlineng.com/category/entertainment/"><span>Entertainment</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639149"><a href="https://tribuneonlineng.com/category/politics/"><span>Politics</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-639151"><a href="https://tribuneonlineng.com/category/health/"><span>Health</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-201305"><a href="https://tribuneonlineng.com/category/opinion/"><span>Opinions</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29395"><a href="https://sportingtribune.com/"><span>SPORTING TRIBUNE</span></a></li>
+</ul></div>			</div>
+					<div class="mobile-collapse">
+			<div class="collapse-holder">
+				<div class="collapse-inner">
+											<div class="mobile-search-form edge-padding">		<div class="header-search-form is-form-layout">
+			<form method="get" action="https://tribuneonlineng.com/" class="rb-search-form"  data-search="post" data-limit="0" data-follow="0" data-tax="category" data-dsource="0"  data-ptype=""><div class="search-form-inner"><span class="search-icon"><i class="rbi rbi-search" aria-hidden="true"></i></span><span class="search-text"><input type="text" class="field" placeholder="Search Headlines, News..." value="" name="s"/></span><span class="rb-search-submit"><input type="submit" value="Search"/><i class="rbi rbi-cright" aria-hidden="true"></i></span></div></form>		</div>
+		</div>
+										<nav class="mobile-menu-wrap edge-padding">
+						<ul id="mobile-menu" class="mobile-menu"><li id="menu-item-582764" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-582764"><a href="https://tribuneonlineng.com/about-us/"><span>About Us</span></a></li>
+<li id="menu-item-582765" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-582765"><a href="https://tribuneonlineng.com/contact-us-tribune-online/"><span>Contact us</span></a></li>
+<li id="menu-item-582766" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-582766"><a href="https://tribuneonlineng.com/disclamer/"><span>Disclaimer</span></a></li>
+<li id="menu-item-582767" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-582767"><a href="https://tribuneonlineng.com/privacy-policy/"><span>Privacy Policy</span></a></li>
+<li id="menu-item-582768" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-582768"><a href="https://tribuneonlineng.com/tribune-advertisement-rates/"><span>Advertise</span></a></li>
+</ul>					</nav>
+										<div class="collapse-sections">
+													<div class="mobile-login">
+																	<span class="mobile-login-title h6">
+									Have an existing account?										</span>
+									<a href="https://tribuneonlineng.com/tonline-access/?redirect_to=https%3A%2F%2Ftribuneonlineng.com%2Fone-killed-another-injured-in-ebonyi-crash" class="login-toggle is-login is-btn" rel="nofollow">Sign In</a>
+																</div>
+														<div class="mobile-socials">
+								<span class="mobile-social-title h6">Follow US</span>
+								<a class="social-link-facebook" aria-label="Facebook" data-title="Facebook" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-facebook" aria-hidden="true"></i></a><a class="social-link-twitter" aria-label="X" data-title="X" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-twitter" aria-hidden="true"></i></a><a class="social-link-youtube" aria-label="YouTube" data-title="YouTube" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-youtube" aria-hidden="true"></i></a><a class="social-link-rss" aria-label="Rss" data-title="Rss" href="#" target="_blank" rel="noopener nofollow"><i class="rbi rbi-rss" aria-hidden="true"></i></a>							</div>
+											</div>
+											<div class="collapse-footer">
+															<div class="collapse-copyright">© 2026 African Newspapers of Nigeria Plc. All Rights Reserved. | <a href="https://tribuneonlineng.com/disclamer/"> Disclaimer </a> | <a href="https://tribuneonlineng.com/privacy-policy/"> Privacy Policy </a> | <a href="https://tribuneonlineng.com/editorial-policy/"> Editorial Policy </a> | <a href="https://tribuneonlineng.com/corrections-policy/"> Corrections Policy </a> | <a href="https://tribuneonlineng.com/terms-and-conditions/"> Terms & Conditions </a></div>
+													</div>
+									</div>
+			</div>
+		</div>
+				</div>
+						</div>
+			</div>
+					</header>
+			<main data-rocket-location-hash="77fee0c470b1d71c5df562a2cc5dff7e" class="site-wrap">
+<div class='code-block code-block-1' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<!-- GPT AdSlot 1 for Ad unit 'TR_ARTICLE_LEADER_1' ### Size: [[728,90],[336,280],[300,250]] -->
+<div id='div-gpt-ad-6861913-1'>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script id="gpt-script">
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-6861913-1'); });
+  </script>
+</div></div>
+		<div data-rocket-location-hash="9431a41e6553680f67ab5e4aab7601e8" class="single-standard-1 is-sidebar-right sticky-sidebar">
+			<div class="rb-s-container edge-padding">
+				<article id="post-1288456" class="post-1288456 post type-post status-publish format-standard has-post-thumbnail category-metro tag-ebonyi">				<header class="single-header">
+					<aside class="breadcrumb-wrap breadcrumb-yoast s-breadcrumb"><div class="breadcrumb-inner"><span><span><a href="https://tribuneonlineng.com/">Home</a></span> » <span class="breadcrumb_last" aria-current="page">One killed, another injured in Ebonyi crash</span></span></div></aside><div class="s-cats ecat-l-dot custom-size"><div class="p-categories"><a class="p-category category-id-6" href="https://tribuneonlineng.com/category/metro/" rel="category">Metro</a></div></div>		<h1 class="s-title fw-headline">One killed, another injured in Ebonyi crash</h1>
+				<div class="single-meta meta-s-default yes-0">
+							<div class="smeta-in">
+							<a class="meta-el meta-avatar" href="https://tribuneonlineng.com/author/johnkennedy-uzoma/" rel="nofollow" aria-label="Visit posts by Johnkennedy Uzoma">
+					</a>
+							<div class="smeta-sec">
+												<div class="p-meta">
+							<div class="meta-inner is-meta">		<div class="meta-el">
+			<a class="meta-author-url meta-author" href="https://tribuneonlineng.com/author/johnkennedy-uzoma/">Johnkennedy Uzoma</a>		</div>
+			<div class="meta-el meta-date">
+		<i class="rbi rbi-clock" aria-hidden="true"></i>		<time
+		class="date published"		datetime="2026-07-27T16:25:02+01:00">July 27, 2026</time>
+		</div>
+		</div>
+						</div>
+					</div>
+				</div>
+								<div class="smeta-extra">
+						<div class="t-shared-sec tooltips-n is-color">
+			<div class="t-shared-header is-meta">
+				<i class="rbi rbi-share" aria-hidden="true"></i><span class="share-label">Share</span>
+			</div>
+			<div class="effect-fadeout">			<a class="share-action share-trigger icon-facebook" aria-label="Share on Facebook" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwp.me%2Fp7ZDOE-5pby" data-title="Facebook" rel="nofollow noopener"><i class="rbi rbi-facebook" aria-hidden="true"></i>
+							</a>
+						<a class="share-action share-trigger icon-twitter" aria-label="Share on X" href="https://twitter.com/intent/tweet?text=One+killed%2C+another+injured+in+Ebonyi+crash&amp;url=https%3A%2F%2Fwp.me%2Fp7ZDOE-5pby&amp;via=" data-title="X" rel="nofollow noopener">
+				<i class="rbi rbi-twitter" aria-hidden="true"></i></a>
+						<a class="share-action icon-email" aria-label="Email" href="/cdn-cgi/l/email-protection#033c707661696660773e4c6d6623686a6f6f66672f23626d6c776b6671236a6d6976716667236a6d2346616c6d7a6a23607162706b237f2357716a61766d66234c6d6f6a6d6625616c677a3e4a23656c766d6723776b6a70236271776a606f66236a6d7766716670776a6d6423626d6723776b6c76646b77236c6523706b62716a6d64236a7723746a776b237a6c762d23406b666068236a77236c7677392633422633426b7777737026304226314526314574732d6e66263145733459474c462e3673617a" data-title="Email" rel="nofollow">
+				<i class="rbi rbi-email" aria-hidden="true"></i>
+								</a>
+						<a class="share-action icon-print" aria-label="Print" rel="nofollow" role="button" href="javascript:if(window.print)window.print()" data-title="Print"><i class="rbi rbi-print" aria-hidden="true"></i>
+							</a>
+						<a class="share-action native-share-trigger more-icon" aria-label="More" href="#" rel="nofollow" role="button" data-link="https://wp.me/p7ZDOE-5pby" data-ptitle="One killed, another injured in Ebonyi crash" data-title="More" ><i class="rbi rbi-more" aria-hidden="true"></i></a>
+			</div>
+		</div>
+							</div>
+					</div>
+						</header>
+				<div class="grid-container">
+					<div class="s-ct">
+												<div class="s-feat-outer">
+									<div class="s-feat">			<div class="featured-lightbox-trigger" data-source="https://tribuneonlineng.com/wp-content/uploads/2026/07/IMG-20260727-WA0243-1.jpg" data-caption="" data-attribution="">
+				<img width="860" height="649" src="https://tribuneonlineng.com/wp-content/uploads/2026/07/IMG-20260727-WA0243-1-860x649.jpg" class="attachment-foxiz_crop_o1 size-foxiz_crop_o1 wp-post-image" alt="The suspect arrested after the fatal road incident in Owerri" loading="eager" fetchpriority="high" decoding="async" srcset="https://tribuneonlineng.com/wp-content/uploads/2026/07/IMG-20260727-WA0243-1-860x649.jpg 860w, https://tribuneonlineng.com/wp-content/uploads/2026/07/IMG-20260727-WA0243-1-1024x773.jpg 1024w, https://tribuneonlineng.com/wp-content/uploads/2026/07/IMG-20260727-WA0243-1.jpg 1200w" sizes="(max-width: 860px) 100vw, 860px" />			</div>
+			</div>
+								</div>
+								<div class="s-ct-wrap">
+			<div class="s-ct-inner">
+								<div class="e-ct-outer">
+							<div class="entry-content rbct clearfix is-highlight-shares"><div class='code-block code-block-2' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 15px; margin: 20px 0; font-family: system-ui, -apple-system, sans-serif;">
+    
+    <!-- The Google Button -->
+    <a href="https://www.google.com/preferences/source?q=tribuneonlineng.com" 
+       target="_blank" 
+       rel="noopener nofollow" 
+       style="display: inline-flex; align-items: center; background: #ffffff; border: 1px solid #dadce0; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #3c4043; text-decoration: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-weight: 500; transition: background 0.2s ease;">
+        
+        <!-- Official Multi-Color Google "G" Icon -->
+        <svg xmlns="http://w3.org" viewBox="0 0 48 48" style="width: 18px; height: 18px; margin-right: 10px; display: block;">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.5 24c0-1.61-.15-3.16-.42-4.69H24v8.89h12.66c-.55 2.92-2.19 5.39-4.67 7.05l7.24 5.61C43.5 35.84 46.5 30.53 46.5 24z"/>
+            <path fill="#FBBC05" d="M10.54 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.98-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.24-5.61c-2 .15-4.55 1.34-8.65 1.34-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        
+        Add as a preferred source
+    </a>
+</div>
+
+
+
+
+<!-- GPT AdSlot 2 for Ad unit 'TR_ARTICLE_LEADER_2' ### Size: [[728,90],[336,280],[300,250]] -->
+<div id='div-gpt-ad-6861913-2'>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script id="gpt-script">
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-6861913-2'); });
+  </script>
+</div></div>
+<p class="PDq2pG_selectionAnchorContainer" data-start="0" data-end="172">A fatal <a href="https://tribuneonlineng.com/updated-motor-boy-dead-others-injured-in-lagos-ibadan-expressway-multiple-crashes/" target="_blank" rel="noopener">crash</a> has claimed the life of 19-year-old Chibuike Friday from Izzi Local Government Area of <a href="https://en.wikipedia.org/wiki/Ebonyi_State" target="_blank" rel="noopener">Ebonyi</a> State, while another person, Bright Ukwuoma, sustained injuries.</p>
+<p data-start="174" data-end="276">The incident occurred at about 6:30 p.m. last Sunday at the front gate of Imo State University (IMSU).</p>
+<p data-start="278" data-end="462">The Imo State Police Command has arrested 30-year-old Dike Chibuike Michael from Umuolowu, Ejemekuru, Oguta Local Government Area of Imo State, in connection with the fatal road crash.</p><div class='code-block code-block-3' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<!-- GPT AdSlot 3 for Ad unit 'TR_ARTICLE_LEADER_3' ### Size: [[728,90],[336,280],[300,250]] -->
+<div id='div-gpt-ad-6861913-3'>
+  <script id="gpt-script">
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-6861913-3'); });
+  </script>
+</div></div>
+
+<p data-start="464" data-end="719">In a statement issued on Monday, the Imo State Police Command Public Relations Officer, DSP Okoye Henry, said preliminary investigation revealed that the suspect was driving a Lexus ES 350 saloon car with registration number KWU 766 AE at excessive speed.</p>
+<p data-start="721" data-end="896">Okoye said the suspect allegedly engaged in an unauthorised street racing activity at the IMSU front gate when he struck Chibuike Friday, who was attempting to cross the road.</p>
+<p data-start="898" data-end="1046">According to him, the impact caused the driver to lose control of the vehicle, which subsequently struck Bright Ukwuoma, inflicting injuries on him.</p>
+<p data-start="1048" data-end="1238">The PPRO said that, upon receiving the distress report, the Divisional Police Officer (DPO) promptly mobilised officers to the scene and arrested the suspect, rescuing him from an angry mob.</p><div class='code-block code-block-4' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<!-- GPT AdSlot 2 for Ad unit 'TR_ARTICLE_LEADER_4' ### Size: [[728,90],[336,280],[300,250]] -->
+<div id='div-gpt-ad-6861913-4'>
+  <script id="gpt-script">
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-6861913-4'); });
+  </script>
+</div></div>
+
+<p data-start="1240" data-end="1371">He said both victims were taken to hospital, where Chibuike Friday was confirmed dead, while Bright Ukwuoma is receiving treatment.</p>
+<p data-start="1373" data-end="1473">According to him, the deceased&#8217;s body has been deposited in the morgue for preservation and autopsy.</p>
+<p data-start="1475" data-end="1604">The Commissioner of Police, Imo State Command, CP Audu Garba Bosso, condemned the reckless act that resulted in the loss of life.</p>
+<p data-start="1606" data-end="1758">He expressed condolences to the family of the deceased, wished the injured victim a speedy recovery and assured the public that justice would be served.</p><div class='code-block code-block-5' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<!-- GPT AdSlot 2 for Ad unit 'TR_ARTICLE_LEADER_5' ### Size: [[728,90],[336,280],[300,250]] -->
+<div id='div-gpt-ad-6861913-5'>
+  <script id="gpt-script">
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-6861913-5'); });
+  </script>
+</div></div>
+
+<p data-start="1760" data-end="1906">The CP directed the State Traffic Department to carry out a comprehensive investigation to determine the immediate and remote causes of the crash.</p>
+<p data-start="1908" data-end="2024">He assured that the suspect would be prosecuted in accordance with the law upon the conclusion of the investigation.</p>
+<p data-start="2026" data-end="2139">The Commissioner also warned motorists against excessive speeding, reckless driving and other traffic violations.</p>
+<p data-start="2141" data-end="2332">He urged all road users to obey traffic laws and reaffirmed the Command&#8217;s commitment to protecting lives and property, enforcing the law and ensuring the safety of all residents of Imo State.</p>
+<div class='code-block code-block-7' style='margin: 8px 0; clear: both;'>
+<hr style="height:3px;border-width:2;color:#075e54;background-color:#075e54">
+ <b><span style="color: red; font-family: Verdana, 'Sans serif'; font-size: 16px;">WATCH TOP VIDEOS FROM NIGERIAN TRIBUNE TV</b></span>
+
+<p align="left"> <ul style="color: indigo;"> <a href="https://www.youtube.com/watch?v=oXFjsQptQD0" target="_blank" rel="noopener"><span style="color: #1A0066; font-family: Verdana, 'Sans serif'; font-size: 16px;"><b><li>Back to School, Back to Business A Fresh Start</b></span> </a> </ul> </p>
+
+<p align="left"> <ul style="color: indigo;">
+<a href="https://youtu.be/GoLFzMu-pkI" target="_blank" rel="noopener"><span font-family: Verdana, 'Sans serif'; font-size: small;">
+<b><li>Relationship Hangout: Public vs Private Proposals – Which Truly Wins in Love?</b></span> </a></p>
+
+<p align="left">
+<a href="https://youtu.be/XrRUtM-c9O0" target="_blank" rel="noopener"><span font-family: Verdana, 'Sans serif'; font-size: small;"> <b><li>“No” Is a Complete Sentence: Why You Should Stop Feeling Guilty</b></span> </a></p>
+
+<p align="left">
+<a href="https://www.youtube.com/watch?v=uR0qw8cqe0U" target="_blank" rel="noopener"><span font-family: Verdana, 'Sans serif'; font-size: small;"> <b><li>Relationship Hangout: Friendship Talk 2025 – How to Be a Good Friend & Big Questions on Friendship</b></span> </a></p>
+
+<p align="left">
+<a href="https://youtu.be/Gf_XqY_OE68" target="_blank" rel="noopener"><span font-family: Verdana, 'Sans serif'; font-size: small;"> <b><li>Police Overpower Armed Robbers in Ibadan After Fierce Struggle</b></span> </a></p>
+
+
+
+<hr style="height:3px;border-width:2;color:#075e54;background-color:#075e54">
+<p align="left">
+<a href="https://whatsapp.com/channel/0029VaAVWVPChq6Tp9D1mC3w" target="_blank" rel="noopener"><span style="color: #128c7e; font-family: Verdana, 'Sans serif'; font-size: 16px;">
+<b>Get real-time news updates from Tribune Online! Follow us on WhatsApp for breaking news, exclusive stories and interviews, and much more.<br /></span> <span style="color: #075e54; font-family: Verdana, 'Sans serif'; font-size: 16px;">Join our WhatsApp Channel now
+</b></span>
+</a>
+</lu>
+</p>
+ 
+<hr style="height:3px;border-width:2;color:#075e54;background-color:#075e54">
+
+<div data-type="_mgwidget" data-widget-id="1681856"></div>
+<script id="gpt-script">(function(w,q){w[q]=w[q]||[];w[q].push(["_mgc.load"])})(window,"_mgq");</script></div>
+<!-- CONTENT END 2 -->
+</div>
+		<div class="efoot efoot-commas h5">		<div class="efoot-bar tag-bar">
+			<span class="blabel is-meta"><i class="rbi rbi-tag" aria-hidden="true"></i>TAGGED:</span><a href="https://tribuneonlineng.com/tag/ebonyi/" rel="tag">Ebonyi</a>		</div>
+		</div>				</div>
+			</div>
+					</div>
+				<div class="entry-pagination e-pagi entry-sec mobile-hide">
+			<div class="inner">
+									<div class="nav-el nav-left">
+						<a href="https://tribuneonlineng.com/court-sentences-man-to-death-for-robbing-ekiti-varsity-students/">
+							<span class="nav-label is-meta"><i class="rbi rbi-angle-left" aria-hidden="true"></i><span>Previous Article</span></span>
+							<span class="nav-inner h4">
+									<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Court logo" decoding="async" data-lazy-srcset="https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-150x150.webp 150w, https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-400x400.webp 400w, https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-70x70.webp 70w" data-lazy-sizes="(max-width: 150px) 100vw, 150px" data-lazy-src="https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-150x150.webp" /><noscript><img width="150" height="150" src="https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Court logo" decoding="async" srcset="https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-150x150.webp 150w, https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-400x400.webp 400w, https://tribuneonlineng.com/wp-content/uploads/2025/10/Court-70x70.webp 70w" sizes="(max-width: 150px) 100vw, 150px" /></noscript>					<span class="e-pagi-holder"><span class="e-pagi-title p-url">Court sentences man to death for robbing Ekiti varsity students</span></span>
+					</span>
+						</a>
+					</div>
+										<div class="nav-el nav-right">
+						<a href="https://tribuneonlineng.com/tinubus-govt-will-meet-january-deadline-on-fct-projects-completion-wike/">
+							<span class="nav-label is-meta"><span>Next Article</span><i class="rbi rbi-angle-right" aria-hidden="true"></i></span>
+							<span class="nav-inner h4">
+								<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" data-lazy-srcset="https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-150x150.jpg 150w, https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-400x400.jpg 400w, https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-70x70.jpg 70w" data-lazy-sizes="(max-width: 150px) 100vw, 150px" data-lazy-src="https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-150x150.jpg" /><noscript><img width="150" height="150" src="https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" srcset="https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-150x150.jpg 150w, https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-400x400.jpg 400w, https://tribuneonlineng.com/wp-content/uploads/2026/07/1000662951-70x70.jpg 70w" sizes="(max-width: 150px) 100vw, 150px" /></noscript>				<span class="e-pagi-holder"><span class="e-pagi-title p-url">Tinubu&#8217;s govt will meet January deadline on FCT projects completion — Wike</span></span>
+				</span>
+						</a>
+					</div>
+							</div>
+		</div>
+							</div>
+								<div class="sidebar-wrap single-sidebar">
+				<div class="sidebar-inner clearfix">
+					<div id="custom_html-16" class="widget_text widget rb-section w-sidebar clearfix widget_custom_html"><div class="textwidget custom-html-widget"><!-- GPT AdSlot 1 for Ad unit 'TR_SECTION/TR_ARTICLE_MPU_RAIL1' ### Size: [[336,280],[300,250],'fluid'] -->
+<div id='div-gpt-ad-3423810-1'>
+  <script>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-3423810-1'); });
+  </script>
+</div>
+<!-- End AdSlot 1 --></div></div><div id="top-posts-30" class="widget rb-section w-sidebar clearfix widget_top-posts"><div class="block-h widget-heading heading-layout-3"><div class="heading-inner"><h4 class="heading-title"><span>Most Read</span></h4></div></div><ul class='widgets-list-layout no-grav'>
+<li><a href="https://tribuneonlineng.com/redeemers-varsity-hikes-tuition-releases-2026-2027-fee-schedule/" title="Redeemer&#039;s varsity hikes tuition, releases 2026/2027 fee schedule" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Redeemer&#039;s varsity hikes tuition, releases 2026/2027 fee schedule" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/01/Redeemers_University.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Redeemer&#039;s varsity hikes tuition, releases 2026/2027 fee schedule" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/redeemers-varsity-hikes-tuition-releases-2026-2027-fee-schedule/" title="Redeemer&#039;s varsity hikes tuition, releases 2026/2027 fee schedule" class="bump-view" data-bump-view="tp">Redeemer&#039;s varsity hikes tuition, releases 2026/2027 fee schedule</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/full-list-govt-house-mapo-other-places-dreaded-oloolu-masquerade-will-visit-in-ibadan-from-monday/" title="UPDATED: Dates, time, places &#039;dreaded&#039; Oloolu masquerade will visit in Ibadan from tomorrow" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=160%2C160&amp;ssl=1 4x" alt="UPDATED: Dates, time, places &#039;dreaded&#039; Oloolu masquerade will visit in Ibadan from tomorrow" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/07/Oloolu-masquerade-.jpg?resize=160%2C160&amp;ssl=1 4x" alt="UPDATED: Dates, time, places &#039;dreaded&#039; Oloolu masquerade will visit in Ibadan from tomorrow" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/full-list-govt-house-mapo-other-places-dreaded-oloolu-masquerade-will-visit-in-ibadan-from-monday/" title="UPDATED: Dates, time, places &#039;dreaded&#039; Oloolu masquerade will visit in Ibadan from tomorrow" class="bump-view" data-bump-view="tp">UPDATED: Dates, time, places &#039;dreaded&#039; Oloolu masquerade will visit in Ibadan from tomorrow</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/seventh-week-of-incarceration-hardest-for-us-rescued-oriire-school-principal-narrates-ordeal-during-thanksgiving/" title="Seventh week of incarceration hardest for us, rescued Oriire school principal narrates ordeal during thanksgiving" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Seventh week of incarceration hardest for us, rescued Oriire school principal narrates ordeal during thanksgiving" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Oriire-principal-Alamu.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Seventh week of incarceration hardest for us, rescued Oriire school principal narrates ordeal during thanksgiving" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/seventh-week-of-incarceration-hardest-for-us-rescued-oriire-school-principal-narrates-ordeal-during-thanksgiving/" title="Seventh week of incarceration hardest for us, rescued Oriire school principal narrates ordeal during thanksgiving" class="bump-view" data-bump-view="tp">Seventh week of incarceration hardest for us, rescued Oriire school principal narrates ordeal during thanksgiving</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/oriire-abduction-why-i-blocked-contact-with-kidnappers-oyo-principals-husband/" title="Oriire abduction: Why I blocked contact with kidnappers — Oyo principal&#039;s husband" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=160%2C160&amp;ssl=1 4x" alt="Oriire abduction: Why I blocked contact with kidnappers — Oyo principal&#039;s husband" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Kidnapped-Oyo-Principal-and-husband-1.png?resize=160%2C160&amp;ssl=1 4x" alt="Oriire abduction: Why I blocked contact with kidnappers — Oyo principal&#039;s husband" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/oriire-abduction-why-i-blocked-contact-with-kidnappers-oyo-principals-husband/" title="Oriire abduction: Why I blocked contact with kidnappers — Oyo principal&#039;s husband" class="bump-view" data-bump-view="tp">Oriire abduction: Why I blocked contact with kidnappers — Oyo principal&#039;s husband</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/how-to-manage-bedwetting-in-school-aged-children-supportively/" title="How to manage bedwetting in school-aged children supportively" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=160%2C160&amp;ssl=1 4x" alt="How to manage bedwetting in school-aged children supportively" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/bedwetting.jpg?resize=160%2C160&amp;ssl=1 4x" alt="How to manage bedwetting in school-aged children supportively" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/how-to-manage-bedwetting-in-school-aged-children-supportively/" title="How to manage bedwetting in school-aged children supportively" class="bump-view" data-bump-view="tp">How to manage bedwetting in school-aged children supportively</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/for-jambs-ishaq-oloyede/" title="For JAMB’s Ishaq Oloyede" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=160%2C160&amp;ssl=1 4x" alt="For JAMB’s Ishaq Oloyede" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2025/10/monday-lines-1.jpg?resize=160%2C160&amp;ssl=1 4x" alt="For JAMB’s Ishaq Oloyede" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/for-jambs-ishaq-oloyede/" title="For JAMB’s Ishaq Oloyede" class="bump-view" data-bump-view="tp">For JAMB’s Ishaq Oloyede</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/why-i-will-not-forgive-my-twin-brother-rudeboy/" title="Why I will not forgive my twin brother — Rudeboy" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Why I will not forgive my twin brother — Rudeboy" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Rudeboy.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Why I will not forgive my twin brother — Rudeboy" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/why-i-will-not-forgive-my-twin-brother-rudeboy/" title="Why I will not forgive my twin brother — Rudeboy" class="bump-view" data-bump-view="tp">Why I will not forgive my twin brother — Rudeboy</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/%e2%82%a63-8bn-road-how-federal-payments-outpaced-progress-on-ibadans-ayegun-oleyo-road/" title="₦3.8bn Road: How Federal payments outpaced progress on Ibadan’s Ayegun-Oleyo Road" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=160%2C160&amp;ssl=1 4x" alt="₦3.8bn Road: How Federal payments outpaced progress on Ibadan’s Ayegun-Oleyo Road" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Ibadan-road-1.jpg?resize=160%2C160&amp;ssl=1 4x" alt="₦3.8bn Road: How Federal payments outpaced progress on Ibadan’s Ayegun-Oleyo Road" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/%e2%82%a63-8bn-road-how-federal-payments-outpaced-progress-on-ibadans-ayegun-oleyo-road/" title="₦3.8bn Road: How Federal payments outpaced progress on Ibadan’s Ayegun-Oleyo Road" class="bump-view" data-bump-view="tp">₦3.8bn Road: How Federal payments outpaced progress on Ibadan’s Ayegun-Oleyo Road</a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/talent-exists-everywhere-how-i-secured-phd-opportunity-bagged-us-varsity-honour-nigerias-abdulmalik-salman/" title="‘Talent exists everywhere’: How I secured PhD opportunity, bagged US varsity honour — Nigeria’s Abdulmalik Salman " class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=160%2C160&amp;ssl=1 4x" alt="‘Talent exists everywhere’: How I secured PhD opportunity, bagged US varsity honour — Nigeria’s Abdulmalik Salman " data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/07/Abdulmalik-Salman.jpeg?resize=160%2C160&amp;ssl=1 4x" alt="‘Talent exists everywhere’: How I secured PhD opportunity, bagged US varsity honour — Nigeria’s Abdulmalik Salman " data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/talent-exists-everywhere-how-i-secured-phd-opportunity-bagged-us-varsity-honour-nigerias-abdulmalik-salman/" title="‘Talent exists everywhere’: How I secured PhD opportunity, bagged US varsity honour — Nigeria’s Abdulmalik Salman " class="bump-view" data-bump-view="tp">‘Talent exists everywhere’: How I secured PhD opportunity, bagged US varsity honour — Nigeria’s Abdulmalik Salman </a>
+							</div>
+							</li><li><a href="https://tribuneonlineng.com/politicians-who-sell-their-own-toes/" title="Politicians who sell their own toes" class="bump-view" data-bump-view="tp"><img width="40" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3C/svg%3E" data-lazy-srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Politicians who sell their own toes" data-pin-nopin="true" class="widgets-list-layout-blavatar" data-lazy-src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=40%2C40&#038;ssl=1" /><noscript><img loading="lazy" width="40" height="40" src="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=40%2C40&#038;ssl=1" srcset="https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=40%2C40&amp;ssl=1 1x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=60%2C60&amp;ssl=1 1.5x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=80%2C80&amp;ssl=1 2x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=120%2C120&amp;ssl=1 3x, https://i0.wp.com/tribuneonlineng.com/wp-content/uploads/2026/06/mondaylines.jpg?resize=160%2C160&amp;ssl=1 4x" alt="Politicians who sell their own toes" data-pin-nopin="true" class="widgets-list-layout-blavatar" /></noscript></a><div class="widgets-list-layout-links">
+								<a href="https://tribuneonlineng.com/politicians-who-sell-their-own-toes/" title="Politicians who sell their own toes" class="bump-view" data-bump-view="tp">Politicians who sell their own toes</a>
+							</div>
+							</li></ul>
+</div><div id="custom_html-18" class="widget_text widget rb-section w-sidebar clearfix widget_custom_html"><div class="textwidget custom-html-widget"><!-- GPT AdSlot 2 for Ad unit 'TR_SECTION/TR_ARTICLE_MPU_RAIL2' ### Size: [[336,280],[300,250],'fluid'] -->
+<div id='div-gpt-ad-3423810-2'>
+  <script>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-3423810-2'); });
+  </script>
+</div>
+<!-- End AdSlot 2 --></div></div><div id="custom_html-15" class="widget_text widget rb-section w-sidebar clearfix widget_custom_html"><div class="textwidget custom-html-widget"><!-- GPT AdSlot 3 for Ad unit 'TR_SECTION/TR_ARTICLE_MPU_RAIL3' ### Size: [[336,280],[300,250],'fluid'] -->
+<div id='div-gpt-ad-3423810-3'>
+  <script>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-3423810-3'); });
+  </script>
+</div>
+<!-- End AdSlot 3 --></div></div><div id="media_image-9" class="widget rb-section w-sidebar clearfix widget_media_image"><div class="block-h widget-heading heading-layout-3"><div class="heading-inner"><h4 class="heading-title"><span>Frontpage Today</span></h4></div></div><img width="749" height="1051" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20749%201051'%3E%3C/svg%3E" class="image wp-image-1288216  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" title="Frontpage Today" decoding="async" data-lazy-srcset="https://tribuneonlineng.com/wp-content/uploads/2026/07/26072026FP.jpg 749w, https://tribuneonlineng.com/wp-content/uploads/2026/07/26072026FP-730x1024.jpg 730w" data-lazy-sizes="(max-width: 749px) 100vw, 749px" data-lazy-src="https://tribuneonlineng.com/wp-content/uploads/2026/07/26072026FP.jpg" /><noscript><img width="749" height="1051" src="https://tribuneonlineng.com/wp-content/uploads/2026/07/26072026FP.jpg" class="image wp-image-1288216  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" title="Frontpage Today" decoding="async" srcset="https://tribuneonlineng.com/wp-content/uploads/2026/07/26072026FP.jpg 749w, https://tribuneonlineng.com/wp-content/uploads/2026/07/26072026FP-730x1024.jpg 730w" sizes="(max-width: 749px) 100vw, 749px" /></noscript></div><div id="media_image-7" class="widget rb-section w-sidebar clearfix widget_media_image"><div class="block-h widget-heading heading-layout-3"><div class="heading-inner"><h4 class="heading-title"><span>Subscribe to e-Paper</span></h4></div></div><a href="https://tribuneonlineng.com/e-vending/"><img width="1024" height="690" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20690'%3E%3C/svg%3E" class="image wp-image-322494  attachment-large size-large" alt="E-Vending, e paper, pdf, e-paper, Tribune" style="max-width: 100%; height: auto;" title="Subscribe to e-Paper" decoding="async" data-lazy-srcset="https://tribuneonlineng.com/wp-content/uploads/2020/04/evending-new_big-1024x690.jpg 1024w, https://tribuneonlineng.com/wp-content/uploads/2020/04/evending-new_big.jpg 1080w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://tribuneonlineng.com/wp-content/uploads/2020/04/evending-new_big-1024x690.jpg" /><noscript><img width="1024" height="690" src="https://tribuneonlineng.com/wp-content/uploads/2020/04/evending-new_big-1024x690.jpg" class="image wp-image-322494  attachment-large size-large" alt="E-Vending, e paper, pdf, e-paper, Tribune" style="max-width: 100%; height: auto;" title="Subscribe to e-Paper" decoding="async" srcset="https://tribuneonlineng.com/wp-content/uploads/2020/04/evending-new_big-1024x690.jpg 1024w, https://tribuneonlineng.com/wp-content/uploads/2020/04/evending-new_big.jpg 1080w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></a></div>				</div>
+			</div>
+							</div>
+				</article>			</div>
+		</div>
+		</main>
+		<footer data-rocket-location-hash="7264d55f9d04ab01c023d5c137c7a1b2" class="footer-wrap rb-section left-dot">
+			<div data-rocket-location-hash="5eaef4b57198cc56c642e047b299ea7a" class="footer-inner light-scheme footer-has-bg">		<div class="footer-columns rb-columns is-gap-25 rb-container edge-padding footer-4c">
+			<div class="block-inner">
+				<div class="footer-col"><div id="custom_html-3" class="widget_text widget w-sidebar rb-section clearfix widget_custom_html"><div class="textwidget custom-html-widget"><font color="#CCCCCC"><b>QUICK LINKS</b></font>
+<br /><br />
+<a href="https://tribuneonlineng.com/about-us/">About Us</a>
+<br />
+<a href="https://tribuneonlineng.com/tribune-advertisement-rates/">Advertise with Us</a>
+<br />
+<a href="https://tribuneonlineng.com/contact-us-tribune-online/">Contact Us</a>
+<br />
+<a href="https://tribuneonlineng.com/privacy-policy/">Privacy Policy</a>
+<br />
+<a href="https://tribuneonlineng.com/disclamer/">Disclaimer</a>
+<br />
+<a href="https://tribuneonlineng.com/editorial-policy/"> Editorial Policy </a>
+<br />
+<a href="https://tribuneonlineng.com/corrections-policy/"> Corrections Policy </a>
+<br />
+<a href="https://tribuneonlineng.com/terms-and-conditions/"> Terms & Conditions </a>
+<br />
+<a href="https://tribuneonlineng.com/casino/ca/"> Best online casino in Canada</a></div></div></div><div class="footer-col"><div id="custom_html-14" class="widget_text widget w-sidebar rb-section clearfix widget_custom_html"><div class="textwidget custom-html-widget"><font color="#CCCCCC"><b>COLUMNS</b></font>
+<br /><br />
+<a href="https://tribuneonlineng.com/category/aplomb/">Aplomb</a>
+<br />
+<a href="https://tribuneonlineng.com/category/ask-the-doctor/">Ask The Doctor</a>
+<br />
+<a href="https://tribuneonlineng.com/category/ask-the-doctor/">Autoclinic With The Mechanic</a>
+<br />
+<a href="https://tribuneonlineng.com/category/awos-thought/">Awo's Thought</a>
+<br />
+<a href="https://tribuneonlineng.com/category/empowered-for-life/">Empowered For Life</a>
+<br />
+<a href="https://tribuneonlineng.com/category/festus-adedayo-flickers/">Festus Adebayo's Flickers</a>
+<br />
+<a href="https://tribuneonlineng.com/category/gibbers/">Gibbers</a>
+<br />
+<a href="https://tribuneonlineng.com/category/intimacy/">Intimacy</a>
+<br />
+<a href="https://tribuneonlineng.com/category/language-and-style/">Language & Style</a>
+<br />
+<a href="https://tribuneonlineng.com/category/leadership-management/">Leadership & Management</a>
+<br />
+<a href="https://tribuneonlineng.com/category/lynx-eye/">Lynx Eye</a>
+<br />
+<a href="https://tribuneonlineng.com/category/monday-lines/">Monday Lines</a>
+<br />
+<a href="https://tribuneonlineng.com/category/mum-child/">Mum & Child</a>
+<br />
+<a href="https://tribuneonlineng.com/category/natural-health/">Natural Health</a>
+<br />
+<a href="https://tribuneonlineng.com/category/saturday-with-farooq-kperogi/">Notes from Atlanta with Farooq Kperogi</a>
+<br />
+<a href="https://tribuneonlineng.com/category/on-the-lords-day/">On The Lord's Day</a>
+<br />
+<a href="https://tribuneonlineng.com/category/your-life-counts/">Your Life Counts</a>
+
+<br /> <br />
+
+<font color="#CCCCCC"><b>ENTERTAINMENT</b></font>
+<br /><br />
+<a href="https://www.tribuneonlineng.com/category/entertainment/">Entertainment</a>
+<br /><br />
+</div></div></div><div class="footer-col"><div id="custom_html-5" class="widget_text widget w-sidebar rb-section clearfix widget_custom_html"><div class="textwidget custom-html-widget"><font color="#CCCCCC"><b>RELIGION</b></font>
+<br /><br />
+<a href="https://tribuneonlineng.com/category/tribune-church/">Tribune Church</a> 
+<br />
+<a href="https://tribuneonlineng.com/category/church-news/">Church News</a>
+<br />
+<a href="https://tribuneonlineng.com/category/muslim-sermon/">Muslim Sermon</a>
+<br />
+<a href="https://tribuneonlineng.com/category/eye-of-islam/">Eye of Islam</a>
+<br />
+<a href="https://tribuneonlineng.com/category/islamic-news/">Islamic News</a>
+
+<br /><br />
+
+<font color="#CCCCCC"><b>EDITORIAL</b></font>
+<br /><br />
+<a href="https://tribuneonlineng.com/category/editorial/">Editorial</a>
+<br />
+<a href="https://tribuneonlineng.com/category/opinion/">Opinion</a>
+<br />
+<a href="https://tribuneonlineng.com/category/letters/">Letters</a>
+
+<br />
+<a href="https://tribuneonlineng.com/category/news-extra/">News Extra</a>
+
+<br /> <br />
+
+<font color="#CCCCCC"><b>BUSINESS</b></font>
+<br /><br />
+<a href="https://www.tribuneonlineng.com/category/capital-market/">Capital Market</a>
+<br />
+<a href="https://www.tribuneonlineng.com/category/money-market/">Money Market</a>
+<br /><br />
+
+<font color="#CCCCCC"><b>REGIONS</b></font>
+<br /><br />
+<a href="https://tribuneonlineng.com/category/niger-delta/">Niger Delta</a>
+<br />
+<a href="https://tribuneonlineng.com/category/arewa/">Arewa</a></div></div></div><div class="footer-col"><div id="custom_html-4" class="widget_text widget w-sidebar rb-section clearfix widget_custom_html"><div class="textwidget custom-html-widget"><font color="#CCCCCC"><b>MORE</b></font>
+<br /><br />
+<a href="https://tribuneonlineng.com/category/sexuality-and-health/">Sexuality & Health</a>
+<br />
+<a href="https://tribuneonlineng.com/category/special-report/">Special Report</a>
+<br />
+<a href="https://sportingtribune.com/" target="_blank">Sports</a>
+<br />
+<a href="https://tribuneonlineng.com/category/tourism-business/">Tourism</a>
+<br />
+<a href="https://tribuneonlineng.com/category/travel-pulse-and-m-i-c-e/">Travelpulse & MICE</a>
+<br />
+<a href="https://tribuneonlineng.com/category/weekend-lagos/">Weekend Lagos</a>
+<br />
+<a href="https://tribuneonlineng.com/category/book-review/">Book Review</a>
+<br />
+<a href="https://tribuneonlineng.com/category/education/">Education</a>
+<br />
+<a href="https://tribuneonlineng.com/category/event-digest/">Event Digest</a>
+<br />
+<a href="https://tribuneonlineng.com/category/crime-court/">Crime & Court</a>
+<br />
+<a href="https://tribuneonlineng.com/category/ecoscope/">Ecoscope</a>
+<br />
+<a href="https://tribuneonlineng.com/category/energy/">Energy</a>
+<br />
+<a href="https://tribuneonlineng.com/category/maritime/">Maritime</a>
+<br />
+<a href="https://tribuneonlineng.com/category/aviation/">Aviation</a>
+<br />
+<a href="https://tribuneonlineng.com/category/brands-marketing/">Brands & Marketing</a>
+<br />
+<a href="https://tribuneonlineng.com/category/agriculture/">Agriculture</a>
+<br />
+<a href="https://tribuneonlineng.com/category/info-tech/">Info Tech</a>
+<br />
+<a href="https://tribuneonlineng.com/category/labour/">Labour</a>
+<br />
+<a href="https://tribuneonlineng.com/category/leadership-management/">Leadership & Management</a>
+<br />
+<a href="https://tribuneonlineng.com/category/arts-and-culture/">Arts & Culture</a>
+<br />
+<a href="https://tribuneonlineng.com/category/arts-and-reviews/">Arts & Reviews</a>
+<br />
+<a href="https://tribuneonlineng.com/category/politics/">Politics</a>
+<br />
+<a href="https://tribuneonlineng.com/category/health-news/">Health News</a></div></div></div>			</div>
+		</div>
+				<div class="footer-copyright">
+			<div class="rb-container edge-padding">
+							<div class="copyright-inner">
+				<div class="copyright">© 2026 African Newspapers of Nigeria Plc. All Rights Reserved. | <a href="https://tribuneonlineng.com/disclamer/"> Disclaimer </a> | <a href="https://tribuneonlineng.com/privacy-policy/"> Privacy Policy </a> | <a href="https://tribuneonlineng.com/editorial-policy/"> Editorial Policy </a> | <a href="https://tribuneonlineng.com/corrections-policy/"> Corrections Policy </a> | <a href="https://tribuneonlineng.com/terms-and-conditions/"> Terms & Conditions </a></div>			</div>
+						</div>
+		</div>
+		</div>			</footer>
+		</div>
+		<script type="text/rocketlazyloadscript">
+			(function () {
+				const yesStorage = () => {
+					let storage;
+					try {
+						storage = window['localStorage'];
+						storage.setItem('__rbStorageSet', 'x');
+						storage.removeItem('__rbStorageSet');
+						return true;
+					} catch {
+						return false;
+					}
+				};
+								const darkModeID = 'RubyDarkMode';
+				const currentMode = yesStorage() ? (localStorage.getItem(darkModeID) || 'default') : 'default';
+				const selector = currentMode === 'dark' ? '.mode-icon-dark' : '.mode-icon-default';
+				const icons = document.querySelectorAll(selector);
+				if (icons.length) {
+					icons.forEach(icon => icon.classList.add('activated'));
+				}
+				
+								const readingSize = yesStorage() ? sessionStorage.getItem('rubyResizerStep') || '' : '1';
+				if (readingSize) {
+					const body = document.querySelector('body');
+					switch (readingSize) {
+						case '2':
+							body.classList.add('medium-entry-size');
+							break;
+						case '3':
+							body.classList.add('big-entry-size');
+							break;
+					}
+				}
+			})();
+		</script>
+				<script type="text/rocketlazyloadscript">
+			(function () {
+				const yesStorage = () => {
+					let storage;
+					try {
+						storage = window['localStorage'];
+						storage.setItem('__rbStorageSet', 'x');
+						storage.removeItem('__rbStorageSet');
+						return true;
+					} catch {
+						return false;
+					}
+				};
+				let currentMode = null;
+				const darkModeID = 'RubyDarkMode';
+								currentMode = yesStorage() ? localStorage.getItem(darkModeID) || null : 'default';
+				if (!currentMode) {
+										currentMode = 'default';
+					yesStorage() && localStorage.setItem(darkModeID, 'default');
+									}
+				document.body.setAttribute('data-theme', currentMode === 'dark' ? 'dark' : 'default');
+							})();
+		</script>
+		<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/foxiz-child/*","/wp-content/themes/foxiz/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+		<script type="text/template" id="bookmark-toggle-template">
+			<i class="rbi rbi-bookmark" aria-hidden="true" data-title="Save it"></i>
+			<i class="bookmarked-icon rbi rbi-bookmark-fill" aria-hidden="true" data-title="Undo Save"></i>
+		</script>
+		<script type="text/template" id="bookmark-ask-login-template">
+			<a class="login-toggle"
+			 role="button"			rel="nofollow" data-title="Sign In to Save" href="https://tribuneonlineng.com/tonline-access/?redirect_to=https%3A%2F%2Ftribuneonlineng.com%2Fone-killed-another-injured-in-ebonyi-crash"><i class="rbi rbi-bookmark" aria-hidden="true"></i></a>
+		</script>
+		<script type="text/template" id="follow-ask-login-template">
+			<a class="login-toggle"
+			 role="button"			rel="nofollow" data-title="Sign In to Follow" href="https://tribuneonlineng.com/tonline-access/?redirect_to=https%3A%2F%2Ftribuneonlineng.com%2Fone-killed-another-injured-in-ebonyi-crash"><i class="follow-icon rbi rbi-plus" data-title="Sign In to Follow" aria-hidden="true"></i></a>
+		</script>
+		<script type="text/template" id="follow-toggle-template">
+			<i class="follow-icon rbi rbi-plus" data-title="Follow"></i>
+			<i class="followed-icon rbi rbi-bookmark-fill" data-title="Unfollow"></i>
+		</script>
+					<aside id="bookmark-notification" class="bookmark-notification"></aside>
+			<script type="text/template" id="bookmark-notification-template">
+				<div class="bookmark-notification-inner {{classes}}">
+					<div class="bookmark-featured">{{image}}</div>
+					<div class="bookmark-inner">
+						<span class="bookmark-title h5">{{title}}</span><span class="bookmark-desc">{{description}}</span>
+					</div>
+				</div>
+			</script>
+			<script type="text/template" id="follow-notification-template">
+				<div class="follow-info bookmark-notification-inner {{classes}}">
+					<span class="follow-desc"><span>{{description}}</span><strong>{{name}}</strong></span>
+				</div>
+			</script>
+					<div data-rocket-location-hash="a1ca968e36dc8e924982771dfcab6b22" id="rb-user-popup-form" class="rb-user-popup-form mfp-animation mfp-hide">
+			<div data-rocket-location-hash="4b7b3a65ec925d3f25a66ed7ae0018e3" class="logo-popup-outer">
+				<div data-rocket-location-hash="338a24b889ce4e12676e9976b1b84086" class="logo-popup">
+					<div class="login-popup-header">
+													<span class="logo-popup-heading h3">Welcome Back!</span>
+														<p class="logo-popup-description is-meta">Sign in to your account</p>
+											</div>
+					<div class="user-login-form">
+						<form name="popup-form" id="popup-form" action="https://tribuneonlineng.com/tonline-access/" method="post"><div class="login-username">
+				<div class="rb-login-label">Username or Email Address</div>
+				<input type="text" name="log" required="required" autocomplete="username" class="input" value="" />
+				</div><div class="login-password">
+				<div class="rb-login-label">Password</div>
+				<div class="is-relative">
+				<input type="password" name="pwd" required="required" autocomplete="current-password" spellcheck="false" class="input" value="" />
+				<span class="rb-password-toggle"><i class="rbi rbi-show"></i></span></div>
+				</div><div class="remember-wrap"><p class="login-remember"><label class="rb-login-label"><input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember me</label></p><a class="lostpassw-link" href="https://tribuneonlineng.com/tonline-access/?action=lostpassword">Lost your password?</a></div><p class="login-submit">
+				<input type="submit" name="wp-submit" class="button button-primary" value="Log In" />
+				<input type="hidden" name="redirect_to" value="https://tribuneonlineng.com/one-killed-another-injured-in-ebonyi-crash" />
+			</p></form>						<div class="login-form-footer">
+													</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script id="foxiz-core-js-extra">
+var foxizCoreParams = {"ajaxurl":"https://tribuneonlineng.com/wp-admin/admin-ajax.php","darkModeID":"RubyDarkMode","yesPersonalized":"1","cookieDomain":"","cookiePath":"/"};
+//# sourceURL=foxiz-core-js-extra
+</script>
+<script type="text/rocketlazyloadscript" data-minify="1" id="foxiz-core-js" data-rocket-src="https://tribuneonlineng.com/wp-content/cache/min/1/wp-content/plugins/foxiz-core/assets/core.js?ver=1785168268" data-rocket-defer defer></script>
+<script id="molongui-authorship-byline-js-extra">
+var molongui_authorship_byline_params = {"byline_prefix":"","byline_suffix":"","byline_separator":",\u00a0","byline_last_separator":"\u00a0and\u00a0","byline_link_title":"View all posts by","byline_link_class":"","byline_dom_tree":"","byline_dom_prepend":"","byline_dom_append":"","byline_decoder":"v3"};
+//# sourceURL=molongui-authorship-byline-js-extra
+</script>
+<script type="text/rocketlazyloadscript" id="molongui-authorship-byline-js" data-rocket-src="https://tribuneonlineng.com/wp-content/plugins/molongui-authorship/assets/js/byline.4cc4.min.js?ver=5.2.9" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+//# sourceURL=rocket-browser-checker-js-after
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"/(?:.+/)?feed(?:/(?:.+/?)?)?$|/(?:.+/)?embed/|/(index.php/)?(.*)wp-json(/.*|$)|/refer/|/go/|/recommend/|/recommends/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https://tribuneonlineng.com","onHoverDelay":"100","rateThrottle":"3"};
+//# sourceURL=rocket-preload-links-js-extra
+</script>
+<script type="text/rocketlazyloadscript" id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+
+//# sourceURL=rocket-preload-links-js-after
+</script>
+<script id="rocket_lazyload_css-js-extra">
+var rocket_lazyload_css_data = {"threshold":"300"};
+//# sourceURL=rocket_lazyload_css-js-extra
+</script>
+<script id="rocket_lazyload_css-js-after">
+!function o(n,a,c){function l(t,e){if(!a[t]){if(!n[t]){var r="function"==typeof require&&require;if(!e&&r)return r(t,!0);if(u)return u(t,!0);throw(e=new Error("Cannot find module '"+t+"'")).code="MODULE_NOT_FOUND",e}r=a[t]={exports:{}},n[t][0].call(r.exports,function(e){return l(n[t][1][e]||e)},r,r.exports,o,n,a,c)}return a[t].exports}for(var u="function"==typeof require&&require,e=0;e<c.length;e++)l(c[e]);return l}({1:[function(e,t,r){{let r="undefined"==typeof rocket_pairs?[]:rocket_pairs,o=(("undefined"==typeof rocket_excluded_pairs?[]:rocket_excluded_pairs).map(t=>{var e=t.selector;document.querySelectorAll(e).forEach(e=>{e.setAttribute("data-rocket-lazy-bg-"+t.hash,"excluded")})}),document.querySelector("#wpr-lazyload-bg-container"));var a=rocket_lazyload_css_data.threshold||300;let n=new IntersectionObserver(e=>{e.forEach(t=>{t.isIntersecting&&r.filter(e=>t.target.matches(e.selector)).map(t=>{var e;t&&((e=document.createElement("style")).textContent=t.style,o.insertAdjacentElement("afterend",e),t.elements.forEach(e=>{n.unobserve(e),e.setAttribute("data-rocket-lazy-bg-"+t.hash,"loaded")}))})})},{rootMargin:a+"px"});function c(){0<(0<arguments.length&&void 0!==arguments[0]?arguments[0]:[]).length&&r.forEach(t=>{try{document.querySelectorAll(t.selector).forEach(e=>{"loaded"!==e.getAttribute("data-rocket-lazy-bg-"+t.hash)&&"excluded"!==e.getAttribute("data-rocket-lazy-bg-"+t.hash)&&(n.observe(e),(t.elements||=[]).push(e))})}catch(e){console.error(e)}})}c(),(()=>{let r=window.MutationObserver;return function(e,t){if(e&&1===e.nodeType)return(t=new r(t)).observe(e,{attributes:!0,childList:!0,subtree:!0}),t}})()(document.querySelector("body"),c)}},{}]},{},[1]);
+//# sourceURL=rocket_lazyload_css-js-after
+</script>
+<script id="jetpack-stats-js-before">
+_stq = window._stq || [];
+_stq.push([ "view", {"v":"ext","blog":"118125416","post":"1288456","tz":"1","srv":"tribuneonlineng.com","j":"1:16.0.1"} ]);
+_stq.push([ "clickTrackerInit", "118125416", "1288456" ]);
+//# sourceURL=jetpack-stats-js-before
+</script>
+<script data-wp-strategy="defer" defer fetchpriority="low" id="jetpack-stats-js" src="https://stats.wp.com/e-202631.js"></script>
+<script type="text/rocketlazyloadscript" data-minify="1" id="rb-viewport-observer-js" data-rocket-src="https://tribuneonlineng.com/wp-content/cache/min/1/wp-content/themes/foxiz/assets/js/viewport-observer.js?ver=1785168268" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" id="rbswiper-js" data-rocket-src="https://tribuneonlineng.com/wp-content/themes/foxiz/assets/js/rbswiper.min.js?ver=6.8.4" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" id="jquery-magnific-popup-js" data-rocket-src="https://tribuneonlineng.com/wp-content/themes/foxiz/assets/js/jquery.mp.min.js?ver=1.1.0" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" id="rb-tipsy-js" data-rocket-src="https://tribuneonlineng.com/wp-content/themes/foxiz/assets/js/jquery.tipsy.min.js?ver=1.0" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" data-minify="1" id="highlight-share-js" data-rocket-src="https://tribuneonlineng.com/wp-content/cache/min/1/wp-content/themes/foxiz/assets/js/highlight-share.js?ver=1785168268" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" id="jquery-uitotop-js" data-rocket-src="https://tribuneonlineng.com/wp-content/themes/foxiz/assets/js/jquery.ui.totop.min.js?ver=v1.2" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" data-minify="1" id="foxiz-personalize-js" data-rocket-src="https://tribuneonlineng.com/wp-content/cache/min/1/wp-content/themes/foxiz/assets/js/personalized.js?ver=1785168268" data-rocket-defer defer></script>
+<script id="foxiz-global-js-extra">
+var foxizParams = {"sliderSpeed":"5000","sliderEffect":"slide","sliderFMode":"","twitterName":"","highlightShares":"1","highlightShareFacebook":"1","highlightShareTwitter":"1","highlightShareReddit":"1","singleLoadNextLimit":"20","liveInterval":"600"};
+//# sourceURL=foxiz-global-js-extra
+</script>
+<script type="text/rocketlazyloadscript" data-minify="1" id="foxiz-global-js" data-rocket-src="https://tribuneonlineng.com/wp-content/cache/min/1/wp-content/themes/foxiz/assets/js/global.js?ver=1785168268" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" id="heartbeat-js" data-rocket-src="https://tribuneonlineng.com/wp-content/plugins/wp-rocket/assets/js/heartbeat.js?ver=3.23" data-rocket-defer defer></script>
+<script type="text/rocketlazyloadscript" data-minify="1" data-wp-strategy="defer" defer id="remote_sdk-js" data-rocket-src="https://tribuneonlineng.com/wp-content/cache/min/1/sdks/web/v16/OneSignalSDK.page.js?ver=1785168268"></script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W85MT89"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script type="text/rocketlazyloadscript" async id="ai-functions" data-rocket-src="https://tribuneonlineng.com/wp-content/plugins/ad-inserter/js/ai-functions.min.js?ver=2.8.17"></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://tribuneonlineng.com/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script><script>function lazyLoadThumb(e,alt,l){var t='<img data-lazy-src="https://i.ytimg.com/vi_webp/ID/hqdefault.webp" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi_webp/ID/hqdefault.webp" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="Play Youtube video"></button>';if(l){t=t.replace('data-lazy-','');t=t.replace('loading="lazy"','');t=t.replace(/<noscript>.*?<\/noscript>/g,'');}t=t.replace('alt=""','alt="'+alt+'"');return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?"":"&"+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var exclusions=[];var e,t,p,u,l,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)(e=document.createElement("div")),(u='https://i.ytimg.com/vi_webp/ID/hqdefault.webp'),(u=u.replace('ID',a[t].dataset.id)),(l=exclusions.some(exclusion=>u.includes(exclusion))),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query",a[t].dataset.query),e.setAttribute("data-src",a[t].dataset.src),(e.innerHTML=lazyLoadThumb(a[t].dataset.id,a[t].dataset.alt,l)),a[t].appendChild(e),(p=e.querySelector(".play")),(p.onclick=lazyLoadYoutubeIframe)});</script><script>var rocket_beacon_data = {"ajax_url":"https:\/\/tribuneonlineng.com\/wp-admin\/admin-ajax.php","nonce":"beca37d02f","url":"https:\/\/tribuneonlineng.com\/one-killed-another-injured-in-ebonyi-crash","is_mobile":true,"width_threshold":393,"height_threshold":830,"delay":500,"debug":null,"status":{"atf":true,"lrc":true,"preload_fonts":true,"preconnect_external_domain":true},"elements":"img, video, picture, p, main, div, li, svg, section, header, span","lrc_threshold":1800,"preload_fonts_exclusions":["api.fontshare.com","cdn.fontshare.com"],"processed_extensions":["woff2","woff","ttf"],"external_font_exclusions":[],"preconnect_external_domain_elements":["link","script","iframe"],"preconnect_external_domain_exclusions":["static.cloudflareinsights.com","rel=\"profile\"","rel=\"preconnect\"","rel=\"dns-prefetch\"","rel=\"icon\""]}</script><script data-name="wpr-wpr-beacon" src='https://tribuneonlineng.com/wp-content/plugins/wp-rocket/assets/js/wpr-beacon.min.js' async></script><script>window.__CF$cv$params={r:'a22103818ca291a6',t:'MTc4NTIxMTYxMg==',u:'019fa6e775b572c2a24ebc2b959dcdb3',ut:'x1_pX6GNfTmuhx85dwA1VETFElj3c978bDpxzCxyqqM-1785211614-1.2.1.1-uunOST_ZLuTXIwWs1RiRpYtXdnoZ9RbvLFdi.ygTcGqypBVDR5DNO8dIsTHtBmaA6I66Er.An0Wmc7mYkhQLP_fCQqGaj.B119ZIcBsPpSY',i:60};(function(){if(!document.body)return;var s=document.createElement('script');s.src='/cdn-cgi/challenge-platform/scripts/precursor/main.js';document.head.appendChild(s);})();</script></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me -->

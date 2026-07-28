@@ -1,0 +1,2935 @@
+<!DOCTYPE html>
+<html lang="fr" style="">
+<head>
+    <meta charset="UTF-8" />
+        <style>
+        /* Défaut = vue anonyme tant que l'état n'est pas connu */
+        [data-sso-show="logged"], [data-sso-show="subscriber"], [data-sso-show="registered"],
+        [data-sso-sub] { display: none; }
+        [data-sso-show="anonymous"] { display: block; }
+        /* Connecté (registered OU subscriber) */
+        html.sso-logged [data-sso-show="logged"] { display: block; }
+        html.sso-logged [data-sso-show="anonymous"] { display: none; }
+        /* Rôles précis */
+        html.sso-subscriber [data-sso-show="subscriber"] { display: block; }
+        html.sso-registered [data-sso-show="registered"] { display: block; }
+    </style>
+    <script>
+        (function () {
+            try {
+                var o = JSON.parse(localStorage.getItem('fa_user'));
+                if (o && Date.now() - o.ts < 5 * 60 * 1000 && o.data && o.data.user_role && o.data.user_role !== 'anonymous') {
+                    document.documentElement.classList.add('sso-logged', 'sso-' + o.data.user_role);
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <!-- COL -->
+
+<!-- BL GDL - Htmlheader de type imm -->
+<!-- BL in -->
+<meta content="width=device-width" name="viewport">
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/jquery.colorbox-min.js" defer></script>
+<script type="text/javascript" src="/js/main.js" defer></script>
+
+
+<!-- Push Web -->
+<link rel="manifest" href="/manifest.json">
+
+<link rel="preconnect" href="https://cdn.pushwoosh.com/webpush/v3/pushwoosh-web-notifications.js">
+<link rel="dns-prefetch" href="https://cdn.pushwoosh.com/webpush/v3/pushwoosh-web-notifications.js">
+
+<script type="text/javascript" src="https://cdn.pushwoosh.com/webpush/v3/pushwoosh-web-notifications.js" async></script>
+<script type="text/javascript">
+    var Pushwoosh = Pushwoosh || [];
+    Pushwoosh.push(['init', {
+        logLevel: 'error',
+        applicationCode: 'DD477-62AEC',
+        safariWebsitePushID: 'web.fr.franceantilles.guadeloupe',
+        defaultNotificationTitle: '',
+        defaultNotificationImage: '/img/push-notif-logo.png',
+        autoSubscribe: false,
+        subscribeWidget: {
+            enable: true,
+            position: 'bottomRight',
+            bgColor: '#e2001a',
+            bellColor: '#fff',
+            bellStrokeColor: '#08754f',
+            bellButtonBorder: '1px solid #2c292d',
+            shadow: '0px 0px 6px rgba(0, 0, 0, 0.75)',
+            size: '48px',
+            indent: '20px',
+            zIndex: '999999',
+            tooltipText: {
+                successSubscribe: 'Vous vous êtes abonné avec succès!',
+                needSubscribe: 'Soyez alerté des dernières actualités!',
+                blockSubscribe: 'Cliquez pour être notifié',
+                alreadySubscribed: 'Vous êtes déjà abonné !'
+            }
+        },
+        subscribePopup: {
+            enable: true,
+            text: 'Ne manquez pas les dernières actualités ! Souhaitez-vous recevoir des notifications de France-Antilles Guadeloupe ?',
+            confirmSubscriptionButtonText: 'J\'accepte',
+            askLaterButtonText: 'Plus tard',
+            iconUrl: '/img/push-notif-logo.png',
+            delay: 10,
+            retryOffset: 7884000,
+            overlay: false,
+            position: 'top',
+            bgColor: '#fff',
+            borderColor: 'transparent',
+            boxShadow: '0 3px 6px rgba(0,0,0,0.16)',
+            textColor: '#2c292d',
+            textSize: '18px',
+            fontFamily: 'Open Sans',
+            askLaterBtnBgColor: 'transparent',
+            askLaterBtnTextColor: '#e2001a',
+            subscribeBtnBgColor: '#e2001a',
+            subscribeBtnTextColor: '#fff',
+            theme: 'material'
+        }
+    }]);
+</script>
+
+<!-- /Push Web -->
+
+<!-- embed twitter -->
+<script defer="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<!-- taboola -->
+<link rel="preconnect" href="https://www.googletagmanager.com/ns.html?id=GTM-W8S2QCC">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8S2QCC" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe></noscript>
+
+<link rel="preconnect" href="https://cdn.taboola.com/libtrc/franceantilles-guadeloupe/loader.js">
+<link rel="dns-prefetch" href="https://cdn.taboola.com/libtrc/franceantilles-guadeloupe/loader.js">
+
+<script>
+    window._taboola = window._taboola || [];
+    _taboola.push({ article: 'auto' });
+    !function (e, f, u) {
+        e.async = 1;
+        e.src = u;
+        f.parentNode.insertBefore(e, f);
+    }(document.createElement('script'),
+        document.getElementsByTagName('script')[0],
+            'https://cdn.taboola.com/libtrc/franceantilles-guadeloupe/loader.js'
+            , 'tb_loader_script');
+    if (window.performance && typeof window.performance.mark == 'function') {
+        window.performance.mark('tbl_ic');
+    }
+</script>
+<!-- /taboola -->
+
+
+<meta name="robots" content="index, follow, noarchive" />
+<meta name="googlebot" content="index, follow, noarchive" />
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:3">
+<meta name="googlebot" content="max-snippet:-1, max-image-preview:large, max-video-preview:3">
+<meta name="language" content="fr-FR" />
+<meta property="og:site_name" content="guadeloupe.franceantilles.fr" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="google-site-verification" content="UB7kBoePZP-lkHbTiTAj_59BSgdq-qKS4Q7wuYYiTEE" />
+<link rel="shortcut icon" href="/img/favicon.ico" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta property="og:description" content="" />
+<title></title>
+
+<!-- Didomi -->
+<script type="text/javascript">window.gdprAppliesGlobally=true;(function(){function a(e){if(!window.frames[e]){if(document.body&&document.body.firstChild){var t=document.body;var n=document.createElement("iframe");n.style.display="none";n.name=e;n.title=e;t.insertBefore(n,t.firstChild)}
+else{setTimeout(function(){a(e)},5)}}}function e(n,r,o,c,s){function e(e,t,n,a){if(typeof n!=="function"){return}if(!window[r]){window[r]=[]}var i=false;if(s){i=s(e,t,n)}if(!i){window[r].push({command:e,parameter:t,callback:n,version:a})}}e.stub=true;function t(a){if(!window[n]||window[n].stub!==true){return}if(!a.data){return}
+var i=typeof a.data==="string";var e;try{e=i?JSON.parse(a.data):a.data}catch(t){return}if(e[o]){var r=e[o];window[n](r.command,r.parameter,function(e,t){var n={};n[c]={returnValue:e,success:t,callId:r.callId};a.source.postMessage(i?JSON.stringify(n):n,"*")},r.version)}}
+if(typeof window[n]!=="function"){window[n]=e;if(window.addEventListener){window.addEventListener("message",t,false)}else{window.attachEvent("onmessage",t)}}}e("__tcfapi","__tcfapiBuffer","__tcfapiCall","__tcfapiReturn");a("__tcfapiLocator");(function(e){
+  var t=document.createElement("script");t.id="spcloader";t.type="text/javascript";t.async=true;t.src="https://sdk.privacy-center.org/"+e+"/loader.js?target="+document.location.hostname;t.charset="utf-8";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)})("0816f0b6-5f44-4787-9730-5f8f56d1306d")})();</script>
+
+<script>
+async function detecterPays() {
+  try {
+    const response = await fetch('https://ipapi.co/json/');
+    const data = await response.json();
+    console.log("Pays détecté :", data.country_name);
+  } catch (error) {
+    console.error("Erreur lors de la détection du pays :", error);
+  }
+}
+
+// Appel de la fonction
+detecterPays();
+</script>
+
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            brand : "FAG",
+            environnement : "Editorial",
+            canonical_url : "https://www.guadeloupe.franceantilles.fr/error/",
+            page_type : "Rubrique",
+            breadcrumb : "error",
+            });
+    
+    // main.js est différé (defer) : il s'exécute avant DOMContentLoaded,
+    // donc getUserInfo (window.getUserInfo, défini par fa-sso.js) existe ici.
+    document.addEventListener('DOMContentLoaded', function () {
+        getUserInfo().then(uInfo => {
+            dataLayer.push({
+                user_role: uInfo.user_role,
+                subscription_id: uInfo.subscription_id
+            });
+        });
+    });
+
+    function getArticleData(rel) {
+        let url = new URL(window.location);
+        let data = { release: rel };
+
+        if (url.pathname !== '/preview/preview.php') {
+            fetch('https://www.guadeloupe.franceantilles.fr/api/article/',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+            ).
+                then(function (resp) {
+                    if (resp.status === 403) {
+                        hasRight = false;
+                        type = "premium";
+                        typearticle = "premium";
+                        return;
+                    }
+
+                    if (!resp.ok) {
+                        hasRight = false;
+                        type = "premium";
+                        typearticle = "premium";
+                        return;
+                    }
+
+                    resp.json().then(function (result) {
+                        let articleContent = result.data;
+                        const scripts = result.data.match(/<script(?:[^\x05]*?)<\/script>/g) || [];
+                        for (let script of scripts) {
+                            articleContent.replace(script, '');
+                            const scriptEl = document.createRange().createContextualFragment(script);
+                            document.querySelector('#texte_article').append(scriptEl);
+                        }
+                        document.querySelector('#texte_article').innerHTML = articleContent;
+                        document.querySelector('#texte_article').style.height = 'auto';
+                        type = "free";
+                        typearticle = "free";
+                        hasRight = true;
+                    });
+
+                });
+        }
+    }
+</script>
+
+<!-- Google tag -->
+<link rel="stylesheet" type="text/css" href="https://assets.franceantilles.fr/common/css/style-fa.css">
+
+<!-- Digiteka -->
+<script async src="https://videofeed.digiteka.com/launcher.min.js"></script>
+<script type="text/javascript">
+const urldusite = window.location.hostname;
+  // Vérification du domaine
+  if (urldusite === "guadeloupe.franceantilles.fr" || urldusite === "www.guadeloupe.franceantilles.fr") {
+    MDTK_videofeed = "01282642";
+  } else {
+    MDTK_videofeed = "01849731";
+  }
+  console.log("MDTK_videofeed =", MDTK_videofeed);
+MDTK_videofeed_zone_index = 0;
+window.MDTK_videofeed_adunit_path = "/50407286/FAG_Digiteka-video-feed";
+    </script>
+<script>
+MDTK_videofeed_adunit_path_interstitial = "/50407286/FAG_2018_Rectangle-Moyen";
+</script>
+<!-- Digiteka -->
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W8S2QCC');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Tag GA3 supprimé -->
+
+<!-- Start GPT Tag  -->
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1492866049809788"
+     crossorigin="anonymous"></script>
+
+<!-- Start GPT Tag Guadeloupe - VERSION ACTIVE VIEW OPTIMISÉE -->
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+
+<script>
+  var gptadslots = [];
+  var prehomeSlot = null;
+  var habillageSlot = null;
+  var prioritySlots = []; // Slots Above The Fold
+  var refreshIntervalId = null;
+  var pageIsVisible = true;
+  
+  window.googletag = window.googletag || { cmd: [] };
+
+  // Détection de visibilité pour éviter refresh en arrière-plan
+  document.addEventListener('visibilitychange', function() {
+    pageIsVisible = !document.hidden;
+    if (document.hidden && refreshIntervalId) {
+      console.log("⏸️ Page cachée : pause du refresh");
+      clearInterval(refreshIntervalId);
+      refreshIntervalId = null;
+    } else if (!document.hidden && !refreshIntervalId) {
+      console.log("▶️ Page visible : reprise du refresh");
+      startAutoRefresh();
+    }
+  });
+
+  googletag.cmd.push(function () {
+    console.log("🟢 GPT Guadeloupe initialisé - Mode Active View optimisé");
+
+    // ----------- Size mappings -----------
+    const mapping1 = googletag.sizeMapping()
+      .addSize([1, 1], [[320, 100], [320, 170]])
+      .addSize([728, 1], [[728, 90]])
+      .addSize([970, 1], [[970, 250], [728, 90]])
+      .build();
+
+    const mapping2 = googletag.sizeMapping()
+      .addSize([1, 1], [[320, 116]])
+      .addSize([440, 1], [[440, 160]])
+      .build();
+
+    const mapping3 = googletag.sizeMapping()
+      .addSize([1, 1], [[320, 100], [320, 170]])
+      .addSize([728, 1], [[728, 90]])
+      .addSize([970, 1], [[728, 90], [970, 250]])
+      .build();
+
+    const mapping4 = googletag.sizeMapping()
+      .addSize([1, 1], [[200, 150], [300, 250]])
+      .addSize([720, 1], [[400, 300], [300, 250]])
+      .build();
+
+    const mappingRectangleMoyen = googletag.sizeMapping()
+      .addSize([1, 1], [[300, 250]])
+      .addSize([320, 1], [[300, 250]])
+      .build();
+
+    // ----------- Configuration des slots avec priorités -----------
+    const adSlots = [
+      // Slots Above The Fold (priorité haute)
+      { id: 'div-gpt-ad-8041691-1', path: '/50407286/FAG_2018_Large-Banniere_Billboard', sizes: [[728,90],[970,250],[1000,90]], mapping: mapping1, priority: 'high' },
+      { id: 'div-gpt-ad-8041691-2', path: '/50407286/FAG_2018_Rectangle-Moyen', sizes: [[300,250]], mapping: mappingRectangleMoyen, priority: 'high' },
+      { id: 'div-gpt-ad-8041691-3', path: '/50407286/FAG_2018_Bannière-Centrale', sizes: [[440,160]], mapping: mapping2, priority: 'high' },
+      
+      // Habillage (chargement immédiat)
+      { id: 'div-gpt-ad-8041691-8', path: '/50407286/FAG_2018_Habillage', sizes: [[1,1]], priority: 'immediate' },
+      
+      // Slots Below The Fold (lazyload standard)
+      { id: 'div-gpt-ad-8041691-4', path: '/50407286/FAG_2018_Grand-Angle', sizes: [[300,600],[300,250]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-5', path: '/50407286/FAG_2019_Seconde-Rectangle-Moyen', sizes: [[300,250]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-6', path: '/50407286/FAG_2018_Petit-Rectangle', sizes: [[300,125]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-7', path: '/50407286/FAG_2018_Large-banniere_Bas', sizes: [[728,90],[970,250]], mapping: mapping3, priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-9', path: '/50407286/FAG_2018_Promo_Une', sizes: [[300,250],[300,600]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-10', path: '/50407286/FAG_2018_Flash_Transparent', sizes: [[400,300]], mapping: mapping4, priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-12', path: '/50407286/FAG_2021_InReadTeads', sizes: [[1,1],[300,250]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-13', path: '/50407286/FAG_2018_Petit-Rectangle_2', sizes: [[300,125]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-14', path: '/50407286/FAG_2018_Petit-Rectangle_3', sizes: [[300,125]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-15', path: '/50407286/FAG-graphcomment-1', sizes: [[300,125]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-16', path: '/50407286/FAG-graphcomment-2', sizes: [[300,125]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-17', path: '/50407286/FAG-graphcomment-3', sizes: [[300,125]], priority: 'normal' },
+      { id: 'div-gpt-ad-8041691-18', path: '/50407286/FAG_2023_Large-Banniere_Billboard_2', sizes: [[728,90],[970,250],[1000,90]], mapping: mapping1, priority: 'normal' },
+    ];
+
+    adSlots.forEach(slot => {
+      let s = googletag.defineSlot(slot.path, slot.sizes, slot.id);
+      if (slot.mapping) s.defineSizeMapping(slot.mapping);
+      
+      // Configuration du collapse selon la priorité
+      if (slot.priority === 'high' || slot.priority === 'immediate') {
+        s.setCollapseEmptyDiv(false); // Pas de collapse pour ATF et Habillage
+        if (slot.priority === 'high') {
+          prioritySlots.push(s);
+        } else if (slot.priority === 'immediate') {
+          habillageSlot = s;
+        }
+      } else {
+        s.setCollapseEmptyDiv(true, false); // Collapse différé pour les autres
+      }
+      
+      s.addService(googletag.pubads());
+      gptadslots.push(s);
+    });
+
+    // ----------- Préhome défini à part (chargement immédiat) -----------
+    prehomeSlot = googletag.defineSlot(
+      '/50407286/FAG_2018_Prehome',
+      [[1,1]],
+      'div-gpt-ad-8041691-11'
+    ).setCollapseEmptyDiv(false).addService(googletag.pubads());
+
+    // ----------- Paramètres globaux optimisés pour Active View -----------
+    googletag.pubads().enableLazyLoad({
+      fetchMarginPercent: 500,    // Chargement anticipé
+      renderMarginPercent: 300,   // Rendu anticipé pour stabilisation
+      mobileScaling: 2.0
+    });
+    
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs(); // Comportement par défaut
+    googletag.pubads().setCentering(true);
+
+    // ----------- Monitoring Active View -----------
+    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+      const slotId = event.slot.getSlotElementId();
+      if (event.isEmpty) {
+        console.warn('⚠️ Slot vide:', slotId);
+      } else {
+        console.log('✅ Slot affiché:', slotId, '- Taille:', event.size);
+      }
+    });
+
+    googletag.pubads().addEventListener('impressionViewable', function(event) {
+      console.log('👁️ IMPRESSION VISIBLE:', event.slot.getSlotElementId());
+    });
+
+    googletag.enableServices();
+
+    // ----------- Affichage différencié -----------
+    console.log("🚀 Affichage immédiat des slots critiques...");
+    
+    // Préhome : affichage immédiat
+    googletag.display('div-gpt-ad-8041691-11');
+    
+    // Habillage : affichage immédiat
+    if (habillageSlot) {
+      googletag.display('div-gpt-ad-8041691-8');
+    }
+    
+    // Slots Above The Fold : affichage immédiat
+    prioritySlots.forEach(slot => {
+      googletag.display(slot.getSlotElementId());
+    });
+    
+    // Refresh différé pour stabilisation Active View
+    setTimeout(() => {
+      const immediateSlots = [prehomeSlot];
+      if (habillageSlot) immediateSlots.push(habillageSlot);
+      googletag.pubads().refresh([...immediateSlots, ...prioritySlots]);
+      console.log("🔄 Refresh initial des slots prioritaires");
+    }, 100); // 100ms pour stabilisation
+  });
+
+  // ----------- Refresh automatique intelligent -----------
+  function startAutoRefresh() {
+    if (refreshIntervalId) return;
+    
+    refreshIntervalId = setInterval(() => {
+      if (!pageIsVisible) {
+        console.log("⏸️ Refresh annulé : page non visible");
+        return;
+      }
+      
+      googletag.cmd.push(() => {
+        // Refresh SAS si présent (compatibilité avec votre ancien code)
+        if (typeof sas !== "undefined" && sas.refresh) {
+          sas.refresh();
+        }
+        
+        // Ne refresh que les slots visibles dans le viewport
+        const slotsToRefresh = gptadslots.filter(slot => {
+          const element = document.getElementById(slot.getSlotElementId());
+          if (!element) return false;
+          
+          const rect = element.getBoundingClientRect();
+          const isInViewport = (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
+          
+          return isInViewport;
+        });
+        
+        if (slotsToRefresh.length > 0) {
+          googletag.pubads().refresh(slotsToRefresh);
+          console.log(`♻️ Refresh de ${slotsToRefresh.length} slots visibles`);
+        }
+      });
+    }, 60000); // 60 secondes comme dans votre config originale
+  }
+
+  // Démarrer le refresh automatique
+  startAutoRefresh();
+
+  // ----------- Fonction legacy (compatibilité) -----------
+  function refreshOthers() {
+    googletag.cmd.push(() => {
+      googletag.pubads().refresh(gptadslots);
+      console.log("♻️ Refresh manuel de tous les slots");
+    });
+  }
+</script>
+<!-- End GPT Tag Guadeloupe -->
+<style>
+  /* Conteneur avec fond gris et SVG */
+  #Large-Banniere_Billboard, #Large-Banniere_Billboard_deux, #Large-Banniere_Billboard_trois {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-size: 24rem auto;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg id='Calque_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 79.11 22.73'%3E%3Cstyle%3E.st0{fill:none;stroke:%23c6c6c5;stroke-miterlimit:10;stroke-width:.25px}.st1{fill:%23c6c6c5}%3C/style%3E%3Cg%3E%3Cpath class='st1' d='M10.59,10.61s-.06-.09-.06-.15v-5.5c0-.06.02-.11.06-.15.04-.04.09-.06.15-.06h3.89c.06,0,.11.02.15.06.04.04.06.09.06.15v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.61v1.24h2.45c.06,0,.11.02.15.06.04.04.06.09.06.16v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.45v1.91c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-1.07c-.06,0-.11-.02-.15-.06'/%3E%3Cpath class='st1' d='M15.27,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h1.79c.57,0,1.02.13,1.35.39.32.26.48.63.48,1.11,0,.31-.07.57-.22.78-.14.22-.34.38-.6.49l.9,1.62s.02.05.02.07c0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.13,0-.22-.06-.27-.18l-.75-1.45h-.67v1.46s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.85s-.08-.02-.12-.05M17.17,8.11c.2,0,.35-.05.46-.15.1-.1.16-.24.16-.41s-.05-.32-.15-.42c-.1-.1-.26-.15-.46-.15h-.76v1.13h.76Z'/%3E%3Cpath class='st1' d='M19.33,10.63s-.04-.06-.04-.1c0-.03,0-.05,0-.06l1.55-4.23c.01-.05.04-.1.09-.13.04-.04.1-.05.17-.05h.97c.07,0,.13.02.17.05.04.03.07.08.09.13l1.54,4.23v.06s0,.07-.03.1c-.03.03-.06.04-.1.04h-.81c-.11,0-.18-.05-.21-.14l-.26-.67h-1.76l-.25.67c-.04.09-.11.14-.22.14h-.81s-.07-.01-.1-.04M22.19,8.92l-.61-1.74-.61,1.74h1.22Z'/%3E%3Cpath class='st1' d='M24.07,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.12-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M28.94,10.28c-.35-.31-.54-.75-.56-1.33,0-.12,0-.31,0-.58s0-.47,0-.59c.02-.57.21-1.01.57-1.32.36-.31.85-.46,1.46-.46.39,0,.73.06,1.04.19.31.13.55.31.73.55.18.24.27.52.27.84h0s-.01.08-.04.1c-.03.02-.06.04-.1.04h-.89c-.06,0-.1-.01-.13-.04-.03-.02-.06-.07-.08-.13-.06-.22-.16-.38-.29-.47-.13-.09-.31-.13-.52-.13-.52,0-.79.29-.8.87,0,.12,0,.3,0,.55s0,.43,0,.56c.02.58.28.87.8.87.21,0,.39-.05.53-.14.14-.09.23-.25.28-.46.02-.07.04-.11.07-.13.03-.02.08-.04.14-.04h.89s.07.01.1.04c.03.03.04.06.04.1,0,.32-.1.6-.27.84-.18.24-.42.42-.73.55-.31.13-.65.19-1.04.19-.63,0-1.12-.15-1.47-.46'/%3E%3Cpath class='st1' d='M32.97,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.11-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.01.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M39.11,10.63s-.05-.08-.05-.12c0-.03,0-.06,0-.08l1.99-5.43c.02-.07.05-.12.11-.17.06-.05.13-.07.22-.07h1.25c.09,0,.16.02.22.07.06.05.09.1.11.17l1.98,5.43.02.08s-.02.09-.05.12c-.04.04-.08.05-.13.05h-1.04c-.14,0-.23-.06-.27-.18l-.33-.86h-2.26l-.32.86c-.05.12-.14.18-.28.18h-1.04s-.09-.02-.12-.05M42.79,8.42l-.79-2.23-.79,2.23h1.57Z'/%3E%3Cpath class='st1' d='M45.33,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.11-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M50.85,10.62s-.05-.07-.05-.11v-3.41h-1.17s-.08-.02-.12-.05c-.03-.03-.05-.07-.05-.12v-.7s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.54s.09.01.12.05c.03.03.05.07.05.12v.7s-.02.09-.05.12-.07.05-.12.05h-1.17v3.41s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.87s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M53.75,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.88s.09.01.12.05c.03.03.05.07.05.12v4.28s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.88s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M55.65,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M59.35,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M63.05,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M67.62,10.56c-.3-.12-.52-.28-.67-.48-.15-.2-.23-.42-.24-.65,0-.04.01-.07.04-.1.03-.03.06-.04.1-.04h.83c.05,0,.09.01.13.03.03.02.07.05.1.09.06.11.15.21.28.28.13.07.3.11.51.11.25,0,.44-.04.57-.12.13-.08.2-.19.2-.32,0-.1-.03-.18-.1-.24-.07-.06-.17-.12-.32-.16-.14-.05-.36-.1-.64-.16-.53-.11-.92-.27-1.18-.48-.26-.21-.39-.52-.39-.91,0-.27.07-.51.22-.72.15-.21.36-.38.64-.49.28-.12.6-.18.97-.18s.71.07.99.2c.28.13.49.3.64.5.15.2.23.4.23.59,0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.05,0-.1,0-.13-.03-.03-.02-.06-.05-.09-.09-.03-.1-.1-.19-.21-.26-.12-.07-.26-.11-.43-.11-.2,0-.35.04-.45.11-.11.07-.16.17-.16.31,0,.09.03.17.09.23.06.06.16.12.29.17.13.05.33.1.58.15.41.07.73.17.98.28.24.11.42.26.54.43.11.18.17.4.17.67,0,.29-.08.55-.25.77-.17.22-.4.38-.7.5-.3.12-.64.17-1.03.17-.42,0-.77-.06-1.07-.18'/%3E%3Cpath class='st1' d='M39.04,6.69s-.53.57-1.2.84c-.57.23-.78.23-.78.23v1.27s.4,0,.95-.22c.71-.29,1.02-.74,1.02-.74v-1.37Z'/%3E%3C/g%3E%3Crect class='st0' x='10.53' y='11.99' width='60.15' height='5.69'/%3E%3Cg%3E%3Cpath class='st1' d='M22.39,13.54h.46c.26,0,.44.01.53.03.13.03.24.1.32.2.08.1.12.23.12.38s-.04.28-.12.38c-.08.1-.19.17-.33.2-.1.02-.3.04-.58.04h-.16v1.06h-.23v-2.28ZM22.61,13.76v.77h.39c.16,0,.27,0,.34-.04.07-.03.13-.07.17-.14.04-.06.06-.13.06-.21s-.02-.15-.06-.21c-.04-.06-.1-.11-.16-.14s-.18-.04-.33-.04h-.4Z'/%3E%3Cpath class='st1' d='M27.11,13.54h.23v1.38c0,.16,0,.27,0,.31.01.09.04.17.08.23s.1.11.19.15.17.06.26.06c.08,0,.15-.02.22-.05s.13-.08.17-.13c.05-.06.08-.13.1-.21.02-.06.02-.18.02-.36v-1.38h.23v1.38c0,.2-.02.37-.06.49-.04.13-.12.24-.24.33-.12.09-.26.14-.43.14-.18,0-.34-.04-.47-.13-.13-.09-.22-.2-.26-.35-.03-.09-.04-.25-.04-.48v-1.38Z'/%3E%3Cpath class='st1' d='M32.02,13.54h.45c.18,0,.32.02.42.06s.17.11.23.2c.06.09.08.19.08.3,0,.1-.02.19-.07.28s-.12.15-.22.2c.12.04.21.09.27.14s.11.12.15.2.05.16.05.25c0,.18-.07.34-.2.46-.13.13-.31.19-.54.19h-.63v-2.28ZM32.24,13.76v.73h.13c.16,0,.28-.01.35-.04.07-.03.13-.08.18-.14.04-.06.07-.13.07-.21,0-.1-.04-.19-.11-.25-.07-.06-.19-.09-.35-.09h-.26ZM32.24,14.72v.88h.28c.17,0,.29-.02.37-.05.08-.03.14-.08.19-.15.05-.07.07-.14.07-.23,0-.1-.03-.19-.1-.27-.07-.07-.16-.13-.27-.15-.08-.02-.21-.03-.41-.03h-.13Z'/%3E%3Cpath class='st1' d='M36.67,13.54h.23v2.06h.88v.22h-1.11v-2.28Z'/%3E%3Cpath class='st1' d='M40.94,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M46.65,13.96l-.18.14c-.1-.13-.22-.23-.36-.29-.14-.07-.29-.1-.46-.1-.18,0-.35.04-.51.13-.16.09-.28.21-.36.35-.08.15-.13.31-.13.5,0,.28.1.51.29.7.19.19.43.28.72.28.32,0,.59-.13.8-.38l.18.14c-.11.14-.26.26-.43.34-.17.08-.36.12-.57.12-.4,0-.71-.13-.95-.4-.19-.22-.29-.5-.29-.81,0-.33.12-.62.35-.84.23-.23.53-.34.88-.34.21,0,.41.04.58.13s.31.2.42.35Z'/%3E%3Cpath class='st1' d='M49.91,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M53.26,13.76v-.22h1.25v.22h-.51v2.06h-.23v-2.06h-.51Z'/%3E%3Cpath class='st1' d='M57.68,13.54h1.31v.22h-1.08v.72h1.07v.22h-1.07v.9h1.07v.22h-1.3v-2.28ZM58.45,12.88h.33l-.46.48h-.21l.34-.48Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-position: center;
+    width: 100%;
+    max-width: 970px;
+    margin: 0 auto;
+    height: 250px;
+  }
+  
+  /* Tablet - 728x90 */
+  @media (max-width: 969px) and (min-width: 728px) {
+    #Large-Banniere_Billboard, #Large-Banniere_Billboard_deux, #Large-Banniere_Billboard_trois {
+      max-width: 728px;
+      height: 90px;
+    }
+  }
+  
+  /* Mobile - 320x170 */
+  @media (max-width: 727px) {
+    #Large-Banniere_Billboard, #Large-Banniere_Billboard_deux, #Large-Banniere_Billboard_trois {
+      max-width: 320px;
+      height: 170px;
+    }
+  }
+  
+  /* Cache le fond gris et le SVG quand une pub est chargée */
+  #Large-Banniere_Billboard.has-ad, #Large-Banniere_Billboard_deux.has-ad, #Large-Banniere_Billboard_trois.has-ad {
+    background-color: transparent !important;
+    background-image: none !important;
+    height: 250px !important;
+width: 100%;
+  }
+
+#Petit-Rectangle, #Petit-Rectangle-2, #Petit-Rectangle-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-size: 24rem auto;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg id='Calque_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 79.11 22.73'%3E%3Cstyle%3E.st0{fill:none;stroke:%23c6c6c5;stroke-miterlimit:10;stroke-width:.25px}.st1{fill:%23c6c6c5}%3C/style%3E%3Cg%3E%3Cpath class='st1' d='M10.59,10.61s-.06-.09-.06-.15v-5.5c0-.06.02-.11.06-.15.04-.04.09-.06.15-.06h3.89c.06,0,.11.02.15.06.04.04.06.09.06.15v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.61v1.24h2.45c.06,0,.11.02.15.06.04.04.06.09.06.16v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.45v1.91c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-1.07c-.06,0-.11-.02-.15-.06'/%3E%3Cpath class='st1' d='M15.27,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h1.79c.57,0,1.02.13,1.35.39.32.26.48.63.48,1.11,0,.31-.07.57-.22.78-.14.22-.34.38-.6.49l.9,1.62s.02.05.02.07c0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.13,0-.22-.06-.27-.18l-.75-1.45h-.67v1.46s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.85s-.08-.02-.12-.05M17.17,8.11c.2,0,.35-.05.46-.15.1-.1.16-.24.16-.41s-.05-.32-.15-.42c-.1-.1-.26-.15-.46-.15h-.76v1.13h.76Z'/%3E%3Cpath class='st1' d='M19.33,10.63s-.04-.06-.04-.1c0-.03,0-.05,0-.06l1.55-4.23c.01-.05.04-.1.09-.13.04-.04.1-.05.17-.05h.97c.07,0,.13.02.17.05.04.03.07.08.09.13l1.54,4.23v.06s0,.07-.03.1c-.03.03-.06.04-.1.04h-.81c-.11,0-.18-.05-.21-.14l-.26-.67h-1.76l-.25.67c-.04.09-.11.14-.22.14h-.81s-.07-.01-.1-.04M22.19,8.92l-.61-1.74-.61,1.74h1.22Z'/%3E%3Cpath class='st1' d='M24.07,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.12-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M28.94,10.28c-.35-.31-.54-.75-.56-1.33,0-.12,0-.31,0-.58s0-.47,0-.59c.02-.57.21-1.01.57-1.32.36-.31.85-.46,1.46-.46.39,0,.73.06,1.04.19.31.13.55.31.73.55.18.24.27.52.27.84h0s-.01.08-.04.1c-.03.02-.06.04-.1.04h-.89c-.06,0-.1-.01-.13-.04-.03-.02-.06-.07-.08-.13-.06-.22-.16-.38-.29-.47-.13-.09-.31-.13-.52-.13-.52,0-.79.29-.8.87,0,.12,0,.3,0,.55s0,.43,0,.56c.02.58.28.87.8.87.21,0,.39-.05.53-.14.14-.09.23-.25.28-.46.02-.07.04-.11.07-.13.03-.02.08-.04.14-.04h.89s.07.01.1.04c.03.03.04.06.04.1,0,.32-.1.6-.27.84-.18.24-.42.42-.73.55-.31.13-.65.19-1.04.19-.63,0-1.12-.15-1.47-.46'/%3E%3Cpath class='st1' d='M32.97,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.11-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.01.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M39.11,10.63s-.05-.08-.05-.12c0-.03,0-.06,0-.08l1.99-5.43c.02-.07.05-.12.11-.17.06-.05.13-.07.22-.07h1.25c.09,0,.16.02.22.07.06.05.09.1.11.17l1.98,5.43.02.08s-.02.09-.05.12c-.04.04-.08.05-.13.05h-1.04c-.14,0-.23-.06-.27-.18l-.33-.86h-2.26l-.32.86c-.05.12-.14.18-.28.18h-1.04s-.09-.02-.12-.05M42.79,8.42l-.79-2.23-.79,2.23h1.57Z'/%3E%3Cpath class='st1' d='M45.33,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.11-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M50.85,10.62s-.05-.07-.05-.11v-3.41h-1.17s-.08-.02-.12-.05c-.03-.03-.05-.07-.05-.12v-.7s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.54s.09.01.12.05c.03.03.05.07.05.12v.7s-.02.09-.05.12-.07.05-.12.05h-1.17v3.41s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.87s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M53.75,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.88s.09.01.12.05c.03.03.05.07.05.12v4.28s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.88s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M55.65,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M59.35,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M63.05,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M67.62,10.56c-.3-.12-.52-.28-.67-.48-.15-.2-.23-.42-.24-.65,0-.04.01-.07.04-.1.03-.03.06-.04.1-.04h.83c.05,0,.09.01.13.03.03.02.07.05.1.09.06.11.15.21.28.28.13.07.3.11.51.11.25,0,.44-.04.57-.12.13-.08.2-.19.2-.32,0-.1-.03-.18-.1-.24-.07-.06-.17-.12-.32-.16-.14-.05-.36-.1-.64-.16-.53-.11-.92-.27-1.18-.48-.26-.21-.39-.52-.39-.91,0-.27.07-.51.22-.72.15-.21.36-.38.64-.49.28-.12.6-.18.97-.18s.71.07.99.2c.28.13.49.3.64.5.15.2.23.4.23.59,0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.05,0-.1,0-.13-.03-.03-.02-.06-.05-.09-.09-.03-.1-.1-.19-.21-.26-.12-.07-.26-.11-.43-.11-.2,0-.35.04-.45.11-.11.07-.16.17-.16.31,0,.09.03.17.09.23.06.06.16.12.29.17.13.05.33.1.58.15.41.07.73.17.98.28.24.11.42.26.54.43.11.18.17.4.17.67,0,.29-.08.55-.25.77-.17.22-.4.38-.7.5-.3.12-.64.17-1.03.17-.42,0-.77-.06-1.07-.18'/%3E%3Cpath class='st1' d='M39.04,6.69s-.53.57-1.2.84c-.57.23-.78.23-.78.23v1.27s.4,0,.95-.22c.71-.29,1.02-.74,1.02-.74v-1.37Z'/%3E%3C/g%3E%3Crect class='st0' x='10.53' y='11.99' width='60.15' height='5.69'/%3E%3Cg%3E%3Cpath class='st1' d='M22.39,13.54h.46c.26,0,.44.01.53.03.13.03.24.1.32.2.08.1.12.23.12.38s-.04.28-.12.38c-.08.1-.19.17-.33.2-.1.02-.3.04-.58.04h-.16v1.06h-.23v-2.28ZM22.61,13.76v.77h.39c.16,0,.27,0,.34-.04.07-.03.13-.07.17-.14.04-.06.06-.13.06-.21s-.02-.15-.06-.21c-.04-.06-.1-.11-.16-.14s-.18-.04-.33-.04h-.4Z'/%3E%3Cpath class='st1' d='M27.11,13.54h.23v1.38c0,.16,0,.27,0,.31.01.09.04.17.08.23s.1.11.19.15.17.06.26.06c.08,0,.15-.02.22-.05s.13-.08.17-.13c.05-.06.08-.13.1-.21.02-.06.02-.18.02-.36v-1.38h.23v1.38c0,.2-.02.37-.06.49-.04.13-.12.24-.24.33-.12.09-.26.14-.43.14-.18,0-.34-.04-.47-.13-.13-.09-.22-.2-.26-.35-.03-.09-.04-.25-.04-.48v-1.38Z'/%3E%3Cpath class='st1' d='M32.02,13.54h.45c.18,0,.32.02.42.06s.17.11.23.2c.06.09.08.19.08.3,0,.1-.02.19-.07.28s-.12.15-.22.2c.12.04.21.09.27.14s.11.12.15.2.05.16.05.25c0,.18-.07.34-.2.46-.13.13-.31.19-.54.19h-.63v-2.28ZM32.24,13.76v.73h.13c.16,0,.28-.01.35-.04.07-.03.13-.08.18-.14.04-.06.07-.13.07-.21,0-.1-.04-.19-.11-.25-.07-.06-.19-.09-.35-.09h-.26ZM32.24,14.72v.88h.28c.17,0,.29-.02.37-.05.08-.03.14-.08.19-.15.05-.07.07-.14.07-.23,0-.1-.03-.19-.1-.27-.07-.07-.16-.13-.27-.15-.08-.02-.21-.03-.41-.03h-.13Z'/%3E%3Cpath class='st1' d='M36.67,13.54h.23v2.06h.88v.22h-1.11v-2.28Z'/%3E%3Cpath class='st1' d='M40.94,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M46.65,13.96l-.18.14c-.1-.13-.22-.23-.36-.29-.14-.07-.29-.1-.46-.1-.18,0-.35.04-.51.13-.16.09-.28.21-.36.35-.08.15-.13.31-.13.5,0,.28.1.51.29.7.19.19.43.28.72.28.32,0,.59-.13.8-.38l.18.14c-.11.14-.26.26-.43.34-.17.08-.36.12-.57.12-.4,0-.71-.13-.95-.4-.19-.22-.29-.5-.29-.81,0-.33.12-.62.35-.84.23-.23.53-.34.88-.34.21,0,.41.04.58.13s.31.2.42.35Z'/%3E%3Cpath class='st1' d='M49.91,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M53.26,13.76v-.22h1.25v.22h-.51v2.06h-.23v-2.06h-.51Z'/%3E%3Cpath class='st1' d='M57.68,13.54h1.31v.22h-1.08v.72h1.07v.22h-1.07v.9h1.07v.22h-1.3v-2.28ZM58.45,12.88h.33l-.46.48h-.21l.34-.48Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-position: center;
+    width: 300px;
+    height: 125px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+/* Rectangle Moyen - 300x250 */
+  #Rectangle-Moyen, #Rectangle-Moyen-deux {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-size: 24rem auto;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg id='Calque_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 79.11 22.73'%3E%3Cstyle%3E.st0{fill:none;stroke:%23c6c6c5;stroke-miterlimit:10;stroke-width:.25px}.st1{fill:%23c6c6c5}%3C/style%3E%3Cg%3E%3Cpath class='st1' d='M10.59,10.61s-.06-.09-.06-.15v-5.5c0-.06.02-.11.06-.15.04-.04.09-.06.15-.06h3.89c.06,0,.11.02.15.06.04.04.06.09.06.15v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.61v1.24h2.45c.06,0,.11.02.15.06.04.04.06.09.06.16v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.45v1.91c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-1.07c-.06,0-.11-.02-.15-.06'/%3E%3Cpath class='st1' d='M15.27,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h1.79c.57,0,1.02.13,1.35.39.32.26.48.63.48,1.11,0,.31-.07.57-.22.78-.14.22-.34.38-.6.49l.9,1.62s.02.05.02.07c0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.13,0-.22-.06-.27-.18l-.75-1.45h-.67v1.46s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.85s-.08-.02-.12-.05M17.17,8.11c.2,0,.35-.05.46-.15.1-.1.16-.24.16-.41s-.05-.32-.15-.42c-.1-.1-.26-.15-.46-.15h-.76v1.13h.76Z'/%3E%3Cpath class='st1' d='M19.33,10.63s-.04-.06-.04-.1c0-.03,0-.05,0-.06l1.55-4.23c.01-.05.04-.1.09-.13.04-.04.1-.05.17-.05h.97c.07,0,.13.02.17.05.04.03.07.08.09.13l1.54,4.23v.06s0,.07-.03.1c-.03.03-.06.04-.1.04h-.81c-.11,0-.18-.05-.21-.14l-.26-.67h-1.76l-.25.67c-.04.09-.11.14-.22.14h-.81s-.07-.01-.1-.04M22.19,8.92l-.61-1.74-.61,1.74h1.22Z'/%3E%3Cpath class='st1' d='M24.07,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.12-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M28.94,10.28c-.35-.31-.54-.75-.56-1.33,0-.12,0-.31,0-.58s0-.47,0-.59c.02-.57.21-1.01.57-1.32.36-.31.85-.46,1.46-.46.39,0,.73.06,1.04.19.31.13.55.31.73.55.18.24.27.52.27.84h0s-.01.08-.04.1c-.03.02-.06.04-.1.04h-.89c-.06,0-.1-.01-.13-.04-.03-.02-.06-.07-.08-.13-.06-.22-.16-.38-.29-.47-.13-.09-.31-.13-.52-.13-.52,0-.79.29-.8.87,0,.12,0,.3,0,.55s0,.43,0,.56c.02.58.28.87.8.87.21,0,.39-.05.53-.14.14-.09.23-.25.28-.46.02-.07.04-.11.07-.13.03-.02.08-.04.14-.04h.89s.07.01.1.04c.03.03.04.06.04.1,0,.32-.1.6-.27.84-.18.24-.42.42-.73.55-.31.13-.65.19-1.04.19-.63,0-1.12-.15-1.47-.46'/%3E%3Cpath class='st1' d='M32.97,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.11-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.01.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M39.11,10.63s-.05-.08-.05-.12c0-.03,0-.06,0-.08l1.99-5.43c.02-.07.05-.12.11-.17.06-.05.13-.07.22-.07h1.25c.09,0,.16.02.22.07.06.05.09.1.11.17l1.98,5.43.02.08s-.02.09-.05.12c-.04.04-.08.05-.13.05h-1.04c-.14,0-.23-.06-.27-.18l-.33-.86h-2.26l-.32.86c-.05.12-.14.18-.28.18h-1.04s-.09-.02-.12-.05M42.79,8.42l-.79-2.23-.79,2.23h1.57Z'/%3E%3Cpath class='st1' d='M45.33,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.11-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M50.85,10.62s-.05-.07-.05-.11v-3.41h-1.17s-.08-.02-.12-.05c-.03-.03-.05-.07-.05-.12v-.7s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.54s.09.01.12.05c.03.03.05.07.05.12v.7s-.02.09-.05.12-.07.05-.12.05h-1.17v3.41s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.87s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M53.75,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.88s.09.01.12.05c.03.03.05.07.05.12v4.28s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.88s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M55.65,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M59.35,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M63.05,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M67.62,10.56c-.3-.12-.52-.28-.67-.48-.15-.2-.23-.42-.24-.65,0-.04.01-.07.04-.1.03-.03.06-.04.1-.04h.83c.05,0,.09.01.13.03.03.02.07.05.1.09.06.11.15.21.28.28.13.07.3.11.51.11.25,0,.44-.04.57-.12.13-.08.2-.19.2-.32,0-.1-.03-.18-.1-.24-.07-.06-.17-.12-.32-.16-.14-.05-.36-.1-.64-.16-.53-.11-.92-.27-1.18-.48-.26-.21-.39-.52-.39-.91,0-.27.07-.51.22-.72.15-.21.36-.38.64-.49.28-.12.6-.18.97-.18s.71.07.99.2c.28.13.49.3.64.5.15.2.23.4.23.59,0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.05,0-.1,0-.13-.03-.03-.02-.06-.05-.09-.09-.03-.1-.1-.19-.21-.26-.12-.07-.26-.11-.43-.11-.2,0-.35.04-.45.11-.11.07-.16.17-.16.31,0,.09.03.17.09.23.06.06.16.12.29.17.13.05.33.1.58.15.41.07.73.17.98.28.24.11.42.26.54.43.11.18.17.4.17.67,0,.29-.08.55-.25.77-.17.22-.4.38-.7.5-.3.12-.64.17-1.03.17-.42,0-.77-.06-1.07-.18'/%3E%3Cpath class='st1' d='M39.04,6.69s-.53.57-1.2.84c-.57.23-.78.23-.78.23v1.27s.4,0,.95-.22c.71-.29,1.02-.74,1.02-.74v-1.37Z'/%3E%3C/g%3E%3Crect class='st0' x='10.53' y='11.99' width='60.15' height='5.69'/%3E%3Cg%3E%3Cpath class='st1' d='M22.39,13.54h.46c.26,0,.44.01.53.03.13.03.24.1.32.2.08.1.12.23.12.38s-.04.28-.12.38c-.08.1-.19.17-.33.2-.1.02-.3.04-.58.04h-.16v1.06h-.23v-2.28ZM22.61,13.76v.77h.39c.16,0,.27,0,.34-.04.07-.03.13-.07.17-.14.04-.06.06-.13.06-.21s-.02-.15-.06-.21c-.04-.06-.1-.11-.16-.14s-.18-.04-.33-.04h-.4Z'/%3E%3Cpath class='st1' d='M27.11,13.54h.23v1.38c0,.16,0,.27,0,.31.01.09.04.17.08.23s.1.11.19.15.17.06.26.06c.08,0,.15-.02.22-.05s.13-.08.17-.13c.05-.06.08-.13.1-.21.02-.06.02-.18.02-.36v-1.38h.23v1.38c0,.2-.02.37-.06.49-.04.13-.12.24-.24.33-.12.09-.26.14-.43.14-.18,0-.34-.04-.47-.13-.13-.09-.22-.2-.26-.35-.03-.09-.04-.25-.04-.48v-1.38Z'/%3E%3Cpath class='st1' d='M32.02,13.54h.45c.18,0,.32.02.42.06s.17.11.23.2c.06.09.08.19.08.3,0,.1-.02.19-.07.28s-.12.15-.22.2c.12.04.21.09.27.14s.11.12.15.2.05.16.05.25c0,.18-.07.34-.2.46-.13.13-.31.19-.54.19h-.63v-2.28ZM32.24,13.76v.73h.13c.16,0,.28-.01.35-.04.07-.03.13-.08.18-.14.04-.06.07-.13.07-.21,0-.1-.04-.19-.11-.25-.07-.06-.19-.09-.35-.09h-.26ZM32.24,14.72v.88h.28c.17,0,.29-.02.37-.05.08-.03.14-.08.19-.15.05-.07.07-.14.07-.23,0-.1-.03-.19-.1-.27-.07-.07-.16-.13-.27-.15-.08-.02-.21-.03-.41-.03h-.13Z'/%3E%3Cpath class='st1' d='M36.67,13.54h.23v2.06h.88v.22h-1.11v-2.28Z'/%3E%3Cpath class='st1' d='M40.94,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M46.65,13.96l-.18.14c-.1-.13-.22-.23-.36-.29-.14-.07-.29-.1-.46-.1-.18,0-.35.04-.51.13-.16.09-.28.21-.36.35-.08.15-.13.31-.13.5,0,.28.1.51.29.7.19.19.43.28.72.28.32,0,.59-.13.8-.38l.18.14c-.11.14-.26.26-.43.34-.17.08-.36.12-.57.12-.4,0-.71-.13-.95-.4-.19-.22-.29-.5-.29-.81,0-.33.12-.62.35-.84.23-.23.53-.34.88-.34.21,0,.41.04.58.13s.31.2.42.35Z'/%3E%3Cpath class='st1' d='M49.91,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M53.26,13.76v-.22h1.25v.22h-.51v2.06h-.23v-2.06h-.51Z'/%3E%3Cpath class='st1' d='M57.68,13.54h1.31v.22h-1.08v.72h1.07v.22h-1.07v.9h1.07v.22h-1.3v-2.28ZM58.45,12.88h.33l-.46.48h-.21l.34-.48Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-position: center;
+    width: 300px;
+    height: 250px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Cache le fond gris et le SVG quand une pub est chargée */
+  #Rectangle-Moyen.has-ad, #Rectangle-Moyen.has-ad {
+    background-color: transparent !important;
+    background-image: none !important;
+    height: auto !important;
+width: 100%;
+  }
+#Petit-Rectangle.has-ad, #Petit-Rectangle-2.has-ad, #Petit-Rectangle-3.has-ad {
+    background-color: transparent !important;
+    background-image: none !important;
+    height: auto !important;
+width: 100%;
+  }
+ #Grand-Angle, #Grand-Angle_bas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-size: 24rem auto;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg id='Calque_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 79.11 22.73'%3E%3Cstyle%3E.st0{fill:none;stroke:%23c6c6c5;stroke-miterlimit:10;stroke-width:.25px}.st1{fill:%23c6c6c5}%3C/style%3E%3Cg%3E%3Cpath class='st1' d='M10.59,10.61s-.06-.09-.06-.15v-5.5c0-.06.02-.11.06-.15.04-.04.09-.06.15-.06h3.89c.06,0,.11.02.15.06.04.04.06.09.06.15v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.61v1.24h2.45c.06,0,.11.02.15.06.04.04.06.09.06.16v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.45v1.91c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-1.07c-.06,0-.11-.02-.15-.06'/%3E%3Cpath class='st1' d='M15.27,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h1.79c.57,0,1.02.13,1.35.39.32.26.48.63.48,1.11,0,.31-.07.57-.22.78-.14.22-.34.38-.6.49l.9,1.62s.02.05.02.07c0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.13,0-.22-.06-.27-.18l-.75-1.45h-.67v1.46s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.85s-.08-.02-.12-.05M17.17,8.11c.2,0,.35-.05.46-.15.1-.1.16-.24.16-.41s-.05-.32-.15-.42c-.1-.1-.26-.15-.46-.15h-.76v1.13h.76Z'/%3E%3Cpath class='st1' d='M19.33,10.63s-.04-.06-.04-.1c0-.03,0-.05,0-.06l1.55-4.23c.01-.05.04-.1.09-.13.04-.04.1-.05.17-.05h.97c.07,0,.13.02.17.05.04.03.07.08.09.13l1.54,4.23v.06s0,.07-.03.1c-.03.03-.06.04-.1.04h-.81c-.11,0-.18-.05-.21-.14l-.26-.67h-1.76l-.25.67c-.04.09-.11.14-.22.14h-.81s-.07-.01-.1-.04M22.19,8.92l-.61-1.74-.61,1.74h1.22Z'/%3E%3Cpath class='st1' d='M24.07,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.12-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M28.94,10.28c-.35-.31-.54-.75-.56-1.33,0-.12,0-.31,0-.58s0-.47,0-.59c.02-.57.21-1.01.57-1.32.36-.31.85-.46,1.46-.46.39,0,.73.06,1.04.19.31.13.55.31.73.55.18.24.27.52.27.84h0s-.01.08-.04.1c-.03.02-.06.04-.1.04h-.89c-.06,0-.1-.01-.13-.04-.03-.02-.06-.07-.08-.13-.06-.22-.16-.38-.29-.47-.13-.09-.31-.13-.52-.13-.52,0-.79.29-.8.87,0,.12,0,.3,0,.55s0,.43,0,.56c.02.58.28.87.8.87.21,0,.39-.05.53-.14.14-.09.23-.25.28-.46.02-.07.04-.11.07-.13.03-.02.08-.04.14-.04h.89s.07.01.1.04c.03.03.04.06.04.1,0,.32-.1.6-.27.84-.18.24-.42.42-.73.55-.31.13-.65.19-1.04.19-.63,0-1.12-.15-1.47-.46'/%3E%3Cpath class='st1' d='M32.97,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.11-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.01.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M39.11,10.63s-.05-.08-.05-.12c0-.03,0-.06,0-.08l1.99-5.43c.02-.07.05-.12.11-.17.06-.05.13-.07.22-.07h1.25c.09,0,.16.02.22.07.06.05.09.1.11.17l1.98,5.43.02.08s-.02.09-.05.12c-.04.04-.08.05-.13.05h-1.04c-.14,0-.23-.06-.27-.18l-.33-.86h-2.26l-.32.86c-.05.12-.14.18-.28.18h-1.04s-.09-.02-.12-.05M42.79,8.42l-.79-2.23-.79,2.23h1.57Z'/%3E%3Cpath class='st1' d='M45.33,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.11-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M50.85,10.62s-.05-.07-.05-.11v-3.41h-1.17s-.08-.02-.12-.05c-.03-.03-.05-.07-.05-.12v-.7s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.54s.09.01.12.05c.03.03.05.07.05.12v.7s-.02.09-.05.12-.07.05-.12.05h-1.17v3.41s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.87s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M53.75,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.88s.09.01.12.05c.03.03.05.07.05.12v4.28s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.88s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M55.65,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M59.35,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M63.05,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M67.62,10.56c-.3-.12-.52-.28-.67-.48-.15-.2-.23-.42-.24-.65,0-.04.01-.07.04-.1.03-.03.06-.04.1-.04h.83c.05,0,.09.01.13.03.03.02.07.05.1.09.06.11.15.21.28.28.13.07.3.11.51.11.25,0,.44-.04.57-.12.13-.08.2-.19.2-.32,0-.1-.03-.18-.1-.24-.07-.06-.17-.12-.32-.16-.14-.05-.36-.1-.64-.16-.53-.11-.92-.27-1.18-.48-.26-.21-.39-.52-.39-.91,0-.27.07-.51.22-.72.15-.21.36-.38.64-.49.28-.12.6-.18.97-.18s.71.07.99.2c.28.13.49.3.64.5.15.2.23.4.23.59,0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.05,0-.1,0-.13-.03-.03-.02-.06-.05-.09-.09-.03-.1-.1-.19-.21-.26-.12-.07-.26-.11-.43-.11-.2,0-.35.04-.45.11-.11.07-.16.17-.16.31,0,.09.03.17.09.23.06.06.16.12.29.17.13.05.33.1.58.15.41.07.73.17.98.28.24.11.42.26.54.43.11.18.17.4.17.67,0,.29-.08.55-.25.77-.17.22-.4.38-.7.5-.3.12-.64.17-1.03.17-.42,0-.77-.06-1.07-.18'/%3E%3Cpath class='st1' d='M39.04,6.69s-.53.57-1.2.84c-.57.23-.78.23-.78.23v1.27s.4,0,.95-.22c.71-.29,1.02-.74,1.02-.74v-1.37Z'/%3E%3C/g%3E%3Crect class='st0' x='10.53' y='11.99' width='60.15' height='5.69'/%3E%3Cg%3E%3Cpath class='st1' d='M22.39,13.54h.46c.26,0,.44.01.53.03.13.03.24.1.32.2.08.1.12.23.12.38s-.04.28-.12.38c-.08.1-.19.17-.33.2-.1.02-.3.04-.58.04h-.16v1.06h-.23v-2.28ZM22.61,13.76v.77h.39c.16,0,.27,0,.34-.04.07-.03.13-.07.17-.14.04-.06.06-.13.06-.21s-.02-.15-.06-.21c-.04-.06-.1-.11-.16-.14s-.18-.04-.33-.04h-.4Z'/%3E%3Cpath class='st1' d='M27.11,13.54h.23v1.38c0,.16,0,.27,0,.31.01.09.04.17.08.23s.1.11.19.15.17.06.26.06c.08,0,.15-.02.22-.05s.13-.08.17-.13c.05-.06.08-.13.1-.21.02-.06.02-.18.02-.36v-1.38h.23v1.38c0,.2-.02.37-.06.49-.04.13-.12.24-.24.33-.12.09-.26.14-.43.14-.18,0-.34-.04-.47-.13-.13-.09-.22-.2-.26-.35-.03-.09-.04-.25-.04-.48v-1.38Z'/%3E%3Cpath class='st1' d='M32.02,13.54h.45c.18,0,.32.02.42.06s.17.11.23.2c.06.09.08.19.08.3,0,.1-.02.19-.07.28s-.12.15-.22.2c.12.04.21.09.27.14s.11.12.15.2.05.16.05.25c0,.18-.07.34-.2.46-.13.13-.31.19-.54.19h-.63v-2.28ZM32.24,13.76v.73h.13c.16,0,.28-.01.35-.04.07-.03.13-.08.18-.14.04-.06.07-.13.07-.21,0-.1-.04-.19-.11-.25-.07-.06-.19-.09-.35-.09h-.26ZM32.24,14.72v.88h.28c.17,0,.29-.02.37-.05.08-.03.14-.08.19-.15.05-.07.07-.14.07-.23,0-.1-.03-.19-.1-.27-.07-.07-.16-.13-.27-.15-.08-.02-.21-.03-.41-.03h-.13Z'/%3E%3Cpath class='st1' d='M36.67,13.54h.23v2.06h.88v.22h-1.11v-2.28Z'/%3E%3Cpath class='st1' d='M40.94,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M46.65,13.96l-.18.14c-.1-.13-.22-.23-.36-.29-.14-.07-.29-.1-.46-.1-.18,0-.35.04-.51.13-.16.09-.28.21-.36.35-.08.15-.13.31-.13.5,0,.28.1.51.29.7.19.19.43.28.72.28.32,0,.59-.13.8-.38l.18.14c-.11.14-.26.26-.43.34-.17.08-.36.12-.57.12-.4,0-.71-.13-.95-.4-.19-.22-.29-.5-.29-.81,0-.33.12-.62.35-.84.23-.23.53-.34.88-.34.21,0,.41.04.58.13s.31.2.42.35Z'/%3E%3Cpath class='st1' d='M49.91,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M53.26,13.76v-.22h1.25v.22h-.51v2.06h-.23v-2.06h-.51Z'/%3E%3Cpath class='st1' d='M57.68,13.54h1.31v.22h-1.08v.72h1.07v.22h-1.07v.9h1.07v.22h-1.3v-2.28ZM58.45,12.88h.33l-.46.48h-.21l.34-.48Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-position: center;
+    width: 300px;
+    height: 600px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+ /* Cache le fond gris et le SVG quand une pub est chargée */
+  #Grand-Angle.has-ad{
+    background-color: transparent !important;
+    background-image: none !important;
+    height: auto !important;
+width: 100%;
+  }
+  #Grand-Angle_bas.has-ad {
+    background-color: transparent !important;
+    background-image: none !important;
+    height: auto !important;
+width: 40%;
+  }
+#Banniere-Centrale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-size: 24rem auto;
+     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg id='Calque_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 79.11 22.73'%3E%3Cstyle%3E.st0{fill:none;stroke:%23c6c6c5;stroke-miterlimit:10;stroke-width:.25px}.st1{fill:%23c6c6c5}%3C/style%3E%3Cg%3E%3Cpath class='st1' d='M10.59,10.61s-.06-.09-.06-.15v-5.5c0-.06.02-.11.06-.15.04-.04.09-.06.15-.06h3.89c.06,0,.11.02.15.06.04.04.06.09.06.15v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.61v1.24h2.45c.06,0,.11.02.15.06.04.04.06.09.06.16v.85c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-2.45v1.91c0,.06-.02.11-.06.15-.04.04-.09.06-.15.06h-1.07c-.06,0-.11-.02-.15-.06'/%3E%3Cpath class='st1' d='M15.27,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h1.79c.57,0,1.02.13,1.35.39.32.26.48.63.48,1.11,0,.31-.07.57-.22.78-.14.22-.34.38-.6.49l.9,1.62s.02.05.02.07c0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.13,0-.22-.06-.27-.18l-.75-1.45h-.67v1.46s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.85s-.08-.02-.12-.05M17.17,8.11c.2,0,.35-.05.46-.15.1-.1.16-.24.16-.41s-.05-.32-.15-.42c-.1-.1-.26-.15-.46-.15h-.76v1.13h.76Z'/%3E%3Cpath class='st1' d='M19.33,10.63s-.04-.06-.04-.1c0-.03,0-.05,0-.06l1.55-4.23c.01-.05.04-.1.09-.13.04-.04.1-.05.17-.05h.97c.07,0,.13.02.17.05.04.03.07.08.09.13l1.54,4.23v.06s0,.07-.03.1c-.03.03-.06.04-.1.04h-.81c-.11,0-.18-.05-.21-.14l-.26-.67h-1.76l-.25.67c-.04.09-.11.14-.22.14h-.81s-.07-.01-.1-.04M22.19,8.92l-.61-1.74-.61,1.74h1.22Z'/%3E%3Cpath class='st1' d='M24.07,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.12-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M28.94,10.28c-.35-.31-.54-.75-.56-1.33,0-.12,0-.31,0-.58s0-.47,0-.59c.02-.57.21-1.01.57-1.32.36-.31.85-.46,1.46-.46.39,0,.73.06,1.04.19.31.13.55.31.73.55.18.24.27.52.27.84h0s-.01.08-.04.1c-.03.02-.06.04-.1.04h-.89c-.06,0-.1-.01-.13-.04-.03-.02-.06-.07-.08-.13-.06-.22-.16-.38-.29-.47-.13-.09-.31-.13-.52-.13-.52,0-.79.29-.8.87,0,.12,0,.3,0,.55s0,.43,0,.56c.02.58.28.87.8.87.21,0,.39-.05.53-.14.14-.09.23-.25.28-.46.02-.07.04-.11.07-.13.03-.02.08-.04.14-.04h.89s.07.01.1.04c.03.03.04.06.04.1,0,.32-.1.6-.27.84-.18.24-.42.42-.73.55-.31.13-.65.19-1.04.19-.63,0-1.12-.15-1.47-.46'/%3E%3Cpath class='st1' d='M32.97,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.11-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.01.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M39.11,10.63s-.05-.08-.05-.12c0-.03,0-.06,0-.08l1.99-5.43c.02-.07.05-.12.11-.17.06-.05.13-.07.22-.07h1.25c.09,0,.16.02.22.07.06.05.09.1.11.17l1.98,5.43.02.08s-.02.09-.05.12c-.04.04-.08.05-.13.05h-1.04c-.14,0-.23-.06-.27-.18l-.33-.86h-2.26l-.32.86c-.05.12-.14.18-.28.18h-1.04s-.09-.02-.12-.05M42.79,8.42l-.79-2.23-.79,2.23h1.57Z'/%3E%3Cpath class='st1' d='M45.33,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.7c.11,0,.18.04.22.12l1.61,2.53v-2.49s.02-.09.05-.12c.03-.03.07-.05.11-.05h.79s.09.01.12.05c.03.03.05.07.05.12v4.27s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.7c-.1,0-.17-.04-.22-.13l-1.61-2.43v2.4s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.79s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M50.85,10.62s-.05-.07-.05-.11v-3.41h-1.17s-.08-.02-.12-.05c-.03-.03-.05-.07-.05-.12v-.7s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.54s.09.01.12.05c.03.03.05.07.05.12v.7s-.02.09-.05.12-.07.05-.12.05h-1.17v3.41s-.02.08-.05.11c-.03.03-.07.05-.12.05h-.87s-.08-.02-.11-.05'/%3E%3Cpath class='st1' d='M53.75,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.88s.09.01.12.05c.03.03.05.07.05.12v4.28s-.02.09-.05.12c-.03.03-.07.05-.12.05h-.88s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M55.65,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M59.35,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h.87s.09.01.12.05c.03.03.05.07.05.12v3.45h1.99s.09.02.12.05c.03.03.05.07.05.12v.66s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.03s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M63.05,10.62s-.05-.07-.05-.11v-4.28s.02-.09.05-.12c.03-.03.07-.05.12-.05h3.07s.09.01.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.12c-.03.03-.07.05-.12.05h-2.1v.89h1.95s.09.02.12.05c.03.03.05.07.05.12v.57s-.02.08-.05.12c-.03.03-.07.05-.12.05h-1.95v.91h2.15s.09.02.12.05c.03.03.05.07.05.12v.62s-.02.08-.05.11c-.03.03-.07.05-.12.05h-3.13s-.08-.02-.12-.05'/%3E%3Cpath class='st1' d='M67.62,10.56c-.3-.12-.52-.28-.67-.48-.15-.2-.23-.42-.24-.65,0-.04.01-.07.04-.1.03-.03.06-.04.1-.04h.83c.05,0,.09.01.13.03.03.02.07.05.1.09.06.11.15.21.28.28.13.07.3.11.51.11.25,0,.44-.04.57-.12.13-.08.2-.19.2-.32,0-.1-.03-.18-.1-.24-.07-.06-.17-.12-.32-.16-.14-.05-.36-.1-.64-.16-.53-.11-.92-.27-1.18-.48-.26-.21-.39-.52-.39-.91,0-.27.07-.51.22-.72.15-.21.36-.38.64-.49.28-.12.6-.18.97-.18s.71.07.99.2c.28.13.49.3.64.5.15.2.23.4.23.59,0,.04-.01.07-.04.1-.03.03-.06.04-.1.04h-.87c-.05,0-.1,0-.13-.03-.03-.02-.06-.05-.09-.09-.03-.1-.1-.19-.21-.26-.12-.07-.26-.11-.43-.11-.2,0-.35.04-.45.11-.11.07-.16.17-.16.31,0,.09.03.17.09.23.06.06.16.12.29.17.13.05.33.1.58.15.41.07.73.17.98.28.24.11.42.26.54.43.11.18.17.4.17.67,0,.29-.08.55-.25.77-.17.22-.4.38-.7.5-.3.12-.64.17-1.03.17-.42,0-.77-.06-1.07-.18'/%3E%3Cpath class='st1' d='M39.04,6.69s-.53.57-1.2.84c-.57.23-.78.23-.78.23v1.27s.4,0,.95-.22c.71-.29,1.02-.74,1.02-.74v-1.37Z'/%3E%3C/g%3E%3Crect class='st0' x='10.53' y='11.99' width='60.15' height='5.69'/%3E%3Cg%3E%3Cpath class='st1' d='M22.39,13.54h.46c.26,0,.44.01.53.03.13.03.24.1.32.2.08.1.12.23.12.38s-.04.28-.12.38c-.08.1-.19.17-.33.2-.1.02-.3.04-.58.04h-.16v1.06h-.23v-2.28ZM22.61,13.76v.77h.39c.16,0,.27,0,.34-.04.07-.03.13-.07.17-.14.04-.06.06-.13.06-.21s-.02-.15-.06-.21c-.04-.06-.1-.11-.16-.14s-.18-.04-.33-.04h-.4Z'/%3E%3Cpath class='st1' d='M27.11,13.54h.23v1.38c0,.16,0,.27,0,.31.01.09.04.17.08.23s.1.11.19.15.17.06.26.06c.08,0,.15-.02.22-.05s.13-.08.17-.13c.05-.06.08-.13.1-.21.02-.06.02-.18.02-.36v-1.38h.23v1.38c0,.2-.02.37-.06.49-.04.13-.12.24-.24.33-.12.09-.26.14-.43.14-.18,0-.34-.04-.47-.13-.13-.09-.22-.2-.26-.35-.03-.09-.04-.25-.04-.48v-1.38Z'/%3E%3Cpath class='st1' d='M32.02,13.54h.45c.18,0,.32.02.42.06s.17.11.23.2c.06.09.08.19.08.3,0,.1-.02.19-.07.28s-.12.15-.22.2c.12.04.21.09.27.14s.11.12.15.2.05.16.05.25c0,.18-.07.34-.2.46-.13.13-.31.19-.54.19h-.63v-2.28ZM32.24,13.76v.73h.13c.16,0,.28-.01.35-.04.07-.03.13-.08.18-.14.04-.06.07-.13.07-.21,0-.1-.04-.19-.11-.25-.07-.06-.19-.09-.35-.09h-.26ZM32.24,14.72v.88h.28c.17,0,.29-.02.37-.05.08-.03.14-.08.19-.15.05-.07.07-.14.07-.23,0-.1-.03-.19-.1-.27-.07-.07-.16-.13-.27-.15-.08-.02-.21-.03-.41-.03h-.13Z'/%3E%3Cpath class='st1' d='M36.67,13.54h.23v2.06h.88v.22h-1.11v-2.28Z'/%3E%3Cpath class='st1' d='M40.94,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M46.65,13.96l-.18.14c-.1-.13-.22-.23-.36-.29-.14-.07-.29-.1-.46-.1-.18,0-.35.04-.51.13-.16.09-.28.21-.36.35-.08.15-.13.31-.13.5,0,.28.1.51.29.7.19.19.43.28.72.28.32,0,.59-.13.8-.38l.18.14c-.11.14-.26.26-.43.34-.17.08-.36.12-.57.12-.4,0-.71-.13-.95-.4-.19-.22-.29-.5-.29-.81,0-.33.12-.62.35-.84.23-.23.53-.34.88-.34.21,0,.41.04.58.13s.31.2.42.35Z'/%3E%3Cpath class='st1' d='M49.91,13.54h.23v2.28h-.23v-2.28Z'/%3E%3Cpath class='st1' d='M53.26,13.76v-.22h1.25v.22h-.51v2.06h-.23v-2.06h-.51Z'/%3E%3Cpath class='st1' d='M57.68,13.54h1.31v.22h-1.08v.72h1.07v.22h-1.07v.9h1.07v.22h-1.3v-2.28ZM58.45,12.88h.33l-.46.48h-.21l.34-.48Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-position: center;
+    width: 440px;
+    height: 250px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+  #Banniere-Centrale.has-ad {
+    background-color: transparent !important;
+    background-image: none !important;
+    height: auto !important;
+width: 100%;
+  }
+</style>
+
+
+<style>
+#appBanner {
+  /* Réserver l'espace même quand caché */
+  min-height: 60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#appBanner.show {
+  opacity: 1;
+}
+</style>
+
+
+
+
+<script async  src="https://rdc.m32.media/m32hb_fa.min.js"></script>
+<!--<script src="https://rdc.m32.media/m32hb.min.js"></script>
+<script type="text/javascript" async="" src="https://rdc.m32.media/m32pixel.min.js"></script>-->
+
+
+
+
+</script>
+
+<script async>
+  window.teads_analytics = window.teads_analytics || {};
+  window.teads_analytics.analytics_tag_id = "PUB_15864";
+  window.teads_analytics.share = window.teads_analytics.share || function() {
+    ;(window.teads_analytics.shared_data = window.teads_analytics.shared_data || []).push(arguments)
+  };
+</script>
+<script async src="https://a.teads.tv/analytics/tag.js"></script>
+<style>
+#main-wrapper{background:white}
+</style>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-29WYV2EHPT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-29WYV2EHPT');
+</script>
+
+<script>
+async function detectAdBlock() {
+  let adBlockEnabled = false
+  const googleAdUrl = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+  try {
+    await fetch(new Request(googleAdUrl)).catch(_ => adBlockEnabled = true)
+  } catch (e) {
+    adBlockEnabled = true;
+  } finally {
+    return adBlockEnabled;
+  }
+}
+async function main() {
+  const adBlockDetected = await detectAdBlock();
+  
+  if (adBlockDetected) {
+    console.log("adblock activé");
+  gtag('event', 'adblock_active', {
+      });
+  
+  } else {
+    console.log("adblock désactivé");
+  gtag('event', 'adblock_not_active', {
+      });
+  }
+}
+main();
+</script>
+
+
+
+<style>
+div.content-sidebar {
+    max-width: 300px;
+}
+</style>
+
+<!-- /BL GDL - Htmlheader -->
+<!-- BL CO - HEAD - USER-RIGHT MEA ABONNEMENT de type html -->
+<!-- BL in -->
+<script type="text/javascript">
+  
+   window.onload = function() {
+  console.log("le bloc charge");
+        getUserInfo().then(uf => {
+            if (uf['user_role'] === "subscriber") {
+                console.log("Utilisateur avec droits");
+               
+                // $("div.jemontre, a.jemontre, p.jemontre").removeClass("jemontre");
+
+        
+ $("div.jecache, a.jecache, p.jecache").removeClass( "jecache" );
+ $("div.jemontre, a.jemontre, p.jemontre").addClass( "jecache" );
+
+            } else {
+                console.log("Utilisateur sans droits");
+                // Supprime la classe "jecache" de toutes les div, a et p si l'utilisateur n'est pas un abonné
+                // $("div, a, p").removeClass("jecache");
+            }
+        });
+    };
+</script>
+
+<style>
+/* 1. Base : on cache tout */
+.fa-conditional-block {
+    display: none;
+}
+
+/* 2. Mode Chargement : On affiche le bloc "abonné", mais on le recouvre d'un calque gris */
+body.is-loading-user .block-subscriber {
+    display: block !important;
+    position: relative;
+    overflow: hidden;
+    pointer-events: none; /* Empêche de cliquer à travers le masque */
+}
+
+/* Le masque gris qui recouvre tout le contenu du bloc */
+body.is-loading-user .block-subscriber::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #e0e0e0; /* Couleur du squelette */
+    z-index: 10; /* Passe au-dessus du vrai contenu */
+}
+
+/* L'animation de reflet (Shimmer) sur le masque */
+body.is-loading-user .block-subscriber::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 11;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    animation: overlay-shimmer 1.5s infinite;
+    transform: translateX(-100%);
+}
+
+@keyframes overlay-shimmer {
+    100% { transform: translateX(100%); }
+}
+
+/* 3. Affichage Final (une fois la classe is-loading-user retirée) */
+body.user-is-subscriber .block-subscriber { display: block !important; }
+body.user-is-registered .block-registered { display: block !important; }
+</style>
+
+<script>
+(function() {
+    function initDisplay() {
+        // Si la fonction n'est pas encore là, on patiente (cas des chargements asynchrones)
+        if (typeof getUserInfo !== "function") {
+            setTimeout(initDisplay, 500);
+            return;
+        }
+
+        // On lance le masque de chargement
+        document.body.classList.add('is-loading-user');
+
+        getUserInfo().then(uf => {
+            // On retire le masque
+            document.body.classList.remove('is-loading-user');
+
+            // On vérifie le rôle
+            const role = (uf && uf['user_role']) ? uf['user_role'] : 'guest';
+
+            // On affiche le bon bloc
+            if (role === "subscriber") {
+                document.body.classList.add('user-is-subscriber');
+            } else if (role === "registered") {
+                document.body.classList.add('user-is-registered');
+            }
+        }).catch(err => {
+            console.error("Erreur lors de la récupération du rôle :", err);
+            document.body.classList.remove('is-loading-user');
+        });
+    }
+
+    // Exécution
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initDisplay);
+    } else {
+        initDisplay();
+    }
+})();
+</script>
+<!-- /BL CO - HEAD - USER-RIGHT MEA ABONNEMENT -->
+<!-- BL CO - Header poool de type imm -->
+<!-- BL in -->
+<script async id="qiota" src="https://static.qiota.com/assets/getQiota.js"></script>
+
+<script type="text/javascript">
+    </script>
+
+<!-- /BL CO - Header poool -->
+<!-- BL CO - STYLE ARTICLE UNE de type html -->
+<!-- BL in -->
+<style>
+.extrait, .source > .auteur {
+    display: none;
+}
+article.une .extrait, article.une .auteur {
+    display: inline-block;
+}
+</style>
+<!-- /BL CO - STYLE ARTICLE UNE -->
+<!-- BL AKCELO ADS Script FAG de type html -->
+<!-- BL in -->
+<!-- <script async src="https://ads.sportslocalmedia.com/slm.prebid.franceantilles.js"></script> -->
+<!-- /BL AKCELO ADS Script FAG -->
+<!-- BL GDL - SCRIPT HEAD Equativ de type html -->
+<!-- BL in -->
+<script async type="text/javascript" src="https://r.sascdn.com/video/config.js?nwid=4680"></script>
+<script async type="text/javascript" src="https://r.sascdn.com/video/controller.js?nwid=4680"></script>
+<script async type="application/javascript" src="https://ced.sascdn.com/tag/4680/smart.js" async></script><script type="application/javascript" async>
+    var sas = sas || {};
+    sas.cmd = sas.cmd || [];
+    sas.cmd.push(function() {
+        sas.setup({ networkid: 4680, domain: "https://adapi.smartadserver.com", async: true });
+    });
+    sas.cmd.push(function() {
+        sas.call("onecall", {
+            siteId: 600104,
+            pageId: 1836451,
+            formats: [
+                 { id: 123531 }
+                ,{ id: 123525 }
+                ,{ id: 123522 }
+                ,{ id: 123530 }
+                ,{ id: 123499 }
+                ,{ id: 123526 }
+                ,{ id: 123580 }
+                ,{ id: 123524 }
+                ,{ id: 123523 }
+                ,{ id: 123498 }
+            ],
+            target: ''
+        });
+    });
+</script>
+
+<!-- TTS Rspeaker -->
+<script async src="https://cdn-eu.readspeaker.com/script/9/webReader/webReader.js?pids=wr" type="text/javascript" id="rs_req_Init"></script>
+<!-- /BL GDL - SCRIPT HEAD Equativ -->
+
+</head>
+<body id="body aaa" class="" style="">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8S2QCC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="main-wrapper">
+        <!-- COL -->
+
+<!-- BL GDL - Bloc pub 6 - Habillage de type html -->
+<!-- BL in -->
+<!-- GPT AdSlot 8 for Ad unit 'FAG_2018_Habillage' ### Size: [[1,1]] -->
+<div id="div-gpt-ad-8041691-8">
+  <script>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-8041691-8'); });
+  </script>
+</div>
+<!-- End AdSlot 8 -->
+<!-- /BL GDL - Bloc pub 6 - Habillage -->
+<!-- BL GDL - banner app header de type html -->
+<!-- BL in -->
+<style>
+/* Bannière App */
+.app-banner {
+  display: none; /* cachée par défaut */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  z-index: 9999;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+.app-banner.show {
+  transform: translateY(0);
+}
+
+.app-banner img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.app-banner span {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Bouton rouge comme logo France-Antilles */
+.app-banner a {
+  background: #d60000; /* rouge France-Antilles */
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.app-banner a:hover {
+  background: #b00000;
+}
+
+.app-banner .close-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+</style>
+
+<div id="appBanner" class="app-banner">
+  <img src="https://www.franceantilles.fr/apps/images/FAG-Actu.png" alt="France-Antilles">
+  <span>Téléchargez l'application France-Antilles</span>
+  <a id="appLink" href="#" target="_blank">Installer</a>
+  <button class="close-btn" id="closeBanner">×</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  var appLink = document.getElementById("appLink");
+  var banner = document.getElementById("appBanner");
+  var closeBtn = document.getElementById("closeBanner");
+
+  if (!appLink || !banner || !closeBtn) return; // sécurité
+
+  // Vérifie si la bannière a déjà été fermée et si 5 jours sont passés
+  var hideData = localStorage.getItem("hideAppBanner");
+  var now = Date.now();
+
+  if (hideData) {
+    try {
+      var hideInfo = JSON.parse(hideData);
+      var hideTime = hideInfo.time;
+      var diffDays = (now - hideTime) / (1000 * 60 * 60 * 24);
+      if (diffDays < 5) {
+        return; // encore bloqué
+      } else {
+        localStorage.removeItem("hideAppBanner"); // réinitialise
+      }
+    } catch (e) {
+      localStorage.removeItem("hideAppBanner");
+    }
+  }
+
+  // Détection mobile Android / iOS
+  var showBanner = false;
+  if (/android/i.test(userAgent)) {
+    appLink.href = "https://play.google.com/store/apps/details?id=mob.franceantilles.gp";
+    showBanner = true;
+  } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+    appLink.href = "https://apps.apple.com/fr/app/france-antilles-guadeloupe/id876887310";
+    showBanner = true;
+  }
+
+  if (showBanner) {
+    // Attendre 5 secondes avant d'afficher
+    setTimeout(function () {
+      banner.style.display = "flex";
+      setTimeout(() => banner.classList.add("show"), 50);
+
+      // Ajouter margin-top aux éléments du site en mobile
+      if (window.innerWidth <= 1020) {
+        var style = document.createElement("style");
+        style.id = "appBannerMargin";
+        style.innerHTML = `
+          @media screen and (max-width: 1020px) {
+            #header .mobile-friendly, 
+            #header .mobile-friendly.little, 
+            #main-wrapper {
+              margin-top: 60px !important;
+            }
+          }`;
+        document.head.appendChild(style);
+      }
+    }, 5000);
+  }
+
+  // Quand on ferme la bannière → enlever margin-top + stocker date
+  closeBtn.addEventListener("click", function () {
+    banner.classList.remove("show");
+    setTimeout(() => (banner.style.display = "none"), 400);
+
+    var styleTag = document.getElementById("appBannerMargin");
+    if (styleTag) styleTag.remove();
+
+    localStorage.setItem("hideAppBanner", JSON.stringify({time: Date.now()}));
+
+    // Événement GA fermeture
+    if (typeof gtag === "function") {
+      gtag("event", "close app banner", {
+        event_category: "Banniere App",
+        event_label: "Fermeture bannière"
+      });
+      console.log("GA Event Sent: close (Fermeture bannière)");
+    }
+  });
+
+  // Quand on clique sur Installer Événement GA
+  appLink.addEventListener("click", function () {
+    if (typeof gtag === "function") {
+      gtag("event", "click app banner", {
+        event_category: "Banniere App",
+        event_label: "Installer clic"
+      });
+      console.log("GA Event Sent: click (Installer clic)");
+    }
+  });
+});
+</script>
+<!-- /BL GDL - banner app header -->
+<!-- BL COMMON - Radio bas de type html -->
+<!-- BL in -->
+<style>
+.conteneur-audio {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: #E30613;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: white;
+            width: 70px;
+            height: 100px;
+            border-radius: 25px 0 0 25px;
+          /*  display: flex; */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: width 0.3s ease;
+z-index:999;
+text-align:center;
+padding:10px
+        }
+
+        .conteneur-audio.ouvert {
+            width: 120px;
+            height: auto;
+font-size: 8pt;
+        }
+
+        .conteneur-audio .contenu-audio {
+            display: none;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .conteneur-audio.ouvert .contenu-audio {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .conteneur-audio .icone-toggle {
+            font-size: 24px;
+        }
+
+        .commandes-audio button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .commandes-audio button:hover {
+            background-color: #555;
+        }
+.mobile-only {
+  display: none;
+}
+
+
+@media screen and (max-width: 1020px) {
+  .mobile-only {
+    display: block;
+  }
+}
+</style>
+        <div class="conteneur-audio mobile-only" id="toggleAudio">
+<img src="https://assets.franceantilles.fr/common/images/logo_FAR-Color.png" alt="logo France-Antilles Radio" class="logo"><br />
+        <span class="icone-toggle">&#9654;</span>
+        <div class="contenu-audio">
+<img src="https://www.dizziland.com/wp-content/uploads/2018/02/audio-wave.gif">
+La radio 100% Caraïbes
+            <div class="commandes-audio" style="display:none">
+                <button id="boutonStop">Arrêter</button>
+                <button id="boutonMute">Couper le son</button>
+            </div>
+        </div>
+    </div>
+
+        <script>
+        const conteneurAudio = document.getElementById('toggleAudio');
+        const iconeToggle = conteneurAudio.querySelector('.icone-toggle');
+        const contenuAudio = conteneurAudio.querySelector('.contenu-audio');
+        const boutonStop = document.getElementById('boutonStop');
+        const boutonMute = document.getElementById('boutonMute');
+
+        // Création dynamique de l'élément audio
+       // const lecteurAudio = new Audio('https://cast5.asurahosting.com/proxy/fa_radio/fa_radio');
+        const lecteurAudio = new Audio('https://2stream.net/fa_radio.mp3');
+        lecteurAudio.autoplay = false;
+        lecteurAudio.loop = true;
+
+        // Basculer la visibilité du conteneur et démarrer l'audio
+        conteneurAudio.addEventListener('click', () => {
+            const estOuvert = conteneurAudio.classList.toggle('ouvert');
+            iconeToggle.textContent = estOuvert ? '✖' : '▶';
+
+            if (estOuvert) {
+                lecteurAudio.play();
+            } else {
+                lecteurAudio.pause();
+            }
+        });
+
+        // Arrêter l'audio
+        boutonStop.addEventListener('click', (event) => {
+            event.stopPropagation(); // Empêche de fermer le conteneur
+            lecteurAudio.pause();
+            lecteurAudio.currentTime = 0;
+        });
+
+        // Couper/Restaurer le son
+        boutonMute.addEventListener('click', (event) => {
+            event.stopPropagation(); // Empêche de fermer le conteneur
+            lecteurAudio.muted = !lecteurAudio.muted;
+            boutonMute.textContent = lecteurAudio.muted ? 'Restaurer le son' : 'Couper le son';
+        });
+    </script>
+<!-- /BL COMMON - Radio bas -->
+<!-- BL GDL - Barre Liens Mobile de type html -->
+<!-- BL in -->
+<div id="mobile-bar" class="mobile-friendly">
+    <nav id="mobile-bar-nav" class="ventre">
+        <ul class="mobile-bar-menu">
+            <li><a class="bar-link icon une-link" href="/">A la Une</a></li>
+            <li><a class="bar-link icon journal-link" href="/journal_pdf/">Journal</a></li>
+            <li><a id="info-region-bar" class="bar-link icon regions-link slide-link" href="#">Régions</a></li>
+            <li><a id="search-form-bar" class="bar-link icon search-link slide-link" href="/recherche">Recherche</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- /BL GDL - Barre Liens Mobile -->
+<!-- BL GDL - Header de type imm -->
+<!-- BL in -->
+<header id="header">
+
+    <!-- Top menu -->
+            <div id="topmenu">
+    <nav id="topnav">
+        <ul>
+                        <li class="creola"><a href="https://www.creola.net/" target="_blank"> Créola</a></li>
+                        
+                        <li><a href="/annonces/annonces-legales/marches-publics-en-guadeloupe-584552.php"><span>Marchés Publics</span></a></li>
+            <li><a href="/annonces/annonces-legales/annonces-legales-en-guadeloupe-584541.php"><span>Annonces Légales</span></a></li>
+                       
+                        <li><a href="https://www.martinique.franceantilles.fr" target="_blank"><span>FRANCE-ANTILLES MART.</span></a></li>
+                                                <li><a href="https://www.franceguyane.fr" target="_blank"><span>FRANCE-GUYANE</span></a></li>
+                        <li class="meteo_header_box">
+                
+<details class="meteo_header">
+    <summary class="meteo__ville_exergue">
+        <div>
+                <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p67.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Basse Terre
+                            </div>
+            26°C/33°C
+        </div>
+    </a>
+
+        </div>
+        <button class="toggle"></button>
+    </summary>
+    <div class="meteo__villes" style="background-color:black">
+        <ul id="meteo_liens">
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p23.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Anse Bertrand
+                            </div>
+            25°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p67.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Deshaies
+                            </div>
+            25°C/33°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p67.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Les Abymes
+                            </div>
+            25°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p67.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Petit Bourg
+                            </div>
+            25°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p23.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Saint François
+                            </div>
+            25°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p35.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Capesterre
+                            </div>
+            25°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p35.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    La soufrière
+                            </div>
+            20°C/22°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p25.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    la désirade
+                            </div>
+            27°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p25.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Les Saintes
+                            </div>
+            27°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p25.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Marie Galante
+                            </div>
+            25°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p23.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Grand Case
+                            </div>
+            27°C/32°C
+        </div>
+    </a>
+
+                </li>
+                            <li>
+                        <a href="/pratique/meteo/" class="meteo__ville">
+        <img loading="lazy" src="/img/meteofrance/images_top/p23.png"
+             title=''/>
+        <div class="meteo__ville__details">
+            <div class="meteo__ville__titre">
+                                    Saint-Barthélemy Météo
+                            </div>
+            27°C/32°C
+        </div>
+    </a>
+
+                </li>
+                    </ul>
+    </div>
+</details>
+
+            </li>
+            <li class="right">
+                <a class="contact" href="/pages/contactez-nous" onclick="headerDatalayer('Contact')">Contactez-nous</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+    
+    <div id="head">
+        <!-- Menu dernière édition -->
+                    <div class="col1">
+    <a class="head-link edition-link" href="/journal_pdf/" id="day-edition" onclick="headerDatalayer('Journal')">
+        <span class="edition-link-img"><img loading="lazy" alt="France-Antilles.fr" src="https://static.milibris.com/thumbnail/issue/0914130a-6be2-4594-bc4f-28141bf913e4/front/catalog-cover-icon.png" /></span>
+        Lire<br /> le journal
+    </a>
+</div>
+
+                <!-- Header Gauche -->
+                    <div class="col2">
+<div id="logo"><a href="/" onclick="headerDatalayer('Home')" title="France-Antilles.fr - Aller à l'accueil du site"><img alt="Franceantilles.fr" src="https://assets.franceantilles.fr/creatives_logos/logo-franceantilles-guadeloupe.png" /> </a></div>
+</div>
+                <div class="col3">
+            <div id="identification">
+                <a class="head-link user_not_logged" href="https://abo.guadeloupe.franceantilles.fr/login?url=https%3A%2F%2Fwww.guadeloupe.franceantilles.fr%2F404"
+                    onclick="headerDatalayer('Connexion')" rel="nofollow">Se connecter</a>
+                <div class="user_logged" style="display: none;">
+                    <span class="head-link connected">Mon compte</span>
+                    <nav class="dropmenu-block">
+                        <div class="dropmenu-header">
+                            <span class="name"></span>
+                        </div>
+                        <ul class="dropmenu">
+                            <li class="dropmenu-item" onclick="headerDatalayer('Mon compte')"><a href="https://abo.guadeloupe.franceantilles.fr/compte" rel="nofollow">Détails de mon compte</a></li>
+                            <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mon-profil" rel="nofollow">Mes coordonnées</a></li>
+                            <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mes-abonnements" rel="nofollow">Mes abonnements</a></li>
+                            <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mes-newsletters" rel="nofollow">Mes newsletters</a></li>
+                        </ul>
+                        <div class="dropmenu-footer">
+                            <a class="deconnect" title="Me déconnecter" href="https://abo.guadeloupe.franceantilles.fr/logout?returnUrl=https%3A%2F%2Fwww.guadeloupe.franceantilles.fr%2Flogout%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.guadeloupe.franceantilles.fr%252F404" onclick="headerDatalayer('Déconnexion')" rel="nofollow">Déconnexion</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Bouton abonnement -->
+                            <p class="jemontre"><a class="abo" href="https://abo.guadeloupe.franceantilles.fr/offres" onclick="subscriptionDatalayer('Header Editorial')">S&#39;abonner<br />
+<small>&agrave; partir de</small> 1&euro;</a></p>
+                    </div>
+    </div>
+    <!-- Menu -->
+            <div id="mainmenu">
+    <nav id="menu">
+        <ul>
+                <li class="home">
+            <a href="/" title="A la une">A la une</a>
+                    </li>
+                <li class="">
+            <a href="/actualite/sports/coupe-du-monde/" title="Coupe du Monde">Coupe du Monde</a>
+                    </li>
+                <li class="">
+            <a href="/actualite/faits-divers/" title="Faits Divers">Faits Divers</a>
+                    </li>
+                <li class="">
+            <a href="/actualite/politique/" title="Politique">Politique</a>
+                    </li>
+                <li class="">
+            <a href="/actualite/economie/" title="Economie">Economie</a>
+                    </li>
+                <li class="">
+            <a href="/actualite/culture/" title="Culture">Culture</a>
+                    </li>
+                <li class="menustar">
+            <a href="/pages/hub-annonces-legales-guadeloupe" title="Annonces Légales">Annonces Légales</a>
+                    </li>
+                <li class="parent">
+            <a href="#" title="Plus">Plus</a>
+                            <ul>
+                                        <li class="menu-title">
+                                                    Actualités
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="/actualite/justice/" title="Justice">Justice</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/education/" title="Education">Education</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/societe/" title="Société">Société</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/social/" title="Social">Social</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/loisirs/musique/" title="Musique">Musique</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/loisirs/sortir/" title="Loisirs">Loisirs</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/saint-martin/" title="Saint-Martin">Saint-Martin</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                        <li class="menu-title">
+                                                    Actualités
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="/actualite/vielocale/" title="Nos communes">Nos communes</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/environnement/" title="Environnement">Environnement</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/sante/" title="Santé">Santé</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/sciences-et-recherche/" title="Sciences et recherche">Sciences et recherche</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/environnement/saison-cyclonique/" title="Saison cyclonique">Saison cyclonique</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                        <li class="menu-title">
+                                                    Monde
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="/regions/dans-la-caraibe/" title="Dans la Caraïbe">Dans la Caraïbe</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/chez-nos-voisins/" title="Chez nos voisins">Chez nos voisins</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/france/" title="France">France</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/international/" title="Internationnal">Internationnal</a>
+                            </li>
+                                                        <li class="">
+                                <a href="https://www.guadeloupe.franceantilles.fr/actualite/france/le-grand-jt-des-territoires/" title="Le Grand JT Vidéo">Le Grand JT Vidéo</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                        <li class="menu-title">
+                                                    En images
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="/actualite/culture/carnaval/" title="Carnaval">Carnaval</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/diaporamas/" title="Diaporamas">Diaporamas</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/toutes-les-videos/" title="Vidéos">Vidéos</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/podcasts/" title="Podcasts">Podcasts</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                        <li class="menu-title">
+                                                    Sports
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="/actualite/sports/" title="Local">Local</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/planete_sports/" title="International">International</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/hippisme/" title="Hippisme">Hippisme</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/actualite/sports/tour-de-la-guadeloupe/" title="Tour de Guadeloupe">Tour de Guadeloupe</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                        <li class="menu-title">
+                                                    Les hubs
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="/actualite/economie/hub-conomie/" title="Economie">Economie</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                        <li class="menu-title">
+                                                    Pratique
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="https://boutique.franceantilles.fr/" title="La Boutique">La Boutique</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/pratique/meteo/" title="Météo">Météo</a>
+                            </li>
+                                                        <li class="">
+                                <a href="https://www.guadeloupe.franceantilles.fr/pages/faites-vos-jeux" title="Jeux">Jeux</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/pages/supplements-hors-series-franceantilles" title="Suppléments">Suppléments</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/partenaires/" title="Partenaires">Partenaires</a>
+                            </li>
+                                                        <li class="">
+                                <a href="/pages/numeros-urgence-guadeloupe" title="Numéros d&#039;urgence">Numéros d'urgence</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                        <li class="menu-title">
+                                                    Annonces
+                                                                        <ul>
+                                                        <li class="">
+                                <a href="/annonces/avis-de-remerciements/" title="Avis de remerciement">Avis de remerciement</a>
+                            </li>
+                                                    </ul>
+                                            </li>
+                                    </ul>
+                    </li>
+                </ul>
+
+        <a id="search-form" class="icon search-link slide-link search-header-handler" href="/recherche">Recherche</a>
+    </nav>
+</div>
+
+        <!-- Menu Sticky -->
+            <div class="mobile-friendly">
+    <nav class="mobile-menu show-sth">
+        <button class="mobile-menu-btn">Menu</button>
+        <div id="burgerMenu" class="to-display">
+            <a class="head-link edition-link" href="/journal_pdf/">
+                <span class="edition-link-img"><img loading="lazy" alt="France-Antilles.fr" src="https://static.milibris.com/thumbnail/issue/0914130a-6be2-4594-bc4f-28141bf913e4/front/catalog-cover-icon.png"></span>
+                Lire le journal
+            </a>
+
+            <ul class="menu">
+                <li class="moncompte user_not_logged">
+                <a class="head-link user_not_logged" href="/login" onclick="headerDatalayer('Connexion')">Se connecter</a>
+                </li>
+                <li class="moncompte user_logged" style="display: none;">
+                    <a href="#"><span>Mon compte</span></a>
+                    <nav class="submenu">
+                        <div class="dropmenu-header">
+                            <span class="name"></span>
+                        </div>
+                        
+                        <ul class="dropmenu">
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte">Détails de mon compte</a></li>
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mon-profil">Mes coordonnées</a></li>
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mes-abonnements">Mes abonnements</a></li>
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mes-newsletters">Mes newsletters</a></li>
+</ul>
+
+
+                        <div class="dropmenu-footer"><a class="deconnect" title="Me déconnecter" href="https://abo.guadeloupe.franceantilles.fr/logout?returnUrl=https%3A%2F%2Fwww.guadeloupe.franceantilles.fr%2Flogout%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.guadeloupe.franceantilles.fr%252F404" onclick="headerDatalayer('Déconnexion')">Déconnexion</a></div>
+                    </nav>
+                </li>
+                <li class="search-link"><a id="search-form-burger" class="slide-link" href="/recherche">Rechercher</a></li>
+
+                                <li class="home">
+                    <a href="/" title="A la une">A la une</a>
+                                    </li>
+                                <li class="">
+                    <a href="/actualite/sports/coupe-du-monde/" title="Coupe du Monde">Coupe du Monde</a>
+                                    </li>
+                                <li class="">
+                    <a href="/actualite/faits-divers/" title="Faits Divers">Faits Divers</a>
+                                    </li>
+                                <li class="">
+                    <a href="/actualite/politique/" title="Politique">Politique</a>
+                                    </li>
+                                <li class="">
+                    <a href="/actualite/economie/" title="Economie">Economie</a>
+                                    </li>
+                                <li class="">
+                    <a href="/actualite/culture/" title="Culture">Culture</a>
+                                    </li>
+                                <li class="menustar">
+                    <a href="/pages/hub-annonces-legales-guadeloupe" title="Annonces Légales">Annonces Légales</a>
+                                    </li>
+                                <li class="parent">
+                    <a href="#" title="Plus">Plus</a>
+                                            <ul class="submenu">
+                                                        <li class="menu-title">
+                                                                    Actualités
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="/actualite/justice/" title="Justice">Justice</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/education/" title="Education">Education</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/societe/" title="Société">Société</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/social/" title="Social">Social</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/loisirs/musique/" title="Musique">Musique</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/loisirs/sortir/" title="Loisirs">Loisirs</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/saint-martin/" title="Saint-Martin">Saint-Martin</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                        <li class="menu-title">
+                                                                    Actualités
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="/actualite/vielocale/" title="Nos communes">Nos communes</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/environnement/" title="Environnement">Environnement</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/sante/" title="Santé">Santé</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/sciences-et-recherche/" title="Sciences et recherche">Sciences et recherche</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/environnement/saison-cyclonique/" title="Saison cyclonique">Saison cyclonique</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                        <li class="menu-title">
+                                                                    Monde
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="/regions/dans-la-caraibe/" title="Dans la Caraïbe">Dans la Caraïbe</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/chez-nos-voisins/" title="Chez nos voisins">Chez nos voisins</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/france/" title="France">France</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/international/" title="Internationnal">Internationnal</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="https://www.guadeloupe.franceantilles.fr/actualite/france/le-grand-jt-des-territoires/" title="Le Grand JT Vidéo">Le Grand JT Vidéo</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                        <li class="menu-title">
+                                                                    En images
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="/actualite/culture/carnaval/" title="Carnaval">Carnaval</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/diaporamas/" title="Diaporamas">Diaporamas</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/toutes-les-videos/" title="Vidéos">Vidéos</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/podcasts/" title="Podcasts">Podcasts</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                        <li class="menu-title">
+                                                                    Sports
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="/actualite/sports/" title="Local">Local</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/planete_sports/" title="International">International</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/hippisme/" title="Hippisme">Hippisme</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/actualite/sports/tour-de-la-guadeloupe/" title="Tour de Guadeloupe">Tour de Guadeloupe</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                        <li class="menu-title">
+                                                                    Les hubs
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="/actualite/economie/hub-conomie/" title="Economie">Economie</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                        <li class="menu-title">
+                                                                    Pratique
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="https://boutique.franceantilles.fr/" title="La Boutique">La Boutique</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/pratique/meteo/" title="Météo">Météo</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="https://www.guadeloupe.franceantilles.fr/pages/faites-vos-jeux" title="Jeux">Jeux</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/pages/supplements-hors-series-franceantilles" title="Suppléments">Suppléments</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/partenaires/" title="Partenaires">Partenaires</a>
+                                    </li>
+                                                                        <li class="">
+                                        <a href="/pages/numeros-urgence-guadeloupe" title="Numéros d&#039;urgence">Numéros d'urgence</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                        <li class="menu-title">
+                                                                    Annonces
+                                                                                                <ul>
+                                                                        <li class="">
+                                        <a href="/annonces/avis-de-remerciements/" title="Avis de remerciement">Avis de remerciement</a>
+                                    </li>
+                                                                    </ul>
+                                                            </li>
+                                                    </ul>
+                                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <div class="mobile-logo">
+        <a href="/" title="FranceGuyane.fr - Aller à l'accueil du site">
+            <img loading="lazy" src="https://assets.franceantilles.fr/creatives_logos/logo-franceantilles-guadeloupe.png" alt="FranceGuyane.fr">
+        </a>
+    </div>
+
+    <div class="mobile-compte">
+        <a class="head-link user_not_logged" href="https://abo.guadeloupe.franceantilles.fr/login?url=https%3A%2F%2Fwww.guadeloupe.franceantilles.fr%2F404" onclick="headerDatalayer('Connexion')">Se connecter</a>
+        <div class="user_logged" style="display: none;">
+            <span class="head-link connected">Mon compte</span>
+            <nav class="dropmenu-block">
+                <div class="dropmenu-header">
+                    <span class="name"></span>
+                </div>
+                
+                <ul class="dropmenu">
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte">Détails de mon compte</a></li>
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mon-profil">Mes coordonnées</a></li>
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mes-abonnements">Mes abonnements</a></li>
+    <li class="dropmenu-item"><a href="https://abo.guadeloupe.franceantilles.fr/compte/mes-newsletters">Mes newsletters</a></li>
+</ul>
+
+
+                <div class="dropmenu-footer"><a class="deconnect" title="Me déconnecter" href="https://abo.guadeloupe.franceantilles.fr/logout?returnUrl=https%3A%2F%2Fwww.guadeloupe.franceantilles.fr%2Flogout%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.guadeloupe.franceantilles.fr%252F404" onclick="headerDatalayer('Déconnexion')">Déconnexion</a></div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="mobile-abo">
+        <a class="abo" href="/acces/_offres/offres.php">S'abonner</a>
+    </div>
+</div>
+
+        <!-- Menu Regions -->
+            <div class="info-region bloc-slide">
+    <nav id="regions">
+        <strong class="title">L'info de vos régions</strong>
+        <span class="close">X</span>
+        <ul>
+                <li class="">
+            <a href="/regions/pointoise/" title="Région pointoise">Région pointoise</a>
+        </li>
+                <li class="">
+            <a href="/regions/departementales/" title="En Guadeloupe">En Guadeloupe</a>
+        </li>
+                <li class="">
+            <a href="/regions/grande-terre-sud-et-est/" title="Grande-Terre Sud et Est">Grande-Terre Sud et Est</a>
+        </li>
+                <li class="">
+            <a href="/regions/basse-terre-et-sa-region/" title="Basse-Terre et sa Région">Basse-Terre et sa Région</a>
+        </li>
+                <li class="">
+            <a href="/regions/cote-sous-le-vent/" title="Côte sous-le-vent">Côte sous-le-vent</a>
+        </li>
+                <li class="">
+            <a href="/regions/nord-basse-terre/" title="Nord Basse-Terre">Nord Basse-Terre</a>
+        </li>
+                <li class="">
+            <a href="/regions/cote-au-vent/" title="Côte Au Vent">Côte Au Vent</a>
+        </li>
+                <li class="">
+            <a href="/regions/marie-galante/" title="Marie-Galante">Marie-Galante</a>
+        </li>
+                <li class="">
+            <a href="/regions/les-saintes/" title="Les Saintes">Les Saintes</a>
+        </li>
+                <li class="">
+            <a href="/regions/dans-la-caraibe/" title="Dans la Caraïbe">Dans la Caraïbe</a>
+        </li>
+                </ul>
+    </nav>
+</div>
+    
+    <!-- Search Bloc -->
+    <div id="search-header" class="search search-form bloc-slide">
+        <form action="/recherche" id="recherche_header">
+            <strong class="title">Recherche...</strong>
+            <span class="close">X</span>
+            <div class="inputs">
+                <input name="terms" autocomplete="off" class="inputbox" type="text" size="20" placeholder="Rechercher sur le site" required />
+                <input type="submit" value="Rechercher" class="button" />
+            </div>
+        </form>
+    </div>
+</header>
+
+<!-- /BL GDL - Header -->
+<!-- BL GDL - Bloc pub top de type html -->
+<!-- BL in -->
+<div class="dfp-top" id="pubs_top">
+	<div id="Large-Banniere_Billboard">	
+<div id="div-gpt-ad-8041691-1">
+</div>
+	</div>
+</div>
+
+<style>
+
+/* version par défaut: sur grand écran */
+.soutien { 
+width: 1000px;background:#ffca00;colo:black;line-height:20px;font-size:14px;margin-left: auto;margin-right: auto;text-align:center;margin-top:10px;letter-spacing: 0.15em;font-weight:bold;
+  }
+
+/* écran plus petit*/
+@media (max-width: 992px) {
+	.soutien { width: 100%; }
+}
+@media screen and (max-width: 992px) {
+  body {
+    padding-top:60px;
+  }
+}
+
+
+    .pub_top {
+        display:inline-block;
+    }
+    
+    .pub_top2 {
+        display:inline-block;
+        margin-left:8px;
+    }
+	
+	.dfp-top {
+            max-width: 1000px;
+            margin:auto;
+            max-height:250px;
+            text-align:center;
+background:#ffffff;
+	}
+	
+	#header + .ad {
+		display:none;
+	}
+
+         @media only screen and (max-width: 720px){
+	.dfp-top {
+		     padding-top: 10px; }
+	}
+</style>
+<!-- /BL GDL - Bloc pub top -->
+<!-- BL CO - Rubrique - Hashtags de type imm -->
+<!-- BL in -->
+
+<!-- /BL CO - Rubrique - Hashtags -->
+
+<div id="ventre">
+    <div id="primary" class="main-col">
+        <div class="content-main">
+            <!-- COL -->
+
+<!-- BL 404 de type ext -->
+<!-- BL in -->
+<div class="main container-1col page-404">
+    <div class="page-404">
+                <div>
+                <img src="/img/404.png">
+                    <div class="intro">
+                        <h2>ERREUR 404</h2>
+                        <h3>La page que vous recherchez est introuvable !</h3>
+                        <a class="bt-accueil" href="/">Retour à l'accueil</a>
+                        <a id="search-form" class="bt-recherche search-link slide-link" href="/recherche">Faire une recherche </a>
+                        <p class="texte"> Sinon, nous avons d'autres articles super intéréssants susceptibles de vous intéresser :</p> 
+                    </div>
+                </div>
+                <div class="liste-articles">
+                    <h4>Consultez nos articles du moment :</h4>
+                    <ul>
+                                                    <li>
+                                <a href="/actualite/faits-divers/le-souffle-devastateur-qui-sest-produit-vendredi-matin-a-la-distillerie-montebello-a-petit-bourg-a-fait-un-deuxieme-mort-1087603.php">
+                                                                                                                    <img loading="lazy" src="https://medias.franceantilles.fr/api/v1/images/view/6a66df925a2bb80a6306619f/home_liste/image.jpg" alt="">
+                                                                        <div class="texte">
+                                        <h5>Le souffle dévastateur qui s&#039;est produit vendredi matin à la...</h5>
+                                        <span>lundi 27 juillet 2026</span>
+                                    </div>
+                                <a>
+                            </li>
+                                                    <li>
+                                <a href="/actualite/vielocale/en-images-hommage-a-philippe-chaulet-1087541.php">
+                                                                                                                    <img loading="lazy" src="https://medias.franceantilles.fr/api/v1/images/view/6a64cd9d3f6434f2340cf0be/home_liste/image.jpg" alt="Ancien maire de la commune, député de la Guadeloupe, conseiller régional, vice-président de la communauté d’agglomération Grand Sud Caraïbe et président du Comité du tourisme des îles de Guadeloupe, l’homme politique a marqué plusieurs générations.">
+                                                                        <div class="texte">
+                                        <h5>En images : hommage à Philippe Chaulet</h5>
+                                        <span>samedi 25 juillet 2026</span>
+                                    </div>
+                                <a>
+                            </li>
+                                                    <li>
+                                <a href="/actualite/culture/miss-world-represente-un-nouveau-defi-1087664.php">
+                                                                                                                    <img loading="lazy" src="https://medias.franceantilles.fr/api/v1/images/view/6a66dfd4132c5056f70f084d/home_liste/image.jpg" alt="Indira Ampiot souhaite montrer que les Miss ne se résument pas à leur couronne : elles peuvent aussi être naturelles, spontanées et engagées.">
+                                                                        <div class="texte">
+                                        <h5>« Miss World représente un nouveau défi »</h5>
+                                        <span>lundi 27 juillet 2026</span>
+                                    </div>
+                                <a>
+                            </li>
+                                                    <li>
+                                <a href="/actualite/economie/le-trafic-en-baisse-a-laeroport-guadeloupe-maryse-conde-1087658.php">
+                                                                                                                    <img loading="lazy" src="https://medias.franceantilles.fr/api/v1/images/view/6a66dfc0bad6b0ea29026a2d/home_liste/image.jpg" alt="AEROPORT MARYSE CONDE. L&#039;entrée de l&#039;aéroport Maryse Condé.">
+                                                                        <div class="texte">
+                                        <h5>Le trafic en baisse à l&#039;aéroport Guadeloupe Maryse Condé</h5>
+                                        <span>lundi 27 juillet 2026</span>
+                                    </div>
+                                <a>
+                            </li>
+                                            </ul>
+                </div>
+            </div>
+</div>
+
+<!-- /BL 404 -->
+
+        </div>
+    </div>
+    <div id="secondary" class="sidebar">
+        <div class="content-sidebar">
+            <!-- COL -->
+
+<!-- BL GDL - Bloc pub 1 - Rectangle-Moyen - Mobile de type html -->
+<!-- BL in -->
+<div class="pub_carre" style="margin-bottom:10px;text-align:center;">
+	<div id="Rectangle-Moyen">
+<!-- GPT AdSlot 2 for Ad unit 'FAG_2018_Rectangle-Moyen' ### Size: [[300,250]] -->
+<div id='div-gpt-ad-8041691-2'>
+</div>
+<!-- End AdSlot 2 -->
+		</div>
+</div>
+
+<style>
+.side{max-width: 300px;}
+</style>
+<!-- /BL GDL - Bloc pub 1 - Rectangle-Moyen - Mobile -->
+<!-- BL COMMON - Radio droit de type html -->
+<!-- BL in -->
+<style>
+.radio-card {
+    background-color: #EE2623;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.radio-card.visiblescroll {
+position: fixed;
+  width: 300px;
+  bottom: 0px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  transition: transform 0.5s ease-in-out;
+        }
+.headerradio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 60px;
+}
+
+.radio-label {
+    font-size: 17px;
+    font-weight: bold;
+color:white
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fa-waveform {
+    font-size: 18px;
+    color: #aaa;
+}
+
+.play-button {
+    background-color: #FFF;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+}
+.fa-play, .fa-volume-up
+{
+color:red;
+}
+
+.contenuradiodroit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+color:white
+}
+
+.cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+display:none
+}
+
+.song-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.now-playing {
+    font-size: 12px;
+    color: #333;
+    font-weight: bold;
+}
+
+.artist-song {
+    font-size: 12px;
+    color: #666;
+}
+       #audioradio {
+   position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+</style>
+<div class="radio-card" id="radio-cardid">
+        <div class="headerradio">
+             <div class="logo-container">
+                <img src="https://assets.franceantilles.fr/common/images/logo_FAR-Color.png" alt="La Radio France-Antilles Logo" class="logo">
+                <span class="radio-label">France-Antilles Radio</span>
+            </div>
+            <div class="header-right">
+                <i class="fas fa-waveform"></i>
+                <button class="play-button" id="mute-toggle">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="contenuradiodroit">
+<center>La Radio 100% Caraïbes !</center>
+    <audio id="audioradio" controls autoplay muted src="https://2stream.net/fa_radio.mp3"></audio>
+      
+        </div>
+    </div>
+<!-- /BL COMMON - Radio droit -->
+<!-- BL CO - dernier commentaire de type ext -->
+<!-- BL in -->
+<div class="side bloc">
+    <div id="graphcomment-widget"></div>
+</div>
+<script src="https://graphcomment.com/js/widget.js"></script>
+
+<script>
+graphcommentWidget(document.getElementById('graphcomment-widget'), {
+  "graphcomment_id": "France-Antilles-Guadeloupe",
+  "defaultTab": "last_comments",
+  "tabs": [
+    "last_comments",
+    "top_comments"
+  ],
+  "labels": {
+    "last_comments": "",
+    "top_comments": "",
+    "top_threads": ""
+  },
+  "period": "90 days",
+  "limit": 20,
+  "height": 500,
+  "openLinksNewWindow": true,
+  "showVotes": false,
+  "locale": "fr"
+});
+</script>
+
+<!-- /BL CO - dernier commentaire -->
+<!-- BL GDL - Bloc pub 2 - Grand-Angle - Mobile de type html -->
+<!-- BL in -->
+<div id="Grand-Angle" style="text-align:center">
+<!-- GPT AdSlot 4 for Ad unit 'FAG_2018_Grand-Angle' ### Size: [[300,600]] -->
+<div id="div-gpt-ad-8041691-4">
+</div>
+<!-- End AdSlot 4 -->
+	</div>
+<!-- /BL GDL - Bloc pub 2 - Grand-Angle - Mobile -->
+<!-- BL GDL - Bloc pub 3 - Petit-Rectangle de type html -->
+<!-- BL in -->
+<div style="text-align:center;padding-top:5px;padding-bottom:5px;margin-bottom:5px;border-bottom: 1px solid #d0d0d0;">
+
+<div id="Petit-Rectangle">
+<!-- GPT AdSlot 6 for Ad unit 'FAG_2018_Petit-Rectangle' ### Size: [[300,125]] -->
+<div id="div-gpt-ad-8041691-6" >
+</div>
+<!-- End AdSlot 6 -->
+		</div>
+
+<div id='Petit-Rectangle-2' style="margin-top:10px; margin-bottom:10px">
+<!-- GPT AdSlot 12 for Ad unit 'FAG_2018_Petit-Rectangle' ### Size: [[300,125]] -->
+<div id='div-gpt-ad-8041691-13' >
+</div>
+<!-- End AdSlot 12 -->
+		</div>
+
+<div id='Petit-Rectangle-3'>
+<!-- GPT AdSlot 13 for Ad unit 'FAG_2018_Petit-Rectangle' ### Size: [[300,125]] -->
+<div id='div-gpt-ad-8041691-14'>
+</div>
+<!-- End AdSlot 13 -->
+		</div>
+
+
+</div>
+<!-- /BL GDL - Bloc pub 3 - Petit-Rectangle -->
+<!-- BL GDL - Bloc pub 4 - Seconde-Rectangle-Moyen de type html -->
+<!-- BL in -->
+<div id="Rectangle-Moyen-deux">
+<!-- GPT AdSlot 5 for Ad unit 'FAG_2019_Seconde-Rectangle-Moyen' ### Size: [[300,250]] -->
+<div id="div-gpt-ad-8041691-5">
+</div>
+<!-- End AdSlot 5 -->
+		</div>
+<!-- /BL GDL - Bloc pub 4 - Seconde-Rectangle-Moyen -->
+
+        </div>
+    </div>
+</div>
+<div id="ventre2" class="fullwidth">
+    <div id="doublecol" class="full-col">
+        <!-- COL -->
+
+
+    </div>
+</div>
+<!-- COL -->
+
+<!-- BL GDL - Surfooter - App de type html -->
+<!-- BL in -->
+<section id="app" class="surfooter">
+            <div class="wrap">
+                <ul class="app-links">
+                    <li>
+                        <a
+                            href="https://www.franceantilles.fr/apps/?d=all"
+                            title="Obtenir l'application sur l'App Store"
+                            ><img
+                                src="/img/appstore.png"
+                                alt="App Store"
+                                width="134"
+                                height="40"
+                        /></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.franceantilles.fr/apps/?d=all"
+                            title="Obtenir l'application sur Google Play"
+                            ><img
+                                src="/img/googleplay.png"
+                                alt="Google Play"
+                                width="134"
+                                height="40"
+                        /></a>
+                    </li>
+                </ul>
+                <p>
+                    Suivez l'info en temps réel<br />
+                    sur l'appli France-Antilles !
+                </p>
+                <a href="https://www.franceantilles.fr/apps/?d=all" class="btn">Télécharger</a>
+            </div>
+        </section>
+<!-- /BL GDL - Surfooter - App -->
+<!-- BL GDL - Surfooter - Social de type html -->
+<!-- BL in -->
+<section id="social" class="surfooter">
+            <div class="wrap">
+                <ul class="social-links">
+                    <li>Suivez-nous</li>
+                    <li>
+                        <a
+                            href="https://www.facebook.com/franceantilles.hexagone"
+                            class="icon fb"
+                            title="Nous suivre sur Facebook"
+                            target="_blank"
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.instagram.com/franceantilles_hexagone"
+                            class="icon ig"
+                            title="Nous suivre sur Instagram"
+                            target="_blank"
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://x.com/FAHexagone"
+                            class="icon tw"
+                            title="Nous suivre sur X"
+                            target="_blank"
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://fr.linkedin.com/company/france-antilles-guyane"
+                            class="icon in"
+                            title="Nous suivre sur LinkedIn"
+                            target="_blank"
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.youtube.com/@franceantillesguyane"
+                            class="icon yt"
+                            title="Nous suivre sur Youtube"
+                            target="_blank"
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.hexagone.franceantilles.fr/pages/fil-rss-hexagone"
+                            class="icon rss"
+                            title="S'abonner au flux RSS"
+                        ></a>
+                    </li>
+                </ul>
+                <a href="https://abo.martinique.franceantilles.fr/register?src=newsletter" class="btn social-newsletter"
+                    >S'inscrire aux newsletters</a
+                >
+            </div>
+        </section>
+<!-- /BL GDL - Surfooter - Social -->
+<!-- BL GDL - Footer de type html -->
+<!-- BL in -->
+<footer id="footer">
+
+    <style>
+    b { font-weight: bold; }
+    </style>
+<div style="padding-bottom:5px;padding-top:5px;">
+  <div id="Large-Banniere_Billboard_trois" style="margin-top: 20px;">
+<!-- GPT AdSlot 7 for Ad unit 'FAG_2018_Large-banniere_Bas' ### Size: [[728,90]] -->
+  <div id='div-gpt-ad-8041691-7'>
+  <script>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-8041691-7'); });
+  </script>
+  </div>
+<!-- End AdSlot 7 -->
+</div>
+</div>
+    
+
+    <div class="foot-logo" style="text-align:center;padding: 15px 0;line-height: 0;font-size: 0;height: 46px;margin-bottom: 15px;"><a title="France-Antilles Guadeloupe" href="/">
+                        <img src="/img/logo_foot.png" alt="logo France-Antilles Guadeloupe">
+                    </a>
+    </div>
+    
+    <div id="plan">
+    
+        <nav id="foot-menu">
+            <ul>
+                <li><span>Actualités</span>
+                    <ul>
+                        <li>
+                            <ul>
+                                <li><a href="/actualite/faits-divers/">Faits divers</a></li>
+                                <li><a href="/actualite/justice/">Justice</a></li>
+                                <li><a href="/actualite/economie/">Economie</a></li>
+                                <li><a href="/actualite/vielocale/">Vie locale</a></li>
+                                <li><a href="/actualite/social/">Social</a></li>
+                                <li><a href="/actualite/societe/">Société</a></li>
+                                <li><a href="/actualite/sante/">Santé</a></li>
+                                <li><a href="/actualite/sciences-et-recherche/">Sciences et Recherche</a></li>
+                                <li><a href="/actualite/politique/">Politique</a></li>
+                                <li><a href="/actualite/education/">Education</a></li>
+                                <li><a href="/actualite/environnement/">Environnement</a></li>
+                                <li><a href="/actualite/culture/">Culture</a></li>
+                                <li><a href="/actualite/france/">France</a></li>
+                                <li><a href="/actualite/international/">International</a></li>
+                                <li><a href="/actualite/planete_sports/">Sport (Monde)</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><span>Sport</span>
+                   <ul>
+                        <li>
+                            <ul>
+                                <li><a href="/actualite/sports/cyclisme/">Cyclisme</a></li>
+                                <li><a href="/actualite/sports/football/">Football</a></li>
+                                <li><a href="/actualite/sports/basket-ball/">Basket-ball</a></li>
+                                <li><a href="/actualite/sports/handball/">Handball</a></li>
+                                <li><a href="/actualite/sports/autres/">Autres sports</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><span>Loisirs</span>
+                    <ul>
+                        <li>
+                            <ul>
+                                <li><a href="/loisirs/sortir/">Sortir</a></li>
+                                <!--<li><a href="/loisirs/vacances/vacances-en-guadeloupe-131849.php">Vacances en Guadeloupe</a></li>-->
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><span>Pratique</span>
+                    <ul>
+                        <li>
+                            <ul>
+                                <li><a href="/pratique/meteo/">Météo</a></li>
+                                <li><a href="/pages/numeros-urgence-guadeloupe">Les numéros d'urgence</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><span>Annonces</span>
+                      <ul>
+                          <li>
+                            <ul>
+                                  <li><a href="/pages/avis-de-remerciements">Avis de remerciements</a></li>
+                                 <li><a href="/pages/annonces-legales-en-guadeloupe">Annonces légales en Guadeloupe</a></li>
+                                 <li><a href="/pages/marches-publics-en-guadeloupe" >Marchés Publics en Guadeloupe</a></li>
+                                <li><a href="https://assets.franceantilles.fr/common/cgv/CGV_PRESSEANTILLESGUYANE_2023_AL.pdf" target="_blank">CGV pour les annonces légales et les marchés publics</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+          <li><span>Mobile</span>
+                      <ul>
+                          <li>
+                      <ul>
+                                  <li><a href="/mobilite/applications-mobiles/application-journal-france-antilles-guadeloupe-498815.php">Application journal France-Antilles Guadeloupe</a></li>
+                                <li><a href="/mobilite/applications-mobiles/application-mobile-france-antilles-guadeloupe-273649.php">Application Actu d'info en continu France-Antilles Guadeloupe</a></li>
+                                 </ul>
+                        </li>
+                    </ul>
+                </li>
+          <li class="creola"><a href="https://www.creola.net/">Créola</a>
+            <ul>
+              <li>
+                <ul>
+                  <li><a href="https://www.creola.net" target="_blank">Lire le magazine Créola</a></li>
+                  <li><a href="https://www.creola.net" target="_blank">Consulter le site Créola.net</a></li>
+               </ul>
+             </li>
+          </ul>
+          </li>
+            </ul>
+        </nav>
+    
+        <div class="right">
+    
+    
+            <ul>
+                <li><a href="https://faq.franceantilles.fr/" target="_blank" title="Consultez notre Foire aux questions ">Besoin d'aide sur le site ? </a></li>
+                <li><a href="/pages/contactez-nous">Nous contacter</a></li>
+                <li><a href="/pages/publicite" title="contactez notre régie publicitaire et notre service promotion">Publicité</a> / <a href="https://assets.franceantilles.fr/common/cgv/CGV_PRESSEANTILLESGUYANE_2023_PUB.pdf" target="_blank">CGV pour la publicité</a></li>
+                <li><a href="/pages/partenaires">Partenaires</a></li>
+                <li><a href="/pages/conditions-generales">CGU/CGV</a></li>
+                <li><a href="/pages/cookies" target="_blank">Cookies</a></li>
+                <li><a href="javascript:Didomi.preferences.show()">Modifier mes choix sur les cookies</a></li>
+                <li><a href="/pages/donnees-personnelles" target="_blank">Données personnelles</a></li>
+                <li><a href="/pages/charte" TITLE="Charte de bonne conduite FranceAntilles.fr">Charte de bonne conduite</a></li>
+                <li><a href="/pages/reglements-des-jeux-concours" TITLE="Jeux Concours France-Antilles Guadeloupe" target="_blank">Règlements des jeux concours</a></li>
+                <li><a href="/pages/qui-sommes-nous">Qui sommes-nous ?</a></li>
+                <li><a href="https://l.franceantilles.fr/cookie/consent" TITLE="Désactivation du cookie NONLI" target="_blank">Inspecter l'état du tracking de Nonli</a></li>
+            </ul>
+            <ul>
+              <li>Nous suivre :</li>
+              <li>
+                  <a href="https://www.instagram.com/franceantilles_guadeloupe/" style="background: url(/img/footer-insta.png) left center no-repeat;display: block;padding-left:32px;line-height:30px;">Instagram</a>
+              </li>
+              <li>
+                  <a href="https://www.facebook.com/FranceAntillesGuadeloupe/" style="background: url(/img/footer-facebook.png) left center no-repeat;display:block;padding-left:32px;line-height:30px;">Facebook</a>
+              </li>
+                <li>
+                    <a href="https://twitter.com/FAGuadeloupe" style="background: url(/img/footer-twitter.png) left center no-repeat;display: block;padding-left:32px;line-height:30px;">Twitter</a>
+                </li>
+                <li>
+                    <a href="/pages/fil-rss-guadeloupe" style="background: url(/img/footer-rss.png) left center no-repeat;display: block;padding-left:32px;line-height:30px;">RSS</a>
+                </li>
+            </ul>
+    
+        </div>
+    
+    </div>
+    
+    <div id="liens">
+        <div style="margin-bottom:10px;">
+            <strong>Sites du Groupe :</strong>
+            <ul>
+                <li><a href="https://www.martinique.franceantilles.fr" target="_blank">Actualité Martinique</a></li>
+                <li><a href="https://www.franceguyane.fr" target="_blank">Actualité Guyane</a></li>
+                <li><a href="https://www.antilles-legales.fr"  target="_blank">Annonces Légales Guadeloupe</a></li>
+                <li><a href="https://www.boutique.franceantilles.fr" target="_blank">La Boutique France-Antilles</a></li>
+                <li><a href="https://digital.franceantilles.fr/" target="_blank">La Régie Digitale France-Antilles</a></li>
+        
+            </ul>
+        </div>
+            <div>
+                <strong>Partenaires :</strong>
+                <ul>
+                    <li><a href="https://www.epresse.fr/fr/publication/france-antilles-hexagone">ePresse</a></li>
+        
+                    <li><a href="http://www.actulegales.fr">ActuLegales.fr</a></li>
+                    <li><a href="https://fr.vocalepresse.com/catalogue/france-antilles-guadeloupe.html">Aveugles et mal-voyants</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="copy" style="padding-bottom: 60px;">
+            <p><a href="https://www.franceantilles.fr/" title="FranceAntilles.fr, tout l'actualité de la Guadeloupe, de la Martinique et de la Guyane en ligne">© Tous droits réservés FranceAntilles.fr 2008-2025 </a> - <a href="/pages/mentions-legales">Mentions légales</a></p>
+        </div>
+
+    
+    </footer>
+<!-- /BL GDL - Footer -->
+<!-- BL GDL - Pub bottom de type html -->
+<!-- BL in -->
+<style>
+  #ph-postitiel {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: 99999; background: rgba(0, 0, 0, 0.9);
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease;
+    cursor: pointer; align-items: center; justify-content: center;
+  }
+  #ph-postitiel.active { display: flex !important; opacity: 1; visibility: visible; }
+
+  #div-gpt-ad-8041691-11 { width: 100%; max-width: 1000px; z-index: 100; pointer-events: none; }
+  #div-gpt-ad-8041691-11 iframe { width: 100%; height: 90vh; border: none; pointer-events: auto; }
+
+  /* Barre de contrôle supérieure */
+  #ph-controls {
+    position: absolute; top: 20px; right: 20px;
+    display: flex; align-items: center; gap: 15px;
+    z-index: 101; pointer-events: auto;
+  }
+  .ph-pill {
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+    padding: 8px 15px; border-radius: 25px; color: #fff;
+    font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;
+  }
+  #ph-btn-stay {
+    background: #ffca00; color: #000; border: none; cursor: pointer;
+    text-transform: uppercase; display: none; /* Apparaît si vidéo */
+  }
+  #ph-close-cross {
+    width: 35px; height: 35px; background: #fff; color: #000;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; cursor: pointer;
+  }
+</style>
+
+<div id="ph-postitiel">
+    <div id="ph-controls">
+        <div id="ph-timer" class="ph-pill">8s</div>
+        <button id="ph-btn-stay" class="ph-pill">Rester sur la pub</button>
+        <div id="ph-close-cross">&times;</div>
+    </div>
+    <div id="div-gpt-ad-8041691-11"></div>
+</div>
+
+<script>
+(function() {
+    let timeLeft = 8;
+    let timerIdx = null;
+    let isPaused = false;
+
+    function closePrehome() {
+        clearInterval(timerIdx);
+        const container = document.getElementById("ph-postitiel");
+        container.classList.remove("active");
+        document.body.style.overflow = "auto";
+
+        // Stop vidéo dans l'iframe
+        const ifr = document.querySelector('#div-gpt-ad-8041691-11 iframe');
+        if (ifr) ifr.contentWindow.postMessage('STOP_VIDEO', '*');
+
+        setTimeout(() => { container.style.display = 'none'; }, 400);
+    }
+
+    window.googletag = window.googletag || { cmd: [] };
+    googletag.cmd.push(function() {
+        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+            if (event.slot.getSlotElementId() === 'div-gpt-ad-8041691-11' && !event.isEmpty) {
+                const container = document.getElementById("ph-postitiel");
+                container.classList.add("active");
+                document.body.style.overflow = "hidden";
+
+                // Fermeture au clic sur le fond
+                container.onclick = (e) => { if(e.target.id === "ph-postitiel") closePrehome(); };
+                document.getElementById("ph-close-cross").onclick = closePrehome;
+                document.getElementById("ph-btn-stay").onclick = () => {
+                    isPaused = true;
+                    clearInterval(timerIdx);
+                    document.getElementById("ph-timer").style.display = "none";
+                    document.getElementById("ph-btn-stay").style.display = "none";
+                };
+
+                // Timer
+                timerIdx = setInterval(() => {
+                    if (isPaused) return;
+                    timeLeft--;
+                    document.getElementById("ph-timer").textContent = timeLeft + "s";
+                    if (timeLeft <= 0) closePrehome();
+                }, 1000);
+                
+                // Détection vidéo pour afficher "Rester"
+                window.addEventListener('message', (e) => {
+                    if (e.data.type === 'prehome-isVideo') {
+                        document.getElementById("ph-btn-stay").style.display = "block";
+                    }
+                });
+            }
+        });
+    });
+})();
+</script>
+
+
+
+
+<script>
+  (function() {
+    function hideAdPlaceholder(containerId, adId) {
+      const container = document.getElementById(containerId);
+      const adContainer = document.getElementById(adId);
+      
+      if (!container || !adContainer) return;
+      
+      // Observer pour détecter l'ajout d'une pub
+      const observer = new MutationObserver(function(mutations) {
+        for (let mutation of mutations) {
+          if (mutation.addedNodes.length > 0) {
+            // Vérifie si un iframe Google Ads a été ajouté
+            const hasAd = adContainer.querySelector('iframe[id^="google_ads_iframe"]');
+            if (hasAd) {
+              container.classList.add('has-ad');
+              observer.disconnect();
+              break;
+            }
+          }
+        }
+      });
+      
+      observer.observe(adContainer, {
+        childList: true,
+        subtree: true
+      });
+    }
+    
+    // Attendre que le DOM soit chargé
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        hideAdPlaceholder('Large-Banniere_Billboard', 'div-gpt-ad-8041691-1');
+        hideAdPlaceholder('Large-Banniere_Billboard_deux', 'div-gpt-ad-8041691-18');
+        hideAdPlaceholder('Large-Banniere_Billboard_trois', 'div-gpt-ad-8041691-7');
+        hideAdPlaceholder('Rectangle-Moyen', 'div-gpt-ad-8041691-2');
+        hideAdPlaceholder('Rectangle-Moyen-deux', 'div-gpt-ad-8041691-5');
+        hideAdPlaceholder('Petit-Rectangle', 'div-gpt-ad-8041691-6');
+        hideAdPlaceholder('Petit-Rectangle-2', 'div-gpt-ad-8041691-13');
+        hideAdPlaceholder('Petit-Rectangle-3', 'div-gpt-ad-8041691-14');
+        hideAdPlaceholder('Grand-Angle', 'div-gpt-ad-8041691-4');
+        hideAdPlaceholder('Grand-Angle_bas', 'div-gpt-ad-8041691-9');
+        hideAdPlaceholder('Banniere-Centrale', 'div-gpt-ad-8041691-3');
+
+      });
+    } else {
+      hideAdPlaceholder('Large-Banniere_Billboard', 'div-gpt-ad-8041691-1');
+       hideAdPlaceholder('Large-Banniere_Billboard_deux', 'div-gpt-ad-8041691-18');
+        hideAdPlaceholder('Large-Banniere_Billboard_trois', 'div-gpt-ad-8041691-7');
+      hideAdPlaceholder('Rectangle-Moyen', 'div-gpt-ad-8041691-2');
+        hideAdPlaceholder('Rectangle-Moyen-deux', 'div-gpt-ad-8041691-5');
+        hideAdPlaceholder('Petit-Rectangle', 'div-gpt-ad-8041691-6');
+        hideAdPlaceholder('Petit-Rectangle-2', 'div-gpt-ad-8041691-13');
+        hideAdPlaceholder('Petit-Rectangle-3', 'div-gpt-ad-8041691-14');
+      hideAdPlaceholder('Grand-Angle', 'div-gpt-ad-8041691-4');
+        hideAdPlaceholder('Grand-Angle_bas', 'div-gpt-ad-8041691-9');
+      hideAdPlaceholder('Banniere-Centrale', 'div-gpt-ad-8041691-3');
+
+    }
+  })();
+</script>
+<!-- /BL GDL - Pub bottom -->
+<!-- BL fullscreen widget de type html -->
+<!-- BL in -->
+<style>
+#fullscreen-widget {
+  position: fixed;
+  width: 100vw;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 500;
+  background: 0 0;
+}
+#boutonfermer{
+display:none
+}
+@keyframes retardbouton{
+0% {opacity:0;}
+99% {opacity:0;}
+100% {opacity:1;}
+}
+
+
+@media screen and (max-width: 1020px) {
+#boutonfermer{
+display:none;
+animation: retardbouton 5s 1;
+-webkit-animation: retardbouton 5s 1;
+	-moz-animation: retardbouton 5s 1;
+	-ms-animation: retardbouton 5s 1;
+	-o-animation: retardbouton 5s 1;
+z-index: 999999;
+position:fixed;
+bottom:65px;
+left:10px
+}
+}
+</style>
+<div id="boutonfermer"><img src="https://assets.franceantilles.fr/common/images/close.png" onclick="fonctionfermer()"></div>
+<div id="fullscreen-widget"></div>
+
+<script>
+function fonctionfermer() {
+  document.getElementById("fullscreen-widget").style.display = "none";
+document.getElementById("boutonfermer").style.display = "none";
+}
+</script>
+<!-- /BL fullscreen widget -->
+<!-- BL CO - Patch Video full with JQUERY de type html -->
+<!-- BL in -->
+<script type="text/javascript"> 
+window.didomiOnReady = window.didomiOnReady || [];
+window.didomiOnReady.push(function (Didomi) { 
+// PATCH
+
+console.log("patch ready");
+    // Sélectionner tous les divs qui ont le style exact "position:relative;padding-bottom:56.25%;"
+    $('div[style="position:relative;padding-bottom:56.25%;"]').each(function() {
+console.log("div trouvees");
+        // Remplacer "padding-bottom:56.25%" par "padding-bottom:5%"
+        $(this).attr('style', 'position:relative;padding-bottom:56.5%;margin:5% 0 5% 0');
+
+        // Sélectionner l'iframe enfant de ce div
+        var iframe = $(this).find('iframe');
+
+        // Ajouter le style "position: absolute;top: 0;left: 0;width: 100%;height: 100%;" à l'iframe
+        iframe.css({
+            'position': 'absolute',
+            'top': '0',
+            'left': '0',
+            'width': '100%',
+            'height': '100%'
+        });
+
+        // Supprimer les attributs width et height de l'iframe
+        iframe.removeAttr('width').removeAttr('height');
+    });
+
+// FIN PATCH
+});
+</script>
+<!-- /BL CO - Patch Video full with JQUERY -->
+<!-- BL CO - Patch script footer JS/JQUERY de type html -->
+<!-- BL in -->
+<script>
+$(document).ready(function() {
+  $(".graphcomment-widget").css("max-width", "300px");
+});
+</script>
+<!-- /BL CO - Patch script footer JS/JQUERY -->
+<!-- BL GDL - Script NONLI de type html -->
+<!-- BL in -->
+<script type="text/javascript">
+window._nli=window._nli||[],window._nli.push(["brand","BNLI-1438"]),function(){var n,e,i=window._nli||(window._nli=[]);i.loaded||((n=document.createElement("script")).defer=!0,n.src="https://l.franceantilles.fr/sdk.js",(e=document.getElementsByTagName("script")[0]).parentNode.insertBefore(n,e),i.loaded=!0)}();
+</script>
+<!-- /BL GDL - Script NONLI -->
+<!-- BL CO - SCRIPTS BOTTOM de type html -->
+<!-- BL in -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+
+ // Référence au lecteur audio et au bouton
+        const audioPlayerbis = document.getElementById("audioradio");
+        const muteToggleButton = document.getElementById("mute-toggle");
+
+        // Gestion de l'événement de clic
+        muteToggleButton.addEventListener("click", () => {
+            // Basculer le mode mute
+            audioPlayerbis.muted = !audioPlayerbis.muted;
+
+            // Changer l'icône en fonction de l'état
+            const icon = muteToggleButton.querySelector("i");
+            if (audioPlayerbis.muted) {
+                icon.classList.remove("fa-volume-up");
+                icon.classList.add("fa-play");
+            } else {
+                icon.classList.remove("fa-play");
+                icon.classList.add("fa-volume-up");
+            }
+        });
+
+// Références
+        const blocradio = document.getElementById("radio-cardid");
+
+        // Afficher le lecteur au défilement
+        window.addEventListener("scroll", () => {
+            // Déclencher l'affichage après un certain défilement
+            if (window.scrollY > 400) {
+                blocradio.classList.add("visiblescroll");
+            } else {
+                blocradio.classList.remove("visiblescroll");
+            }
+        });
+
+</script>
+<style>
+.center{
+margin-left: auto;
+  margin-right: auto;
+}
+.menustar{
+background : #EAE7EA;
+}
+.menustar a{
+color : #FF0208 !important;
+}
+</style>
+<!-- /BL CO - SCRIPTS BOTTOM -->
+
+
+    </div>
+        
+    <script type="text/javascript">
+        function socialDatalayer(socialMedia){
+            dataLayer.push({
+                'event' : 'share',
+                'method' : socialMedia
+            });
+        }
+
+        function subscriptionDatalayer(nomenclature){
+            dataLayer.push({
+                'event' : 'click_to_subscription',
+                'click_nomenclature' : nomenclature
+            });
+        }
+
+        //TODO: newsletter
+        //function newsletterDatalayer(nomenclature){
+
+        //}
+
+        // TODO : lien mon compte
+        function headerDatalayer(nomenclature){
+            dataLayer.push({
+                'event' : 'click_header',
+                'click_nomenclature' : nomenclature
+            });
+        }
+
+        function menusDatalayer(event, link){
+            dataLayer.push({
+                'event' : event,
+                'link_text' : link
+            });
+        }
+
+        function pooolDatalayer(type){
+            paywall_id = null;
+            dataLayer.push({
+                'event' : "click_paywall",
+                'click_nomenclature' : type,
+                'paywall_id' : paywall_id
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // mainMenuDatalayer
+            $('#mainmenu nav ul li>a').on('click', function() {
+                menusDatalayer('click_main_menu', $(this).text());
+            });
+
+            // burger menu
+            $('#burgerMenu a').on('click', function() {
+                menusDatalayer('click_burger_menu', $(this).text());
+            });
+
+            $('#plan a').on('click', function(){
+                menusDatalayer('click_footer',$(this).text())
+            });
+
+            $('#tags a').on('click', function(){
+                menusDatalayer('click_tags',$(this).text())
+            });
+        });
+
+        window._taboola = window._taboola || [];
+        _taboola.push({flush: true});
+
+    </script>
+        </body>
+</html>
