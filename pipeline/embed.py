@@ -11,7 +11,7 @@ from pipeline.embeddings.factory import create_embedding_provider
 from service.logger import log
 
 
-def generate_embeddings(progress_callback=None, provider_name=None):
+def generate_embeddings(progress_callback=None, provider_name=None, stop_checker=None):
     """
     Generate vector embeddings for all processed articles that do not have them yet.
     """
@@ -38,6 +38,10 @@ def generate_embeddings(progress_callback=None, provider_name=None):
     updated_count = 0
 
     for idx, filepath in enumerate(processed_files, 1):
+        if stop_checker and stop_checker():
+            log.warn("Cancellation requested", "Stopping embedding stage immediately")
+            break
+
         if progress_callback:
             progress_callback(idx, total, f"Embedding {filepath.name}")
 

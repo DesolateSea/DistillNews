@@ -183,7 +183,7 @@ class PipelineRunner:
 
         try:
             from pipeline.scrape import run_scrape as run_scrape_func
-            run_scrape_func(progress_callback=callback, run_timestamp=run_timestamp)
+            run_scrape_func(progress_callback=callback, run_timestamp=run_timestamp, stop_checker=self._is_stopped)
             if not self._is_stopped():
                 self._emit(StageCompleted(stage="scrape"))
         except PipelineCancelled:
@@ -203,7 +203,7 @@ class PipelineRunner:
 
         try:
             from pipeline.generate import generate_articles
-            generate_articles(progress_callback=_on_generate_progress)
+            generate_articles(progress_callback=_on_generate_progress, stop_checker=self._is_stopped)
         except PipelineCancelled:
             pass
         except Exception as e:
@@ -224,7 +224,7 @@ class PipelineRunner:
 
         try:
             from pipeline.embed import generate_embeddings
-            generate_embeddings(progress_callback=_on_embed_progress)
+            generate_embeddings(progress_callback=_on_embed_progress, stop_checker=self._is_stopped)
         except PipelineCancelled:
             pass
         except Exception as e:
