@@ -14,7 +14,7 @@ class RemoteEmbeddingProvider(EmbeddingProvider):
     """Generates vector embeddings by calling the remote embedding microservice."""
 
     def __init__(self, service_url: str | None = None, timeout: float = 10.0):
-        self.service_url = service_url or os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-service:8001")
+        self.service_url = service_url or os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-server:8001")
         self.timeout = timeout
 
     def embed(self, text: str) -> list[float]:

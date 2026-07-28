@@ -21,11 +21,11 @@ WORKDIR /app
 RUN addgroup --system app && adduser --system --ingroup app --home /app app
 
 # Install Python backend dependencies only (lightweight, no PyTorch / sentence-transformers)
-COPY requirements-backend.txt ./requirements.txt
+COPY server/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-# Copy ONLY web server & shared domain services (strictly excludes pipeline/)
+# Copy web server & shared domain services
 COPY config.py ./
 COPY server ./server
 COPY service ./service

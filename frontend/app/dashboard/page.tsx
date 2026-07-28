@@ -58,7 +58,8 @@ export default function DashboardPage() {
       const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE);
       const newArticles = feeds as NewsItem[];
 
-      setHasMore(has_more ?? newArticles.length === ITEMS_PER_PAGE);
+      const hasMoreNext = newArticles.length > 0 && (has_more ?? newArticles.length === ITEMS_PER_PAGE);
+      setHasMore(hasMoreNext);
       setNews((prev) =>
         pageNum === 1 ? newArticles : [...prev, ...newArticles]
       );
@@ -248,6 +249,20 @@ export default function DashboardPage() {
                 Sign In to Personalize
               </Button>
             </Link>
+          </div>
+        )}
+
+        {/* Empty state fallback */}
+        {!isLoading && news.length === 0 && (
+          <div className="text-center py-12 border rounded-xl bg-card my-6">
+            <Newspaper className="h-12 w-12 mx-auto text-muted-foreground mb-4 opacity-50" />
+            <h3 className="text-lg font-semibold mb-1">No news articles found</h3>
+            <p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
+              No articles are currently available in the active article store. Try refreshing or check that your backend server is running.
+            </p>
+            <Button variant="outline" onClick={() => fetchNews(1)}>
+              Retry Loading Feed
+            </Button>
           </div>
         )}
 

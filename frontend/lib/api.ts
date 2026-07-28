@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/$/, "");
 
 export type ApiRequestOptions = Omit<RequestInit, "body"> & {
   body?: unknown;
@@ -6,12 +6,6 @@ export type ApiRequestOptions = Omit<RequestInit, "body"> & {
 };
 
 function getApiUrl(path: string) {
-  if (!API_URL) {
-    throw new Error(
-      "NEXT_PUBLIC_API_URL is not configured. Add it to frontend/.env.local or your production environment."
-    );
-  }
-
   return `${API_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 

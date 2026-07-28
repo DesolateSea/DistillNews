@@ -43,7 +43,7 @@ async def test_send_otp_failure_logging_output(capsys):
     mock_redis = MagicMock()
     mock_redis.set = AsyncMock(return_value=True)
 
-    with patch("db.redis.RedisHandle.client", return_value=mock_redis):
+    with patch("service.db.redis.RedisHandle.client", return_value=mock_redis):
         with patch("server.services.otp_service._send_smtp", side_effect=OSError("[Errno -3] Temporary failure in name resolution")):
             response = await send_otp(SendOTPRequest(email="user@example.com"))
 

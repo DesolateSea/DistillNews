@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     attach: false
     volumes:
-      - ./data/db:/data/db
+      - mongo_data:/data/db
     healthcheck:
       test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
       interval: 10s
@@ -21,7 +21,7 @@ services:
       timeout: 5s
       retries: 5
 
-  embedding-service:
+  embedding-server:
     build:
       context: .
       dockerfile: Dockerfile.embedding
@@ -50,14 +50,12 @@ services:
       EMAIL: ${EMAIL}
       PASS: ${PASS}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
-      EMBEDDING_SERVICE_URL: http://embedding-service:8001
+      EMBEDDING_SERVICE_URL: http://embedding-server:8001
     depends_on:
       mongo:
         condition: service_healthy
       redis:
         condition: service_healthy
-      embedding-service:
-        condition: service_started
     restart: unless-stopped
 
   frontend:
@@ -73,3 +71,6 @@ services:
       backend:
         condition: service_healthy
     restart: unless-stopped
+
+volumes:
+  mongo_data:

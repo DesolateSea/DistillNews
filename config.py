@@ -89,22 +89,6 @@ class Config:
         return os.getenv("JULEP_ENVIRONMENT", "production")
 
     # ------------------------------------------------------------------
-    # Ollama Local Settings
-    # ------------------------------------------------------------------
-
-    @property
-    def OLLAMA_BASE_URL(self) -> str:
-        return os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-
-    @property
-    def OLLAMA_MODEL(self) -> str:
-        return os.getenv("OLLAMA_MODEL", "llama3")
-
-    @property
-    def OLLAMA_EMBEDDING_MODEL(self) -> str:
-        return os.getenv("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
-
-    # ------------------------------------------------------------------
     # Local Sentence Transformers Settings
     # ------------------------------------------------------------------
 
@@ -119,22 +103,6 @@ class Config:
     def SENTENCE_TRANSFORMERS_DEVICE(self) -> str | None:
         """Optional Torch device override, such as ``cpu``, ``cuda``, or ``mps``."""
         return os.getenv("SENTENCE_TRANSFORMERS_DEVICE")
-
-    # ------------------------------------------------------------------
-    # HuggingFace Settings
-    # ------------------------------------------------------------------
-
-    @property
-    def HUGGINGFACE_API_KEY(self) -> str | None:
-        return os.getenv("HUGGINGFACE_API_KEY") or os.getenv("HF_TOKEN")
-
-    @property
-    def HUGGINGFACE_MODEL(self) -> str:
-        return os.getenv("HUGGINGFACE_MODEL", "meta-llama/Llama-3.2-3B-Instruct")
-
-    @property
-    def HUGGINGFACE_EMBEDDING_MODEL(self) -> str:
-        return os.getenv("HUGGINGFACE_EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
     # ------------------------------------------------------------------
     # News API Sources Keys
@@ -190,7 +158,29 @@ class Config:
 
     @property
     def EMBEDDING_SERVICE_URL(self) -> str:
-        return os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-service:8001")
+        return os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-server:8001")
+
+    # ------------------------------------------------------------------
+    # Article Store Settings
+    # ------------------------------------------------------------------
+
+    @property
+    def ARTICLE_STORE_BACKEND(self) -> str:
+        """Backend for processed article persistence.
+
+        Options: ``file`` (local disk, default), ``azure`` (Azure Blob Storage).
+        """
+        return os.getenv("ARTICLE_STORE_BACKEND", "file")
+
+    @property
+    def AZURE_STORAGE_CONNECTION_STRING(self) -> str | None:
+        """Azure Storage account connection string for Blob Storage."""
+        return os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+
+    @property
+    def AZURE_BLOB_CONTAINER(self) -> str:
+        """Azure Blob container name for processed articles."""
+        return os.getenv("AZURE_BLOB_CONTAINER", "processed-articles")
 
     # ------------------------------------------------------------------
     # Pipeline Source & Service Controls

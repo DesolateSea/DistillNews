@@ -30,7 +30,7 @@ class SentenceTransformersEmbeddingProvider(EmbeddingProvider):
         except ImportError as error:
             raise RuntimeError(
                 "Local Sentence Transformers embeddings require the optional "
-                "'sentence-transformers' dependency. Install requirements.txt first."
+                "'sentence-transformers' dependency. Install pipeline/requirements.txt first."
             ) from error
 
         selected_device = device or config.SENTENCE_TRANSFORMERS_DEVICE

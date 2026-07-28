@@ -41,10 +41,11 @@ def rapid_news_parser(news_item, no_repeat=True):
     formatted["publication_date"] = parse_date_timestamp(published_date)
 
     # Early exit if article already processed on disk BEFORE calling web scraper
-    if formatted["title"] and formatted["title"] != "Unknown":
-        from service.db import FileStore
-        article_id = FileStore.compute_article_id(formatted["title"], formatted["publication_date"])
-        if FileStore.article_exists(article_id):
+    if no_repeat and formatted["title"] and formatted["title"] != "Unknown":
+        from service.db import create_article_store, ArticleStore
+        article_store = create_article_store()
+        article_id = ArticleStore.compute_article_id(formatted["title"], formatted["publication_date"])
+        if article_store.article_exists(article_id):
             if log:
                 log.save_skip("Article already processed", article_id)
             return None, None

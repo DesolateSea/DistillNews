@@ -16,3 +16,5 @@ motor
 tui
 textual
 rich
+azure-storage-blob>=12.20.0
+

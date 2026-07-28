@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 from service.agents import create_agent
-from service.db import FileStore
+from service.db import FileStore, create_article_store, ArticleStore
 from config import config
 
 from pipeline.parsers.paragraph_extractor import clean_html
@@ -31,11 +31,12 @@ test_dir = PROJECT_ROOT / "tests" / "fixtures"
 
 # Create a shared agent instance (provider selected by env var)
 agent = create_agent()
+article_store = create_article_store()
 
 
 def _get_article_id(input_data) -> str:
     """Compute target article ID from title and publication_date."""
-    return FileStore.compute_article_id(input_data["title"], input_data["publication_date"])
+    return ArticleStore.compute_article_id(input_data["title"], input_data["publication_date"])
 
 
 def _extract_news(input_data, prompt, source=None, debug=None, article_id=None, raw_source_file=None):
@@ -56,7 +57,7 @@ def _extract_news(input_data, prompt, source=None, debug=None, article_id=None, 
     if article_id is None:
         article_id = _get_article_id(input_data)
 
-    if FileStore.article_exists(article_id):
+    if article_store.article_exists(article_id):
         log.save_skip("Article already exists", article_id)
         return None
 
@@ -84,8 +85,8 @@ def _extract_news(input_data, prompt, source=None, debug=None, article_id=None, 
         return None
 
     # Save structured output via FileStore repository
-    saved_path = FileStore.save_processed_article(parsed, article_id=article_id)
-    log.save(saved_path.name, "Article saved")
+    saved_id = article_store.save_article(parsed, article_id=article_id)
+    log.save(saved_id, "Article saved")
 
     if debug:
         log.info("Structured output", json.dumps(parsed, indent=2)[:200])
@@ -143,7 +144,7 @@ def extract_news(obj, parser, prompt, assured_news=True, debug=None, raw_source_
 
     # Article existence check BEFORE any AI calls
     article_id = _get_article_id(formatted)
-    if FileStore.article_exists(article_id):
+    if article_store.article_exists(article_id):
         log.save_skip("Article already exists", article_id)
         return None
 

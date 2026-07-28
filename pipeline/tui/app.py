@@ -6,6 +6,7 @@ from textual.widgets import Header, Footer, Static, RichLog, ProgressBar, Button
 from textual.containers import Horizontal, Vertical, ScrollableContainer, Grid
 from textual.binding import Binding
 from textual.worker import get_current_worker
+from textual import work
 from rich.markup import escape
 
 from pipeline.runner import (
@@ -153,15 +154,22 @@ class DistillNewsApp(App):
                 pass
 
     def _update_article_count(self) -> None:
+        self._update_article_count_worker()
+
+    @work(thread=True)
+    def _update_article_count_worker(self) -> None:
         if self._is_quitting:
             return
         try:
-            count = len(FileStore.list_processed_files())
+            from service.db import create_article_store
+            from config import config
+            article_store = create_article_store()
+            articles = article_store.list_articles()
+            count = len(articles)
+            backend_label = "Azure Blob" if config.ARTICLE_STORE_BACKEND == "azure" else "Local Disk"
             lbl = self.query_one("#article-count", Static)
-            if threading.get_ident() == self._thread_id:
-                lbl.update(f"{count} articles processed")
-            else:
-                self.call_from_thread(lbl.update, f"{count} articles processed")
+            text = f"{count} articles processed [{backend_label}]"
+            self.call_from_thread(lbl.update, text)
         except Exception:
             pass
 

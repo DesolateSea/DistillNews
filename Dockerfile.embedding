@@ -3,26 +3,23 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Prevent Python from writing pyc files and buffering stdout
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    HF_HOME=/app/.cache/huggingface
 
-# Install system build dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install dependencies
-COPY requirements-embedding.txt .
-RUN pip install --no-cache-dir -r requirements-embedding.txt
+COPY embedding_server/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
 
-# Pre-download SentenceTransformer model weights during image build so it is cached permanently
-RUN python3 -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')"
-
-# Copy service and config code
-COPY config.py .
-COPY service/ service/
+# Copy standalone embedding server code
+COPY embedding_server/ embedding_server/
 
 EXPOSE 8001
 
-CMD ["uvicorn", "service.embedding_service.app:app", "--host", "0.0.0.0", "--port", "8001"]
+CMD ["uvicorn", "embedding_server.app:app", "--host", "0.0.0.0", "--port", "8001"]

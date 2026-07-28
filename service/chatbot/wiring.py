@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from service.agents import create_agent
-from service.db import FileStore
+from service.db import create_article_store
 from service.chatbot.service import ChatbotService
 from service.rag import create_doc_store
 from service.rag.base import Document
@@ -15,6 +15,7 @@ prompts_dir = Path(__file__).resolve().parent / "prompts"
 # unaware of the chat model, document store, and embedding implementation.
 agent = create_agent()
 doc_store = create_doc_store()
+article_store = create_article_store()
 chatbot = ChatbotService(agent, doc_store, prompts_dir, logger=log)
 
 
@@ -23,11 +24,10 @@ def _load_and_upload_articles():
     documents = []
 
     log.section("RAG Document Upload")
-    files = FileStore.list_processed_files()
-    log.info("Scanning for articles via FileStore", f"{len(files)} files found")
+    articles = article_store.load_all_articles()
+    log.info("Scanning for articles via ArticleStore", f"{len(articles)} articles found")
 
-    for file in files:
-        data = FileStore.read_json(file)
+    for data in articles:
         if isinstance(data, dict) and "content" in data:
             documents.append(
                 Document(

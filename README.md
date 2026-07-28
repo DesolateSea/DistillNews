@@ -37,12 +37,21 @@ By combining structured AI extraction, community discovery, and smart personaliz
 
 ## Getting Started
 
-### Quickstart with Docker
+### Fast Local Development (Hot-Reloading)
 
-Run the frontend and backend with:
+For instant sub-second hot-reloading without Docker container builds:
 
 ```bash
-cp .env.example .env
+./dev.sh
+```
+
+This starts `mongo` & `redis` in Docker background and runs the backend & embedding server locally with auto-reload.
+
+### Full Docker Deployment
+
+To build and run all production containers:
+
+```bash
 docker compose up --build
 ```
 
@@ -51,7 +60,7 @@ docker compose up --build
 To use the pipeline, run:
 
 ```bash
-backend/cli.py
+python pipeline/cli.py
 ```
 
 For detailed architecture and subsystem documentation, refer to [doc/ARCHITECTURE.md](doc/ARCHITECTURE.md).
