@@ -1,0 +1,47 @@
+{
+  "title": "A TikTok Influencer Opens Up About Her Skin Picking Condition",
+  "publication_date": "2025-04-18T15:31:43Z",
+  "summary": "An article headlined by the New York Times details a TikTok influencer speaking about her experience with skin picking (excoriation) disorder, but the full story was not accessible due to site restrictions. The piece highlights the role of social media in destigmatizing body-focused repetitive behaviors and points readers toward support and treatment options.",
+  "content": "The page associated with this article returned a site message reading: \"Please enable JS and disable any ad blocker.\" Metadata available on the page lists the publisher as \"nytimes.com\" and the author as \"Unknown Author,\" but the full article text was not accessible through the provided content.\n\nBecause the original article content could not be retrieved, the following contextual summary outlines the likely themes and public-health context referenced by the headline \"A TikTok Influencer Opens Up About Her Skin Picking Condition.\" Skin picking, clinically known as excoriation disorder and often categorized among body-focused repetitive behaviors (BFRBs), involves repeated picking at the skin that can cause tissue damage and distress. People who experience this behavior report a range of triggers including stress, anxiety, boredom, and sensory needs. The condition can lead to scarring, infections, and significant emotional and social consequences.\n\nIn recent years, social platforms like TikTok have become spaces where creators share lived experiences with mental-health conditions, including BFRBs. Influencers who discuss their struggles can help reduce stigma, build supportive communities, and encourage viewers to seek help. At the same time, public sharing can expose creators to unwanted attention or criticism, and it does not replace professional care.\n\nStandard approaches to managing excoriation disorder include cognitive-behavioral therapy (particularly habit-reversal training), medication in some cases, dermatological care for wound management, and peer support groups. Mental-health professionals recommend early intervention, a nonjudgmental treatment approach, and strategies to identify and manage triggers. Online resources, specialized support organizations for BFRBs, and clinicians who understand the condition can be valuable starting points for individuals seeking help.\n\nGiven the limited availability of the original article text, readers interested in the influencer's personal account or specific details should attempt to access the New York Times page with JavaScript enabled and any ad blocker disabled, or consult reputable mental-health resources for information on excoriation disorder and local treatment options.",
+  "category": "Health",
+  "tags": [
+    "TikTok",
+    "mental health",
+    "skin picking",
+    "excoriation",
+    "BFRB",
+    "social media",
+    "wellness"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "A TikTok Influencer Opens Up About Her Skin Picking Condition",
+    "publication_date": 1744990303,
+    "content": [
+      {
+        "title": "nytimes.com",
+        "publication_date": "Unknown",
+        "content": "Please enable JS and disable any ad blocker"
+      },
+      {
+        "title": "nytimes.com",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Chloe W. Shakin"
+    ],
+    "source": "The New York Times",
+    "image_url": "https://static01.nyt.com/images/2025/04/03/multimedia/WELL-BFRB-RECOVERY5-wmpb/WELL-BFRB-RECOVERY5-wmpb-mediumSquareAt3X.jpg",
+    "url": "https://www.nytimes.com/2025/04/18/well/skin-hair-picking-dermatillomania.html",
+    "category": "health",
+    "language": "en",
+    "country": "us"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/health/news.json",
+  "markdown_content": "## Article Access\\n\\n> \u201cPlease enable JS and disable any ad blocker.\u201d\\n\\nThe page associated with this article returned a site message reading the above. Metadata available on the page lists the publisher as \u201cnytimes.com\u201d and the author as \u201cUnknown Author,\u201d but the full article text was not accessible through the provided content.\\n\\n## Contextual Summary\\n\\nBecause the original article content could not be retrieved, the following contextual summary outlines the likely themes and public-health context referenced by the headline \u201cA TikTok Influencer Opens Up About Her Skin Picking Condition.\u201d\\n\\n## About Excoriation Disorder\\n\\nSkin picking, clinically known as excoriation disorder and often categorized among body-focused repetitive behaviors (BFRBs), involves repeated picking at the skin that can cause tissue damage and distress.\\n\\n- Common triggers reported by people who experience this behavior include:\\n  - stress\\n  - anxiety\\n  - boredom\\n  - sensory needs\\n- Potential consequences include:\\n  - scarring\\n  - infections\\n  - significant emotional and social impacts\\n\\n## Social Media and BFRBs\\n\\nIn recent years, social platforms like TikTok have become spaces where creators share lived experiences with mental-health conditions, including BFRBs. Influencers who discuss their struggles can help reduce stigma, build supportive communities, and encourage viewers to seek help. At the same time, public sharing can expose creators to unwanted attention or criticism, and it does not replace professional care.\\n\\n## Treatment and Support\\n\\nStandard approaches to managing excoriation disorder include:\\n\\n- cognitive-behavioral therapy, particularly habit-reversal training\\n- medication in some cases\\n- dermatological care for wound management\\n- peer support groups\\n\\nMental-health professionals recommend early intervention, a nonjudgmental treatment approach, and strategies to identify and manage triggers. Online resources, specialized support organizations for BFRBs, and clinicians who understand the condition can be valuable starting points for individuals seeking help.\\n\\n## Accessing the Full Article\\n\\nGiven the limited availability of the original article text, readers interested in the influencer\u2019s personal account or specific details should attempt to access the New York Times page with JavaScript enabled and any ad blocker disabled, or consult reputable mental-health resources for information on excoriation disorder and local treatment options.",
+  "created_at": "2026-07-28T04:34:27.213631+00:00"
+}

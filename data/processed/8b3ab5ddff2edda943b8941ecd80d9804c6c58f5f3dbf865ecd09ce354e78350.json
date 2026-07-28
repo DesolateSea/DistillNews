@@ -1,0 +1,49 @@
+{
+  "title": "Vegan vs. meat: Twin brothers' six-month experiment reveals which diet packs more vitamins - The Economic Times",
+  "publication_date": "2025-04-18T07:07:21Z",
+  "summary": "Headline-only report indicating twin brothers completed a six-month experiment comparing vegan and meat-based diets to assess vitamin levels. The Economic Times headline implies measurable differences between diets, but the full article text was not provided. This summary is based solely on the available headline and metadata.",
+  "content": "The provided cleaned content contains only the headline and minimal metadata; the full article text was not included.\n\nHeadline: Vegan vs. meat: Twin brothers' six-month experiment reveals which diet packs more vitamins\nSource: The Economic Times\n\nBased on the headline, the story appears to describe a controlled, six-month dietary experiment involving twin brothers who followed different diets typical of vegan and meat-eating regimens. Such an experiment would likely have tracked biomarkers for key vitamins and nutrients over time to compare levels between the two dietary approaches.\n\nCommon outcomes in similar comparisons often note that diets including animal products tend to provide higher levels of vitamin B12 and heme iron without supplementation, while well-planned vegan diets can be higher in fiber, vitamin C, and certain antioxidants but may require supplementation for B12, vitamin D, or iron depending on individual needs. The role of supplements, baseline health, lifestyle factors and precise laboratory measures would be essential to interpret any results correctly.\n\nBecause the original article text is missing, specific findings, numerical results, participant details, and methodological notes are not available here. Readers should consult the full Economic Times piece for validated data, exact conclusions, and any caveats reported by the authors or experts quoted in the story.\n\nImplications for readers depend on the study details: small sample size, such as two individuals even if they are twins, limits generalizability. Nutritional recommendations should be tailored to individuals and made in consultation with qualified health professionals.\n\nIf you need a fuller extraction or fact-checked summary, please provide the complete article text or a link to the original Economic Times report.",
+  "category": "Health",
+  "tags": [
+    "diet",
+    "vegan",
+    "meat",
+    "nutrition",
+    "vitamins",
+    "twins",
+    "experiment",
+    "health",
+    "The Economic Times"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "Vegan vs. meat: Twin brothers' six-month experiment reveals which diet packs more vitamins - The Economic Times",
+    "publication_date": 1744960041,
+    "content": [
+      {
+        "title": "Google News",
+        "publication_date": "Unknown",
+        "content": ""
+      },
+      {
+        "title": "Google News",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Anonymous"
+    ],
+    "source": "Google News Health IN",
+    "image_url": null,
+    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQVTBtaE44VXVpUVF0LWQ1RjF4QjZUbGlOVk1jNnpqWnM3dXg5cnNUMGtTMWd6Uk15M2YwNkwxcHR1MUlMVEJ6Q2NJRDhUMUxOX2ljWDFWenE5eW1FN0JjSWllT1V5anVTdm5iUFZrN0xDM05wclo1cGZEeHF2NjY1Q1R0Q2hWSkZSSnAtUjhhSnptanRGc0lLWnRkOHBKVm1ZcHlEbWtLQTFKY0pZazNOZDJydDRXVXZFc0c5eDJQcGNwVWx2blVNU2Vza3Y0enB3M09nSHB3OENRRWg3dUhkVVJPVHpyVXpCUmtQSU1UcEQ?oc=5",
+    "category": "health",
+    "language": "en",
+    "country": "in"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/health/news.json",
+  "markdown_content": "## Headline\\nVegan vs. meat: Twin brothers\u2019 six-month experiment reveals which diet packs more vitamins\\n\\n## Source\\nThe Economic Times\\n\\n## Summary\\nBased on the headline, the story appears to describe a controlled, six-month dietary experiment involving twin brothers who followed different diets typical of vegan and meat-eating regimens. Such an experiment would likely have tracked biomarkers for key vitamins and nutrients over time to compare levels between the two dietary approaches.\\n\\n## Common outcomes in similar comparisons\\n* Diets including animal products often provide higher levels of vitamin B12 and heme iron without supplementation.\\n* Well-planned vegan diets can be higher in fiber, vitamin C, and certain antioxidants.\\n* Vegans may require supplementation or careful planning for nutrients such as vitamin B12, vitamin D, and iron depending on individual needs.\\n* The role of supplements, baseline health, lifestyle factors and precise laboratory measures is essential to correctly interpret results.\\n\\n## Missing details\\nBecause the original article text is missing, specific findings, numerical results, participant details, and methodological notes are not available here. Readers should consult the full Economic Times piece for validated data, exact conclusions, and any caveats reported by the authors or experts quoted in the story.\\n\\n## Limitations and implications\\n* A very small sample size (for example, two individuals even if they are twins) limits generalizability.\\n* Nutritional recommendations should be tailored to individuals and made in consultation with qualified health professionals.\\n* Interpretation of any single experiment should consider study design, duration, supplementation, lifestyle variables, and laboratory methods.\\n\\nIf you need a fuller extraction or fact-checked summary, please provide the complete article text or a link to the original Economic Times report.",
+  "created_at": "2026-07-28T04:34:41.100947+00:00"
+}
