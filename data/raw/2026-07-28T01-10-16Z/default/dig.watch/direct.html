@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en-US" prefix="og: https://ogp.me/ns#">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>(()=>{class RocketLazyLoadScripts{constructor(){this.v="2.0.5",this.userEvents=["keydown","keyup","mousedown","mouseup","mousemove","mouseover","mouseout","touchmove","touchstart","touchend","touchcancel","wheel","click","dblclick","input"],this.attributeEvents=["onblur","onclick","oncontextmenu","ondblclick","onfocus","onmousedown","onmouseenter","onmouseleave","onmousemove","onmouseout","onmouseover","onmouseup","onmousewheel","onscroll","onsubmit"]}async t(){this.i(),this.o(),/iP(ad|hone)/.test(navigator.userAgent)&&this.h(),this.u(),this.l(this),this.m(),this.k(this),this.p(this),this._(),await Promise.all([this.R(),this.L()]),this.lastBreath=Date.now(),this.S(this),this.P(),this.D(),this.O(),this.M(),await this.C(this.delayedScripts.normal),await this.C(this.delayedScripts.defer),await this.C(this.delayedScripts.async),await this.T(),await this.F(),await this.j(),await this.A(),window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this.everythingLoaded=!0,this.lastTouchEnd&&await new Promise(t=>setTimeout(t,500-Date.now()+this.lastTouchEnd)),this.I(),this.H(),this.U(),this.W()}i(){this.CSPIssue=sessionStorage.getItem("rocketCSPIssue"),document.addEventListener("securitypolicyviolation",t=>{this.CSPIssue||"script-src-elem"!==t.violatedDirective||"data"!==t.blockedURI||(this.CSPIssue=!0,sessionStorage.setItem("rocketCSPIssue",!0))},{isRocket:!0})}o(){window.addEventListener("pageshow",t=>{this.persisted=t.persisted,this.realWindowLoadedFired=!0},{isRocket:!0}),window.addEventListener("pagehide",()=>{this.onFirstUserAction=null},{isRocket:!0})}h(){let t;function e(e){t=e}window.addEventListener("touchstart",e,{isRocket:!0}),window.addEventListener("touchend",function i(o){o.changedTouches[0]&&t.changedTouches[0]&&Math.abs(o.changedTouches[0].pageX-t.changedTouches[0].pageX)<10&&Math.abs(o.changedTouches[0].pageY-t.changedTouches[0].pageY)<10&&o.timeStamp-t.timeStamp<200&&(window.removeEventListener("touchstart",e,{isRocket:!0}),window.removeEventListener("touchend",i,{isRocket:!0}),"INPUT"===o.target.tagName&&"text"===o.target.type||(o.target.dispatchEvent(new TouchEvent("touchend",{target:o.target,bubbles:!0})),o.target.dispatchEvent(new MouseEvent("mouseover",{target:o.target,bubbles:!0})),o.target.dispatchEvent(new PointerEvent("click",{target:o.target,bubbles:!0,cancelable:!0,detail:1,clientX:o.changedTouches[0].clientX,clientY:o.changedTouches[0].clientY})),event.preventDefault()))},{isRocket:!0})}q(t){this.userActionTriggered||("mousemove"!==t.type||this.firstMousemoveIgnored?"keyup"===t.type||"mouseover"===t.type||"mouseout"===t.type||(this.userActionTriggered=!0,this.onFirstUserAction&&this.onFirstUserAction()):this.firstMousemoveIgnored=!0),"click"===t.type&&t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),"touchstart"===this.lastEvent&&"touchend"===t.type&&(this.lastTouchEnd=Date.now()),"click"===t.type&&(this.lastTouchEnd=0),this.lastEvent=t.type,t.composedPath&&t.composedPath()[0].getRootNode()instanceof ShadowRoot&&(t.rocketTarget=t.composedPath()[0]),this.savedUserEvents.push(t)}u(){this.savedUserEvents=[],this.userEventHandler=this.q.bind(this),this.userEvents.forEach(t=>window.addEventListener(t,this.userEventHandler,{passive:!1,isRocket:!0})),document.addEventListener("visibilitychange",this.userEventHandler,{isRocket:!0})}U(){this.userEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!1,isRocket:!0})),document.removeEventListener("visibilitychange",this.userEventHandler,{isRocket:!0}),this.savedUserEvents.forEach(t=>{(t.rocketTarget||t.target).dispatchEvent(new window[t.constructor.name](t.type,t))})}m(){const t="return false",e=Array.from(this.attributeEvents,t=>"data-rocket-"+t),i="["+this.attributeEvents.join("],[")+"]",o="[data-rocket-"+this.attributeEvents.join("],[data-rocket-")+"]",s=(e,i,o)=>{o&&o!==t&&(e.setAttribute("data-rocket-"+i,o),e["rocket"+i]=new Function("event",o),e.setAttribute(i,t))};new MutationObserver(t=>{for(const n of t)"attributes"===n.type&&(n.attributeName.startsWith("data-rocket-")||this.everythingLoaded?n.attributeName.startsWith("data-rocket-")&&this.everythingLoaded&&this.N(n.target,n.attributeName.substring(12)):s(n.target,n.attributeName,n.target.getAttribute(n.attributeName))),"childList"===n.type&&n.addedNodes.forEach(t=>{if(t.nodeType===Node.ELEMENT_NODE)if(this.everythingLoaded)for(const i of[t,...t.querySelectorAll(o)])for(const t of i.getAttributeNames())e.includes(t)&&this.N(i,t.substring(12));else for(const e of[t,...t.querySelectorAll(i)])for(const t of e.getAttributeNames())this.attributeEvents.includes(t)&&s(e,t,e.getAttribute(t))})}).observe(document,{subtree:!0,childList:!0,attributeFilter:[...this.attributeEvents,...e]})}I(){this.attributeEvents.forEach(t=>{document.querySelectorAll("[data-rocket-"+t+"]").forEach(e=>{this.N(e,t)})})}N(t,e){const i=t.getAttribute("data-rocket-"+e);i&&(t.setAttribute(e,i),t.removeAttribute("data-rocket-"+e))}k(t){Object.defineProperty(HTMLElement.prototype,"onclick",{get(){return this.rocketonclick||null},set(e){this.rocketonclick=e,this.setAttribute(t.everythingLoaded?"onclick":"data-rocket-onclick","this.rocketonclick(event)")}})}S(t){function e(e,i){let o=e[i];e[i]=null,Object.defineProperty(e,i,{get:()=>o,set(s){t.everythingLoaded?o=s:e["rocket"+i]=o=s}})}e(document,"onreadystatechange"),e(window,"onload"),e(window,"onpageshow");try{Object.defineProperty(document,"readyState",{get:()=>t.rocketReadyState,set(e){t.rocketReadyState=e},configurable:!0}),document.readyState="loading"}catch(t){console.log("WPRocket DJE readyState conflict, bypassing")}}l(t){this.originalAddEventListener=EventTarget.prototype.addEventListener,this.originalRemoveEventListener=EventTarget.prototype.removeEventListener,this.savedEventListeners=[],EventTarget.prototype.addEventListener=function(e,i,o){o&&o.isRocket||!t.B(e,this)&&!t.userEvents.includes(e)||t.B(e,this)&&!t.userActionTriggered||e.startsWith("rocket-")||t.everythingLoaded?t.originalAddEventListener.call(this,e,i,o):(t.savedEventListeners.push({target:this,remove:!1,type:e,func:i,options:o}),"mouseenter"!==e&&"mouseleave"!==e||t.originalAddEventListener.call(this,e,t.savedUserEvents.push,o))},EventTarget.prototype.removeEventListener=function(e,i,o){o&&o.isRocket||!t.B(e,this)&&!t.userEvents.includes(e)||t.B(e,this)&&!t.userActionTriggered||e.startsWith("rocket-")||t.everythingLoaded?t.originalRemoveEventListener.call(this,e,i,o):t.savedEventListeners.push({target:this,remove:!0,type:e,func:i,options:o})}}J(t,e){this.savedEventListeners=this.savedEventListeners.filter(i=>{let o=i.type,s=i.target||window;return e!==o||t!==s||(this.B(o,s)&&(i.type="rocket-"+o),this.$(i),!1)})}H(){EventTarget.prototype.addEventListener=this.originalAddEventListener,EventTarget.prototype.removeEventListener=this.originalRemoveEventListener,this.savedEventListeners.forEach(t=>this.$(t))}$(t){t.remove?this.originalRemoveEventListener.call(t.target,t.type,t.func,t.options):this.originalAddEventListener.call(t.target,t.type,t.func,t.options)}p(t){let e;function i(e){return t.everythingLoaded?e:e.split(" ").map(t=>"load"===t||t.startsWith("load.")?"rocket-jquery-load":t).join(" ")}function o(o){function s(e){const s=o.fn[e];o.fn[e]=o.fn.init.prototype[e]=function(){return this[0]===window&&t.userActionTriggered&&("string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=i(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(t=>{const e=arguments[0][t];delete arguments[0][t],arguments[0][i(t)]=e})),s.apply(this,arguments),this}}if(o&&o.fn&&!t.allJQueries.includes(o)){const e={DOMContentLoaded:[],"rocket-DOMContentLoaded":[]};for(const t in e)document.addEventListener(t,()=>{e[t].forEach(t=>t())},{isRocket:!0});o.fn.ready=o.fn.init.prototype.ready=function(i){function s(){parseInt(o.fn.jquery)>2?setTimeout(()=>i.bind(document)(o)):i.bind(document)(o)}return"function"==typeof i&&(t.realDomReadyFired?!t.userActionTriggered||t.fauxDomReadyFired?s():e["rocket-DOMContentLoaded"].push(s):e.DOMContentLoaded.push(s)),this},s("on"),s("one"),s("off"),t.allJQueries.push(o)}e=o}t.allJQueries=[],o(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){o(t)}})}P(){const t=new Map;document.write=document.writeln=function(e){const i=document.currentScript,o=document.createRange(),s=i.parentElement;let n=t.get(i);void 0===n&&(n=i.nextSibling,t.set(i,n));const c=document.createDocumentFragment();o.setStart(c,0),c.appendChild(o.createContextualFragment(e)),s.insertBefore(c,n)}}async R(){return new Promise(t=>{this.userActionTriggered?t():this.onFirstUserAction=t})}async L(){return new Promise(t=>{document.addEventListener("DOMContentLoaded",()=>{this.realDomReadyFired=!0,t()},{isRocket:!0})})}async j(){return this.realWindowLoadedFired?Promise.resolve():new Promise(t=>{window.addEventListener("load",t,{isRocket:!0})})}M(){this.pendingScripts=[];this.scriptsMutationObserver=new MutationObserver(t=>{for(const e of t)e.addedNodes.forEach(t=>{"SCRIPT"!==t.tagName||!t.src||t.noModule||t.isWPRocket||this.pendingScripts.push({script:t,promise:new Promise(e=>{const i=()=>{const i=this.pendingScripts.findIndex(e=>e.script===t);i>=0&&this.pendingScripts.splice(i,1),e()};t.addEventListener("load",i,{isRocket:!0}),t.addEventListener("error",i,{isRocket:!0}),setTimeout(i,1e3)})})})}),this.scriptsMutationObserver.observe(document,{childList:!0,subtree:!0})}async F(){await this.X(),this.pendingScripts.length?(await this.pendingScripts[0].promise,await this.F()):this.scriptsMutationObserver.disconnect()}D(){this.delayedScripts={normal:[],async:[],defer:[]},document.querySelectorAll("script[type$=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _(){await this.L();let t=[];document.querySelectorAll("script[type$=rocketlazyloadscript][data-rocket-src]").forEach(e=>{let i=e.getAttribute("data-rocket-src");if(i&&!i.startsWith("data:")){i.startsWith("//")&&(i=location.protocol+i);try{const o=new URL(i).origin;o!==location.origin&&t.push({src:o,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}catch(t){}}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this.Y(t,"preconnect")}async G(t){if(await this.K(),!0!==t.noModule||!("noModule"in HTMLScriptElement.prototype))return new Promise(e=>{let i;function o(){(i||t).setAttribute("data-rocket-status","executed"),e()}try{if(navigator.userAgent.includes("Firefox/")||""===navigator.vendor||this.CSPIssue)i=document.createElement("script"),[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),i.setAttribute(e,t.nodeValue))}),t.text&&(i.text=t.text),t.nonce&&(i.nonce=t.nonce),i.hasAttribute("src")?(i.addEventListener("load",o,{isRocket:!0}),i.addEventListener("error",()=>{i.setAttribute("data-rocket-status","failed-network"),e()},{isRocket:!0}),setTimeout(()=>{i.isConnected||e()},1)):(i.text=t.text,o()),i.isWPRocket=!0,t.parentNode.replaceChild(i,t);else{const i=t.getAttribute("data-rocket-type"),s=t.getAttribute("data-rocket-src");i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",o,{isRocket:!0}),t.addEventListener("error",i=>{this.CSPIssue&&i.target.src.startsWith("data:")?(console.log("WPRocket: CSP fallback activated"),t.removeAttribute("src"),this.G(t).then(e)):(t.setAttribute("data-rocket-status","failed-network"),e())},{isRocket:!0}),s?(t.fetchPriority="high",t.removeAttribute("data-rocket-src"),t.src=s):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}}catch(i){t.setAttribute("data-rocket-status","failed-transform"),e()}});t.setAttribute("data-rocket-status","skipped")}async C(t){const e=t.shift();return e?(e.isConnected&&await this.G(e),this.C(t)):Promise.resolve()}O(){this.Y([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}Y(t,e){this.trash=this.trash||[];let i=!0;var o=document.createDocumentFragment();t.forEach(t=>{const s=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(s&&!s.startsWith("data:")){const n=document.createElement("link");n.href=s,n.rel=e,"preconnect"!==e&&(n.as="script",n.fetchPriority=i?"high":"low"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),t.nonce&&(n.nonce=t.nonce),o.appendChild(n),this.trash.push(n),i=!1}}),document.head.appendChild(o)}W(){this.trash.forEach(t=>t.remove())}async T(){try{document.readyState="interactive"}catch(t){}this.fauxDomReadyFired=!0;try{await this.K(),this.J(document,"readystatechange"),document.dispatchEvent(new Event("rocket-readystatechange")),await this.K(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.K(),this.J(document,"DOMContentLoaded"),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this.K(),this.J(window,"DOMContentLoaded"),window.dispatchEvent(new Event("rocket-DOMContentLoaded"))}catch(t){console.error(t)}}async A(){try{document.readyState="complete"}catch(t){}try{await this.K(),this.J(document,"readystatechange"),document.dispatchEvent(new Event("rocket-readystatechange")),await this.K(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.K(),this.J(window,"load"),window.dispatchEvent(new Event("rocket-load")),await this.K(),window.rocketonload&&window.rocketonload(),await this.K(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this.K(),this.J(window,"pageshow");const t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this.K(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}catch(t){console.error(t)}}async K(){Date.now()-this.lastBreath>45&&(await this.X(),this.lastBreath=Date.now())}async X(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}B(t,e=window){return e===document&&"readystatechange"===t||(e===document&&"DOMContentLoaded"===t||(e===window&&"DOMContentLoaded"===t||(e===window&&"load"===t||e===window&&"pageshow"===t)))}static run(){(new RocketLazyLoadScripts).t()}}RocketLazyLoadScripts.run()})();
+</script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+    
+	<script type="text/rocketlazyloadscript" id="cookieyes" data-rocket-type="text/javascript" data-rocket-src="https://cdn-cookieyes.com/client_data/912930b9b8966c157b7c1a4c/script.js" data-rocket-defer defer></script>
+<!-- Search Engine Optimization by Rank Math PRO - https://rankmath.com/ -->
+<title>ChatGPT expands health tools with Apple Health integration | Digital Watch Observatory</title>
+<link data-rocket-preload as="style" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&#038;family=Montserrat:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&#038;family=Poppins:wght@400;500;600&#038;ver=7.0.2&#038;display=swap" rel="preload">
+<link data-rocket-preload as="style" href="https://fonts.googleapis.com/css?family=Source%20Sans%20Pro&#038;display=swap" rel="preload">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&#038;family=Montserrat:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&#038;family=Poppins:wght@400;500;600&#038;ver=7.0.2&#038;display=swap" media="print" onload="this.media=&#039;all&#039;" rel="stylesheet">
+<noscript data-wpr-hosted-gf-parameters=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&#038;family=Montserrat:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&#038;family=Poppins:wght@400;500;600&#038;ver=7.0.2&#038;display=swap"></noscript>
+<link href="https://fonts.googleapis.com/css?family=Source%20Sans%20Pro&#038;display=swap" media="print" onload="this.media=&#039;all&#039;" rel="stylesheet">
+<noscript data-wpr-hosted-gf-parameters=""><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source%20Sans%20Pro&#038;display=swap"></noscript>
+<style id="rocket-critical-css">.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}.wp-block-image.aligncenter{text-align:center}.wp-block-image.aligncenter{display:table}ul{box-sizing:border-box}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.aligncenter{clear:both}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}:root{--mm-lineheight:20px;--mm-listitem-size:50px;--mm-navbar-size:50px;--mm-toggle-size:34px}.mm-hidden{display:none!important}.mm-wrapper{overflow-x:hidden;position:relative}.mm-btn{-webkit-box-flex:0;-ms-flex-positive:0;flex-grow:0;-ms-flex-negative:0;flex-shrink:0;position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;width:50px;padding:0}.mm-btn:after,.mm-btn:before{border:2px solid var(--mm-color-icon)}.mm-btn--next:after,.mm-btn--prev:before{content:"";border-bottom:none;border-right:none;-webkit-box-sizing:content-box;box-sizing:content-box;display:block;width:8px;height:8px;margin:auto;position:absolute;top:0;bottom:0}.mm-btn--prev:before{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg);left:23px;right:auto}.mm-btn--next:after{-webkit-transform:rotate(135deg);-ms-transform:rotate(135deg);transform:rotate(135deg);right:23px;left:auto}.mm-listview{list-style:none;display:block;padding:0;margin:0}.mm-listitem{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;position:relative;padding:0;margin:0;list-style:none;color:var(--mm-color-text);border-color:var(--mm-color-border)}.mm-listitem:after{content:"";border-color:inherit;border-bottom-width:1px;border-bottom-style:solid;display:block;position:absolute;left:20px;right:0;bottom:0}.mm-listitem__btn,.mm-listitem__text{display:block;padding:calc((var(--mm-listitem-size) - var(--mm-lineheight))/ 2) 0;color:inherit}.mm-listitem__text{-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;padding-left:20px;padding-right:20px;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:10%;flex-basis:10%}.mm-listitem__btn{background:rgba(3,2,1,0);border-color:inherit;width:auto;padding-right:50px;position:relative}.mm-listitem__btn:not(.mm-listitem__text){border-left-width:1px;border-left-style:solid}.mm-menu{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;margin:0;position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;-ms-scroll-chaining:none;overscroll-behavior:none;background:var(--mm-color-background);border-color:var(--mm-color-border);color:var(--mm-color-text);line-height:var(--mm-lineheight);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.mm-menu ::-webkit-input-placeholder{color:var(--mm-color-text-dimmed)}.mm-menu ::-moz-placeholder{color:var(--mm-color-text-dimmed)}.mm-menu :-ms-input-placeholder{color:var(--mm-color-text-dimmed)}.mm-menu ::-ms-input-placeholder{color:var(--mm-color-text-dimmed)}.mm-menu,.mm-menu *{-webkit-box-sizing:border-box;box-sizing:border-box}.mm-menu a,.mm-menu a:link,.mm-menu a:visited{text-decoration:none;color:inherit}.mm-navbar{display:-webkit-box;display:-ms-flexbox;display:flex;min-height:var(--mm-navbar-size);padding-top:env(safe-area-inset-top);color:var(--mm-color-text-dimmed);text-align:center;opacity:1;background:var(--mm-color-background);border-bottom:1px solid var(--mm-color-border);position:-webkit-sticky;position:sticky;top:0;z-index:2}.mm-navbar>*{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-sizing:border-box;box-sizing:border-box}.mm-navbar__btn{-webkit-box-flex:0;-ms-flex-positive:0;flex-grow:0}.mm-navbar__title{-webkit-box-flex:1;-ms-flex:1 1 50%;flex:1 1 50%;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 20px;overflow:hidden}.mm-navbar__title>span{-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.mm-btn:not(.mm-hidden)+.mm-navbar__title:last-child{padding-left:10px;padding-right:60px}.mm-panel{visibility:hidden;position:absolute;left:0;right:0;top:0;bottom:0;z-index:1;-webkit-overflow-scrolling:touch;overflow:hidden;overflow-y:auto;-ms-scroll-chaining:none;overscroll-behavior:contain;color:var(--mm-color-text);border-color:var(--mm-color-border);background:var(--mm-color-background);-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}.mm-panel:after{content:"";display:block;height:var(--mm-listitem-size)}.mm-panel--opened{visibility:visible;z-index:2;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.mm-panels{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;position:relative;height:100%;overflow:hidden;background:var(--mm-color-background);border-color:var(--mm-color-border);color:var(--mm-color-text)}:root{--mm-size:80%;--mm-min-size:240px;--mm-max-size:440px}.mm-menu--offcanvas{position:fixed;z-index:0}.mm-menu--offcanvas:not(.mm-menu--opened){visibility:hidden}.mm-menu--offcanvas:not(.mm-menu--opened) *{visibility:inherit}.mm-page{-webkit-box-sizing:border-box;box-sizing:border-box;min-height:100vh;background:inherit}.mm-slideout{position:relative;z-index:1;width:100%}.mm-wrapper__blocker{visibility:hidden;position:fixed;top:0;right:0;bottom:0;left:100%;z-index:2;overflow:hidden;opacity:0;background:#00000066}.mm-menu{--mm-translate-horizontal:0;--mm-translate-vertical:0}.mm-menu--position-left{right:auto}.mm-menu--position-left{width:clamp(var(--mm-min-size),var(--mm-size),var(--mm-max-size))}.mm-wrapper--position-left{--mm-translate-horizontal:clamp( var(--mm-min-size), var(--mm-size), var(--mm-max-size) )}.mm-wrapper--position-left .mm-slideout{will-change:transform}.mm-menu--theme-light{--mm-color-background:#f3f3f3;--mm-color-border:rgb(0 0 0 / 0.15);--mm-color-icon:rgb(0 0 0 / 0.4);--mm-color-text:rgb(0 0 0 / 0.8);--mm-color-text-dimmed:rgb(0 0 0 / 0.4);--mm-color-background-highlight:rgb(0 0 0 / 0.05);--mm-color-background-emphasis:rgb(255 255 255 / 0.75);--mm-color-focusring:#06c}:root{--mm-iconbar-size:50px}:root{--mm-iconpanel-size:50px}.mm-navbars{-ms-flex-negative:0;flex-shrink:0}.mm-navbars .mm-navbar{position:relative;padding-top:0;border-bottom:none}.mm-navbars--top{border-bottom:1px solid var(--mm-color-border)}.mm-navbars--top .mm-navbar:first-child{padding-top:env(safe-area-inset-top)}:root{--mm-sectionindexer-size:20px}:root{--mm-sidebar-collapsed-size:50px;--mm-sidebar-expanded-size:var(--mm-max-size)}#wpadminbar{position:fixed!important}.wpmm-menu{background-color:#f3f3f3!important;--mm-color-background:#f3f3f3}.mm-wrapper__blocker{opacity:0!important}.wpmm-menu{--mm-listitem-size:44px;--mm-navbar-size:44px;--mm-iconpanel-size:44px}.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.fadeIn{-webkit-animation-name:fadeIn;animation-name:fadeIn}@import "https://dig.watch/wp-content/plugins/h5p/h5p-php-library/styles/font-open-sans.css";.digwatch-dark-bcg{background-color:#414141;color:#fff}.digwatch-dark-bcg a{color:#fff}html{line-height:1.15;-webkit-text-size-adjust:100%}html,body{margin:0;padding:0;width:100%;position:relative;scroll-behavior:smooth}body{margin:0}main{display:block}h1{font-family:"Montserrat",-apple-system,BlinkMacSystemFont,Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-size:2em;line-height:1.25em;margin:0.5em 0}a{background-color:transparent}img{border-style:none}button,input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button{text-transform:none}button,[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}[type="checkbox"]{box-sizing:border-box;padding:0}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}*,*::before,*::after{box-sizing:inherit}html{box-sizing:border-box}body,button,input{color:#404040;font-family:'Titillium Web',sans-serif;font-size:1rem;line-height:1.5}h1,h2,h3{clear:both;font-family:'Montserrat',sans-serif}p{font-family:'Titillium Web',sans-serif;font-size:1em;margin:0}em,i{font-style:italic}body{background:#fff}ul{margin:0 0 1.5em 3em}ul{list-style:disc}li>ul{margin-bottom:0;margin-left:1.5em}img{height:auto;max-width:100%}figure{margin:1em 0}a{color:#FFAA00}button,input[type="submit"]{border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;background:#e6e6e6;color:rgba(0,0,0,0.8);line-height:1;padding:0.6em 1em 0.4em}input[type="text"]{color:#666;border:1px solid #F2F2F2;border-radius:3px;padding:3px}.dw-d-none{display:none}.dw-flex{display:flex}.dw-flex-sb{justify-content:space-between}.dw-flex-ai-center{align-items:center}.dw-flex-v{flex-direction:column}.dw-right-align{text-align:right}.p05{padding:0.5em}.p1{padding:1em}.p05-2{padding:0.5em 2em}.m0a{margin:0 auto}.mt2{margin-top:2em}body #masthead{position:sticky;top:0;width:100%;z-index:999998}.dw-primary-header{max-width:1440px}.dw-header-logo{max-width:185px;flex:0 0 100%}.dw-header-logo img{max-width:185px;padding-top:8px}@media screen and (max-width:420px){.dw-header-logo img{max-width:115px}}.site-header{background-color:#eeecec}.dw-progress-container{width:100%;background-color:transparent;height:4px;display:block;position:absolute;bottom:0;z-index:1;overflow:hidden}.dw-progress-bar{background-color:#FF8000;width:0%;display:block;height:inherit}.dw-mmenu-btn{background-color:transparent;border:none;color:#FFAA00;margin:auto}.dw-before-main{position:relative;width:100%;height:auto;z-index:0;padding:0 0 20px 0;left:0;right:0;bottom:0;margin:0 auto 16px auto;overflow:hidden}.animated{animation-fill-mode:both;-webkit-animation-fill-mode:both;animation-duration:.8s;-webkit-animation-duration:0.8s}.fadeIn{animation-name:fadeIn;-webkit-animation-name:fadeIn}.dw-banner-bcg-img{min-height:250px;background-repeat:no-repeat;background-color:transparent;position:static;width:100%;background-position:center top;background-size:contain;margin:0 0 0}.dw-banner-bcg-color{max-height:128px;min-height:128px;top:-4px;position:absolute;z-index:-1;width:100%}@media screen and (max-width:550px){.dw-banner-bcg-img{min-height:50vw}}#primary{display:flex;flex-wrap:wrap;max-width:1440px;margin:0 auto;padding:0 32px}#dw-breadcrumbs-single{max-width:1440px;margin:0 auto 0.67em;flex:1 1 100%;position:-webkit-sticky;position:sticky;top:130px;z-index:100000}#dw-breadcrumbs-single p{max-width:100%;margin:0 auto;padding:16px 0;background-color:#FFF;color:#414141;font-size:14px}.dw-main-content{flex:1 1 50%;max-width:50%}.dw-main-content p{font-size:1.1em}.dw-content-box-p p{margin:10px 0}.dw-content-box-p p{font-family:'Titillium Web',sans-serif;font-size:20px}.dw-primary-header .socialicon{width:24px;height:24px;display:flex;margin-left:3em}.dw-primary-header .socialicon svg{fill:#404040}.dw-header-search{display:flex;align-items:center}.site-header{background-color:#fff}.dwIconWrapper{margin-left:2em}.dw-primary-header{justify-content:space-between!important}.header-subscribe{font-size:17px;font-weight:bold;color:#FF8000;padding-right:3em;text-decoration:none;border-right:1px solid #404040}@media screen and (max-width:800px){.dw-primary-header .socialicon{margin-left:1em}.header-subscribe{padding-right:1em}.dwIconWrapper{margin-left:0}}@media screen and (max-width:600px){.header-subscribe{padding-right:0;border-right:none}.dwIconWrapper{padding:0!important}.dw-primary-header{flex-wrap:wrap}.dwSearchWrapper{padding-left:10px}.dw-header-search{margin:0 auto;gap:1em}}@media screen and (max-width:450px){.dw-primary-header .socialicon{width:20px;height:20px;margin-left:0.5em}.header-subscribe{font-size:15px}.dw-header-search{gap:.5em}.dwFormWrapper{right:-40px}}a.blend{color:inherit;text-decoration:none}.section12{min-width:20ch;flex:1 1 32%}.section12top,.section12bottom{color:#fff;background-color:#FF8000;text-align:center;font-weight:bold}.section12top{padding:6px 0}.section12bottom{padding:12px 0}.section12 h2{font-size:22px;margin:5px 0}.section12{font-size:18px}.section12inner{flex-basis:100%;justify-content:space-around}.section12 h3{font-size:16px;line-height:20px;font-weight:600;padding:0 .5em 0 1em;flex-basis:66%;text-align:left;margin:0.5em 0}.section12news{border-bottom:2px solid #F2F2F2;height:16.67%;display:flex;align-items:center;gap:10px}.section12news:nth-child(6n){border-bottom:none}.section12singleimagewrapper{background-color:#AFAFAF;background-size:cover;background-position:center;min-height:74px;height:auto;flex-basis:33%;margin:0.5em 0 0.5em 0.5em}.single-updates #dw-sidebar-right{flex:0 0 33%}@media only screen and (max-width:1039px){.single-updates #primary{flex-direction:column}.single-updates #dw-sidebar-right{max-width:670px!important;width:100%!important;margin:0 auto;padding:1em 0 0 0}}.updates-excerpt{padding:0.5em 0 0.5em;line-height:1.4em}.single-updates .section12news{padding:10px 0}@media only screen and (max-width:989px){.section12news{padding-bottom:10px}.section12inner{gap:10px}}@media only screen and (max-width:467px){.section12 h3{padding:0 1em;flex-basis:100%;text-align:left;font-size:14px;line-height:18px}.socialicon{align-items:normal!important}}.socialicon{width:40px;height:40px}.socialicon svg{fill:#000;width:40px}.yikes-easy-mc-checkbox-label{margin-bottom:4px!important}#colophon .yikes-easy-mc-checkbox-label{margin-bottom:2px!important;font-size:18px}#colophon .yikes-easy-mc-checkbox-label:last-child{margin-bottom:0!important;display:none}#dw-es-related-processes h3{margin-top:0;margin-bottom:10px}.dw-es-rp-wrapper a{text-decoration:unset;vertical-align:middle}.dw-es-rp-wrapper a:after{content:" | ";margin:0 8px;vertical-align:top;font-size:15px}.dw-es-rp-wrapper a:last-child:after{content:""}.dw-article-time{margin-bottom:16px}.dw-resource-single-main.dw-main-content{max-width:70%;margin:0 auto}.dw-resource-single-main h3{font-size:1.45em}.rendered-form [type="checkbox"]{margin-right:10px}#dw-sidebar-right{flex:0 0 25%;padding-top:64px;position:relative}@media screen and (min-width:900px){#dw-sidebar-right{max-width:25%}}#dw-sidebar-right{padding-left:2em}#dw-sidebar-right{text-align:center}.main-navigation{display:block;width:100%;position:relative}.main-navigation ul{display:none;list-style:none;margin:0;padding-left:0}.main-navigation ul ul{box-shadow:0 3px 3px rgba(0,0,0,0.2);float:left;position:absolute;top:100%;left:-999em;z-index:99999}.main-navigation .sub-menu li a{font-size:0.9em}.main-navigation ul ul ul{top:0;position:relative;left:0;display:block;box-shadow:unset;width:calc(100% - 1em);padding-top:0.5em}.main-navigation ul ul li{max-width:25%;flex:0 0 25%}.main-navigation ul ul ul li{display:block;max-width:100%;width:100%;padding:2px 1em 0 0}.main-navigation ul ul ul a{width:100%;font-size:0.75em!important}.main-navigation li{padding:16px 0;z-index:2}.main-navigation a{display:block;text-decoration:none}.dw-menu-blue a{color:#2cd4ff;text-transform:none!important}.menu-toggle{display:block}@media screen and (min-width:1040px){.menu-toggle{display:none}.main-navigation ul{display:flex}.menu.nav-menu{display:flex;justify-content:space-between;max-width:1440px;margin:0 auto;padding:0 32px}}.custom-logo-link{display:inline-block}.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important}.aligncenter{clear:both;display:block;margin-left:auto;margin-right:auto;margin-bottom:1.5em;text-align:center}@media screen and (max-width:1280px){.dw-resource-single-main{max-width:670px!important;width:100%!important}}@media screen and (max-width:1040px){.dw-content-box-p p{font-size:16px}.dw-primary-header{width:100%;justify-content:space-between}.menu-main-menu-container{padding:0 1em}.dw-mmenu-none{display:none}#dw-breadcrumbs-single{top:85px}.dw-header-logo,.dw-header-search{max-width:100%;flex:unset}}@media screen and (min-width:769px) and (max-width:900px){.dw-main-content{max-width:75%}#dw-sidebar-right{flex:0 0 100%;padding:8px 0;margin:32px 0 0;width:100%}}@media screen and (max-width:768px){.dw-main-content{margin-bottom:10px;max-width:100%;order:1}#primary{max-width:100%}#dw-sidebar-right{flex:0 0 100%;padding:8px 0;margin:32px 0 0;width:100%;order:2}}@media screen and (max-width:500px){.dw-header-search{flex:unset}}@media screen and (min-width:1040px){.dw-large-none{display:none}}.dwSearchWrapper{position:relative}.dwFormWrapper{position:absolute;top:36px;right:0;width:340px;z-index:10}.dwFormWrapper form{border:solid 2px;border-radius:5px}.yikes-easy-mc-form label{margin:0!important}.intro-image{margin-bottom:4rem}@media only screen and (max-width:618px){.intro-image{margin-bottom:2rem}}ul.nav-menu li a{text-transform:uppercase;font-size:0.9rem}ul.sub-menu li a{text-transform:none}@media screen and (min-width:1040px){.dw-latest_news{grid-area:latestNews}.dw-article_featured{grid-area:featuredArticle;max-height:300px}}#wpadminbar{z-index:1000004}body:not(.logged-in) div#wpadminbar{display:none!important}body.admin-bar:not(.logged-in){margin-top:-32px}.sidebar-app img{max-height:555px}.fa,.fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1}.fa-bars:before{content:"\f0c9"}.fa-search:before{content:"\f002"}@font-face{font-family:"Font Awesome 5 Free";font-style:normal;font-weight:400;font-display:swap;src:url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot);src:url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot?#iefix) format("embedded-opentype"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff) format("woff"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.ttf) format("truetype"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.svg#fontawesome) format("svg")}@font-face{font-family:"Font Awesome 5 Free";font-style:normal;font-weight:900;font-display:swap;src:url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot);src:url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot?#iefix) format("embedded-opentype"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff) format("woff"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.ttf) format("truetype"),url(https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.svg#fontawesome) format("svg")}.fa,.fas{font-family:"Font Awesome 5 Free"}.fa,.fas{font-weight:900}:root{--ep-c-white:#fff;--ep-c-medium-white:#eee;--ep-c-white-gray:#ccc;--ep-c-white-red:#ffe8ed;--ep-c-white-yellow:#fdeeca;--ep-c-medium-gray:#626262;--ep-c-light-gray:#999;--ep-c-black:#000;--ep-c-medium-red:#d73c38;--ep-c-dark-red:#b93431;--ep-c-medium-dark-blue:#0073aa;--ep-status-ok:#6aa000;--ep-status-warning:#e3e600;--ep-status-error:red}@media (min-width:768px){:root{--ep-range-slider-thumb-size:1.25em;--ep-range-slider-track-size:0.5em}}.yikes-easy-mc-form .field-no-label,.yikes-easy-mc-form label{display:inline-block;margin-bottom:.5em;width:100%}.yikes-easy-mc-form .yikes-easy-mc-checkbox-label{display:inline-block}</style>
+<meta name="description" content="Connected health data is enabling more informed digital health experiences, helping users understand medical information and track personal trends."/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+<link rel="canonical" href="https://dig.watch/updates/chatgpt-health-tools-with-apple-health" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ChatGPT expands health tools with Apple Health integration | Digital Watch Observatory" />
+<meta property="og:description" content="Connected health data is enabling more informed digital health experiences, helping users understand medical information and track personal trends." />
+<meta property="og:url" content="https://dig.watch/updates/chatgpt-health-tools-with-apple-health" />
+<meta property="og:site_name" content="Digital Watch Observatory" />
+<meta property="article:tag" content="Apple Health" />
+<meta property="article:tag" content="ChatGPT" />
+<meta property="og:updated_time" content="2026-07-27T14:04:41+02:00" />
+<meta property="og:image" content="https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt.jpg" />
+<meta property="og:image:secure_url" content="https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt.jpg" />
+<meta property="og:image:width" content="1920" />
+<meta property="og:image:height" content="1080" />
+<meta property="og:image:alt" content="Abstract image of GPT-5.5 Instant Mini acting as a fallback ChatGPT model after users reach rate limits" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="article:published_time" content="2026-07-27T12:00:00+02:00" />
+<meta property="article:modified_time" content="2026-07-27T14:04:41+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ChatGPT expands health tools with Apple Health integration | Digital Watch Observatory" />
+<meta name="twitter:description" content="Connected health data is enabling more informed digital health experiences, helping users understand medical information and track personal trends." />
+<meta name="twitter:image" content="https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt.jpg" />
+<script type="application/ld+json" class="rank-math-schema-pro">{"@context":"https://schema.org","@graph":[{"@type":["Organization","Person"],"@id":"https://dig.watch/#person","name":"Digital Watch Observatory","url":"https://dig.watch","logo":{"@type":"ImageObject","@id":"https://dig.watch/#logo","url":"https://dig.watch/wp-content/uploads/cropped-favicon.png","contentUrl":"https://dig.watch/wp-content/uploads/cropped-favicon.png","caption":"Digital Watch Observatory","inLanguage":"en-US","width":"512","height":"512"},"image":{"@id":"https://dig.watch/#logo"}},{"@type":"WebSite","@id":"https://dig.watch/#website","url":"https://dig.watch","name":"Digital Watch Observatory","publisher":{"@id":"https://dig.watch/#person"},"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt.jpg","url":"https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt.jpg","width":"1920","height":"1080","caption":"Abstract image of GPT-5.5 Instant Mini acting as a fallback ChatGPT model after users reach rate limits","inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health#breadcrumb","itemListElement":[{"@type":"ListItem","position":"1","item":{"@id":"https://dig.watch","name":"Home"}},{"@type":"ListItem","position":"2","item":{"@id":"https://dig.watch/updates","name":"Updates"}},{"@type":"ListItem","position":"3","item":{"@id":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health","name":"ChatGPT expands health tools with Apple Health integration"}}]},{"@type":"WebPage","@id":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health#webpage","url":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health","name":"ChatGPT expands health tools with Apple Health integration | Digital Watch Observatory","datePublished":"2026-07-27T12:00:00+02:00","dateModified":"2026-07-27T14:04:41+02:00","isPartOf":{"@id":"https://dig.watch/#website"},"primaryImageOfPage":{"@id":"https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt.jpg"},"inLanguage":"en-US","breadcrumb":{"@id":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health#breadcrumb"}},{"@type":"Person","@id":"https://dig.watch/author/nikoletasdiplomacy-edu","name":"nikoletas@diplomacy.edu","url":"https://dig.watch/author/nikoletasdiplomacy-edu","image":{"@type":"ImageObject","@id":"https://secure.gravatar.com/avatar/2944d8b17d606c571561c420b05f12ebe174614ffe8ab45ec55514353c8f34c7?s=96&amp;d=mm&amp;r=g","url":"https://secure.gravatar.com/avatar/2944d8b17d606c571561c420b05f12ebe174614ffe8ab45ec55514353c8f34c7?s=96&amp;d=mm&amp;r=g","caption":"nikoletas@diplomacy.edu","inLanguage":"en-US"}},{"@type":"NewsArticle","headline":"ChatGPT expands health tools with Apple Health integration | Digital Watch Observatory","keywords":"ChatGPT","datePublished":"2026-07-27T12:00:00+02:00","dateModified":"2026-07-27T14:04:41+02:00","author":{"@id":"https://dig.watch/author/nikoletasdiplomacy-edu","name":"nikoletas@diplomacy.edu"},"publisher":{"@id":"https://dig.watch/#person"},"description":"Connected health data is enabling more informed digital health experiences, helping users understand medical information and track personal trends.","copyrightYear":"2026","copyrightHolder":{"@id":"https://dig.watch/#person"},"name":"ChatGPT expands health tools with Apple Health integration | Digital Watch Observatory","@id":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health#richSnippet","isPartOf":{"@id":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health#webpage"},"image":{"@id":"https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt.jpg"},"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://dig.watch/updates/chatgpt-health-tools-with-apple-health#webpage"}}]}</script>
+<!-- /Rank Math WordPress SEO plugin -->
+
+<link rel='dns-prefetch' href='//ajax.googleapis.com' />
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//cdn.lineicons.com' />
+<link rel='dns-prefetch' href='//use.fontawesome.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Digital Watch Observatory &raquo; Feed" href="https://dig.watch/feed" />
+<link rel="alternate" type="application/rss+xml" title="Digital Watch Observatory &raquo; Comments Feed" href="https://dig.watch/comments/feed" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://dig.watch/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdig.watch%2Fupdates%2Fchatgpt-health-tools-with-apple-health" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://dig.watch/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdig.watch%2Fupdates%2Fchatgpt-health-tools-with-apple-health&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-includes/css/dashicons.min.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link rel='preload'  href='https://dig.watch/wp-includes/css/admin-bar.min.css?ver=7.0.2' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<style id="admin-bar-inline-css">
+
+		@media screen { html { margin-top: 32px !important; } }
+		@media screen and ( max-width: 782px ) { html { margin-top: 46px !important; } }
+	
+@media print { #wpadminbar { display:none; } }
+/*# sourceURL=admin-bar-inline-css */
+</style>
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/diplo-deep-link-finder/diplo-deep-link-finder.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="wp-block-heading-inline-css">
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://dig.watch/wp-includes/blocks/heading/style.min.css */
+</style>
+<style id="wp-block-paragraph-inline-css">
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://dig.watch/wp-includes/blocks/paragraph/style.min.css */
+</style>
+
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="font-awesome-svg-styles-default-inline-css">
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -.125em;
+}
+/*# sourceURL=font-awesome-svg-styles-default-inline-css */
+</style>
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/uploads/font-awesome/v5.15.4/css/svg-with-js.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<style id="font-awesome-svg-styles-inline-css">
+   .wp-block-font-awesome-icon svg::before,
+   .wp-rich-text-font-awesome-icon svg::before {content: unset;}
+/*# sourceURL=font-awesome-svg-styles-inline-css */
+</style>
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/diplo-chatbot/inc/style.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/mmenu/css/mmenu.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/style-infographics.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/font-awesome/css/font-awesome.min.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/js/ex_s_lick/ex_s_lick.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/js/ex_s_lick/ex_s_lick-theme.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/animate.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/style.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/style-sidebyside.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/horiz-style.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/dark.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<style id="wpex-timeline-dark-css-inline-css">
+    .wpex-timeline > li .wpex-timeline-icon .fa{font-weight: normal;}
+    	.wpextl-loadicon,
+    .wpextl-loadicon::before,
+	.wpextl-loadicon::after{ border-left-color:#00a6eb}
+    .wpex-filter > .fa,
+    .wpex-endlabel.wpex-loadmore span, .wpex-tltitle.wpex-loadmore span, .wpex-loadmore .loadmore-timeline,
+    .wpex-timeline-list.show-icon .wpex-timeline > li:after, .wpex-timeline-list.show-icon .wpex-timeline > li:first-child:before,
+    .wpex-timeline-list.show-icon .wpex-timeline.style-center > li .wpex-content-left .wpex-leftdate,
+    .wpex-timeline-list.show-icon li .wpex-timeline-icon .fa,
+    .wpex .timeline-details .wptl-readmore > a:hover,
+    .wpex-spinner > div,
+    .wpex.horizontal-timeline .ex_s_lick-prev:hover, .wpex.horizontal-timeline .ex_s_lick-next:hover,
+    .wpex.horizontal-timeline .horizontal-content .ex_s_lick-next:hover,
+    .wpex.horizontal-timeline .horizontal-content .ex_s_lick-prev:hover,
+    .wpex.horizontal-timeline .horizontal-nav li.ex_s_lick-current span.tl-point:before,
+    .wpex.horizontal-timeline.tl-hozsteps .horizontal-nav li.ex_s_lick-current span.tl-point i,
+    .timeline-navigation a.btn,
+    .timeline-navigation div > a,
+    .wpex.horizontal-timeline.ex-multi-item .horizontal-nav li .wpex_point:before,
+    .wpex.horizontal-timeline.ex-multi-item .horizontal-nav li.ex_s_lick-current .wpex_point:before,
+    .wpex.wpex-horizontal-3.ex-multi-item .horizontal-nav  h2 a,
+    .wpex-timeline-list:not(.show-icon) .wptl-feature-name span,
+    .wpex.horizontal-timeline.ex-multi-item:not(.wpex-horizontal-4) .horizontal-nav li span.wpex_point,
+    .wpex.horizontal-timeline.ex-multi-item:not(.wpex-horizontal-4) .horizontal-nav li span.wpex_point,
+    .show-wide_img .wpex-timeline > li .wpex-timeline-time span.tll-date,
+    .wpex-timeline-list.show-bg.left-tl li .wpex-timeline-label .wpex-content-left .wpex-leftdate,
+    .wpex-timeline-list.show-simple:not(.show-simple-bod) ul li .wpex-timeline-time .tll-date,
+    .show-box-color .tlb-time,
+    .sidebyside-tl.show-classic span.tll-date,
+    .wptl-back-to-list a,
+    .wpex.horizontal-timeline.ex-multi-item.wpex-horizontal-8 .hoz-tldate,
+    .wpex.horizontal-timeline.ex-multi-item.wpex-horizontal-9 .wpex-timeline-label:before,
+    .wpex-timeline > li .wpex-timeline-icon .fa{ background:#00a6eb}
+    .wpex-timeline-list.show-icon li .wpex-timeline-icon .fa:before,
+    .wpex-filter span.active,
+    .wpex-timeline-list.show-simple.show-simple-bod ul li .wpex-timeline-time .tll-date,
+    .wpex-timeline-list.show-simple .wptl-readmore-center a,
+    .wpex.horizontal-timeline .ex_s_lick-prev, .wpex.horizontal-timeline .ex_s_lick-next,
+    .wpex.horizontal-timeline.tl-hozsteps .horizontal-nav li.prev_item:not(.ex_s_lick-current) span.tl-point i,
+    .wpex.horizontal-timeline.ex-multi-item .horizontal-nav li span.wpex_point i,
+    .wpex-timeline-list.show-clean .wpex-timeline > li .wpex-timeline-label h2,
+    .wpex-timeline-list.show-simple li .wpex-timeline-icon .fa:not(.no-icon):before,
+    .wpex.horizontal-timeline .extl-hoz-sbs .horizontal-nav li span.tl-point i,
+    .show-wide_img.left-tl .wpex-timeline > li .wpex-timeline-icon .fa:not(.no-icon):not(.icon-img):before,
+    .wpex.wpex-horizontal-8.ex-multi-item li .wpextt_templates .wptl-readmore a,
+    .wpex.horizontal-timeline.ex-multi-item.wpex-horizontal-9.wpex-horizontal-10 .hoz-tldate,
+    .wpex-timeline > li .wpex-timeline-time span:last-child{ color:#00a6eb}
+    .wpex .timeline-details .wptl-readmore > a,
+    .wpex.horizontal-timeline .ex_s_lick-prev:hover, .wpex.horizontal-timeline .ex_s_lick-next:hover,
+    .wpex.horizontal-timeline .horizontal-content .ex_s_lick-next:hover,
+    .wpex.horizontal-timeline .horizontal-content .ex_s_lick-prev:hover,
+    .wpex.horizontal-timeline .horizontal-nav li.ex_s_lick-current span.tl-point:before,
+    .wpex.horizontal-timeline .ex_s_lick-prev, .wpex.horizontal-timeline .ex_s_lick-next,
+    .wpex.horizontal-timeline .timeline-pos-select,
+    .wpex.horizontal-timeline .horizontal-nav li.prev_item span.tl-point:before,
+    .wpex.horizontal-timeline.tl-hozsteps .horizontal-nav li.ex_s_lick-current span.tl-point i,
+    .wpex.horizontal-timeline.tl-hozsteps .timeline-hr, .wpex.horizontal-timeline.tl-hozsteps .timeline-pos-select,
+    .wpex.horizontal-timeline.tl-hozsteps .horizontal-nav li.prev_item span.tl-point i,
+    .wpex-timeline-list.left-tl.show-icon .wptl-feature-name,
+    .wpex-timeline-list.show-icon .wptl-feature-name span,
+    .wpex.horizontal-timeline.ex-multi-item .horizontal-nav li span.wpex_point i,
+    .wpex.horizontal-timeline.ex-multi-item.wpex-horizontal-4 .wpextt_templates .wptl-readmore a,
+    .wpex-timeline-list.show-box-color .style-center > li:nth-child(odd) .wpex-timeline-label,
+	.wpex-timeline-list.show-box-color .style-center > li .wpex-timeline-label,
+	.wpex-timeline-list.show-box-color .style-center > li:nth-child(odd) .wpex-timeline-icon .fa:after,
+    #glightbox-body.extl-lb .gslide-description.description-right h3.lb-title:after,
+    .wpex.horizontal-timeline.ex-multi-item .extl-hoz-sbs.style-7 .extl-sbd-details,
+	.wpex-timeline-list.show-box-color li .wpex-timeline-icon i:after,
+    .wpex.horizontal-timeline .extl-hoz-sbs .horizontal-nav li span.tl-point i,
+    .wpex.horizontal-timeline.ex-multi-item.wpex-horizontal-8 .wpextt_templates >div,
+    .wpex.horizontal-timeline .wpex-timeline-label .timeline-media .exwptl-left-bg,
+    .wpex.wpex-horizontal-3.ex-multi-item .horizontal-nav .wpextt_templates .wptl-readmore a{border-color: #00a6eb;}
+    .wpex-timeline > li .wpex-timeline-label:before,
+    .show-wide_img .wpex-timeline > li .wpex-timeline-time span.tll-date:before, 
+    .wpex-timeline > li .wpex-timeline-label:before,
+    .wpex-timeline-list.show-wide_img.left-tl .wpex-timeline > li .wpex-timeline-time span.tll-date:before,
+    .wpex-timeline-list.show-icon.show-bg .wpex-timeline > li .wpex-timeline-label:after,
+    .wpex-timeline-list.show-icon .wpex-timeline.style-center > li .wpex-timeline-label:after
+    {border-right-color: #00a6eb;}
+    .wpex-filter span,
+    .wpex-timeline > li .wpex-timeline-label{border-left-color: #00a6eb;}
+    .wpex-timeline-list.show-wide_img .wpex-timeline > li .timeline-details,
+    .wpex.horizontal-timeline.ex-multi-item.wpex-horizontal-8 .horizontal-nav .wpextt_templates .wptl-readmore,
+    .wpex.horizontal-timeline.ex-multi-item:not(.wpex-horizontal-4) .horizontal-nav li span.wpex_point:after{border-top-color: #00a6eb;}
+    .wpex.horizontal-timeline.ex-multi-item.wpex-horizontal-8 .hoz-tldate:before,
+    .wpex.wpex-horizontal-3.ex-multi-item .wpex-timeline-label .timeline-details:after{border-bottom-color: #00a6eb;}
+    @media (min-width: 768px){
+        .wpex-timeline.style-center > li:nth-child(odd) .wpex-timeline-label{border-right-color: #00a6eb;}
+        .show-wide_img .wpex-timeline > li:nth-child(even) .wpex-timeline-time span.tll-date:before,
+        .wpex-timeline.style-center > li:nth-child(odd) .wpex-timeline-label:before,
+        .wpex-timeline-list.show-icon .style-center > li:nth-child(odd) .wpex-timeline-label:after{border-left-color: #00a6eb;}
+    }
+				.wpifgr-timeline.ifgr-fline .infogr-list > li:nth-child(even) .tlif-contai, .wpifgr-timeline.ifgr-fline .infogr-list > li:nth-child(even) .tlif-contai:before, .wpifgr-timeline.ifgr-fline .infogr-list > li:nth-child(odd) .tlif-contai, .wpifgr-timeline.ifgr-fline .infogr-list > li:nth-child(odd) .tlif-contai:after, .wpifgr-timeline.ifgr-fline .infogr-list > li .tlif-content:before, .wpifgr-timeline.ifgr-fline .infogr-list > li:nth-child(even) .tlif-contai:after, .wpifgr-timeline.ifgr-fline .infogr-list > li:last-child .tlif-content:after, .wpifgr-timeline.ifgr-fline .infogr-list > li:nth-child(odd) .tlif-contai:before,
+			.wpifgr-timeline.inf-stl-1 .tlif-img,
+			.wpifgr-timeline .infogr-list .tlif-readmore a,
+			ul.infogr-list.exif-nb-even + .extl-info-end.wpex-loadmore span:after,
+			ul.infogr-list.exif-nb-even + .hidden + .extl-info-end.wpex-loadmore span:after,
+			ul.infogr-list.exif-nb-even + .exif-loadmore .loadmore-timeline:after,
+			.wpifgr-timeline .infogr-list li:nth-child(even) .tlif-readmore a,
+			.wpifgr-timeline.inf-stl-2 .infogr-list > li .tlif-img span.tlif-icon,
+			.wpifgr-timeline.inf-stl-2 li .tlif-img > a,
+			.wpifgr-timeline.inf-stl-2 li .tlif-img > .tlif-media,
+			.wpifgr-timeline.inf-stl-3 .infogr-list a.tlif-img-link,
+			.wpifgr-timeline.inf-stl-1 .infogr-list > li .tlif-content .tlif-media,
+			.exif-loadmore.wpex-loadmore .loadmore-timeline:after, .extl-info-end.wpex-loadmore span:after, .extl-info-start.wpex-tltitle.wpex-loadmore span:after{ border-color: #00a6eb;}
+			.wpifgr-timeline.inf-stl-1 .tlif-img,
+			.wpifgr-timeline.inf-stl-3 span.tlif-icon, .wpifgr-timeline.inf-stl-1 span.tlif-icon{background: #00a6eb}
+			.wpifgr-timeline.inf-stl-2 .infogr-list > li .tlif-img span.tlif-icon,
+			.wpifgr-timeline .infogr-list > li .tlif-content .tlif-info span.tll-date{ color:#00a6eb}
+
+			.wpex-timeline>li .wpex-timeline-label h2 { text-transform: initial; }
+.wptl-more-meta span {font-size: 16px;color: #2CD4FF;}
+.wpex.horizontal-timeline:not(.ex-multi-item) .horizontal-nav li.ex_s_lick-current span.tl-point {font-size: 16px;}
+.wpex.horizontal-timeline {background-color: #f2f2f2;padding-bottom: 10px;padding-top: 10px;}
+.wpex.horizontal-timeline .horizontal-nav li.ex_s_lick-current + li.prev_item span.tl-point:before, .wpex.horizontal-timeline .horizontal-nav li span.tl-point i, .wpex.horizontal-timeline .horizontal-nav li span.tl-point:before {border: 3px solid #868e96;}
+.wpex.wpex-horizontal-3.ex-multi-item .horizontal-nav h2 a, .wpex.horizontal-timeline .horizontal-nav li span.tl-point {color: #484848; font-size: 16px;}
+.wpex.horizontal-timeline:not(.ex-multi-item) .horizontal-nav .ex_s_lick-arrow.ex_s_lick-disabled {border-color: #ccc; color: #ccc;}
+.wpex.horizontal-timeline.tl-ct-left .timeline-details {padding-right: 20px;}
+.wpex.horizontal-timeline .timeline-hr {border-bottom: 3px solid #ccc;}
+.wpex.horizontal-timeline .timeline-hr:before {right: -10px;}
+.wpex.horizontal-timeline:not(.no-arr-top) .hor-container {padding: 0px 48px;}
+.wpex.horizontal-timeline .timeline-hr {width: calc(100% - 85px);}
+/*# sourceURL=wpex-timeline-dark-css-inline-css */
+</style>
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/elasticpress/dist/css/general-styles.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/h5p/h5p-php-library/styles/h5p-fonts.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/h5p/h5p-php-library/styles/h5p.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/themes/dw/style.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/3.0/lineicons.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/releases/v5.15.4/css/all.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' crossorigin="anonymous" />
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/tablepress/css/build/default.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+<style id="rocket-lazyload-inline-css">
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://dig.watch/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+/*# sourceURL=rocket-lazyload-inline-css */
+</style>
+<link data-minify="1" rel='preload'  href='https://dig.watch/wp-content/cache/min/1/releases/v5.15.4/css/v4-shims.css?ver=1784828778' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' crossorigin="anonymous" />
+<style id="font-awesome-official-v4shim-inline-css">
+@font-face {
+font-family: "FontAwesome";
+font-display: block;
+src: url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff2") format("woff2"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff") format("woff"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.ttf") format("truetype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.svg#fontawesome") format("svg");
+}
+
+@font-face {
+font-family: "FontAwesome";
+font-display: block;
+src: url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff2") format("woff2"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff") format("woff"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.ttf") format("truetype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.svg#fontawesome") format("svg");
+}
+
+@font-face {
+font-family: "FontAwesome";
+font-display: block;
+src: url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff2") format("woff2"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff") format("woff"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.ttf") format("truetype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.svg#fontawesome") format("svg");
+unicode-range: U+F004-F005,U+F007,U+F017,U+F022,U+F024,U+F02E,U+F03E,U+F044,U+F057-F059,U+F06E,U+F070,U+F075,U+F07B-F07C,U+F080,U+F086,U+F089,U+F094,U+F09D,U+F0A0,U+F0A4-F0A7,U+F0C5,U+F0C7-F0C8,U+F0E0,U+F0EB,U+F0F3,U+F0F8,U+F0FE,U+F111,U+F118-F11A,U+F11C,U+F133,U+F144,U+F146,U+F14A,U+F14D-F14E,U+F150-F152,U+F15B-F15C,U+F164-F165,U+F185-F186,U+F191-F192,U+F1AD,U+F1C1-F1C9,U+F1CD,U+F1D8,U+F1E3,U+F1EA,U+F1F6,U+F1F9,U+F20A,U+F247-F249,U+F24D,U+F254-F25B,U+F25D,U+F267,U+F271-F274,U+F279,U+F28B,U+F28D,U+F2B5-F2B6,U+F2B9,U+F2BB,U+F2BD,U+F2C1-F2C2,U+F2D0,U+F2D2,U+F2DC,U+F2ED,U+F328,U+F358-F35B,U+F3A5,U+F3D1,U+F410,U+F4AD;
+}
+/*# sourceURL=font-awesome-official-v4shim-inline-css */
+</style>
+<script id="jquery-js" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js?ver=3.6.0"></script>
+<script id="mmenu-js" src="https://dig.watch/wp-content/plugins/mmenu/js/mmenu.js?ver=2"></script>
+<script id="diplo-paragraph-analyser-js" src="https://dig.watch/wp-content/plugins/diplo-paragraph-analyser/diplo-anchor-scroll-overrider.js?ver=7.0.2"></script>
+
+<!-- Google tag (gtag.js) snippet added by Site Kit -->
+<!-- Google Analytics snippet added by Site Kit -->
+<script type="text/rocketlazyloadscript" id="google_gtagjs-js" data-rocket-src="https://www.googletagmanager.com/gtag/js?id=G-8B81HWEYYB" async></script>
+<script id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["dig.watch"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "G-8B81HWEYYB");
+//# sourceURL=google_gtagjs-js-after
+</script>
+<link rel="https://api.w.org/" href="https://dig.watch/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://dig.watch/wp-json/wp/v2/updates/263987" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://dig.watch/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.0.2" />
+<link rel='shortlink' href='https://dig.watch/?p=263987' />
+
+  <style type="text/css">
+    .ez-toc-list li.active > a {
+      color: #1b00ff!important; 
+    }
+    #ez-toc-container .ez-toc-list {
+      height: 80vh;
+      overflow: auto;
+    }
+    /* When parent is active, child elements should have default color */
+    .ez-toc-black li.active ul {
+      background-color: black !important;
+    }
+  </style>
+
+  <script type="text/rocketlazyloadscript">window.addEventListener('DOMContentLoaded', () => {
+    let lastActiveHeading = null;
+    let allHeadings = [];
+    
+    const observer = new IntersectionObserver(entries => {
+      document.querySelectorAll('nav li.active').forEach(li => {
+        li.classList.remove('active');
+      });
+      
+      const visibleHeadings = [];
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+          const id = entry.target.getAttribute('id');
+          const tocLink = document.querySelector(`nav li a[href="#${id}"]`);
+          if (tocLink !== null) {
+            visibleHeadings.push({
+              element: tocLink.parentElement,
+              id: id,
+              rect: entry.boundingClientRect,
+              target: entry.target,
+              distanceFromTop: entry.boundingClientRect.top
+            });
+          }
+        }
+      });
+      
+      if (visibleHeadings.length > 0) {
+        visibleHeadings.sort((a, b) => a.distanceFromTop - b.distanceFromTop);
+        
+        let targetHeading = visibleHeadings[0];
+        
+        for (let i = 0; i < visibleHeadings.length; i++) {
+          const currentHeading = visibleHeadings[i];
+          
+          if (currentHeading.distanceFromTop <= 100) {
+            if (targetHeading.distanceFromTop > 100 || 
+                (Math.abs(currentHeading.distanceFromTop - targetHeading.distanceFromTop) < 50 && 
+                 isChildHeading(currentHeading.element, targetHeading.element))) {
+              targetHeading = currentHeading;
+            }
+          }
+        }
+        
+        targetHeading.element.classList.add('active');
+        lastActiveHeading = targetHeading;
+        
+        const tocContainer = document.querySelector('#ez-toc-container .ez-toc-list');
+        if (tocContainer) {
+          const tocRect = tocContainer.getBoundingClientRect();
+          const activeRect = targetHeading.element.getBoundingClientRect();
+          
+          if (activeRect.top < tocRect.top || activeRect.bottom > tocRect.bottom) {
+            targetHeading.element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }
+        }
+        
+        const tocContainerElement = document.querySelector('#ez-toc-container');
+        if (tocContainerElement) {
+          tocContainerElement.style.display = 'block';
+        }
+      } else {
+        if (lastActiveHeading) {
+          lastActiveHeading.element.classList.add('active');
+        }
+        
+        checkIfPastLastHeading();
+      }
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px'
+    });
+    
+    function checkIfPastLastHeading() {
+      if (allHeadings.length === 0) return;
+      
+      const lastHeading = allHeadings[allHeadings.length - 1];
+      const lastHeadingRect = lastHeading.getBoundingClientRect();
+      
+      if (lastHeadingRect.bottom < 0) {
+        const tocContainerElement = document.querySelector('#ez-toc-container');
+        if (tocContainerElement) {
+          tocContainerElement.style.display = 'none';
+        }
+      } else {
+        const tocContainerElement = document.querySelector('#ez-toc-container');
+        if (tocContainerElement) {
+          tocContainerElement.style.display = 'block';
+        }
+      }
+    }
+    
+    function isChildHeading(childElement, parentElement) {
+      let current = childElement.parentElement;
+      while (current && current !== document.body) {
+        if (current === parentElement) {
+          return true;
+        }
+        current = current.parentElement;
+      }
+      return false;
+    }
+    
+    if(document.querySelectorAll('span[id]').length > 0) {
+      document.querySelectorAll('span[id]').forEach((section) => {
+        observer.observe(section);
+        allHeadings.push(section);
+      });
+      
+      allHeadings.sort((a, b) => {
+        const rectA = a.getBoundingClientRect();
+        const rectB = b.getBoundingClientRect();
+        return rectA.top - rectB.top;
+      });
+    }
+    
+});</script>
+  <meta name="generator" content="Site Kit by Google 1.183.0" />    
+    <script type="text/rocketlazyloadscript" data-rocket-type="text/javascript">
+        var ajaxurl = 'https://dig.watch/wp-admin/admin-ajax.php';
+    </script>
+    <script>
+      (function($) {
+        $(document).on('facetwp-refresh', function() {
+          if (FWP.soft_refresh == true) {
+            FWP.enable_scroll = true;
+          } else {
+            FWP.enable_scroll = false;
+          }
+        });
+        $(document).on('facetwp-loaded', function() {
+          if (FWP.enable_scroll == true) {
+            $('html, body').animate({
+              scrollTop: 0
+            }, 500);
+          }
+        });
+      })(jQuery);
+    </script>
+    <style>
+    /* Keep hidden until chatbot JS opens it (plugin CSS may load async via WP Rocket). */
+    .chatbot__response_modal:not(.active) {
+        display: none !important;
+    }
+    .chatbot__response_modal.active {
+        display: flex !important;
+    }
+    .chatbot__response_modal_header svg,
+    .chatbot__response_modal_footer svg {
+        width: 14px;
+        height: 14px;
+    }
+    @media screen and (min-width: 769px) {
+        .chatbot__response_modal.active:not(.full-screen) {
+            display: flex !important;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            margin-top: 0 !important;
+        }
+        .chatbot__response_modal.active.full-screen {
+            display: flex !important;
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+        }
+    }
+    </style>
+    <script type="text/rocketlazyloadscript">
+    (function() {
+        var savedScrollY = 0;
+        
+        function moveModalToBody() {
+            var modal = document.querySelector('.chatbot__response_modal');
+            // Premesti modal direktno na body da position:fixed radi ispravno
+            if (modal && modal.parentElement !== document.body) {
+                document.body.appendChild(modal);
+            }
+        }
+
+        function preventPageScroll() {
+            savedScrollY = window.scrollY;
+            // Vrati scroll odmah ako se promeni
+            function restoreScroll() {
+                if (window.scrollY !== savedScrollY) {
+                    window.scrollTo(0, savedScrollY);
+                }
+            }
+            // Provjeri nekoliko puta za 500ms
+            var checks = [50, 100, 200, 300, 500];
+            checks.forEach(function(ms) {
+                setTimeout(restoreScroll, ms);
+            });
+        }
+
+        // Prati klasu 'active' na modalu
+        var classObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    var el = mutation.target;
+                    if (el.classList.contains('chatbot__response_modal') && el.classList.contains('active')) {
+                        preventPageScroll();
+                    }
+                }
+                // Prati kada plugin premjesti modal u chatbot__container
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.classList && node.classList.contains('chatbot__response_modal')) {
+                            moveModalToBody();
+                            classObserver.observe(node, { attributes: true, attributeFilter: ['class'] });
+                        }
+                    });
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Odmah premesti modal na body ako vec postoji
+            moveModalToBody();
+
+            var modal = document.querySelector('.chatbot__response_modal');
+            if (modal) {
+                classObserver.observe(modal, { attributes: true, attributeFilter: ['class'] });
+            }
+
+            // Prati dinamicke izmjene u DOM-u (plugin premjesta modal)
+            classObserver.observe(document.body, { childList: true, subtree: true });
+        });
+    })();
+    </script>
+    
+<!-- Google AdSense meta tags added by Site Kit -->
+<meta name="google-adsense-platform-account" content="ca-host-pub-2644536267352236">
+<meta name="google-adsense-platform-domain" content="sitekit.withgoogle.com">
+<!-- End Google AdSense meta tags added by Site Kit -->
+		<style type="text/css">
+					.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+				}
+					</style>
+		<link rel="icon" href="https://diplo-media.s3.eu-central-1.amazonaws.com/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://diplo-media.s3.eu-central-1.amazonaws.com/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://diplo-media.s3.eu-central-1.amazonaws.com/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://diplo-media.s3.eu-central-1.amazonaws.com/cropped-favicon-270x270.png" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="text/rocketlazyloadscript">
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script><link rel='preload'  href='https://dig.watch/wp-content/plugins/yikes-inc-easy-mailchimp-extender/public/css/yikes-inc-easy-mailchimp-extender-public.min.css?ver=7.0.2' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  media='all' />
+
+<meta name="generator" content="WP Rocket 3.23" data-wpr-features="wpr_delay_js wpr_defer_js wpr_async_css wpr_lazyload_images wpr_lazyload_iframes wpr_minify_css wpr_cdn wpr_preload_links wpr_mobile" /></head>
+
+<body class="wp-singular updates-template-default single single-updates postid-263987 admin-bar no-customize-support wp-custom-logo wp-theme-dw no-sidebar">
+<div data-rocket-location-hash="54257ff4dc2eb7aae68fa23eb5f11e06" id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#primary">Skip to content</a>
+
+	<header data-rocket-location-hash="fc409f86088b20b81d38a444febf083b" id="masthead" class="site-header">
+		
+		   <div data-rocket-location-hash="b4b14fd0588f11e772f306dd05b8c255" class="dw-primary-header p05-2 dw-flex dw-flex-ai-center m0a">
+			
+			<div class="dwmmenu dw-large-none">
+				<button id="dwmmenu" class="dw-mmenu-btn" aria-controls="primary-menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+			</div> 
+			
+    		<div class="dw-header-logo">
+    			<a href="https://dig.watch/" class="custom-logo-link" rel="home"><img width="362" height="90" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20362%2090'%3E%3C/svg%3E" class="custom-logo" alt="Ice, Nature, Outdoors, Text, Sea, Water" decoding="async" data-lazy-src="https://diplo-media.s3.eu-central-1.amazonaws.com/digwatch-logo.png" /><noscript><img width="362" height="90" src="https://diplo-media.s3.eu-central-1.amazonaws.com/digwatch-logo.png" class="custom-logo" alt="Ice, Nature, Outdoors, Text, Sea, Water" decoding="async" /></noscript></a>    				<p class="site-title"><a href="https://dig.watch/" rel="home">Digital Watch Observatory</a></p>
+    				    				<p class="site-description">Digital Governance in 50+ issues, 500+ actors, 5+ processes</p>
+    			    		</div><!-- .site-branding -->
+    		<!-- <div class="dw-header-description dw-center-align bold dw-relative dw-flex">
+				
+			 <div class="dwSentence dw-flex">
+					<span>Your digital policy guide through</span>
+				  
+				  <div class="ml4 dw-relative dw-blue-span">
+					  <span class="letters letters-1">TECHNOLOGIES</span>
+					  <span class="letters letters-2">TOPICS</span>
+					  <span class="letters letters-3">CORE VALUES</span>
+					  <span class="letters letters-4">ACTORS</span>
+					  <span class="letters letters-5">EVENTS</span>
+					  <span class="letters letters-6">RESOURCES</span>
+				  </div>
+				  
+
+			  </div> 
+				
+    		       		</div>-->
+    
+    		    		    <div id="dw-search-box" class="dw-header-search dw-right-align">
+					        <a href="#contact-hub" class="header-subscribe">Subscribe</a>
+							<a href="https://twitter.com/DigWatchWorld" class="socialicon"><svg id="svg5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 963.66 963.66"><defs><style>.cls-1 {fill: #fff;}.cls-2 {stroke: #fff;stroke-miterlimit: 10;}</style></defs><circle class="cls-2" cx="481.83" cy="481.83" r="481.33"/><g id="layer1"><path id="path1009" class="cls-1" d="M185.33,202.96l230.07,307.62-231.52,250.11h52.11l202.7-218.98,163.77,218.98h177.32l-243.02-324.92,215.5-232.81h-52.11l-186.67,201.67-150.83-201.67H185.33Zm76.63,38.38h81.46l359.72,480.97h-81.46L261.96,241.34Z"/></g></svg></a>
+							<a href="https://www.facebook.com/digwatchworld" class="socialicon"><svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 508.91"><path d="M512,256c0,127.77-93.74,233.69-216.11,252.91V330.5h59.5l11.33-73.82H295.89V208.79c0-20.2,9.9-39.87,41.6-39.87h32.2V106.07s-29.23-5-57.16-5c-58.32,0-96.42,35.35-96.42,99.33v56.25H151.27v73.81h64.84V508.89C93.76,489.64,0,383.74,0,256,0,114.62,114.62,0,256,0S512,114.6,512,256Z"/></svg></a>
+					        <a href="https://www.youtube.com/playlist?list=PLa6vw8V5aV_uBQ_ruYK4YtCuGf8wEyOdX" class="socialicon"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 749.83 528.6"><path d="M298.2,375.8V152.88l196,111.47ZM734.1,82.7a94.67,94.67,0,0,0-65.63-66.58L667.8,16C588,5.82,495.65,0,402,0q-14.29,0-28.5.18l1.45,0c-8-.1-17.53-.17-27-.17A2251,2251,0,0,0,71.1,17L82,15.93A94.64,94.64,0,0,0,15.85,82l-.15.65C5.7,135.38,0,196.05,0,258.05c0,2.2,0,4.4,0,6.57v-.35c0,1.85,0,4.06,0,6.25A992.78,992.78,0,0,0,16.65,452l-.95-6.1a94.67,94.67,0,0,0,65.63,66.58l.67.15c79.82,10.15,172.15,16,265.85,16q14.25,0,28.5-.18l-1.45,0c8.05.1,17.55.17,27.05.17a2252.63,2252.63,0,0,0,276.75-17l-10.85,1.1A94.65,94.65,0,0,0,734,446.6l.15-.65c10-52.72,15.68-113.4,15.68-175.37,0-2.2,0-4.4,0-6.58v.33c0-1.85,0-4.05,0-6.25A993.67,993.67,0,0,0,733.18,76.6l1,6.1Z"/></svg></a>
+					        <a href="https://instagram.com/digwatchworld?igshid=YmMyMTA2M2Y=" class="socialicon"><svg id="Flat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M337.92,256A81.92,81.92,0,1,1,256,174.08,81.92,81.92,0,0,1,337.92,256ZM512,143.36V368.64A143.52,143.52,0,0,1,368.64,512H143.36A143.52,143.52,0,0,1,0,368.64V143.36A143.52,143.52,0,0,1,143.36,0H368.64A143.52,143.52,0,0,1,512,143.36ZM378.88,256A122.88,122.88,0,1,0,256,378.88,122.89,122.89,0,0,0,378.88,256Zm41-133.12a30.72,30.72,0,1,0-30.72,30.72A30.72,30.72,0,0,0,419.84,122.88Z"/></svg></a>
+							<a href="https://www.linkedin.com/company/92847673" class="socialicon"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405.33,0H106.67A106.69,106.69,0,0,0,0,106.67V405.33A106.69,106.69,0,0,0,106.67,512H405.33A106.67,106.67,0,0,0,512,405.33V106.67A106.67,106.67,0,0,0,405.33,0ZM170.67,405.33h-64V170.67h64Zm-32-261.71A37.64,37.64,0,1,1,176,106,37.5,37.5,0,0,1,138.67,143.62Zm288,261.71h-64V285.78c0-71.85-85.34-66.41-85.34,0V405.33h-64V170.67h64v37.65c29.78-55.17,149.34-59.24,149.34,52.82Z"/></svg></a>
+						
+    		      <!-- <i class="lni lni-search-alt"></i> -->
+<!-- 					<i class="fa fa-search"></i> -->
+    		        <!-- [wd_asp id=1]  -->
+					<div class="dwSearchWrapper dw-header-search dw-right-align"><div class="dwIconWrapper p1"><i class="fa fa-search"></i></div><div class="dwFormWrapper dw-d-none p05"><form style="width:100%" role="search" method="get" id="dw-search-form" action="https://dig.watch/" >
+					<div class="dw-flex-ai-center dw-flex" style="background: #eeecec; padding: 10px; border-radius: 5px;">
+						<label class="screen-reader-text" for="s">Search for:</label>
+    					<input style="width: 100%; margin: 0 10px; padding: 5px 10px; border: none;" class="dw-search-input" placeholder="Search..." type="text" value="" name="s" id="s" />
+						<label class="dw-submit-button">
+							<input type="submit" style="display:none" id="searchsubmit" value="Search!">
+								<i class="fa fa-search"></i>
+							</input>
+						</label>
+    				</div>
+    			</form></div></div>    		    </div>
+    		    		</div>
+		
+		<nav id="site-navigation" class="main-navigation digwatch-dark-bcg">
+			<button class="menu-toggle dw-mmenu-btn dw-mmenu-none" aria-controls="primary-menu" aria-expanded="false"><i class="fas fa-bars"></i> Menu</button>
+			<div id="menu-location-menu-1" class="menu-main-menu-container"><ul id="primary-menu" class="menu"><li id="menu-item-23101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23101"><a href="https://dig.watch/topics">Topics</a>
+<ul class="sub-menu">
+	<li id="menu-item-24006" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-has-children menu-item-24006"><a href="https://dig.watch/topics/infrastructure">Infrastructure</a>
+	<ul class="sub-menu">
+		<li id="menu-item-24007" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24007"><a href="https://dig.watch/topics/telecommunications-infrastructure">Telecommunications infrastructure</a></li>
+		<li id="menu-item-263640" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263640"><a href="https://dig.watch/topics/data-infrastructure">Data infrastructure</a></li>
+		<li id="menu-item-24008" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24008"><a href="https://dig.watch/topics/critical-internet-resources">Critical internet resources</a></li>
+		<li id="menu-item-24009" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24009"><a href="https://dig.watch/topics/digital-standards">Digital standards</a></li>
+		<li id="menu-item-24014" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24014"><a href="https://dig.watch/topics/network-neutrality">Network neutrality</a></li>
+	</ul>
+</li>
+	<li id="menu-item-24016" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-has-children menu-item-24016"><a href="https://dig.watch/topics/cybersecurity">Cybersecurity</a>
+	<ul class="sub-menu">
+		<li id="menu-item-24017" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24017"><a href="https://dig.watch/topics/cybercrime">Cybercrime</a></li>
+		<li id="menu-item-24018" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24018"><a href="https://dig.watch/topics/critical-infrastructure">Critical infrastructure</a></li>
+		<li id="menu-item-24019" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24019"><a href="https://dig.watch/topics/cyberconflict">Cyberconflict and warfare</a></li>
+		<li id="menu-item-24020" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24020"><a href="https://dig.watch/topics/violent-extremism">Violent extremism</a></li>
+		<li id="menu-item-263776" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263776"><a href="https://dig.watch/topics/digital-tech-peace">Digital technologies for peace</a></li>
+		<li id="menu-item-24022" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24022"><a href="https://dig.watch/topics/child-safety-online">Child online protection</a></li>
+		<li id="menu-item-24023" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24023"><a href="https://dig.watch/topics/encryption">Encryption</a></li>
+		<li id="menu-item-24024" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24024"><a href="https://dig.watch/topics/network-security">Network security</a></li>
+	</ul>
+</li>
+	<li id="menu-item-24025" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-has-children menu-item-24025"><a href="https://dig.watch/topics/human-rights">Human rights</a>
+	<ul class="sub-menu">
+		<li id="menu-item-24033" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24033"><a href="https://dig.watch/topics/human-rights-principles">Human rights principles</a></li>
+		<li id="menu-item-24026" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-24026"><a href="https://dig.watch/topics/privacy-and-data-protection">Privacy and data protection</a></li>
+		<li id="menu-item-24028" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24028"><a href="https://dig.watch/topics/freedom-expression">Freedom of expression</a></li>
+		<li id="menu-item-24031" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24031"><a href="https://dig.watch/topics/freedom-of-the-press">Freedom of the press</a></li>
+		<li id="menu-item-24030" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24030"><a href="https://dig.watch/topics/gender-rights-online">Gender rights</a></li>
+		<li id="menu-item-24032" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24032"><a href="https://dig.watch/topics/childrens-rights">Children&#8217;s rights</a></li>
+		<li id="menu-item-24029" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24029"><a href="https://dig.watch/topics/rights-persons-disabilities">Rights of persons with disabilities</a></li>
+		<li id="menu-item-263647" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263647"><a href="https://dig.watch/topics/rights-vulnerable-groups">Rights of vulnerable groups</a></li>
+	</ul>
+</li>
+	<li id="menu-item-24034" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-has-children menu-item-24034"><a href="https://dig.watch/topics/legal-and-regulatory">Legal and regulatory</a>
+	<ul class="sub-menu">
+		<li id="menu-item-24037" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-24037"><a href="https://dig.watch/topics/data-governance">Data governance</a></li>
+		<li id="menu-item-24038" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24038"><a href="https://dig.watch/topics/intellectual-property-rights">Intellectual property rights</a></li>
+		<li id="menu-item-24039" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24039"><a href="https://dig.watch/topics/intermediaries">Liability of intermediaries</a></li>
+		<li id="menu-item-263648" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263648"><a href="https://dig.watch/topics/digital-sovereignty">Digital sovereignty</a></li>
+		<li id="menu-item-24035" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24035"><a href="https://dig.watch/topics/jurisdiction">Jurisdiction</a></li>
+		<li id="menu-item-24041" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24041"><a href="https://dig.watch/topics/digital-legacies">Digital legacies</a></li>
+	</ul>
+</li>
+	<li id="menu-item-24042" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-has-children menu-item-24042"><a href="https://dig.watch/topics/economic">Economic</a>
+	<ul class="sub-menu">
+		<li id="menu-item-24044" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24044"><a href="https://dig.watch/topics/e-commerce-and-trade">E-commerce and digital trade</a></li>
+		<li id="menu-item-24045" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24045"><a href="https://dig.watch/topics/digital-business-models">Digital business models</a></li>
+		<li id="menu-item-24046" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24046"><a href="https://dig.watch/topics/taxation">Taxation</a></li>
+		<li id="menu-item-248208" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-248208"><a href="https://dig.watch/topics/competition-regulation">Competition</a></li>
+		<li id="menu-item-24047" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-24047"><a href="https://dig.watch/topics/consumer-protection">Consumer protection</a></li>
+		<li id="menu-item-24048" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24048"><a href="https://dig.watch/topics/future-of-work">Digital labour and future of work</a></li>
+		<li id="menu-item-263646" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263646"><a href="https://dig.watch/topics/financial-tech">Financial technology</a></li>
+	</ul>
+</li>
+	<li id="menu-item-24050" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-has-children menu-item-24050"><a href="https://dig.watch/topics/development">Development</a>
+	<ul class="sub-menu">
+		<li id="menu-item-24053" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24053"><a href="https://dig.watch/topics/access">Digital access and inclusion</a></li>
+		<li id="menu-item-24055" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24055"><a href="https://dig.watch/topics/capacity-development">Capacity development</a></li>
+		<li id="menu-item-24052" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24052"><a href="https://dig.watch/topics/sustainable-development">Sustainable development</a></li>
+		<li id="menu-item-263642" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263642"><a href="https://dig.watch/topics/environment-climate">Environment and climate</a></li>
+		<li id="menu-item-263643" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263643"><a href="https://dig.watch/topics/dpi">Digital public infrastructure</a></li>
+		<li id="menu-item-263644" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263644"><a href="https://dig.watch/topics/dpg">Digital public goods</a></li>
+		<li id="menu-item-263645" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-263645"><a href="https://dig.watch/topics/digital-health">Digital health and well-being</a></li>
+	</ul>
+</li>
+	<li id="menu-item-24058" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-has-children menu-item-24058"><a href="https://dig.watch/topics/sociocultural">Sociocultural</a>
+	<ul class="sub-menu">
+		<li id="menu-item-24059" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24059"><a href="https://dig.watch/topics/content-policy">Content governance</a></li>
+		<li id="menu-item-263649" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-263649"><a href="https://dig.watch/topics/information-integrity">Information integrity</a></li>
+		<li id="menu-item-24062" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24062"><a href="https://dig.watch/topics/multilingualism">Multilingualism and cultural diversity</a></li>
+		<li id="menu-item-24064" class="menu-item menu-item-type-taxonomy menu-item-object-topics menu-item-24064"><a href="https://dig.watch/topics/online-education">Digital education</a></li>
+		<li id="menu-item-263651" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-263651"><a href="https://dig.watch/topics/ethics">Ethics and digital technologies</a></li>
+		<li id="menu-item-263650" class="menu-item menu-item-type-taxonomy menu-item-object-topics current-updates-ancestor current-menu-parent current-updates-parent menu-item-263650"><a href="https://dig.watch/topics/governance-approaches">Digital governance approaches</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-115674" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-115674"><a href="https://dig.watch/technologies">Technologies</a>
+<ul class="sub-menu">
+	<li id="menu-item-227407" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227407"><a href="https://dig.watch/technologies/artificial-intelligence">Artificial intelligence</a></li>
+	<li id="menu-item-227414" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227414"><a href="https://dig.watch/technologies/semiconductors">Semiconductors</a></li>
+	<li id="menu-item-227412" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227412"><a href="https://dig.watch/technologies/metaverse">Metaverse and virtual reality</a></li>
+	<li id="menu-item-227413" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227413"><a href="https://dig.watch/technologies/quantum-computing">Quantum technologies</a></li>
+	<li id="menu-item-227406" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227406"><a href="https://dig.watch/technologies/5g">5G and 6G</a></li>
+	<li id="menu-item-227411" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227411"><a href="https://dig.watch/technologies/internet-of-things">Internet of things</a></li>
+	<li id="menu-item-227409" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227409"><a href="https://dig.watch/technologies/cloud-computing">Cloud computing</a></li>
+	<li id="menu-item-227408" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-227408"><a href="https://dig.watch/technologies/blockchain">Blockchain</a></li>
+	<li id="menu-item-263652" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-263652"><a href="https://dig.watch/technologies/biotechnology-2">Biotechnology</a></li>
+	<li id="menu-item-263653" class="menu-item menu-item-type-post_type menu-item-object-technologies menu-item-263653"><a href="https://dig.watch/technologies/robotics">Robotics</a></li>
+</ul>
+</li>
+<li id="menu-item-23198" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-23198"><a href="/processes">Processes</a>
+<ul class="sub-menu">
+	<li id="menu-item-246686" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-246686"><a href="https://dig.watch/processes/2027-geneva-ai-summit">2027 Geneva AI Summit</a></li>
+	<li id="menu-item-229019" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-229019"><a href="https://dig.watch/processes/un-cstd-wg-on-data-governance">UN CSTD WG on data governance</a></li>
+	<li id="menu-item-24718" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-24718"><a href="https://dig.watch/processes/un-gge">UN Global Mechanism on ICT security</a></li>
+	<li id="menu-item-111108" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-111108"><a href="https://dig.watch/processes/global-digital-compact">Global Digital Compact process</a></li>
+	<li id="menu-item-169467" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-169467"><a href="https://dig.watch/processes/wsis20-process">WSIS+20 Process</a></li>
+	<li id="menu-item-28169" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-28169"><a href="https://dig.watch/processes/eu-digital-service-act-dsa-digital-market-act-dma">EU’s DSA &#038; DMA</a></li>
+	<li id="menu-item-24719" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-24719"><a href="https://dig.watch/processes/geneva-dialogue">Geneva Dialogue on Responsible Behaviour in Cyberspace</a></li>
+	<li id="menu-item-114748" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-114748"><a href="https://dig.watch/processes/convention-on-ai-and-human-rights-council-of-europe-process">Convention on AI and human rights (CoE)</a></li>
+	<li id="menu-item-24721" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-24721"><a href="https://dig.watch/processes/gge-laws">GGE on LAWS</a></li>
+	<li id="menu-item-24722" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-24722"><a href="https://dig.watch/processes/igf-process">Internet Governance Forum</a></li>
+	<li id="menu-item-24723" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-24723"><a href="https://dig.watch/processes/cybercrime-ad-hoc-committee">Ad Hoc Committee on Cybercrime</a></li>
+	<li id="menu-item-24724" class="menu-item menu-item-type-post_type menu-item-object-processes menu-item-24724"><a href="https://dig.watch/processes/wto-ecommerce">The WTO Joint Initiative on e-commerce</a></li>
+</ul>
+</li>
+<li id="menu-item-174109" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-174109"><a href="https://dig.watch/trends">Trends</a></li>
+<li id="menu-item-23197" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-23197"><a href="/upcoming-events">Events</a>
+<ul class="sub-menu">
+	<li id="menu-item-23723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23723"><a href="https://dig.watch/upcoming-events">Event calendar</a></li>
+	<li id="menu-item-23725" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23725"><a href="https://dig.watch/reporting">Reporting</a></li>
+</ul>
+</li>
+<li id="menu-item-144766" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-144766"><a href="https://dig.watch/analysis">Analyses</a></li>
+<li id="menu-item-111916" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-111916"><a>Policy players</a>
+<ul class="sub-menu">
+	<li id="menu-item-136354" class="dw-menu-blue menu-item menu-item-type-custom menu-item-object-custom menu-item-136354"><a href="https://dig.watch/atlas">Digital Geneva Atlas</a></li>
+	<li id="menu-item-136359" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-136359"><a href="https://dig.watch/actor">Organisations</a></li>
+	<li id="menu-item-136365" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-136365"><a href="https://dig.watch/digital-country-profiles">Countries</a></li>
+</ul>
+</li>
+<li id="menu-item-23200" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23200"><a href="/resource">Resources</a></li>
+<li id="menu-item-116881" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-116881"><a href="https://dig.watch/newsletters">Newsletters</a>
+<ul class="sub-menu">
+	<li id="menu-item-115260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-115260"><a href="https://dig.watch/dw-weekly">The Digital Watch Weekly</a></li>
+	<li id="menu-item-110495" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-110495"><a href="/dw-monthly">The Digital Watch Monthly</a></li>
+	<li id="menu-item-110494" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-110494"><a href="/newsletter-fr">Lettre d’information mensuelle</a></li>
+	<li id="menu-item-116882" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-116882"><a href="/newsletters#dw-shorts">The Digital Watch Shorts</a></li>
+</ul>
+</li>
+<li id="menu-item-167091" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167091"><a href="https://dig.watch/team">Team</a></li>
+</ul></div>        <div class="dw-progress-container">
+          <span class="dw-progress-bar"></span>
+        </div>
+		</nav>
+		
+	</header><!-- #masthead -->
+    <div data-rocket-location-hash="b9b07a3b6da09283ee8ca175270dbc9c" class="dw-before-main">
+        <div data-rocket-location-hash="3021494d9879a8fd2d59435830ebde4b" class="dw-single-banner">
+            <div data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2023/04/Crtezi-Updates.png" class="dw-banner-bcg-img animated fadeIn animation-delay rocket-lazyload" style="">
+            </div>
+            <div class="dw-banner-bcg-color animated fadeIn" style="background-color: #8757C7">
+            </div>
+        </div>
+    </div>
+
+	<main data-rocket-location-hash="3f9b5c44b7dc8013e2d3e42efcf88c6c" id="primary" class="site-main">  
+        
+		<div data-rocket-location-hash="c68573afa918fc44c06a97ce67742d29" class="dw-main-content dw-resource-single-main">
+			<div id="dw-breadcrumbs-single">
+                <nav aria-label="breadcrumbs" class="rank-math-breadcrumb"><p><a href="https://dig.watch">Home</a><span class="separator"> | </span><a href="https://dig.watch/updates">Updates</a><span class="separator"> | </span><span class="last">ChatGPT expands health tools with Apple Health integration</span></p></nav>            </div>
+			                <div class="dw-article-time"><time style="color:#FFAA00;">27 Jul 2026</time></div>
+                			<div class="dw-term-title">
+		        <h1>ChatGPT expands health tools with Apple Health integration</h1>
+				
+		   </div>
+		    
+			
+						
+			<div id="dw-social-share" class="dw-flex dw-right-align">
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://dig.watch/updates/chatgpt-health-tools-with-apple-health" class="socialshareicon" title="Share on Facebook"><svg id="Facebook" data-name="Facebook icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><circle cx="15" cy="15" r="15"/><path id="f" d="M16.4,23.9V15.8h2.7l.4-3.2h-3.1v-2c0-.9,.3-1.5,1.6-1.5h1.7v-2.9c-.3,0-1.3-.1-2.4-.1-2.4,0-4.1,1.5-4.1,4.2v2.3h-2.7v3.2h2.7v8.1h3.2Z" style="fill: #fff;"/></svg></a>
+					<a href="https://twitter.com/intent/tweet?text=Hey%2C+check+out+this+post+i+found%3A+https://dig.watch/updates/chatgpt-health-tools-with-apple-health" class="socialshareicon" title="Share on Twitter"><svg id="svg5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 963.66 963.66"><defs><style>.cls-1 {fill: #fff;}.cls-2 {stroke: #fff;stroke-miterlimit: 10;}</style></defs><circle class="cls-2" cx="481.83" cy="481.83" r="481.33"/><g id="layer1">
+    <path id="path1009" class="cls-1" d="M185.33,202.96l230.07,307.62-231.52,250.11h52.11l202.7-218.98,163.77,218.98h177.32l-243.02-324.92,215.5-232.81h-52.11l-186.67,201.67-150.83-201.67H185.33Zm76.63,38.38h81.46l359.72,480.97h-81.46L261.96,241.34Z"/></g></svg></a>
+					<a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fdig.watch%2Fupdates%2Fchatgpt-health-tools-with-apple-health" class="socialshareicon" title="Share on Linkedin"><svg id="Linkedin" data-name="Linkedin Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g id="Linkedin-1" data-name="Linkedin 1"><path d="M16,0C7.16,0,0,7.16,0,16s7.16,16,16,16,16-7.16,16-16S24.84,0,16,0Zm-4.16,22.28h-3.26V12.46h3.26v9.82Zm-1.63-11.16h-.02c-1.1,0-1.8-.76-1.8-1.7s.73-1.7,1.85-1.7,1.8,.73,1.82,1.7c0,.94-.71,1.7-1.85,1.7Zm13.4,11.16h-3.26v-5.25c0-1.32-.47-2.22-1.65-2.22-.9,0-1.44,.61-1.67,1.19-.09,.21-.11,.5-.11,.8v5.48h-3.26s.04-8.9,0-9.82h3.26v1.39c.43-.67,1.21-1.62,2.94-1.62,2.15,0,3.76,1.4,3.76,4.42,0,0,0,5.63,0,5.63Z"/></g></svg></a>
+				</div>
+			
+							<div class="intro-image">
+					<figure class="wp-block-image aligncenter size-large"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="Abstract image of GPT-5.5 Instant Mini acting as a fallback ChatGPT model after users reach rate limits" class="updates-thumbnail" data-lazy-src="https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt-1024x576.jpg"/><noscript><img src="https://dig.watch/wp-content/uploads/2026/07/gpt-5.5-instant-mini-chatgpt-1024x576.jpg" alt="Abstract image of GPT-5.5 Instant Mini acting as a fallback ChatGPT model after users reach rate limits" class="updates-thumbnail"/></noscript>
+										</figure>
+				</div>
+            		    <div class="dw-term-description dw-content-box-p">
+                  
+<p class="wp-block-paragraph" id="OpenAIhas">OpenAI has <a href="https://openai.com/index/health-in-chatgpt/" target="_blank" rel="noreferrer noopener nofollow">begun a broader US rollout of ChatGPT Health</a>, allowing eligible adult users to connect Apple Health and supported medical records to personalise health-related conversations.</p>
+
+
+
+<p class="wp-block-paragraph" id="Withpermission">With permission, ChatGPT can draw on information including medications, laboratory results, recent medical visits, sleep and physical activity. Users can ask the system to compare results over time, summarise changes since an appointment or help prepare questions for a healthcare professional.</p>
+
+
+
+<p class="wp-block-paragraph" id="Connectedhealth">Connected health information can now provide context across <a href="https://dig.watch/updates/openai-chatgpt-whatsapp-eea" target="_blank" rel="noreferrer noopener">ChatGPT</a> conversations rather than being limited to the dedicated Health section. ChatGPT asks for permission by default before accessing the information, while users can also allow it to use connected data automatically in future conversations.</p>
+
+
+
+<p class="wp-block-paragraph" id="OpenAIsaid"><a href="https://dig.watch/updates/openai-investigates-autonomous-ai-cyber-incident" target="_blank" rel="noreferrer noopener">OpenAI</a> said physicians helped develop and test the experience, including its ability to explain complex health information, request missing context and recognise situations in which professional medical support may be necessary. The company cautioned that ChatGPT can still make mistakes and is intended to support, rather than replace, qualified medical care.</p>
+
+
+
+<p class="wp-block-paragraph" id="OpenAIsays">OpenAI says it does not use connected medical records and Apple Health information, along with conversations that use that data, to train its foundation models or target advertising. Users can disconnect a source at any time, after which synced information is scheduled for deletion from OpenAI’s systems within 30 days. Information already included in conversation history remains until the relevant chats are deleted.</p>
+
+
+
+<p class="wp-block-paragraph" id="Therollout">The rollout is beginning with logged-in users aged 18 and over in the <a href="https://dig.watch/countries/united-states-of-america" target="_blank" rel="noreferrer noopener">United States</a> across Free, Go, Plus and Pro plans on web and iOS. Connecting Apple Health requires an iOS device.</p>
+
+
+
+<h2 class="wp-block-heading">Why does it matter?</h2>
+
+
+
+<p class="wp-block-paragraph" id="Linkinga">Linking a general-purpose AI assistant to medical records and wearable data could make health information easier to navigate. Still, it also increases the importance of informed consent, data security and reliable responses.</p>
+
+
+
+<p class="wp-block-paragraph" id="Therollout2">The rollout will test whether permission controls, transparent limitations and secure handling of sensitive information can keep pace as consumer AI services become more personalised and gain access to longitudinal health data.</p>
+
+
+
+<p class="wp-block-paragraph" id="Wouldyou"><strong><em>Would you like to learn more about AI, tech, and digital diplomacy? If so,&nbsp;</em></strong><a href="https://www.diplomacy.edu/" target="_blank" rel="noreferrer noopener nofollow"><strong><em>ask our chatbot</em></strong></a><strong><em>!</em></strong> </p>
+				  
+		    </div>
+			
+			<!-- Related experts -->
+		                
+			<!-- Related topics -->
+		    		    
+		    <div id="dw-es-related-issues" class="events-related-issues">
+		        <h3>Related topics</h3>
+                <div class="dw-es-ri-wrapper">
+                                          <a href="/topics/consumer-protection">Consumer protection</a>
+                                            <a href="/topics/data-governance">Data governance</a>
+                                            <a href="/topics/development">Development</a>
+                                            <a href="/topics/governance-approaches">Digital governance approaches</a>
+                                            <a href="/topics/digital-health">Digital health and well-being</a>
+                                            <a href="/topics/economic">Economic</a>
+                                            <a href="/topics/ethics">Ethics and digital technologies</a>
+                                            <a href="/topics/human-rights">Human rights</a>
+                                            <a href="/topics/legal-and-regulatory">Legal and regulatory</a>
+                                            <a href="/topics/privacy-and-data-protection">Privacy and data protection</a>
+                                            <a href="/topics/sociocultural">Sociocultural</a>
+                                      </div>
+            </div>
+            		    <!-- Related processes -->
+		    		    <!-- Related trends -->
+		    			<!-- Related technologies -->
+		    		    
+		    <div id="dw-es-related-processes" class="events-related-processes">
+		        <h3>Related technologies</h3>
+                <div class="dw-es-rp-wrapper">
+                                          <a href="/technologies/artificial-intelligence">Artificial intelligence</a>
+                                      </div>
+            </div>
+
+            			
+			<!-- Related videos -->
+			       
+			       							<div id="dw-es-related-processes" class="events-related-processes">
+		        			<h3>Related videos</h3>
+                			<div class="dw-es-rp-wrapper relvideos">
+							
+						    <!-- Video ID: 5lqYy8aY2Bw --><div style="margin:0 auto; text-align:center;"><div class="rll-youtube-player" data-src="https://www.youtube.com/embed/5lqYy8aY2Bw" data-id="5lqYy8aY2Bw" data-query="" data-alt="Digital Watch video"></div><noscript><iframe width="560" height="315" src="https://www.youtube.com/embed/5lqYy8aY2Bw" title="Digital Watch video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></noscript></div>						
+						 </div>
+					</div>
+                			 
+			
+            <!-- Related news -->
+			<div id="dw-es-related-issues" class="events-related-issues relatednews dw-flex dw-flex-v dw-flex-sb">
+			<!--fwp-loop-->
+<h3 class="related-title">Related news</h3><div class="relatednewswrapper dw-flex dw-flex-v"><div class="relatednewsitem dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2024/09/eu-and-google-300x171.jpg" class="relatednewsimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/google-backs-eu-rules-for-ai-content-transparency"></a> <h3><a class="blend" href="https://dig.watch/updates/google-backs-eu-rules-for-ai-content-transparency">Google backs EU rules for AI content transparency</a></h3></div><div class="relatednewsitem dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2025/06/Meta-Scale-AI-investment-Alexandr-Wang-Jason-Droege-300x169.jpg" class="relatednewsimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/meta-social-media-addiction-trial-litigation"></a> <h3><a class="blend" href="https://dig.watch/updates/meta-social-media-addiction-trial-litigation">Meta avoids social media addiction trial as wider litigation continues</a></h3></div><div class="relatednewsitem dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/01/148-300x200.jpg" class="relatednewsimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/south-korea-fine-tiktok-apple-privacy-violations"></a> <h3><a class="blend" href="https://dig.watch/updates/south-korea-fine-tiktok-apple-privacy-violations">South Korea fines TikTok and Apple over privacy violations</a></h3></div><div class="relatednewsitem dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/07/2615-1-300x150.jpg" class="relatednewsimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/movement-labs-enters-bankruptcy-proceedings"></a> <h3><a class="blend" href="https://dig.watch/updates/movement-labs-enters-bankruptcy-proceedings">Movement Labs files for Chapter 11 after MOVE token turmoil</a></h3></div><div class="relatednewsitem dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/07/eu-ai-content-labels-guidelines-300x169.jpg" class="relatednewsimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/eu-ai-act-guidance-transparency-labels"></a> <h3><a class="blend" href="https://dig.watch/updates/eu-ai-act-guidance-transparency-labels">European Commission publishes AI Act guidance on transparency labels</a></h3></div><div class="relatednewsitem dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/04/2151953953-2-300x205.jpg" class="relatednewsimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/india-strategy-fintech-governance"></a> <h3><a class="blend" href="https://dig.watch/updates/india-strategy-fintech-governance">India outlines coordinated strategy to strengthen fintech governance</a></h3></div></div>			</div>
+			
+			
+			
+		</div>
+		<aside id="dw-sidebar-right" class="widget-area dw-flex">
+			<div class="section12 dw-flex dw-flex-v dw-flex-sb"><div class="dw-flex dw-flex-v"><div class="section12top"><h2>Latest news</h2></div><div style="width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 15px solid #FF8000;margin:0 auto"></div><div class="section12inner dw-flex dw-flex-v"><div class="section12news dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/06/oecd-digital-government-outlook-2026-300x169.jpg" class="section12singleimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/oecd-ai-workplace-rules-gap"></a> <h3><a class="blend" href="https://dig.watch/updates/oecd-ai-workplace-rules-gap">OECD finds workplace AI safeguards lag behind adoption policies</a></h3></div><div class="section12news dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/02/nvidia-openai-ai-investment-partnership-2026-300x169.jpg" class="section12singleimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/nvidia-financing-support-for-openai-data-centre"></a> <h3><a class="blend" href="https://dig.watch/updates/nvidia-financing-support-for-openai-data-centre">Nvidia explores major financing support for OpenAI data centre project</a></h3></div><div class="section12news dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/02/tiktok-app-logo-social-media-engagement-300x169.jpg" class="section12singleimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/tiktok-may-breach-dsa-child-safety-rules"></a> <h3><a class="blend" href="https://dig.watch/updates/tiktok-may-breach-dsa-child-safety-rules">EU Commission finds TikTok may breach DSA child safety rules</a></h3></div><div class="section12news dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2024/10/ESA_logo-300x200.png" class="section12singleimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/blockchain-security-for-5g-satellite-networks"></a> <h3><a class="blend" href="https://dig.watch/updates/blockchain-security-for-5g-satellite-networks">European Space Agency advances blockchain security for 5G satellite networks</a></h3></div><div class="section12news dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/06/EU-European-Commission-digital-300x201.jpg" class="section12singleimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/eu-reinstates-interim-csam-detection-rules"></a> <h3><a class="blend" href="https://dig.watch/updates/eu-reinstates-interim-csam-detection-rules">EU reinstates interim CSAM detection rules until 2028</a></h3></div><div class="section12news dw-flex"><a data-bg="https://diplo-media.s3.eu-central-1.amazonaws.com/2026/07/eu-ai-cybersecurity-strategy-parliament-300x169.jpg" class="section12singleimagewrapper dw-flex rocket-lazyload" style="" href="https://dig.watch/updates/cyprus-officials-deepen-cooperation-on-ai-and-cybersecurity"></a> <h3><a class="blend" href="https://dig.watch/updates/cyprus-officials-deepen-cooperation-on-ai-and-cybersecurity">Cyprus officials deepen cooperation on AI and cybersecurity</a></h3></div></div><div class="section12bottom"><p><a class="blend" href="/updates/">More news</a></p></div></div></div>			<div>
+				<section class="mt2">
+					<a class="applink sidebar-app" href="https://dig.watch/dw-news-app" target="_blank">
+						<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" data-lazy-src="https://diplo-media.s3.eu-central-1.amazonaws.com/2023/08/dw-app-vertical.jpg"><noscript><img src="https://diplo-media.s3.eu-central-1.amazonaws.com/2023/08/dw-app-vertical.jpg"></noscript>
+					</a>
+				</section>
+			</div>
+			
+		</aside>
+
+
+	</main><!-- #main -->
+
+
+    <style>
+		.dw-before-main {display:none;}
+		.dw-single-expert-img {display: flex;flex-wrap: wrap;align-content: center;}
+		.wp-block-image figcaption {margin-bottom: -1rem;}
+		.dw-es-rp-wrapper a:after {content: "";}
+		h1 {font-size: 1.8em;line-height: 1.1em;}
+		.menu-item-23202 a {color: #FFAA00;}
+		.socialshareicon {width:30px;transition: .3s;}
+		.socialshareicon svg {fill:#414141!important;}
+		#dw-social-share {gap:0.5rem;padding:1em 0;}
+		.socialshareicon:hover {transform: scale(1.1);}
+		.socialshareicon svg:hover {fill:#FF8000!important;}		
+		.dw-article-time {font-size:14px;}
+		.relvideos {max-width:600px;margin:0 auto;}
+		#dw-es-related-experts h3 {font-size:1em; margin:0;}
+		#dw-es-related-experts p {font-size:0.95em;}
+		
+		@media screen and (min-width: 768px){#dw-breadcrumbs-single {margin-bottom:0;}}
+		@media screen and (max-width: 768px){
+			#dw-search-box {display:none;}
+			.single-updates #dw-sidebar-right {padding-top:0!important;}
+			#dw-es-related-issues, #dw-es-related-processes {margin: 0 auto;}
+			#dw-es-related-issues h3, #dw-es-related-processes h3 {margin-bottom:0!important;}
+			.dw-es-ri-wrapper {line-height:1.25;}
+			.dw-single-expert-img img {max-width:100px;}
+			#dw-es-related-experts .dw-left-align {text-align:center!important;justify-content: center;}
+		}
+		#dw-sidebar-right {flex-direction:column;}
+		.section12 {flex: 0;}
+	</style>
+
+
+
+
+
+<footer id="colophon" class="site-footer">
+	
+	
+			    <section id="contact-hub" class="contentWidth mb2 mt1 pt1">
+			<h5 class="decorated"><span>Keep in touch</span></h5>
+		</section>
+		<div class="newsletter-subscribe-v2 pageWidth">
+				<div class="dw-flex dw-flex-js-center contentWidth p15 contactHubWrap">
+					<div class="subscribeSocial dw-flex dw-flex-v">
+						<div class="subscribeSocial1 dw-flex">
+							<a class="applink" href="https://dig.watch/dw-news-app" target="_blank">
+								<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" data-lazy-src="https://diplo-media.s3.eu-central-1.amazonaws.com/2025/11/DigWatch-News-plus-app-1.png"><noscript><img src="https://diplo-media.s3.eu-central-1.amazonaws.com/2025/11/DigWatch-News-plus-app-1.png"></noscript>
+							</a>
+						
+						</div>
+						
+						
+					</div>
+					<div class="newsletter-form dw-flex dw-flex-v">
+						<span class="subscribeFormTitle mt05 mb05" href="/newsletter">Subscribe to the Digital Watch newsletters</span>
+						<span class="subscribeFormLine1">Choose whether you would like to receive our weekly and/or monthly newsletters.</span>
+						<span class="subscribeFormLine2">By clicking on the Subscribe button, you are agreeing to our <a href="https://www.diplomacy.edu/privacy-policy/" target="_blank">Privacy Policy</a>.</span>
+						<div class="rendered-form">
+							
+	<section id="yikes-mailchimp-container-1" class="yikes-mailchimp-container yikes-mailchimp-container-1 ">
+				<form id="site-subscribe-1" class="yikes-easy-mc-form yikes-easy-mc-form-1  newsletter-email" method="POST" data-attr-form-id="1">
+
+													<label for="yikes-easy-mc-form-1-EMAIL"  class="EMAIL-label yikes-mailchimp-field-required ">
+
+										<!-- dictate label visibility -->
+										
+										<!-- Description Above -->
+										
+										<input id="yikes-easy-mc-form-1-EMAIL"  name="EMAIL"  placeholder="Email"  class="yikes-easy-mc-email field-no-label"  required="required" type="email"  value="">
+
+										<!-- Description Below -->
+										
+									</label>
+																		<label for="43badd3a06"  class="43badd3a06-label ">
+																					<label for="43badd3a06-0" class="yikes-easy-mc-checkbox-label field-no-label">
+												<input
+																										type="checkbox"
+													name="group-43badd3a06[]"
+													id="43badd3a06-0"
+																										value="3688bacdf5">
+													Digital Watch weekly											</label>
+																						<label for="43badd3a06-1" class="yikes-easy-mc-checkbox-label field-no-label">
+												<input
+																										type="checkbox"
+													name="group-43badd3a06[]"
+													id="43badd3a06-1"
+																										value="9e69e45f01">
+													Digital Watch monthly											</label>
+																						<label for="43badd3a06-2" class="yikes-easy-mc-checkbox-label field-no-label">
+												<input
+																										type="checkbox"
+													name="group-43badd3a06[]"
+													id="43badd3a06-2"
+																										value="15abf6e35b">
+													Lettre d&#039;information mensuelle Digital Watch											</label>
+																						<label for="43badd3a06-3" class="yikes-easy-mc-checkbox-label field-no-label last-selection">
+												<input
+																										type="checkbox"
+													name="group-43badd3a06[]"
+													id="43badd3a06-3"
+																										value="37ba14f501">
+													GIP News - Latest updates and events from the Geneva Internet Platform											</label>
+											
+									</label>
+									<div class="g-recaptcha" data-sitekey="6LfplzkoAAAAAHZQmpqSpsVWBAlxhAElaryezTqQ" data-theme="light" data-type="image" data-size="normal" data-callback="" data-expired-callback=""></div>
+				<!-- Honeypot Trap -->
+				<input type="hidden" name="yikes-mailchimp-honeypot" id="yikes-mailchimp-honeypot-1" value="">
+
+				<!-- List ID -->
+				<input type="hidden" name="yikes-mailchimp-associated-list-id" id="yikes-mailchimp-associated-list-id-1" value="4510155485">
+
+				<!-- The form that is being submitted! Used to display error/success messages above the correct form -->
+				<input type="hidden" name="yikes-mailchimp-submitted-form" id="yikes-mailchimp-submitted-form-1" value="1">
+
+				<!-- Submit Button -->
+				<button type="submit" class="yikes-easy-mc-submit-button yikes-easy-mc-submit-button-1 btn btn-primary btn-default btn"> <span class="yikes-mailchimp-submit-button-span-text">Subscribe</span></button>				<!-- Nonce Security Check -->
+				<input type="hidden" id="yikes_easy_mc_new_subscriber_1" name="yikes_easy_mc_new_subscriber" value="c127ae36da">
+				<input type="hidden" name="_wp_http_referer" value="/updates/chatgpt-health-tools-with-apple-health" />
+			</form>
+			<!-- Mailchimp Form generated by Easy Forms for Mailchimp v6.9.0 (https://wordpress.org/plugins/yikes-inc-easy-mailchimp-extender/) -->
+
+			</section>
+							</div>
+					</div>
+				</div>
+		 </div>
+				
+	    <div class="footer-partners-wrapper">
+			<div class="footer-about">
+    	        <p>The <em>Digital Watch</em> is an initiative of the Geneva Internet Platform, supported by the Swiss Confederation and the Republic and Canton of Geneva. The GIP is operated by DiploFoundation.</p>
+    	    </div>
+    	    <div class="footer-partners">
+    	        <div class="dw-footer-partners-column">
+    	           <a href="https://giplatform.org/">
+        		   <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%2030'%3E%3C/svg%3E" width="160" height="30" data-lazy-src="https://dig.watch/wp-content/uploads/gip_logo_rgb_2.png"/><noscript><img src="https://dig.watch/wp-content/uploads/gip_logo_rgb_2.png" width="160" height="30"/></noscript>
+        		   </a>
+        		</div>
+        		<div class="dw-footer-partners-column">
+        		    <a href="https://www.admin.ch/gov/en/start.html">
+        		   <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%2053'%3E%3C/svg%3E" width="160" height="53" data-lazy-src="https://dig.watch/wp-content/uploads/DW-partner-swiss.png"/><noscript><img src="https://dig.watch/wp-content/uploads/DW-partner-swiss.png" width="160" height="53"/></noscript>
+        		   </a>
+        		</div>
+        		<div class="dw-footer-partners-column">
+        		   <a href="https://www.ge.ch/">
+        		   <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20116%2074'%3E%3C/svg%3E" width="116" height="74" data-lazy-src="https://dig.watch/wp-content/uploads/DW-patner-CantonGe.png"/><noscript><img src="https://dig.watch/wp-content/uploads/DW-patner-CantonGe.png" width="116" height="74"/></noscript>
+        		   </a>
+        		</div>
+        		<div class="dw-footer-partners-column">
+        		   <a href="https://www.diplomacy.edu/">
+        		   <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%2074'%3E%3C/svg%3E" width="160" height="74" data-lazy-src="https://dig.watch/wp-content/uploads/2022/09/diplo-logo.png"/><noscript><img src="https://dig.watch/wp-content/uploads/2022/09/diplo-logo.png" width="160" height="74"/></noscript>
+        		   </a>
+        		</div>
+    	    </div>
+    	    
+        </div>
+	    <div class="footer-contribute-wrapper">
+    	    <div class="footer-contribute">
+    	        <h4>Contribute to the observatory</h4>
+    	        <p>The GIP Digital Watch observatory reflects on a wide variety of themes and actors involved in global digital policy, curated by a dedicated team of experts from around the world. To submit updates about your organisation, or to join our team of curators, or to enquire about partnerships, write to us at <a href="mailto:digitalwatch@diplomacy.edu">digitalwatch@diplomacy.edu</a>. We look forward to hearing from you.</p>
+    	    </div>
+	    </div>
+	    <div class="site-info-wrapper digwatch-dark-bcg">
+    		<div class="site-info">
+    			<div class="cc-image">
+    			    <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2088%2031'%3E%3C/svg%3E" width="88" height="31" data-lazy-src="/wp-content/uploads/CC-BY-NC-NDv4.png"/><noscript><img src="/wp-content/uploads/CC-BY-NC-NDv4.png" width="88" height="31"/></noscript>
+    			</div>
+    			<div class="content-license">
+    			    Except where otherwise noted, the content on this website is licensed by <a href="https://www.diplomacy.edu/" target="_blank">DiploFoundation</a> under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0 International</a>. External content is licensed by the respective authors. Please <a href="mailto:digitalwatch@diplomacy.edu?subject=Use%20of%20content">inform us</a> when making use of the content.
+    			</div>			
+    
+                    <div id="menu-location-menu-footer" class="dw-footer-menu"><ul id="menu-footer-menu" class="menu"><li id="menu-item-22972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22972"><a href="https://dig.watch/aboutus">About</a></li>
+<li id="menu-item-22973" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22973"><a href="https://www.diplomacy.edu/privacy-policy">Privacy Policy</a></li>
+<li id="menu-item-22974" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22974"><a href="https://www.diplomacy.edu/terms">Terms</a></li>
+<li id="menu-item-22975" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22975"><a href="/logovanje">Log in</a></li>
+</ul></div>    
+    		</div><!-- .site-info -->
+		</div><!-- .site-info-wrapper -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/dw/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+    <div data-rocket-location-hash="c73f50f8e44f6714568b55f4eab68fa1" class="chatbot__response_modal" style="--modal-bg: #19191a; --modal-color: #e8e8e6; --modal-footer-bg: #202222; --modal-input-color: #e8e8e6; --modal-input-border-color: rgba(61, 63, 64, 1); --modal-text-size-small: 13px; background: var(--modal-bg); line-height: 1.6;">
+        <div data-rocket-location-hash="6e9f0e1aa3dc11c3df98f953eb0cb0e9" class="chatbot__response_modal_header">
+            <div data-rocket-location-hash="bacfd922dfd355f015bc06e45c0c7d79" class="chatbot__response_modal_full_screen" style="background: var(--modal-color); border-color: var(--modal-bg);">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--modal-bg)" viewBox="0 0 448 512">
+                    <path d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z" />
+                </svg>
+            </div>
+            <div data-rocket-location-hash="435ee714192140fa9077c4f2a1a9f2e9" class="chatbot__response_modal_close" style="background: var(--modal-color); border-color: var(--modal-bg);">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="var(--modal-bg)" viewBox="0 0 384 512">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+            </div>
+        </div>
+        <div data-rocket-location-hash="c8819178974949bb5bf5f9444a1236cf" class="chatbot__response_modal_content"></div>
+        <div data-rocket-location-hash="357a9ddefc70e43075d162beb1876931" class="chatbot__response_modal_footer">
+            <div data-rocket-location-hash="d8ad67ef0bd9ac2b2d483a53607b1996" class="chatbot__footer_overlay" style="background: linear-gradient(180deg, transparent, var(--modal-bg));"></div>
+            <div data-rocket-location-hash="12596fc8895b47b90ff889d8d29bbe3a" class="chatbot__response_modal_scroll_button" style="background: var(--modal-color); border-color: var(--modal-color);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                </svg>
+            </div>
+            <div data-rocket-location-hash="f63d4fe54d6d3de272b18178c51574e8" class="chatbot__response_modal_footer_content" style="background: var(--modal-footer-bg);">
+                <div class="chatbot__response_modal_input_wrapper" style="border-color: var(--modal-input-border-color);">
+                    <input type="text" class="chatbot__response_modal_input" style="background: transparent; color: var(--modal-input-color); font-size: var(--modal-text-size-small); margin: 0; border: none; outline: none; box-shadow: none;" placeholder="Ask follow-up...">
+                    <button class="chatbot__response_modal_button" style="border: none;" disabled>
+                        <div class="chatbot__response_modal_button_send">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                            </svg>
+                        </div>
+                        <div class="loading-state modal-spinner">
+                            <div class="loading"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div data-rocket-location-hash="75180e0015b94e3e68d264dc76b71c67" class="chatbot__response_modal_input_after" style="color: var(--modal-input-color); font-size: 11px;">
+                Diplo chatbot can make mistakes. Consider checking important information.
+            </div>
+        </div>
+    </div>
+<style type="text/css">@media screen and (max-width:642px) {.wp-block-newsletterglue-optin.is-landscape .ngl-form-wrap {
+            flex-direction: column !important;
+            align-items: initial !important;
+        }.wp-block-newsletterglue-sections.is-stacked-on-mobile td.wp-block-newsletterglue-section {
+			display: block !important;
+			float: none !important;
+			width: 100% !important;
+			clear: both !important;
+			box-sizing: border-box !important;
+		}table.wp-block-newsletterglue-text.ng-block td.ng-block-td { padding: 8px 20px 10px 20px !important; }table.wp-block-newsletterglue-text.ng-block td.ng-block-td { line-height: 1.5 !important; }table.wp-block-newsletterglue-meta-data.ng-block td.ng-block-td { padding: 10px !important; }table.wp-block-newsletterglue-table.ng-block td.ng-block-td, table.wp-block-newsletterglue-table.ng-block th { padding: 5px !important; }div.ng-table-wrapper.ng-block { padding: 10px !important; }table.wp-block-newsletterglue-list.ng-block td.ng-block-td { padding: 8px 0px !important; font-size: 16px; }table.wp-block-newsletterglue-list.ng-block td.ng-block-td li { font-size: 16px; line-height: 1.5 !important; }table.wp-block-newsletterglue-list.ng-block td.ng-block-td td.ng-block-td { padding: 0px 0px 5px 0px !important; font-size: 16px !important; }table.wp-block-newsletterglue-list.ng-block td.ng-block-td td.ng-block-td li { font-size: 16px; }table.wp-block-newsletterglue-heading.ng-block-h1 td.ng-block-td { padding: 5px 20px 0px 20px !important; line-height: 1.1 !important; }table.wp-block-newsletterglue-heading.ng-block-h1 td.ng-block-td h1 { line-height: 1.1 !important; }table.wp-block-newsletterglue-heading.ng-block-h2 td.ng-block-td { padding: 35px 20px 0px 20px !important; line-height: 1.1 !important; }table.wp-block-newsletterglue-heading.ng-block-h2 td.ng-block-td h2 { line-height: 1.1 !important; }table.wp-block-newsletterglue-heading.ng-block-h3 td.ng-block-td { padding: 15px 20px 0px 20px !important; line-height: 1.2 !important; }table.wp-block-newsletterglue-heading.ng-block-h3 td.ng-block-td h3 { line-height: 1.2 !important; }table.wp-block-newsletterglue-heading.ng-block-h4 td.ng-block-td { padding: 15px 20px 0px 20px !important; line-height: 1.2 !important; }table.wp-block-newsletterglue-heading.ng-block-h4 td.ng-block-td h4 { line-height: 1.2 !important; }table.wp-block-newsletterglue-heading.ng-block-h5 td.ng-block-td { padding: 15px 20px 0px 20px !important; line-height: 1.2 !important; }table.wp-block-newsletterglue-heading.ng-block-h5 td.ng-block-td h5 { line-height: 1.2 !important; }table.wp-block-newsletterglue-heading.ng-block-h6 td.ng-block-td { padding: 15px 20px 0px 20px !important; line-height: 1.2 !important; }table.wp-block-newsletterglue-heading.ng-block-h6 td.ng-block-td h6 { line-height: 1.2 !important; }table.wp-block-newsletterglue-quote > tbody > tr > td.ng-block-td { padding: 15px 20px 15px 20px !important; }table.wp-block-newsletterglue-quote td.ng-block-td { font-size: 18px; }table.wp-block-newsletterglue-quote td.ng-block-td p { font-size: 18px !important; }table.wp-block-newsletterglue-quote td.ng-block-cite span { font-size: 15px !important; }table.wp-block-newsletterglue-image td { padding: 0 !important; }table.wp-block-newsletterglue-image td.ng-block-caption { padding-top: 10px !important; }table.wp-block-newsletterglue-image img { max-width: 100%; height: auto; }table.wp-block-newsletterglue-image td.ng-block-caption span { font-size: 12px !important; }table.wp-block-newsletterglue-sections td.ng-columns-wrap { padding: 10px 0 !important; }td.wp-block-newsletterglue-section { padding: 10px 0 !important; }.ngl-table-latest-posts .ngl-lp-labels,
+		div.wp-block-newsletterglue-latest-posts .ngl-lp-labels,
+		div.wp-block-newsletterglue-post-embeds .ngl-lp-labels
+		{ font-size: 11px !important }.ngl-table-latest-posts .ngl-lp-labels-author,
+		div.wp-block-newsletterglue-latest-posts .ngl-lp-labels-author,
+		div.wp-block-newsletterglue-post-embeds .ngl-lp-labels-author
+		{ font-size: 13px !important }.ngl-table-latest-posts .ngl-lp-title,
+			div.wp-block-newsletterglue-latest-posts .ngl-lp-title,
+			div.wp-block-newsletterglue-latest-posts .ngl-lp-title h3,
+			div.wp-block-newsletterglue-latest-posts .ngl-lp-title h3 a,
+			div.wp-block-newsletterglue-post-embeds .ngl-lp-title,
+			div.wp-block-newsletterglue-post-embeds .ngl-lp-title h3,
+			div.wp-block-newsletterglue-post-embeds .ngl-lp-title h3 a
+			{ font-size: 18px !important }.ngl-table-latest-posts .ngl-lp-content, div.wp-block-newsletterglue-latest-posts .ngl-lp-content { font-size: 13px !important }.ngl-table-latest-posts .ngl-lp-cta a, div.wp-block-newsletterglue-latest-posts .ngl-lp-cta a { font-size: 13px !important }.ngl-table-latest-posts .ngl-lp-content, div.wp-block-newsletterglue-post-embeds .ngl-lp-content { font-size: 13px !important }.ngl-table-latest-posts .ngl-lp-cta a, div.wp-block-newsletterglue-post-embeds .ngl-lp-cta a { font-size: 13px !important }.wp-block-newsletterglue-latest-posts.is-stacked .ngl-lp-item,
+					.wp-block-newsletterglue-post-embeds.is-stacked .ngl-lp-item {
+			display: block !important;
+		}.wp-block-newsletterglue-latest-posts.is-stacked.columns-two .ngl-lp-items,
+					.wp-block-newsletterglue-post-embeds.is-stacked.columns-two .ngl-lp-items {
+			display: block !important;
+		}.ng-posts-wrapper.is-stacked td table.ngl-table-latest-posts > tbody > tr > td:first-child {
+			padding-top: 10px !important;
+		}.ng-posts-wrapper.is-stacked td table.ngl-table-latest-posts > tbody > tr > td:last-child {
+			padding-bottom: 10px !important;
+		}table.wp-block-newsletterglue-separator td { padding: 15px !important; }table.wp-block-newsletterglue-separator hr { margin: auto !important; }table.wp-block-newsletterglue-separator hr { width: 300px !important; border-width: 1px !important; }table.wp-block-newsletterglue-optin .ng-form-header { font-size: 18px !important; }table.wp-block-newsletterglue-optin .ng-form-description,
+                    table.wp-block-newsletterglue-optin .ng-form-overlay-text { font-size: 14px !important; }table.wp-block-newsletterglue-optin .ngl-form-label,
+        table.wp-block-newsletterglue-optin .ngl-form-input,
+        table.wp-block-newsletterglue-optin .ng-form-text,
+        table.wp-block-newsletterglue-optin .ng-form-checkbox-text,
+        table.wp-block-newsletterglue-optin .ng-form-button
+        { font-size: 13px !important; }}</style><script id="hoverintent-js-js" src="https://dig.watch/wp-includes/js/hoverintent-js.min.js?ver=2.2.1"></script>
+<script id="admin-bar-js" src="https://dig.watch/wp-includes/js/admin-bar.min.js?ver=7.0.2"></script>
+<script id="diplo-deep-link-finder-js" src="https://dig.watch/wp-content/plugins/diplo-deep-link-finder/diplo-deep-link-finder.js?ver=3.0.1"></script>
+<script id="dtgs_nonce_frontend-js" src="https://dig.watch/wp-content/plugins/data-tables-generator-by-supsystic/app/assets/js/dtgsnonce.js?ver=0.01"></script>
+<script id="dtgs_nonce_frontend-js-after">
+var DTGS_NONCE_FRONTEND = "3376b36698"
+//# sourceURL=dtgs_nonce_frontend-js-after
+</script>
+<script id="dig-chatbot-script-js" src="https://dig.watch/wp-content/plugins/diplo-chatbot/inc/script.js?ver=2.3.5"></script>
+<script id="marked-js" src="https://dig.watch/wp-content/plugins/diplo-chatbot/inc/marked.min.js?ver=1.0.0"></script>
+<script id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+//# sourceURL=rocket-browser-checker-js-after
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"/actors|/actor|/actor/|/atlas|/actor/world-health-organization|/graph-interlinkages-geneva-actors|/processes/un-gge|/atlas-2|/(?:.+/)?feed(?:/(?:.+/?)?)?$|/(?:.+/)?embed/|/(index.php/)?(.*)wp-json(/.*|$)|/refer/|/go/|/recommend/|/recommends/","usesTrailingSlash":"","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https://dig.watch","onHoverDelay":"100","rateThrottle":"3"};
+//# sourceURL=rocket-preload-links-js-extra
+</script>
+<script id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+
+//# sourceURL=rocket-preload-links-js-after
+</script>
+<script id="dw-applink-js" src="https://dig.watch/wp-content/themes/dw/js/dw-applink.js?ver=1.3.2.0"></script>
+<script id="dw-main-js" src="https://dig.watch/wp-content/themes/dw/js/dw-main.js?ver=1.3.2.0"></script>
+<script id="dw-navigation-js" src="https://dig.watch/wp-content/themes/dw/js/navigation.js?ver=1.3.2.0"></script>
+<script id="dw-progress-bar-js" src="https://dig.watch/wp-content/themes/dw/js/progress-bar.js?ver=1.3.2.0"></script>
+<script id="dw-QuickSearch-js" src="https://dig.watch/wp-content/themes/dw/js/QuickSearch.js?ver=1.3.2.0"></script>
+<script id="dw-deep-link-handler-js" src="https://dig.watch/wp-content/themes/dw/js/deep-link-handler.js?ver=1785149186"></script>
+<script type="text/rocketlazyloadscript" id="animeJS-js" data-rocket-src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js?ver=1.3.2.0" data-rocket-defer defer></script>
+<script id="dw-actors-filter-js" src="https://dig.watch/wp-content/themes/dw/js/actors-filter.js?ver=1.3.2.0"></script>
+<script id="form-submission-helpers-js-extra">
+var form_submission_helpers = {"ajax_url":"https://dig.watch/wp-admin/admin-ajax.php","preloader_url":"https://dig.watch/wp-admin/images/wpspin_light.gif","countries_with_zip":{"US":"US","GB":"GB","CA":"CA","IE":"IE","CN":"CN","IN":"IN","AU":"AU","BR":"BR","MX":"MX","IT":"IT","NZ":"NZ","JP":"JP","FR":"FR","GR":"GR","DE":"DE","NL":"NL","PT":"PT","ES":"ES"},"page_data":"263987"};
+//# sourceURL=form-submission-helpers-js-extra
+</script>
+<script id="form-submission-helpers-js" src="https://dig.watch/wp-content/plugins/yikes-inc-easy-mailchimp-extender/public/js/form-submission-helpers.min.js?ver=6.9.0"></script>
+<script type="text/rocketlazyloadscript" id="google-recaptcha-js-js" data-rocket-src="https://www.google.com/recaptcha/api.js?hl=en&#038;onload=renderReCaptchaCallback&#038;render=explicit&#038;ver=all"></script>
+<script id="yikes-easy-mc-ajax-js-extra">
+var yikes_mailchimp_ajax = {"ajax_url":"https://dig.watch/wp-admin/admin-ajax.php","page_data":"263987","interest_group_checkbox_error":"This field is required.","preloader_url":"https://dig.watch/wp-content/plugins/yikes-inc-easy-mailchimp-extender/includes/images/ripple.svg","loading_dots":"https://dig.watch/wp-content/plugins/yikes-inc-easy-mailchimp-extender/includes/images/bars.svg","ajax_security_nonce":"8486380c39","feedback_message_placement":"before"};
+//# sourceURL=yikes-easy-mc-ajax-js-extra
+</script>
+<script id="yikes-easy-mc-ajax-js" src="https://dig.watch/wp-content/plugins/yikes-inc-easy-mailchimp-extender/public/js/yikes-mc-ajax-forms.min.js?ver=6.9.0"></script>
+		<div data-rocket-location-hash="d43019048120902ebb4e229a60233681" id="wpadminbar" class="nojq nojs mobile">
+						<div data-rocket-location-hash="4a03994793bedf94aa45bc77f24f4115" class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
+				<ul role='menu' id='wp-admin-bar-root-default' class="ab-top-menu"><li role='group' id='wp-admin-bar-wp-logo' class="menupop"><div class="ab-item ab-empty-item" tabindex="0" role="menuitem" aria-expanded="false"><span class="ab-icon" aria-hidden="true"></span><span class="screen-reader-text">About WordPress</span></div><div class="ab-sub-wrapper"><ul role='menu' id='wp-admin-bar-wp-logo-external' class="ab-sub-secondary ab-submenu"><li role='group' id='wp-admin-bar-wporg'><a class='ab-item' role="menuitem" href='https://wordpress.org/'>WordPress.org</a></li><li role='group' id='wp-admin-bar-documentation'><a class='ab-item' role="menuitem" href='https://wordpress.org/documentation/'>Documentation</a></li><li role='group' id='wp-admin-bar-learn'><a class='ab-item' role="menuitem" href='https://learn.wordpress.org/'>Learn WordPress</a></li><li role='group' id='wp-admin-bar-support-forums'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forums/'>Support</a></li><li role='group' id='wp-admin-bar-feedback'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forum/requests-and-feedback'>Feedback</a></li></ul></div></li></ul><ul role='menu' id='wp-admin-bar-top-secondary' class="ab-top-secondary ab-top-menu"><li role='group' id='wp-admin-bar-search' class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1" role="menuitem"><form action="https://dig.watch/" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">Search</label><input type="submit" class="adminbar-button" value="Search" /></form></div></li></ul>			</div>
+		</div>
+
+		<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://dig.watch/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script><script>function lazyLoadThumb(e,alt,l){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="Play Youtube video"></button>';if(l){t=t.replace('data-lazy-','');t=t.replace('loading="lazy"','');t=t.replace(/<noscript>.*?<\/noscript>/g,'');}t=t.replace('alt=""','alt="'+alt+'"');return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?"":"&"+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var exclusions=[];var e,t,p,u,l,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)(e=document.createElement("div")),(u='https://i.ytimg.com/vi/ID/hqdefault.jpg'),(u=u.replace('ID',a[t].dataset.id)),(l=exclusions.some(exclusion=>u.includes(exclusion))),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query",a[t].dataset.query),e.setAttribute("data-src",a[t].dataset.src),(e.innerHTML=lazyLoadThumb(a[t].dataset.id,a[t].dataset.alt,l)),a[t].appendChild(e),(p=e.querySelector(".play")),(p.onclick=lazyLoadYoutubeIframe)});</script><script>var rocket_beacon_data = {"ajax_url":"https:\/\/dig.watch\/wp-admin\/admin-ajax.php","nonce":"693de035c6","url":"https:\/\/dig.watch\/updates\/chatgpt-health-tools-with-apple-health","is_mobile":true,"width_threshold":393,"height_threshold":830,"delay":500,"debug":null,"status":{"atf":true,"lrc":true,"preconnect_external_domain":true},"elements":"img, video, picture, p, main, div, li, svg, section, header, span","lrc_threshold":1800,"preconnect_external_domain_elements":["link","script","iframe"],"preconnect_external_domain_exclusions":["static.cloudflareinsights.com","rel=\"profile\"","rel=\"preconnect\"","rel=\"dns-prefetch\"","rel=\"icon\""]}</script><script data-name="wpr-wpr-beacon" src='https://dig.watch/wp-content/plugins/wp-rocket/assets/js/wpr-beacon.min.js' async></script><script>"use strict";function wprRemoveCPCSS(){var preload_stylesheets=document.querySelectorAll('link[data-rocket-async="style"][rel="preload"]');if(preload_stylesheets&&0<preload_stylesheets.length)for(var stylesheet_index=0;stylesheet_index<preload_stylesheets.length;stylesheet_index++){var media=preload_stylesheets[stylesheet_index].getAttribute("media")||"all";if(window.matchMedia(media).matches)return void setTimeout(wprRemoveCPCSS,200)}var elem=document.getElementById("rocket-critical-css");elem&&"remove"in elem&&elem.remove()}window.addEventListener?window.addEventListener("load",wprRemoveCPCSS):window.attachEvent&&window.attachEvent("onload",wprRemoveCPCSS);</script><noscript><link data-minify="1" rel='stylesheet' id='dashicons-css' href='https://dig.watch/wp-content/cache/min/1/wp-includes/css/dashicons.min.css?ver=1784828778' media='all' /><link rel='stylesheet' id='admin-bar-css' href='https://dig.watch/wp-includes/css/admin-bar.min.css?ver=7.0.2' media='all' /><link data-minify="1" rel='stylesheet' id='diplo-deep-link-finder-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/diplo-deep-link-finder/diplo-deep-link-finder.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='font-awesome-svg-styles-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/uploads/font-awesome/v5.15.4/css/svg-with-js.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='dig-chatbot-style-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/diplo-chatbot/inc/style.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='mmenu-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/mmenu/css/mmenu.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-infgrapihcs-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/style-infographics.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-font-awesome-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/font-awesome/css/font-awesome.min.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-ex_s_lick-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/js/ex_s_lick/ex_s_lick.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-ex_s_lick-theme-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/js/ex_s_lick/ex_s_lick-theme.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-timeline-animate-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/animate.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-timeline-css-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/style.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-timeline-sidebyside-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/style-sidebyside.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-horiz-css-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/horiz-style.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='wpex-timeline-dark-css-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/wp-timelines/css/dark.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='ep_general_styles-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/elasticpress/dist/css/general-styles.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='h5p-plugin-fonts-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/h5p/h5p-php-library/styles/h5p-fonts.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='h5p-plugin-styles-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/h5p/h5p-php-library/styles/h5p.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='dw-style-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/themes/dw/style.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='lineicons-css' href='https://dig.watch/wp-content/cache/min/1/3.0/lineicons.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='font-awesome-official-css' href='https://dig.watch/wp-content/cache/min/1/releases/v5.15.4/css/all.css?ver=1784828778' media='all' crossorigin="anonymous" /><link data-minify="1" rel='stylesheet' id='tablepress-default-css' href='https://dig.watch/wp-content/cache/min/1/wp-content/plugins/tablepress/css/build/default.css?ver=1784828778' media='all' /><link data-minify="1" rel='stylesheet' id='font-awesome-official-v4shim-css' href='https://dig.watch/wp-content/cache/min/1/releases/v5.15.4/css/v4-shims.css?ver=1784828778' media='all' crossorigin="anonymous" /><link rel='stylesheet' id='yikes-inc-easy-mailchimp-public-styles-css' href='https://dig.watch/wp-content/plugins/yikes-inc-easy-mailchimp-extender/public/css/yikes-inc-easy-mailchimp-extender-public.min.css?ver=7.0.2' media='all' /></noscript></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1785153938 -->

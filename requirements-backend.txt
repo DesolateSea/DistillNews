@@ -1,0 +1,19 @@
+# Backend Web Container Dependencies (Lightweight, No PyTorch/SentenceTransformers)
+fastapi==0.115.12
+fastapi[standard]==0.115.12
+motor==3.7.0
+redis==5.0.1
+pydantic==2.11.3
+pydantic[email]==2.11.3
+PyJWT==2.7.0
+passlib==1.7.4
+bcrypt==4.0.1
+httpx==0.28.1
+urllib3==2.4.0
+requests==2.32.3
+pyyaml==6.0.2
+python-dotenv==1.0.1
+apscheduler==3.9.1
+setuptools==80.9.0
+julep==1.78.1
+openai==1.99.9

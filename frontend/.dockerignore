@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+*.log
+.env*
+!.env.example

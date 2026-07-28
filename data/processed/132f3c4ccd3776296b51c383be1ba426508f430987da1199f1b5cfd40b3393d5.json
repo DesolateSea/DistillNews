@@ -1,0 +1,46 @@
+{
+  "title": "What It Was Like to Edit the \u2018Wolf Hall\u2019 Books",
+  "publication_date": "2025-04-18T15:25:25Z",
+  "summary": "The provided item lists the title 'What It Was Like to Edit the \u2018Wolf Hall\u2019 Books' and a Unix timestamp but contains no article body. Cleaned content shows placeholder metadata dictionaries with unknown title, author and date. No substantive reporting or narrative is available from the supplied data.",
+  "content": "The original article appears to be missing its body. What is available is a title and a Unix publication timestamp, but the cleaned content contains only placeholder records showing unknown fields. Publication timestamp 1744989925 corresponds to 2025-04-18T15:25:25Z.\n\nRaw cleaned content as received: ({'title': 'Unknown Title', 'publication_date': 'Unknown', 'content': ''}, {'title': 'Unknown Title', 'author': 'Unknown Author', 'publication_date': 'Unknown'})\n\nBecause the source lacks an article text, no details about the editing process, editorial decisions, interviews, or context around the 'Wolf Hall' books are present. The metadata suggests the article exists but was not captured in the cleaned data. If the full article is needed, please provide the original source or a more complete extract.",
+  "category": "Entertainment",
+  "tags": [
+    "literature",
+    "books",
+    "editing",
+    "publishing",
+    "Wolf Hall",
+    "Hilary Mantel"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "What It Was Like to Edit the \u2018Wolf Hall\u2019 Books",
+    "publication_date": 1744989925,
+    "content": [
+      {
+        "title": "Unknown Title",
+        "publication_date": "Unknown",
+        "content": ""
+      },
+      {
+        "title": "Unknown Title",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Anonymous"
+    ],
+    "source": "The New York Times",
+    "image_url": null,
+    "url": "https://www.nytimes.com/2025/04/18/books/review/podcast-wolf-hall-hillary-mantel-editor.html",
+    "category": "entertainment",
+    "language": "en",
+    "country": "us"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/entertainment/news.json",
+  "markdown_content": "## Summary\\n\\nThe original article appears to be missing its body. What is available is a title and a Unix publication timestamp, but the cleaned content contains only placeholder records showing unknown fields. Publication timestamp 1744989925 corresponds to 2025-04-18T15:25:25Z.\\n\\n## Raw cleaned content (as received)\\n\\n- {'title': 'Unknown Title', 'publication_date': 'Unknown', 'content': ''}\\n- {'title': 'Unknown Title', 'author': 'Unknown Author', 'publication_date': 'Unknown'}\\n\\n## Notes\\n\\nBecause the source lacks an article text, no details about the editing process, editorial decisions, interviews, or context around the 'Wolf Hall' books are present. The metadata suggests the article exists but was not captured in the cleaned data.\\n\\n## Next steps\\n\\n- If the full article is needed, please provide the original source or a more complete extract.",
+  "created_at": "2026-07-28T04:25:12.155287+00:00"
+}

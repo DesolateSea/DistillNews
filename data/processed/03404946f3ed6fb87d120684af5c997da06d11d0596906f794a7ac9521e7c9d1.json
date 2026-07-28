@@ -1,0 +1,48 @@
+{
+  "title": "M\u00e1s de 420 mil personas asisten a viacrucis de Iztapalapa",
+  "publication_date": "2025-04-18T16:36:18Z",
+  "summary": "La alcaldesa Aleida Alavez inform\u00f3 que la representaci\u00f3n de la Pasi\u00f3n de Cristo en Iztapalapa reuni\u00f3 a m\u00e1s de 420,000 personas. Se mantiene un operativo de seguridad con m\u00e1s de 3,000 elementos; se ofrecieron 4,500 servicios de hidrataci\u00f3n y 3,200 atenciones m\u00e9dicas. La tradici\u00f3n est\u00e1 en tr\u00e1mite para ser reconocida como patrimonio cultural inmaterial de la humanidad.",
+  "content": "La alcaldesa Aleida Alavez inform\u00f3 que la representaci\u00f3n de la Pasi\u00f3n de Cristo en Iztapalapa reuni\u00f3 este jueves a m\u00e1s de 420 mil personas mientras sigue activo un operativo especial de seguridad para hoy con m\u00e1s de 3 mil elementos polic\u00edacos.Detall\u00f3 que el jueves se brindaron m\u00e1s de 4 mil 500 servicios de hidrataci\u00f3n y 3 mil 200 atenciones m\u00e9dicas.La alcaldesa record\u00f3 que esta tradici\u00f3n est\u00e1 en proceso de ser reconocida como patrimonio cultural inmaterial de la humanidad.\n\nDerechos Reservados - Notisistema 2018 |Defensor\u00eda de Audiencia|Aviso de Privacidad",
+  "category": "World",
+  "tags": [
+    "Iztapalapa",
+    "viacrucis",
+    "religi\u00f3n",
+    "seguridad",
+    "atenciones m\u00e9dicas",
+    "hidrataci\u00f3n",
+    "patrimonio cultural",
+    "Mexico City"
+  ],
+  "location": "Iztapalapa, Mexico",
+  "source": {
+    "title": "M\u00e1s de 420 mil personas asisten a viacrucis de Iztapalapa",
+    "publication_date": 1744994178,
+    "content": [
+      {
+        "title": "M\u00e1s de 420 mil personas asisten a viacrucis de Iztapalapa",
+        "publication_date": "Unknown",
+        "content": "La alcaldesa Aleida Alavez inform\u00f3 que la representaci\u00f3n de la Pasi\u00f3n de Cristo en Iztapalapa reuni\u00f3 este jueves a m\u00e1s de 420 mil personas mientras sigue activo un operativo especial de seguridad para hoy con m\u00e1s de 3 mil elementos polic\u00edacos.Detall\u00f3 que el jueves se brindaron m\u00e1s de 4 mil 500 servicios de hidrataci\u00f3n y 3 mil 200 atenciones m\u00e9dicas.La alcaldesa record\u00f3 que esta tradici\u00f3n est\u00e1 en proceso de ser reconocida como patrimonio cultural inmaterial de la humanidad.\n\nDerechos Reservados - Notisistema 2018 |Defensor\u00eda de Audiencia|Aviso de Privacidad"
+      },
+      {
+        "title": "M\u00e1s de 420 mil personas asisten a viacrucis de Iztapalapa",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Luis Angel"
+    ],
+    "source": "notisistema",
+    "image_url": null,
+    "url": "https://www.notisistema.com/noticias/mas-de-420-mil-personas-asisten-a-viacrucis-de-iztapalapa/",
+    "category": "general",
+    "language": "es",
+    "country": "es"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/general/news.json",
+  "markdown_content": "## Detalles del evento\\n\\n> La alcaldesa Aleida Alavez inform\u00f3 que la representaci\u00f3n de la Pasi\u00f3n de Cristo en Iztapalapa reuni\u00f3 este jueves a m\u00e1s de 420 mil personas mientras sigue activo un operativo especial de seguridad para hoy con m\u00e1s de 3 mil elementos polic\u00edacos.\\n\\n## Respuesta y servicios\\n\\n- Operativo especial de seguridad activo con m\u00e1s de 3 mil elementos policiacos.\\n- M\u00e1s de 4 mil 500 servicios de hidrataci\u00f3n brindados el jueves.\\n- 3 mil 200 atenciones m\u00e9dicas realizadas.\\n\\n## Reconocimiento cultural\\n\\nLa alcaldesa record\u00f3 que esta tradici\u00f3n est\u00e1 en proceso de ser reconocida como patrimonio cultural inmaterial de la humanidad.\\n\\n## Cr\u00e9ditos\\n\\nDerechos Reservados - Notisistema 2018 |Defensor\u00eda de Audiencia|Aviso de Privacidad",
+  "created_at": "2026-07-28T04:29:00.461172+00:00"
+}

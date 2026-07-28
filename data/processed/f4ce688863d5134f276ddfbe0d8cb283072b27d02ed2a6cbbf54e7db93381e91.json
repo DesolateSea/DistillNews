@@ -1,0 +1,46 @@
+{
+  "title": "EVS Broadcast Equipment reports update of share buyback program",
+  "publication_date": "2025-04-18T16:36:03Z",
+  "summary": "EVS Broadcast Equipment issued a brief update on its share buyback program, according to aktiencheck.de. The report provides limited details; the notice cites aktiencheck.de and implementation information by ARIVA.DE AG.",
+  "content": "EVS reports update of share buyback program\n\nThe announcement, as published by aktiencheck.de, states that EVS Broadcast Equipment has reported an update to its ongoing share buyback program. The published item is brief and does not provide further financial details or specifics regarding volumes, timing, or changes to the program.\n\nSource and metadata: The report is attributed to aktiencheck.de AG. Copyright information on the page lists \"Copyright 1998 - 2026 aktiencheck.de\" and notes implementation by ARIVA.DE AG. No additional commentary or operational detail about the buyback was included in the provided content.",
+  "category": "Business",
+  "tags": [
+    "corporate",
+    "share buyback",
+    "finance",
+    "EVS",
+    "stock_market",
+    "press_release"
+  ],
+  "location": "Belgium",
+  "source": {
+    "title": "EVS Broadcast Equipment reports update of share buyback program",
+    "publication_date": 1744994163,
+    "content": [
+      {
+        "title": "EVS Broadcast Equipment reports update of share buyback program () | aktiencheck.de",
+        "publication_date": "Unknown",
+        "content": "EVS reports update of share buyback program\n\nCopyright 1998 - 2026aktiencheck.de,\n\t\t\timplementiert durchARIVA.DE AG"
+      },
+      {
+        "title": "EVS Broadcast Equipment reports update of share buyback program () | aktiencheck.de",
+        "author": "aktiencheck.de AG",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Anonymous"
+    ],
+    "source": "aktiencheck",
+    "image_url": null,
+    "url": "https://www.aktiencheck.de/news/Artikel-EVS_Broadcast_Equipment_reports_update_of_share_buyback_program-18452428",
+    "category": "general",
+    "language": "de",
+    "country": "de"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/general/news.json",
+  "markdown_content": "## EVS reports update of share buyback program\\n\\nThe announcement, as published by aktiencheck.de, states that EVS Broadcast Equipment has reported an update to its ongoing share buyback program. The published item is brief and does not provide further financial details or specifics regarding volumes, timing, or changes to the program.\\n\\n## Details\\n\\n- Publisher: aktiencheck.de  \\n- Subject: EVS Broadcast Equipment update to its ongoing share buyback program  \\n- Content: Brief notice with no additional financial details or specifics regarding volumes, timing, or program changes\\n\\n## Source and metadata\\n\\n- The report is attributed to aktiencheck.de AG.  \\n- Implementation noted as ARIVA.DE AG.\\n\\n> \u201cCopyright 1998 - 2026 aktiencheck.de\u201d",
+  "created_at": "2026-07-28T04:30:10.487011+00:00"
+}

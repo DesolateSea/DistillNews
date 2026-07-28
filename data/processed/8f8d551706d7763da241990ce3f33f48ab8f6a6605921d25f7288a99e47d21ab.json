@@ -1,0 +1,46 @@
+{
+  "title": "Overig \u2022 Napraattopic 2025.4, met geklets.",
+  "publication_date": "2025-04-12T00:31:28+02:00",
+  "summary": "Brief page header for \"Napraattopic 2025.4\" (Pagina 24) showing a navigation prompt and publisher rights notice. Metadata lists the author as Unknown and a publication timestamp; content is minimal and primarily administrative.",
+  "content": "Napraattopic 2025.4, met geklets. - Pagina 24\n\nTerug naar boven\n\n\u00a9 2026 Kompas Publishing B.V. - alle rechten voorbehouden\n\nAuthor: Unknown Author\nPublication date: 2025-04-12T00:31:28+02:00",
+  "category": "Entertainment",
+  "tags": [
+    "forum",
+    "discussion",
+    "Dutch",
+    "publication",
+    "magazine",
+    "Kompas Publishing"
+  ],
+  "location": "Netherlands",
+  "source": {
+    "title": "Overig \u2022 Napraattopic 2025.4, met geklets.",
+    "publication_date": 1744994155,
+    "content": [
+      {
+        "title": "Napraattopic 2025.4, met geklets. - Pagina 24",
+        "publication_date": "2025-04-12T00:31:28+02:00",
+        "content": "Terug naar boven\n\n\u00a9 2026 Kompas Publishing B.V. - alle rechten voorbehouden"
+      },
+      {
+        "title": "Napraattopic 2025.4, met geklets. - Pagina 24",
+        "author": "Unknown Author",
+        "publication_date": "2025-04-12T00:31:28+02:00"
+      }
+    ],
+    "authors": [
+      "Solomio"
+    ],
+    "source": "vrouwonline",
+    "image_url": null,
+    "url": "https://forum.viva.nl/viewtopic.php?p=35818553#p35818553",
+    "category": "general",
+    "language": "nl",
+    "country": "nl"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/general/news.json",
+  "markdown_content": "## Napraattopic 2025.4, met geklets. - Pagina 24\\n\\nTerug naar boven\\n\\n\u00a9 2026 Kompas Publishing B.V. - alle rechten voorbehouden\\n\\n## Metadata\\n\\n- Author: Unknown Author\\n- Publication date: 2025-04-12T00:31:28+02:00",
+  "created_at": "2026-07-28T04:30:31.010219+00:00"
+}

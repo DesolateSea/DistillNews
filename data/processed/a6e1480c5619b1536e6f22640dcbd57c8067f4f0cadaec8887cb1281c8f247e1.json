@@ -1,0 +1,49 @@
+{
+  "title": "Contre le cancer colorectal, mobilisation g\u00e9n\u00e9rale - Lib\u00e9ration",
+  "publication_date": "2025-04-18T15:56:37Z",
+  "summary": "The referenced Lib\u00e9ration article titled \"Contre le cancer colorectal, mobilisation g\u00e9n\u00e9rale\" is not present in the provided data beyond Google News metadata. The content payload contains only two Google News records with no article body or full publication details. Further retrieval from Lib\u00e9ration or Google News is needed.",
+  "content": "The provided cleaned content does not include the article body for \"Contre le cancer colorectal, mobilisation g\u00e9n\u00e9rale\" published by Lib\u00e9ration. Instead, the data consists solely of Google News metadata entries and lacks an accessible article text, full author details, and the reporting itself.\n\nRaw provided payload:\n({'title': 'Google News', 'publication_date': 'Unknown', 'content': ''}, {'title': 'Google News', 'author': 'Unknown Author', 'publication_date': 'Unknown'})\n\nNotes and inference:\n- The payload contains two Google News records but both list publication_date as 'Unknown' and one record has an empty content field.\n- A Unix timestamp (1744991797) was provided separately; it converts to 2025-04-18T15:56:37Z (UTC). This appears to be the only precise temporal metadata available.\n- Given the original title names Lib\u00e9ration, the likely location is France and the article falls under the health/public-health domain (colorectal cancer awareness and mobilisation).\n\nRecommended next steps:\n1) Retrieve the original article directly from Lib\u00e9ration's website or its RSS/API to obtain the full text and author information. 2) Check the Google News entry or link that referenced this item for a direct source URL. 3) If preparing reporting or analysis, verify facts with the primary Lib\u00e9ration piece before quoting or summarising medical details. 4) If this is a recurring ingestion problem, inspect the pipeline that extracts article bodies from Google News to ensure full content capture.",
+  "category": "Health",
+  "tags": [
+    "colorectal cancer",
+    "cancer",
+    "health",
+    "public health",
+    "screening",
+    "awareness",
+    "Lib\u00e9ration",
+    "Google News",
+    "France"
+  ],
+  "location": "France",
+  "source": {
+    "title": "Contre le cancer colorectal, mobilisation g\u00e9n\u00e9rale - Lib\u00e9ration",
+    "publication_date": 1744991797,
+    "content": [
+      {
+        "title": "Google News",
+        "publication_date": "Unknown",
+        "content": ""
+      },
+      {
+        "title": "Google News",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Anonymous"
+    ],
+    "source": "Google News Health CA (FR)",
+    "image_url": null,
+    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNclF4dlViMEJLaHc4djJoVVl6ZWdLS2h3ZWxMUTdEUnhuTTJzeWUxTm1HY05lQ2M5Vk1CMUV5cWNfZFBDSy1uV2pjRzlwdzlpS2tabGJzN3NfT2M1c3VwWWFvc2lRUTRrZEU1dHRtNWJJV2FUQkFOT19YT2ttLU5QbzVkTEs0UmhNdzV4S0lTbnk2V3ZNWGhWeE1rT3g2dlBWdld4NWxMN2VlWS1rSmZnaEdZSnFqaG9VdHZPc0JHLVhxNEsxSUxoNmxqSmtNWGtYWWRF?oc=5",
+    "category": "health",
+    "language": "fr",
+    "country": "ca"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/health/news.json",
+  "markdown_content": "## Summary\\n\\nThe provided cleaned content does not include the article body for \u201cContre le cancer colorectal, mobilisation g\u00e9n\u00e9rale\u201d published by Lib\u00e9ration. Instead, the data consists solely of Google News metadata entries and lacks an accessible article text, full author details, and the reporting itself.\\n\\n## Raw provided payload\\n\\n> ({'title': 'Google News', 'publication_date': 'Unknown', 'content': ''}, {'title': 'Google News', 'author': 'Unknown Author', 'publication_date': 'Unknown'})\\n\\n## Notes and inference\\n\\n- The payload contains two Google News records but both list publication_date as Unknown and one record has an empty content field.\\n- A Unix timestamp (1744991797) was provided separately; it converts to 2025-04-18T15:56:37Z (UTC). This appears to be the only precise temporal metadata available.\\n- Given the original title names Lib\u00e9ration, the likely location is France and the article falls under the health/public-health domain (colorectal cancer awareness and mobilisation).\\n\\n## Recommended next steps\\n\\n- Retrieve the original article directly from Lib\u00e9ration\u2019s website or its RSS/API to obtain the full text and author information.\\n- Check the Google News entry or link that referenced this item for a direct source URL.\\n- If preparing reporting or analysis, verify facts with the primary Lib\u00e9ration piece before quoting or summarising medical details.\\n- If this is a recurring ingestion problem, inspect the pipeline that extracts article bodies from Google News to ensure full content capture.",
+  "created_at": "2026-07-28T04:31:06.519693+00:00"
+}

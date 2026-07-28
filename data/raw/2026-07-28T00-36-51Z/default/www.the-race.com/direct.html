@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Everything we learned from F1&#x27;s Hungarian Grand Prix</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="https://storage.googleapis.com/the-race-com.appspot.com/1/2020/03/cropped-android-chrome-512x512-1-32x32.png" sizes="32x32" />
+    <link rel="icon" href="https://storage.googleapis.com/the-race-com.appspot.com/1/2020/03/cropped-android-chrome-512x512-1-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://storage.googleapis.com/the-race-com.appspot.com/1/2020/03/cropped-android-chrome-512x512-1-180x180.png" />
+
+
+	<!-- 1. Inline TCF Stub (already present, keep here) -->
+    <script>
+        // TCF Stub
+        !function () { let e = () => { let e = "__tcfapiLocator", t = [], a = window, n = a, s, o; for (; n;) { try { if (n.frames[e]) { s = n; break } } catch (c) { } if (n === a.top) break; n = n.parent } s || (!function t() { let n = a.document, s = !!a.frames[e]; if (!s) { if (n.body) { let o = n.createElement("iframe"); o.style.cssText = "display:none", o.name = e, n.body.appendChild(o) } else setTimeout(t, 5) } return !s }(), a.__tcfapi = function e(...a) { if (!a.length) return t; "setGdprApplies" === a[0] ? a.length > 3 && 2 === parseInt(a[1], 10) && "boolean" == typeof a[3] && (o = a[3], "function" == typeof a[2] && a[2]("set", !0)) : "ping" === a[0] ? "function" == typeof a[2] && a[2]({ gdprApplies: o, cmpLoaded: !1, cmpStatus: "stub" }) : t.push(a) }, a.addEventListener("message", function e(t) { let a = "string" == typeof t.data, n = {}; if (a) try { n = JSON.parse(t.data) } catch (s) { } else n = t.data; let o = "object" == typeof n && null !== n ? n.__tcfapiCall : null; o && window.__tcfapi(o.command, o.version, function (e, n) { let s = { __tcfapiReturn: { returnValue: e, success: n, callId: o.callId } }; t && t.source && t.source.postMessage && t.source.postMessage(a ? JSON.stringify(s) : s, "*") }, o.parameter) }, !1)) }; "undefined" != typeof module ? module.exports = e : e() }();
+        // GPP Stub
+        window.__gpp_addFrame = function (e) { if (!window.frames[e]) { if (document.body) { var t = document.createElement("iframe"); t.style.cssText = "display:none", t.name = e, document.body.appendChild(t) } else window.setTimeout(window.__gppaddFrame, 10, e) } }, window.__gpp_stub = function () { var e = arguments; if (__gpp.queue = __gpp.queue || [], !e.length) return __gpp.queue; var t = e[0], a = e.length > 1 ? e[1] : null, n = e.length > 2 ? e[2] : null; if ("ping" === t) return { gppVersion: "1.1", cmpStatus: "stub", cmpDisplayStatus: "hidden", supportedAPIs: ["2:tcfeuv2", "5:tcfcav1", "6:uspv1"], cmpId: 31, sectionList: [], applicableSections: [-1], gppString: "" }; if ("addEventListener" === t) { __gpp.events = __gpp.events || [], "lastId" in __gpp || (__gpp.lastId = 0), __gpp.lastId++; var p = __gpp.lastId; return __gpp.events.push({ id: p, callback: a, parameter: n }), { eventName: "listenerRegistered", listenerId: p, pingData: { gppVersion: "1.1", cmpStatus: "stub", cmpDisplayStatus: "hidden", supportedAPIs: ["2:tcfeuv2", "5:tcfcav1", "9:usva", "7:usnat"], cmpId: 31, sectionList: [], applicableSections: [-1], gppString: "" } } } if ("removeEventListener" === t) { var s = !1; __gpp.events = __gpp.events || []; for (var i = 0; i < __gpp.events.length; i++)if (__gpp.events[i].id == n) { __gpp.events[i].splice(i, 1), s = !0; break } return { eventName: "listenerRemoved", listenerId: n, data: s, pingData: { gppVersion: "1.1", cmpStatus: "stub", cmpDisplayStatus: "hidden", supportedAPIs: ["2:tcfeuv2", "5:tcfcav1", "9:usva", "7:usnat"], cmpId: 31, sectionList: [], applicableSections: [-1], gppString: "" } } } if ("hasSection" === t || "getSection" === t || "getField" === t) return null; __gpp.queue.push([].slice.apply(e)) }, window.__gpp_msghandler = function (e) { var t = "string" == typeof e.data; try { var a = t ? JSON.parse(e.data) : e.data } catch (n) { var a = null } if ("object" == typeof a && null !== a && "__gppCall" in a) { var p = a.__gppCall; window.__gpp(p.command, function (a, n) { var s = { __gppReturn: { returnValue: a, success: n, callId: p.callId } }; e.source.postMessage(t ? JSON.stringify(s) : s, "*") }, "parameter" in p ? p.parameter : null, "version" in p ? p.version : "1.1") } }, "__gpp" in window && "function" == typeof window.__gpp || (window.__gpp = window.__gpp_stub, window.addEventListener("message", window.__gpp_msghandler, !1), window.__gpp_addFrame("__gppLocator"));
+    </script>
+
+	<!-- 2. CMP (with async) -->
+    <script type="text/javascript">
+		window.addEventListener('CookiebotOnDialogDisplay', function() {
+		    document.querySelector('#CybotCookiebotDialogBody .CybotCookiebotScrollbarContainer').remove()
+
+			if(document.querySelector('body').classList.contains('nonpaid_user')) {
+			    function removeSelection() {
+					document.querySelector('#CybotCookiebotDialogFooter').style.display = 'none'
+				}
+        document.documentElement.style.overflow = 'hidden';
+
+				const tabs = document.querySelector('#CybotCookiebotDialogTabContent')
+				const newLander = document.createElement('div');
+				const tabList = document.querySelector('#CybotCookiebotDialogNavList')
+				newLander.classList.add('CybotCookiebotScrollContainer', 'CybotCookiebotDialogActive', 'CookiebotCustomTab')
+				tabList.childNodes.forEach(tab => {
+					tab.querySelector('a').classList.remove('CybotCookiebotDialogActive')
+					tab.addEventListener('click', () => {
+						document.querySelector('.CookiebotCustomTab').classList.remove('CybotCookiebotDialogActive')
+						document.querySelector('.CookiebotCustomTab').classList.add('CybotCookiebotDialogHide')
+					})
+					tab.addEventListener('click', removeSelection)
+				})
+				tabs.childNodes.forEach(tab => {
+					tab.classList.remove('CybotCookiebotDialogActive')
+					tab.classList.add('CybotCookiebotDialogHide')
+				})
+				newLander.innerHTML = `
+					<div class="IllegalSplitter">
+						<div class="text">
+							<p><strong>Privacy - it's your choice</strong></p>
+							<p>Please choose an option:</p>
+						</div>
+						<div class="text">
+							<p><strong>Read for free with ads and cookies</strong></p>
+							<p>I agree to the use of cookies and similar technologies to serve relevant advertising and improve my service</p>
+						</div>
+						<div class="IllegalButton">
+							<button onclick="document.querySelector('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll').click();">Read for free</button>
+						</div>
+					</div>
+					<div class="IllegalSplitter">
+						<div class="text">
+							<p><strong>Pay to remove all adverts</strong></p>
+							<p>Pay to read The Race without adverts or cookies used for personalised ads</p>
+						</div>
+						<div class="IllegalButton">
+							<button onclick="window.location.href = 'https://www.patreon.com/TheRace'">Join our members club</button>
+							<button onclick="window.location.href = '/#/portal/signin'">Members log in here</button>
+						</div>
+						<div class="text">
+							<p>By logging in, you agree to our use of third-party and analytics cookies to enhance your experience and improve our services. For more details, please review our <a href="/privacy-policy/" target="_blank">Privacy Policy</a>.</p>
+						</div>
+					</div>
+				`
+				tabs.appendChild(newLander)
+				const newTabButton = tabList.childNodes[0].cloneNode(true)
+				newTabButton.childNodes[0].classList.add('CybotCookiebotDialogActive')
+				tabList.childNodes[0].querySelector('a').innerText = 'Privacy'
+				newTabButton.querySelector('a').id = 'CybotCookiebotDialogNavCustomConsent'
+				newTabButton.addEventListener('click', () => {
+					const temp_els = document.querySelectorAll('#CybotCookiebotDialogTabContent .CybotCookiebotDialogActive')
+					temp_els.forEach(x => {
+						x.classList.remove('CybotCookiebotDialogActive')
+						x.classList.add('CybotCookiebotDialogHide')
+					})
+					document.querySelector('.CookiebotCustomTab').classList.remove('CybotCookiebotDialogHide')
+					document.querySelector('.CookiebotCustomTab').classList.add('CybotCookiebotDialogActive')
+					document.querySelector('.CybotCookiebotDialogNavItem .CybotCookiebotDialogActive').classList.remove('CybotCookiebotDialogActive')
+					document.querySelector('#CybotCookiebotDialogBody').classList.add('CybotCookiebotDialogHide')
+					newTabButton.childNodes[0].classList.add('CybotCookiebotDialogActive')
+				})
+				document.querySelector('#CybotCookiebotDialogNavDetails').parentElement.removeEventListener('click', removeSelection)
+				document.querySelector('#CybotCookiebotDialogNavDetails').addEventListener('click', () => {
+					document.querySelector('#CybotCookiebotDialogFooter').style.display = 'inline'
+				})
+				tabList.insertBefore(newTabButton, tabList.childNodes[0])
+			} else {
+                Cookiebot.hide()
+            }
+		})
+	</script>
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b553f39d-f54f-4f8d-bf23-a45a6877d114" data-blockingmode="auto" data-framework="TCFv2.2" type="text/javascript" async></script>
+    
+	<!-- 3. Content Ignite Publisher Tag -->
+			<script src="https://cdn.tagdeliver.com/cipt/17016.js" async="async"></script>
+
+	<!-- DATA (Ghost → GTM) -->
+		<script>
+			const kebabCase = str => str
+				.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+				.join('-')
+				.toLowerCase();
+
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				page_tags: ["Formula 1", "#hungarian-grand-prix", "#secondary_feature_1"].map(kebabCase)
+			});
+		</script>
+
+
+	<!-- 4. GTM (already correct, keep after CI tag) -->
+	<script>
+		const params = new URLSearchParams(window.location.search);
+		if(!(params.has('callback') || params.has('code') || params.has('state'))) {
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-MNVJBZ2');
+		}
+	</script>
+
+    <meta name="description" content="From F1 title hopefuls tripping up to Aston Martin&#x27;s big &#x27;B-spec&#x27; debut, here&#x27;s what we learned from the Hungarian GP">
+    <link rel="icon" href="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w256h256/2023/09/favicon.png" type="image/png">
+    <link rel="canonical" href="https://www.the-race.com/formula-1/everything-we-learned-f1-hungarian-grand-prix-2026/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="The Race">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Everything we learned from F1&#x27;s Hungarian Grand Prix">
+    <meta property="og:description" content="From F1 title hopefuls tripping up to Aston Martin&#x27;s big &#x27;B-spec&#x27; debut, here&#x27;s what we learned from the Hungarian GP">
+    <meta property="og:url" content="https://www.the-race.com/formula-1/everything-we-learned-f1-hungarian-grand-prix-2026/">
+    <meta property="og:image" content="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/07/XPB_1429014_HiRes.jpg">
+    <meta property="article:published_time" content="2026-07-27T14:31:59.000Z">
+    <meta property="article:modified_time" content="2026-07-27T14:31:59.000Z">
+    <meta property="article:tag" content="Formula 1">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/wearetherace">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Everything we learned from F1&#x27;s Hungarian Grand Prix">
+    <meta name="twitter:description" content="From F1 title hopefuls tripping up to Aston Martin&#x27;s big &#x27;B-spec&#x27; debut, here&#x27;s what we learned from the Hungarian GP">
+    <meta name="twitter:url" content="https://www.the-race.com/formula-1/everything-we-learned-f1-hungarian-grand-prix-2026/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/07/XPB_1429014_HiRes.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Valentin Khorounzhiy">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Formula 1">
+    <meta name="twitter:site" content="@wearetherace">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="801">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "The Race",
+        "url": "https://www.the-race.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/2026/03/JSHVo5dc.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Valentin Khorounzhiy",
+        "url": "https://www.the-race.com/author/alfpetrov-2/",
+        "sameAs": []
+    },
+    "contributor": [
+        {
+            "@type": "Person",
+            "name": "Jon Noble",
+            "url": "https://www.the-race.com/author/jonathan/",
+            "sameAs": []
+        }
+    ],
+    "headline": "Everything we learned from F1's Hungarian Grand Prix",
+    "url": "https://www.the-race.com/formula-1/everything-we-learned-f1-hungarian-grand-prix-2026/",
+    "datePublished": "2026-07-27T14:31:59.000Z",
+    "dateModified": "2026-07-27T14:31:59.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/07/XPB_1429014_HiRes.jpg",
+        "width": 1200,
+        "height": 801
+    },
+    "keywords": "Formula 1",
+    "description": "From F1 title hopefuls tripping up to Aston Martin's big 'B-spec' debut, here's what we learned from the Hungarian GP",
+    "mainEntityOfPage": "https://www.the-race.com/formula-1/everything-we-learned-f1-hungarian-grand-prix-2026/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.54">
+    <link rel="alternate" type="application/rss+xml" title="The Race" href="https://www.the-race.com/rss/">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.69/umd/portal.min.js" data-i18n="true" data-ghost="https://www.the-race.com/" data-key="6471d2da02d743aca70568f44e" data-api="https://the-race.ghost.io/ghost/api/content/" data-locale="en" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style><script async src="https://js.stripe.com/v3/"></script>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="6471d2da02d743aca70568f44e" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://the-race.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://www.the-race.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=D6OJpxckK_6QDJ1o"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=zbOBSN8qHrr3rC6Y">
+    <script defer src="/public/comment-counts.min.js?v=oFYkaGLdiMqB8VN9" data-ghost-comments-counts-api="https://www.the-race.com/members/api/comments/counts/"></script>
+    <script defer src="/public/member-attribution.min.js?v=fGWxp7cZ6mmurhvN"></script>
+    <script defer src="/public/ghost-stats.min.js?v=XExDLZJ3NKpv0kSa" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://www.the-race.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="ddafbd99-2ccd-468c-b622-4b3cccf80b49" tb_post_uuid="289e66a7-d0e4-4c42-a22c-a77c50b4890d" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #e9751f;}</style>
+    
+
+  	<link rel="preload" as="style" href="https://www.the-race.com/assets/built/screen.css?v=SDS5lukZHdEUXIsl">
+    <link rel="preload" as="script" href="https://www.the-race.com/assets/built/source.js?v=O86vpTJppMBcH1np">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    
+
+    <link rel="preload" as="font" type="font/woff2" href="https://www.the-race.com/assets/fonts/inter-roman.woff2?v=OecsB5TBLy27FKD2" crossorigin="anonymous">
+<style>
+    @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: url(https://www.the-race.com/assets/fonts/inter-roman.woff2?v=OecsB5TBLy27FKD2) format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+</style>
+    
+    <style>
+        :root {
+            --gh-font-heading: "Roboto Flex";
+            --gh-font-body: "Literata";
+        }
+
+        @font-face {
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+        }
+        
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://www.the-race.com/assets/css/screen.css?v=v7-fpv39iDYvlnO_">
+    <link rel="stylesheet" type="text/css" href="https://www.the-race.com/assets/css/flipdown.css?v=du9Q6FBHXvrGlhMy">
+    <link rel="stylesheet" type="text/css" href="https://www.the-race.com/assets/css/countdown.css?v=H1dAiNg8X2tSZal5">
+
+    <style>
+        :root {
+            --background-color: #ffffff
+        }
+    </style>
+
+    <script>
+        /* The script for calculating the color contrast has been taken from
+        https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/ */
+        var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color');
+        accentColor = accentColor.trim().slice(1);
+
+        if (accentColor.length === 3) {
+            accentColor = accentColor[0] + accentColor[0] + accentColor[1] + accentColor[1] + accentColor[2] + accentColor[2];
+        }
+
+        var r = parseInt(accentColor.substr(0, 2), 16);
+        var g = parseInt(accentColor.substr(2, 2), 16);
+        var b = parseInt(accentColor.substr(4, 2), 16);
+        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        var textColor = (yiq >= 128) ? 'dark' : 'light';
+
+        document.documentElement.className = `has-${textColor}-text`;
+    </script>
+	
+</head>
+
+
+
+<body class="nonpaid_user post-template tag-formula-1 tag-hash-hungarian-grand-prix tag-hash-secondary_feature_1 has-sans-title has-sans-body">
+<script>
+	// App view support - must run immediately after body opens
+	if(/[?&]trm_app(=|&|$)/.test(location.search)) {
+		document.body.classList.add('trm-app');
+		document.head.insertAdjacentHTML('beforeend',
+			`<style>
+				.gh-footer,
+				.gh-navigation-menu,
+				.gh-navigation-actions,
+				.gh-card-meta {
+					display:none !important;
+				}
+			</style>`
+		)
+	}
+	if(/[?&]trm_app_new(=|&|$)/.test(location.search)) {
+		document.body.classList.add('trm-app-new');
+	}
+</script>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MNVJBZ2"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+	<div id="lt-user-email" data-email="" />
+
+<div class="gh-viewport">
+
+	            <div class="tr-top-nav-ad">
+                <div id="top-nav-ad" class="full-width-ad-spot-nav"></div>
+            </div>
+		
+    
+    <header id="gh-navigation" class="gh-navigation is-left-logo gh-outer">
+    <div class="gh-navigation-inner gh-inner">
+
+        
+
+        <div class="gh-navigation-brand">
+            <a class="gh-navigation-logo is-title" href="https://www.the-race.com">
+                    <img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/2026/03/JSHVo5dc.png" alt="The Race">
+            </a>
+
+            <div class="header-buttons">
+
+                <a class="gh-button mobile-only-button" href="https://www.patreon.com/cw/TheRace">Join Members' Club</a>
+                <button class="gh-search gh-icon-button" aria-label="Search this site" data-ghost-search>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.5 17.5L13.875 13.875" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</button>                <button id="sidebar" class="sidebar sidebar_dismiss sidebarCollapse gh-burger gh-icon-button" aria-label="Menu">
+                    <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="1" y1="1" x2="20" y2="1" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round"/>
+<line x1="1" y1="8" x2="20" y2="8" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round"/>
+<line x1="1" y1="15" x2="20" y2="15" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round"/>
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>                </button>
+            </div>
+        </div>
+
+        <nav class="gh-navigation-menu">
+            <ul class="nav">
+    <li class="nav-formula-1"><a href="https://www.the-race.com/category/formula-1/">Formula 1</a></li>
+    <li class="nav-motogp"><a href="https://www.the-race.com/category/motogp/">MotoGP</a></li>
+    <li class="nav-formula-e"><a href="https://www.the-race.com/category/formula-e/">Formula E</a></li>
+    <li class="nav-extra"><a href="https://www.the-race.com/category/extra/">Extra</a></li>
+    <li class="nav-business"><a href="https://www.the-race.com/category/business/">Business</a></li>
+    <li class="nav-podcasts"><a href="https://www.the-race.com/podcasts/">Podcasts</a></li>
+</ul>
+
+        </nav>
+
+ 
+
+        <div class="gh-navigation-actions">
+            
+                <button class="gh-search gh-icon-button" aria-label="Search this site" data-ghost-search>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.5 17.5L13.875 13.875" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</button>                <div class="gh-navigation-members">
+                            <a href="#/portal/signin" data-portal="signin">Login</a>
+                                <a class="gh-button" href="https://www.patreon.com/cw/TheRace">Join Members' Club</a>
+                </div>
+        </div>
+
+    </div>
+</header>
+
+<span id="sidebarCollapse" style="display:none"></span>
+<span id="sidebar_dismiss" style="display:none"></span>
+<script>
+document.getElementById('sidebarCollapse').addEventListener('click', function() { document.getElementById('sidebar').click(); });
+document.getElementById('sidebar_dismiss').addEventListener('click', function() { document.getElementById('sidebar').click(); });
+</script>
+<script src="https://www.the-race.com/assets/js/navigation.js?v=yhe8Kb5Mg8GDBrK5"></script>    
+    
+    
+<script src="https://www.the-race.com/assets/js/backbutton.js?v=2Udrw9y7oEA_gtyh"></script>
+
+            
+<ul class="breadcrumbs">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+
+
+        <li class="breadcrumb-item">
+            <a href="https://www.the-race.com/category/formula-1/">Formula 1</a>
+        </li>
+
+        <li class="breadcrumb-item breadcrumb-current">
+            <a href="/formula-1/everything-we-learned-f1-hungarian-grand-prix-2026/">Everything we learned from F1&#x27;s Hungarian Grand Prix</a>
+        </li>
+</ul>
+
+<div id="gh-navigation" class="gh-navigation subnav is-left-logo gh-outer">
+    <div class="gh-navigation-inner gh-inner">
+
+        <div class="subnav-links">
+            <ul>
+                <li class="subnav-link ">
+                    <a href="/category/formula-1">News</a>
+                </li>
+
+                <li class="subnav-link  results-link">
+                            <a href="/results/formula-1/1-2026/">Results &#38; Standings</a>
+                </li>
+
+                <li class="subnav-link ">
+                    <a href="/race-events/event-formula-1">Schedule</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div id="results-urls" style="display:none;">
+        <span data-category="formula-1" data-url="/results/formula-1/1-2026/"></span>
+        <span data-category="formula-e" data-url="/results/formula-e/9050-2026/"></span>
+        <span data-category="motogp" data-url="/results/motogp/12170-2026/"></span>
+        <span data-category="indycar" data-url="/results/indycar/6-2023/"></span>
+</div>
+
+<script>
+    function getResultsUrl(category) {
+        const el = document.querySelector(`#results-urls span[data-category="${category}"]`);
+        return el ? el.dataset.url : null;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const url = window.location.pathname;
+        let category = 'formula-1';
+
+        if (url.includes('formula-e')) {
+            category = 'formula-e';
+        } else if (url.includes('motogp')) {
+            category = 'motogp';
+        } else if (url.includes('indycar')) {
+            category = 'indycar';
+        }
+
+        document.querySelector('.subnav-links ul li:nth-child(1) a').href = `/category/${category}`;
+        document.querySelector('.subnav-links ul li:nth-child(3) a').href = `/race-events/event-${category}`;
+
+        const resultsUrl = getResultsUrl(category);
+        if (resultsUrl) {
+            document.querySelector('.subnav-links ul li:nth-child(2) a').href = resultsUrl;
+        }
+    });
+</script><main class="gh-main">
+    <article class="gh-article post tag-formula-1 tag-hash-hungarian-grand-prix tag-hash-secondary_feature_1">
+        <header class="gh-article-header gh-canvas">
+
+            <button onclick="backButtonPressed()" class="gh-button back-button"><a>Back <span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.8334 10L4.16671 10" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 15.8333L4.16667 9.99999L10 4.16666" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span></a></button>
+
+                    <a class="gh-article-tag" href="https://www.the-race.com/category/formula-1/">Formula 1</a>
+            <h1 class="gh-article-title is-title">Everything we learned from F1&#x27;s Hungarian Grand Prix</h1>
+                <figure class="gh-article-image">
+        <img
+            srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/2026/07/XPB_1429014_HiRes.jpg 320w,
+                    https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429014_HiRes.jpg 600w,
+                    https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/2026/07/XPB_1429014_HiRes.jpg 960w,
+                    https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/07/XPB_1429014_HiRes.jpg 1200w,
+                    https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/2026/07/XPB_1429014_HiRes.jpg 2000w"
+            sizes="(max-width: 1200px) 100vw, 1120px"
+            src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/07/XPB_1429014_HiRes.jpg"
+            alt="Everything we learned from F1&#x27;s Hungarian Grand Prix"
+        >
+    </figure>
+            <div class="gh-article-meta">
+                <div class="gh-article-author-image instapaper_ignore">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+                </div>
+                <div class="gh-article-meta-wrapper">
+                    <h4 class="gh-article-author-name">Valentin Khorounzhiy, Jon Noble</h4>
+                    <div class="gh-article-meta-content">
+                        <time class="gh-article-meta-date" datetime="2026-07-27">27 Jul 2026</time>
+                            <span class="gh-article-meta-length"><span class="bull">—</span> 7 min read</span>
+                    </div>
+                </div>
+                <div class="comment-bubble">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.75 6.41669C12.7523 7.2966 12.5467 8.16461 12.15 8.95002C11.6796 9.89118 10.9565 10.6828 10.0616 11.2362C9.16677 11.7896 8.1355 12.0829 7.08333 12.0834C6.20342 12.0856 5.33541 11.8801 4.55 11.4834L0.75 12.75L2.01667 8.95002C1.61995 8.16461 1.41437 7.2966 1.41667 6.41669C1.41707 5.36452 1.71041 4.33325 2.26381 3.43839C2.81722 2.54352 3.60884 1.8204 4.55 1.35002C5.33541 0.953306 6.20342 0.747725 7.08333 0.750019H7.41667C8.80623 0.82668 10.1187 1.41319 11.1028 2.39726C12.0868 3.38132 12.6733 4.69379 12.75 6.08335V6.41669Z" stroke="#1B1B1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                    <h5><script
+    data-ghost-comment-count="6a674fed9c2e770001a42966"
+    data-ghost-comment-count-empty="0"
+    data-ghost-comment-count-singular="comment"
+    data-ghost-comment-count-plural="comments"
+    data-ghost-comment-count-tag="span"
+    data-ghost-comment-count-class-name=""
+    data-ghost-comment-count-autowrap="true"
+>
+</script></h5>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const commentBubble = document.querySelector('.comment-bubble');
+                        commentBubble.addEventListener('click', () => {
+                            document.getElementById('ghost-comments-root')?.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        });
+                    });
+                </script>
+            </div>
+
+        </header>
+
+        <section class="gh-content gh-canvas is-body">
+            <p>All the main Formula 1 title contenders tripped up in one way or another in this year's Hungarian Grand Prix, while Aston Martin's 'B-spec' chassis made a big impression despite not really fighting for points.</p><p>Here's what we learned from the final race before the summer break.</p><h2 id="ferraris-had-its-most-painful-2026-miss">Ferrari's had its most painful 2026 miss</h2><p>Ferrari team principal Fred Vasseur <a href="https://www.the-race.com/formula-1/ferrari-big-opportunity-wasted-f1-hungarian-gp/" rel="noreferrer">could not hide his disappointment</a> after the Hungarian Grand Prix when, on a weekend where his squad had the potential to finish 1-2 (and had been in those positions after Friday), it came away without a place on the podium.</p><p>Just as success in F1 is about getting a lot of details correct, so too can failure be the result of myriad small errors cascading a team into deeper trouble.</p><p>It was this story of its Hungaroring weekend that perhaps made it Ferrari's most painful defeat of all this season - because it had everything in its hands to do so well. The SF-26 looked to be super-fast and would likely have given race winner Lando Norris a tough time if it had found some clean air.</p><p>When Ferrari does its post-weekend analysis, it will know that its alternative run plan in qualifying, the communication error that earned Lewis Hamilton an impeding penalty, poor starts, giving up track position, tardy pitstops and a pitlane speed limit offence were all things that it should have done better with.</p><p>If Ferrari wants to win the championship this year, it cannot let opportunities like this slip through its fingers.</p><h2 id="russell-cant-catch-a-break-despite-glimmer-of-hope">Russell can't catch a break despite glimmer of hope</h2><p>While a <a href="https://www.the-race.com/formula-1/george-russell-hungarian-gp-f1-start-mercedes/" rel="noreferrer">rev control problem on the grid</a> triggered George Russell's nightmare start that continued his run of disappointments, there was at least a small glimmer of hope about one issue that has dogged him.</p><p>Off the back of the dark place he found himself in after the Belgian GP, where deployment problems had left him despondent, some software tweaks by Mercedes plus running on a more energy-rich circuit meant he was no longer scratching his head about straightline-speed deficits.</p><p>Whether those energy woes are fully put to bed won't be known in full until F1 next goes to a properly energy-starved track (Monza is not so far away), but there is at least more hope now that the worst may be behind him.</p><p>However, as that start showed, this seems to be a year where if something can go wrong for Russell it inevitably will.</p><p>Reflecting after the race about his level of exasperation, he said: "I've never had a season like this in my whole career, let alone my F1 career."</p><h2 id="why-red-bull-has-a-degradation-issue">Why Red Bull has a 'degradation' issue</h2><p>When we talk about 'degradation' in F1 it is often linked to tyres and how best to manage temperatures or wear over the course of a race.</p><p>Red Bull found out the hard way in Hungary that its RB22 is susceptible to a bit of aerodynamic degradation, too, after Max Verstappen bemoaned how its worse and worse handling had left him battling something "completely undriveable" before his Q3 spin.</p><p>Speaking on the team radio immediately after the session, Verstappen had said: "Mate, the car is just completely broken aerodynamically, it's just getting worse and worse. What a joke. What. A. Joke, honestly. What a s**t weekend."</p><p>The root cause of his problem appears to be that the RB22 is very sensitive aerodynamically, so anything that affects how the airflow is manipulated around the car can have big consequences in terms of its balance and feel.</p><p>Verstappen - who of course went on to finish second - appeared to have picked up some damage through qualifying as part of the kerb abuse that is key to a quick lap around the Hungaroring, with those broken parts affecting the aero and putting the performance out of kilter.</p><p>While Red Bull was able to make repairs for the race that made things better, a more permanent solution is either to make parts strong so they do not break or to adjust the aerodynamic mapping so it's not so sensitive and can operate at its peak around a wider operating window.</p><p>One of those solutions is much easier than the other - but comes with a weight penalty.</p><h2 id="aston-martin-is-putting-the-fear-into-the-midfield">Aston Martin is putting the fear into the midfield</h2><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/2026/07/XPB_1429092_HiRes.jpg" class="kg-image" alt="F1 Hungarian GP" loading="lazy" width="1618" height="1080" srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429092_HiRes.jpg 600w, https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1000/2026/07/XPB_1429092_HiRes.jpg 1000w, https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1600/2026/07/XPB_1429092_HiRes.jpg 1600w, https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/2026/07/XPB_1429092_HiRes.jpg 1618w" sizes="(min-width: 720px) 720px"></figure><p>Aston Martin's main rival up to now, Cadillac, was certainly well aware coming into the weekend of the threat posed by the green team's 'B-spec' upgrade. But the Hungarian GP laid bare the fact that it's not just Cadillac that needs to worry.</p><p>"We have to give respect to Aston Martin; I don't think our [upcoming] Baku upgrade is at the level of what they were able to put on the car," said Williams driver Alex Albon. </p><p>"Unfortunately, it feels like the Aston is going to be fastest for the rest of the year now. I think we're going to be helped out by some circuits down the straights but otherwise, if it's a corner-focused circuit, we're going to be on the back foot."</p><p>Team-mate Carlos Sainz also mentioned it at various points during the weekend, as did both Haas drivers. But Aston Martin's infusion of downforce is even giving Alpine something to think about.</p><p>"They look really strong in the corners," said Alpine driver Franco Colapinto. "Then on the straights, they are really slow and they are losing a lot of laptime. But in the corners, they are definitely a lot quicker than us."</p><p>All these teams were fighting well out of the points this weekend - and all need to improve. But suddenly Aston Martin looks the likeliest to actually do it.</p><h2 id="its-hondas-turn-now">It's Honda's turn now</h2><p>As is clear even from above, almost every conversation about the Aston upgrade has come with the caveat of 'it's still terrible on the straight'.</p><p>This is supposed to be addressed, at least partly, by a highly anticipated Honda upgrade that will run for the first time during a <a href="https://www.the-race.com/formula-1/honda-new-f1-engine-debut-summer-break-hungary/" rel="noreferrer">filming day in Hungary</a> before competing at Zandvoort after the summer break.</p><p>Fernando Alonso joked there was now "some pressure" on Honda to make a step, and it was clearly only half a joke.</p><p>"Nah, I mean, we are one team, we work together," he then insisted. "We know our weakness and we try to help each other.</p><p>"It's a long way to go. We understand that, we are aware of that. But this hopefully is the first step and both factories are gaining confidence and trust in what they do."</p><p>A step in power will go a long way in helping reinforce that "confidence and trust".</p><h2 id="cadillacs-biggest-2026-weakness-isnt-solved">Cadillac's biggest 2026 weakness isn't solved</h2><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/2026/07/XPB_1429210_HiRes.jpg" class="kg-image" alt="F1 Hungarian GP" loading="lazy" width="1618" height="1080" srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429210_HiRes.jpg 600w, https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1000/2026/07/XPB_1429210_HiRes.jpg 1000w, https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1600/2026/07/XPB_1429210_HiRes.jpg 1600w, https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/2026/07/XPB_1429210_HiRes.jpg 1618w" sizes="(min-width: 720px) 720px"></figure><p>A second reliability-related double-DNF in a four-race span was difficult to swallow, even if - as Sergio Perez reiterated - "obviously, being a new team, you kind of expect all these issues".</p><hr><h3 id="2026-dnfs-or-non-starts">2026 DNFs or non-starts</h3><p><strong>Aston Martin</strong> - 11<br><strong>Cadillac</strong> - 9<br><strong>Rest of field</strong> - 6 or fewer</p><hr><p>What will be a little more alarming is that the problems appear to be concentrated in specific areas.</p><p>On Perez's end, it was a second suspension-related exit in two weekends. For Valtteri Bottas, he said pre-weekend that the Cadillacs probably weren't going to be able to finish without their Hungaroring brake cooling upgrade, then still retired because of brakes.</p><p>"The brake issue started, we had to start doing lift and coast. Then we thought we kind of recovered, the team told me to reduce the lift and coast, and then suddenly everything was on fire," he recounted.</p><p>"That new front duct was trying to address this issue, trying to prevent it from happening. But clearly we still need more airflow in the brakes."</p><h2 id="haas-is-consigning-itself-to-one-car-weekends">Haas is consigning itself to one-car weekends</h2><p>Up until this weekend, though team principal Ayao Komatsu kept emphasising it was happening to both drivers, the Haas car parts consistency issue was much more of a talking point on Esteban Ocon's side. And team-mate Ollie Bearman cautioned on Thursday that his evident performance advantage over Ocon through 2026 was perhaps flattering to whatever the real gap is.</p><p>Bearman's graciousness was well-timed because it was he who toiled badly at the Hungaroring while Ocon suddenly felt at ease.</p><p>"Getting the car healthy, getting the maximum out of the car this weekend felt good," said Ocon. "There is a lot of stuff on my side that took long, but they are finally on my car as well, which I'm very happy about."</p><p>But Ocon also conceded that Bearman was suddenly having "exactly similar problems" as he had had before. "We know that's an ongoing issue."</p><p>"We're seeing that the car is not performing as it should," Bearman said. "I feel like I've done a good job, I've done my maximum and tried to get the most out of the car, but the feeling has been, like I said, nothing like what I had in Spa and we're measuring big deltas in terms of loads compared to that event and compared to the other car. </p><p>"It's been a horrible, horrible weekend and it's just a sign of how poor we are in terms of consistencies, because if it's not me - which it has been this weekend, and maybe one or two others - it's Esteban's car that is suddenly missing 10-15 points of load. </p><p>"So you're kind of just hoping you're going to be on the good side and if you are, you're going to have a decent weekend, and if you're not, you're going to have a really, really long one. We had the long one."</p>
+        </section>
+
+    </article>
+
+</main>
+
+<section class="latest-stories latest-stories-mid">
+    <div class="gh-header-right">
+        <div class="gh-featured-feed">
+            <div class="bullet-wrapper">
+                <h4>Latest Formula 1 Stories</h4>
+            </div>
+                <article class="gh-card post-card-inline-noExcerpt post">
+    <a class="gh-card-link" href="/formula-1/f1-2026-hungarian-grand-prix-driver-rankings-edd-straw/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429019_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429019_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429019_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429019_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429019_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429019_HiRes.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429019_HiRes.jpg"
+                    alt="Edd Straw&#x27;s 2026 Hungarian Grand Prix F1 driver rankings"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Edd Straw&#x27;s 2026 Hungarian Grand Prix F1 driver rankings</h3>
+        </div>
+    </a>
+</article>
+                <article class="gh-card post-card-inline-noExcerpt post">
+    <a class="gh-card-link" href="/formula-1/red-bull-poaches-f1-talent-scout-from-mercedes-gwen-lagrue/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1331193_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1331193_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1331193_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1331193_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1331193_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1331193_HiRes.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1331193_HiRes.jpg"
+                    alt="Red Bull&#x27;s poached its new Marko from Mercedes"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Red Bull&#x27;s poached its new Marko from Mercedes</h3>
+        </div>
+    </a>
+</article>
+                <article class="gh-card post-card-inline-noExcerpt post">
+    <a class="gh-card-link" href="/formula-1/george-russell-hungarian-gp-f1-start-mercedes/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/M620319.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/M620319.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/M620319.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/M620319.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/M620319.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/M620319.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/M620319.jpg"
+                    alt="George Russell, Mercedes, F1"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Russell&#x27;s start problem wasn&#x27;t actually what Antonelli thought</h3>
+        </div>
+    </a>
+</article>
+        </div>
+    </div>
+</section><section class="gh-canvas latest-stories latest-stories-bottom">
+    <div class="gh-header-right">
+        <div class="gh-featured-feed">
+            <div class="tags">
+                <p>Article tags:</p>
+                <ul>
+                        <li>
+                            <a href="/category/formula-1/" title="Formula 1" class="tag tag-6504885f3977480001a925c6 formula-1">
+                                Formula 1
+                            </a>
+                        </li>
+                </ul>
+            </div>
+            <div class="bullet-wrapper">
+                <h4>Continue Reading...</h4>
+            </div>
+                <article class="gh-card post-card-inline-noExcerpt post">
+    <a class="gh-card-link" href="/formula-1/lewis-hamilton-f1-2026-penalties-stewards/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429283_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429283_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429283_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429283_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429283_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429283_HiRes.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429283_HiRes.jpg"
+                    alt="Lewis Hamilton, Ferrari, F1"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Why is Hamilton picking up so many penalties?</h3>
+        </div>
+    </a>
+</article>
+                <article class="gh-card post-card-inline-noExcerpt post">
+    <a class="gh-card-link" href="/formula-1/ferrari-big-opportunity-wasted-f1-hungarian-gp/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429274_HiRes-1.jpg"
+                    alt="&#x27;Poor&#x27; Ferrari just wasted a big opportunity"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">&#x27;Poor&#x27; Ferrari just wasted a big opportunity</h3>
+        </div>
+    </a>
+</article>
+                <article class="gh-card post-card-inline-noExcerpt post">
+    <a class="gh-card-link" href="/formula-1/winners-losers-f1-2026-hungarian-grand-prix/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429291_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429291_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429291_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429291_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429291_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429291_HiRes.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429291_HiRes.jpg"
+                    alt="Winners and losers from F1&#x27;s 2026 Hungarian Grand Prix"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Winners and losers from F1&#x27;s 2026 Hungarian Grand Prix</h3>
+        </div>
+    </a>
+</article>
+        </div>
+    </div>
+</section>
+        <div class="gh-comments gh-canvas">
+            
+        <script defer src="https://cdn.jsdelivr.net/ghost/comments-ui@~1.5/umd/comments-ui.min.js" data-locale="en" data-ghost-comments="https://www.the-race.com/" data-api="https://the-race.ghost.io/ghost/api/content/" data-admin="https://the-race.ghost.io/ghost/" data-key="6471d2da02d743aca70568f44e" data-title="null" data-count="true" data-post-id="6a674fed9c2e770001a42966" data-color-scheme="auto" data-avatar-saturation="60" data-accent-color="#e9751f" data-comments-enabled="paid" data-publication="The Race" crossorigin="anonymous"></script>
+    
+        </div>
+<script>
+(function() {
+    var content = document.querySelector('.gh-content');
+    var midStories = document.querySelector('.latest-stories-mid');
+    if (!content || !midStories) return;
+
+    var children = Array.from(content.children);
+    if (children.length < 2) return;
+
+    var midpoint = Math.floor(children.length / 2);
+    children[midpoint].parentNode.insertBefore(midStories, children[midpoint]);
+})();
+</script>
+
+
+        <script>
+        (function() {
+            var content = document.querySelector('.gh-content');
+            if (!content) return;
+
+            var paragraphs = content.querySelectorAll('p');
+            if (paragraphs.length < 2) return;
+
+            var adCount = 0;
+            var maxAds = 5;
+
+            for (var i = 4; i < paragraphs.length - 1 && adCount < maxAds; i += 5) {
+                adCount++;
+
+                var ad = document.createElement('div');
+                ad.id = 'incontent-banner-' + adCount;
+
+                if (i === 9) {
+                    ad.className = 'full-width-ad-spot skinny';
+                    ad.style.cssText = 'grid-column: full;';
+                } else {
+                    ad.className = 'full-width-ad-spot';
+                    ad.style.cssText = 'grid-column: full;';
+                }
+
+                paragraphs[i].after(ad);
+            }
+        })();
+        </script>
+
+
+
+
+
+
+    <section class="gh-header is-highlight gh-outer category-listing">
+        <div class="gh-header-inner gh-inner">
+            <h2 class="category-title">Latest Formula 1 News</h2>
+                <div class="gh-header-left">
+                        <article class="gh-card post tag-formula-1 tag-hash-hungarian-grand-prix tag-hash-primary_homepage_feature">
+    <a class="gh-card-link" href="/formula-1/f1-2026-hungarian-grand-prix-driver-rankings-edd-straw/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429019_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429019_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429019_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429019_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429019_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429019_HiRes.jpg 2000w"
+                    sizes="(max-width: 767px) calc(100vw - max(8vmin, 40px)), 640px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429019_HiRes.jpg"
+                    alt="Edd Straw&#x27;s 2026 Hungarian Grand Prix F1 driver rankings"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                    <p class="gh-card-tag">Formula 1</p>
+            <h3 class="gh-card-title is-title">Edd Straw&#x27;s 2026 Hungarian Grand Prix F1 driver rankings</h3>
+                <p class="gh-card-excerpt is-body">The F1 2026 form book looked a little different to normal at the Hungarian GP. And the same can be said of Edd Straw&#x27;s driver rankings</p>
+            <footer class="gh-card-meta">
+                
+<!--
+             -->
+                    <span class="gh-card-author">By Edd Straw</span>            
+            
+           </footer>
+        </div>
+    </a>
+</article>
+                                        </div>
+                <div class="gh-header-middle">
+                        <article class="gh-card post-card-inline post tag-formula-1 tag-business tag-hash-red-bull tag-hash-mercedes">
+    <a class="gh-card-link" href="/formula-1/red-bull-poaches-f1-talent-scout-from-mercedes-gwen-lagrue/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1331193_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1331193_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1331193_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1331193_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1331193_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1331193_HiRes.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1331193_HiRes.jpg"
+                    alt="Red Bull&#x27;s poached its new Marko from Mercedes"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">Formula 1</p>
+            <h3 class="gh-card-title is-title">Red Bull&#x27;s poached its new Marko from Mercedes</h3>
+                <p class="gh-card-excerpt is-body">Red Bull has captured Mercedes F1 talent scout Gwen Lagrue, who helped discover Kimi Antonelli. Here&#x27;s why it thinks that&#x27;s such a crucial signing</p>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post-card-inline post tag-formula-1 tag-hash-george-russell tag-hash-mercedes tag-hash-image-center-right tag-hash-secondary_feature_2">
+    <a class="gh-card-link" href="/formula-1/george-russell-hungarian-gp-f1-start-mercedes/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/M620319.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/M620319.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/M620319.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/M620319.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/M620319.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/M620319.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/M620319.jpg"
+                    alt="George Russell, Mercedes, F1"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">Formula 1</p>
+            <h3 class="gh-card-title is-title">Russell&#x27;s start problem wasn&#x27;t actually what Antonelli thought</h3>
+                <p class="gh-card-excerpt is-body">George Russell&#x27;s world championship hopes took another dent in F1&#x27;s Hungarian GP after a disastrous start left him nearly at the back of the field</p>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post-card-inline post tag-formula-1 tag-hash-lewis-hamilton tag-hash-ferrari tag-hash-image-center-left tag-hash-secondary_feature_3">
+    <a class="gh-card-link" href="/formula-1/lewis-hamilton-f1-2026-penalties-stewards/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429283_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429283_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429283_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429283_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429283_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429283_HiRes.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429283_HiRes.jpg"
+                    alt="Lewis Hamilton, Ferrari, F1"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">Formula 1</p>
+            <h3 class="gh-card-title is-title">Why is Hamilton picking up so many penalties?</h3>
+                <p class="gh-card-excerpt is-body">Lewis Hamilton says he must stop giving the FIA stewards &quot;any reason&quot; to give him penalties, after his fourth sanction in three Formula 1 weekends at the Hungarian Grand Prix</p>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post-card-inline post tag-formula-1 tag-hash-ferrari tag-hash-lewis-hamilton tag-hash-charles-leclerc tag-hash-hungarian-grand-prix">
+    <a class="gh-card-link" href="/formula-1/ferrari-big-opportunity-wasted-f1-hungarian-gp/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429274_HiRes-1.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429274_HiRes-1.jpg"
+                    alt="&#x27;Poor&#x27; Ferrari just wasted a big opportunity"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">Formula 1</p>
+            <h3 class="gh-card-title is-title">&#x27;Poor&#x27; Ferrari just wasted a big opportunity</h3>
+                <p class="gh-card-excerpt is-body">&quot;Poor execution&quot; reflected in &quot;too many mistakes&quot; - Ferrari missed a big chance to supercharge its 2026 F1 title challenge in Hungary</p>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post-card-inline post tag-formula-1 tag-hash-hungarian-grand-prix tag-hash-max-verstappen tag-hash-oscar-piastri tag-hash-lando-norris tag-hash-ferrari tag-hash-charles-leclerc tag-hash-lewis-hamilton tag-hash-george-russell tag-hash-kimi-antonelli tag-hash-aston-martin tag-hash-lance-stroll tag-hash-fernando-alonso tag-hash-cadillac tag-hash-sergio-perez tag-hash-valtteri-bottas tag-hash-nico-hulkenberg tag-hash-williams tag-hash-alex-albon tag-hash-carlos-sainz tag-hash-liam-lawson tag-hash-haas tag-hash-oliver-bearman tag-hash-esteban-ocon">
+    <a class="gh-card-link" href="/formula-1/winners-losers-f1-2026-hungarian-grand-prix/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w160/format/webp/2026/07/XPB_1429291_HiRes.jpg 160w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w320/format/webp/2026/07/XPB_1429291_HiRes.jpg 320w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/format/webp/2026/07/XPB_1429291_HiRes.jpg 600w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w960/format/webp/2026/07/XPB_1429291_HiRes.jpg 960w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/format/webp/2026/07/XPB_1429291_HiRes.jpg 1200w,
+                            https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w2000/format/webp/2026/07/XPB_1429291_HiRes.jpg 2000w"
+                    sizes="320px"
+                    src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w600/2026/07/XPB_1429291_HiRes.jpg"
+                    alt="Winners and losers from F1&#x27;s 2026 Hungarian Grand Prix"
+                    
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">Formula 1</p>
+            <h3 class="gh-card-title is-title">Winners and losers from F1&#x27;s 2026 Hungarian Grand Prix</h3>
+                <p class="gh-card-excerpt is-body">The 2026 F1 form book looked pretty different to usual in Hungary - here&#x27;s who made the most of it, and who really didn&#x27;t</p>
+        </div>
+    </a>
+</article>
+                </div>
+        </div>
+    </section>
+
+
+
+    
+    <footer class="gh-footer gh-outer">
+    <div class="gh-footer-inner gh-inner">
+
+                <section class="gh-footer-signup">
+                    <div class="footer-signup-wrapper">
+                        <h2 class="gh-footer-signup-header is-title">
+                            Get the latest news straight to your inbox
+                        </h2>
+                        <form class="gh-form" data-members-form>
+        <input class="gh-form-input" id="footer-email" name="email" type="email" placeholder="Your email" required data-members-email>
+        <button class="gh-button" type="submit" aria-label="Subscribe">
+            <span>Sign up</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+    <g stroke-linecap="round" stroke-width="2" fill="currentColor" stroke="none" stroke-linejoin="round" class="nc-icon-wrapper">
+        <g class="nc-loop-dots-4-24-icon-o">
+            <circle cx="4" cy="12" r="3"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+            <circle cx="20" cy="12" r="3"></circle>
+        </g>
+        <style data-cap="butt">
+            .nc-loop-dots-4-24-icon-o{--animation-duration:0.8s}
+            .nc-loop-dots-4-24-icon-o *{opacity:.4;transform:scale(.75);animation:nc-loop-dots-4-anim var(--animation-duration) infinite}
+            .nc-loop-dots-4-24-icon-o :nth-child(1){transform-origin:4px 12px;animation-delay:-.3s;animation-delay:calc(var(--animation-duration)/-2.666)}
+            .nc-loop-dots-4-24-icon-o :nth-child(2){transform-origin:12px 12px;animation-delay:-.15s;animation-delay:calc(var(--animation-duration)/-5.333)}
+            .nc-loop-dots-4-24-icon-o :nth-child(3){transform-origin:20px 12px}
+            @keyframes nc-loop-dots-4-anim{0%,100%{opacity:.4;transform:scale(.75)}50%{opacity:1;transform:scale(1)}}
+        </style>
+    </g>
+</svg>            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+    <style>
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            display: block;
+            stroke-width: 2.5;
+            stroke: currentColor;
+            stroke-miterlimit: 10;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke .3s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+        }
+
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+    </style>
+</svg>        </button>
+        <p data-members-error></p>
+</form>                    </div>
+                </section>
+
+        <div class="gh-footer-bar">
+            <div class="logo-text-pair">
+                <span class="gh-footer-logo is-title">
+                        <img src="https://www.the-race.com/assets/images/logo-white.png?v=11ndQnjmAVQS31U1" alt="The Race">
+                </span>
+                <p>
+                    The Race started in February 2020 as a digital-only motorsport channel. Our aim is to create the best motorsport coverage that appeals to die-hard fans as well as those who are new to the sport.
+                </p>
+            </div>
+            <nav class="gh-footer-menu">
+                <div class="footer-menu-items-wrapper">
+                    <div class="footer-menu-items type-explore">
+                        <h5>Explore</h5>
+                        <ul>
+                            <li class="footer-menu-item-link"><a href="/category/formula-1">Formula 1</a></li>
+                            <li class="footer-menu-item-link"><a href="/category/motogp">MotoGP</a></li>
+                            <li class="footer-menu-item-link"><a href="/category/formula-e">Formula E</a></li>
+                            <li class="footer-menu-item-link"><a href="https://www.patreon.com/cw/TheRace">Members' Club</a></li>
+                            <li class="footer-menu-item-link"><a href="/category/business">Business</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-menu-items type-quick-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li class="footer-menu-item-link"><a href="https://www.patreon.com/cw/TheRace">Join Members' Club</a></li>
+                            <li class="footer-menu-item-link"><a href="/about">About Us</a></li>
+                            <li class="footer-menu-item-link"><a href="/podcasts">Podcasts</a></li>
+                            <li class="footer-menu-item-link"><a href="/about/#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-menu-items type-socials">
+                        <h5>Connect</h5>
+                        <ul>
+                            <li class="footer-menu-item-link has-icon"><span class="social-icon youtube"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.75 6C19.5 4.375 18.75 3.25 17 3C14.25 2.5 10 2.5 10 2.5C10 2.5 5.75 2.5 3 3C1.25 3.25 0.375 4.375 0.25 6C0 7.625 0 10 0 10C0 10 0 12.375 0.25 14C0.5 15.625 1.25 16.75 3 17C5.75 17.5 10 17.5 10 17.5C10 17.5 14.25 17.5 17 17C18.75 16.625 19.5 15.625 19.75 14C20 12.375 20 10 20 10C20 10 20 7.625 19.75 6ZM7.5 13.75V6.25L13.75 10L7.5 13.75Z" fill="white"/>
+</svg>
+</span><a target="_blank" href="https://www.youtube.com/channel/UCaTxfj0BzL-MaCy-YUqPRoQ">Youtube</a></li>
+                            <li class="footer-menu-item-link has-icon"><span class="social-icon spotify"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_449_558)">
+<path d="M10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0ZM14.625 14.5C14.375 14.75 14.125 14.875 13.75 14.75C11.375 13.25 8.5 13 5 13.75C4.625 13.875 4.375 13.625 4.25 13.25C4.125 12.875 4.375 12.625 4.75 12.5C8.5 11.625 11.875 12 14.5 13.625C14.75 13.75 14.75 14.125 14.625 14.5ZM15.75 11.75C15.5 12.125 15 12.25 14.75 12C12 10.375 8 9.875 4.75 10.875C4.375 10.875 4 10.75 3.875 10.25C3.75 9.875 4 9.5 4.375 9.375C8 8.25 12.5 8.875 15.625 10.75C15.875 10.875 16 11.375 15.75 11.75ZM15.875 8.875C12.625 7 7.375 6.75 4.25 7.75C3.75 7.875 3.25 7.625 3.125 7.125C3 6.625 3.25 6.125 3.75 6C7.25 5 13.125 5.125 16.875 7.375C17.375 7.625 17.5 8.25 17.25 8.625C17 9 16.375 9.125 15.875 8.875Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_449_558">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</span><a target="_blank" href="https://open.spotify.com/show/5jYPRckNa9oSZAiuURm8WZ">Spotify Podcasts</a></li>
+                            <li class="footer-menu-item-link has-icon"><span class="social-icon applePodcasts"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_449_563)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.9346 14.9444C13.0933 13.992 12.3588 13.125 11.3933 13.125H8.60672C7.64116 13.125 6.90672 13.992 7.06547 14.9444L7.58629 18.0694C7.71185 18.8228 8.36372 19.375 9.12754 19.375H10.8725C11.6363 19.375 12.2882 18.8228 12.4138 18.0694L12.9346 14.9444Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10 1.875C5.51269 1.875 1.875 5.51269 1.875 10C1.875 12.9813 3.48037 15.5884 5.8768 17.0027L6.41506 17.3203L5.77973 18.3968L5.24148 18.0792C2.47988 16.4494 0.625 13.4416 0.625 10C0.625 4.82233 4.82233 0.625 10 0.625C15.1777 0.625 19.375 4.82233 19.375 10C19.375 13.4416 17.5201 16.4494 14.7585 18.0792L14.2202 18.3968L13.5849 17.3203L14.1232 17.0027C16.5196 15.5884 18.125 12.9813 18.125 10C18.125 5.51269 14.4873 1.875 10 1.875Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10 5C7.23856 5 5 7.23856 5 10C5 11.1041 5.35714 12.123 5.96238 12.9498L6.33156 13.4541L5.32289 14.1925L4.95373 13.6881C4.19698 12.6543 3.75 11.3784 3.75 10C3.75 6.54825 6.54825 3.75 10 3.75C13.4517 3.75 16.25 6.54825 16.25 10C16.25 11.3784 15.803 12.6543 15.0462 13.6881L14.6771 14.1925L13.6684 13.4542L14.0376 12.9498C14.6429 12.123 15 11.1041 15 10C15 7.23856 12.7614 5 10 5Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 9.375C7.5 7.99431 8.61931 6.875 10 6.875C11.3807 6.875 12.5 7.99431 12.5 9.375C12.5 10.7557 11.3807 11.875 10 11.875C8.61931 11.875 7.5 10.7557 7.5 9.375Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_449_563">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</span><a target="_blank" href="https://podcasts.apple.com/us/podcast/the-race-f1-podcast/id1495557562">Apple Podcasts</a></li>
+                            <li class="footer-menu-item-link has-icon"><span class="social-icon instagram"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_449_571)">
+<path d="M10 1.80125C12.67 1.80125 12.9862 1.8125 14.0413 1.86C14.6752 1.86762 15.3031 1.98432 15.8975 2.205C16.3322 2.3656 16.7253 2.62192 17.0475 2.955C17.3806 3.27724 17.6369 3.67027 17.7975 4.105C18.0182 4.69937 18.1349 5.32729 18.1425 5.96125C18.19 7.01625 18.2013 7.33625 18.2013 10.0025C18.2013 12.6687 18.19 12.9887 18.1425 14.0437C18.1349 14.6777 18.0182 15.3056 17.7975 15.9C17.6315 16.3314 17.3768 16.7232 17.05 17.05C16.7232 17.3768 16.3314 17.6315 15.9 17.7975C15.3056 18.0182 14.6777 18.1349 14.0437 18.1425C12.9887 18.19 12.6687 18.2013 10.0025 18.2013C7.33625 18.2013 7.01625 18.19 5.96125 18.1425C5.32729 18.1349 4.69937 18.0182 4.105 17.7975C3.67027 17.6369 3.27724 17.3806 2.955 17.0475C2.62192 16.7253 2.3656 16.3322 2.205 15.8975C1.98432 15.3031 1.86762 14.6752 1.86 14.0413C1.8125 12.9862 1.80125 12.6663 1.80125 10C1.80125 7.33375 1.8125 7.01375 1.86 5.95875C1.86762 5.32479 1.98432 4.69687 2.205 4.1025C2.3656 3.66777 2.62192 3.27474 2.955 2.9525C3.27724 2.61942 3.67027 2.3631 4.105 2.2025C4.69937 1.98182 5.32729 1.86512 5.96125 1.8575C7.01625 1.81 7.33625 1.79875 10.0025 1.79875M10 0C7.28375 0 6.94375 0.01125 5.875 0.06C5.0462 0.0768543 4.22625 0.234082 3.45 0.525C2.78245 0.775698 2.17788 1.1695 1.67875 1.67875C1.1695 2.17788 0.775698 2.78245 0.525 3.45C0.234082 4.22625 0.0768543 5.0462 0.06 5.875C0.01125 6.94375 0 7.28375 0 10C0 12.7163 0.01125 13.0563 0.06 14.125C0.0768543 14.9538 0.234082 15.7738 0.525 16.55C0.775698 17.2175 1.1695 17.8221 1.67875 18.3212C2.17788 18.8305 2.78245 19.2243 3.45 19.475C4.22704 19.7662 5.04786 19.9234 5.8775 19.94C6.94375 19.9888 7.28375 20 10 20C12.7163 20 13.0563 19.9888 14.125 19.94C14.9546 19.9234 15.7755 19.7662 16.5525 19.475C17.2168 19.2179 17.82 18.8249 18.3237 18.3212C18.8274 17.8175 19.2204 17.2143 19.4775 16.55C19.7687 15.773 19.9259 14.9521 19.9425 14.1225C19.9913 13.0563 20.0025 12.7163 20.0025 9.9975C20.0025 7.27875 19.9913 6.94125 19.9425 5.8725C19.9246 5.0444 19.7665 4.22531 19.475 3.45C19.2243 2.78245 18.8305 2.17788 18.3212 1.67875C17.8221 1.1695 17.2175 0.775698 16.55 0.525C15.7738 0.234082 14.9538 0.0768543 14.125 0.06C13.0563 0.01125 12.7163 0 10 0Z" fill="white"/>
+<path d="M9.99999 4.86523C8.98439 4.86523 7.99159 5.1664 7.14714 5.73064C6.30269 6.29488 5.64453 7.09686 5.25587 8.03516C4.86722 8.97345 4.76553 10.0059 4.96366 11.002C5.1618 11.9981 5.65086 12.9131 6.369 13.6312C7.08714 14.3494 8.00211 14.8384 8.9982 15.0366C9.9943 15.2347 11.0268 15.133 11.9651 14.7444C12.9034 14.3557 13.7053 13.6975 14.2696 12.8531C14.8338 12.0086 15.135 11.0158 15.135 10.0002C15.135 9.3259 15.0022 8.65816 14.7441 8.03516C14.4861 7.41215 14.1078 6.84607 13.631 6.36924C13.1542 5.89241 12.5881 5.51417 11.9651 5.25611C11.3421 4.99806 10.6743 4.86523 9.99999 4.86523ZM9.99999 13.334C9.34064 13.334 8.69609 13.1385 8.14786 12.7721C7.59963 12.4058 7.17233 11.8852 6.92001 11.276C6.66769 10.6668 6.60167 9.99654 6.7303 9.34985C6.85893 8.70317 7.17644 8.10915 7.64268 7.64292C8.10891 7.17668 8.70293 6.85918 9.34961 6.73054C9.99629 6.60191 10.6666 6.66793 11.2758 6.92025C11.8849 7.17257 12.4056 7.59987 12.7719 8.1481C13.1382 8.69633 13.3337 9.34088 13.3337 10.0002C13.3337 10.8844 12.9825 11.7324 12.3573 12.3576C11.7321 12.9828 10.8842 13.334 9.99999 13.334Z" fill="white"/>
+<path d="M15.3377 5.86289C16.0004 5.86289 16.5377 5.32563 16.5377 4.66289C16.5377 4.00015 16.0004 3.46289 15.3377 3.46289C14.675 3.46289 14.1377 4.00015 14.1377 4.66289C14.1377 5.32563 14.675 5.86289 15.3377 5.86289Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_449_571">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</span><a target="_blank" href="https://www.instagram.com/wearetherace/">Instagram</a></li>
+                            <li class="footer-menu-item-link has-icon"><span class="social-icon twitter"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.0359 12.6267L3.67277 18.7504H0.702148L7.6484 10.8154L9.0359 12.6267Z" fill="white"/>
+<path d="M10.6572 6.8675L15.5679 1.25H18.5366L12.0322 8.68875L10.6572 6.8675Z" fill="white"/>
+<path d="M19.6803 18.75H13.7059L0.320312 1.25H6.44594L19.6803 18.75ZM14.5253 16.9731H16.1703L5.55219 2.93375H3.78719L14.5253 16.9731Z" fill="white"/>
+</svg>
+</span><a target="_blank" href="https://x.com/wearetherace">X (Twitter)</a></li>
+                            <li class="footer-menu-item-link has-icon"><span class="social-icon facebook"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.3337 10.0003C18.3337 5.40033 14.6003 1.66699 10.0003 1.66699C5.40033 1.66699 1.66699 5.40033 1.66699 10.0003C1.66699 14.0337 4.53366 17.392 8.33366 18.167V12.5003H6.66699V10.0003H8.33366V7.91699C8.33366 6.30866 9.64199 5.00033 11.2503 5.00033H13.3337V7.50033H11.667C11.2087 7.50033 10.8337 7.87533 10.8337 8.33366V10.0003H13.3337V12.5003H10.8337V18.292C15.042 17.8753 18.3337 14.3253 18.3337 10.0003Z" fill="white"/>
+</svg>
+</span><a target="_blank" href="https://www.facebook.com/wearetherace">Facebook</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="gh-footer-copyright">
+                <p class="copyright">
+                    Copyright © The Race 2026. All Rights Reserved. The Race Media, a RAFA Media Company.
+                </p>
+
+                <a href="/privacy-policy">Privacy Policy</a>
+
+                <a href="/terms-and-conditions">Terms and Conditions</a>
+            </div>
+        </div>
+
+       
+
+    </div>
+</footer>    
+</div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Typeform
+
+<div data-tf-live="01KT1WDRS3PEAM9V4WER69W3JB"></div>
+
+
+
+<script>
+(function () {
+  var RETRY_DELAY = 7 * 24 * 60 * 60 * 1000; // produção: 7 dias
+  var MAX_SHOWS = 2;
+
+  var LS_SHOWN = 'tf_survey_shown';
+  var LS_LAST = 'tf_survey_last';
+  var LS_DONE = 'tf_survey_done';
+
+  function getShown() {
+    return parseInt(localStorage.getItem(LS_SHOWN) || '0', 10);
+  }
+
+  function getLast() {
+    return parseInt(localStorage.getItem(LS_LAST) || '0', 10);
+  }
+
+  function isDone() {
+    return localStorage.getItem(LS_DONE) === 'true';
+  }
+
+  var secondsPassed = Math.round((Date.now() - getLast()) / 1000);
+  var shouldBlock =
+    isDone() ||
+    getShown() >= MAX_SHOWS ||
+    (getShown() > 0 && Date.now() - getLast() < RETRY_DELAY);
+
+  console.log('[TF CHECK]', {
+    shown: getShown(),
+    done: isDone(),
+    secondsPassed: secondsPassed,
+    shouldBlock: shouldBlock
+  });
+
+  if (shouldBlock) {
+    document.querySelector('[data-tf-live]')?.remove();
+    console.log('[TF] Bloqueado. shown=' + getShown());
+    return;
+  }
+
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://form.typeform.com') return;
+
+    if (e.data?.type === 'form-ready') {
+      localStorage.setItem(LS_SHOWN, String(getShown() + 1));
+      localStorage.setItem(LS_LAST, String(Date.now()));
+      console.log('[TF] Abriu. shown=' + getShown());
+    }
+
+    if (e.data?.type === 'form-submit') {
+      localStorage.setItem(LS_DONE, 'true');
+      console.log('[TF] Submetido.');
+    }
+  });
+})();
+</script>
+
+<script src="https://embed.typeform.com/next/embed.js"></script>
+
+
+-->
+
+
+<script>  
+window.addEventListener('CookiebotOnAccept', function() {  document.documentElement.style.removeProperty('overflow');  }, false);  
+window.addEventListener('CookiebotOnDialogHide', function() {  document.documentElement.style.removeProperty('overflow');  }, false); 
+</script>
+
+<script src="https://www.the-race.com/assets/built/source.js?v=O86vpTJppMBcH1np" defer></script>
+<script src="https://www.the-race.com/assets/js/flipdown.js?v=sOH-0FELt8FlOYC6" defer></script>
+<script src="https://www.the-race.com/assets/js/countdown.js?v=noNHhE8-iPwZsCm8" defer></script>
+<script src="https://www.the-race.com/assets/js/analytics-script.js?v=EkUGZzYFHmqUx6a2" defer></script>
+
+<script>
+(function () {
+    const toggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        toggle.textContent = 'Light';
+    }
+
+    toggle?.addEventListener('click', function () {
+        document.documentElement.classList.toggle('dark-mode');
+
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggle.textContent = isDark ? 'Light' : 'Dark';
+    });
+})();
+</script>
+
+
+<script>
+	// Subscribe button click tracking
+	let sub_button_interval = setInterval(function() {
+		if(document.querySelector('#ghost-portal-root iframe')) {
+			if(document.querySelector('#ghost-portal-root iframe').contentDocument.querySelector('.gh-portal-triggerbtn-container')) {
+				document.querySelector('#ghost-portal-root iframe')
+					.contentDocument.querySelector('.gh-portal-triggerbtn-container')
+					.addEventListener('click', () => {
+						dataLayer.push({'event':'subcribe_button_clicked'})
+					})
+				clearInterval(sub_button_interval)
+			}
+		}
+	}, 1000)
+
+	// App view support - modify UI for trm_app_new
+	if(document.body.classList.contains('trm-app-new')) {
+		// Hide Ghost Portal close button in app
+		const portalInterval = setInterval(() => {
+			const iframes = document.querySelectorAll('#ghost-portal-root iframe')
+			if(iframes.length > 0) {
+				iframes.forEach(iframe => {
+					try {
+						const closeIcon = iframe.contentDocument.querySelector('.gh-portal-closeicon')
+						if(closeIcon) {
+							closeIcon.style.display = 'none'
+						}
+					} catch(e) {}
+				})
+			}
+		}, 100)
+
+		// Redirect Members Club menu link
+		const membersLink = document.querySelector('a[href*="members"], a[href*="patreon"]')
+		if(membersLink) {
+			membersLink.href = '/category/patreon-post/'
+		}
+	}
+
+	// Ghost comments - redirect to Patreon and track
+	const commentsInterval = setInterval(() => {
+		if(document.querySelector('#ghost-comments-root iframe')) {
+			if(document.querySelector('#ghost-comments-root iframe').contentWindow.document.querySelector('h1 ~ p')) {
+				document.querySelector('#ghost-comments-root iframe').contentWindow.document.querySelector('h1 ~ p').innerHTML = 'Join The Race on Patreon to start commenting on website articles.'
+				const old_button = document.querySelector('#ghost-comments-root iframe').contentWindow.document.querySelector('[data-testid="signup-button"]')
+				const clone = old_button.cloneNode(true)
+				clone.addEventListener('click', () => {
+					dataLayer.push({'event':'ghost_comments'})
+					window.location.href = 'https://www.patreon.com/join/therace'
+				})
+				old_button.parentNode.replaceChild(clone, old_button)
+				clearInterval(commentsInterval)
+			}
+		}
+	}, 100)
+</script>
+
+</body>
+</html>

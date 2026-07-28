@@ -17,80 +17,92 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Newspaper } from "lucide-react";
+import { authApi, preferencesApi } from "@/lib/api";
 
 export default function AuthPage() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(false);
+  const [step, setStep] = useState<"email" | "otp">("email");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
+  const [sessionToken, setSessionToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const endpoint = isLogin ? "/login" : "/register";
-      const response = await fetch(`http://localhost:8000${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await authApi.sendOtp(email);
+      setSessionToken(res.session_token);
+      setStep("otp");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Unable to send verification code. Please try again.");
+      console.error("Send OTP error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      const data = await response.json();
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
 
-      if (!response.ok) {
-        alert(data.message || "An error occurred");
-        setIsLoading(false);
-        return;
-      }
-
+    try {
+      const data = await authApi.verifyOtp(email, otp, sessionToken);
+      
       // Save JWT token
       localStorage.setItem("SNAPtoken", data.access_token);
 
-      // Redirect based on login/register
-      if (isLogin) {
-        router.push("/dashboard");
-      } else {
+      // Check if user already has preferences to decide redirect target
+      try {
+        const prefRes = await preferencesApi.get(data.access_token);
+        if (prefRes.preferences && prefRes.preferences.length > 0) {
+          router.push("/dashboard");
+        } else {
+          router.push("/preferences");
+        }
+      } catch (err) {
         router.push("/preferences");
       }
     } catch (error) {
-      alert("Failed to connect to the server. Please try again.");
-      console.error("Auth error:", error);
+      alert(error instanceof Error ? error.message : "Invalid or expired verification code.");
+      console.error("Verify OTP error:", error);
+    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen flex flex-col bg-muted/30">
+      <header className="border-b bg-background/80 backdrop-blur">
+        <div className="container mx-auto flex max-w-6xl items-center px-4 py-5">
           <Link href="/" className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold">DistillNews</h1>
+            <h1 className="text-xl font-bold tracking-tight">DistillNews</h1>
           </Link>
         </div>
       </header>
 
-      <main className="flex-1 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>
-              {isLogin ? "Welcome Back" : "Create an Account"}
+      <main className="flex flex-1 items-center justify-center px-4 py-12">
+        <Card className="w-full max-w-md border-border/60 shadow-xl shadow-primary/5">
+          <CardHeader className="space-y-3 pb-6">
+            <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+              <Newspaper className="h-5 w-5" />
+            </div>
+            <CardTitle className="text-2xl tracking-tight">
+              {step === "email" ? "Sign In / Register" : "Verify Email"}
             </CardTitle>
             <CardDescription>
-              {isLogin
-                ? "Sign in to access your personalized news feed"
-                : "Join DistillNews to start receiving tailored news updates"}
+              {step === "email"
+                ? "Join DistillNews or sign in to receive tailored daily news updates"
+                : `We sent a 6-digit verification code to ${email}`}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit}>
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+            {step === "email" ? (
+              <form onSubmit={handleSendOtp} className="space-y-5">
+                <div className="space-y-2.5">
+                  <Label htmlFor="email">Email Address</Label>
                   <Input
                     id="email"
                     type="email"
@@ -100,52 +112,48 @@ export default function AuthPage() {
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
+                <Button type="submit" className="h-11 w-full" disabled={isLoading}>
+                  {isLoading ? "Sending Code..." : "Send Verification Code"}
+                </Button>
+              </form>
+            ) : (
+              <form onSubmit={handleVerifyOtp} className="space-y-5">
+                <div className="space-y-2.5">
+                  <Label htmlFor="otp">Verification Code (OTP)</Label>
                   <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    id="otp"
+                    type="text"
+                    placeholder="123456"
+                    maxLength={6}
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading
-                    ? "Processing..."
-                    : isLogin
-                    ? "Sign In"
-                    : "Create Account"}
+                <Button type="submit" className="h-11 w-full" disabled={isLoading}>
+                  {isLoading ? "Verifying..." : "Verify & Continue"}
                 </Button>
-              </div>
-            </form>
+                <div className="text-center mt-4">
+                  <Button
+                    variant="link"
+                    type="button"
+                    className="text-sm p-0"
+                    onClick={() => {
+                      setStep("email");
+                      setOtp("");
+                    }}
+                  >
+                    Change Email / Re-send Code
+                  </Button>
+                </div>
+              </form>
+            )}
           </CardContent>
-          <CardFooter>
-            <div className="text-center w-full">
-              {isLogin ? (
-                <p>
-                  Don't have an account?{" "}
-                  <Button
-                    variant="link"
-                    className="p-0"
-                    onClick={() => setIsLogin(false)}
-                  >
-                    Sign up
-                  </Button>
-                </p>
-              ) : (
-                <p>
-                  Already have an account?{" "}
-                  <Button
-                    variant="link"
-                    className="p-0"
-                    onClick={() => setIsLogin(true)}
-                  >
-                    Sign in
-                  </Button>
-                </p>
-              )}
-            </div>
+          <CardFooter className="flex flex-col items-center gap-2 border-t pt-4 text-xs text-muted-foreground">
+            <Link href="/dashboard" className="text-sm font-medium text-primary hover:underline">
+              Continue reading as Guest &rarr;
+            </Link>
+            <span>By continuing, you agree to our Terms and Privacy Policy.</span>
           </CardFooter>
         </Card>
       </main>

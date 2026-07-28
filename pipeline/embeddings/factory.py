@@ -1,0 +1,40 @@
+"""Factory for independent embedding providers."""
+
+from config import config
+from .base import EmbeddingProvider
+
+
+def create_embedding_provider(
+    provider: str | None = None, **kwargs
+) -> EmbeddingProvider:
+    """Create an embedding provider selected independently from the chatbot.
+
+    Args:
+        provider: Provider name. If omitted, reads ``EMBEDDING_PROVIDER``.
+        **kwargs: Provider-specific constructor options.
+    """
+    provider = (provider or config.EMBEDDING_PROVIDER).lower()
+
+    if provider in ("openai", "foundry"):
+        from .providers.openai import OpenAIEmbeddingProvider
+
+        return OpenAIEmbeddingProvider(**kwargs)
+    if provider == "ollama":
+        from .providers.ollama import OllamaEmbeddingProvider
+
+        return OllamaEmbeddingProvider(**kwargs)
+    if provider in ("sentence_transformers", "sentence-transformers", "st"):
+        from .providers.sentence_transformers import SentenceTransformersEmbeddingProvider
+
+        return SentenceTransformersEmbeddingProvider(**kwargs)
+    if provider in ("huggingface", "hf"):
+        from .providers.huggingface import HuggingFaceEmbeddingProvider
+
+        return HuggingFaceEmbeddingProvider(**kwargs)
+    if provider == "none":
+        return EmbeddingProvider()
+
+    raise ValueError(
+        f"Unknown embedding provider: {provider!r}. "
+        "Available: openai, foundry, ollama, sentence_transformers, huggingface, none"
+    )

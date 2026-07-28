@@ -20,12 +20,19 @@ export default function HomePage() {
             <Newspaper className="h-6 w-6 text-primary" />
             <h1 className="text-2xl font-bold">DistillNews</h1>
           </div>
-          <Link href="/register">
-            <Button>
-              Get Started
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard">
+              <Button variant="outline">
+                Browse News
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button>
+                Sign In
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -37,16 +44,21 @@ export default function HomePage() {
               <span className="text-primary">Refined by AI</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-              We gather news from every source, filter out the noise, and
-              deliver only the most relevant, high-quality content tailored to
-              your interests.
+              Read current world news instantly as a guest, or sign in to set your preferences and get a fully personalized AI news feed.
             </p>
-            <Link href="/register">
-              <Button size="lg" className="px-8">
-                Start Reading Smarter
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/dashboard">
+                <Button size="lg" variant="outline" className="px-8">
+                  Browse News Free
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button size="lg" className="px-8">
+                  Sign In for Personalization
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -112,12 +124,19 @@ export default function HomePage() {
               Join thousands of readers who've switched to a smarter way to stay
               informed.
             </p>
-            <Link href="/register">
-              <Button size="lg" className="px-8">
-                Get Started Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/dashboard">
+                <Button size="lg" variant="outline" className="px-8">
+                  Browse News Feed
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button size="lg" className="px-8">
+                  Sign In to Personalize
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

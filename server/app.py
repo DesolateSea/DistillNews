@@ -1,21 +1,45 @@
+import os
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from apps.routes import auth_routes, user_routes, feed_routes, chat_routes
-from apps.services.article_service import start_scheduler, shutdown_scheduler, store_article
-from contextlib import asynccontextmanager
+from server.routes import auth_routes, user_routes, feed_routes, chat_routes, weather_routes
+from server.services.article_service import start_scheduler, shutdown_scheduler, store_article
+from service.db.mongo import MongoHandle
+from service.db.redis import RedisHandle
+from service.logger import log
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Storing all new articles")
-    await store_article()
-    print("Stored all new articles")
-    start_scheduler()
+    MongoHandle.connect()
+    await RedisHandle.connect()
+    try:
+        if log:
+            log.info("Storing all new articles")
+        await store_article()
+        if log:
+            log.success("Stored all new articles")
+        start_scheduler()
+    except Exception as e:
+        if log:
+            log.warn(f"Startup tasks failed ({e}). Running without scheduler.")
     yield
-    shutdown_scheduler()
+    try:
+        shutdown_scheduler()
+    except Exception:
+        pass
+    MongoHandle.disconnect()
+    await RedisHandle.disconnect()
+
 
 app = FastAPI(lifespan=lifespan)
 
-origins = ["*"]
+origins = [
+    origin.strip()
+    for origin in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -28,3 +52,9 @@ app.include_router(auth_routes.router)
 app.include_router(user_routes.router)
 app.include_router(feed_routes.router)
 app.include_router(chat_routes.router)
+app.include_router(weather_routes.router)
+
+
+@app.get("/health", include_in_schema=False)
+async def health_check():
+    return {"status": "ok"}

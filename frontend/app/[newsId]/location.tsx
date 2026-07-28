@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { weatherApi } from "@/lib/api";
 
 // Fix for default marker icons not showing
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -24,10 +24,8 @@ const Location = ({ location }: { location: string | null }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const apiKey = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
-
   useEffect(() => {
-    if (!location || !apiKey) return;
+    if (!location) return;
 
     const cacheKey = `coords_${location.toLowerCase().replace(/\s+/g, "_")}`;
     const cached = localStorage.getItem(cacheKey);
@@ -49,22 +47,13 @@ const Location = ({ location }: { location: string | null }) => {
       setError("");
 
       try {
-        const response = await axios.get(
-          "https://api.openweathermap.org/geo/1.0/direct",
-          {
-            params: {
-              q: location,
-              limit: 1,
-              appid: apiKey,
-            },
-          }
-        );
+        const response = await weatherApi.geocode(location);
 
-        if (response.data.length === 0) {
+        if (response.length === 0) {
           setError("Location not found.");
           setCoordinates(null);
         } else {
-          const { lat, lon } = response.data[0];
+          const { lat, lon } = response[0];
           const coords = { lat, lon };
           localStorage.setItem(cacheKey, JSON.stringify(coords));
           setCoordinates(coords);
@@ -79,7 +68,7 @@ const Location = ({ location }: { location: string | null }) => {
     };
 
     fetchCoordinates();
-  }, [location, apiKey]);
+  }, [location]);
 
   if (!location) return null;
 

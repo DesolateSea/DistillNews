@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<meta property="fb:app_id" content="117106681655169" />
+	<meta property="fb:pages" content="1434910340064598" />
+	<meta property="fb:pages" content="229023931411" />
+	<meta property="fb:pages" content="110566825943939" />
+
+    <link rel="preconnect" href="https://image.koreaboo.com">
+	<link rel="dns-prefetch" href="https://search.koreaboo.com/">
+	<link rel="preconnect" href="https://clcksrv.com">
+	<link rel="preload" as="script" href="https://socialcanvas-cdn.kargo.com/js/rh.min.js">
+	<link rel="preload" as="script" href="https://btloader.com/tag?o=5172243878903808&upapi=true">
+
+    
+                <style data-key="global" >:root {
+    --max-w: 1275px;
+    --sidebar-w: 300px;
+    --body-pad: 15px;
+    --section-pad: 20px;
+    --margin: 20px;
+    --header-h: 60px;
+    --brand: #fd2870;
+    --bg: #fafafa;
+	--secondary-header-height: 0px;
+
+	--text-contrast: #fff;
+	--text-caption: #aeaeae;
+	--text-sub: #686868;
+	--text-b: #121416;
+}
+
+html {
+	font-size: 16px;
+	box-sizing: border-box;
+	background-color: var(--bg-alt);
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+		Arial, sans-serif;
+}
+
+@media screen and (max-device-width: 480px) {
+	body {
+		text-size-adjust: 100%;
+		-webkit-text-size-adjust: 100%;
+	}
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+ul {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    line-height: 1.2;
+	color: var(--text-b);
+	background-color: var(--bg);
+}
+
+main {
+	max-width: var(--max-w);
+	/* top margin is to match sidebar widget top margin. can remove. */
+	margin: 5px auto;
+	width: 100%;
+	/* ad fix */
+	position: relative;
+	background-color: var(--bg);
+	transition: background-color 0.15s;
+	word-break: break-word;
+}
+
+#masthead {
+	height: var(--header-h);
+}
+
+.hidden {
+	display: none !important;
+}
+
+.header-super-container {
+	grid-area: 1 / 1 / 2 / 2;
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	background-color: var(--brand);
+}
+
+.koreaboo-logo {
+	margin-block: 12px;
+}
+
+.site-header {
+	position: relative;
+	z-index: 100;
+	width: 100%;
+}
+
+.header-container {
+	width: 100%;
+	max-width: var(--max-w);
+	margin-inline: auto;
+	padding: 0 20px;
+	height: var(--header-h);
+	display: flex;
+	overflow-y: hidden;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+.header-links,
+.profile {
+	letter-spacing: 0.6px;
+	font-weight: 400;
+	color: var(--text-contrast-fade);
+}
+.header-links {
+	display: flex;
+	gap: 0.75rem;
+}
+
+.header-links :is(a, button) {
+	transition: color 0.15s;
+}
+
+.button-link {
+	border: unset;
+	background-color: unset;
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	cursor: pointer;
+	/* hacky, idk */
+	position: relative;
+	bottom: 0.5px;
+}
+
+.profile {
+	margin-left: auto;
+}
+
+.header-links > :is(a, button):hover {
+	color: white;
+}
+
+.body-container {
+    grid-area: 2/1/3/2;
+    max-width: 100vw;
+    padding: 0 var(--body-pad);
+    padding-top: calc(15px + var(--secondary-header-height));
+}
+
+.kbos-page {
+	padding: 0 var(--section-pad);
+	/* breaks video ads? 
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1000px;
+    */
+}
+
+.kbos-page > * {
+	max-width: calc(100vw - var(--body-pad) - var(--section-pad));
+}
+
+.full-width {
+	margin-inline: calc(-1 * var(--section-pad));
+	width: calc(100% + 2 * var(--section-pad));
+	max-width: calc(100% + 2 * var(--section-pad));
+}
+@media screen and (max-width: 480px) {
+	/* bp-mobile */
+	:root {
+		--section-pad: 10px;
+		--body-pad: 0px;
+	}
+	.full-width-mobile {
+		margin-inline: calc(-1 * var(--section-pad));
+		width: calc(100% + 2 * var(--section-pad));
+		max-width: calc(100% + 2 * var(--section-pad));
+	}
+}
+
+.has-sidebar {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: 1fr var(--sidebar-w);
+}
+
+@media screen and (max-width: 940px) {
+	/* bp-desktop */
+	.has-sidebar {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+	.desktop-sidebar {
+		display: none;
+		content-visibility: hidden;
+	}
+}
+
+.kbos-page .page-content {
+	padding: var(--section-pad);
+	overflow-x: visible;
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.desktop-sidebar {
+	grid-area: 1 / 2 / 2 / 3;
+	height: 100%;
+	position: relative;
+}
+
+#leaderboard {
+	min-height: 90px;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #ddd;
+	clip: auto !important;
+	clip-path: none;
+	color: #444;
+	display: block;
+	font-size: 1rem;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}</style>
+                     <style data-key="subheader" >body {
+    --secondary-header-height: 42px;
+}
+
+body.dropdown-open #secondary_header {
+    display: none;
+}
+.secondary-header {
+    line-height: var(--secondary-header-height);
+    height: var(--secondary-header-height);
+    width: 100vw;
+    background-color: var(--bg-item);
+    border-bottom: 1px solid rgba(210,210,210,.3);
+    position: sticky;
+    top: 59px;
+    z-index: 100;
+    font-size: 0.825rem;
+	margin-inline: auto;
+
+    .header-container {
+        width: 100%;
+        padding: 0 10px;
+		height: unset;
+        overflow-x: scroll;
+        overflow-y: hidden;
+		max-width: var(--max-w);
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        overscroll-behavior-y: none;
+    }
+
+    nav {
+        height: var(--secondary-header-height);
+    }
+
+    ul {
+        display: flex;
+
+        max-height: var(--secondary-header-height);
+        overflow-y: hidden;
+    }
+    li {
+        list-style: none;
+        margin: 0 10px;
+        display: inline-block;
+        white-space: nowrap;
+        &:last-child {
+            padding-right: 20px;
+        }
+    }
+    a {
+        color: var(--text);
+        transition: color .15s;
+        min-width: 40px;
+        text-align: center;
+        display: inline-block;
+        max-width: 180px;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        &:hover, &:focus {
+            color: var(--text-highlight);
+        }
+        &.noclip {
+            max-width: unset;
+        }
+    }
+}
+
+@media screen and (pointer: fine) {
+    .secondary-header:hover {
+        a {
+            color: var(--text-low);
+        }
+        a:hover {
+            color: var(--text-highlight);
+        }
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .secondary-header ul {
+        flex-wrap: wrap;
+    }
+    .secondary-header nav {
+        overflow-y: hidden;
+    }
+    li:last-child {
+        padding-right: 0;
+    }
+}</style>
+                     <style data-key="breaking" >/* Breaking News widget. Appears on all site pages, but only when active. */
+
+.K_Breaking_Widget, .K_Breaking_Widget_2 {
+	position: relative;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 2px 5px rgba(0,0,0,.05);
+	background-color: #fff;
+	transition: background-color .15s;
+	margin: 15px auto;
+	max-width: var(--max-w);
+}
+
+.breaking-banner-tag {
+	position: absolute;
+	left: 0;
+	text-transform: uppercase;
+	text-align: center;
+	margin-right: 15px;
+	color: #1c354c;
+	background-color: #fff000;
+	width: 150px;
+	padding: 10px 12px;
+	height: 100%;
+	font-weight: 600;
+	font-size: 1.25rem;
+}
+
+.breaking-text {
+	padding: 13px 20px;
+	margin-left: 150px;
+	font-weight: 600;
+	font-size: 1.1rem;
+}
+
+.no-tag .breaking-banner-tag {
+	width: 15px;
+}
+
+.no-tag .breaking-text {
+	margin-left: 15px;
+}
+
+.no-tag .icon-breaking {
+	display: none;
+}
+
+.breaking-text>a, .breaking-text>a:hover {
+	color: var(--text-b);
+}
+
+.breaking-tag-text {
+	font-size: 1rem;
+    position: relative;
+}
+
+.breaking-tag-mobile {
+	display: none;
+}
+
+@media screen and (max-width: 480px) { /* bp-mobile */
+	.breaking-banner-tag {
+		width: 15px;
+	}
+	.breaking-banner-tag span {
+		display: none;
+	}
+	.breaking-text {
+		margin-left: 15px;
+	}
+	.breaking-tag-mobile {
+		display: inline;
+	}
+}
+</style>
+                     <style data-key="article" >.header-excerpt {
+    color: var(--text-b);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin: 20px 0;
+}
+
+.featured-image {
+	/* width: 100%; Featured image is .full-width */
+	height: auto;
+	max-height: 600px;
+	object-fit: contain;
+}
+
+.entry-meta {
+	color: var(--text-sub);
+	font-size: 0.9rem;
+	margin: 20px 0;
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	grid-template-rows: 40px;
+}
+
+.kbos-article-category {
+	grid-area: 1/1/2/2;
+}
+
+.writer-bio {
+	display: grid;
+    grid-area: 1/3/2/4;
+	text-align: right;
+	grid-auto-columns: max-content;
+	grid-column-gap: 10px;
+	justify-self: end;
+}
+
+.writer-bio-avatar-container {
+    grid-area: 1/1/3/2;
+    width: 38px;
+}
+.writer-bio-name {
+    grid-area: 1/2/2/3;
+}
+.posted-on {
+    grid-area: 2/2/3/3;
+}
+
+.writer-bio-avatar {
+	height: 36px;
+	width: 36px;
+	border-radius: 50%;
+	position: relative;
+	top: 1px;
+	box-shadow: 0 0 0px 1.5px var(--brand);
+}
+
+.entry-category {
+	display: inline-block;
+	color: var(--text-contrast);
+	background-color: #e9455a;
+	padding: 8px;
+	text-transform: uppercase;
+	font-weight: 600;
+	border-radius: 8px;
+}
+
+@media screen and (max-width: 768px) { /* bp-tablet */
+	.entry-meta {
+		grid-template-columns: auto 1fr;
+		grid-template-rows: auto auto;
+		grid-row-gap: 5px;
+	}
+    .writer-bio {
+        grid-area: 1/2/2/3;
+    }
+}
+
+article .entry-content {
+	margin-top: 30px;
+	padding-bottom: 1px;
+	color: var(--text-sub);
+	font-size: 1.2rem;
+	font-weight: 400;
+	line-height: 1.35;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 480px) { /* bp-mobile */
+    article .entry-content {
+        font-size: 1.1rem;
+    }
+}
+
+.entry-content img {
+    max-width: min(100%, calc(100vw - var(--body-pad) - var(--section-pad)));
+}
+
+.post.type-post .entry-title::after {
+  content: "";
+  display: inline-block;
+  background-image: url("/wp-content/themes/KbooOS2/img/logo.png");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  height: 24px;
+  width: 20px;
+  position: relative;
+  top: 4px;
+  margin-left: 8px;
+}</style>
+         
+	<!-- chrome opensearch -->
+	<link type="application/opensearchdescription+xml" rel="search" href="https://www.koreaboo.com/opensearch.xml" />
+
+	
+                <link rel="stylesheet" data-key="global" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/css/global.css?v=4bbcf5437134" media="print" onload="this.media='all'">
+                     <link rel="stylesheet" data-key="search" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/css/search.css?v=4bbcf5437134" media="print" onload="this.media='all'">
+                     <link rel="stylesheet" data-key="article" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/css/article.css?v=4bbcf5437134" media="print" onload="this.media='all'">
+                     <link rel="stylesheet" data-key="lightbox" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/css/lightbox.css?v=4bbcf5437134" media="print" onload="this.media='all'">
+                     <link rel="stylesheet" data-key="taxonomy" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/css/taxonomy.css?v=4bbcf5437134" media="print" onload="this.media='all'">
+         
+		<script>var cur_post_id = 1843897;</script>
+	
+<style>#sticky_footer{position:fixed;bottom:0;z-index:200;width:100%;display:flex;justify-content:center;}#sticky_footer:empty{display: none;}</style>
+<script>
+const kbinscr = (u,p={})=>{const n=document.createElement('script');n.async=true;n.type="text/javascript";n.src=u;Object.entries(p).forEach(([x, y])=>{n.setAttribute(x,y)});document.head.appendChild(n);};
+
+    window.__use_aa = true;
+    kbinscr("https://www.koreaboo.com/wp-content/themes/KbooOS2/js/asc.koreaboo.js?v=20260724");
+    (window.googletag = window.googletag || {"cmd":[]}).cmd.push(function(){ 
+        googletag.pubads().setTargeting("pageType","article");
+    });
+
+    document.addEventListener( 'DOMContentLoaded', () => {
+        const sf = document.createElement('div');
+        sf.setAttribute('id', 'sticky_footer');
+        sf.setAttribute('data-aaad', 'true');
+        sf.setAttribute('data-aa-adunit', '/207505889/koreaboo.com/Sticky_Footer');
+		if (document.querySelector('.kbos-page article.has-cw')) {
+			sf.setAttribute('data-aa-targeting', JSON.stringify({'cw': "true"}));
+		}
+        document.body.appendChild(sf);
+    });
+</script>
+<script async="" src="https://cdn.confiant-integrations.net/aY9HONrrd_qDVbDZpkTS5MaQe38/gpt_and_prebid/config.js"></script>
+
+<script async type="text/javascript" src="https://socialcanvas-cdn.kargo.com/js/rh.min.js"></script>
+<script async type="text/javascript" src="https://btloader.com/tag?o=5172243878903808&upapi=true"></script>
+<script defer data-moa-script src="//clcksrv.com/o.js?
+uid=71635061d43cc91c4c22f608" type="text/javascript"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3S9BDL552"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P3S9BDL552', {send_page_view: false});
+    </script>
+
+	<title>BTS&#039;s Jin Sparks Buzz With His Unedited Getty Images - Koreaboo</title>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- ㅇㅅㅇ -->
+<meta name="description" content="BTS&#039;s Jin recently made waves with his unedited good looks at the press conference for Netflix’s Agents of Mystery: The Crazy Guesthouse."/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="BTS&#039;s Jin Sparks Buzz With His Unedited Getty Images" />
+<meta property="og:description" content="BTS&#039;s Jin recently made waves with his unedited good looks at the press conference for Netflix’s Agents of Mystery: The Crazy Guesthouse." />
+<meta property="og:url" content="https://www.koreaboo.com/news/bts-jin-unedited-getty-images/" />
+<meta property="og:site_name" content="Koreaboo" />
+<meta property="article:publisher" content="https://www.facebook.com/koreaboo" />
+<meta property="article:section" content="News" />
+<meta property="article:published_time" content="2025-04-16T14:39:31-07:00" />
+<meta property="og:image" content="https://image.koreaboo.com/2025/04/Header-Image-2025-04-16T173840.081.jpg" />
+<meta property="og:image:secure_url" content="https://image.koreaboo.com/2025/04/Header-Image-2025-04-16T173840.081.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="BTS&#039;s Jin recently made waves with his unedited good looks at the press conference for Netflix’s Agents of Mystery: The Crazy Guesthouse." />
+<meta name="twitter:title" content="BTS&#039;s Jin Sparks Buzz With His Unedited Getty Images - Koreaboo" />
+<meta name="twitter:site" content="@Koreaboo" />
+<meta name="twitter:image" content="https://image.koreaboo.com/2025/04/Header-Image-2025-04-16T173840.081.jpg" />
+<meta name="twitter:creator" content="@Koreaboo" />
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"https:\/\/www.koreaboo.com\/","name":"Koreaboo","potentialAction":{"@type":"SearchAction","target":"https:\/\/www.koreaboo.com\/search\/#{search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"Organization","url":"https:\/\/www.koreaboo.com\/news\/bts-jin-unedited-getty-images\/","sameAs":["https:\/\/www.facebook.com\/koreaboo","https:\/\/www.instagram.com\/koreaboo\/","https:\/\/www.youtube.com\/koreaboo","https:\/\/www.pinterest.com\/koreaboo","https:\/\/twitter.com\/Koreaboo"],"@id":"#organization","name":"Koreaboo","logo":"https:\/\/koreaboo-cdn.storage.googleapis.com\/koreaboo_logo_1024.png"}</script>
+<!-- / Yoast SEO Premium plugin. -->
+
+<link rel='dns-prefetch' href='//www.koreaboo.com' />
+<link rel="alternate" type="application/rss+xml" title="Koreaboo &raquo; Feed" href="https://www.koreaboo.com/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.koreaboo.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.koreaboo.com%2Fnews%2Fbts-jin-unedited-getty-images%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.koreaboo.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.koreaboo.com%2Fnews%2Fbts-jin-unedited-getty-images%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<script type="text/javascript" src="https://www.koreaboo.com/wp-content/plugins/kba8/kba8.js?ver=3155328015" id="koreaboo-analytics-js" defer="defer" data-wp-strategy="defer"></script>
+<meta name="generator" content="WordPress 6.9.5" />
+<link rel="canonical" href="https://www.koreaboo.com/news/bts-jin-unedited-getty-images/" />
+<link rel='shortlink' href='https://www.koreaboo.com/?p=1843897' />
+    <link rel="preconnect" href="https://l.koreaboo.com" crossorigin />
+    <style>
+        @media screen and (min-width: 541px) {
+        img.k-img {
+            max-height: 640px;
+            object-fit: contain;
+        }}
+    </style>
+<script defer src="https://www.koreaboo.com/wp-content/themes/KbooOS2/js/kbos.js?v=38d76988033d42da09c88939476a8de1" type="text/javascript"></script><link rel="apple-touch-icon" sizes="180x180" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/site_icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/site_icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/site_icon/favicon-16x16.png">
+<link rel="manifest" href="/manifest0508.json">
+<link rel="mask-icon" href="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/site_icon/safari-pinned-tab.svg" color="#fd2870">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<meta name="msapplication-config" content="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/site_icon/browserconfig.xml" />
+
+	<noscript><style>.no-js-hide {display: none !important; content-visibility: hidden !important;}</style></noscript>
+	<!-- lazyload init -->
+
+		<script>
+	if ('serviceWorker' in navigator) {
+	window.addEventListener('load', function() {
+		navigator.serviceWorker.register('/sw.js', {updateViaCache:'imports'}).then(function(reg) {
+		console.log('ServiceWorker registration successful with scope: ', reg.scope);
+		}, function(err) {
+		console.error('ServiceWorker registration failed: ', err);
+		});
+	});
+	}
+	</script>
+	
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+</head>
+
+<body>
+
+    <div class="header-super-container">
+	<a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+        <div class="header-container header-top">    
+			<a data-isource="header-logo" class="header-logo" href="https://www.koreaboo.com/">
+				<img class="koreaboo-logo square" alt="Koreaboo logo" height="36" width="32" src="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/icon/koreaboo-logo.svg" />
+			</a>
+		<div class="header-nav">
+            <a class="header-nav-item w480" data-isource="header-main" href="https://www.koreaboo.com/">
+        <div>
+            <span>Feed</span>
+        </div>
+        </a>
+            <a class="header-nav-item" data-isource="header-main" href="https://www.koreaboo.com/news/">
+        <div>
+            <span>News</span>
+        </div>
+        </a>
+            <a class="header-nav-item" data-isource="header-main" href="https://www.koreaboo.com/lists/">
+        <div>
+            <span>Lists</span>
+        </div>
+        </a>
+            <a class="header-nav-item" data-isource="header-main" href="https://www.koreaboo.com/stories/">
+        <div>
+            <span>Stories</span>
+        </div>
+        </a>
+            <a class="header-nav-item" data-isource="header-main" href="https://www.koreaboo.com/exclusives/">
+        <div>
+            <span>Exclusives</span>
+        </div>
+        </a>
+            <a class="header-nav-item" data-isource="header-main" href="https://www.koreaboo.com/asia/">
+        <div>
+            <span>Asia</span>
+        </div>
+        </a>
+            <a class="header-nav-item" data-isource="header-main" href="https://www.koreaboo.com/polls/">
+        <div>
+            <span>Polls</span>
+        </div>
+        </a>
+    </div>
+		<div class="header-burger"><a id="search_icon" data-nokus="1" aria-label="Search" href="https://www.koreaboo.com/search/" ><img id="search_icon_img" class="search-icon" height="57" width="56" alt="Search" src="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/icon/search.svg" /></a></div>
+		</div>
+	</header>
+		<header id="secondary_header" class="secondary-header">
+		<div class="secondary-header-container header-container">
+		<nav><ul>
+					<li><a data-isource="header-secondary"  href="/artist/bts/">BTS</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/cortis/">CORTIS</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/newjeans/">NewJeans</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/blackpink/">BLACKPINK</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/nct/">NCT</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/aespa/">aespa</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/itzy/">ITZY</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/redvelvet/">Red Velvet</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/superjunior/">Super Junior</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/twice/">TWICE</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/billlie/">Billlie</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/kiss-of-life/">KISS OF LIFE</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/btob/">BTOB</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/riize/">RIIZE</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/bibi/">BIBI</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/wjsn-cosmicgirls/">WJSN (Cosmic Girls)</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/katseye/">KATSEYE</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/seventeen/">SEVENTEEN</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/jay-park/">Jay Park</a></li>
+					<li><a data-isource="header-secondary"  href="/artist/2ne1/">2NE1</a></li>
+				</ul></nav>
+		</div>
+	</header>
+		<header id="loading_bar_container" class="loading-bar-container" hidden="true">
+		<div id="loading_bar"></div>
+	</header>
+	<header id="dropdown" class="header-burger-menu" hidden="true">
+		<div>
+			<div class="header-search">
+				<form id="search_form"> <!-- KoreabooSearch -->
+					<div class="search-box-container">
+						<input id="search_box" type="text" maxlength=150 autocomplete="off" autocorrect="off">
+						<button type="submit" class="notranslate" id="search_submit">Go</button>
+					</div>
+						<div class="search-tips-container"><span id="search_tips_button" class="noselect">Search Tips</span></div>
+				</form>
+			</div>
+			<div id="search_suggestions"><h2>Trending Topics</h2>
+    <ul class="search-trend-list">        <li tabIndex="0" class="notranslate">Stray Kids</li>
+            <li tabIndex="0" class="notranslate">KATSEYE</li>
+            <li tabIndex="0" class="notranslate">Jennie</li>
+            <li tabIndex="0" class="notranslate">BTS</li>
+            <li tabIndex="0" class="notranslate">SEVENTEEN</li>
+            <li tabIndex="0" class="notranslate">ATEEZ</li>
+            <li tabIndex="0" class="notranslate">ENHYPEN</li>
+            <li tabIndex="0" class="notranslate">TWICE</li>
+            <li tabIndex="0" class="notranslate">Red Velvet</li>
+            <li tabIndex="0" class="notranslate">NCT</li>
+    </ul></div>
+			<div id="search_results" class="header-search-results">
+			</div>
+			<div id="search_nav" class="search-buttons">
+				<button data-action="prev">Previous Page</button>
+				<button data-action="next">More Results</button>
+			</div>
+			<div id="search_meta"></div>
+
+			
+		</div>
+	</header>
+    </div>
+
+	<div class="body-container">
+
+	
+<section id="leaderboard"><div id="kba_billboard" data-aaad='true' data-aa-adunit='/207505889/koreaboo.com/Leaderboard' class="vm-container vmh-90" data-kba-reload data-tag="Koreaboo_Leaderboard"></div></section>
+
+	<main id="main" class="site-main">
+
+	<section data-postid="1843897" data-dimension1="bts" data-dimension2="bunnie-moreau" data-title="BTS&#8217;s Jin Sparks Buzz With His Unedited Getty Images" class="kbos-page kbos-page-post has-sidebar" data-next="https://www.koreaboo.com/news/shinee-taemin-candle-wax-incident/">
+    <div class="page-content card-box full-width-mobile">
+	<article id="post-1843897" class="post-1843897 post type-post status-publish format-standard has-post-thumbnail hentry category-news artist-bts">
+		<header class="entry-header">
+			<div class="header-rest-of">
+				<h1 class="entry-title">BTS&#8217;s Jin Sparks Buzz With His Unedited Getty Images</h1>					<div class="header-excerpt">This is how he looks in real life.</div>
+												<img loading="eager" data-kbpop width="1200" height="630" class="featured-image full-width" src="https://image.koreaboo.com/2025/04/Header-Image-2025-04-16T173840.081.jpg" />										<div class="entry-meta">
+						<div class="kbos-article-category"><a href="https://www.koreaboo.com/news/"><span class="entry-category">News</span></a></div>	<div class="writer-bio">
+		<div class="writer-bio-avatar-container">
+            <a href="https://www.koreaboo.com/writer/bunnie-moreau/">			<img alt="Bunnie Moreau" class="writer-bio-avatar" height="36" width="36" src="https://lh3.googleusercontent.com/5qWkuGe-_fYOTwqpgbgfRhxf6rh6fpZl-SlbQPbxYE9O3pxJPCIr2FML5dov3hmZTZ6dxm7awb4X2oDRE4zmCg4m67WJucIY=nu-e365-rj-q80-w150-h150-pp" />
+             </a> 		</div>
+        <div class="writer-bio-name">
+        		<a href="https://www.koreaboo.com/writer/bunnie-moreau/">Bunnie Moreau</a>
+                </div>
+		<div class="posted-on"><time class="entry-date published updated" datetime="2025-04-16T21:39:31+00:00">April 16th, 2025</time></div>
+	</div>
+    					</div>
+							</div>
+		</header>
+				<div class="entry-content">
+			<p><strong>BTS</strong>&#8216;s <strong>Jin</strong> recently made waves with his good looks at the press conference for <strong>Netflix</strong>’s <em>Agents of Mystery: The Crazy Guesthouse.</em></p> <blockquote class="wp-embedded-content" data-secret="2Wm8zMtxhs"><p><a href="https://www.koreaboo.com/news/bts-jin-shocking-visuals-become-hot-topic/">BTS Jin&#8217;s Shocking Visuals At Recent Event Become A Hot Topic</a></p></blockquote><div id="kba_video" class="vm-container kb-ads-once vm-ads-dynamic" data-tag="Koreaboo_Video" data-repeat="Koreaboo_Between_Article"></div> <p><iframe loading="lazy" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; visibility: hidden;" title="&#8220;BTS Jin&#8217;s Shocking Visuals At Recent Event Become A Hot Topic&#8221; &#8212; Koreaboo" src="https://www.koreaboo.com/news/bts-jin-shocking-visuals-become-hot-topic/embed/#?secret=E212K6NY5s#?secret=2Wm8zMtxhs" data-secret="2Wm8zMtxhs" width="600" height="338" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></p> <p>However, he really created a stir when his unedited Getty Images photos emerged.</p> <p><a id="beNC0ZB9SUtmJHn6jhtlkw" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210331060" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'beNC0ZB9SUtmJHn6jhtlkw',sig:'Irqe1YsxAsOSsyHVcdXpPjcGtmOEgbtKzKcQpP2ptrs=',w:'396px',h:'594px',items:'2210331060',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p> <p><a id="V1OgeVUSSQp-CA-3x15HjQ" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210331004" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'V1OgeVUSSQp-CA-3x15HjQ',sig:'bAbyTrsp0HUqbihCWmI_foFct52-A0jJp7JqQhxXo4M=',w:'396px',h:'594px',items:'2210331004',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p><div id="kba_mpu" class="vm-container kb-ads-once vm-ads-dynamic lazyload" data-tag="Koreaboo_Mobile_Takeover" data-repeat="Koreaboo_Between_Article"></div> <p>His beauty was so impressive that he seemingly turned the press conference into his own personal photoshoot!</p> <p><a id="8WDt4vKdSMFMG9EiFBP9dw" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210333035" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'8WDt4vKdSMFMG9EiFBP9dw',sig:'sExikpRamVzNLofc8s1otffFLso0TTjBpMg-Z3tH6CM=',w:'594px',h:'396px',items:'2210333035',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p> <p><a id="1ozheaDuRQhumI2q4ZfnZw" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210331127" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'1ozheaDuRQhumI2q4ZfnZw',sig:'0Ftjl32bcr8TDrQ5qPdRyWPtn_LA8NQVLq6ufSTEPuQ=',w:'396px',h:'594px',items:'2210331127',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p> <p>Hus close-ups showed that he has virtually no flaws.</p><div class="vm-ads-dynamic full-width lazyload" data-tag="Koreaboo_Between_Article"></div> <p><a id="FLbk-gIESItezPwocDOyTw" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210331148" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'FLbk-gIESItezPwocDOyTw',sig:'MB2uUoRGLw8xunMWB0BaXKQKV2t9ggJAKf2eVQM7hrs=',w:'396px',h:'594px',items:'2210331148',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p> <p><a id="9JgFc_vQTfZ_1YhwKGeVeA" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210331201" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'9JgFc_vQTfZ_1YhwKGeVeA',sig:'oGi5vdWEejDi5inKB1y7X_s_lExnWZCEMd3YPk9AthM=',w:'594px',h:'396px',items:'2210331201',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p> <p>Netizens agree that his visuals make him seem like he&#8217;s from another planet.</p> <p><a id="l2a3tB49Rg57X7_HaGNwtg" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210334513" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'l2a3tB49Rg57X7_HaGNwtg',sig:'s_npiQkk4Cx3uaUjqJ5-FJd8MtE8rk80OFC4A_djYQc=',w:'594px',h:'396px',items:'2210334513',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p><div class="vm-ads-dynamic full-width lazyload" data-tag="Koreaboo_Between_Article"></div> <p><a id="SYtnTonFQqBPDM4Yu8LwyA" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210334641" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'SYtnTonFQqBPDM4Yu8LwyA',sig:'EvmkAEsg8FrpA63TBd_W2yTItRsVf5_S41zcJB51ahA=',w:'594px',h:'396px',items:'2210334641',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p> <p>Everyone was full of praise for his unageing visuals.</p> <ul> <li>&#8220;You can really tell he’s stunningly handsome and beautiful in Getty photos.&#8221;</li> <li>&#8220;Must be nice being that good-looking.&#8221;</li> <li>&#8220;Looking like that in Getty photos? That’s insane… I’m jealous of that face.&#8221;</li> <li>&#8220;Is this 2017 Kim Seokjin all over again? Why doesn’t this guy age? Lol.&#8221;</li> <li>&#8220;The absolute best. Super handsome. Seriously god-tier perfect.&#8221;</li> </ul> <figure id="attachment_1843899" aria-describedby="caption-attachment-1843899" style="width: 1498px" class="wp-caption alignnone"><picture class="k-img-pic"><source srcset="https://image.koreaboo.com/2025/04/Screenshot-2025-04-16-173532-420x150.png" media="(max-width: 540px)" /><img fetchpriority="high" decoding="async" class="wp-image-1843899 size-full k-img" src="https://image.koreaboo.com/2025/04/Screenshot-2025-04-16-173532-925x330.png" alt="Screenshot 2025-04-16 173532" width="925" height="330" srcset="https://image.koreaboo.com/2025/04/Screenshot-2025-04-16-173532-420x150.png 420w, https://image.koreaboo.com/2025/04/Screenshot-2025-04-16-173532-640x228.png 640w, https://image.koreaboo.com/2025/04/Screenshot-2025-04-16-173532-925x330.png 925w" sizes="(max-width: 1498px) 100vw, 1498px" data-orig="https://image.koreaboo.com/2025/04/Screenshot-2025-04-16-173532-925x330.png" loading="lazy"  /></picture><figcaption id="caption-attachment-1843899" class="wp-caption-text">|<em> theqoo</em></figcaption></figure><div class="vm-ads-dynamic full-width lazyload" data-tag="Koreaboo_Between_Article"></div> <p>It&#8217;s no wonder Jin is known globally for his beauty!</p> <p><a id="o24BEoz4SbJpX6NyGH-GFw" class="gie-single" style="color: #a7a7a7; text-decoration: none; font-weight: normal !important; border: none; display: inline-block;" href="http://www.gettyimages.com/detail/2210331022" target="_blank" rel="nofollow noopener">Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'o24BEoz4SbJpX6NyGH-GFw',sig:'CvlL5QQPmply3Hls8WTz-fLgvHFds6Xyd5kitrFLzhc=',w:'594px',h:'396px',items:'2210331022',caption: true ,tld:'com',is360: false })});</script><script src="//embed-cdn.gettyimages.com/widgets.js" charset="utf-8" async></script></p><div class="kb-article-sources-container" onclick="this.classList.add('reveal');"><div class="kb-article-sources"><strong>Source: </strong><span class="article-source"><a target="_blank" rel="noopener" href="https://theqoo.net/hot/3697512440?filter_mode=normal">theqoo</a></div></div>	<div class="full-width-mobile series-post-widget" data-playlist="11005" data-widget-id="artist-bts">
+	<script type="application/json" data-kbos-playlist>["https:\/\/www.koreaboo.com\/news\/bts-jungkook-sparks-heartbreak-comments-live-broadcast\/","https:\/\/www.koreaboo.com\/news\/bts-jungkook-instagram-story-dating-rumors\/","https:\/\/www.koreaboo.com\/news\/bts-jungkook-idol-name-phone-hate\/","https:\/\/www.koreaboo.com\/news\/bts-jungkook-spotted-stray-kids-concert\/","https:\/\/www.koreaboo.com\/news\/blackpink-jennie-music-video-details-dating-rumors-bts-v-taennie\/","https:\/\/www.koreaboo.com\/news\/hyb-staffs-physical-behavior-towards-bts-jimin-incites-major-fury\/","https:\/\/www.koreaboo.com\/news\/bts-member-unexpected-instagram-activity-divorce-rumors\/","https:\/\/www.koreaboo.com\/news\/tv-show-criticizes-bts-world-cup-performance-sparks-heated-debate\/"]</script>			<div class="series-header-container">
+                <picture class="k-img-pic">
+                                            <source srcset="https://lh3.googleusercontent.com/JHRoQMmTI3LMGAbRMVkBOdmw34yT-B8AtnIYA727i7S5ZjHVVKXvMMOLsHuCw5KNkv0AOi1RpVsfpNCLrlruFxAVHLd3n2A1=nu-e365-rj-q80-w420" media="(max-width: 480px)" />
+                                        <img loading="lazy" alt="" src="https://lh3.googleusercontent.com/AZvzkg-aopHz7oE2WKs85TGQftNWQNJoMXgySyS8laXL84eneIPZoYGqkSPvMtCXSmc8hLl625MyYifb7khlxoBkN6z10Grv=nu-e365-rj-q80-w420"/>
+                </picture>
+			<h2 class="series-header-title">BTS</h2>
+			</div>
+				<div class="series-posts-list">
+		<p><a href="https://www.koreaboo.com/news/bts-jungkook-sparks-heartbreak-comments-live-broadcast/" data-isource="tax-widget" data-kus="load" target="_blank">BTS&#8217;s Jungkook&#8217;s Comments During Live Broadcast Lead To Major Fury</a></p>
+<p><a href="https://www.koreaboo.com/news/bts-jungkook-instagram-story-dating-rumors/" data-isource="tax-widget" data-kus="load" target="_blank">BTS Jungkook&#8217;s New Instagram Story Sparks Speculations Regarding Recent &#8220;Dating Rumors&#8221;</a></p>
+<p><a href="https://www.koreaboo.com/news/bts-jungkook-idol-name-phone-hate/" data-isource="tax-widget" data-kus="load" target="_blank">BTS Jungkook Phone Sticker Of Top Idol&#8217;s Name Leads To Hate Towards Other Star</a></p>
+<p><a href="https://www.koreaboo.com/news/bts-jungkook-spotted-stray-kids-concert/" data-isource="tax-widget" data-kus="load" target="_blank">BTS’s Jungkook Unexpectedly Spotted At Another Idol’s Concert</a></p>
+			<p class="nav-link"><a data-isource="tax-widget" data-kbos-playlist="none" class="link-preview nav" href="https://www.koreaboo.com/artist/bts/">See more BTS</a></p>
+		</div>
+	</div>
+				<div class="nav-links">
+		<a href="">Next Page</a>
+	</div>
+		</div>
+	</article>
+    </div>
+
+    <aside class="desktop-sidebar">
+    <div class="vm-ads-dynamic lazyload vmh-600 sticky-sidebar" data-tag='Koreaboo_Sidebar'></div>
+</aside></section>
+
+	</main>
+
+	<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/koreaboo-cdn/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/KbooOS2/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="https://www.koreaboo.com/wp-includes/js/wp-embed.min.js?ver=6.9.5" id="wp-embed-js" defer="defer" data-wp-strategy="defer"></script>
+
+</div> <div data-aaad='true' data-aa-adunit='/207505889/koreaboo.com/Rich_Media'></div>	<section id="sitemap_footer">
+		<div class="footer-container">
+			<div class="footer-section" id="footer_artists_a">
+				<h2>Artists</h2>
+				<ul>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/aespa/">aespa</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/ateez/">ATEEZ</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/bigbang/">BIGBANG</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/blackpink/">BLACKPINK</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/boynextdoor/">BOYNEXTDOOR</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/bts/">BTS</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/cortis/">CORTIS</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/day6/">DAY6</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/enhypen/">ENHYPEN</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/exo/">EXO</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/girlsgeneration/">Girls&#039; Generation</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/got7/">GOT7</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/hearts2hearts/">Hearts2Hearts</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/illit/">ILLIT</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/ioi/">I.O.I</a></li>
+								</ul>
+			</div>
+			<div class="footer-section" id="footer_artists_b">
+				<ul>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/itzy/">ITZY</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/iu/">IU</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/ive/">IVE</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/katseye/">KATSEYE</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/le-sserafim/">LE SSERAFIM</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/nct/">NCT</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/newjeans/">NewJeans</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/nmixx/">NMIXX</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/redvelvet/">Red Velvet</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/riize/">RIIZE</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/seventeen/">SEVENTEEN</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/superjunior/">Super Junior</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/twice/">TWICE</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/txt/">TXT</a></li>
+									<li><a data-isource="footer" href="https://www.koreaboo.com/artist/zerobaseone/">ZEROBASEONE</a></li>
+								</ul>
+			</div>
+			<div class="footer-section" id="footer_sections">
+				<h2>Sections</h2>
+				<ul>
+					<li><a data-isource="footer" href="https://www.koreaboo.com/lists/">Lists</a></li>
+					<li><a data-isource="footer" href="https://www.koreaboo.com/news/">News</a></li>
+					<li><a data-isource="footer" href="https://www.koreaboo.com/stories/">Stories</a></li>
+					<li><a data-isource="footer" href="https://www.koreaboo.com/polls/">Polls</a></li>
+					<li><a data-isource="footer" href="https://www.koreaboo.com/exclusives/">Exclusives</a></li>
+				</ul>
+
+				<h2>Follow Us</h2>
+				<a style="margin-right: 10px;" aria-label="Facebook" class="social-icon-link" rel="noopener" href="https://www.facebook.com/koreaboo" target="_blank">
+				<svg height="32" width="28" alt="Facebook logo" class="icon-facebook" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 56.7v398.5c0 13.7-11.1 24.7-24.7 24.7H309.1V306.5h58.2l8.7-67.6h-67v-43.2c0-19.6 5.4-32.9 33.5-32.9h35.8v-60.5c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9h-58.4v67.6h58.4V480H24.7C11.1 480 0 468.9 0 455.3V56.7C0 43.1 11.1 32 24.7 32h398.5c13.7 0 24.8 11.1 24.8 24.7z"></path></svg></a>
+				<a style="margin-right: 5px;" aria-label="X (formerly Twitter)" class="social-icon-link" rel="noopener" href="https://x.com/koreaboo" target="_blank">
+				<svg height="32" width="32" alt="X (formerly Twitter) logo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+				<a aria-label="Bluesky" class="social-icon-link" rel="noopener" href="https://bsky.app/profile/koreaboo.com" target="_blank">
+				<svg style="padding: 2px;" width="36" height="32" viewBox="0 0 568 501" alt="Bluesky logo" role="img" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z" fill="currentColor"/>
+				</svg></a>
+
+				<p style="margin:20px 0;"><span class="action-link" role="button" style="display:none;" id="kb_theme_toggle" data-theme="dark">View Dark Theme</a></p>
+
+			</div>
+		</div>
+
+		<div class="footer-notice">© Koreaboo 2026 • <a href="/privacy-policy/">Privacy Policy</a></div>
+
+	</section>
+
+
+<div id="scroll_top" onClick="window.scrollTo({'top': 0, 'behavior': 'smooth'});">
+    <img alt="Scroll to top" width="19" height="25" src="https://www.koreaboo.com/wp-content/themes/KbooOS2/img/icon/arrow-up-solid.svg" />
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Standalone Embedding Service Dependencies
+fastapi==0.115.12
+uvicorn[standard]==0.34.0
+pydantic==2.11.3
+sentence-transformers>=3.0.0
+requests==2.32.3

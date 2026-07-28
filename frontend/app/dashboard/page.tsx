@@ -7,38 +7,19 @@ import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 import {
   Card,
-  CardContent,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import {
   Newspaper,
   Settings,
   LogOut,
+  LogIn,
   MessageCircle,
   X,
   Send,
 } from "lucide-react";
-
-interface NewsItem {
-  title: string;
-  author: string;
-  publication_date: string;
-  summary: string;
-  content: string;
-  category: string;
-  tags: string[];
-  source: {
-    title: string;
-    url: string;
-    created_utc: number;
-    subreddit: string;
-    media: string[];
-    content: string;
-  };
-  id: string;
-}
+import { chatApi, feedsApi, type NewsItem } from "@/lib/api";
 
 interface ChatMessage {
   text: string;
@@ -49,11 +30,11 @@ interface ChatMessage {
 export default function DashboardPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [news, setNews] = useState<NewsItem[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const bottomSentinel = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isFetchingRef = useRef(false);
   const ITEMS_PER_PAGE = 9;
@@ -66,36 +47,18 @@ export default function DashboardPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-      console.log(scrollTop, scrollHeight, clientHeight);
-    }
-  }, [containerRef]);
-
   const fetchNews = useCallback(async (pageNum: number) => {
     const token = localStorage.getItem("SNAPtoken");
-    if (!token) return;
+    setIsLoggedIn(!!token);
 
     try {
       isFetchingRef.current = true;
       setLoadingMore(pageNum > 1);
 
-      const res = await fetch(
-        `http://localhost:8000/feeds/${pageNum}/${ITEMS_PER_PAGE}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      if (!res.ok) throw new Error("Failed to fetch news");
-
-      const { feeds, has_more } = await res.json();
-      console.log("HAS MORE", has_more);
+      const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE);
       const newArticles = feeds as NewsItem[];
 
-      // update hasMore from API or fallback
       setHasMore(has_more ?? newArticles.length === ITEMS_PER_PAGE);
-
       setNews((prev) =>
         pageNum === 1 ? newArticles : [...prev, ...newArticles]
       );
@@ -108,107 +71,108 @@ export default function DashboardPage() {
     }
   }, []);
 
-  const handleScroll = () => {
-    if (containerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-      console.log(scrollHeight, scrollHeight, scrollTop, clientHeight);
-      if (scrollTop + clientHeight >= scrollHeight - 100) {
+  // Infinite scroll observer using IntersectionObserver on bottom sentinel
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const sentinelRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (isLoading || loadingMore || !hasMore) return;
+      if (observerRef.current) observerRef.current.disconnect();
+
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasMore && !isFetchingRef.current) {
+            setPage((p) => p + 1);
+          }
+        },
+        { rootMargin: "300px" }
+      );
+
+      if (node) observerRef.current.observe(node);
+    },
+    [isLoading, loadingMore, hasMore]
+  );
+
+  // Window scroll fallback as additional backup for page scrolling
+  useEffect(() => {
+    const handleWindowScroll = () => {
+      if (isFetchingRef.current || !hasMore || loadingMore) return;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const clientHeight = window.innerHeight;
+
+      if (scrollTop + clientHeight >= scrollHeight - 300) {
         setPage((p) => p + 1);
       }
-    }
-  };
+    };
 
-  // 1) On mount, check auth and load first page
+    window.addEventListener("scroll", handleWindowScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleWindowScroll);
+  }, [hasMore, loadingMore]);
+
+  // On mount: load page 1
   useEffect(() => {
-    if (!localStorage.getItem("SNAPtoken")) {
-      router.push("/register");
-      return;
-    }
     fetchNews(1);
-  }, [router, fetchNews]);
+  }, [fetchNews]);
 
-  // Auto-scroll chat to bottom when messages change
+  // Auto-scroll chat to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Focus input when chat opens
+  // Focus chat input when opened
   useEffect(() => {
-    if (isChatOpen) {
-      inputRef.current?.focus();
-    }
+    if (isChatOpen) inputRef.current?.focus();
   }, [isChatOpen]);
 
   const handleLogout = () => {
     localStorage.removeItem("SNAPtoken");
-    router.push("/");
+    setIsLoggedIn(false);
+    fetchNews(1);
   };
 
+  // Fetch subsequent pages — guard page > 1 to avoid double-fetch on mount
   useEffect(() => {
-    if (hasMore) {
-      console.log(page);
+    if (hasMore && page > 1) {
       fetchNews(page);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
+  const toggleChat = () => setIsChatOpen((prev) => !prev);
 
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!inputMessage.trim()) return;
 
     const token = localStorage.getItem("SNAPtoken");
-    if (!token) return;
 
-    // Add user message to chat
     const userMessage: ChatMessage = {
       text: inputMessage,
       isUser: true,
       timestamp: new Date(),
     };
-
     setMessages((prev) => [...prev, userMessage]);
     setInputMessage("");
     setIsTyping(true);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ message: inputMessage }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-
-      const data = await response.json();
-      console.log(data);
-      // Add bot response to chat
+      const data = await chatApi.send(inputMessage, token);
       const botMessage: ChatMessage = {
         text: data.response || "Sorry, I couldn't process your request.",
         isUser: false,
         timestamp: new Date(),
       };
-
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
-
-      // Add error message
-      const errorMessage: ChatMessage = {
-        text: "Sorry, there was an error processing your request. Please try again.",
-        isUser: false,
-        timestamp: new Date(),
-      };
-
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: "Sorry, there was an error processing your request. Please try again.",
+          isUser: false,
+          timestamp: new Date(),
+        },
+      ]);
     } finally {
       setIsTyping(false);
     }
@@ -217,11 +181,10 @@ export default function DashboardPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
-        {/* ... your existing loading UI ... */}
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-semibold mb-2">
-              Loading your personalized news feed...
+              Loading news feed...
             </h2>
             <p className="text-muted-foreground">
               Please wait while we gather the latest news for you.
@@ -231,9 +194,10 @@ export default function DashboardPage() {
       </div>
     );
   }
+
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b">
+      <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
@@ -246,40 +210,75 @@ export default function DashboardPage() {
                 Preferences
               </Button>
             </Link>
-            <Button variant="ghost" size="sm" onClick={handleLogout}>
-              <LogOut className="h-4 w-4 mr-2" />
-              Sign Out
-            </Button>
+            {isLoggedIn ? (
+              <Button variant="ghost" size="sm" onClick={handleLogout}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </Button>
+            ) : (
+              <Link href="/register">
+                <Button size="sm">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </header>
 
       <main className="flex-1 container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Your News Feed</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+          <h1 className="text-3xl font-bold">
+            {isLoggedIn ? "Your Personalized News Feed" : "Latest News"}
+          </h1>
+        </div>
 
-        <div
-          ref={containerRef}
-          onScroll={handleScroll}
-          className="overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          style={{ height: "70vh" }}
-        >
+        {!isLoggedIn && (
+          <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-semibold text-sm text-foreground">Browsing as Guest</p>
+              <p className="text-xs text-muted-foreground">
+                Sign in to set your favorite news topics and enjoy an AI-personalized feed.
+              </p>
+            </div>
+            <Link href="/register">
+              <Button size="sm" className="whitespace-nowrap">
+                <LogIn className="h-4 w-4 mr-2" />
+                Sign In to Personalize
+              </Button>
+            </Link>
+          </div>
+        )}
+
+        {/* Main News Feed Grid - Unconstrained page scrolling */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {news.map((item, idx) => (
             <NewsCard key={`${item.id}-${idx}`} newsItem={item} />
           ))}
         </div>
 
-        {/* bottom sentinel */}
-        <div ref={bottomSentinel} className="h-1" />
-
-        {/* loading indicator or end message */}
-        <div className="mt-4 text-center">
+        {/* Loading Spinner & Sentinel Observer for Infinite Scroll */}
+        <div ref={sentinelRef} className="py-6 flex flex-col items-center justify-center">
           {loadingMore && (
-            <div className="flex justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+            <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary" />
+              <span className="text-sm font-medium">Loading more news...</span>
             </div>
           )}
-          {!hasMore && (
-            <p className="text-muted-foreground">
+
+          {hasMore && !loadingMore && (
+            <Button
+              variant="outline"
+              onClick={() => setPage((p) => p + 1)}
+              className="px-6"
+            >
+              Load More News
+            </Button>
+          )}
+
+          {!hasMore && news.length > 0 && (
+            <p className="text-center text-muted-foreground text-sm py-4">
               You've reached the end of your feed
             </p>
           )}
@@ -328,9 +327,7 @@ export default function DashboardPage() {
                   {messages.map((msg, index) => (
                     <div
                       key={index}
-                      className={`mb-4 flex ${
-                        msg.isUser ? "justify-end" : "justify-start"
-                      }`}
+                      className={`mb-4 flex ${msg.isUser ? "justify-end" : "justify-start"}`}
                     >
                       <div
                         className={`max-w-3/4 p-3 rounded-lg ${
@@ -354,18 +351,9 @@ export default function DashboardPage() {
                   {isTyping && (
                     <div className="mb-4 flex justify-start">
                       <div className="max-w-3/4 p-3 rounded-lg bg-muted flex space-x-1">
-                        <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
-                          style={{ animationDelay: "0ms" }}
-                        ></div>
-                        <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
-                          style={{ animationDelay: "200ms" }}
-                        ></div>
-                        <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
-                          style={{ animationDelay: "400ms" }}
-                        ></div>
+                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
+                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
                       </div>
                     </div>
                   )}

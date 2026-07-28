@@ -1,0 +1,160 @@
+{
+  "national_international_news": [
+    "https://www.indiatoday.in/",
+    "https://www.thehindu.com/",
+    "https://news.abplive.com/",
+    "https://www.thehindu.com/todays-paper/",
+    "https://www.bbc.com/news",
+    "https://edition.cnn.com/",
+    "https://www.reuters.com/",
+    "https://www.aljazeera.com/news/",
+    "https://www.ndtv.com/",
+    "https://www.hindustantimes.com/",
+    "https://timesofindia.indiatimes.com/",
+    "https://www.deccanherald.com/",
+    "https://www.livemint.com/",
+    "https://scroll.in/"
+  ],
+
+  "news_aggregators_readers": [
+    "https://news.google.com",
+    "https://www.newsnow.co.uk",
+    "https://flipboard.com",
+    "https://feedly.com",
+    "https://www.inoreader.com"
+  ],
+
+  "major_international_outlets": [
+    "https://www.bbc.com/news",
+    "https://www.reuters.com",
+    "https://www.aljazeera.com/news",
+    "https://www.theguardian.com/international",
+    "https://www.dw.com/en/top-stories/s-9097"
+  ],
+
+  "tech_science_innovation": [
+    "https://techcrunch.com/",
+    "https://www.wired.com/",
+    "https://thenextweb.com/",
+    "https://www.theverge.com/",
+    "https://www.sciencemag.org/",
+    "https://www.nature.com/news",
+    "https://www.space.com/news",
+    "https://spectrum.ieee.org/",
+    "https://arstechnica.com/"
+  ],
+
+  "business_finance": [
+    "https://www.bloomberg.com/",
+    "https://www.cnbc.com/world/",
+    "https://www.moneycontrol.com/",
+    "https://economictimes.indiatimes.com/",
+    "https://www.business-standard.com/",
+    "https://www.wsj.com/",
+    "https://www.ft.com/"
+  ],
+
+  "data_portals_analysis": [
+    "https://ourworldindata.org",
+    "https://data.worldbank.org",
+    "https://data.un.org",
+    "https://www.gapminder.org",
+    "https://www.worldometers.info",
+    "https://www.cia.gov/the-world-factbook/"
+  ],
+
+  "community_social_news": [
+    "https://www.reddit.com/r/worldnews/",
+    "https://news.ycombinator.com/",
+    "https://www.allsides.com",
+    "https://slate.com/",
+    "https://medium.com/topic/news"
+  ],
+
+  "regional_news": [
+    "https://www.africanews.com/",
+    "https://www.france24.com/en/",
+    "https://www.laprensalatina.com/",
+    "https://www.asianews.network/",
+    "https://www.australiannews.com.au/"
+  ],
+
+  "travel_lifestyle_culture": [
+    "https://www.lonelyplanet.com/news",
+    "https://www.nationalgeographic.com/travel",
+    "https://www.reddit.com/r/travel/",
+    "https://www.reddit.com/r/AskIndia/",
+    "https://www.reddit.com/r/IndianLifestyle/",
+    "https://www.cntraveler.com/",
+    "https://www.vogue.com/"
+  ],
+
+  "sports": [
+    "https://www.espn.in/",
+    "https://www.sportstar.thehindu.com/",
+    "https://www.cricbuzz.com/",
+    "https://www.reddit.com/r/sports/",
+    "https://www.reddit.com/r/Cricket/",
+    "https://www.skysports.com/",
+    "https://www.foxsports.com/"
+  ],
+
+  "health_medicine": [
+    "https://www.who.int/",
+    "https://www.healthdata.org/",
+    "https://www.nih.gov/news-events",
+    "https://www.medicalnewstoday.com/",
+    "https://www.webmd.com/"
+  ],
+
+  "government_policy": [
+    "https://www.un.org/en/news/",
+    "https://www.oecd.org/newsroom/",
+    "https://data.europa.eu/en",
+    "https://www.india.gov.in/news"
+  ],
+
+  "podcasts_multimedia": [
+    "https://podcasts.apple.com/",
+    "https://open.spotify.com/genre-podcasts-page",
+    "https://www.npr.org/podcasts/",
+    "https://www.bbc.co.uk/sounds/category/news"
+  ],
+
+  "markets_crypto": [
+    "https://www.coindesk.com/",
+    "https://cointelegraph.com/",
+    "https://www.investing.com/",
+    "https://www.marketwatch.com/"
+  ],
+
+  "fact_checking": [
+    "https://www.politifact.com/",
+    "https://www.factcheck.org/",
+    "https://fullfact.org/",
+    "https://www.snopes.com/"
+  ],
+
+  "reddit_topics": [
+    "https://www.reddit.com/t/stories_and_confessions",
+    "https://www.reddit.com/t/artificial_intelligence_and_machine_learning/",
+    "https://www.reddit.com/t/tech_news_and_discussion/",
+    "https://www.reddit.com/t/virtual_and_augmented_reality/",
+    "https://www.reddit.com/t/tv_news_and_discussion/",
+    "https://www.reddit.com/t/celebrities/",
+    "https://www.reddit.com/t/creators_and_influencers/",
+    "https://www.reddit.com/t/business/",
+    "https://www.reddit.com/t/humanities_and_law/",
+    "https://www.reddit.com/t/news_and_politics/",
+    "https://www.reddit.com/t/places_and_travel/",
+    "https://www.reddit.com/t/sports/",
+    "https://www.reddit.com/t/science/",
+    "https://www.reddit.com/t/vehicles/",
+    "https://www.reddit.com/r/technology/",
+    "https://www.reddit.com/r/Futurology/",
+    "https://www.reddit.com/r/science/",
+    "https://www.reddit.com/r/movies/",
+    "https://www.reddit.com/r/television/",
+    "https://www.reddit.com/r/India/"
+  ]
+}

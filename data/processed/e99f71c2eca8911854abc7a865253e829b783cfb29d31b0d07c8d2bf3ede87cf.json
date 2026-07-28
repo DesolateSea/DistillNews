@@ -1,0 +1,47 @@
+{
+  "title": "Cognizant expands partnership with Docusign",
+  "publication_date": "2025-04-18T15:49:31Z",
+  "summary": "The supplied article titled 'Cognizant expands partnership with Docusign' contains only generic Seeking Alpha promotional text and no substantive reporting on the partnership. The provided content lacks details, quotes, timing, scope or official statements.",
+  "content": "The provided text for the article titled 'Cognizant expands partnership with Docusign' contains no substantive reporting on the companies or the partnership. The only content present are two short Seeking Alpha entries with generic promotional language and no details on deal terms, scope, or timeline.\n\nThe first entry in the supplied content is a Seeking Alpha blurb that reads: { 'title': 'Breaking Stock Market & Investing News | Seeking Alpha', 'publication_date': 'Unknown', 'content': 'Invest smarter in volatile marketsMake sense of the headlines in any market with stock comparisons, free breaking news, and an active investing community.' }\n\nThe second entry is similarly minimal and lists only metadata: { 'title': 'Breaking Stock Market & Investing News | Seeking Alpha', 'author': 'Unknown Author', 'publication_date': 'Unknown' }\n\nThe numeric publication timestamp provided (1744991371) converts to 2025-04-18T15:49:31Z. Beyond that timestamp and the title, there are no specifics about an expanded partnership between Cognizant and DocuSign in the supplied content \u2014 no objectives, geographic scope, customer impact, financial terms, or official quotes are included. To report accurately on this topic, consult official press releases from Cognizant or DocuSign, regulatory filings, direct company statements, or coverage from established news organizations.",
+  "category": "Technology",
+  "tags": [
+    "Cognizant",
+    "DocuSign",
+    "partnership",
+    "e-signature",
+    "enterprise software",
+    "Seeking Alpha",
+    "press release"
+  ],
+  "location": "unknown",
+  "source": {
+    "title": "Cognizant expands partnership with Docusign",
+    "publication_date": 1744991371,
+    "content": [
+      {
+        "title": "Breaking Stock Market & Investing News | Seeking Alpha",
+        "publication_date": "Unknown",
+        "content": "Invest smarter in volatile marketsMake sense of the headlines in any market with stock comparisons, free breaking news, and an active investing community."
+      },
+      {
+        "title": "Breaking Stock Market & Investing News | Seeking Alpha",
+        "author": "Unknown Author",
+        "publication_date": "Unknown"
+      }
+    ],
+    "authors": [
+      "Anonymous"
+    ],
+    "source": "Seeking Alpha",
+    "image_url": null,
+    "url": "https://seekingalpha.com/news/4432484-cognizant-expands-partnership-with-docusign?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+    "category": "business",
+    "language": "en",
+    "country": "us"
+  },
+  "prompt_used": "news_from_html_type1.yaml",
+  "agent_provider": "openai",
+  "raw_source_file": "/home/Nishant/code/DistillNews/data/api_data/Media_stack/2025-04-18/business/news.json",
+  "markdown_content": "## Summary\\n\\nThe provided text for the article titled 'Cognizant expands partnership with Docusign' contains no substantive reporting on the companies or the partnership. The only content present are two short Seeking Alpha entries with generic promotional language and no details on deal terms, scope, or timeline.\\n\\n## Provided entries\\n\\n> { 'title': 'Breaking Stock Market & Investing News | Seeking Alpha', 'publication_date': 'Unknown', 'content': 'Invest smarter in volatile marketsMake sense of the headlines in any market with stock comparisons, free breaking news, and an active investing community.' }\\n\\n> { 'title': 'Breaking Stock Market & Investing News | Seeking Alpha', 'author': 'Unknown Author', 'publication_date': 'Unknown' }\\n\\n## Timestamp\\n\\nThe numeric publication timestamp provided (1744991371) converts to 2025-04-18T15:49:31Z.\\n\\n## Missing information\\n\\n- No objectives of the partnership\\n- No geographic scope\\n- No customer impact\\n- No financial terms\\n- No official quotes\\n- No timeline or scope of work\\n\\n## Recommendation\\n\\nTo report accurately on this topic, consult:\\n\\n- official press releases from Cognizant or DocuSign\\n- regulatory filings\\n- direct company statements\\n- coverage from established news organizations",
+  "created_at": "2026-07-28T04:22:43.317266+00:00"
+}
