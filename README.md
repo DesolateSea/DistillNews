@@ -51,7 +51,10 @@ docker compose up --build
 To use the pipeline, run:
 
 ```bash
-backend/cli.py
+python3.13 -m venv venv
+source venv/bin/activate
+pip install -r requirements-pipelines.txt
+./cli.py
 ```
 
 For detailed architecture and subsystem documentation, refer to [doc/ARCHITECTURE.md](doc/ARCHITECTURE.md).
