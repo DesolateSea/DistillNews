@@ -22,8 +22,9 @@ The chatbot is decoupled into three independent layers:
 
 The RAG chatbot integrates with the database and storage repositories:
 
-- **`FileStore`** (`service/db/storage.py`): In `service/chatbot/wiring.py`, `_load_and_upload_articles()` reads processed article JSONs via `FileStore.list_processed_files()` and `FileStore.read_json()` to populate the vector store with title, content, tags, and category metadata.
-- **`MongoHandle`** (`service/db/mongo.py`): In `server/services/chat_service.py`, article details and user chat histories are fetched from `MongoHandle.collection("articles")` to supply additional context to the RAG response pipeline.
+- **`ArticleStore`** (`service/db/article_store.py`): In `service/chatbot/wiring.py`, `_load_and_upload_articles()` reads processed articles via `article_store.load_all_articles()` to populate the document store with title, content, tags, and category metadata.
+- **`MongoHandle`** (`service/db/mongo.py`): User chat histories and user account profiles are stored in MongoDB.
+- **`FileStore`** (`service/db/filestore.py`): Used for reading low-level local JSON test fixtures and configuration files.
 
 ## Text Embedding Layer (`pipeline/embeddings/`)
 
@@ -39,9 +40,8 @@ vector = embedder.embed("India electric vehicle policy")
 Available providers:
 
 - `openai` / `foundry` — OpenAI or Foundry embeddings (`text-embedding-3-small`).
-- `ollama` — Local Ollama embedding models (`nomic-embed-text`).
-- `sentence_transformers` — In-process local PyTorch/SentenceTransformers embeddings.
-- `huggingface` — Hugging Face feature extraction endpoint.
+- `sentence_transformers` — In-process local PyTorch/SentenceTransformers embeddings (`all-MiniLM-L6-v2`).
+- `remote` — Standalone HTTP REST microservice (`embedding_server`).
 - `none` — Default base class implementation returning `[]` (no-op).
 
 ## Document Retrieval (`service/rag/`)

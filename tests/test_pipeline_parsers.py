@@ -45,7 +45,7 @@ def test_reddit_parser():
     with open(FIXTURES_DIR / "reddit.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    formatted, source = reddit_parser(data[0])
+    formatted, source = reddit_parser(data[0], no_repeat=False)
     assert formatted is not None
     assert "Marriage" in formatted["title"]
     assert source["subreddit"] == "india"

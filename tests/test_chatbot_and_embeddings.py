@@ -99,7 +99,7 @@ def test_noop_embedding_provider_makes_no_vectors():
 
 
 def test_embedding_backends_are_not_rag_backends():
-    for backend in ("openai", "foundry", "ollama", "huggingface", "in_memory"):
+    for backend in ("openai", "foundry", "sentence_transformers", "in_memory"):
         with pytest.raises(ValueError, match="Available: memory, bm25, julep, none"):
             create_doc_store(backend)
 

@@ -16,7 +16,7 @@ All storage access (article JSONs, raw HTML, API responses, deduplication checks
 
 ## Overview
 
-The pipeline operates independently from the web server and chatbot. It processes raw API responses and web scrapes into structured JSON files stored in `data/processed/` via `FileStore`.
+The pipeline operates independently from the web server and chatbot. It processes raw API responses and web scrapes into structured articles saved to the configured `ArticleStore` (`AzureBlobArticleStore` or `FileArticleStore`).
 
 ```
 Raw API Payloads / Scrapes  ──>  Parser & HTML Cleaner
@@ -28,7 +28,7 @@ Raw API Payloads / Scrapes  ──>  Parser & HTML Cleaner
                                  Structured Extractor
                                          │
                                          ▼
-                                 FileStore (.json)
+                               ArticleStore (azure / file)
 ```
 
 ---
@@ -40,7 +40,7 @@ The TUI provides a dashboard built with **Textual** (`pipeline/tui/app.py`):
 - **Live Stage Progress Bars**: Visual progress bars and item-level detail labels for **Fetch**, **Scrape**, and **Generate** stages.
 - **Rich Log Panel**: Streamed real-time logs with badge color-coding (INFO, SUCCESS, WARN, ERROR).
 - **Source Controls**: Single-line toggle indicators (`ON` / `OFF`) for configured news sources (`reddit`, `rapid_news`, `gnews`, `media_stack`, `news_org`, `core`).
-- **Article Inspector Screen**: Pressing `a` opens an interactive table listing processed articles.
+- **Article Inspector Screen**: Pressing `a` opens an interactive table listing processed articles with full-width dynamic titles, right-aligned metadata (`Category`, `Pub Date`, `ID`), and article content inspection.
 
 ---
 
@@ -58,27 +58,27 @@ result = agent.complete_from_template("pipeline/prompts/is_news.yaml", input_dat
 Supported providers:
 
 - `openai` / `foundry` — Microsoft Azure Foundry or OpenAI endpoints.
-- `ollama` — Local Ollama instances.
 - `julep` — Julep AI platform task execution.
-- `huggingface` — Hugging Face Inference API.
 
 ---
 
-## Storage Layer (`service/db/storage.py`)
+## Storage Layer (`service/db/`)
 
-All file interactions are encapsulated behind the `FileStore` repository handle:
+All article operations use the pluggable `ArticleStore` abstraction, created via `create_article_store()`:
 
 ```python
-from service.db import FileStore
+from service.db import create_article_store, FileStore
+
+article_store = create_article_store()
 
 # Deduplication check
-if FileStore.article_exists(article_id):
+if article_store.article_exists(article_id):
     print("Article already processed")
 
 # Save normalized article
-FileStore.save_processed_article(parsed_data, article_id=article_id)
+article_id = article_store.save_article(parsed_data)
 
-# Load target URLs config or fixture JSON
+# Load target URLs config or fixture JSON via FileStore
 targets = FileStore.read_json("pipeline/scrapers/config/target_urls.json")
 ```
 
@@ -86,18 +86,21 @@ targets = FileStore.read_json("pipeline/scrapers/config/target_urls.json")
 
 ## Running the Pipeline & TUI
 
-Use the independent CLI entrypoint `pipeline/cli.py`:
+Use the independent CLI entrypoint `pipeline/cli.py` (with optional `--storage` override):
 
 ```bash
 # Launch interactive Terminal User Interface (TUI)
-python pipeline/cli.py tui
+python pipeline/cli.py tui --storage azure
 
 # Run web scrapers
 python pipeline/cli.py scrape
 
 # Run news extraction
-python pipeline/cli.py extract
+python pipeline/cli.py extract --storage file
 
 # Run full pipeline generation
-python pipeline/cli.py generate
+python pipeline/cli.py generate --storage azure
+
+# List processed articles
+python pipeline/cli.py articles --storage azure -n 25
 ```

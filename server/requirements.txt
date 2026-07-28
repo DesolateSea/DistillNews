@@ -1,4 +1,4 @@
-# Backend Web Container Dependencies (Lightweight, No PyTorch/SentenceTransformers)
+# Backend Web Server Dependencies (Lightweight)
 fastapi==0.115.12
 fastapi[standard]==0.115.12
 motor==3.7.0
@@ -17,3 +17,5 @@ apscheduler==3.9.1
 setuptools==80.9.0
 julep==1.78.1
 openai==1.99.9
+azure-storage-blob>=12.20.0
+

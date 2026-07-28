@@ -17,21 +17,22 @@ The FastAPI server in `server/` exposes the product API, owns application data, 
 
 The server interacts with all application data through unified database and storage handles:
 
-- **`MongoHandle`** (`service/db/mongo.py`): Manages the `AsyncIOMotorClient` pool for product collections (`news_db.articles` and `news_db.SNAPUsers`).
+- **`ArticleStore`** (`service/db/article_store.py`): Pluggable article storage interface created via `create_article_store()`. Backed by `AzureBlobArticleStore` (`service/db/azure_blob_store.py`) when `ARTICLE_STORE_BACKEND=azure` or `FileArticleStore` (`service/db/filestore.py`) when `ARTICLE_STORE_BACKEND=file`.
+- **`MongoHandle`** (`service/db/mongo.py`): Manages the `AsyncIOMotorClient` pool for user accounts (`news_db.SNAPUsers`) and interaction weights.
 - **`RedisHandle`** (`service/db/redis.py`): Manages async Redis connections for short-lived email OTP verification sessions.
-- **`FileStore`** (`service/db/storage.py`): Manages file storage, JSON reading/writing, deduplication checks, and article list iteration.
+- **`FileStore`** (`service/db/filestore.py`): Manages low-level raw file I/O for raw scrapes and API response fixtures.
 
 ---
 
 ## Responsibilities and Data Ownership
 
-- **MongoDB** stores normalized articles in `news_db.articles` and user preferences/interaction scores in `news_db.SNAPUsers`.
+- **ArticleStore** owns article loading and retrieval. The server loads feeds directly from the active `ArticleStore` (`azure` blob container or local `file` store), with automatic fallback if MongoDB is offline or unpopulated.
+- **MongoDB** stores user profiles, preferences, and interaction bias scores in `news_db.SNAPUsers`.
 - **Redis** handles email OTP validation tokens with expiration timeouts.
-- **FileStore** handles loading processed article JSON files on server startup via `FileStore.list_processed_files()` into MongoDB, then schedules recurring sync jobs every 24 hours.
 - The server proxies OpenWeather geocoding so its API key is never sent to the browser.
 - The Node service in `server/email/` delivers OTP and newsletter emails via Nodemailer.
 
-MongoDB is the news product database; it is not the RAG vector store. Semantic retrieval is owned by the `service/chatbot/` package and is documented in [RAG_CHATBOT.md](RAG_CHATBOT.md). The pipeline owns how processed JSON files are created; see [AGENT_PIPELINE.md](AGENT_PIPELINE.md).
+MongoDB is the user product database; it is not the RAG vector store. Semantic retrieval is owned by the `service/chatbot/` package and is documented in [RAG_CHATBOT.md](RAG_CHATBOT.md). The pipeline owns how processed JSON files are created; see [AGENT_PIPELINE.md](AGENT_PIPELINE.md).
 
 ---
 
@@ -50,8 +51,11 @@ Server settings are loaded via `config.py` from `.env` organized into structured
 | Key | Section | Description | Default / Example |
 |:---|:---|:---|:---|
 | `PORT` | Backend Runtime | FastAPI HTTP port | `8000` |
-| `DB_URL` | Backend Runtime | MongoDB connection URI | `mongodb://mongo:27017/evolution` |
-| `REDIS_URL` | Backend Runtime | Redis connection URI | `redis://redis:6379/0` |
+| `DB_URL` | User Database | MongoDB connection URI | `mongodb://mongo:27017/evolution` |
+| `REDIS_URL` | User Database | Redis connection URI | `redis://redis:6379/0` |
+| `ARTICLE_STORE_BACKEND` | Article Store | Article storage backend (`azure` or `file`) | `azure` |
+| `AZURE_STORAGE_CONNECTION_STRING` | Article Store | Azure Blob Storage connection string | *(required for azure)* |
+| `AZURE_BLOB_CONTAINER` | Article Store | Azure blob container name | `processed-articles` |
 | `JWT_SECRET` | Backend Runtime | Secret key for JWT signing | *(required)* |
 | `CORS_ORIGINS` | Backend Runtime | Allowed CORS origin URLs | `http://localhost:3000` |
 | `OPENWEATHER_API_KEY` | Pipeline / Data | Key for weather proxy & data | *(optional)* |

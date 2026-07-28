@@ -10,7 +10,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import json
 import os
-from service.db import FileStore
+from service.db import FileStore, create_article_store
+from service.db.article_store import ArticleStore
 from config import config
 from pipeline.parsers.api_handlers import (
     reddit_parser,
@@ -25,6 +26,8 @@ from service.logger import log
 
 API_ROOT = FileStore.api_data_dir()
 DEFAULT_WORKERS = int(os.getenv("PIPELINE_PARALLEL_WORKERS", "5"))
+
+article_store = create_article_store()
 
 # Dummy passthrough parser for already-parsed JSON payloads (e.g. scraped, core)
 def passthrough_parser(item, no_repeat=True):
@@ -59,9 +62,8 @@ def build_processed_index() -> tuple[set[str], set[str]]:
     existing_urls = set()
     existing_titles = set()
 
-    for path in FileStore.list_processed_files():
+    for data in article_store.load_all_articles():
         try:
-            data = FileStore.read_json(path)
             if isinstance(data, dict):
                 url = data.get("url") or data.get("link")
                 if url:
@@ -77,7 +79,7 @@ def build_processed_index() -> tuple[set[str], set[str]]:
 
 def is_already_processed_safe(raw_item: dict, existing_urls: set, existing_titles: set) -> bool:
     """Check if an article item is already on disk via assigned ID, URL, Title, or SHA-256 ID."""
-    if raw_item.get("article_id") and FileStore.article_exists(raw_item["article_id"]):
+    if raw_item.get("article_id") and article_store.article_exists(raw_item["article_id"]):
         return True
 
     url = raw_item.get("url") or raw_item.get("link")
@@ -98,8 +100,8 @@ def is_already_processed_safe(raw_item: dict, existing_urls: set, existing_title
     )
     pub_date = parse_date_timestamp(date_raw)
     if title and title != "Unknown":
-        article_id = FileStore.compute_article_id(title, pub_date)
-        if FileStore.article_exists(article_id):
+        article_id = ArticleStore.compute_article_id(title, pub_date)
+        if article_store.article_exists(article_id):
             return True
 
     return False
