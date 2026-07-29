@@ -46,7 +46,37 @@ def sort_articles(
             
         scored.append((art, score))
 
-    scored.sort(key=lambda x: x[1], reverse=True)
+from datetime import datetime, timezone
+
+def get_publication_timestamp(art: dict) -> float:
+    """Extract numeric epoch timestamp from publication_date / published_at for sorting."""
+    if not isinstance(art, dict):
+        return 0.0
+    val = art.get("publication_date") or art.get("published_at") or art.get("created_at")
+    if not val:
+        return 0.0
+    if isinstance(val, (int, float)):
+        return float(val)
+    if isinstance(val, str):
+        val_str = val.strip()
+        if not val_str:
+            return 0.0
+        try:
+            return float(val_str)
+        except ValueError:
+            pass
+        try:
+            if val_str.endswith("Z"):
+                val_str = val_str[:-1] + "+00:00"
+            dt = datetime.fromisoformat(val_str)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            return dt.timestamp()
+        except Exception:
+            pass
+    return 0.0
+
+    scored.sort(key=lambda x: (x[1], get_publication_timestamp(x[0])), reverse=True)
     return [item[0] for item in scored]
 
 def update_weights(

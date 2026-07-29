@@ -3,7 +3,7 @@ from fastapi import HTTPException
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 from server.models.articles_model import DurationRequest, ArticleInDB, PaginatedArticlesResponse
-from server.utils.recommendation import sort_articles, update_weights
+from server.utils.recommendation import sort_articles, update_weights, get_publication_timestamp
 from service.db import MongoHandle, RedisHandle, create_article_store
 
 try:
@@ -79,7 +79,6 @@ async def _get_raw_articles() -> list[dict]:
     """Fetch candidate article pool from MongoDB (excluding heavy fields), falling back to article_store."""
     try:
         if MongoHandle._db is not None:
-            # Exclude internal & heavy fields at query level for speed and bandwidth efficiency
             cursor = MongoHandle.collection("articles").find(
                 {},
                 {
@@ -93,19 +92,23 @@ async def _get_raw_articles() -> list[dict]:
             if raw:
                 for doc in raw:
                     doc["_id"] = str(doc.get("_id", ""))
-                return [_strip_heavy_fields(doc) for doc in raw]
+                cleaned = [_strip_heavy_fields(doc) for doc in raw]
+                cleaned.sort(key=get_publication_timestamp, reverse=True)
+                return cleaned
     except Exception as e:
         if log:
             log.warn(f"MongoDB article fetch failed ({e}). Falling back to ArticleStore.")
 
     # Fallback to ArticleStore (Azure Blob Store or FileStore)
     raw = article_store.load_all_articles()
-    return [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
+    cleaned = [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
+    cleaned.sort(key=get_publication_timestamp, reverse=True)
+    return cleaned
 
 
 async def get_all_articles(current_user: dict):
     """
-    Return top 20 articles, personalized if user is logged in.
+    Return top 20 articles in decreasing order of publication time, personalized if user is logged in.
     Uses Redis cache for unauthenticated default feeds.
     """
     user_doc = None
@@ -128,8 +131,8 @@ async def get_all_articles(current_user: dict):
     clean_articles = [_strip_heavy_fields(a) if isinstance(a, dict) else a for a in raw_articles]
 
     if not user_doc:
-        sorted_by_pop = sorted(clean_articles, key=lambda a: a.get("popularity", 0), reverse=True)
-        res = {"feeds": sorted_by_pop[:20]}
+        sorted_by_date = sorted(clean_articles, key=get_publication_timestamp, reverse=True)
+        res = {"feeds": sorted_by_date[:20]}
         try:
             await RedisHandle.client().set("cache:feed:default", json.dumps(res), ex=300)
         except Exception:
@@ -301,7 +304,7 @@ async def get_all_articles_pagination(
         interactions = user.get("category_scores", {c: (0, 0.0) for c in prefs})
         sorted_list = sort_articles(prefs, weights, interactions, clean)
     else:
-        sorted_list = sorted(clean, key=lambda a: a.get("popularity", 0), reverse=True)
+        sorted_list = sorted(clean, key=get_publication_timestamp, reverse=True)
 
     # 3) Slice for requested page
     paged = sorted_list[skip : skip + limit]
