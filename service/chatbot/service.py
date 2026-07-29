@@ -45,12 +45,13 @@ class ChatbotService:
         self._log("rag_search", filtered, len(search_results))
 
         if not search_results:
-            context = "No relevant articles found."
+            context = f"Article Being Read:\n{reading}" if reading else "No relevant articles found."
             self._log("warn", "No RAG results for query")
         else:
-            context = "\n\n".join(
+            rag_context = "\n\n".join(
                 result.snippet or result.content for result in search_results
             )
+            context = f"Article Being Read:\n{reading}\n\nRelated News Context:\n{rag_context}" if reading else rag_context
 
         self._log("ai_call", "chatbot_response", query)
         result = self._agent.complete_from_template(

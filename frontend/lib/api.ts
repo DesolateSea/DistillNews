@@ -94,6 +94,12 @@ export const chatApi = {
       token: token || undefined,
       body: { message },
     }),
+  sendArticleChat: (articleId: string, message: string, token?: string | null) =>
+    apiRequest<{ response?: string }>(`/chat/${encodeURIComponent(articleId)}`, {
+      method: "POST",
+      token: token || undefined,
+      body: { message },
+    }),
 };
 
 export const weatherApi = {

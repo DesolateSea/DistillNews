@@ -55,7 +55,6 @@ export default function NewsDetailPage() {
     if (!inputMessage.trim()) return;
 
     const token = localStorage.getItem("SNAPtoken");
-    if (!token) return;
 
     // Add user message to chat
     const userMessage: ChatMessage = {
@@ -69,7 +68,7 @@ export default function NewsDetailPage() {
     setIsTyping(true);
 
     try {
-      const data = await chatApi.send(inputMessage, token);
+      const data = await chatApi.sendArticleChat(newsId, inputMessage, token);
       // Add bot response to chat
       const botMessage: ChatMessage = {
         text: data.response || "Sorry, I couldn't process your request.",
