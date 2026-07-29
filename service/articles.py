@@ -1,11 +1,5 @@
-"""Shared article domain service module.
-
-Provides unified article retrieval, personalization ranking, and pagination
-for both server endpoints and pipeline operations.
-Operating purely on ArticleStore with ZERO database dependencies.
-"""
-
 import json
+from datetime import datetime, timezone
 from fastapi import HTTPException
 from server.models.articles_model import DurationRequest, ArticleInDB, PaginatedArticlesResponse
 from server.utils.recommendation import sort_articles, get_publication_timestamp
@@ -53,21 +47,116 @@ def _strip_heavy_fields(doc: dict) -> dict:
     return clean_doc
 
 
-async def _get_raw_articles() -> list[dict]:
-    """Fetch article pool directly from article_store (Azure Blob or FileStore) sorted by publication date."""
-    raw = article_store.load_all_articles()
-    cleaned = [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
-    cleaned.sort(key=get_publication_timestamp, reverse=True)
-    return cleaned
+def _clean_single_article(doc: dict) -> dict:
+    """Return a copy of full article dict stripping internal pipeline metadata fields while retaining full text content."""
+    clean_doc = dict(doc)
+    for internal_key in (
+        "embedding", "vector", "agent_provider", "prompt_used", "raw_source_file", "raw_html", "raw"
+    ):
+        clean_doc.pop(internal_key, None)
+
+    src = clean_doc.get("source")
+    if isinstance(src, dict):
+        clean_src = dict(src)
+        for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider"):
+            clean_src.pop(sub_key, None)
+        clean_doc["source"] = clean_src
+    elif isinstance(src, list):
+        if src and isinstance(src[0], dict):
+            clean_src = dict(src[0])
+            for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider"):
+                clean_src.pop(sub_key, None)
+            clean_doc["source"] = clean_src
+
+    return clean_doc
+
+
+async def prime_redis_indexes(force: bool = False):
+    """
+    Build Redis Sorted Sets ('feed:latest', 'feed:{category}') and Metadata Hashes
+    from ArticleStore in safe batch chunks.
+    """
+    try:
+        r = RedisHandle.client()
+        exists = await r.exists("feed:latest")
+        card = await r.zcard("feed:latest") if exists else 0
+        if exists and card > 100 and not force:
+            return
+
+        meta_list = article_store.list_articles()
+        if not meta_list:
+            meta_list = article_store.load_all_articles()
+
+        if log:
+            log.db("Priming Redis", f"Indexing {len(meta_list)} articles into Redis ZSETs & Hashes")
+
+        batch_size = 100
+        for i in range(0, len(meta_list), batch_size):
+            chunk = meta_list[i : i + batch_size]
+            pipe = r.pipeline()
+            for meta in chunk:
+                if not isinstance(meta, dict) or not meta.get("id"):
+                    continue
+                aid = meta["id"]
+                clean_meta = _strip_heavy_fields(meta)
+                ts = get_publication_timestamp(meta)
+                cat = str(meta.get("category") or "general").strip().lower()
+                pop = float(meta.get("popularity", 0))
+
+                pipe.set(f"article:meta:{aid}", json.dumps(clean_meta))
+                pipe.zadd("feed:latest", {aid: ts})
+                pipe.zadd(f"feed:{cat}", {aid: ts})
+                pipe.zadd("feed:trending", {aid: pop})
+            await pipe.execute()
+
+        if log:
+            log.db("Redis Primed", f"Successfully indexed {len(meta_list)} articles")
+    except Exception as e:
+        if log:
+            log.warn(f"Redis indexing failed: {e}")
+
+
+async def sync_article_to_redis(article: dict):
+    """Event-driven sync: update single article metadata hash & ZSETs in Redis on save."""
+    try:
+        r = RedisHandle.client()
+        aid = article.get("id") or article_store.compute_article_id(
+            article.get("title", ""), article.get("publication_date", "")
+        )
+        clean_meta = _strip_heavy_fields(article)
+        ts = get_publication_timestamp(article)
+        cat = str(article.get("category") or "general").strip().lower()
+        pop = float(article.get("popularity", 0))
+
+        pipe = r.pipeline()
+        pipe.set(f"article:meta:{aid}", json.dumps(clean_meta))
+        pipe.zadd("feed:latest", {aid: ts})
+        pipe.zadd(f"feed:{cat}", {aid: ts})
+        pipe.zadd("feed:trending", {aid: pop})
+        await pipe.execute()
+    except Exception:
+        pass
 
 
 async def get_all_articles(user_profile: dict | None = None):
     """
-    Return top 20 articles in decreasing order of publication time.
-    If user_profile is provided, applies personalized category recommendation scores.
+    Fast Redis ZSET + Hash retrieval of feeds.
+    Unauthenticated users get top 20 from 'feed:latest' ZSET instantly.
+    Authenticated users get personalized rankings with cached recommendation scores.
     """
-    # Check Redis cache for default unauthenticated feed
-    if not user_profile:
+    user_email = user_profile.get("email") if user_profile else None
+
+    # Check recommendation cache for authenticated user
+    if user_email:
+        rec_key = f"recommendation:user:{user_email}"
+        try:
+            cached_rec = await RedisHandle.client().get(rec_key)
+            if cached_rec:
+                return json.loads(cached_rec)
+        except Exception:
+            pass
+    else:
+        # Check default feed cache
         try:
             cached_feed = await RedisHandle.client().get("cache:feed:default")
             if cached_feed:
@@ -75,11 +164,65 @@ async def get_all_articles(user_profile: dict | None = None):
         except Exception:
             pass
 
-    raw_articles = await _get_raw_articles()
+    # Ensure Redis ZSET is primed
+    await prime_redis_indexes()
+
+    # Attempt ultra-fast ZSET + Hash retrieval from Redis
+    try:
+        r = RedisHandle.client()
+        aids = await r.zrevrange("feed:latest", 0, 99)
+        if aids:
+            pipe = r.pipeline()
+            for aid in aids:
+                pipe.get(f"article:meta:{aid}")
+            meta_strings = await pipe.execute()
+
+            clean_articles = []
+            for idx, s in enumerate(meta_strings):
+                if s:
+                    try:
+                        clean_articles.append(json.loads(s))
+                    except Exception:
+                        pass
+                else:
+                    # Dynamic lazy load from Blob Store on cache miss
+                    aid = aids[idx]
+                    full_art = article_store.load_article(aid)
+                    if full_art and isinstance(full_art, dict):
+                        cm = _strip_heavy_fields(full_art)
+                        clean_articles.append(cm)
+                        await r.set(f"article:meta:{aid}", json.dumps(cm))
+
+            if clean_articles:
+                if not user_profile:
+                    res = {"feeds": clean_articles[:20]}
+                    try:
+                        await r.set("cache:feed:default", json.dumps(res), ex=300)
+                    except Exception:
+                        pass
+                    return res
+
+                preferences = user_profile.get("preferences", [])
+                raw_weights = user_profile.get("bias", {})
+                interactions = user_profile.get("category_scores", {cat: (0, 0.0) for cat in preferences})
+
+                personalized = sort_articles(preferences, raw_weights, interactions, clean_articles)
+                res = {"feeds": personalized[:20]}
+                try:
+                    await r.set(f"recommendation:user:{user_email}", json.dumps(res), ex=1800)
+                except Exception:
+                    pass
+                return res
+    except Exception:
+        pass
+
+    # Fallback if Redis ZSET not available: load directly from article_store
+    raw = article_store.load_all_articles()
+    cleaned = [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
+    cleaned.sort(key=get_publication_timestamp, reverse=True)
 
     if not user_profile:
-        sorted_by_date = sorted(raw_articles, key=get_publication_timestamp, reverse=True)
-        res = {"feeds": sorted_by_date[:20]}
+        res = {"feeds": cleaned[:20]}
         try:
             await RedisHandle.client().set("cache:feed:default", json.dumps(res), ex=300)
         except Exception:
@@ -90,21 +233,35 @@ async def get_all_articles(user_profile: dict | None = None):
     raw_weights = user_profile.get("bias", {})
     interactions = user_profile.get("category_scores", {cat: (0, 0.0) for cat in preferences})
 
-    personalized = sort_articles(preferences, raw_weights, interactions, raw_articles)
-    top20 = personalized[:20]
-    return {"feeds": top20}
-
-
-async def get_article_by_id(article_id: str):
-    """
-    Fetch complete article details (including full text content) for single article view.
-    Uses Redis cache with a 10-minute TTL.
-    """
-    cache_key = f"cache:article:detail:{article_id}"
+    personalized = sort_articles(preferences, raw_weights, interactions, cleaned)
+    res = {"feeds": personalized[:20]}
     try:
-        cached_article = await RedisHandle.client().get(cache_key)
-        if cached_article:
-            return json.loads(cached_article)
+        await RedisHandle.client().set(f"recommendation:user:{user_email}", json.dumps(res), ex=1800)
+    except Exception:
+        pass
+    return res
+
+
+async def get_article_by_id(article_id: str, user_email: str | None = None):
+    """
+    Cache-Aside Flow:
+    1. Check Redis 'article:body:{article_id}'
+    2. If miss, load from Azure Blob/FileStore
+    3. Store in Redis with 12-hour TTL
+    4. Record user reading history list 'history:user:{email}' (LTRIM 0 99)
+    """
+    body_key = f"article:body:{article_id}"
+    r = None
+    try:
+        r = RedisHandle.client()
+        cached_body = await r.get(body_key)
+        if cached_body:
+            article = json.loads(cached_body)
+            clean_art = _clean_single_article(article)
+            if user_email:
+                await r.lpush(f"history:user:{user_email}", article_id)
+                await r.ltrim(f"history:user:{user_email}", 0, 99)
+            return clean_art
     except Exception:
         pass
 
@@ -112,16 +269,23 @@ async def get_article_by_id(article_id: str):
     if not article:
         raise HTTPException(status_code=404, detail="Article not found")
 
+    article = _clean_single_article(article)
     article["popularity"] = article.get("popularity", 0) + 1
     if "_id" in article:
         article["_id"] = str(article["_id"])
     else:
         article["_id"] = article_id
 
-    try:
-        await RedisHandle.client().set(cache_key, json.dumps(article), ex=600)
-    except Exception:
-        pass
+    # Cache-Aside: Save article body in Redis with 12-hour TTL
+    if r:
+        try:
+            await r.set(body_key, json.dumps(article), ex=43200)
+            await r.zincrby("feed:trending", 1, article_id)
+            if user_email:
+                await r.lpush(f"history:user:{user_email}", article_id)
+                await r.ltrim(f"history:user:{user_email}", 0, 99)
+        except Exception:
+            pass
 
     return article
 
@@ -133,15 +297,60 @@ async def get_all_articles_pagination(
 ) -> PaginatedArticlesResponse:
     skip = (page - 1) * limit
 
-    raw = await _get_raw_articles()
+    # Ensure Redis ZSET is primed
+    await prime_redis_indexes()
+
+    # Try fast Redis ZSET pagination first over total article pool
+    try:
+        r = RedisHandle.client()
+        total = await r.zcard("feed:latest")
+        if total > 0:
+            aids = await r.zrevrange("feed:latest", skip, skip + limit - 1)
+            if aids:
+                pipe = r.pipeline()
+                for aid in aids:
+                    pipe.get(f"article:meta:{aid}")
+                meta_strings = await pipe.execute()
+
+                paged = []
+                for idx, s in enumerate(meta_strings):
+                    if s:
+                        try:
+                            paged.append(json.loads(s))
+                        except Exception:
+                            pass
+                    else:
+                        # Lazy load missing metadata from Blob Store
+                        aid = aids[idx]
+                        full_art = article_store.load_article(aid)
+                        if full_art and isinstance(full_art, dict):
+                            cm = _strip_heavy_fields(full_art)
+                            paged.append(cm)
+                            await r.set(f"article:meta:{aid}", json.dumps(cm))
+
+                has_more = (skip + len(paged)) < total
+                return {
+                    "page": page,
+                    "limit": limit,
+                    "has_more": has_more,
+                    "total": total,
+                    "feeds": paged,
+                }
+    except Exception:
+        pass
+
+    # Fallback to article_store if Redis ZSET not primed
+    raw = article_store.load_all_articles()
+    cleaned = [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
+    cleaned.sort(key=get_publication_timestamp, reverse=True)
 
     if user_profile:
         prefs = user_profile.get("preferences", [])
         weights = user_profile.get("bias", {})
         interactions = user_profile.get("category_scores", {c: (0, 0.0) for c in prefs})
-        sorted_list = sort_articles(prefs, weights, interactions, raw)
+        sorted_list = sort_articles(prefs, weights, interactions, cleaned)
     else:
-        sorted_list = sorted(raw, key=get_publication_timestamp, reverse=True)
+        sorted_list = cleaned
 
     paged = sorted_list[skip : skip + limit]
     total = len(sorted_list)

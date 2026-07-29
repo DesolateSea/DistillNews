@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from server.routes import auth_routes, user_routes, feed_routes, chat_routes, weather_routes
 from service.db.mongo import MongoHandle
 from service.db.redis import RedisHandle
+from service.articles import prime_redis_indexes
 from service.logger import log
 
 
@@ -14,6 +15,7 @@ async def lifespan(app: FastAPI):
     MongoHandle.connect()
     await RedisHandle.connect()
     await MongoHandle.create_indexes()
+    await prime_redis_indexes()
     yield
     MongoHandle.disconnect()
     await RedisHandle.disconnect()
