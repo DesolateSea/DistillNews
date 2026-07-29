@@ -1,3 +1,4 @@
+import os
 from bs4 import BeautifulSoup
 from datetime import datetime
 from config import config
@@ -6,12 +7,18 @@ try:
 except ImportError:
     log = None
 
-def clean_html(html_path, debug=None):
+def clean_html(html_input, debug=None):
     if debug is None:
         debug = config.DEBUG
 
-    with open(html_path, 'r', encoding='utf-8') as f:
-        soup = BeautifulSoup(f, 'html.parser')
+    if not html_input:
+        return {"title": "Unknown Title", "author": "Unknown Author", "publication_date": "Unknown", "content": ""}
+
+    if isinstance(html_input, str) and os.path.exists(html_input) and os.path.isfile(html_input):
+        with open(html_input, 'r', encoding='utf-8', errors='ignore') as f:
+            soup = BeautifulSoup(f, 'html.parser')
+    else:
+        soup = BeautifulSoup(str(html_input), 'html.parser')
 
     def get_meta(name):
         tag = soup.find("meta", attrs={"name": name})

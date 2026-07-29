@@ -52,19 +52,25 @@ class ArticleStore(ABC):
         ...
 
     @abstractmethod
-    def list_articles(self) -> list[dict]:
-        """Return lightweight metadata for every stored article.
+    def list_articles(self, limit: int | None = None) -> list[dict]:
+        """Return lightweight metadata for stored articles.
 
         Each dict MUST contain at least ``"id"`` and ``"title"`` keys.
-        Implementations may include additional fields like ``category``,
-        ``publication_date``, etc.
         """
         ...
 
     @abstractmethod
-    def load_all_articles(self) -> list[dict]:
-        """Load the full content of every stored article."""
+    def load_all_articles(self, limit: int | None = None) -> list[dict]:
+        """Load the full content of stored articles."""
         ...
+
+    def save_articles_batch(self, articles_data: list[dict]) -> list[str]:
+        """Save a batch of articles sequentially or in parallel, returning list of article IDs."""
+        ids = []
+        for art in articles_data:
+            if isinstance(art, dict):
+                ids.append(self.save_article(art))
+        return ids
 
     # --- Default helpers ---
 

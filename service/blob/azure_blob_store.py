@@ -54,6 +54,7 @@ class AzureBlobArticleStore(ArticleStore):
         # Fast in-memory cache for article metadata & full articles
         self._meta_cache: dict[str, dict] = {}
         self._article_cache: dict[str, dict] = {}
+        self._manifest_blob_name = "manifest.json"
 
     def _ensure_container(self):
         """Create the blob container if it does not already exist."""
@@ -148,9 +149,59 @@ class AzureBlobArticleStore(ArticleStore):
         article_copy["id"] = article_id
         self._article_cache[article_id] = article_copy
 
-        if log:
-            log.db("Azure Blob", f"Saved article {article_id[:16]}…")
-        return article_id
+    def _load_manifest(self) -> list[dict] | None:
+        """Fetch index manifest in 1 single HTTP request to avoid scanning thousands of individual blobs."""
+        try:
+            blob_client = self._container_client.get_blob_client(self._manifest_blob_name)
+            data = blob_client.download_blob().readall()
+            items = json.loads(data.decode("utf-8"))
+            if isinstance(items, list):
+                for item in items:
+                    if isinstance(item, dict) and "id" in item:
+                        self._meta_cache[item["id"]] = item
+                return items
+        except Exception:
+            pass
+        return None
+
+    def _sync_manifest(self):
+        """Update manifest.json index blob in Azure Container."""
+        try:
+            items = list(self._meta_cache.values())
+            json_bytes = json.dumps(items, ensure_ascii=False).encode("utf-8")
+            blob_client = self._container_client.get_blob_client(self._manifest_blob_name)
+            settings = _json_content_settings()
+            if settings:
+                blob_client.upload_blob(json_bytes, overwrite=True, content_settings=settings)
+            else:
+                blob_client.upload_blob(json_bytes, overwrite=True)
+        except Exception as e:
+            if log:
+                log.warn("Azure manifest sync failed", str(e))
+
+    def save_articles_batch(self, articles_data: list[dict], max_workers: int = 15) -> list[str]:
+        """Fast multi-threaded concurrent upload of a batch of articles to Azure Blob Storage."""
+        if not articles_data:
+            return []
+
+        ids = []
+        def _upload_single(art: dict) -> str:
+            return self.save_article(art)
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = [executor.submit(_upload_single, art) for art in articles_data if isinstance(art, dict)]
+            for future in as_completed(futures):
+                try:
+                    aid = future.result()
+                    if aid:
+                        ids.append(aid)
+                except Exception as e:
+                    if log:
+                        log.error("Azure batch upload error", str(e))
+
+        # Sync updated manifest index blob
+        self._sync_manifest()
+        return ids
 
     def load_article(self, article_id: str) -> dict | None:
         if article_id in self._article_cache:
@@ -180,14 +231,27 @@ class AzureBlobArticleStore(ArticleStore):
         except Exception:
             return None
 
-    def list_articles(self) -> list[dict]:
-        """Return article metadata for every stored article using fast parallel cache resolution."""
+    def list_articles(self, limit: int | None = None) -> list[dict]:
+        """Return article metadata using 1-request manifest index, fallback to parallel scanning."""
+        # 1. Check local cache or manifest.json index blob (1 HTTP GET call!)
+        if not self._meta_cache:
+            self._load_manifest()
+
+        if self._meta_cache:
+            results = list(self._meta_cache.values())
+            if limit and limit > 0:
+                return results[:limit]
+            return results
+
+        # 2. Fallback: Scan container blobs if manifest does not exist yet
         results = []
         try:
             blobs = [
                 b for b in self._container_client.list_blobs(include="metadata")
-                if b.name.endswith(".json")
+                if b.name.endswith(".json") and b.name != self._manifest_blob_name
             ]
+            if limit and limit > 0:
+                blobs = blobs[:limit]
 
             uncached_ids = []
             for blob in blobs:
@@ -210,7 +274,6 @@ class AzureBlobArticleStore(ArticleStore):
                 else:
                     uncached_ids.append(article_id)
 
-            # Parallel load for uncached blobs (cold start)
             if uncached_ids:
                 def _fetch_one(aid: str) -> dict | None:
                     return self.load_article(aid)
@@ -221,19 +284,24 @@ class AzureBlobArticleStore(ArticleStore):
                         art = future.result()
                         if art and art.get("id") in self._meta_cache:
                             results.append(self._meta_cache[art["id"]])
+
+            # Save manifest index for fast 1-request retrieval on subsequent calls
+            self._sync_manifest()
         except Exception as e:
             if log:
                 log.error("Azure list_articles error", str(e))
         return results
 
-    def load_all_articles(self) -> list[dict]:
-        """Load full content of every article in parallel with local cache support."""
+    def load_all_articles(self, limit: int | None = None) -> list[dict]:
+        """Load full content of articles in parallel with local cache support and optional limits."""
         articles = []
         try:
             blob_names = [
                 b.name for b in self._container_client.list_blobs()
-                if b.name.endswith(".json")
+                if b.name.endswith(".json") and b.name != self._manifest_blob_name
             ]
+            if limit and limit > 0:
+                blob_names = blob_names[:limit]
 
             uncached_ids = []
             for name in blob_names:

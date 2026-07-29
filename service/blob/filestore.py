@@ -176,9 +176,13 @@ class FileArticleStore(ArticleStore):
         except Exception:
             return None
 
-    def list_articles(self) -> list[dict]:
+    def list_articles(self, limit: int | None = None) -> list[dict]:
+        """Return lightweight metadata for stored articles."""
         summaries = []
-        for filepath in sorted(self._dir.glob("*.json")):
+        files = sorted(self._dir.glob("*.json"))
+        if limit and limit > 0:
+            files = files[:limit]
+        for filepath in files:
             try:
                 with open(filepath, "r", encoding="utf-8") as f:
                     data = json.load(f)
@@ -195,9 +199,13 @@ class FileArticleStore(ArticleStore):
                 continue
         return summaries
 
-    def load_all_articles(self) -> list[dict]:
+    def load_all_articles(self, limit: int | None = None) -> list[dict]:
+        """Load the full content of stored articles."""
         articles = []
-        for filepath in sorted(self._dir.glob("*.json")):
+        files = sorted(self._dir.glob("*.json"))
+        if limit and limit > 0:
+            files = files[:limit]
+        for filepath in files:
             try:
                 with open(filepath, "r", encoding="utf-8") as f:
                     data = json.load(f)
