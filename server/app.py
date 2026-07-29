@@ -14,6 +14,7 @@ from service.logger import log
 async def lifespan(app: FastAPI):
     MongoHandle.connect()
     await RedisHandle.connect()
+    await MongoHandle.create_indexes()
     try:
         if log:
             log.info("Storing all new articles")

@@ -1,9 +1,10 @@
+import json
 from fastapi import HTTPException
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 from server.models.articles_model import DurationRequest, ArticleInDB, PaginatedArticlesResponse
 from server.utils.recommendation import sort_articles, update_weights
-from service.db import MongoHandle, create_article_store
+from service.db import MongoHandle, RedisHandle, create_article_store
 
 try:
     from service.logger import log
@@ -12,6 +13,33 @@ except ImportError:
 
 scheduler = AsyncIOScheduler()
 article_store = create_article_store()
+
+
+def _strip_heavy_fields(doc: dict) -> dict:
+    """Return a clean copy of the article dict with internal/heavy fields removed for feed list views."""
+    clean_doc = dict(doc)
+    # Remove internal metadata and heavy payload fields from feed responses
+    for heavy_key in (
+        "content", "markdown_content", "summary", "embedding", "vector", "raw_html", "raw",
+        "prompt_used", "raw_source_file", "agent_provider", "authors", "media"
+    ):
+        clean_doc.pop(heavy_key, None)
+
+    # Clean nested source object to strip source.content and internal source fields
+    src = clean_doc.get("source")
+    if isinstance(src, dict):
+        clean_src = dict(src)
+        for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider", "media"):
+            clean_src.pop(sub_key, None)
+        clean_doc["source"] = clean_src
+    elif isinstance(src, list):
+        if src and isinstance(src[0], dict):
+            clean_src = dict(src[0])
+            for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider", "media"):
+                clean_src.pop(sub_key, None)
+            clean_doc["source"] = clean_src
+
+    return clean_doc
 
 
 async def store_article():
@@ -48,30 +76,38 @@ def shutdown_scheduler():
 
 
 async def _get_raw_articles() -> list[dict]:
-    """Fetch candidate article pool from MongoDB if available, otherwise directly from article_store."""
+    """Fetch candidate article pool from MongoDB (excluding heavy fields), falling back to article_store."""
     try:
         if MongoHandle._db is not None:
-            cursor = MongoHandle.collection("articles").find().limit(500)
+            # Exclude internal & heavy fields at query level for speed and bandwidth efficiency
+            cursor = MongoHandle.collection("articles").find(
+                {},
+                {
+                    "content": 0, "markdown_content": 0, "summary": 0, "embedding": 0, "vector": 0,
+                    "raw_html": 0, "raw": 0, "prompt_used": 0, "raw_source_file": 0,
+                    "agent_provider": 0, "authors": 0, "media": 0, "source.content": 0,
+                    "source.markdown_content": 0, "source.raw": 0, "source.authors": 0
+                }
+            ).limit(500)
             raw = await cursor.to_list(length=500)
             if raw:
                 for doc in raw:
                     doc["_id"] = str(doc.get("_id", ""))
-                return raw
+                return [_strip_heavy_fields(doc) for doc in raw]
     except Exception as e:
         if log:
             log.warn(f"MongoDB article fetch failed ({e}). Falling back to ArticleStore.")
 
     # Fallback to ArticleStore (Azure Blob Store or FileStore)
-    return article_store.load_all_articles()
+    raw = article_store.load_all_articles()
+    return [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
 
 
 async def get_all_articles(current_user: dict):
     """
     Return top 20 articles, personalized if user is logged in.
-    Uses user's category_scores as weights for recommendation.
+    Uses Redis cache for unauthenticated default feeds.
     """
-    raw_articles = await _get_raw_articles()
-
     user_doc = None
     if current_user and MongoHandle._db is not None:
         try:
@@ -79,20 +115,51 @@ async def get_all_articles(current_user: dict):
         except Exception:
             pass
 
+    # Check Redis cache for default unauthenticated feed
     if not user_doc:
-        sorted_by_pop = sorted(raw_articles, key=lambda a: a.get("popularity", 0), reverse=True)
-        return {"feeds": sorted_by_pop[:20]}
+        try:
+            cached_feed = await RedisHandle.client().get("cache:feed:default")
+            if cached_feed:
+                return json.loads(cached_feed)
+        except Exception:
+            pass
+
+    raw_articles = await _get_raw_articles()
+    clean_articles = [_strip_heavy_fields(a) if isinstance(a, dict) else a for a in raw_articles]
+
+    if not user_doc:
+        sorted_by_pop = sorted(clean_articles, key=lambda a: a.get("popularity", 0), reverse=True)
+        res = {"feeds": sorted_by_pop[:20]}
+        try:
+            await RedisHandle.client().set("cache:feed:default", json.dumps(res), ex=300)
+        except Exception:
+            pass
+        return res
 
     preferences = user_doc.get("preferences", [])
     raw_weights = user_doc.get("bias", {})
     interactions = user_doc.get("category_scores", {cat: (0, 0.0) for cat in preferences})
 
-    personalized = sort_articles(preferences, raw_weights, interactions, raw_articles)
+    personalized = sort_articles(preferences, raw_weights, interactions, clean_articles)
     top20 = personalized[:20]
     return {"feeds": top20}
 
 
 async def get_article_by_id(article_id: str, current_user: dict):
+    """
+    Fetch complete article details (including full text content) for single article view.
+    Uses Redis cache with a 10-minute TTL.
+    """
+    # 1. Try Redis cache first
+    cache_key = f"cache:article:detail:{article_id}"
+    try:
+        cached_article = await RedisHandle.client().get(cache_key)
+        if cached_article:
+            return json.loads(cached_article)
+    except Exception:
+        pass
+
+    # 2. Fetch full article from MongoDB or fallback to ArticleStore
     article = None
     if MongoHandle._db is not None:
         try:
@@ -117,6 +184,25 @@ async def get_article_by_id(article_id: str, current_user: dict):
         article["_id"] = str(article["_id"])
     else:
         article["_id"] = article_id
+
+    # Omit vector/embedding arrays and internal scraping metadata from detail response
+    for internal_key in ("embedding", "vector", "prompt_used", "raw_source_file", "raw_html", "raw", "agent_provider"):
+        article.pop(internal_key, None)
+
+    # Clean nested source object in single article detail view
+    src = article.get("source")
+    if isinstance(src, dict):
+        clean_src = dict(src)
+        for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider", "media"):
+            clean_src.pop(sub_key, None)
+        article["source"] = clean_src
+
+    # 3. Store in Redis cache (10 min TTL)
+    try:
+        await RedisHandle.client().set(cache_key, json.dumps(article), ex=600)
+    except Exception:
+        pass
+
     return article
 
 
@@ -133,6 +219,12 @@ async def update_article_duration(article_id: str, duration: DurationRequest, cu
             )
         except Exception:
             pass
+
+    # Invalidate Redis detail cache so duration updates reflect
+    try:
+        await RedisHandle.client().delete(f"cache:article:detail:{article_id}")
+    except Exception:
+        pass
 
     if current_user and MongoHandle._db is not None:
         try:

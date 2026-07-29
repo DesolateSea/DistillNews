@@ -146,7 +146,10 @@ class Config:
 
     @property
     def DB_URL(self) -> str | None:
-        return os.getenv("DB_URL")
+        url = os.getenv("DB_URL")
+        if url and not os.path.exists("/.dockerenv"):
+            url = url.replace("://mongo:", "://127.0.0.1:").replace("@mongo:", "@127.0.0.1:")
+        return url
 
     @property
     def JWT_SECRET(self) -> str | None:
@@ -154,11 +157,17 @@ class Config:
 
     @property
     def REDIS_URL(self) -> str:
-        return os.getenv("REDIS_URL", "redis://redis:6379/0")
+        url = os.getenv("REDIS_URL", "redis://redis:6379/0")
+        if url and not os.path.exists("/.dockerenv"):
+            url = url.replace("://redis:", "://127.0.0.1:").replace("@redis:", "@127.0.0.1:")
+        return url
 
     @property
     def EMBEDDING_SERVICE_URL(self) -> str:
-        return os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-server:8001")
+        url = os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-server:8001")
+        if url and not os.path.exists("/.dockerenv"):
+            url = url.replace("://embedding-server:", "://127.0.0.1:")
+        return url
 
     # ------------------------------------------------------------------
     # Article Store Settings
