@@ -94,16 +94,16 @@ DistillNews/
 │   ├── auth.py            # JWT authentication middleware
 │   ├── security.py        # Password hashing & token utilities
 │   ├── routes/            # API Route controllers (auth, feed, user, chat, weather)
-│   ├── services/          # Web domain services (user_service, article_service, etc.)
-│   ├── models/            # Pydantic request/response schemas
-│   ├── utils/             # Recommendation & sorting utilities
-│   └── requirements.txt   # Web backend Python dependencies
+│   ├── services/          # Web domain services (user_service, chat_service, etc.)
+│   └── utils/             # Helper utilities & recommendation logic
 │
-├── service/               # Shared Domain Services Tier
+├── service/               # Core shared business logic & data repositories
+│   ├── articles.py        # Shared article service (loading, ranking, pagination)
+│   ├── blob/              # File and Blob storage engines (ArticleStore, FileStore, Azure)
+│   ├── db/                # Database connection handles (MongoDB, Redis)
 │   ├── chatbot/           # Conversational QA service & wiring
 │   ├── rag/               # Retrieval-Augmented Generation backends (BM25, Memory, Julep)
 │   ├── agents/            # Provider-neutral LLM agent abstraction
-│   ├── db/                # Database handles (MongoDB, Redis, FileStore repository)
 │   └── logger.py          # Centralized system logger
 │
 ├── embedding_server/      # Standalone Embedding Microservice

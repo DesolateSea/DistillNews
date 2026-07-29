@@ -85,10 +85,10 @@ def create_article_store(backend: str | None = None) -> ArticleStore:
     backend = (backend or config.ARTICLE_STORE_BACKEND).strip().lower()
 
     if backend == "file":
-        from service.db.filestore import FileArticleStore
+        from service.blob.filestore import FileArticleStore
         return FileArticleStore()
     elif backend == "azure":
-        from service.db.azure_blob_store import AzureBlobArticleStore
+        from service.blob.azure_blob_store import AzureBlobArticleStore
         return AzureBlobArticleStore(
             connection_string=config.AZURE_STORAGE_CONNECTION_STRING,
             container_name=config.AZURE_BLOB_CONTAINER,

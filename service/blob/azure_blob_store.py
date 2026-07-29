@@ -11,7 +11,7 @@ import json
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from service.db.article_store import ArticleStore
+from service.blob.article_store import ArticleStore
 
 try:
     from service.logger import log

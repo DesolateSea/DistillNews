@@ -1,12 +1,10 @@
 """Unified Storage Repository for pipeline files and processed articles.
 
 ``FileStore`` provides low-level disk I/O for raw data, API responses and
-temporary pipeline files.  It is *always* available regardless of which
-article storage backend is active.
+temporary pipeline files. It can be initialized with custom file paths.
 
-``FileArticleStore`` wraps the ``processed/`` directory with the
-``ArticleStore`` ABC so it can be used interchangeably with Azure Blob
-and other backends.
+``FileArticleStore`` wraps a target directory with the ``ArticleStore`` ABC
+so it can be used interchangeably with Azure Blob and other backends.
 """
 
 import os
@@ -15,37 +13,47 @@ from pathlib import Path
 from hashlib import sha256
 from datetime import datetime, timezone
 
-from service.db.article_store import ArticleStore
+from service.blob.article_store import ArticleStore
 
 
 class FileStore:
-    """Repository handle encapsulating all disk and article operations.
+    """Repository handle encapsulating disk and article operations.
 
     Provides a clean API for reading/writing pipeline artifacts (processed articles,
-    raw HTML, API responses) and syncing with database collections.
+    raw HTML, API responses). Can be instantiated with custom file paths.
     """
 
-    _root_dir: Path = Path(os.getenv("DATA_DIR", Path(__file__).resolve().parent.parent.parent / "data"))
+    _default_root_dir: Path = Path(os.getenv("DATA_DIR", Path(__file__).resolve().parent.parent.parent / "data"))
+
+    def __init__(self, root_dir: str | Path | None = None):
+        if root_dir is not None:
+            self._root_dir = Path(root_dir)
+        else:
+            self._root_dir = self._default_root_dir
 
     @classmethod
     def get_root(cls) -> Path:
-        return cls._root_dir
+        return cls._default_root_dir
+
+    @property
+    def root_dir(self) -> Path:
+        return self._root_dir
 
     @classmethod
     def processed_dir(cls) -> Path:
-        p = cls._root_dir / "processed"
+        p = cls._default_root_dir / "processed"
         p.mkdir(parents=True, exist_ok=True)
         return p
 
     @classmethod
     def raw_dir(cls) -> Path:
-        p = cls._root_dir / "raw"
+        p = cls._default_root_dir / "raw"
         p.mkdir(parents=True, exist_ok=True)
         return p
 
     @classmethod
     def api_data_dir(cls) -> Path:
-        p = cls._root_dir / "api_data"
+        p = cls._default_root_dir / "api_data"
         p.mkdir(parents=True, exist_ok=True)
         return p
 
@@ -99,103 +107,103 @@ class FileStore:
     def list_processed_files(cls) -> list[Path]:
         return sorted(cls.processed_dir().glob("*.json"))
 
-    # --- Generic JSON & Text File Methods ---
+    # --- Low-level JSON Helpers ---
 
     @classmethod
-    def read_json(cls, relative_or_abs_path: str | Path) -> dict | list:
-        path = Path(relative_or_abs_path)
-        if not path.is_absolute():
-            path = cls._root_dir / path
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-
-    @classmethod
-    def write_json(cls, relative_or_abs_path: str | Path, data: dict | list) -> Path:
-        path = Path(relative_or_abs_path)
-        if not path.is_absolute():
-            path = cls._root_dir / path
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, "w", encoding="utf-8") as f:
+    def write_json(cls, filepath: Path, data: dict | list) -> Path:
+        filepath.parent.mkdir(parents=True, exist_ok=True)
+        with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
-        return path
+        return filepath
 
     @classmethod
-    def write_text(cls, relative_or_abs_path: str | Path, content: str) -> Path:
-        path = Path(relative_or_abs_path)
-        if not path.is_absolute():
-            path = cls._root_dir / path
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(content)
-        return path
-
-    @classmethod
-    def read_text(cls, relative_or_abs_path: str | Path) -> str:
-        path = Path(relative_or_abs_path)
-        if not path.is_absolute():
-            path = cls._root_dir / path
-        with open(path, "r", encoding="utf-8") as f:
-            return f.read()
-
-    @classmethod
-    def file_exists(cls, relative_or_abs_path: str | Path) -> bool:
-        path = Path(relative_or_abs_path)
-        if not path.is_absolute():
-            path = cls._root_dir / path
-        return path.exists()
+    def read_json(cls, filepath: Path) -> dict | list | None:
+        if not filepath.exists():
+            return None
+        with open(filepath, "r", encoding="utf-8") as f:
+            return json.load(f)
 
 
 class FileArticleStore(ArticleStore):
-    """ArticleStore implementation backed by the local ``data/processed/`` directory.
+    """File-backed concrete implementation of ``ArticleStore``.
 
-    Delegates to ``FileStore`` class methods so the on-disk layout is identical
-    to the legacy behaviour.
+    Persists articles as JSON files in a local directory (defaults to ``data/processed/``).
+    Can be initialized with custom file paths.
     """
+
+    def __init__(self, processed_dir: str | Path | None = None):
+        if processed_dir is not None:
+            self._dir = Path(processed_dir)
+        else:
+            self._dir = FileStore.processed_dir()
+        self._dir.mkdir(parents=True, exist_ok=True)
 
     def article_exists(
         self, title_or_id: str, pub_date: str | int | float | None = None
     ) -> bool:
-        return FileStore.article_exists(title_or_id, pub_date)
+        if pub_date is not None:
+            article_id = self.compute_article_id(title_or_id, pub_date)
+        else:
+            article_id = title_or_id
+        return (self._dir / f"{article_id}.json").exists()
 
     def save_article(self, article_data: dict, article_id: str | None = None) -> str:
         if not article_id:
             article_id = self.compute_article_id(
-                article_data.get("title", ""), article_data.get("publication_date", "")
+                article_data.get("title", ""),
+                article_data.get("publication_date", ""),
             )
+
+        article_data["id"] = article_id
         self._ensure_created_at(article_data)
-        FileStore.save_processed_article(article_data, article_id=article_id)
+
+        filepath = self._dir / f"{article_id}.json"
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(article_data, f, indent=2)
+
         return article_id
 
     def load_article(self, article_id: str) -> dict | None:
-        return FileStore.load_processed_article(article_id)
+        filepath = self._dir / f"{article_id}.json"
+        if not filepath.exists():
+            return None
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, dict):
+                data.setdefault("id", article_id)
+            return data
+        except Exception:
+            return None
 
     def list_articles(self) -> list[dict]:
-        """Return lightweight metadata for every stored article."""
-        results = []
-        for filepath in FileStore.list_processed_files():
+        summaries = []
+        for filepath in sorted(self._dir.glob("*.json")):
             try:
-                data = FileStore.read_json(filepath)
+                with open(filepath, "r", encoding="utf-8") as f:
+                    data = json.load(f)
                 if isinstance(data, dict):
-                    results.append({
-                        "id": filepath.stem,
+                    summaries.append({
+                        "id": data.get("id", filepath.stem),
                         "title": data.get("title", "Untitled"),
-                        "category": data.get("category", ""),
+                        "category": data.get("category", "General"),
                         "publication_date": data.get("publication_date", ""),
-                        "source": data.get("source", ""),
+                        "url": data.get("url", ""),
+                        "source": data.get("source", {}),
                     })
             except Exception:
-                pass
-        return results
+                continue
+        return summaries
 
     def load_all_articles(self) -> list[dict]:
-        """Load the full content of every stored article."""
         articles = []
-        for filepath in FileStore.list_processed_files():
+        for filepath in sorted(self._dir.glob("*.json")):
             try:
-                data = FileStore.read_json(filepath)
+                with open(filepath, "r", encoding="utf-8") as f:
+                    data = json.load(f)
                 if isinstance(data, dict):
-                    data["id"] = filepath.stem
+                    data.setdefault("id", filepath.stem)
                     articles.append(data)
             except Exception:
-                pass
+                continue
         return articles

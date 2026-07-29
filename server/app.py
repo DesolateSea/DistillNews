@@ -4,7 +4,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from server.routes import auth_routes, user_routes, feed_routes, chat_routes, weather_routes
-from server.services.article_service import start_scheduler, shutdown_scheduler, store_article
 from service.db.mongo import MongoHandle
 from service.db.redis import RedisHandle
 from service.logger import log
@@ -15,21 +14,7 @@ async def lifespan(app: FastAPI):
     MongoHandle.connect()
     await RedisHandle.connect()
     await MongoHandle.create_indexes()
-    try:
-        if log:
-            log.info("Storing all new articles")
-        await store_article()
-        if log:
-            log.success("Stored all new articles")
-        start_scheduler()
-    except Exception as e:
-        if log:
-            log.warn(f"Startup tasks failed ({e}). Running without scheduler.")
     yield
-    try:
-        shutdown_scheduler()
-    except Exception:
-        pass
     MongoHandle.disconnect()
     await RedisHandle.disconnect()
 

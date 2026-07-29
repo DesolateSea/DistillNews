@@ -46,6 +46,8 @@ def sort_articles(
             
         scored.append((art, score))
 
+    return [art for art, _ in sorted(scored, key=lambda x: x[1], reverse=True)]
+
 from datetime import datetime, timezone
 
 def get_publication_timestamp(art: dict) -> float:

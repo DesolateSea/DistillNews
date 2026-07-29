@@ -420,7 +420,7 @@ function NewsCard({ newsItem }: NewsCardProps) {
               {newsItem.title}
             </CardTitle>
           </div>
-          {newsItem.source.media?.[0] && (
+          {newsItem?.source?.media?.[0] && (
             <img
               src={newsItem.source.media[0]}
               alt={newsItem.title}
