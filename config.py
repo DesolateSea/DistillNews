@@ -210,6 +210,30 @@ class Config:
             return name in enabled
         return True
 
+    def set_source_enabled(self, source_name: str, enabled: bool) -> None:
+        """Dynamically enable or disable a pipeline source at runtime."""
+        name = source_name.strip().lower()
+        disabled = self.DISABLED_PIPELINE_SOURCES
+        if enabled:
+            disabled.discard(name)
+        else:
+            disabled.add(name)
+        os.environ["DISABLED_PIPELINE_SOURCES"] = ",".join(sorted(disabled))
+
+        if self.ENABLED_PIPELINE_SOURCES is not None:
+            enabled_set = self.ENABLED_PIPELINE_SOURCES
+            if enabled:
+                enabled_set.add(name)
+            else:
+                enabled_set.discard(name)
+            os.environ["ENABLED_PIPELINE_SOURCES"] = ",".join(sorted(enabled_set))
+
+    def toggle_source(self, source_name: str) -> bool:
+        """Toggle a pipeline source between enabled and disabled at runtime. Returns new status."""
+        new_status = not self.is_source_enabled(source_name)
+        self.set_source_enabled(source_name, new_status)
+        return new_status
+
     @property
     def DEBUG(self) -> bool:
         """Returns True if DEBUG environment variable is enabled ('true', '1', 'yes')."""
