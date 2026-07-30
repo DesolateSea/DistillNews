@@ -1,7 +1,7 @@
 from service.db.mongo import MongoHandle
 from fastapi import HTTPException
 from server.security import get_password_hash, verify_password, create_access_token
-from server.models.user_model import RegisterModel, LoginModel, SendOTPRequest, VerifyOTPRequest
+from server.models.user_model import RegisterModel, LoginModel, SendOTPRequest, VerifyOTPRequest, GoogleLoginRequest
 try:
     from service.logger import log
 except ImportError:
@@ -87,3 +87,51 @@ async def update_user_preferences(data, current_user):
         {"$set": {"category_scores": category_scores, "preferences": data.preferences, "bias": bias}},
     )
     return {"message": "Preferences updated"}
+
+
+async def google_login_user(data: GoogleLoginRequest):
+    user_email = data.email
+    if data.id_token:
+        try:
+            import httpx
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                resp = await client.get(f"https://oauth2.googleapis.com/tokeninfo?id_token={data.id_token}")
+                if resp.status_code == 200:
+                    verified_email = resp.json().get("email")
+                    if verified_email:
+                        user_email = verified_email
+        except Exception as error:
+            if log:
+                log.warn(f"Google ID token verification failed: {error}")
+
+    if not user_email and data.access_token:
+        try:
+            import httpx
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                resp = await client.get(
+                    "https://www.googleapis.com/oauth2/v3/userinfo",
+                    headers={"Authorization": f"Bearer {data.access_token}"}
+                )
+                if resp.status_code == 200:
+                    verified_email = resp.json().get("email")
+                    if verified_email:
+                        user_email = verified_email
+        except Exception as error:
+            if log:
+                log.warn(f"Google access token userinfo fetch failed: {error}")
+
+    if not user_email:
+        raise HTTPException(status_code=400, detail="Could not verify Google account or email")
+
+    user = await MongoHandle.collection("SNAPUsers").find_one({"email": user_email})
+    if not user:
+        await MongoHandle.collection("SNAPUsers").insert_one({
+            "email": user_email,
+            "preferences": [],
+            "category_scores": {},
+            "bias": {},
+            "auth_provider": "google"
+        })
+
+    token = create_access_token({"email": user_email})
+    return {"access_token": token, "token_type": "bearer"}

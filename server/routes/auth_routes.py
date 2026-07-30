@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from server.models.user_model import RegisterModel, LoginModel, SendOTPRequest, VerifyOTPRequest
-from server.services.user_service import register_user, login_user, send_otp, verify_otp_and_login
+from server.models.user_model import RegisterModel, LoginModel, SendOTPRequest, VerifyOTPRequest, GoogleLoginRequest
+from server.services.user_service import register_user, login_user, send_otp, verify_otp_and_login, google_login_user
 
 router = APIRouter()
 
@@ -19,3 +19,7 @@ async def register(data: RegisterModel):
 @router.post("/login")
 async def login(data: LoginModel):
     return await login_user(data)
+
+@router.post("/google-login")
+async def google_login_endpoint(data: GoogleLoginRequest):
+    return await google_login_user(data)

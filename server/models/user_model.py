@@ -27,6 +27,11 @@ class VerifyOTPRequest(BaseModel):
     otp: str
     session_token: str
 
+class GoogleLoginRequest(BaseModel):
+    id_token: str | None = None
+    access_token: str | None = None
+    email: EmailStr | None = None
+
 if __name__ == "__main__":
     from service.logger import log
 

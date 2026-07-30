@@ -141,6 +141,22 @@ class Config:
         return os.getenv("OPENWEATHER_API_KEY")
 
     # ------------------------------------------------------------------
+    # Google OAuth Settings
+    # ------------------------------------------------------------------
+
+    @property
+    def GOOGLE_CLIENT_ID(self) -> str | None:
+        return os.getenv("GOOGLE_CLIENT_ID") or os.getenv("NEXT_PUBLIC_GOOGLE_CLIENT_ID")
+
+    @property
+    def GOOGLE_CLIENT_SECRET(self) -> str | None:
+        return os.getenv("GOOGLE_CLIENT_SECRET")
+
+    @property
+    def GOOGLE_REDIRECT_URI(self) -> str:
+        return os.getenv("GOOGLE_REDIRECT_URI", "http://localhost:8000/auth/google/callback")
+
+    # ------------------------------------------------------------------
     # Database & Server Settings
     # ------------------------------------------------------------------
 

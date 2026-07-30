@@ -56,6 +56,11 @@ export const authApi = {
       method: "POST",
       body: { email, otp, session_token },
     }),
+  googleLogin: (params: { id_token?: string; access_token?: string; email?: string }) =>
+    apiRequest<{ access_token: string }>("/google-login", {
+      method: "POST",
+      body: params,
+    }),
 };
 
 export const preferencesApi = {
