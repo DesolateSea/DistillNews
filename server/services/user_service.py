@@ -86,6 +86,14 @@ async def update_user_preferences(data, current_user):
         {"email": current_user["email"]},
         {"$set": {"category_scores": category_scores, "preferences": data.preferences, "bias": bias}},
     )
+    try:
+        from service.db import RedisHandle
+        r = RedisHandle.client()
+        if r:
+            await r.delete(f"recommendation:user:{current_user['email']}")
+            await r.delete("cache:feed:default")
+    except Exception:
+        pass
     return {"message": "Preferences updated"}
 
 

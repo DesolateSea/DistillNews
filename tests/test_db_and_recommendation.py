@@ -70,3 +70,21 @@ def test_update_weights():
     assert interactions["sports"] == (1, 30.0)
     assert updated["sports"] > updated["technology"]
     assert pytest.approx(sum(updated.values()), abs=1e-5) == 1.0
+
+
+def test_recommendation_empty_weights_and_tiebreaking():
+    # User with explicit preferences but empty weights map
+    preferences = ["Technology"]
+    weights = {}
+    interactions = {}
+
+    articles = [
+        {"id": "1", "category": "General", "publication_date": "2026-07-20T10:00:00Z"},
+        {"id": "2", "category": "Tech", "publication_date": "2026-07-25T10:00:00Z"},
+        {"id": "3", "category": "Technology", "publication_date": "2026-07-28T10:00:00Z"},
+    ]
+
+    sorted_arts = sort_articles(preferences, weights, interactions, articles)
+    assert sorted_arts[0]["id"] == "3"  # Newest Technology article first
+    assert sorted_arts[1]["id"] == "2"  # Tech alias matches Technology
+    assert sorted_arts[2]["id"] == "1"  # General non-preferred article last
