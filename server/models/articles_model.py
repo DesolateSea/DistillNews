@@ -4,11 +4,13 @@ from datetime import datetime
 
 
 class SourceModel(BaseModel):
-    title: str
-    url: Optional[HttpUrl] = None
+    title: Optional[str] = None
+    name: Optional[str] = None
+    url: Optional[str] = None
     created_utc: Optional[float] = None
     subreddit: Optional[str] = None
-    media: Optional[List[HttpUrl]] = None
+    media: Optional[List[str]] = Field(default_factory=list)
+    image_url: Optional[str] = None
     content: Optional[str] = None
 
 

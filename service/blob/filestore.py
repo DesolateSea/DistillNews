@@ -194,6 +194,7 @@ class FileArticleStore(ArticleStore):
                         "publication_date": data.get("publication_date", ""),
                         "url": data.get("url", ""),
                         "source": data.get("source", {}),
+                        "image_url": data.get("image_url") or data.get("image", ""),
                     })
             except Exception:
                 continue

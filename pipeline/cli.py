@@ -372,6 +372,40 @@ def serve(host, port, do_reload, storage):
     uvicorn.run("server.app:app", host=host, port=port, reload=do_reload)
 
 
+# ── Clear Cache ─────────────────────────────────────────────────────────────
+
+@cli.command("clear-cache")
+@click.option(
+    "--storage", "-st",
+    type=click.Choice(["file", "azure"], case_sensitive=False),
+    default=None,
+    help="Override article storage backend (file or azure).",
+)
+def clear_cache(storage):
+    """Flush Redis cache and re-index all article metadata into Redis."""
+    _apply_storage(storage)
+    import asyncio
+    from service.db import RedisHandle
+    from service.articles import prime_redis_indexes
+
+    console.print("\n[bold cyan]⟫ Flushing Redis cache & re-indexing articles…[/bold cyan]\n")
+
+    async def _run_flush():
+        try:
+            await RedisHandle.connect()
+            r = RedisHandle.client()
+            await r.flushdb()
+            console.print("[green]✓ Redis database flushed (FLUSHDB).[/green]")
+            await prime_redis_indexes(force=True)
+            console.print("[green]✓ Redis ZSETs & Hashes re-indexed with updated article metadata![/green]")
+            await RedisHandle.disconnect()
+        except Exception as e:
+            console.print(f"[bold red]❌ Redis clear failed:[/bold red] {e}")
+
+    asyncio.run(_run_flush())
+    console.print("\n[bold green]✓ Cache cleared successfully.[/bold green]")
+
+
 # ── Entry point ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":

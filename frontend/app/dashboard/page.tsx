@@ -345,11 +345,10 @@ export default function DashboardPage() {
                       className={`mb-4 flex ${msg.isUser ? "justify-end" : "justify-start"}`}
                     >
                       <div
-                        className={`max-w-3/4 p-3 rounded-lg ${
-                          msg.isUser
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted"
-                        }`}
+                        className={`max-w-3/4 p-3 rounded-lg ${msg.isUser
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted"
+                          }`}
                       >
                         <ReactMarkdown>
                           {msg.text.replaceAll("\n", "\n\n")}
@@ -408,6 +407,11 @@ interface NewsCardProps {
 }
 
 function NewsCard({ newsItem }: NewsCardProps) {
+  const imageUrl =
+    newsItem?.source?.image_url ||
+    newsItem?.source?.media?.[0] ||
+    (newsItem as any)?.image_url ||
+    (newsItem as any)?.image;
   return (
     <Link href={`/${encodeURIComponent(newsItem.id)}`}>
       <Card className="cursor-pointer hover:shadow-md transition-shadow duration-200 px-5 min-h-[200px] pt-5">
@@ -420,11 +424,14 @@ function NewsCard({ newsItem }: NewsCardProps) {
               {newsItem.title}
             </CardTitle>
           </div>
-          {newsItem?.source?.media?.[0] && (
+          {imageUrl && (
             <img
-              src={newsItem.source.media[0]}
+              src={imageUrl}
               alt={newsItem.title}
-              className="w-28 h-28 object-cover rounded-md"
+              className="w-28 h-28 object-cover rounded-md flex-shrink-0"
+              onError={(e) => {
+                (e.target as HTMLElement).style.display = "none";
+              }}
             />
           )}
         </div>

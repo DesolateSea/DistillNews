@@ -14,37 +14,71 @@ except ImportError:
 article_store: ArticleStore = create_article_store()
 
 
+def _normalize_source_media(doc: dict) -> dict:
+    """Preserve and normalize source.media and source.image_url as simple string URLs without stripping."""
+    root_image = doc.get("image_url") or doc.get("image")
+    src = doc.get("source")
+
+    if isinstance(src, dict):
+        clean_src = dict(src)
+    elif isinstance(src, list) and src and isinstance(src[0], dict):
+        clean_src = dict(src[0])
+    elif isinstance(src, str):
+        clean_src = {"title": src, "name": src}
+    else:
+        clean_src = {"title": "Unknown"}
+
+    for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider"):
+        clean_src.pop(sub_key, None)
+
+    # Extract image_url string if available
+    img_url = clean_src.get("image_url") or root_image or ""
+    if isinstance(img_url, list):
+        img_url = img_url[0] if img_url else ""
+    img_url = str(img_url).strip() if img_url else ""
+
+    # Extract media list
+    raw_media = clean_src.get("media")
+    media_list: list[str] = []
+    if isinstance(raw_media, list):
+        for item in raw_media:
+            if item and isinstance(item, (str, dict)):
+                url_str = item if isinstance(item, str) else item.get("url") or item.get("src") or ""
+                if url_str:
+                    media_list.append(str(url_str).strip())
+    elif isinstance(raw_media, str) and raw_media.strip():
+        media_list.append(raw_media.strip())
+
+    # Keep image_url and media list in sync so neither is empty if URLs exist
+    if img_url and img_url not in media_list:
+        media_list.insert(0, img_url)
+    elif not img_url and media_list:
+        img_url = media_list[0]
+
+    clean_src["image_url"] = img_url
+    clean_src["media"] = media_list
+
+    if not clean_src.get("title") and clean_src.get("name"):
+        clean_src["title"] = clean_src["name"]
+    elif not clean_src.get("title"):
+        clean_src["title"] = "Unknown"
+
+    doc["source"] = clean_src
+    if img_url:
+        doc["image_url"] = img_url
+    return doc
+
+
 def _strip_heavy_fields(doc: dict) -> dict:
     """Return a clean copy of the article dict with internal/heavy fields removed for feed list views."""
     clean_doc = dict(doc)
     for heavy_key in (
         "content", "markdown_content", "summary", "embedding", "vector", "raw_html", "raw",
-        "prompt_used", "raw_source_file", "agent_provider", "authors", "media"
+        "prompt_used", "raw_source_file", "agent_provider"
     ):
         clean_doc.pop(heavy_key, None)
 
-    src = clean_doc.get("source")
-    if isinstance(src, dict):
-        clean_src = dict(src)
-        for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider"):
-            clean_src.pop(sub_key, None)
-        clean_src.setdefault("media", [])
-        clean_doc["source"] = clean_src
-    elif isinstance(src, list):
-        if src and isinstance(src[0], dict):
-            clean_src = dict(src[0])
-            for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider"):
-                clean_src.pop(sub_key, None)
-            clean_src.setdefault("media", [])
-            clean_doc["source"] = clean_src
-        else:
-            clean_doc["source"] = {"name": "Unknown", "media": []}
-    elif isinstance(src, str):
-        clean_doc["source"] = {"name": src, "media": []}
-    else:
-        clean_doc["source"] = {"name": "Unknown", "media": []}
-
-    return clean_doc
+    return _normalize_source_media(clean_doc)
 
 
 def _clean_single_article(doc: dict) -> dict:
@@ -55,20 +89,7 @@ def _clean_single_article(doc: dict) -> dict:
     ):
         clean_doc.pop(internal_key, None)
 
-    src = clean_doc.get("source")
-    if isinstance(src, dict):
-        clean_src = dict(src)
-        for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider"):
-            clean_src.pop(sub_key, None)
-        clean_doc["source"] = clean_src
-    elif isinstance(src, list):
-        if src and isinstance(src[0], dict):
-            clean_src = dict(src[0])
-            for sub_key in ("content", "markdown_content", "raw_html", "raw", "authors", "prompt_used", "raw_source_file", "agent_provider"):
-                clean_src.pop(sub_key, None)
-            clean_doc["source"] = clean_src
-
-    return clean_doc
+    return _normalize_source_media(clean_doc)
 
 
 async def prime_redis_indexes(force: bool = False):
@@ -83,9 +104,9 @@ async def prime_redis_indexes(force: bool = False):
         if exists and card > 100 and not force:
             return
 
-        meta_list = article_store.list_articles()
+        meta_list = article_store.load_all_articles()
         if not meta_list:
-            meta_list = article_store.load_all_articles()
+            meta_list = article_store.list_articles()
 
         if log:
             log.db("Priming Redis", f"Indexing {len(meta_list)} articles into Redis ZSETs & Hashes")
@@ -179,19 +200,23 @@ async def get_all_articles(user_profile: dict | None = None):
 
             clean_articles = []
             for idx, s in enumerate(meta_strings):
+                aid = aids[idx]
+                item = None
                 if s:
                     try:
-                        clean_articles.append(json.loads(s))
+                        item = json.loads(s)
                     except Exception:
                         pass
-                else:
-                    # Dynamic lazy load from Blob Store on cache miss
-                    aid = aids[idx]
+
+                # If item is missing image metadata, reload full article from Blob Store
+                if not item or (isinstance(item, dict) and not item.get("image_url") and not (isinstance(item.get("source"), dict) and (item["source"].get("image_url") or item["source"].get("media")))):
                     full_art = article_store.load_article(aid)
                     if full_art and isinstance(full_art, dict):
-                        cm = _strip_heavy_fields(full_art)
-                        clean_articles.append(cm)
-                        await r.set(f"article:meta:{aid}", json.dumps(cm))
+                        item = _strip_heavy_fields(full_art)
+                        await r.set(f"article:meta:{aid}", json.dumps(item))
+
+                if item:
+                    clean_articles.append(item)
 
             if clean_articles:
                 if not user_profile:
@@ -314,19 +339,23 @@ async def get_all_articles_pagination(
 
                 paged = []
                 for idx, s in enumerate(meta_strings):
+                    aid = aids[idx]
+                    item = None
                     if s:
                         try:
-                            paged.append(json.loads(s))
+                            item = json.loads(s)
                         except Exception:
                             pass
-                    else:
-                        # Lazy load missing metadata from Blob Store
-                        aid = aids[idx]
+
+                    # If item is missing image metadata, reload full article from Blob Store
+                    if not item or (isinstance(item, dict) and not item.get("image_url") and not (isinstance(item.get("source"), dict) and (item["source"].get("image_url") or item["source"].get("media")))):
                         full_art = article_store.load_article(aid)
                         if full_art and isinstance(full_art, dict):
-                            cm = _strip_heavy_fields(full_art)
-                            paged.append(cm)
-                            await r.set(f"article:meta:{aid}", json.dumps(cm))
+                            item = _strip_heavy_fields(full_art)
+                            await r.set(f"article:meta:{aid}", json.dumps(item))
+
+                    if item:
+                        paged.append(item)
 
                 has_more = (skip + len(paged)) < total
                 return {

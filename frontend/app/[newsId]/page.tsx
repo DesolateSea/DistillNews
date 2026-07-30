@@ -209,22 +209,29 @@ export default function NewsDetailPage() {
             {new Date(newsItem.publication_date).toLocaleDateString()} by{" "}
             {newsItem.author || "Unknown"} in {newsItem.category}
           </div>
-          {newsItem.source?.media?.[0] && (
-            <div className="bg-muted rounded-md mb-4">
-              <img
-                src={newsItem.source.media[0]}
-                alt={newsItem.title}
-                className="object-cover w-full h-full rounded-md"
-              />
-            </div>
-          )}
+          {(() => {
+            const mainImageUrl =
+              newsItem.source?.image_url ||
+              newsItem.source?.media?.[0] ||
+              (newsItem as any)?.image_url ||
+              (newsItem as any)?.image;
+            return mainImageUrl ? (
+              <div className="bg-muted rounded-md mb-4 max-h-[400px] overflow-hidden flex items-center justify-center">
+                <img
+                  src={mainImageUrl}
+                  alt={newsItem.title}
+                  className="object-cover w-full h-full rounded-md"
+                />
+              </div>
+            ) : null;
+          })()}
           <div className="prose dark:prose-invert max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {newsItem?.markdown_content
                 ? newsItem.markdown_content.replace(/\\n/g, "\n")
                 : newsItem.content
-                ? newsItem.content.replace(/\\n/g, "\n")
-                : ""}
+                  ? newsItem.content.replace(/\\n/g, "\n")
+                  : ""}
             </ReactMarkdown>
           </div>
           {newsItem.source?.url && (
@@ -236,7 +243,7 @@ export default function NewsDetailPage() {
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:underline"
               >
-                {newsItem.source.title || "Link"}
+                {newsItem.source.title || newsItem.source.name || "Link"}
               </Link>
             </p>
           )}
@@ -252,29 +259,32 @@ export default function NewsDetailPage() {
             </p>
           ) : (
             <ul className="space-y-4">
-              {moreNewsItems.map((item) => (
-                <li key={item._id || item.id}>
-                  <Link
-                    href={`/${encodeURIComponent(item.id)}`}
-                    className="flex items-start hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md p-2 -mx-2 transition-colors"
-                  >
-                    {item.source?.media?.[0] && (
-                      <div className="w-16 h-16 flex-shrink-0 mr-3 overflow-hidden rounded-md bg-muted">
-                        <img
-                          src={item.source.media[0]}
-                          alt={item.title}
-                          className="object-cover w-full h-full"
-                        />
+              {moreNewsItems.map((item) => {
+                const itemImageUrl = item.source?.image_url || item.source?.media?.[0];
+                return (
+                  <li key={item._id || item.id}>
+                    <Link
+                      href={`/${encodeURIComponent(item.id)}`}
+                      className="flex items-start hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md p-2 -mx-2 transition-colors"
+                    >
+                      {itemImageUrl && (
+                        <div className="w-16 h-16 flex-shrink-0 mr-3 overflow-hidden rounded-md bg-muted">
+                          <img
+                            src={itemImageUrl}
+                            alt={item.title}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                      )}
+                      <div className="flex-grow">
+                        <h3 className="text-sm font-semibold leading-tight">
+                          {item.title}
+                        </h3>
                       </div>
-                    )}
-                    <div className="flex-grow">
-                      <h3 className="text-sm font-semibold leading-tight">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </Link>
-                </li>
-              ))}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>
@@ -315,16 +325,14 @@ export default function NewsDetailPage() {
                   {messages.map((msg, index) => (
                     <div
                       key={index}
-                      className={`mb-4 flex ${
-                        msg.isUser ? "justify-end" : "justify-start"
-                      }`}
+                      className={`mb-4 flex ${msg.isUser ? "justify-end" : "justify-start"
+                        }`}
                     >
                       <div
-                        className={`max-w-3/4 p-3 rounded-lg ${
-                          msg.isUser
+                        className={`max-w-3/4 p-3 rounded-lg ${msg.isUser
                             ? "bg-primary text-primary-foreground"
                             : "bg-muted"
-                        }`}
+                          }`}
                       >
                         <ReactMarkdown>
                           {msg.text.replaceAll("\n", "\n\n")}

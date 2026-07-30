@@ -121,12 +121,14 @@ export interface NewsItem {
   category: string;
   tags: string[];
   source: {
-    title: string;
-    url: string;
-    created_utc: number;
-    subreddit: string;
-    media: string[];
-    content: string;
+    title?: string;
+    name?: string;
+    url?: string;
+    created_utc?: number;
+    subreddit?: string;
+    media?: string[];
+    content?: string;
+    image_url?: string;
   };
   location?: string | null;
   duration?: number;
