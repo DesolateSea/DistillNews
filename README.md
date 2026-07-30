@@ -47,13 +47,21 @@ For instant sub-second hot-reloading without Docker container builds:
 
 This starts `mongo` & `redis` in Docker background and runs the backend & embedding server locally with auto-reload.
 
-### Full Docker Deployment
+### Full Docker Deployment (Production VM / VPS)
 
-To build and run all production containers:
+The platform deploys 3 core application containers (`frontend`, `backend`, `embedding-server`) alongside `mongo` and `redis`. Minimum system requirement: **2 vCPU, 4GB RAM, 30GB Disk**.
 
-```bash
-docker compose up --build
-```
+1. **Configure Swap Space (Recommended for 4GB RAM VMs):**
+   ```bash
+   sudo fallocate -l 4G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
+   ```
+
+2. **Build and Start Production Stack:**
+   ```bash
+   docker compose up -d --build
+   ```
+
+*Note: `Dockerfile.embedding` uses CPU-only PyTorch to keep image size lightweight (~1.5GB).*
 
 ### Pipeline TUI
 

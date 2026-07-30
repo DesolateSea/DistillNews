@@ -1,6 +1,7 @@
 services:
   mongo:
     image: mongo:6-jammy
+    command: mongod --wiredTigerCacheSizeGB 0.5
     restart: unless-stopped
     attach: false
     ports:
