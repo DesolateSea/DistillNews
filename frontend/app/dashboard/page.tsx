@@ -18,8 +18,9 @@ import {
   MessageCircle,
   X,
   Send,
+  Search,
 } from "lucide-react";
-import { chatApi, feedsApi, type NewsItem } from "@/lib/api";
+import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 
 interface ChatMessage {
   text: string;
@@ -39,6 +40,11 @@ export default function DashboardPage() {
   const isFetchingRef = useRef(false);
   const ITEMS_PER_PAGE = 9;
 
+  // Search state
+  const [searchInput, setSearchInput] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+
   // Chat state
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -55,14 +61,19 @@ export default function DashboardPage() {
       isFetchingRef.current = true;
       setLoadingMore(pageNum > 1);
 
-      const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE);
-      const newArticles = feeds as NewsItem[];
-
-      const hasMoreNext = newArticles.length > 0 && (has_more ?? newArticles.length === ITEMS_PER_PAGE);
-      setHasMore(hasMoreNext);
-      setNews((prev) =>
-        pageNum === 1 ? newArticles : [...prev, ...newArticles]
-      );
+      if (searchQuery) {
+        const { feeds, has_more } = await feedsApi.search(searchQuery, pageNum, ITEMS_PER_PAGE, token);
+        const newArticles = feeds as NewsItem[];
+        const hasMoreNext = newArticles.length > 0 && (has_more ?? newArticles.length === ITEMS_PER_PAGE);
+        setHasMore(hasMoreNext);
+        setNews((prev) => (pageNum === 1 ? newArticles : [...prev, ...newArticles]));
+      } else {
+        const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE);
+        const newArticles = feeds as NewsItem[];
+        const hasMoreNext = newArticles.length > 0 && (has_more ?? newArticles.length === ITEMS_PER_PAGE);
+        setHasMore(hasMoreNext);
+        setNews((prev) => (pageNum === 1 ? newArticles : [...prev, ...newArticles]));
+      }
     } catch (err) {
       console.error("Error fetching news:", err);
     } finally {
@@ -70,7 +81,48 @@ export default function DashboardPage() {
       setIsLoading(false);
       setLoadingMore(false);
     }
-  }, []);
+  }, [searchQuery]);
+
+  const handleSearch = async (overrideQuery?: string) => {
+    const queryToUse = overrideQuery !== undefined ? overrideQuery : searchInput;
+    const cleanQuery = queryToUse.trim();
+    if (!cleanQuery) {
+      clearSearch();
+      return;
+    }
+    setSearchQuery(cleanQuery);
+    setIsSearching(true);
+    setPage(1);
+    try {
+      const token = localStorage.getItem("SNAPtoken");
+      const { feeds, has_more } = await feedsApi.search(cleanQuery, 1, ITEMS_PER_PAGE, token);
+      const searchArticles = feeds as NewsItem[];
+      setNews(searchArticles);
+      setHasMore(!!has_more);
+    } catch (err) {
+      console.error("Search failed:", err);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const clearSearch = async () => {
+    setSearchInput("");
+    setSearchQuery("");
+    setPage(1);
+    setIsSearching(true);
+    try {
+      const token = localStorage.getItem("SNAPtoken");
+      const { feeds, has_more } = await feedsApi.list(token, 1, ITEMS_PER_PAGE);
+      const newArticles = feeds as NewsItem[];
+      setNews(newArticles);
+      setHasMore(!!has_more);
+    } catch (err) {
+      console.error("Error resetting feed:", err);
+    } finally {
+      setIsSearching(false);
+    }
+  };
 
   // Infinite scroll observer using IntersectionObserver on bottom sentinel
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -229,10 +281,54 @@ export default function DashboardPage() {
       </header>
 
       <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-          <h1 className="text-3xl font-bold">
-            {isLoggedIn ? "Your Personalized News Feed" : "Latest News"}
-          </h1>
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+          <div>
+            <h1 className="text-3xl font-bold">
+              {searchQuery
+                ? `Search Results for "${searchQuery}"`
+                : isLoggedIn
+                ? "Your Personalized News Feed"
+                : "Latest News"}
+            </h1>
+            {searchQuery && (
+              <p className="text-sm text-muted-foreground mt-1 flex items-center gap-2">
+                <span>Semantic AI vector search found {news.length} matching stories</span>
+                <button
+                  onClick={clearSearch}
+                  className="text-xs text-primary hover:underline font-medium"
+                >
+                  Clear search
+                </button>
+              </p>
+            )}
+          </div>
+
+          {/* Semantic Search Bar */}
+          <div className="relative w-full md:w-96">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+              className="w-full pl-9 pr-16 py-2 bg-background border border-input rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
+            />
+            <Button
+              size="sm"
+              onClick={() => handleSearch()}
+              disabled={isSearching}
+              className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full h-7 px-3 text-xs flex items-center justify-center min-w-[60px]"
+            >
+              {isSearching ? (
+                <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-primary-foreground" />
+              ) : (
+                "Search"
+              )}
+            </Button>
+          </div>
         </div>
 
         {!isLoggedIn && (
@@ -437,7 +533,7 @@ function NewsCard({ newsItem }: NewsCardProps) {
         </div>
         <CardFooter className="flex justify-between pt-2">
           <div className="text-sm text-muted-foreground">
-            {new Date(newsItem.publication_date).toLocaleDateString()}
+            {formatArticleDate(newsItem.publication_date)}
           </div>
           <Button variant="ghost" size="sm">
             Read More

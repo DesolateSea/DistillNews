@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 const Location = dynamic(() => import("./location"), { ssr: false });
 import { Button } from "@/components/ui/button";
 import { MessageCircle, X, Send } from "lucide-react";
-import { chatApi, feedsApi, type NewsItem } from "@/lib/api";
+import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 
 interface ChatMessage {
   text: string;
@@ -206,7 +206,7 @@ export default function NewsDetailPage() {
           <h1 className="text-3xl font-bold mb-4">{newsItem.title}</h1>
           <div className="text-sm text-muted-foreground mb-4">
             Published on{" "}
-            {new Date(newsItem.publication_date).toLocaleDateString()} by{" "}
+            {formatArticleDate(newsItem.publication_date)} by{" "}
             {newsItem.author || "Unknown"} in {newsItem.category}
           </div>
           {(() => {

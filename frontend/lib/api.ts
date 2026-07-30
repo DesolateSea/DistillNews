@@ -75,6 +75,11 @@ export const feedsApi = {
       page && limit ? `/feeds/${page}/${limit}` : "/feeds",
       { token: token || undefined }
     ),
+  search: (query: string, page?: number, limit?: number, token?: string | null) =>
+    apiRequest<{ feeds: NewsItem[]; has_more?: boolean; total?: number }>(
+      `/feeds/search?q=${encodeURIComponent(query)}&page=${page || 1}&limit=${limit || 20}`,
+      { token: token || undefined }
+    ),
   get: (articleId: string, token?: string | null) =>
     apiRequest<NewsItem>(`/feeds/${encodeURIComponent(articleId)}`, {
       token: token || undefined,
@@ -109,12 +114,36 @@ export const weatherApi = {
     ),
 };
 
+export function formatArticleDate(dateVal?: string | number): string {
+  if (!dateVal || dateVal === "Unknown") return "Recently";
+  try {
+    if (typeof dateVal === "number") {
+      const ms = dateVal < 1e11 ? dateVal * 1000 : dateVal;
+      return new Date(ms).toLocaleDateString();
+    }
+    if (typeof dateVal === "string") {
+      if (!isNaN(Number(dateVal))) {
+        const num = Number(dateVal);
+        const ms = num < 1e11 ? num * 1000 : num;
+        return new Date(ms).toLocaleDateString();
+      }
+      const parsed = new Date(dateVal);
+      if (!isNaN(parsed.getTime())) {
+        return parsed.toLocaleDateString();
+      }
+    }
+  } catch {
+    // fallback
+  }
+  return "Recently";
+}
+
 export interface NewsItem {
   id: string;
   _id?: string;
   title: string;
   author: string;
-  publication_date: string;
+  publication_date: string | number;
   summary: string;
   content: string;
   markdown_content?: string;

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from server.auth import get_optional_user
-from service.articles import get_all_articles, get_article_by_id, get_all_articles_pagination
+from service.articles import get_all_articles, get_article_by_id, get_all_articles_pagination, search_articles
 from server.models.articles_model import DurationRequest, PaginatedArticlesResponse
 from server.utils.recommendation import update_weights
 from service.db import MongoHandle
@@ -21,6 +21,11 @@ async def _fetch_user_profile(current_user: dict | None) -> dict | None:
 async def feeds(current_user=Depends(get_optional_user)):
     user_profile = await _fetch_user_profile(current_user)
     return await get_all_articles(user_profile=user_profile)
+
+
+@router.get("/feeds/search")
+async def search_feeds(q: str = "", page: int = 1, limit: int = 20):
+    return await search_articles(query=q, page=page, limit=limit)
 
 
 @router.get("/feeds/{article_id}")

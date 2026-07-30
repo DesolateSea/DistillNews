@@ -392,3 +392,106 @@ async def get_all_articles_pagination(
         "total": total,
         "feeds": paged,
     }
+
+
+async def search_articles(
+    query: str,
+    page: int = 1,
+    limit: int = 20,
+) -> PaginatedArticlesResponse:
+    """
+    Semantic Embedding-Based Article Search.
+    Indexes all processed article vectors in an InMemoryVectorStore and computes
+    cosine similarity for the search query with keyword matching fallback.
+    """
+    clean_query = (query or "").strip()
+    if not clean_query:
+        return await get_all_articles_pagination(page=page, limit=limit)
+
+    cache_key = f"cache:search:{clean_query.lower()}:{page}:{limit}"
+    try:
+        r = RedisHandle.client()
+        cached = await r.get(cache_key)
+        if cached:
+            return json.loads(cached)
+    except Exception:
+        pass
+
+    all_raw = article_store.load_all_articles()
+    if not all_raw:
+        return {
+            "page": page,
+            "limit": limit,
+            "has_more": False,
+            "total": 0,
+            "feeds": [],
+        }
+
+    from service.rag.base import Document
+    from service.rag.factory import create_doc_store
+
+    docs = []
+    doc_map = {}
+    for art in all_raw:
+        if not isinstance(art, dict) or not art.get("title"):
+            continue
+        aid = art.get("id") or article_store.compute_article_id(
+            art.get("title", ""), art.get("publication_date", "")
+        )
+        art["id"] = aid
+        doc_map[aid] = art
+
+        doc_text = f"{art.get('title', '')}\n{art.get('summary', '')}\n{art.get('content', '')[:1000]}"
+        metadata = {
+            "id": aid,
+            "category": art.get("category", ""),
+            "embedding": art.get("embedding") or art.get("vector") or [],
+        }
+        docs.append(Document(title=art.get("title", ""), content=doc_text, metadata=metadata))
+
+    store = create_doc_store(backend="memory")
+    store.upload(docs)
+
+    search_results = store.search(clean_query, limit=100)
+
+    matching_articles = []
+    seen_ids = set()
+
+    for sr in search_results:
+        aid = sr.metadata.get("id")
+        if aid and aid in doc_map and aid not in seen_ids:
+            seen_ids.add(aid)
+            cm = _strip_heavy_fields(doc_map[aid])
+            matching_articles.append(cm)
+
+    # Lexical keyword fallback for higher recall
+    query_terms = [t.lower() for t in clean_query.split() if len(t) > 1]
+    if query_terms:
+        for aid, art in doc_map.items():
+            if aid in seen_ids:
+                continue
+            text = f"{art.get('title', '')} {art.get('summary', '')} {art.get('category', '')} {' '.join(art.get('tags', []))}".lower()
+            if any(term in text for term in query_terms):
+                seen_ids.add(aid)
+                cm = _strip_heavy_fields(art)
+                matching_articles.append(cm)
+
+    skip = (page - 1) * limit
+    paged = matching_articles[skip : skip + limit]
+    total = len(matching_articles)
+    has_more = (skip + len(paged)) < total
+
+    res = {
+        "page": page,
+        "limit": limit,
+        "has_more": has_more,
+        "total": total,
+        "feeds": paged,
+    }
+
+    try:
+        await RedisHandle.client().set(cache_key, json.dumps(res), ex=180)
+    except Exception:
+        pass
+
+    return res
