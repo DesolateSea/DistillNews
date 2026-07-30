@@ -204,11 +204,24 @@ export default function NewsDetailPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-32">
         <div className="md:col-span-2">
           <h1 className="text-3xl font-bold mb-4">{newsItem.title}</h1>
-          <div className="text-sm text-muted-foreground mb-4">
-            Published on{" "}
-            {formatArticleDate(newsItem.publication_date)} by{" "}
-            {newsItem.author || "Unknown"} in {newsItem.category}
-          </div>
+          {(() => {
+            const rawAuthor =
+              newsItem.author ||
+              newsItem.source?.name ||
+              (newsItem.source as any)?.source;
+            const isValidAuthor =
+              rawAuthor &&
+              typeof rawAuthor === "string" &&
+              rawAuthor.trim() !== "" &&
+              !["unknown", "unknown author", "none", "null"].includes(rawAuthor.trim().toLowerCase()) &&
+              rawAuthor.trim().toLowerCase() !== (newsItem.title || "").trim().toLowerCase();
+            return (
+              <div className="text-sm text-muted-foreground mb-4">
+                Published on {formatArticleDate(newsItem.publication_date)}
+                {isValidAuthor ? ` by ${rawAuthor.trim()}` : ""} in {newsItem.category || "General"}
+              </div>
+            );
+          })()}
           {(() => {
             const mainImageUrl =
               newsItem.source?.image_url ||
