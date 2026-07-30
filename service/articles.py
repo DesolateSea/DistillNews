@@ -319,18 +319,24 @@ async def get_all_articles_pagination(
     user_profile: dict | None = None,
     page: int = 1,
     limit: int = 20,
+    category: str | None = None,
 ) -> PaginatedArticlesResponse:
     skip = (page - 1) * limit
+    clean_cat = (category or "").strip().lower()
+    if clean_cat == "all":
+        clean_cat = ""
 
     # Ensure Redis ZSET is primed
     await prime_redis_indexes()
 
+    zset_key = f"feed:{clean_cat}" if clean_cat else "feed:latest"
+
     # Try fast Redis ZSET pagination first over total article pool
     try:
         r = RedisHandle.client()
-        total = await r.zcard("feed:latest")
+        total = await r.zcard(zset_key)
         if total > 0:
-            aids = await r.zrevrange("feed:latest", skip, skip + limit - 1)
+            aids = await r.zrevrange(zset_key, skip, skip + limit - 1)
             if aids:
                 pipe = r.pipeline()
                 for aid in aids:
@@ -371,9 +377,13 @@ async def get_all_articles_pagination(
     # Fallback to article_store if Redis ZSET not primed
     raw = article_store.load_all_articles()
     cleaned = [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
+
+    if clean_cat:
+        cleaned = [art for art in cleaned if str(art.get("category") or "").strip().lower() == clean_cat]
+
     cleaned.sort(key=get_publication_timestamp, reverse=True)
 
-    if user_profile:
+    if user_profile and not clean_cat:
         prefs = user_profile.get("preferences", [])
         weights = user_profile.get("bias", {})
         interactions = user_profile.get("category_scores", {c: (0, 0.0) for c in prefs})
@@ -398,6 +408,7 @@ async def search_articles(
     query: str,
     page: int = 1,
     limit: int = 20,
+    category: str | None = None,
 ) -> PaginatedArticlesResponse:
     """
     Semantic Embedding-Based Article Search.
@@ -405,10 +416,14 @@ async def search_articles(
     cosine similarity for the search query with keyword matching fallback.
     """
     clean_query = (query or "").strip()
-    if not clean_query:
-        return await get_all_articles_pagination(page=page, limit=limit)
+    clean_cat = (category or "").strip().lower()
+    if clean_cat == "all":
+        clean_cat = ""
 
-    cache_key = f"cache:search:{clean_query.lower()}:{page}:{limit}"
+    if not clean_query:
+        return await get_all_articles_pagination(page=page, limit=limit, category=category)
+
+    cache_key = f"cache:search:{clean_query.lower()}:{clean_cat}:{page}:{limit}"
     try:
         r = RedisHandle.client()
         cached = await r.get(cache_key)
@@ -475,6 +490,9 @@ async def search_articles(
                 seen_ids.add(aid)
                 cm = _strip_heavy_fields(art)
                 matching_articles.append(cm)
+
+    if clean_cat:
+        matching_articles = [art for art in matching_articles if str(art.get("category") or "").strip().lower() == clean_cat]
 
     skip = (page - 1) * limit
     paged = matching_articles[skip : skip + limit]

@@ -18,14 +18,14 @@ async def _fetch_user_profile(current_user: dict | None) -> dict | None:
 
 
 @router.get("/feeds")
-async def feeds(current_user=Depends(get_optional_user)):
+async def feeds(category: str | None = None, current_user=Depends(get_optional_user)):
     user_profile = await _fetch_user_profile(current_user)
-    return await get_all_articles(user_profile=user_profile)
+    return await get_all_articles_pagination(user_profile=user_profile, page=1, limit=20, category=category)
 
 
 @router.get("/feeds/search")
-async def search_feeds(q: str = "", page: int = 1, limit: int = 20):
-    return await search_articles(query=q, page=page, limit=limit)
+async def search_feeds(q: str = "", category: str | None = None, page: int = 1, limit: int = 20):
+    return await search_articles(query=q, category=category, page=page, limit=limit)
 
 
 @router.get("/feeds/{article_id}")
@@ -69,6 +69,6 @@ async def store():
 
 
 @router.get("/feeds/{page}/{limit}")
-async def feeds_pagination(page: int, limit: int, current_user=Depends(get_optional_user)):
+async def feeds_pagination(page: int, limit: int, category: str | None = None, current_user=Depends(get_optional_user)):
     user_profile = await _fetch_user_profile(current_user)
-    return await get_all_articles_pagination(user_profile=user_profile, page=page, limit=limit)
+    return await get_all_articles_pagination(user_profile=user_profile, page=page, limit=limit, category=category)

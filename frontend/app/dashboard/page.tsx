@@ -28,6 +28,17 @@ interface ChatMessage {
   timestamp: Date;
 }
 
+const CATEGORIES = [
+  "All",
+  "Technology",
+  "Business",
+  "Science",
+  "Health",
+  "Entertainment",
+  "Sports",
+  "World",
+];
+
 export default function DashboardPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -40,10 +51,11 @@ export default function DashboardPage() {
   const isFetchingRef = useRef(false);
   const ITEMS_PER_PAGE = 9;
 
-  // Search state
+  // Search & Category state
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   // Chat state
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -53,22 +65,24 @@ export default function DashboardPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const fetchNews = useCallback(async (pageNum: number) => {
+  const fetchNews = useCallback(async (pageNum: number, catOverride?: string) => {
     const token = localStorage.getItem("SNAPtoken");
     setIsLoggedIn(!!token);
+    const catToUse = catOverride !== undefined ? catOverride : selectedCategory;
+    const catParam = catToUse === "All" ? undefined : catToUse;
 
     try {
       isFetchingRef.current = true;
       setLoadingMore(pageNum > 1);
 
       if (searchQuery) {
-        const { feeds, has_more } = await feedsApi.search(searchQuery, pageNum, ITEMS_PER_PAGE, token);
+        const { feeds, has_more } = await feedsApi.search(searchQuery, pageNum, ITEMS_PER_PAGE, catParam, token);
         const newArticles = feeds as NewsItem[];
         const hasMoreNext = newArticles.length > 0 && (has_more ?? newArticles.length === ITEMS_PER_PAGE);
         setHasMore(hasMoreNext);
         setNews((prev) => (pageNum === 1 ? newArticles : [...prev, ...newArticles]));
       } else {
-        const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE);
+        const { feeds, has_more } = await feedsApi.list(token, pageNum, ITEMS_PER_PAGE, catParam);
         const newArticles = feeds as NewsItem[];
         const hasMoreNext = newArticles.length > 0 && (has_more ?? newArticles.length === ITEMS_PER_PAGE);
         setHasMore(hasMoreNext);
@@ -81,7 +95,7 @@ export default function DashboardPage() {
       setIsLoading(false);
       setLoadingMore(false);
     }
-  }, [searchQuery]);
+  }, [searchQuery, selectedCategory]);
 
   const handleSearch = async (overrideQuery?: string) => {
     const queryToUse = overrideQuery !== undefined ? overrideQuery : searchInput;
@@ -93,9 +107,10 @@ export default function DashboardPage() {
     setSearchQuery(cleanQuery);
     setIsSearching(true);
     setPage(1);
+    const catParam = selectedCategory === "All" ? undefined : selectedCategory;
     try {
       const token = localStorage.getItem("SNAPtoken");
-      const { feeds, has_more } = await feedsApi.search(cleanQuery, 1, ITEMS_PER_PAGE, token);
+      const { feeds, has_more } = await feedsApi.search(cleanQuery, 1, ITEMS_PER_PAGE, catParam, token);
       const searchArticles = feeds as NewsItem[];
       setNews(searchArticles);
       setHasMore(!!has_more);
@@ -111,14 +126,39 @@ export default function DashboardPage() {
     setSearchQuery("");
     setPage(1);
     setIsSearching(true);
+    const catParam = selectedCategory === "All" ? undefined : selectedCategory;
     try {
       const token = localStorage.getItem("SNAPtoken");
-      const { feeds, has_more } = await feedsApi.list(token, 1, ITEMS_PER_PAGE);
+      const { feeds, has_more } = await feedsApi.list(token, 1, ITEMS_PER_PAGE, catParam);
       const newArticles = feeds as NewsItem[];
       setNews(newArticles);
       setHasMore(!!has_more);
     } catch (err) {
       console.error("Error resetting feed:", err);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleCategorySelect = async (category: string) => {
+    if (selectedCategory === category) return;
+    setSelectedCategory(category);
+    setPage(1);
+    setIsSearching(true);
+    const catParam = category === "All" ? undefined : category;
+    const token = localStorage.getItem("SNAPtoken");
+    try {
+      if (searchQuery) {
+        const { feeds, has_more } = await feedsApi.search(searchQuery, 1, ITEMS_PER_PAGE, catParam, token);
+        setNews(feeds as NewsItem[]);
+        setHasMore(!!has_more);
+      } else {
+        const { feeds, has_more } = await feedsApi.list(token, 1, ITEMS_PER_PAGE, catParam);
+        setNews(feeds as NewsItem[]);
+        setHasMore(!!has_more);
+      }
+    } catch (err) {
+      console.error("Error filtering by category:", err);
     } finally {
       setIsSearching(false);
     }
@@ -329,6 +369,26 @@ export default function DashboardPage() {
               )}
             </Button>
           </div>
+        </div>
+
+        {/* Category Filter Pills Bar */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none">
+          {CATEGORIES.map((cat) => {
+            const isSelected = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => handleCategorySelect(cat)}
+                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap border ${
+                  isSelected
+                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                    : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
         </div>
 
         {!isLoggedIn && (

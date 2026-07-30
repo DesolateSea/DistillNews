@@ -70,16 +70,24 @@ export const preferencesApi = {
 };
 
 export const feedsApi = {
-  list: (token?: string | null, page?: number, limit?: number) =>
-    apiRequest<{ feeds: NewsItem[]; has_more?: boolean }>(
-      page && limit ? `/feeds/${page}/${limit}` : "/feeds",
+  list: (token?: string | null, page?: number, limit?: number, category?: string | null) => {
+    const p = page || 1;
+    const l = limit || 20;
+    const catQuery = category ? `?category=${encodeURIComponent(category)}` : "";
+    return apiRequest<{ feeds: NewsItem[]; has_more?: boolean }>(
+      `/feeds/${p}/${l}${catQuery}`,
       { token: token || undefined }
-    ),
-  search: (query: string, page?: number, limit?: number, token?: string | null) =>
-    apiRequest<{ feeds: NewsItem[]; has_more?: boolean; total?: number }>(
-      `/feeds/search?q=${encodeURIComponent(query)}&page=${page || 1}&limit=${limit || 20}`,
+    );
+  },
+  search: (query: string, page?: number, limit?: number, category?: string | null, token?: string | null) => {
+    const p = page || 1;
+    const l = limit || 20;
+    const catQuery = category ? `&category=${encodeURIComponent(category)}` : "";
+    return apiRequest<{ feeds: NewsItem[]; has_more?: boolean; total?: number }>(
+      `/feeds/search?q=${encodeURIComponent(query)}&page=${p}&limit=${l}${catQuery}`,
       { token: token || undefined }
-    ),
+    );
+  },
   get: (articleId: string, token?: string | null) =>
     apiRequest<NewsItem>(`/feeds/${encodeURIComponent(articleId)}`, {
       token: token || undefined,
