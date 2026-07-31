@@ -526,7 +526,7 @@ async def search_articles(
     }
 
     try:
-        await RedisHandle.client().set(cache_key, json.dumps(res), ex=180)
+        await RedisHandle.client().set(cache_key, json.dumps(res), ex=300)
     except Exception:
         pass
 
