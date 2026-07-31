@@ -4,77 +4,73 @@ import React, { createContext, useContext, useEffect, useState, useCallback } fr
 import {
   SYSTEM_FEATURE_FLAGS,
   FeatureFlag,
-  getEnabledFeatureFlags,
-  saveEnabledFeatureFlags,
+  getAllFeatureFlags,
+  isFeatureEnabled as readFlag,
   toggleFeatureFlag as toggleFlagInStorage,
   resetFeatureFlagsToDefault,
 } from "./feature-flags";
 
 interface FeatureFlagsContextType {
-  enabledFlags: string[];
+  /** Map of flagId → enabled (kept in sync with localStorage) */
+  flagMap: Record<string, boolean>;
   systemFlags: FeatureFlag[];
   isFeatureEnabled: (flagId: string) => boolean;
   toggleFeatureFlag: (flagId: string) => void;
-  setFeatureFlags: (flagIds: string[]) => void;
   resetToDefaults: () => void;
   isLoaded: boolean;
 }
 
 const FeatureFlagsContext = createContext<FeatureFlagsContextType>({
-  enabledFlags: [],
+  flagMap: {},
   systemFlags: SYSTEM_FEATURE_FLAGS,
   isFeatureEnabled: () => false,
   toggleFeatureFlag: () => {},
-  setFeatureFlags: () => {},
   resetToDefaults: () => {},
   isLoaded: false,
 });
 
 export function FeatureFlagsProvider({ children }: { children: React.ReactNode }) {
-  const [enabledFlags, setEnabledFlags] = useState<string[]>([]);
+  const [flagMap, setFlagMap] = useState<Record<string, boolean>>({});
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const loadFlagsFromStorage = useCallback(() => {
-    const flags = getEnabledFeatureFlags();
-    setEnabledFlags(flags);
+  const syncFromStorage = useCallback(() => {
+    setFlagMap(getAllFeatureFlags());
     setIsLoaded(true);
   }, []);
 
   useEffect(() => {
-    loadFlagsFromStorage();
+    // Remove legacy single-array key from the old flag system
+    localStorage.removeItem("distill_news_enabled_feature_flags");
 
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "distill_news_enabled_feature_flags" || !e.key) {
-        loadFlagsFromStorage();
+    syncFromStorage();
+
+    // React to cross-tab changes (native storage event)
+    const handleStorageEvent = (e: StorageEvent) => {
+      if (e.key?.startsWith("ff_") || e.key === null) {
+        syncFromStorage();
       }
     };
 
-    const handleCustomUpdate = () => {
-      loadFlagsFromStorage();
-    };
+    // React to same-tab changes (custom event dispatched by setFeatureFlag)
+    const handleCustomEvent = () => syncFromStorage();
 
-    window.addEventListener("storage", handleStorageChange);
-    window.addEventListener("feature_flags_updated", handleCustomUpdate);
+    window.addEventListener("storage", handleStorageEvent);
+    window.addEventListener("feature_flag_changed", handleCustomEvent);
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("feature_flags_updated", handleCustomUpdate);
+      window.removeEventListener("storage", handleStorageEvent);
+      window.removeEventListener("feature_flag_changed", handleCustomEvent);
     };
-  }, [loadFlagsFromStorage]);
+  }, [syncFromStorage]);
 
   const isFeatureEnabled = useCallback(
-    (flagId: string) => {
-      return enabledFlags.includes(flagId);
-    },
-    [enabledFlags]
+    (flagId: string) => flagMap[flagId] ?? readFlag(flagId),
+    [flagMap]
   );
 
   const toggleFeatureFlag = useCallback((flagId: string) => {
     toggleFlagInStorage(flagId);
-  }, []);
-
-  const setFeatureFlags = useCallback((flagIds: string[]) => {
-    saveEnabledFeatureFlags(flagIds);
+    // syncFromStorage will be triggered by the feature_flag_changed event
   }, []);
 
   const resetToDefaults = useCallback(() => {
@@ -84,11 +80,10 @@ export function FeatureFlagsProvider({ children }: { children: React.ReactNode }
   return (
     <FeatureFlagsContext.Provider
       value={{
-        enabledFlags,
+        flagMap,
         systemFlags: SYSTEM_FEATURE_FLAGS,
         isFeatureEnabled,
         toggleFeatureFlag,
-        setFeatureFlags,
         resetToDefaults,
         isLoaded,
       }}
@@ -114,7 +109,7 @@ export function useFeatureFlags() {
 }
 
 /**
- * Component wrapper to render children only if specified feature flag is enabled.
+ * Component wrapper: renders children only when the named flag is enabled.
  */
 export function FeatureFlagGuard({
   name,

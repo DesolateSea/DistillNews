@@ -1,7 +1,11 @@
 /**
  * LocalStorage-based Feature Flag System for DistillNews Frontend.
  *
- * Feature flags are stored and read directly from LocalStorage.
+ * Each flag is stored as its own individual key in localStorage:
+ *   ff_ai_chat           = "true" | "false"
+ *   ff_semantic_search   = "true" | "false"
+ *   ff_ai_chat_robot_design = "true" | "false"
+ *   ... etc.
  */
 
 export interface FeatureFlag {
@@ -11,12 +15,18 @@ export interface FeatureFlag {
   defaultEnabled: boolean;
 }
 
-// Master list of system feature flags
+// Master list of all system feature flags
 export const SYSTEM_FEATURE_FLAGS: FeatureFlag[] = [
   {
     id: "ai_chat",
     name: "AI Chat Assistant",
     description: "RAG AI news assistant drawer in the dashboard",
+    defaultEnabled: true,
+  },
+  {
+    id: "ai_chat_robot_design",
+    name: "AI Chat: Robot Button Design",
+    description: "Show animated robot avatar button for chat. When off, shows a plain icon button instead.",
     defaultEnabled: true,
   },
   {
@@ -61,80 +71,97 @@ export const SYSTEM_FEATURE_FLAGS: FeatureFlag[] = [
     description: "Light/Dark theme switcher button in navigation header",
     defaultEnabled: true,
   },
+  {
+    id: "landing_hero_badge",
+    name: "Landing: Hero Badge",
+    description: "Shows the 'AI-summarised news, updated daily' pill above the hero headline",
+    defaultEnabled: true,
+  },
+  {
+    id: "landing_sample_articles",
+    name: "Landing: Sample Articles",
+    description: "Shows example news cards on the landing page so users preview the feed",
+    defaultEnabled: true,
+  },
+  {
+    id: "landing_how_it_works",
+    name: "Landing: How It Works",
+    description: "Shows the 3-step explanation section on the landing page",
+    defaultEnabled: true,
+  },
+  {
+    id: "landing_auto_vanish_info",
+    name: "Landing: Auto-Vanishing Info Banner",
+    description: "Auto-fades out the DistillNews description text after a few seconds",
+    defaultEnabled: true,
+  },
+  {
+    id: "ai_chat_robot_design",
+    name: "AI Chat: Robot Button Design",
+    description: "Show animated robot avatar button for chat. When off, shows a plain icon button instead.",
+    defaultEnabled: true,
+  },
 ];
 
-const LOCAL_STORAGE_KEY = "distill_news_enabled_feature_flags";
+/** localStorage key prefix for individual flag entries */
+const FLAG_KEY_PREFIX = "ff_";
 
-/**
- * Get the list of currently enabled feature flag IDs from LocalStorage.
- * If none exist in LocalStorage, initializes with default enabled flags.
- */
-export function getEnabledFeatureFlags(): string[] {
-  if (typeof window === "undefined") {
-    return SYSTEM_FEATURE_FLAGS.filter((f) => f.defaultEnabled).map((f) => f.id);
-  }
-
-  try {
-    const item = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (!item) {
-      const defaultList = SYSTEM_FEATURE_FLAGS.filter((f) => f.defaultEnabled).map((f) => f.id);
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(defaultList));
-      return defaultList;
-    }
-    return JSON.parse(item);
-  } catch (err) {
-    console.error("Error reading feature flags from localStorage:", err);
-    return SYSTEM_FEATURE_FLAGS.filter((f) => f.defaultEnabled).map((f) => f.id);
-  }
+function storageKey(flagId: string): string {
+  return `${FLAG_KEY_PREFIX}${flagId}`;
 }
 
 /**
- * Save the list of enabled feature flag IDs to LocalStorage.
- */
-export function saveEnabledFeatureFlags(flags: string[]): void {
-  if (typeof window === "undefined") return;
-  try {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(flags));
-    // Dispatch custom event so reactive listeners update immediately
-    window.dispatchEvent(new Event("feature_flags_updated"));
-  } catch (err) {
-    console.error("Error writing feature flags to localStorage:", err);
-  }
-}
-
-/**
- * Check if a specific feature flag is currently enabled in LocalStorage.
+ * Read a single flag from localStorage.
+ * Falls back to the flag's defaultEnabled if the key doesn't exist yet.
  */
 export function isFeatureEnabled(flagId: string): boolean {
-  const enabledFlags = getEnabledFeatureFlags();
-  return enabledFlags.includes(flagId);
+  if (typeof window === "undefined") {
+    const flag = SYSTEM_FEATURE_FLAGS.find((f) => f.id === flagId);
+    return flag?.defaultEnabled ?? false;
+  }
+  const raw = localStorage.getItem(storageKey(flagId));
+  if (raw === null) {
+    // First visit — write the default and return it
+    const flag = SYSTEM_FEATURE_FLAGS.find((f) => f.id === flagId);
+    const defaultVal = flag?.defaultEnabled ?? false;
+    localStorage.setItem(storageKey(flagId), String(defaultVal));
+    return defaultVal;
+  }
+  return raw === "true";
 }
 
 /**
- * Toggle a feature flag in LocalStorage and return its new enabled state.
+ * Set a single flag explicitly.
+ */
+export function setFeatureFlag(flagId: string, enabled: boolean): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(storageKey(flagId), String(enabled));
+  window.dispatchEvent(new CustomEvent("feature_flag_changed", { detail: { flagId, enabled } }));
+}
+
+/**
+ * Toggle a single flag and return its new state.
  */
 export function toggleFeatureFlag(flagId: string): boolean {
-  const enabledFlags = getEnabledFeatureFlags();
-  let updatedFlags: string[];
-  let newState: boolean;
-
-  if (enabledFlags.includes(flagId)) {
-    updatedFlags = enabledFlags.filter((id) => id !== flagId);
-    newState = false;
-  } else {
-    updatedFlags = [...enabledFlags, flagId];
-    newState = true;
-  }
-
-  saveEnabledFeatureFlags(updatedFlags);
+  const newState = !isFeatureEnabled(flagId);
+  setFeatureFlag(flagId, newState);
   return newState;
 }
 
 /**
- * Reset all feature flags in LocalStorage to system defaults.
+ * Return the enabled state of all known flags as a plain object.
  */
-export function resetFeatureFlagsToDefault(): string[] {
-  const defaultList = SYSTEM_FEATURE_FLAGS.filter((f) => f.defaultEnabled).map((f) => f.id);
-  saveEnabledFeatureFlags(defaultList);
-  return defaultList;
+export function getAllFeatureFlags(): Record<string, boolean> {
+  return Object.fromEntries(
+    SYSTEM_FEATURE_FLAGS.map((f) => [f.id, isFeatureEnabled(f.id)])
+  );
+}
+
+/**
+ * Reset all flags to their system defaults.
+ */
+export function resetFeatureFlagsToDefault(): void {
+  SYSTEM_FEATURE_FLAGS.forEach((f) => {
+    setFeatureFlag(f.id, f.defaultEnabled);
+  });
 }

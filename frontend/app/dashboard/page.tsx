@@ -25,6 +25,7 @@ import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeatureFlagGuard } from "@/lib/feature-flags-context";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ChatFab } from "@/components/ChatFab";
 
 interface ChatMessage {
   text: string;
@@ -479,12 +480,7 @@ export default function DashboardPage() {
       <FeatureFlagGuard name="ai_chat">
         <div className="fixed bottom-6 right-6 z-50">
           {!isChatOpen ? (
-            <Button
-              onClick={toggleChat}
-              className="h-14 w-14 rounded-full shadow-lg flex items-center justify-center"
-            >
-              <MessageCircle className="h-6 w-6" />
-            </Button>
+            <ChatFab onClick={toggleChat} />
           ) : (
           <div
             className="bg-card border border-border rounded-lg shadow-xl w-80 sm:w-96 flex flex-col"

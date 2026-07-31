@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MessageCircle, X, Send } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
+import { ChatFab } from "@/components/ChatFab";
 
 interface ChatMessage {
   text: string;
@@ -315,12 +316,7 @@ export default function NewsDetailPage() {
       {/* Floating Chat Button */}
       <div className="fixed bottom-6 right-6 z-50">
         {!isChatOpen ? (
-          <Button
-            onClick={toggleChat}
-            className="h-14 w-14 rounded-full shadow-lg flex items-center justify-center"
-          >
-            <MessageCircle className="h-6 w-6" />
-          </Button>
+          <ChatFab onClick={toggleChat} />
         ) : (
           <div
             className="bg-card border border-border rounded-lg shadow-xl w-80 sm:w-96 flex flex-col"
