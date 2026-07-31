@@ -99,11 +99,6 @@ async def prime_redis_indexes(force: bool = False):
     """
     try:
         r = RedisHandle.client()
-        exists = await r.exists("feed:latest")
-        card = await r.zcard("feed:latest") if exists else 0
-        if exists and card > 100 and not force:
-            return
-
         meta_list = article_store.load_all_articles()
         if not meta_list:
             meta_list = article_store.list_articles()
@@ -130,6 +125,8 @@ async def prime_redis_indexes(force: bool = False):
                 pipe.zadd("feed:trending", {aid: pop})
             await pipe.execute()
 
+        await r.delete("cache:feed:default")
+
         if log:
             log.db("Redis Primed", f"Successfully indexed {len(meta_list)} articles")
     except Exception as e:
@@ -154,6 +151,7 @@ async def sync_article_to_redis(article: dict):
         pipe.zadd("feed:latest", {aid: ts})
         pipe.zadd(f"feed:{cat}", {aid: ts})
         pipe.zadd("feed:trending", {aid: pop})
+        pipe.delete("cache:feed:default")
         await pipe.execute()
     except Exception:
         pass
@@ -332,13 +330,20 @@ async def get_all_articles_pagination(
     zset_key = f"feed:{clean_cat}" if clean_cat else "feed:latest"
 
     # Try fast Redis ZSET + Hash retrieval
+    total_count = 0
     clean_articles = []
     try:
         r = RedisHandle.client()
         total_zset = await r.zcard(zset_key)
         if total_zset > 0:
-            fetch_count = 200 if user_profile else (skip + limit)
-            aids = await r.zrevrange(zset_key, 0, fetch_count - 1)
+            total_count = total_zset
+            # For unauthenticated users, slice directly from ZSET for requested page
+            # For authenticated users, fetch candidate pool for personalization
+            if user_profile:
+                aids = await r.zrevrange(zset_key, 0, 499)
+            else:
+                aids = await r.zrevrange(zset_key, skip, skip + limit - 1)
+
             if aids:
                 pipe = r.pipeline()
                 for aid in aids:
@@ -370,9 +375,10 @@ async def get_all_articles_pagination(
     if not clean_articles:
         raw = article_store.load_all_articles()
         clean_articles = [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
+        total_count = len(clean_articles)
 
     # Filter by category if explicitly specified and not already filtered by ZSET
-    if clean_cat and not clean_articles:
+    if clean_cat and not user_profile and not clean_articles:
         clean_articles = [
             a for a in clean_articles
             if isinstance(a, dict) and _normalize_cat(a.get("category")) == clean_cat
@@ -384,11 +390,11 @@ async def get_all_articles_pagination(
         raw_weights = user_profile.get("bias", {})
         interactions = user_profile.get("category_scores", {cat: (0, 0.0) for cat in preferences})
         sorted_articles = sort_articles(preferences, raw_weights, interactions, clean_articles)
+        total_count = len(sorted_articles)
+        paged = sorted_articles[skip : skip + limit]
     else:
-        sorted_articles = sorted(clean_articles, key=get_publication_timestamp, reverse=True)
+        paged = clean_articles
 
-    total_count = len(sorted_articles)
-    paged = sorted_articles[skip : skip + limit]
     has_more = (skip + len(paged)) < total_count
 
     return {

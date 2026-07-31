@@ -1,4 +1,4 @@
-const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/$/, "");
+const API_URL = (process.env.NEXT_PUBLIC_API_URL || "__NEXT_PUBLIC_API_URL_PLACEHOLDER__").replace(/\/$/, "");
 
 export type ApiRequestOptions = Omit<RequestInit, "body"> & {
   body?: unknown;
