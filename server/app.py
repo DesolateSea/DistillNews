@@ -3,7 +3,9 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from server.routes import auth_routes, user_routes, feed_routes, chat_routes, weather_routes
+from server.services.article_service import get_all_articles
 from service.db.mongo import MongoHandle
 from service.db.redis import RedisHandle
 from service.articles import prime_redis_indexes
@@ -16,6 +18,10 @@ async def lifespan(app: FastAPI):
     await RedisHandle.connect()
     await MongoHandle.create_indexes()
     await prime_redis_indexes()
+    try:
+        await get_all_articles(current_user=None)
+    except Exception:
+        pass
     yield
     MongoHandle.disconnect()
     await RedisHandle.disconnect()
@@ -35,6 +41,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 app.include_router(auth_routes.router)
 app.include_router(user_routes.router)
