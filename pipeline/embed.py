@@ -1,19 +1,23 @@
-"""
-Article Embedding Pipeline Stage.
-
-Generates vector embeddings for processed news articles and saves them
-into each article's JSON file so the RAG Chatbot can perform semantic retrieval.
-"""
-
+import math
 from service.db import FileStore, create_article_store
 from config import config
 from pipeline.embeddings.factory import create_embedding_provider
 from service.logger import log
 
 
+def _normalize_vector(vec: list[float]) -> list[float]:
+    if not vec:
+        return []
+    sq_sum = sum(x * x for x in vec)
+    if sq_sum == 0:
+        return vec
+    norm = math.sqrt(sq_sum)
+    return [x / norm for x in vec]
+
+
 def generate_embeddings(progress_callback=None, provider_name=None, stop_checker=None):
     """
-    Generate vector embeddings for all processed articles that do not have them yet.
+    Generate pre-normalized vector embeddings in 32-article batches for all processed articles.
     """
     log.section("Article Embedding Pipeline Stage")
 
@@ -35,42 +39,49 @@ def generate_embeddings(progress_callback=None, provider_name=None, stop_checker
 
     log.info(f"Using Embedding Provider: {target_provider}", f"{len(articles)} articles total")
 
-    total = len(articles)
+    unembedded = []
+    for article in articles:
+        if not (article.get("embedding") and isinstance(article["embedding"], list) and len(article["embedding"]) > 0):
+            title = article.get("title", "")
+            content = article.get("content") or article.get("markdown_content") or article.get("summary") or ""
+            text_to_embed = f"{title}\n\n{content}".strip()
+            if text_to_embed:
+                unembedded.append((article, text_to_embed))
+
+    total = len(unembedded)
+    if total == 0:
+        log.success("Embedding stage complete", "All articles already have pre-normalized vector embeddings")
+        return
+
+    log.info("Starting batched embedding generation", f"{total} unembedded articles queued")
+
+    batch_size = 32
     updated_count = 0
 
-    for idx, article in enumerate(articles, 1):
+    for i in range(0, total, batch_size):
         if stop_checker and stop_checker():
             log.warn("Cancellation requested", "Stopping embedding stage immediately")
             break
 
-        article_id = article.get('id', 'unknown')
+        batch = unembedded[i : i + batch_size]
+        batch_texts = [text for _, text in batch]
 
         if progress_callback:
-            progress_callback(idx, total, f"Embedding {article_id[:16]}")
+            progress_callback(min(i + len(batch), total), total, f"Embedding batch {i // batch_size + 1}")
 
         try:
-            
-            # Skip if embedding vector already exists and is non-empty
-            if article.get("embedding") and isinstance(article["embedding"], list) and len(article["embedding"]) > 0:
-                continue
-
-            title = article.get("title", "")
-            content = article.get("content") or article.get("markdown_content") or article.get("summary") or ""
-            text_to_embed = f"{title}\n\n{content}".strip()
-
-            if not text_to_embed:
-                continue
-
-            vector = provider.embed(text_to_embed)
-            if vector:
-                article["embedding"] = vector
-                article_store.save_article(article, article_id=article.get('id'))
-                updated_count += 1
-                log.info(f"Embedded [{idx}/{total}]", f"{article_id[:16]} (dims: {len(vector)})")
+            vectors = provider.embed_many(batch_texts)
+            for (article, _), vector in zip(batch, vectors):
+                if vector:
+                    norm_vec = _normalize_vector(vector)
+                    article["embedding"] = norm_vec
+                    article_store.save_article(article, article_id=article.get('id'))
+                    updated_count += 1
+            log.info(f"Embedded batch [{min(i + len(batch), total)}/{total}]", f"{len(vectors)} vectors generated & L2-normalized")
         except Exception as e:
-            log.error(f"Error embedding {article_id[:16]}", str(e))
+            log.error(f"Error embedding batch starting at index {i}", str(e))
 
-    log.success("Embedding stage complete", f"Generated embeddings for {updated_count} articles")
+    log.success("Embedding stage complete", f"Generated & pre-normalized embeddings for {updated_count} articles")
 
 
 if __name__ == "__main__":
