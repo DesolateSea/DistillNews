@@ -20,9 +20,11 @@ import { Newspaper } from "lucide-react";
 import { authApi, preferencesApi } from "@/lib/api";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/i18n-context";
 
 export default function AuthPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [step, setStep] = useState<"email" | "otp">("email");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
