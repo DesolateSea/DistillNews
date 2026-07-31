@@ -44,21 +44,14 @@ class MongoHandle:
 
     @classmethod
     async def create_indexes(cls):
-        """Create database indexes for optimized query performance."""
+        """Create database indexes for user collection."""
         if cls._db is None:
             return
         try:
-            articles_col = cls.collection("articles")
-            await articles_col.create_index("id", unique=True, sparse=True)
-            await articles_col.create_index("category")
-            await articles_col.create_index([("published_at", -1)])
-            await articles_col.create_index([("popularity", -1)])
-            await articles_col.create_index([("created_at", -1)])
-
             users_col = cls.collection("SNAPUsers")
             await users_col.create_index("email", unique=True)
             if log:
-                log.db("MongoDB Indexes Created", "articles & SNAPUsers indexed successfully")
+                log.db("MongoDB Indexes Created", "SNAPUsers indexed successfully")
         except Exception as e:
             if log:
                 log.warn(f"Failed to create MongoDB indexes: {e}")
