@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ChatMessage {
   text: string;
@@ -42,6 +43,7 @@ const CATEGORIES = [
 
 export default function DashboardPage() {
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -67,6 +69,7 @@ export default function DashboardPage() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
       setIsLoggedIn(!!token);
@@ -294,7 +297,9 @@ export default function DashboardPage() {
                 Preferences
               </Button>
             </Link>
-            {isLoggedIn ? (
+            {!mounted ? (
+              <Skeleton className="h-8 w-20 rounded" />
+            ) : isLoggedIn ? (
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
                 Sign Out
@@ -315,11 +320,15 @@ export default function DashboardPage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
             <h1 className="text-3xl font-bold">
-              {searchQuery
-                ? `Search Results for "${searchQuery}"`
-                : isLoggedIn
-                ? "Your Personalized News Feed"
-                : "Latest News"}
+              {!mounted ? (
+                <Skeleton className="h-9 w-72 rounded inline-block" />
+              ) : searchQuery ? (
+                `Search Results for "${searchQuery}"`
+              ) : isLoggedIn ? (
+                "Your Personalized News Feed"
+              ) : (
+                "Latest News"
+              )}
             </h1>
             {searchQuery && (
               <p className="text-sm text-muted-foreground mt-1 flex items-center gap-2">
