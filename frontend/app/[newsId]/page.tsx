@@ -323,7 +323,7 @@ export default function NewsDetailPage() {
           </Button>
         ) : (
           <div
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-80 sm:w-96 flex flex-col"
+            className="bg-card border border-border rounded-lg shadow-xl w-80 sm:w-96 flex flex-col"
             style={{ height: "500px" }}
           >
             {/* Chat Header */}
@@ -373,15 +373,15 @@ export default function NewsDetailPage() {
                     <div className="mb-4 flex justify-start">
                       <div className="max-w-3/4 p-3 rounded-lg bg-muted flex space-x-1">
                         <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
+                          className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce"
                           style={{ animationDelay: "0ms" }}
                         ></div>
                         <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
+                          className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce"
                           style={{ animationDelay: "200ms" }}
                         ></div>
                         <div
-                          className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
+                          className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce"
                           style={{ animationDelay: "400ms" }}
                         ></div>
                       </div>

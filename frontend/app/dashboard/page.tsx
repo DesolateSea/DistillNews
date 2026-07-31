@@ -23,6 +23,8 @@ import {
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FeatureFlagGuard } from "@/lib/feature-flags-context";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface ChatMessage {
   text: string;
@@ -291,6 +293,7 @@ export default function DashboardPage() {
             <h1 className="text-2xl font-bold">DistillNews</h1>
           </Link>
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Link href="/preferences">
               <Button variant="outline" size="sm">
                 <Settings className="h-4 w-4 mr-2" />
@@ -344,69 +347,75 @@ export default function DashboardPage() {
           </div>
 
           {/* Semantic Search Bar */}
-          <div className="relative w-full md:w-96">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Search"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleSearch();
-              }}
-              className="w-full pl-9 pr-16 py-2 bg-background border border-input rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
-            />
-            <Button
-              size="sm"
-              onClick={() => handleSearch()}
-              disabled={isSearching}
-              className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full h-7 px-3 text-xs flex items-center justify-center min-w-[60px]"
-            >
-              {isSearching ? (
-                <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-primary-foreground" />
-              ) : (
-                "Search"
-              )}
-            </Button>
-          </div>
+          <FeatureFlagGuard name="semantic_search">
+            <div className="relative w-full md:w-96">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSearch();
+                }}
+                className="w-full pl-9 pr-16 py-2 bg-background border border-input rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
+              />
+              <Button
+                size="sm"
+                onClick={() => handleSearch()}
+                disabled={isSearching}
+                className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full h-7 px-3 text-xs flex items-center justify-center min-w-[60px]"
+              >
+                {isSearching ? (
+                  <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-primary-foreground" />
+                ) : (
+                  "Search"
+                )}
+              </Button>
+            </div>
+          </FeatureFlagGuard>
         </div>
 
         {/* Category Filter Pills Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none">
-          {CATEGORIES.map((cat) => {
-            const isSelected = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => handleCategorySelect(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap border ${
-                  isSelected
-                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {!isLoading && !isLoggedIn && (
-          <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <p className="font-semibold text-sm text-foreground">Browsing as Guest</p>
-              <p className="text-xs text-muted-foreground">
-                Sign in to set your favorite news topics and enjoy an AI-personalized feed.
-              </p>
-            </div>
-            <Link href="/register">
-              <Button size="sm" className="whitespace-nowrap">
-                <LogIn className="h-4 w-4 mr-2" />
-                Sign In to Personalize
-              </Button>
-            </Link>
+        <FeatureFlagGuard name="category_filters">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none">
+            {CATEGORIES.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => handleCategorySelect(cat)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap border ${
+                    isSelected
+                      ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                      : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
           </div>
-        )}
+        </FeatureFlagGuard>
+
+        <FeatureFlagGuard name="guest_banner">
+          {!isLoading && !isLoggedIn && (
+            <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <p className="font-semibold text-sm text-foreground">Browsing as Guest</p>
+                <p className="text-xs text-muted-foreground">
+                  Sign in to set your favorite news topics and enjoy an AI-personalized feed.
+                </p>
+              </div>
+              <Link href="/register">
+                <Button size="sm" className="whitespace-nowrap">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign In to Personalize
+                </Button>
+              </Link>
+            </div>
+          )}
+        </FeatureFlagGuard>
 
         {/* Empty state fallback */}
         {!isLoading && news.length === 0 && (
@@ -467,17 +476,18 @@ export default function DashboardPage() {
       </footer>
 
       {/* Floating Chat Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        {!isChatOpen ? (
-          <Button
-            onClick={toggleChat}
-            className="h-14 w-14 rounded-full shadow-lg flex items-center justify-center"
-          >
-            <MessageCircle className="h-6 w-6" />
-          </Button>
-        ) : (
+      <FeatureFlagGuard name="ai_chat">
+        <div className="fixed bottom-6 right-6 z-50">
+          {!isChatOpen ? (
+            <Button
+              onClick={toggleChat}
+              className="h-14 w-14 rounded-full shadow-lg flex items-center justify-center"
+            >
+              <MessageCircle className="h-6 w-6" />
+            </Button>
+          ) : (
           <div
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-80 sm:w-96 flex flex-col"
+            className="bg-card border border-border rounded-lg shadow-xl w-80 sm:w-96 flex flex-col"
             style={{ height: "500px" }}
           >
             {/* Chat Header */}
@@ -525,9 +535,9 @@ export default function DashboardPage() {
                   {isTyping && (
                     <div className="mb-4 flex justify-start">
                       <div className="max-w-3/4 p-3 rounded-lg bg-muted flex space-x-1">
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
+                        <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                        <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
+                        <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
                       </div>
                     </div>
                   )}
@@ -558,6 +568,7 @@ export default function DashboardPage() {
           </div>
         )}
       </div>
+      </FeatureFlagGuard>
     </div>
   );
 }

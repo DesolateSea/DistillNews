@@ -1,6 +1,7 @@
 import type React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   ArrowRight,
   Newspaper,
@@ -14,13 +15,14 @@ import {
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="border-b">
+      <header className="border-b bg-background/95 backdrop-blur z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
             <h1 className="text-2xl font-bold">DistillNews</h1>
           </div>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Link href="/dashboard">
               <Button variant="outline">
                 Browse News

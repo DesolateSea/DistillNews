@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/card";
 import { Newspaper } from "lucide-react";
 import { authApi, preferencesApi } from "@/lib/api";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -179,11 +180,12 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen flex flex-col bg-muted/30">
       <header className="border-b bg-background/80 backdrop-blur">
-        <div className="container mx-auto flex max-w-6xl items-center px-4 py-5">
+        <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
           <Link href="/" className="flex items-center gap-2">
             <Newspaper className="h-6 w-6 text-primary" />
             <h1 className="text-xl font-bold tracking-tight">DistillNews</h1>
           </Link>
+          <ThemeToggle />
         </div>
       </header>
 

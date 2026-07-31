@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
@@ -18,28 +21,22 @@ import {
   ArrowLeft,
   LogIn,
   Sparkles,
-  Laptop,
-  Briefcase,
-  Atom,
-  HeartPulse,
-  Film,
-  Trophy,
-  Globe,
-  Check,
   CheckCheck,
   RotateCcw,
-  Sliders,
 } from "lucide-react";
 import { preferencesApi } from "@/lib/api";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
+type DesignVariant = "minimal" | "classic";
 
 const newsCategories = [
-  { id: "Technology", label: "Technology", description: "AI, gadgets, software & big tech", icon: Laptop, color: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
-  { id: "Business", label: "Business", description: "Markets, economy, startups & finance", icon: Briefcase, color: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20" },
-  { id: "Science", label: "Science", description: "Space, physics, climate & discovery", icon: Atom, color: "text-purple-500 bg-purple-500/10 border-purple-500/20" },
-  { id: "Health", label: "Health", description: "Medicine, wellness, fitness & research", icon: HeartPulse, color: "text-rose-500 bg-rose-500/10 border-rose-500/20" },
-  { id: "Entertainment", label: "Entertainment", description: "Movies, music, culture & streaming", icon: Film, color: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
-  { id: "Sports", label: "Sports", description: "Football, basketball, Olympics & games", icon: Trophy, color: "text-orange-500 bg-orange-500/10 border-orange-500/20" },
-  { id: "World", label: "World News", description: "Geopolitics, diplomacy & global events", icon: Globe, color: "text-cyan-500 bg-cyan-500/10 border-cyan-500/20" },
+  { id: "Technology", label: "Technology", description: "AI, software, gadgets & tech news" },
+  { id: "Business", label: "Business", description: "Markets, startups & global economy" },
+  { id: "Science", label: "Science", description: "Space, physics & environmental research" },
+  { id: "Health", label: "Health", description: "Medicine, wellness & healthcare" },
+  { id: "Entertainment", label: "Entertainment", description: "Movies, music & culture" },
+  { id: "Sports", label: "Sports", description: "Athletics, leagues & major tournaments" },
+  { id: "World", label: "World News", description: "Global affairs & international news" },
 ];
 
 export default function PreferencesPage() {
@@ -50,33 +47,44 @@ export default function PreferencesPage() {
   const [isFetchingPrefs, setIsFetchingPrefs] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Feature Flag: Read directly from localStorage or env
+  const [designVariant, setDesignVariant] = useState<DesignVariant>("minimal");
+
   useEffect(() => {
     setMounted(true);
-    const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
-    if (!token) {
-      setIsLoggedIn(false);
-      setIsFetchingPrefs(false);
-      return;
-    }
+    if (typeof window !== "undefined") {
+      // Feature Flag Lookup from localStorage or env
+      const storedVariant = localStorage.getItem("PREFERENCES_DESIGN_VARIANT") as DesignVariant | null;
+      const envVariant = (process.env.NEXT_PUBLIC_PREFERENCES_DESIGN || "minimal").toLowerCase() as DesignVariant;
+      const activeVariant = storedVariant || (envVariant === "classic" ? "classic" : "minimal");
+      setDesignVariant(activeVariant);
 
-    setIsLoggedIn(true);
-    const fetchUserPreferences = async () => {
-      setIsFetchingPrefs(true);
-      try {
-        const data = await preferencesApi.get(token);
-        if (Array.isArray(data.preferences)) setSelectedCategories(data.preferences);
-      } catch (error) {
-        if (error instanceof Error && error.message.includes("404")) {
-          console.log("No preferences found for user, starting fresh.");
-        } else {
-          console.error("Failed to fetch preferences:", error);
-        }
-      } finally {
+      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+      if (!token) {
+        setIsLoggedIn(false);
         setIsFetchingPrefs(false);
+        return;
       }
-    };
 
-    fetchUserPreferences();
+      setIsLoggedIn(true);
+      const fetchUserPreferences = async () => {
+        setIsFetchingPrefs(true);
+        try {
+          const data = await preferencesApi.get(token);
+          if (Array.isArray(data.preferences)) setSelectedCategories(data.preferences);
+        } catch (error) {
+          if (error instanceof Error && error.message.includes("404")) {
+            console.log("No preferences found for user, starting fresh.");
+          } else {
+            console.error("Failed to fetch preferences:", error);
+          }
+        } finally {
+          setIsFetchingPrefs(false);
+        }
+      };
+
+      fetchUserPreferences();
+    }
   }, []);
 
   const handleCategoryToggle = (category: string) => {
@@ -132,18 +140,19 @@ export default function PreferencesPage() {
               <Newspaper className="h-6 w-6 text-primary" />
               <h1 className="text-2xl font-bold">DistillNews</h1>
             </div>
-            <Skeleton className="h-9 w-36 rounded-md" />
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <Skeleton className="h-9 w-36 rounded-md" />
+            </div>
           </div>
         </header>
-        <main className="flex-1 container mx-auto max-w-3xl px-4 py-12 flex flex-col items-center justify-center">
-          <div className="w-full space-y-6">
-            <div className="text-center space-y-2">
-              <Skeleton className="h-8 w-64 mx-auto rounded-md" />
-              <Skeleton className="h-4 w-96 mx-auto rounded-md" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <Skeleton key={i} className="h-24 w-full rounded-xl" />
+        <main className="flex-1 container mx-auto max-w-2xl px-4 py-12">
+          <div className="space-y-4">
+            <Skeleton className="h-8 w-64 rounded-md" />
+            <Skeleton className="h-4 w-96 rounded-md" />
+            <div className="space-y-3 pt-4">
+              {Array.from({ length: 7 }).map((_, i) => (
+                <Skeleton key={i} className="h-16 w-full rounded-xl" />
               ))}
             </div>
           </div>
@@ -162,153 +171,189 @@ export default function PreferencesPage() {
             <h1 className="text-2xl font-bold">DistillNews</h1>
           </Link>
 
-          <Link href="/dashboard">
-            <Button variant="outline" size="sm">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Dashboard
-            </Button>
-          </Link>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Link href="/dashboard">
+              <Button variant="outline" size="sm" className="rounded-full">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Dashboard
+              </Button>
+            </Link>
+          </div>
         </div>
       </header>
 
       {/* Main Container */}
-      <main className="flex-1 container mx-auto max-w-4xl px-4 py-10 flex flex-col justify-center">
+      <main className="flex-1 container mx-auto max-w-2xl px-4 py-10">
         {!isLoggedIn ? (
-          <Card className="w-full max-w-md mx-auto shadow-xl border-border/60 text-center rounded-2xl overflow-hidden bg-card/80 backdrop-blur">
+          <Card className="w-full max-w-md mx-auto my-12 shadow-sm border-border/60 text-center rounded-2xl bg-card">
             <CardHeader className="space-y-3 pb-6 pt-8">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary border border-primary/20 shadow-inner">
-                <Sparkles className="h-7 w-7" />
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Sparkles className="h-6 w-6" />
               </div>
-              <CardTitle className="text-2xl font-bold">Personalize Your News Feed</CardTitle>
-              <CardDescription className="text-sm px-2">
-                Sign in to customize your news interests, train your personalized AI recommendation engine, and discover what matters to you.
+              <CardTitle className="text-2xl font-bold">Personalize Your Feed</CardTitle>
+              <CardDescription className="text-sm">
+                Sign in to customize your favorite news topics and train your personal AI feed.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 pb-8">
               <Link href="/register" className="w-full block">
-                <Button size="lg" className="w-full font-semibold shadow-md">
+                <Button size="lg" className="w-full font-semibold rounded-xl">
                   <LogIn className="mr-2 h-4 w-4" />
                   Sign In / Register
                 </Button>
               </Link>
               <Link href="/dashboard" className="w-full block">
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full rounded-xl">
                   Continue Browsing as Guest
                 </Button>
               </Link>
             </CardContent>
           </Card>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Header Title Section */}
-            <div className="text-center max-w-xl mx-auto space-y-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 mb-1">
-                <Sliders className="h-3.5 w-3.5" />
-                <span>AI Recommendation Engine</span>
-              </div>
-              <h2 className="text-3xl font-extrabold tracking-tight">Tune Your News Topics</h2>
-              <p className="text-sm text-muted-foreground">
-                Select your favorite topics below. Our AI will curate and prioritize stories tailored to your reading profile.
-              </p>
-            </div>
-
-            {/* Quick Actions Bar */}
-            <div className="flex items-center justify-between border-b pb-4">
-              <span className="text-xs font-medium text-muted-foreground">
-                {selectedCategories.length} of {newsCategories.length} topics selected
-              </span>
-              <div className="flex items-center gap-2">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleSelectAll}
-                  className="text-xs h-8 text-primary hover:text-primary"
-                >
-                  <CheckCheck className="mr-1.5 h-3.5 w-3.5" />
-                  Select All
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleClearAll}
-                  className="text-xs h-8 text-muted-foreground hover:text-foreground"
-                >
-                  <RotateCcw className="mr-1.5 h-3.5 w-3.5" />
-                  Clear All
-                </Button>
-              </div>
-            </div>
-
-            {/* Category Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {newsCategories.map((cat) => {
-                const IconComponent = cat.icon;
-                const isSelected = selectedCategories.includes(cat.id);
-                return (
-                  <div
-                    key={cat.id}
-                    onClick={() => handleCategoryToggle(cat.id)}
-                    className={`relative cursor-pointer p-4 rounded-xl border transition-all duration-200 flex items-start gap-3.5 select-none ${
-                      isSelected
-                        ? "bg-primary/5 border-primary shadow-md ring-1 ring-primary/30"
-                        : "bg-card hover:bg-accent/50 border-border/60 hover:border-border"
-                    }`}
-                  >
-                    <div className={`p-2.5 rounded-lg border flex-shrink-0 ${cat.color}`}>
-                      <IconComponent className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1 min-w-0 pr-6">
-                      <h3 className="text-sm font-semibold text-foreground flex items-center gap-1.5">
-                        {cat.label}
-                      </h3>
-                      <p className="text-xs text-muted-foreground mt-0.5 leading-snug line-clamp-2">
-                        {cat.description}
-                      </p>
-                    </div>
+        ) : designVariant === "classic" ? (
+          /* ========================================================= */
+          /* CLASSIC BACKWARD-COMPATIBLE DESIGN VARIANT               */
+          /* ========================================================= */
+          <Card className="w-full shadow-sm border-border/70 rounded-2xl">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold">Set Your News Preferences</CardTitle>
+              <CardDescription>
+                Select the topics you're interested in to personalize your news feed
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {newsCategories.map((category) => (
                     <div
-                      className={`absolute top-3.5 right-3.5 h-5 w-5 rounded-full border flex items-center justify-center transition-all ${
-                        isSelected
-                          ? "bg-primary border-primary text-primary-foreground scale-100"
-                          : "border-muted-foreground/30 bg-background scale-95"
-                      }`}
+                      key={category.id}
+                      className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/40 transition-colors"
                     >
-                      {isSelected && <Check className="h-3 w-3 stroke-[3]" />}
+                      <Checkbox
+                        id={`classic-${category.id}`}
+                        checked={selectedCategories.includes(category.id)}
+                        onCheckedChange={() => handleCategoryToggle(category.id)}
+                      />
+                      <Label
+                        htmlFor={`classic-${category.id}`}
+                        className="text-sm font-medium cursor-pointer flex-1"
+                      >
+                        {category.label}
+                      </Label>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Action Bar */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t">
-              <p className="text-xs text-muted-foreground">
-                You can adjust your news topic preferences anytime from your dashboard.
-              </p>
-              <div className="flex items-center gap-3 w-full sm:w-auto">
-                <Link href="/dashboard" className="w-full sm:w-auto">
-                  <Button type="button" variant="outline" className="w-full sm:w-auto">
-                    Cancel
-                  </Button>
-                </Link>
+                  ))}
+                </div>
                 <Button
                   type="submit"
+                  className="w-full font-semibold rounded-xl"
                   disabled={isLoading || selectedCategories.length === 0}
-                  className="w-full sm:w-auto px-8 font-semibold shadow-md"
                 >
-                  {isLoading ? (
-                    <div className="flex items-center gap-2">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-foreground" />
-                      <span>Saving...</span>
-                    </div>
-                  ) : (
-                    "Save Preferences"
-                  )}
+                  {isLoading ? "Saving..." : "Save Preferences"}
                 </Button>
+              </form>
+            </CardContent>
+          </Card>
+        ) : (
+          /* ========================================================= */
+          /* CLEAN MINIMAL SLEEK DESIGN VARIANT (DEFAULT)             */
+          /* ========================================================= */
+          <Card className="w-full shadow-sm border-border/70 rounded-2xl overflow-hidden bg-card">
+            <CardHeader className="border-b bg-muted/20 pb-6 pt-6">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <CardTitle className="text-2xl font-bold">News Preferences</CardTitle>
+                  <CardDescription className="text-sm mt-1">
+                    Toggle the topics you want to prioritize in your news feed.
+                  </CardDescription>
+                </div>
+                <div className="flex items-center gap-1.5 bg-background p-1 rounded-lg border text-xs">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleSelectAll}
+                    className="text-xs h-7 px-2.5 rounded text-muted-foreground hover:text-foreground"
+                  >
+                    <CheckCheck className="mr-1 h-3 w-3" />
+                    All
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleClearAll}
+                    className="text-xs h-7 px-2.5 rounded text-muted-foreground hover:text-foreground"
+                  >
+                    <RotateCcw className="mr-1 h-3 w-3" />
+                    None
+                  </Button>
+                </div>
               </div>
-            </div>
-          </form>
+            </CardHeader>
+
+            <CardContent className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="divide-y divide-border/50 border rounded-xl overflow-hidden bg-background">
+                  {newsCategories.map((cat) => {
+                    const isSelected = selectedCategories.includes(cat.id);
+                    return (
+                      <div
+                        key={cat.id}
+                        onClick={() => handleCategoryToggle(cat.id)}
+                        className={`p-4 flex items-center justify-between gap-4 cursor-pointer transition-colors ${
+                          isSelected ? "bg-primary/[0.02]" : "hover:bg-muted/30"
+                        }`}
+                      >
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-foreground">
+                            {cat.label}
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-0.5">
+                            {cat.description}
+                          </p>
+                        </div>
+
+                        <Switch
+                          checked={isSelected}
+                          onCheckedChange={() => handleCategoryToggle(cat.id)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="pt-4 flex items-center justify-between gap-4">
+                  <p className="text-xs text-muted-foreground">
+                    {selectedCategories.length} of {newsCategories.length} topics selected
+                  </p>
+
+                  <div className="flex items-center gap-3">
+                    <Link href="/dashboard">
+                      <Button type="button" variant="outline" size="sm" className="rounded-xl px-5">
+                        Cancel
+                      </Button>
+                    </Link>
+                    <Button
+                      type="submit"
+                      disabled={isLoading || selectedCategories.length === 0}
+                      size="sm"
+                      className="rounded-xl px-6 font-semibold"
+                    >
+                      {isLoading ? (
+                        <div className="flex items-center gap-2">
+                          <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-primary-foreground" />
+                          <span>Saving...</span>
+                        </div>
+                      ) : (
+                        "Save Preferences"
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
         )}
       </main>
     </div>

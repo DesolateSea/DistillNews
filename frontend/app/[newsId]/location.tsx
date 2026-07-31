@@ -102,7 +102,7 @@ const Location = ({ location }: { location: string | null }) => {
       ) : (
         !loading &&
         !error && (
-          <p className="text-gray-500">
+          <p className="text-muted-foreground">
             No coordinates available for this location.
           </p>
         )
