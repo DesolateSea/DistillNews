@@ -66,8 +66,15 @@ export default function DashboardPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    }
+  }, []);
+
   const fetchNews = useCallback(async (pageNum: number, catOverride?: string) => {
-    const token = localStorage.getItem("SNAPtoken");
+    const token = typeof window !== "undefined" ? (localStorage.getItem("SNAPtoken") || localStorage.getItem("token")) : null;
     setIsLoggedIn(!!token);
     const catToUse = catOverride !== undefined ? catOverride : selectedCategory;
     const catParam = catToUse === "All" ? undefined : catToUse;
@@ -272,23 +279,6 @@ export default function DashboardPage() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <main className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold mb-2">
-              Loading news feed...
-            </h2>
-            <p className="text-muted-foreground">
-              Please wait while we gather the latest news for you.
-            </p>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-40">
@@ -392,7 +382,7 @@ export default function DashboardPage() {
           })}
         </div>
 
-        {!isLoggedIn && (
+        {!isLoading && !isLoggedIn && (
           <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <p className="font-semibold text-sm text-foreground">Browsing as Guest</p>
