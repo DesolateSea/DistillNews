@@ -25,6 +25,16 @@ def _get_query_embedding(embedder, query: str) -> list[float]:
     return vec
 
 
+def _normalize_vector(vec: list[float]) -> list[float]:
+    if not vec:
+        return []
+    sq_sum = sum(x * x for x in vec)
+    if sq_sum == 0:
+        return vec
+    norm = math.sqrt(sq_sum)
+    return [x / norm for x in vec]
+
+
 class InMemoryVectorStore(DocumentStore):
     """Index documents locally using vectors from an ``EmbeddingProvider``.
 
@@ -48,7 +58,7 @@ class InMemoryVectorStore(DocumentStore):
         for document in documents:
             pre_emb = document.metadata.get("embedding") if document.metadata else None
             if pre_emb and isinstance(pre_emb, list) and len(pre_emb) > 0:
-                self._indexed_docs.append({"doc": document, "embedding": pre_emb})
+                self._indexed_docs.append({"doc": document, "embedding": _normalize_vector(pre_emb)})
             else:
                 docs_to_embed.append(document)
 
@@ -58,7 +68,7 @@ class InMemoryVectorStore(DocumentStore):
                 embeddings = self._embedder.embed_many(texts)
                 for document, embedding in zip(docs_to_embed, embeddings):
                     if embedding:
-                        self._indexed_docs.append({"doc": document, "embedding": embedding})
+                        self._indexed_docs.append({"doc": document, "embedding": _normalize_vector(embedding)})
                     else:
                         self._indexed_docs.append({"doc": document, "embedding": []})
             except Exception as error:
@@ -105,22 +115,21 @@ class InMemoryVectorStore(DocumentStore):
                     matrix = np.array(doc_vectors, dtype=np.float32)
                     q_vec = np.array(query_embedding, dtype=np.float32)
 
-                    matrix_norms = np.linalg.norm(matrix, axis=1)
                     q_norm = np.linalg.norm(q_vec)
+                    if q_norm > 0:
+                        q_vec = q_vec / q_norm
 
-                    matrix_norms[matrix_norms == 0] = 1e-10
-                    q_norm = 1e-10 if q_norm == 0 else q_norm
-
-                    similarities = np.dot(matrix, q_vec) / (matrix_norms * q_norm)
+                    similarities = np.dot(matrix, q_vec)
                     for sim, doc in zip(similarities, valid_docs):
                         if sim > 0:
                             scored_documents.append((float(sim), doc))
                     scored_documents.sort(key=lambda item: item[0], reverse=True)
             except ImportError:
+                norm_q = _normalize_vector(query_embedding)
                 for item in self._indexed_docs:
                     doc_emb = item.get("embedding")
-                    if doc_emb and len(doc_emb) == len(query_embedding):
-                        sim = self._cosine_similarity(query_embedding, doc_emb)
+                    if doc_emb and len(doc_emb) == len(norm_q):
+                        sim = sum(a * b for a, b in zip(norm_q, doc_emb))
                         if sim > 0:
                             scored_documents.append((sim, item["doc"]))
                 scored_documents.sort(key=lambda item: item[0], reverse=True)
