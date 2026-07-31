@@ -16,6 +16,7 @@ class RemoteEmbeddingProvider(EmbeddingProvider):
     def __init__(self, service_url: str | None = None, timeout: float = 10.0):
         self.service_url = service_url or os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-server:8001")
         self.timeout = timeout
+        self.session = requests.Session()
 
     def embed(self, text: str) -> list[float]:
         text = text.strip()
@@ -23,7 +24,7 @@ class RemoteEmbeddingProvider(EmbeddingProvider):
             return []
         url = f"{self.service_url.rstrip('/')}/embed"
         try:
-            resp = requests.post(url, json={"text": text}, timeout=self.timeout)
+            resp = self.session.post(url, json={"text": text}, timeout=self.timeout)
             if resp.status_code == 200:
                 data = resp.json()
                 return data.get("embedding", [])
@@ -40,7 +41,7 @@ class RemoteEmbeddingProvider(EmbeddingProvider):
             return []
         url = f"{self.service_url.rstrip('/')}/embed_many"
         try:
-            resp = requests.post(url, json={"texts": texts}, timeout=self.timeout * 2)
+            resp = self.session.post(url, json={"texts": texts}, timeout=self.timeout * 2)
             if resp.status_code == 200:
                 data = resp.json()
                 return data.get("embeddings", [])
