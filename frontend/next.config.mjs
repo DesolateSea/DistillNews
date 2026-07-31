@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
+  compress: true,
+  swcMinify: true,
+  reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
