@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Flame, ChevronRight } from "lucide-react";
 import { feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { useFeatureFlag } from "@/lib/feature-flags-context";
+import { useLanguage } from "@/lib/i18n-context";
 
 interface HeadlinesBannerProps {
   variant?: "ticker" | "hero" | "full";
@@ -12,6 +13,7 @@ interface HeadlinesBannerProps {
 
 export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
   const isEnabled = useFeatureFlag("top_headlines");
+  const { t } = useLanguage();
   const [headlines, setHeadlines] = useState<NewsItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -72,7 +74,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
       <div className="bg-card border border-border/80 rounded-xl p-2.5 sm:px-4 shadow-xs flex items-center gap-3 overflow-hidden backdrop-blur">
         <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-500/10 text-red-600 dark:text-red-400 text-xs font-bold rounded-lg uppercase tracking-wider shrink-0 animate-pulse">
           <Flame className="h-3.5 w-3.5 fill-current" />
-          <span>Top Headlines</span>
+          <span>{t("top_headlines")}</span>
         </div>
 
         <div className="flex-1 min-w-0">
@@ -114,7 +116,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
             <div className="flex-1 space-y-3">
               <div className="flex items-center gap-2">
                 <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full uppercase tracking-wider">
-                  Featured Headline
+                  {t("featured_headline")}
                 </span>
                 <span className="text-xs text-muted-foreground font-medium">
                   {heroStory.category}
@@ -131,7 +133,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
               <div className="pt-2 flex items-center gap-4">
                 <Link href={`/${encodeURIComponent(heroStory.id)}`}>
                   <button className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
-                    Read Full Story <ChevronRight className="h-4 w-4" />
+                    {t("read_full_story")} <ChevronRight className="h-4 w-4" />
                   </button>
                 </Link>
                 <span className="text-xs text-muted-foreground">

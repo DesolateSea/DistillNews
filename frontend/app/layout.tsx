@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { FeatureFlagsProvider } from "@/lib/feature-flags-context";
+import { LanguageProvider } from "@/lib/i18n-context";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,7 +29,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FeatureFlagsProvider>
-            {children}
+            <LanguageProvider>
+              {children}
+            </LanguageProvider>
           </FeatureFlagsProvider>
         </ThemeProvider>
       </body>

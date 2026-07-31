@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/i18n-context";
 import { useFeatureFlag } from "@/lib/feature-flags-context";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 import {
@@ -19,6 +21,8 @@ import {
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
+  const { t } = useLanguage();
+
   useEffect(() => { setMounted(true); }, []);
 
   // Always call hooks unconditionally
@@ -40,13 +44,14 @@ export default function HomePage() {
             <span className="text-2xl font-bold">DistillNews</span>
           </div>
           <div className="flex items-center gap-3">
+            <LanguageToggle />
             <ThemeToggle />
             <Link href="/dashboard">
-              <Button variant="outline">Explore News</Button>
+              <Button variant="outline">{t("explore_news")}</Button>
             </Link>
             <Link href="/register">
               <Button>
-                Sign In
+                {t("sign_in")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
@@ -65,26 +70,25 @@ export default function HomePage() {
             {showHeroBadge && (
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
                 <Sparkles className="h-3.5 w-3.5" />
-                AI-summarised · Updated daily
+                {t("hero_badge")}
               </div>
             )}
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Stay informed.{" "}
-              <span className="text-primary">Without the noise.</span>
+              {t("hero_title_1")}{" "}
+              <span className="text-primary">{t("hero_title_2")}</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-              DistillNews reads thousands of articles so you don't have to.
-              Get clear, balanced summaries of what's happening — in seconds.
+              {t("hero_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/dashboard">
                 <Button size="lg" variant="outline" className="px-8">
-                  Read today's news
+                  {t("read_todays_news")}
                 </Button>
               </Link>
               <Link href="/register">
                 <Button size="lg" className="px-8">
-                  Create account
+                  {t("create_account")}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -96,38 +100,38 @@ export default function HomePage() {
         <section className="bg-muted py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold text-center mb-12">
-              What makes DistillNews different
+              {t("what_makes_different")}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <FeatureCard
                 icon={<RefreshCw className="h-10 w-10 text-primary" />}
-                title="Fresh every day"
-                description="Our AI scans thousands of sources and updates your feed every 24 hours with fresh, relevant content."
+                title={t("fresh_every_day")}
+                description={t("fresh_every_day_desc")}
               />
               <FeatureCard
                 icon={<Filter className="h-10 w-10 text-primary" />}
-                title="Your topics, your feed"
-                description="Sign in to pick the topics you care about. Your feed will show only what's relevant to you."
+                title={t("your_topics_your_feed")}
+                description={t("your_topics_desc")}
               />
               <FeatureCard
                 icon={<Shield className="h-10 w-10 text-primary" />}
-                title="No bias, no spin"
-                description="Our AI removes political bias and sensationalism, delivering balanced and factual news."
+                title={t("no_bias_no_spin")}
+                description={t("no_bias_desc")}
               />
               <FeatureCard
                 icon={<Zap className="h-10 w-10 text-primary" />}
-                title="Short, clear summaries"
-                description="Every story is condensed into a quick read. Get the facts without the filler."
+                title={t("short_clear_summaries")}
+                description={t("short_summaries_desc")}
               />
               <FeatureCard
                 icon={<Newspaper className="h-10 w-10 text-primary" />}
-                title="Thousands of sources"
-                description="We pull from outlets worldwide so you always get the full picture, not just one perspective."
+                title={t("thousands_of_sources")}
+                description={t("sources_desc")}
               />
               <FeatureCard
                 icon={<Lightbulb className="h-10 w-10 text-primary" />}
-                title="Context included"
-                description="Our AI adds background and context so every story makes sense, even if you're hearing about it for the first time."
+                title={t("context_included")}
+                description={t("context_desc")}
               />
             </div>
           </div>

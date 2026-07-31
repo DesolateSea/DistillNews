@@ -19,6 +19,7 @@ import {
 import { Newspaper } from "lucide-react";
 import { authApi, preferencesApi } from "@/lib/api";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -152,20 +153,31 @@ export default function AuthPage() {
   const handleGoogleSignIn = () => {
     const clientId = getGoogleClientId();
     if (!clientId) {
-      alert(
-        "Invalid Google Client ID configuration.\n\n" +
-        "Please update NEXT_PUBLIC_GOOGLE_CLIENT_ID in your .env file to your actual Google Cloud OAuth Client ID (e.g., 1234567890-xxx.apps.googleusercontent.com) instead of a URL."
-      );
+      alert("Google Login is not configured for this environment.");
       return;
     }
 
-    if ((window as any).google?.accounts?.oauth2) {
+    if (typeof window !== "undefined" && (window as any).google?.accounts?.id) {
       const client = (window as any).google.accounts.oauth2.initTokenClient({
         client_id: clientId,
         scope: "email profile openid",
-        callback: (tokenResponse: any) => {
-          if (tokenResponse.access_token) {
-            handleGoogleAccessToken(tokenResponse.access_token);
+        callback: (response: any) => {
+          if (response.access_token) {
+            setIsLoading(true);
+            authApi
+              .googleLogin({ access_token: response.access_token })
+              .then((res) => {
+                if (res.access_token) {
+                  localStorage.setItem("SNAPtoken", res.access_token);
+                  localStorage.setItem("token", res.access_token);
+                  router.push("/preferences");
+                }
+              })
+              .catch((err) => {
+                console.error("Google Auth failed:", err);
+                alert("Google login failed.");
+              })
+              .finally(() => setIsLoading(false));
           }
         },
       });
@@ -185,7 +197,10 @@ export default function AuthPage() {
             <Newspaper className="h-6 w-6 text-primary" />
             <h1 className="text-xl font-bold tracking-tight">DistillNews</h1>
           </Link>
-          <ThemeToggle />
+          <div className="flex items-center gap-3">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -196,11 +211,11 @@ export default function AuthPage() {
               <Newspaper className="h-5 w-5" />
             </div>
             <CardTitle className="text-2xl tracking-tight">
-              {step === "email" ? "Sign In / Register" : "Verify Email"}
+              {step === "email" ? t("auth_welcome_title") : t("otp_label")}
             </CardTitle>
             <CardDescription>
               {step === "email"
-                ? "Join DistillNews or sign in to receive tailored daily news updates"
+                ? t("auth_register_subtitle")
                 : `We sent a 6-digit verification code to ${email}`}
             </CardDescription>
           </CardHeader>
@@ -209,18 +224,18 @@ export default function AuthPage() {
               <div className="space-y-5">
                 <form onSubmit={handleSendOtp} className="space-y-5">
                   <div className="space-y-2.5">
-                    <Label htmlFor="email">Email Address</Label>
+                    <Label htmlFor="email">{t("email_label")}</Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder={t("email_placeholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                   </div>
                   <Button type="submit" className="h-11 w-full" disabled={isLoading}>
-                    {isLoading ? "Sending Code..." : "Send Verification Code"}
+                    {isLoading ? t("sending_otp") : t("send_otp")}
                   </Button>
                 </form>
 
@@ -258,17 +273,17 @@ export default function AuthPage() {
                       d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.59l3.99 3.14c.95-2.83 3.6-4.98 6.72-4.98z"
                     />
                   </svg>
-                  <span>Sign in with Google</span>
+                  <span>{t("continue_with_google")}</span>
                 </Button>
               </div>
             ) : (
               <form onSubmit={handleVerifyOtp} className="space-y-5">
                 <div className="space-y-2.5">
-                  <Label htmlFor="otp">Verification Code (OTP)</Label>
+                  <Label htmlFor="otp">{t("otp_label")}</Label>
                   <Input
                     id="otp"
                     type="text"
-                    placeholder="123456"
+                    placeholder={t("otp_placeholder")}
                     maxLength={6}
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
@@ -276,9 +291,9 @@ export default function AuthPage() {
                   />
                 </div>
                 <Button type="submit" className="h-11 w-full" disabled={isLoading}>
-                  {isLoading ? "Verifying..." : "Verify & Continue"}
+                  {isLoading ? "Verifying..." : t("verify_otp_button")}
                 </Button>
-                <div className="text-center mt-4">
+                <div className="text-center">
                   <Button
                     variant="link"
                     type="button"
@@ -288,7 +303,7 @@ export default function AuthPage() {
                       setOtp("");
                     }}
                   >
-                    Change Email / Re-send Code
+                    {t("resend_otp")}
                   </Button>
                 </div>
               </form>

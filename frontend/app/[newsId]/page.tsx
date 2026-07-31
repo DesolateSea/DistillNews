@@ -14,6 +14,7 @@ import { MessageCircle, X, Send } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { ChatFab } from "@/components/ChatFab";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
+import { useLanguage } from "@/lib/i18n-context";
 
 interface ChatMessage {
   text: string;
@@ -23,6 +24,7 @@ interface ChatMessage {
 export default function NewsDetailPage() {
   const params = useParams();
   const router = useRouter();
+  const { t } = useLanguage();
   const { newsId: encodedTitle } = params;
   const newsId = decodeURIComponent(encodedTitle as string);
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -211,7 +213,7 @@ export default function NewsDetailPage() {
           className="inline-flex items-center text-blue-500 hover:underline"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Dashboard
+          {t("back_to_dashboard")}
         </Link>
       </div>
 
@@ -231,8 +233,8 @@ export default function NewsDetailPage() {
               rawAuthor.trim().toLowerCase() !== (newsItem.title || "").trim().toLowerCase();
             return (
               <div className="text-sm text-muted-foreground mb-4">
-                Published on {formatArticleDate(newsItem.publication_date)}
-                {isValidAuthor ? ` by ${rawAuthor.trim()}` : ""} in {newsItem.category || "General"}
+                {t("published_on")} {formatArticleDate(newsItem.publication_date)}
+                {isValidAuthor ? ` ${t("by_author")} ${rawAuthor.trim()}` : ""} {t("in_category")} {newsItem.category || "General"}
               </div>
             );
           })()}

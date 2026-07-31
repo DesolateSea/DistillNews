@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import { preferencesApi } from "@/lib/api";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/i18n-context";
 
 type DesignVariant = "minimal" | "classic";
 
@@ -39,6 +41,7 @@ const newsCategories = [
 
 export default function PreferencesPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -168,11 +171,12 @@ export default function PreferencesPage() {
           </Link>
 
           <div className="flex items-center gap-3">
+            <LanguageToggle />
             <ThemeToggle />
             <Link href="/dashboard">
               <Button variant="outline" size="sm" className="rounded-full">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Dashboard
+                {t("back_to_dashboard")}
               </Button>
             </Link>
           </div>
@@ -187,9 +191,9 @@ export default function PreferencesPage() {
           /* ========================================================= */
           <Card className="w-full shadow-sm border-border/70 rounded-2xl">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold">Set Your News Preferences</CardTitle>
+              <CardTitle className="text-2xl font-bold">{t("set_preferences_title")}</CardTitle>
               <CardDescription>
-                Select the topics you're interested in to personalize your news feed
+                {t("set_preferences_desc")}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -219,7 +223,7 @@ export default function PreferencesPage() {
                   className="w-full font-semibold rounded-xl"
                   disabled={isLoading || selectedCategories.length === 0}
                 >
-                  {isLoading ? "Saving..." : "Save Preferences"}
+                  {isLoading ? "Saving..." : t("save_preferences_button")}
                 </Button>
               </form>
             </CardContent>
@@ -232,9 +236,9 @@ export default function PreferencesPage() {
             <CardHeader className="border-b bg-muted/20 pb-6 pt-6">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <CardTitle className="text-2xl font-bold">News Preferences</CardTitle>
+                  <CardTitle className="text-2xl font-bold">{t("set_preferences_title")}</CardTitle>
                   <CardDescription className="text-sm mt-1">
-                    Toggle the topics you want to prioritize in your news feed.
+                    {t("set_preferences_desc")}
                   </CardDescription>
                 </div>
                 <div className="flex items-center gap-1.5 bg-background p-1 rounded-lg border text-xs">
@@ -246,7 +250,7 @@ export default function PreferencesPage() {
                     className="text-xs h-7 px-2.5 rounded text-muted-foreground hover:text-foreground"
                   >
                     <CheckCheck className="mr-1 h-3 w-3" />
-                    All
+                    {t("select_all")}
                   </Button>
                   <Button
                     type="button"
@@ -256,7 +260,7 @@ export default function PreferencesPage() {
                     className="text-xs h-7 px-2.5 rounded text-muted-foreground hover:text-foreground"
                   >
                     <RotateCcw className="mr-1 h-3 w-3" />
-                    None
+                    {t("clear_all")}
                   </Button>
                 </div>
               </div>

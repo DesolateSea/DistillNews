@@ -107,6 +107,12 @@ export const SYSTEM_FEATURE_FLAGS: FeatureFlag[] = [
     description: "Show animated robot avatar button for chat. When off, shows a plain icon button instead.",
     defaultEnabled: true,
   },
+  {
+    id: "multilingual_support",
+    name: "Multilingual i18n Localization",
+    description: "Language switcher and UI localization dictionary support (English, Spanish, Hindi, French, German)",
+    defaultEnabled: true,
+  },
 ];
 
 /** localStorage key prefix for individual flag entries */

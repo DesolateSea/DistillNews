@@ -25,6 +25,8 @@ import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeatureFlagGuard } from "@/lib/feature-flags-context";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/i18n-context";
 import { ChatFab } from "@/components/ChatFab";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 
@@ -47,6 +49,7 @@ const CATEGORIES = [
 
 export default function DashboardPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -294,12 +297,13 @@ export default function DashboardPage() {
             <Newspaper className="h-6 w-6 text-primary" />
             <h1 className="text-2xl font-bold">DistillNews</h1>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <LanguageToggle />
             <ThemeToggle />
             <Link href="/preferences">
               <Button variant="outline" size="sm">
                 <Settings className="h-4 w-4 mr-2" />
-                Preferences
+                {t("preferences")}
               </Button>
             </Link>
             {!mounted ? (
@@ -307,13 +311,13 @@ export default function DashboardPage() {
             ) : isLoggedIn ? (
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
+                {t("sign_out")}
               </Button>
             ) : (
               <Link href="/register">
                 <Button size="sm">
                   <LogIn className="h-4 w-4 mr-2" />
-                  Sign In
+                  {t("sign_in")}
                 </Button>
               </Link>
             )}
@@ -332,9 +336,9 @@ export default function DashboardPage() {
               ) : searchQuery ? (
                 `Search Results for "${searchQuery}"`
               ) : isLoggedIn ? (
-                "Your Personalized News Feed"
+                t("personalized_feed")
               ) : (
-                "Latest News"
+                t("latest_news")
               )}
             </h1>
             {searchQuery && (
@@ -344,7 +348,7 @@ export default function DashboardPage() {
                   onClick={clearSearch}
                   className="text-xs text-primary hover:underline font-medium"
                 >
-                  Clear search
+                  {t("clear_search")}
                 </button>
               </p>
             )}
@@ -356,7 +360,7 @@ export default function DashboardPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search"
+                placeholder={t("search_placeholder")}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 onKeyDown={(e) => {
@@ -373,7 +377,7 @@ export default function DashboardPage() {
                 {isSearching ? (
                   <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-primary-foreground" />
                 ) : (
-                  "Search"
+                  t("search_button")
                 )}
               </Button>
             </div>
@@ -406,15 +410,15 @@ export default function DashboardPage() {
           {!isLoading && !isLoggedIn && (
             <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <p className="font-semibold text-sm text-foreground">Browsing as Guest</p>
+                <p className="font-semibold text-sm text-foreground">{t("browsing_as_guest")}</p>
                 <p className="text-xs text-muted-foreground">
-                  Sign in to set your favorite news topics and enjoy an AI-personalized feed.
+                  {t("guest_banner_subtitle")}
                 </p>
               </div>
               <Link href="/register">
                 <Button size="sm" className="whitespace-nowrap">
                   <LogIn className="h-4 w-4 mr-2" />
-                  Sign In to Personalize
+                  {t("sign_in_to_personalize")}
                 </Button>
               </Link>
             </div>
@@ -425,12 +429,12 @@ export default function DashboardPage() {
         {!isLoading && news.length === 0 && (
           <div className="text-center py-12 border rounded-xl bg-card my-6">
             <Newspaper className="h-12 w-12 mx-auto text-muted-foreground mb-4 opacity-50" />
-            <h3 className="text-lg font-semibold mb-1">No news articles found</h3>
+            <h3 className="text-lg font-semibold mb-1">{t("no_articles_found")}</h3>
             <p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
-              No articles are currently available in the active article store. Try refreshing or check that your backend server is running.
+              {t("no_articles_desc")}
             </p>
             <Button variant="outline" onClick={() => fetchNews(1)}>
-              Retry Loading Feed
+              {t("retry_feed")}
             </Button>
           </div>
         )}
@@ -461,13 +465,13 @@ export default function DashboardPage() {
               onClick={() => setPage((p) => p + 1)}
               className="px-6"
             >
-              Load More News
+              {t("load_more_news")}
             </Button>
           )}
 
           {!hasMore && news.length > 0 && (
             <p className="text-center text-muted-foreground text-sm py-4">
-              You've reached the end of your feed
+              {t("end_of_feed")}
             </p>
           )}
         </div>
@@ -475,7 +479,7 @@ export default function DashboardPage() {
 
       <footer className="border-t py-8">
         <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>© {new Date().getFullYear()} DistillNews. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} DistillNews. {t("rights_reserved")}</p>
         </div>
       </footer>
 
@@ -491,7 +495,7 @@ export default function DashboardPage() {
           >
             {/* Chat Header */}
             <div className="p-4 border-b flex justify-between items-center">
-              <h3 className="font-semibold">DistillNews Assistant</h3>
+              <h3 className="font-semibold">{t("chat_assistant_title")}</h3>
               <Button variant="ghost" size="icon" onClick={toggleChat}>
                 <X className="h-4 w-4" />
               </Button>
@@ -503,7 +507,7 @@ export default function DashboardPage() {
                 <div className="h-full flex items-center justify-center text-center text-muted-foreground">
                   <div>
                     <MessageCircle className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                    <p>Ask me anything about the news!</p>
+                    <p>{t("chat_ask_anything")}</p>
                   </div>
                 </div>
               ) : (
@@ -552,7 +556,7 @@ export default function DashboardPage() {
                 ref={inputRef}
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                placeholder="Type your message..."
+                placeholder={t("chat_type_message")}
                 className="flex-1 bg-muted rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 disabled={isTyping}
               />
@@ -572,21 +576,19 @@ export default function DashboardPage() {
   );
 }
 
-interface NewsCardProps {
-  newsItem: NewsItem;
-}
-
-function NewsCard({ newsItem }: NewsCardProps) {
+function NewsCard({ newsItem }: { newsItem: NewsItem }) {
+  const { t } = useLanguage();
   const imageUrl =
-    newsItem?.source?.image_url ||
-    newsItem?.source?.media?.[0] ||
-    (newsItem as any)?.image_url ||
-    (newsItem as any)?.image;
+    newsItem.source?.image_url ||
+    newsItem.source?.media?.[0] ||
+    (newsItem as any).image_url ||
+    (newsItem as any).image;
+
   return (
-    <Link href={`/${encodeURIComponent(newsItem.id)}`}>
-      <Card className="cursor-pointer hover:shadow-md transition-shadow duration-200 px-5 min-h-[200px] pt-5">
-        <div className="flex items-start gap-4">
-          <div className="flex-1">
+    <Card className="flex flex-col justify-between hover:shadow-md transition-shadow">
+      <div>
+        <div className="p-6 pb-3 flex justify-between gap-4">
+          <div>
             <div className="text-sm font-medium text-primary mb-1">
               {newsItem.category}
             </div>
@@ -609,15 +611,20 @@ function NewsCard({ newsItem }: NewsCardProps) {
             />
           )}
         </div>
-        <CardFooter className="flex justify-between pt-2">
-          <div className="text-sm text-muted-foreground">
-            {formatArticleDate(newsItem.publication_date)}
-          </div>
+        <div className="px-6 py-2 text-sm text-muted-foreground line-clamp-3">
+          {newsItem.summary}
+        </div>
+      </div>
+      <CardFooter className="flex justify-between pt-2 p-6">
+        <div className="text-sm text-muted-foreground">
+          {formatArticleDate(newsItem.publication_date)}
+        </div>
+        <Link href={`/${encodeURIComponent(newsItem.id)}`}>
           <Button variant="ghost" size="sm">
-            Read More
+            {t("read_more")}
           </Button>
-        </CardFooter>
-      </Card>
-    </Link>
+        </Link>
+      </CardFooter>
+    </Card>
   );
 }
