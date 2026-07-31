@@ -1,7 +1,5 @@
 import json
 from fastapi import HTTPException
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from apscheduler.triggers.interval import IntervalTrigger
 from server.models.articles_model import DurationRequest, ArticleInDB, PaginatedArticlesResponse
 from server.utils.recommendation import sort_articles, update_weights, get_publication_timestamp
 from service.db import MongoHandle, RedisHandle, create_article_store
@@ -11,7 +9,6 @@ try:
 except ImportError:
     log = None
 
-scheduler = AsyncIOScheduler()
 article_store = create_article_store()
 
 
@@ -40,49 +37,6 @@ def _strip_heavy_fields(doc: dict) -> dict:
             clean_doc["source"] = clean_src
 
     return clean_doc
-
-
-async def store_article():
-    """Sync articles from article_store into MongoDB incrementally without full container downloads."""
-    if MongoHandle._db is None:
-        return
-    try:
-        existing_docs = await MongoHandle.collection("articles").find({}, {"id": 1}).to_list(length=10000)
-        existing_ids = {doc["id"] for doc in existing_docs if "id" in doc}
-
-        # 1. Fetch lightweight metadata list (1 HTTP GET call if manifest.json index exists)
-        meta_list = article_store.list_articles()
-        missing_meta = [m for m in meta_list if isinstance(m, dict) and m.get("id") and m["id"] not in existing_ids]
-
-        if log:
-            log.db("Syncing articles to MongoDB", f"{len(missing_meta)} new articles to sync")
-
-        # 2. Download only missing articles
-        to_insert = []
-        for m in missing_meta:
-            aid = m["id"]
-            art = article_store.load_article(aid)
-            if art and isinstance(art, dict):
-                to_insert.append(art)
-
-        inserted = 0
-        if to_insert:
-            await MongoHandle.collection("articles").insert_many(to_insert)
-            inserted = len(to_insert)
-        if log:
-            log.db("Sync complete", f"{inserted} new articles inserted")
-    except Exception as e:
-        if log:
-            log.warn(f"MongoDB article sync skipped: {e}")
-
-
-def start_scheduler():
-    scheduler.add_job(store_article, IntervalTrigger(hours=24))
-    scheduler.start()
-
-
-def shutdown_scheduler():
-    scheduler.shutdown()
 
 
 async def _get_raw_articles() -> list[dict]:
