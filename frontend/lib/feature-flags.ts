@@ -96,6 +96,12 @@ export const SYSTEM_FEATURE_FLAGS: FeatureFlag[] = [
     defaultEnabled: true,
   },
   {
+    id: "top_headlines",
+    name: "Top Headlines Banner & Ticker",
+    description: "Breaking news ticker and featured story banner across landing, dashboard, and article pages",
+    defaultEnabled: true,
+  },
+  {
     id: "ai_chat_robot_design",
     name: "AI Chat: Robot Button Design",
     description: "Show animated robot avatar button for chat. When off, shows a plain icon button instead.",

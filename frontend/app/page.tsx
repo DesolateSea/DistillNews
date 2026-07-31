@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useFeatureFlag } from "@/lib/feature-flags-context";
+import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 import {
   ArrowRight,
   Newspaper,
@@ -56,8 +57,11 @@ export default function HomePage() {
       <main className="flex-1">
 
         {/* ── Hero ───────────────────────────────────────────────────────── */}
-        <section className="py-20 px-4">
+        <section className="pt-8 pb-16 px-4">
           <div className="container mx-auto max-w-5xl text-center">
+            <div className="mb-8 text-left">
+              <HeadlinesBanner variant="full" />
+            </div>
             {showHeroBadge && (
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
                 <Sparkles className="h-3.5 w-3.5" />

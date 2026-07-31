@@ -13,6 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { MessageCircle, X, Send } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { ChatFab } from "@/components/ChatFab";
+import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 
 interface ChatMessage {
   text: string;
@@ -202,6 +203,8 @@ export default function NewsDetailPage() {
   // Render News Content
   return (
     <div className="container max-w-screen-lg mx-auto px-4 sm:px-6 py-8">
+      <HeadlinesBanner variant="ticker" />
+
       <div className="mb-6">
         <Link
           href="/dashboard"

@@ -4,23 +4,35 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Flame, ChevronRight } from "lucide-react";
 import { feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
+import { useFeatureFlag } from "@/lib/feature-flags-context";
 
 interface HeadlinesBannerProps {
   variant?: "ticker" | "hero" | "full";
 }
 
 export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
+  const isEnabled = useFeatureFlag("top_headlines");
   const [headlines, setHeadlines] = useState<NewsItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (!isEnabled) return;
     let isMounted = true;
     const fetchTopHeadlines = async () => {
       try {
-        const data = await feedsApi.list(null, 1, 6);
+        const data = await feedsApi.list(null, 1, 30);
         if (isMounted && data?.feeds && data.feeds.length > 0) {
-          setHeadlines(data.feeds);
+          // Filter to only include articles that have a valid image URL
+          const withImages = data.feeds.filter((item) => {
+            const img =
+              item.source?.image_url ||
+              item.source?.media?.[0] ||
+              (item as any).image_url ||
+              (item as any).image;
+            return typeof img === "string" && img.trim().length > 0;
+          });
+          setHeadlines(withImages.length > 0 ? withImages : data.feeds);
         }
       } catch (err) {
         console.error("Error loading top headlines:", err);
@@ -32,7 +44,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [isEnabled]);
 
   // Auto-cycle headlines every 5 seconds
   useEffect(() => {
@@ -43,10 +55,10 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
     return () => clearInterval(timer);
   }, [headlines.length]);
 
-  if (isLoading || headlines.length === 0) return null;
+  if (!isEnabled || isLoading || headlines.length === 0) return null;
 
   const currentStory = headlines[currentIndex];
-  const heroStory = headlines[0];
+  const heroStory = headlines[currentIndex];
 
   const heroImage =
     heroStory?.source?.image_url ||
@@ -129,11 +141,15 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
             </div>
 
             {heroImage && (
-              <div className="w-full md:w-72 h-48 md:h-44 rounded-xl overflow-hidden shrink-0 shadow-xs relative">
+              <div className="w-full md:w-72 h-48 md:h-44 rounded-xl overflow-hidden shrink-0 shadow-xs relative bg-muted">
                 <img
+                  key={heroImage}
                   src={heroImage}
                   alt={heroStory.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  onLoad={(e) => {
+                    (e.target as HTMLElement).style.display = "block";
+                  }}
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = "none";
                   }}

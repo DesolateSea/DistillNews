@@ -26,6 +26,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { FeatureFlagGuard } from "@/lib/feature-flags-context";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ChatFab } from "@/components/ChatFab";
+import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 
 interface ChatMessage {
   text: string;
@@ -321,6 +322,8 @@ export default function DashboardPage() {
       </header>
 
       <main className="flex-1 container mx-auto px-4 py-8">
+        <HeadlinesBanner variant="full" />
+
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
             <h1 className="text-3xl font-bold">
@@ -593,9 +596,13 @@ function NewsCard({ newsItem }: NewsCardProps) {
           </div>
           {imageUrl && (
             <img
+              key={imageUrl}
               src={imageUrl}
               alt={newsItem.title}
               className="w-28 h-28 object-cover rounded-md flex-shrink-0"
+              onLoad={(e) => {
+                (e.target as HTMLElement).style.display = "block";
+              }}
               onError={(e) => {
                 (e.target as HTMLElement).style.display = "none";
               }}
