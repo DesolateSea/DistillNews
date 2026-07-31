@@ -21,6 +21,7 @@ import {
   Search,
 } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
+import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
 
 interface ChatMessage {
   text: string;
@@ -422,12 +423,16 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Main News Feed Grid - Unconstrained page scrolling */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {news.map((item, idx) => (
-            <NewsCard key={`${item.id}-${idx}`} newsItem={item} />
-          ))}
-        </div>
+        {/* Main News Feed Grid - Skeleton loading on initial load, otherwise News Cards */}
+        {isLoading ? (
+          <NewsFeedSkeleton count={9} />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {news.map((item, idx) => (
+              <NewsCard key={`${item.id}-${idx}`} newsItem={item} />
+            ))}
+          </div>
+        )}
 
         {/* Loading Spinner & Sentinel Observer for Infinite Scroll */}
         <div ref={sentinelRef} className="py-6 flex flex-col items-center justify-center">

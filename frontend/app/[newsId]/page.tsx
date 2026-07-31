@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 
 const Location = dynamic(() => import("./location"), { ssr: false });
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { MessageCircle, X, Send } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 
@@ -134,19 +135,28 @@ export default function NewsDetailPage() {
   if (loading) {
     return (
       <div className="container max-w-screen-lg mx-auto px-4 sm:px-6 py-8">
-        <div className="animate-pulse grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="md:col-span-2 space-y-4">
-            <div className="h-8 bg-gray-200 rounded-md" />
-            <div className="h-6 bg-gray-200 rounded-md" />
-            <div className="h-4 bg-gray-200 rounded-md max-h-[400px]" />
-            <div className="h-6 bg-gray-200 rounded-md" />
-            <div className="h-4 bg-gray-200 rounded-md" />
+        <div className="mb-6">
+          <Skeleton className="h-6 w-36 rounded" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="md:col-span-2 space-y-6">
+            <Skeleton className="h-10 w-11/12 rounded-lg" />
+            <Skeleton className="h-4 w-1/2 rounded" />
+            <Skeleton className="h-72 w-full rounded-xl" />
+            <div className="space-y-3 pt-2">
+              <Skeleton className="h-4 w-full rounded" />
+              <Skeleton className="h-4 w-full rounded" />
+              <Skeleton className="h-4 w-11/12 rounded" />
+              <Skeleton className="h-4 w-4/5 rounded" />
+            </div>
           </div>
           <div className="md:col-span-1 space-y-4">
-            <div className="h-6 bg-gray-200 rounded-md" />
-            <div className="h-20 bg-gray-200 rounded-md" />
-            <div className="h-20 bg-gray-200 rounded-md" />
-            <div className="h-20 bg-gray-200 rounded-md" />
+            <Skeleton className="h-7 w-32 rounded" />
+            <div className="space-y-3">
+              <Skeleton className="h-20 w-full rounded-lg" />
+              <Skeleton className="h-20 w-full rounded-lg" />
+              <Skeleton className="h-20 w-full rounded-lg" />
+            </div>
           </div>
         </div>
       </div>
