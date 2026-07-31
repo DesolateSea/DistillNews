@@ -19,8 +19,6 @@ import {
 import {
   Newspaper,
   ArrowLeft,
-  LogIn,
-  Sparkles,
   CheckCheck,
   RotateCcw,
 } from "lucide-react";
@@ -61,8 +59,7 @@ export default function PreferencesPage() {
 
       const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
       if (!token) {
-        setIsLoggedIn(false);
-        setIsFetchingPrefs(false);
+        router.push("/register");
         return;
       }
 
@@ -115,7 +112,6 @@ export default function PreferencesPage() {
     const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
 
     if (!token) {
-      alert("Authentication error. Please log in again.");
       router.push("/register");
       setIsLoading(false);
       return;
@@ -185,32 +181,7 @@ export default function PreferencesPage() {
 
       {/* Main Container */}
       <main className="flex-1 container mx-auto max-w-2xl px-4 py-10">
-        {!isLoggedIn ? (
-          <Card className="w-full max-w-md mx-auto my-12 shadow-sm border-border/60 text-center rounded-2xl bg-card">
-            <CardHeader className="space-y-3 pb-6 pt-8">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <Sparkles className="h-6 w-6" />
-              </div>
-              <CardTitle className="text-2xl font-bold">Personalize Your Feed</CardTitle>
-              <CardDescription className="text-sm">
-                Sign in to customize your favorite news topics and train your personal AI feed.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 pb-8">
-              <Link href="/register" className="w-full block">
-                <Button size="lg" className="w-full font-semibold rounded-xl">
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Sign In / Register
-                </Button>
-              </Link>
-              <Link href="/dashboard" className="w-full block">
-                <Button variant="outline" className="w-full rounded-xl">
-                  Continue Browsing as Guest
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-        ) : designVariant === "classic" ? (
+      {designVariant === "classic" ? (
           /* ========================================================= */
           /* CLASSIC BACKWARD-COMPATIBLE DESIGN VARIANT               */
           /* ========================================================= */
