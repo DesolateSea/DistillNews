@@ -26,6 +26,7 @@ import { preferencesApi } from "@/lib/api";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n-context";
+import { translateCategory, translateCategoryDescription } from "@/lib/api-translator";
 
 type DesignVariant = "minimal" | "classic";
 
@@ -41,7 +42,7 @@ const newsCategories = [
 
 export default function PreferencesPage() {
   const router = useRouter();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -281,10 +282,10 @@ export default function PreferencesPage() {
                       >
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-semibold text-foreground">
-                            {cat.label}
+                            {translateCategory(cat.id, language)}
                           </p>
                           <p className="text-xs text-muted-foreground mt-0.5">
-                            {cat.description}
+                            {translateCategoryDescription(cat.id, language, cat.description)}
                           </p>
                         </div>
 
@@ -300,13 +301,13 @@ export default function PreferencesPage() {
 
                 <div className="pt-4 flex items-center justify-between gap-4">
                   <p className="text-xs text-muted-foreground">
-                    {selectedCategories.length} of {newsCategories.length} topics selected
+                    {selectedCategories.length} / {newsCategories.length} {t("topics_selected")}
                   </p>
 
                   <div className="flex items-center gap-3">
                     <Link href="/dashboard">
                       <Button type="button" variant="outline" size="sm" className="rounded-xl px-5">
-                        Cancel
+                        {t("cancel")}
                       </Button>
                     </Link>
                     <Button
@@ -321,7 +322,7 @@ export default function PreferencesPage() {
                           <span>Saving...</span>
                         </div>
                       ) : (
-                        "Save Preferences"
+                        t("save_preferences_button")
                       )}
                     </Button>
                   </div>

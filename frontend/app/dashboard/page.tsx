@@ -27,6 +27,7 @@ import { FeatureFlagGuard } from "@/lib/feature-flags-context";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n-context";
+import { translateCategory } from "@/lib/api-translator";
 import { ChatFab } from "@/components/ChatFab";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 
@@ -49,7 +50,7 @@ const CATEGORIES = [
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -399,7 +400,7 @@ export default function DashboardPage() {
                       : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
                   }`}
                 >
-                  {cat}
+                  {translateCategory(cat, language)}
                 </button>
               );
             })}
@@ -577,7 +578,7 @@ export default function DashboardPage() {
 }
 
 function NewsCard({ newsItem }: { newsItem: NewsItem }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const imageUrl =
     newsItem.source?.image_url ||
     newsItem.source?.media?.[0] ||
@@ -590,7 +591,7 @@ function NewsCard({ newsItem }: { newsItem: NewsItem }) {
         <div className="p-6 pb-3 flex justify-between gap-4">
           <div>
             <div className="text-sm font-medium text-primary mb-1">
-              {newsItem.category}
+              {translateCategory(newsItem.category, language)}
             </div>
             <CardTitle className="text-xl line-clamp-2">
               {newsItem.title}

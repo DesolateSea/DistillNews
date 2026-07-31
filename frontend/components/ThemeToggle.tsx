@@ -5,11 +5,13 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon } from "lucide-react";
 import { useFeatureFlags } from "@/lib/feature-flags-context";
+import { useLanguage } from "@/lib/i18n-context";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { isFeatureEnabled } = useFeatureFlags();
+  const { t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
@@ -42,7 +44,7 @@ export function ThemeToggle() {
       ) : (
         <Moon className="h-4 w-4" />
       )}
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{t("toggle_theme")}</span>
     </Button>
   );
 }

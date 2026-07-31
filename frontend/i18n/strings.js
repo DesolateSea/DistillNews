@@ -13,6 +13,9 @@ export const strings = {
     back_to_dashboard: "Back to Dashboard",
     create_account: "Create account",
     browse_news: "Browse News",
+    toggle_theme: "Toggle theme",
+    cancel: "Cancel",
+    topics_selected: "topics selected",
 
     // Hero / Landing Page
     hero_badge: "AI-summarised · Updated daily",
@@ -110,6 +113,9 @@ export const strings = {
     back_to_dashboard: "Volver al Panel",
     create_account: "Crear cuenta",
     browse_news: "Buscar Noticias",
+    toggle_theme: "Cambiar tema",
+    cancel: "Cancelar",
+    topics_selected: "temas seleccionados",
 
     // Hero / Landing Page
     hero_badge: "Resumido por IA · Actualizado a diario",
@@ -207,6 +213,9 @@ export const strings = {
     back_to_dashboard: "डैशबोर्ड पर लौटें",
     create_account: "खाता बनाएं",
     browse_news: "समाचार पढ़ें",
+    toggle_theme: "थीम बदलें",
+    cancel: "रद्द करें",
+    topics_selected: "विषय चुने गए",
 
     // Hero / Landing Page
     hero_badge: "AI द्वारा सारांशित · दैनिक अपडेट",
@@ -304,6 +313,9 @@ export const strings = {
     back_to_dashboard: "Retour au Tableau de Bord",
     create_account: "Créer un compte",
     browse_news: "Parcourir",
+    toggle_theme: "Changer le thème",
+    cancel: "Annuler",
+    topics_selected: "sujets sélectionnés",
 
     // Hero / Landing Page
     hero_badge: "Résumé par IA · Mis à jour quotidiennement",
@@ -401,6 +413,9 @@ export const strings = {
     back_to_dashboard: "Zurück zum Dashboard",
     create_account: "Konto erstellen",
     browse_news: "Stöbern",
+    toggle_theme: "Design wechseln",
+    cancel: "Abbrechen",
+    topics_selected: "Themen ausgewählt",
 
     // Hero / Landing Page
     hero_badge: "KI-Zusammenfassung · Täglich aktualisiert",
