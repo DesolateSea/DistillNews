@@ -1,106 +1,73 @@
-# Agent & News Ingestion Pipeline & TUI Dashboard
+# Ingestion Pipeline & TUI Dashboard
 
-The news ingestion pipeline in `pipeline/` collects raw news articles, cleans HTML and social posts, calls LLM agents to classify and extract structured news metadata, and formats articles as Markdown. Its entry points are `pipeline/cli.py`, `pipeline/tui/`, `pipeline/generate.py`, and `pipeline/scrape.py`.
-
-All storage access (article JSONs, raw HTML, API responses, deduplication checks) is managed via the unified `FileStore` repository (`service/db/storage.py`).
-
-## Contents
-
-- [Overview](#overview)
-- [Terminal User Interface (TUI) (`pipeline/tui/`)](#terminal-user-interface-tui-pipelinetui)
-- [LLM Agent Layer (`service/agents/`)](#llm-agent-layer-serviceagents)
-- [Storage Layer (`service/db/storage.py`)](#storage-layer-servicedbstoragepy)
-- [Running the Pipeline & TUI](#running-the-pipeline--tui)
+The news ingestion pipeline in `pipeline/` crawls external sources, extracts news content, generates vector embeddings, classifies articles using LLM agents, and publishes normalized articles to `ArticleStore`.
 
 ---
 
-## Overview
-
-The pipeline operates independently from the web server and chatbot. It processes raw API responses and web scrapes into structured articles saved to the configured `ArticleStore` (`AzureBlobArticleStore` or `FileArticleStore`).
+## Processing Flow
 
 ```
-Raw API Payloads / Scrapes  ──>  Parser & HTML Cleaner
-                                         │
-                                         ▼
-                                 LLM News Classifier
-                                         │
-                                         ▼
-                                 Structured Extractor
-                                         │
-                                         ▼
-                               ArticleStore (azure / file)
+External Sources (News APIs / Reddit / Scrapers)
+                     │
+                     ▼
+             Parsers & HTML Cleaners
+                     │
+                     ▼
+          LLM News Classifier Agent
+                     │
+                     ▼
+    Embedding Generation (EMBEDDING_PROVIDER=remote)
+  [Calls embedding_server:8001 /embed_many]
+                     │
+                     ▼
+       ArticleStore (Azure Blob / Local File)
 ```
+
+---
+
+## Unified Embedding Integration
+
+The pipeline supports generating document vector embeddings using the standalone **`embedding_server`** microservice:
+
+```bash
+# Run extraction using the shared embedding_server microservice
+python pipeline/cli.py generate --storage azure --embedding-provider remote
+```
+
+### Provider Selection (`pipeline/embeddings/factory.py`)
+
+- `remote` / `embedding_server` (`pipeline/embeddings/providers/remote.py`): Connects to `EMBEDDING_SERVICE_URL` (`http://embedding-server:8001`). Reuses the exact same PyTorch embedding container as the web server, avoiding duplicate model loading in the pipeline container.
+- `sentence_transformers` (`pipeline/embeddings/providers/sentence_transformers.py`): In-process SentenceTransformers model.
+- `openai` / `foundry` (`pipeline/embeddings/providers/openai.py`): OpenAI embeddings (`text-embedding-3-small`).
 
 ---
 
 ## Terminal User Interface (TUI) (`pipeline/tui/`)
 
-The TUI provides a dashboard built with **Textual** (`pipeline/tui/app.py`):
+The pipeline includes an interactive TUI built with **Textual** (`pipeline/tui/app.py`):
 
-- **Live Stage Progress Bars**: Visual progress bars and item-level detail labels for **Fetch**, **Scrape**, and **Generate** stages.
-- **Rich Log Panel**: Streamed real-time logs with badge color-coding (INFO, SUCCESS, WARN, ERROR).
-- **Source Controls**: Single-line toggle indicators (`ON` / `OFF`) for configured news sources (`reddit`, `rapid_news`, `gnews`, `media_stack`, `news_org`, `core`).
-- **Article Inspector Screen**: Pressing `a` opens an interactive table listing processed articles with full-width dynamic titles, right-aligned metadata (`Category`, `Pub Date`, `ID`), and article content inspection.
-
----
-
-## LLM Agent Layer (`service/agents/`)
-
-The agent layer in `service/agents/` decouples LLM completion calls from provider implementations:
-
-```python
-from service.agents import create_agent
-
-agent = create_agent()  # Selected by AGENT_PROVIDER env var
-result = agent.complete_from_template("pipeline/prompts/is_news.yaml", input_data)
-```
-
-Supported providers:
-
-- `openai` / `foundry` — Microsoft Azure Foundry or OpenAI endpoints.
-- `julep` — Julep AI platform task execution.
+- **Live Stage Progress**: Real-time progress bars for **Fetch**, **Scrape**, and **Generate** stages.
+- **Log Stream**: Color-coded log panel (`INFO`, `SUCCESS`, `WARN`, `ERROR`).
+- **Source Toggles**: Interactive `ON` / `OFF` toggles for sources (`gnews`, `media_stack`, `rapid_news`, `reddit`, `news_org`).
+- **Article Inspector (`a` key)**: Displays interactive table of processed articles with metadata (`Category`, `Pub Date`, `ID`).
 
 ---
 
-## Storage Layer (`service/db/`)
-
-All article operations use the pluggable `ArticleStore` abstraction, created via `create_article_store()`:
-
-```python
-from service.db import create_article_store, FileStore
-
-article_store = create_article_store()
-
-# Deduplication check
-if article_store.article_exists(article_id):
-    print("Article already processed")
-
-# Save normalized article
-article_id = article_store.save_article(parsed_data)
-
-# Load target URLs config or fixture JSON via FileStore
-targets = FileStore.read_json("pipeline/scrapers/config/target_urls.json")
-```
-
----
-
-## Running the Pipeline & TUI
-
-Use the independent CLI entrypoint `pipeline/cli.py` (with optional `--storage` override):
+## CLI Entrypoint Usage (`pipeline/cli.py`)
 
 ```bash
-# Launch interactive Terminal User Interface (TUI)
+# Launch interactive TUI
 python pipeline/cli.py tui --storage azure
 
 # Run web scrapers
 python pipeline/cli.py scrape
 
-# Run news extraction
+# Run news extraction pipeline
 python pipeline/cli.py extract --storage file
 
-# Run full pipeline generation
-python pipeline/cli.py generate --storage azure
+# Run end-to-end generation
+python pipeline/cli.py generate --storage azure --embedding-provider remote
 
-# List processed articles
-python pipeline/cli.py articles --storage azure -n 25
+# Inspect saved articles
+python pipeline/cli.py articles --storage azure -n 20
 ```

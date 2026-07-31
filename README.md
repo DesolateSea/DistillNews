@@ -74,7 +74,15 @@ pip install -r requirements-pipelines.txt
 ./cli.py
 ```
 
-For detailed architecture and subsystem documentation, refer to [doc/ARCHITECTURE.md](doc/ARCHITECTURE.md).
+### System Documentation Suite
+
+For detailed architecture and subsystem documentation, refer to the documentation suite in [`doc/`](doc/):
+
+- 🏗️ **[System Architecture](doc/ARCHITECTURE.md)** — High-level architecture, container topology, unified embedding microservice.
+- 🎨 **[Frontend Documentation](doc/FRONTEND.md)** — Next.js 14 App Router, components (`HeadlinesBanner`, `ChatFab`), and LocalStorage feature flags.
+- ⚡ **[FastAPI Web Server](doc/SERVER.md)** — REST API routes, authentication, database handles, and weather proxy.
+- 🤖 **[RAG & Chatbot Subsystem](doc/RAG_CHATBOT.md)** — Conversational QA, vector search, and unified embedding integration.
+- ⚙️ **[Ingestion Pipeline & TUI](doc/AGENT_PIPELINE.md)** — Scrapers, LLM extraction pipeline, Textual TUI dashboard, and CLI runner.
 
 ---
 

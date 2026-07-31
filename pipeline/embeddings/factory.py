@@ -23,10 +23,14 @@ def create_embedding_provider(
         from .providers.sentence_transformers import SentenceTransformersEmbeddingProvider
 
         return SentenceTransformersEmbeddingProvider(**kwargs)
+    if provider in ("remote", "embedding_server", "http"):
+        from .providers.remote import RemoteEmbeddingProvider
+
+        return RemoteEmbeddingProvider(**kwargs)
     if provider == "none":
         return EmbeddingProvider()
 
     raise ValueError(
         f"Unknown embedding provider: {provider!r}. "
-        "Available: openai, foundry, sentence_transformers, none"
+        "Available: openai, foundry, sentence_transformers, remote, none"
     )
