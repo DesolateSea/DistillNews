@@ -207,6 +207,11 @@ class Config:
         """Azure Blob container name for processed articles."""
         return os.getenv("AZURE_BLOB_CONTAINER", "processed-articles")
 
+    @property
+    def FORCE_REEMBED(self) -> bool:
+        """If True, force re-generating and overwriting embeddings in-place in storage."""
+        return os.getenv("FORCE_REEMBED", "false").lower() in ("true", "1", "yes")
+
     # ------------------------------------------------------------------
     # Pipeline Source & Service Controls
     # ------------------------------------------------------------------
