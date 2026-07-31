@@ -10,6 +10,21 @@ except ImportError:
     log = None
 
 
+_query_embed_cache: dict[str, list[float]] = {}
+
+
+def _get_query_embedding(embedder, query: str) -> list[float]:
+    clean = query.strip().lower()
+    if clean in _query_embed_cache:
+        return _query_embed_cache[clean]
+    vec = embedder.embed(query)
+    if vec:
+        if len(_query_embed_cache) > 256:
+            _query_embed_cache.clear()
+        _query_embed_cache[clean] = vec
+    return vec
+
+
 class InMemoryVectorStore(DocumentStore):
     """Index documents locally using vectors from an ``EmbeddingProvider``.
 
@@ -65,7 +80,7 @@ class InMemoryVectorStore(DocumentStore):
         query_embedding = []
         if self._embedder:
             try:
-                query_embedding = self._embedder.embed(query)
+                query_embedding = _get_query_embedding(self._embedder, query)
             except Exception as error:
                 if log:
                     log.error("Query embedding failed", str(error))
