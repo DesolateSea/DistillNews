@@ -99,6 +99,9 @@ async def prime_redis_indexes(force: bool = False):
     """
     try:
         r = RedisHandle.client()
+        if not force and await r.exists("feed:latest"):
+            return
+
         meta_list = article_store.load_all_articles()
         if not meta_list:
             meta_list = article_store.list_articles()
@@ -406,6 +409,44 @@ async def get_all_articles_pagination(
     }
 
 
+_global_search_store = None
+_global_doc_map = {}
+
+
+def get_global_search_store():
+    global _global_search_store, _global_doc_map
+    if _global_search_store is None:
+        from service.rag.base import Document
+        from service.rag.factory import create_doc_store
+
+        all_raw = article_store.load_all_articles()
+        docs = []
+        doc_map = {}
+        for art in all_raw:
+            if not isinstance(art, dict) or not art.get("title"):
+                continue
+            aid = art.get("id") or article_store.compute_article_id(
+                art.get("title", ""), art.get("publication_date", "")
+            )
+            art["id"] = aid
+            doc_map[aid] = art
+
+            doc_text = f"{art.get('title', '')}\n{art.get('summary', '')}\n{art.get('content', '')[:1000]}"
+            metadata = {
+                "id": aid,
+                "category": art.get("category", ""),
+                "embedding": art.get("embedding") or art.get("vector") or [],
+            }
+            docs.append(Document(title=art.get("title", ""), content=doc_text, metadata=metadata))
+
+        store = create_doc_store(backend="memory")
+        store.upload(docs)
+        _global_doc_map = doc_map
+        _global_search_store = store
+
+    return _global_search_store, _global_doc_map
+
+
 async def search_articles(
     query: str,
     page: int = 1,
@@ -414,8 +455,8 @@ async def search_articles(
 ) -> PaginatedArticlesResponse:
     """
     Semantic Embedding-Based Article Search.
-    Indexes all processed article vectors in an InMemoryVectorStore and computes
-    cosine similarity for the search query with keyword matching fallback.
+    Indexes all processed article vectors in an InMemoryVectorStore once and computes
+    cosine similarity for search queries instantly.
     """
     clean_query = (query or "").strip()
     clean_cat = (category or "").strip().lower()
@@ -434,8 +475,8 @@ async def search_articles(
     except Exception:
         pass
 
-    all_raw = article_store.load_all_articles()
-    if not all_raw:
+    store, doc_map = get_global_search_store()
+    if not doc_map:
         return {
             "page": page,
             "limit": limit,
@@ -443,31 +484,6 @@ async def search_articles(
             "total": 0,
             "feeds": [],
         }
-
-    from service.rag.base import Document
-    from service.rag.factory import create_doc_store
-
-    docs = []
-    doc_map = {}
-    for art in all_raw:
-        if not isinstance(art, dict) or not art.get("title"):
-            continue
-        aid = art.get("id") or article_store.compute_article_id(
-            art.get("title", ""), art.get("publication_date", "")
-        )
-        art["id"] = aid
-        doc_map[aid] = art
-
-        doc_text = f"{art.get('title', '')}\n{art.get('summary', '')}\n{art.get('content', '')[:1000]}"
-        metadata = {
-            "id": aid,
-            "category": art.get("category", ""),
-            "embedding": art.get("embedding") or art.get("vector") or [],
-        }
-        docs.append(Document(title=art.get("title", ""), content=doc_text, metadata=metadata))
-
-    store = create_doc_store(backend="memory")
-    store.upload(docs)
 
     search_results = store.search(clean_query, limit=100)
 

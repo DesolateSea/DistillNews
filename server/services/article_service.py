@@ -86,7 +86,15 @@ def shutdown_scheduler():
 
 
 async def _get_raw_articles() -> list[dict]:
-    """Fetch candidate article pool from MongoDB (excluding heavy fields), falling back to article_store."""
+    """Fetch candidate article pool from Redis cache or MongoDB/ArticleStore."""
+    cache_key = "cache:articles:raw_pool"
+    try:
+        cached = await RedisHandle.client().get(cache_key)
+        if cached:
+            return json.loads(cached)
+    except Exception:
+        pass
+
     try:
         if MongoHandle._db is not None:
             cursor = MongoHandle.collection("articles").find(
@@ -104,6 +112,10 @@ async def _get_raw_articles() -> list[dict]:
                     doc["_id"] = str(doc.get("_id", ""))
                 cleaned = [_strip_heavy_fields(doc) for doc in raw]
                 cleaned.sort(key=get_publication_timestamp, reverse=True)
+                try:
+                    await RedisHandle.client().set(cache_key, json.dumps(cleaned), ex=60)
+                except Exception:
+                    pass
                 return cleaned
     except Exception as e:
         if log:
@@ -113,20 +125,27 @@ async def _get_raw_articles() -> list[dict]:
     raw = article_store.load_all_articles()
     cleaned = [_strip_heavy_fields(art) if isinstance(art, dict) else art for art in raw]
     cleaned.sort(key=get_publication_timestamp, reverse=True)
+    try:
+        await RedisHandle.client().set(cache_key, json.dumps(cleaned), ex=60)
+    except Exception:
+        pass
     return cleaned
 
 
 async def get_all_articles(current_user: dict):
     """
     Return top 20 articles in decreasing order of publication time, personalized if user is logged in.
-    Uses Redis cache for unauthenticated default feeds.
+    Uses Redis cache for unauthenticated and user-personalized feeds.
     """
     user_doc = None
-    if current_user and MongoHandle._db is not None:
-        try:
-            user_doc = await MongoHandle.collection("SNAPUsers").find_one({"email": current_user.get("email")})
-        except Exception:
-            pass
+    user_email = None
+    if current_user:
+        user_email = current_user.get("email")
+        if MongoHandle._db is not None and user_email:
+            try:
+                user_doc = await MongoHandle.collection("SNAPUsers").find_one({"email": user_email})
+            except Exception:
+                pass
 
     # Check Redis cache for default unauthenticated feed
     if not user_doc:
@@ -134,6 +153,13 @@ async def get_all_articles(current_user: dict):
             cached_feed = await RedisHandle.client().get("cache:feed:default")
             if cached_feed:
                 return json.loads(cached_feed)
+        except Exception:
+            pass
+    elif user_email:
+        try:
+            cached_user_feed = await RedisHandle.client().get(f"cache:feed:user:{user_email}")
+            if cached_user_feed:
+                return json.loads(cached_user_feed)
         except Exception:
             pass
 
@@ -154,8 +180,15 @@ async def get_all_articles(current_user: dict):
     interactions = user_doc.get("category_scores", {cat: (0, 0.0) for cat in preferences})
 
     personalized = sort_articles(preferences, raw_weights, interactions, clean_articles)
-    top20 = personalized[:20]
-    return {"feeds": top20}
+    res = {"feeds": personalized[:20]}
+
+    if user_email:
+        try:
+            await RedisHandle.client().set(f"cache:feed:user:{user_email}", json.dumps(res), ex=60)
+        except Exception:
+            pass
+
+    return res
 
 
 async def get_article_by_id(article_id: str, current_user: dict):
@@ -256,6 +289,10 @@ async def update_article_duration(article_id: str, duration: DurationRequest, cu
                     {"email": user_id},
                     {"$set": {"bias": new_weights, "category_scores": inter}}
                 )
+                try:
+                    await RedisHandle.client().delete(f"cache:feed:user:{user_id}")
+                except Exception:
+                    pass
         except Exception:
             pass
 

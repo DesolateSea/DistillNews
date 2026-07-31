@@ -13,6 +13,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - default
 
   redis:
     image: redis:7.2-alpine
@@ -25,6 +27,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - default
 
   embedding-server:
     build:
@@ -36,6 +40,8 @@ services:
     environment:
       EMBEDDING_MODEL_NAME: sentence-transformers/all-MiniLM-L6-v2
     restart: unless-stopped
+    networks:
+      - default
 
   backend:
     build:
@@ -62,6 +68,9 @@ services:
       redis:
         condition: service_healthy
     restart: unless-stopped
+    networks:
+      - gateway-network
+      - default
 
   frontend:
     build:
@@ -74,6 +83,13 @@ services:
       backend:
         condition: service_healthy
     restart: unless-stopped
+    networks:
+      - gateway-network
+      - default
+
+networks:
+  gateway-network:
+    external: true
 
 volumes:
   mongo_data:

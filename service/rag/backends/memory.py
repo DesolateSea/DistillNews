@@ -75,13 +75,40 @@ class InMemoryVectorStore(DocumentStore):
         if query_embedding:
             if log:
                 log.info("RAG Search Mode: Vector Cosine Similarity", f"Query vector dims: {len(query_embedding)}")
-            for item in self._indexed_docs:
-                doc_emb = item.get("embedding")
-                if doc_emb and len(doc_emb) == len(query_embedding):
-                    sim = self._cosine_similarity(query_embedding, doc_emb)
-                    if sim > 0:
-                        scored_documents.append((sim, item["doc"]))
-            scored_documents.sort(key=lambda item: item[0], reverse=True)
+            try:
+                import numpy as np
+                valid_docs = []
+                doc_vectors = []
+                dim = len(query_embedding)
+                for item in self._indexed_docs:
+                    emb = item.get("embedding")
+                    if emb and len(emb) == dim:
+                        doc_vectors.append(emb)
+                        valid_docs.append(item["doc"])
+
+                if doc_vectors:
+                    matrix = np.array(doc_vectors, dtype=np.float32)
+                    q_vec = np.array(query_embedding, dtype=np.float32)
+
+                    matrix_norms = np.linalg.norm(matrix, axis=1)
+                    q_norm = np.linalg.norm(q_vec)
+
+                    matrix_norms[matrix_norms == 0] = 1e-10
+                    q_norm = 1e-10 if q_norm == 0 else q_norm
+
+                    similarities = np.dot(matrix, q_vec) / (matrix_norms * q_norm)
+                    for sim, doc in zip(similarities, valid_docs):
+                        if sim > 0:
+                            scored_documents.append((float(sim), doc))
+                    scored_documents.sort(key=lambda item: item[0], reverse=True)
+            except ImportError:
+                for item in self._indexed_docs:
+                    doc_emb = item.get("embedding")
+                    if doc_emb and len(doc_emb) == len(query_embedding):
+                        sim = self._cosine_similarity(query_embedding, doc_emb)
+                        if sim > 0:
+                            scored_documents.append((sim, item["doc"]))
+                scored_documents.sort(key=lambda item: item[0], reverse=True)
         else:
             query_terms = [t.lower() for t in re.findall(r"\w+", query) if len(t) > 2]
             if log:

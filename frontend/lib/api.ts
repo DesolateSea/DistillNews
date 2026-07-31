@@ -3,16 +3,89 @@ const API_URL = (process.env.NEXT_PUBLIC_API_URL || "__NEXT_PUBLIC_API_URL_PLACE
 export type ApiRequestOptions = Omit<RequestInit, "body"> & {
   body?: unknown;
   token?: string | null;
+  useCache?: boolean;
+  cacheTtlMs?: number;
+  bypassCache?: boolean;
 };
 
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+}
+
+const memoryCache = new Map<string, CacheEntry<unknown>>();
+
+function getCacheKey(path: string, token?: string | null): string {
+  return `api_cache:${token || "anon"}:${path}`;
+}
+
+export function clearApiCache(pathPrefix?: string) {
+  if (!pathPrefix) {
+    memoryCache.clear();
+    if (typeof window !== "undefined" && window.sessionStorage) {
+      try {
+        Object.keys(sessionStorage).forEach((key) => {
+          if (key.startsWith("api_cache:")) sessionStorage.removeItem(key);
+        });
+      } catch {
+        // ignore storage errors
+      }
+    }
+    return;
+  }
+  for (const key of memoryCache.keys()) {
+    if (key.includes(pathPrefix)) memoryCache.delete(key);
+  }
+  if (typeof window !== "undefined" && window.sessionStorage) {
+    try {
+      Object.keys(sessionStorage).forEach((key) => {
+        if (key.includes(pathPrefix)) sessionStorage.removeItem(key);
+      });
+    } catch {
+      // ignore storage errors
+    }
+  }
+}
+
 function getApiUrl(path: string) {
-  return `${API_URL}${path.startsWith("/") ? path : `/${path}`}`;
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  let base = (process.env.NEXT_PUBLIC_API_URL || "__NEXT_PUBLIC_API_URL_PLACEHOLDER__").replace(/\/$/, "");
+  if (!base || base === "__NEXT_PUBLIC_API_URL_PLACEHOLDER__") {
+    base = "http://localhost:8000";
+  }
+  return `${base}${cleanPath}`;
 }
 
 export async function apiRequest<T>(
   path: string,
-  { body, token, headers, ...options }: ApiRequestOptions = {}
+  { body, token, headers, useCache = true, cacheTtlMs = 180000, bypassCache = false, ...options }: ApiRequestOptions = {}
 ): Promise<T> {
+  const method = (options.method || "GET").toUpperCase();
+  const isGet = method === "GET";
+  const shouldCache = isGet && useCache !== false && !bypassCache;
+  const cacheKey = getCacheKey(path, token);
+
+  if (shouldCache) {
+    const cached = memoryCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < cacheTtlMs) {
+      return cached.data as T;
+    }
+    if (typeof window !== "undefined" && window.sessionStorage) {
+      try {
+        const stored = sessionStorage.getItem(cacheKey);
+        if (stored) {
+          const parsed: CacheEntry<T> = JSON.parse(stored);
+          if (Date.now() - parsed.timestamp < cacheTtlMs) {
+            memoryCache.set(cacheKey, parsed);
+            return parsed.data;
+          }
+        }
+      } catch {
+        // ignore storage errors
+      }
+    }
+  }
+
   const requestHeaders = new Headers(headers);
   if (body !== undefined) requestHeaders.set("Content-Type", "application/json");
   if (token) requestHeaders.set("Authorization", `Bearer ${token}`);
@@ -30,6 +103,22 @@ export async function apiRequest<T>(
         ? String(data.message)
         : `Request failed with status ${response.status}`;
     throw new Error(message);
+  }
+
+  if (shouldCache && data !== null) {
+    const entry: CacheEntry<T> = { data: data as T, timestamp: Date.now() };
+    memoryCache.set(cacheKey, entry);
+    if (typeof window !== "undefined" && window.sessionStorage) {
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(entry));
+      } catch {
+        // ignore quota errors
+      }
+    }
+  }
+
+  if (!isGet && (path.includes("preferences") || path.includes("track_time"))) {
+    clearApiCache("/feeds");
   }
 
   return data as T;
