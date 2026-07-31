@@ -1,3 +1,4 @@
+import asyncio
 import secrets
 from typing import Optional
 from service.articles import get_article_by_id
@@ -36,7 +37,7 @@ async def get_chat(message: str, article_id: str, current_user: Optional[dict] =
             pass
 
     user_id = str(user_doc["_id"]) if user_doc and "_id" in user_doc else secrets.token_hex(32)
-    return get_chatbot_response(query=message, user_id=user_id, reading=article_text)
+    return await asyncio.to_thread(get_chatbot_response, query=message, user_id=user_id, reading=article_text)
 
 
 async def get_chat_without_article(message: str, current_user: Optional[dict] = None):
@@ -51,4 +52,4 @@ async def get_chat_without_article(message: str, current_user: Optional[dict] = 
             pass
 
     user_id = str(user_doc["_id"]) if user_doc and "_id" in user_doc else secrets.token_hex(32)
-    return get_chatbot_response(query=message, user_id=user_id, reading=None)
+    return await asyncio.to_thread(get_chatbot_response, query=message, user_id=user_id, reading=None)
