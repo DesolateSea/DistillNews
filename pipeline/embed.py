@@ -15,9 +15,10 @@ def _normalize_vector(vec: list[float]) -> list[float]:
     return [x / norm for x in vec]
 
 
-def generate_embeddings(progress_callback=None, provider_name=None, stop_checker=None):
+def generate_embeddings(progress_callback=None, provider_name=None, stop_checker=None, force: bool = False):
     """
     Generate pre-normalized vector embeddings in 32-article batches for all processed articles.
+    If force=True, re-generates and overwrites embeddings in-place in storage without creating duplicate copies.
     """
     log.section("Article Embedding Pipeline Stage")
 
@@ -37,18 +38,19 @@ def generate_embeddings(progress_callback=None, provider_name=None, stop_checker
         log.warn("No processed articles found to embed.")
         return
 
-    log.info(f"Using Embedding Provider: {target_provider}", f"{len(articles)} articles total")
+    log.info(f"Using Embedding Provider: {target_provider}", f"{len(articles)} articles total (force={force})")
 
-    unembedded = []
+    queued_articles = []
     for article in articles:
-        if not (article.get("embedding") and isinstance(article["embedding"], list) and len(article["embedding"]) > 0):
+        has_emb = article.get("embedding") and isinstance(article["embedding"], list) and len(article["embedding"]) > 0
+        if force or not has_emb:
             title = article.get("title", "")
             content = article.get("content") or article.get("markdown_content") or article.get("summary") or ""
             text_to_embed = f"{title}\n\n{content}".strip()
             if text_to_embed:
-                unembedded.append((article, text_to_embed))
+                queued_articles.append((article, text_to_embed))
 
-    total = len(unembedded)
+    total = len(queued_articles)
     if total == 0:
         log.success("Embedding stage complete", "All articles already have pre-normalized vector embeddings")
         return
@@ -63,7 +65,7 @@ def generate_embeddings(progress_callback=None, provider_name=None, stop_checker
             log.warn("Cancellation requested", "Stopping embedding stage immediately")
             break
 
-        batch = unembedded[i : i + batch_size]
+        batch = queued_articles[i : i + batch_size]
         batch_texts = [text for _, text in batch]
 
         if progress_callback:
