@@ -331,7 +331,7 @@ export default function NewsDetailPage() {
               onClick={toggleChat}
             />
             <div
-              className="fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-96 bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+              className="fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-[400px] sm:h-[550px] bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
             >
               {/* Chat Header */}
               <div className="p-3.5 sm:p-4 border-b flex justify-between items-center bg-muted/30">
