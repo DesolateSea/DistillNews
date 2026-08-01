@@ -1,0 +1,14 @@
+FROM python:3.13-slim
+
+WORKDIR /app
+
+COPY mcp_server/requirements.txt mcp_server/requirements.txt
+RUN pip install --no-cache-dir -r mcp_server/requirements.txt
+
+COPY config.py .
+COPY service/ service/
+COPY mcp_server/ mcp_server/
+
+EXPOSE 8002
+
+CMD ["python", "-m", "mcp_server"]

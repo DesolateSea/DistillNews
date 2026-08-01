@@ -16,7 +16,7 @@ prompts_dir = Path(__file__).resolve().parent / "prompts"
 agent = create_agent()
 doc_store = create_doc_store()
 article_store = create_article_store()
-chatbot = ChatbotService(agent, doc_store, prompts_dir, logger=log)
+chatbot = ChatbotService(agent, doc_store, logger=log)
 
 
 def _load_and_upload_articles():

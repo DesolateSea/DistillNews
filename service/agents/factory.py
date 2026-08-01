@@ -25,12 +25,8 @@ def create_agent(provider: str | None = None, **kwargs) -> AgentProvider:
         from .providers.openai import OpenAIAgent
 
         return OpenAIAgent(**kwargs)
-    elif provider == "julep":
-        from .providers.julep import JulepAgent
-
-        return JulepAgent(**kwargs)
     else:
         raise ValueError(
             f"Unknown agent provider: {provider!r}. "
-            f"Available: openai, julep"
+            f"Available: openai"
         )

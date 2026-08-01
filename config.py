@@ -72,22 +72,6 @@ class Config:
             or os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
         )
 
-    # Julep Provider
-    @property
-    def JULEP_API_KEY(self) -> str | None:
-        return os.getenv("JULEP_API_KEY")
-
-    @property
-    def JULEP_MODEL(self) -> str:
-        return (
-            os.getenv("AGENT_MODEL")
-            or os.getenv("JULEP_MODEL", "claude-3.5-sonnet")
-        )
-
-    @property
-    def JULEP_ENVIRONMENT(self) -> str:
-        return os.getenv("JULEP_ENVIRONMENT", "production")
-
     # ------------------------------------------------------------------
     # Local Sentence Transformers Settings
     # ------------------------------------------------------------------

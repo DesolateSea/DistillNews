@@ -10,6 +10,14 @@ Usage:
 """
 
 from .factory import create_agent
-from .base import AgentProvider, CompletionResult
+from .base import AgentProvider, CompletionResult, ToolCallingProvider, ToolDefinition, ToolCall, AgentMessage
 
-__all__ = ["create_agent", "AgentProvider", "CompletionResult"]
+__all__ = [
+    "create_agent",
+    "AgentProvider",
+    "CompletionResult",
+    "ToolCallingProvider",
+    "ToolDefinition",
+    "ToolCall",
+    "AgentMessage",
+]
