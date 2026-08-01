@@ -109,3 +109,11 @@ body {
   background: #0f172a;
 }
 
+/* Hide Next.js dev overlay badge/indicator */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-toast-errors-parent],
+#next-logo-button {
+  display: none !important;
+}
+

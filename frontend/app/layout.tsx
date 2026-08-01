@@ -5,6 +5,7 @@ import "./globals.css";
 import { FeatureFlagsProvider } from "@/lib/feature-flags-context";
 import { LanguageProvider } from "@/lib/i18n-context";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <FeatureFlagsProvider>
             <LanguageProvider>
               {children}
+              <ScrollToTop />
             </LanguageProvider>
           </FeatureFlagsProvider>
         </ThemeProvider>

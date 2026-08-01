@@ -165,19 +165,19 @@ export default function PreferencesPage() {
     <div className="min-h-screen flex flex-col bg-background">
       {/* Header */}
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-40">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Newspaper className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold">DistillNews</h1>
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between gap-2">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Newspaper className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">DistillNews</h1>
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <LanguageToggle />
             <ThemeToggle />
             <Link href="/dashboard">
-              <Button variant="outline" size="sm" className="rounded-full">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {t("back_to_dashboard")}
+              <Button variant="outline" size="sm" className="rounded-full h-9 px-2.5 sm:px-3 text-xs sm:text-sm">
+                <ArrowLeft className="sm:mr-1.5 h-4 w-4" />
+                <span className="hidden sm:inline">{t("back_to_dashboard")}</span>
               </Button>
             </Link>
           </div>
@@ -185,25 +185,25 @@ export default function PreferencesPage() {
       </header>
 
       {/* Main Container */}
-      <main className="flex-1 container mx-auto max-w-2xl px-4 py-10">
+      <main className="flex-1 container mx-auto max-w-2xl px-3 sm:px-4 py-6 sm:py-10">
       {designVariant === "classic" ? (
           /* ========================================================= */
           /* CLASSIC BACKWARD-COMPATIBLE DESIGN VARIANT               */
           /* ========================================================= */
-          <Card className="w-full shadow-sm border-border/70 rounded-2xl">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold">{t("set_preferences_title")}</CardTitle>
-              <CardDescription>
+          <Card className="w-full shadow-xs border-border/70 rounded-2xl">
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-xl sm:text-2xl font-bold">{t("set_preferences_title")}</CardTitle>
+              <CardDescription className="text-xs sm:text-sm">
                 {t("set_preferences_desc")}
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {newsCategories.map((category) => (
                     <div
                       key={category.id}
-                      className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/40 transition-colors"
+                      className="flex items-center space-x-3 p-2.5 rounded-xl hover:bg-muted/40 transition-colors border border-border/40"
                     >
                       <Checkbox
                         id={`classic-${category.id}`}
@@ -212,7 +212,7 @@ export default function PreferencesPage() {
                       />
                       <Label
                         htmlFor={`classic-${category.id}`}
-                        className="text-sm font-medium cursor-pointer flex-1"
+                        className="text-xs sm:text-sm font-medium cursor-pointer flex-1"
                       >
                         {category.label}
                       </Label>
@@ -221,7 +221,7 @@ export default function PreferencesPage() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full font-semibold rounded-xl"
+                  className="w-full font-semibold rounded-xl h-11"
                   disabled={isLoading || selectedCategories.length === 0}
                 >
                   {isLoading ? "Saving..." : t("save_preferences_button")}
@@ -233,22 +233,22 @@ export default function PreferencesPage() {
           /* ========================================================= */
           /* CLEAN MINIMAL SLEEK DESIGN VARIANT (DEFAULT)             */
           /* ========================================================= */
-          <Card className="w-full shadow-sm border-border/70 rounded-2xl overflow-hidden bg-card">
-            <CardHeader className="border-b bg-muted/20 pb-6 pt-6">
-              <div className="flex items-center justify-between gap-4">
+          <Card className="w-full shadow-xs border-border/70 rounded-2xl overflow-hidden bg-card">
+            <CardHeader className="border-b bg-muted/20 p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                 <div>
-                  <CardTitle className="text-2xl font-bold">{t("set_preferences_title")}</CardTitle>
-                  <CardDescription className="text-sm mt-1">
+                  <CardTitle className="text-xl sm:text-2xl font-bold">{t("set_preferences_title")}</CardTitle>
+                  <CardDescription className="text-xs sm:text-sm mt-1">
                     {t("set_preferences_desc")}
                   </CardDescription>
                 </div>
-                <div className="flex items-center gap-1.5 bg-background p-1 rounded-lg border text-xs">
+                <div className="flex items-center gap-1.5 bg-background p-1 rounded-lg border text-xs self-start sm:self-auto">
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
                     onClick={handleSelectAll}
-                    className="text-xs h-7 px-2.5 rounded text-muted-foreground hover:text-foreground"
+                    className="text-xs h-7 px-2 rounded text-muted-foreground hover:text-foreground"
                   >
                     <CheckCheck className="mr-1 h-3 w-3" />
                     {t("select_all")}
@@ -258,7 +258,7 @@ export default function PreferencesPage() {
                     variant="ghost"
                     size="sm"
                     onClick={handleClearAll}
-                    className="text-xs h-7 px-2.5 rounded text-muted-foreground hover:text-foreground"
+                    className="text-xs h-7 px-2 rounded text-muted-foreground hover:text-foreground"
                   >
                     <RotateCcw className="mr-1 h-3 w-3" />
                     {t("clear_all")}
@@ -267,7 +267,7 @@ export default function PreferencesPage() {
               </div>
             </CardHeader>
 
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="divide-y divide-border/50 border rounded-xl overflow-hidden bg-background">
                   {newsCategories.map((cat) => {
@@ -276,15 +276,15 @@ export default function PreferencesPage() {
                       <div
                         key={cat.id}
                         onClick={() => handleCategoryToggle(cat.id)}
-                        className={`p-4 flex items-center justify-between gap-4 cursor-pointer transition-colors ${
+                        className={`p-3.5 sm:p-4 flex items-center justify-between gap-3 cursor-pointer transition-colors ${
                           isSelected ? "bg-primary/[0.02]" : "hover:bg-muted/30"
                         }`}
                       >
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-foreground">
+                          <p className="text-xs sm:text-sm font-semibold text-foreground">
                             {translateCategory(cat.id, language)}
                           </p>
-                          <p className="text-xs text-muted-foreground mt-0.5">
+                          <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 leading-snug">
                             {translateCategoryDescription(cat.id, language, cat.description)}
                           </p>
                         </div>
@@ -293,20 +293,21 @@ export default function PreferencesPage() {
                           checked={isSelected}
                           onCheckedChange={() => handleCategoryToggle(cat.id)}
                           onClick={(e) => e.stopPropagation()}
+                          className="shrink-0"
                         />
                       </div>
                     );
                   })}
                 </div>
 
-                <div className="pt-4 flex items-center justify-between gap-4">
-                  <p className="text-xs text-muted-foreground">
+                <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+                  <p className="text-xs text-muted-foreground text-center sm:text-left">
                     {selectedCategories.length} / {newsCategories.length} {t("topics_selected")}
                   </p>
 
-                  <div className="flex items-center gap-3">
-                    <Link href="/dashboard">
-                      <Button type="button" variant="outline" size="sm" className="rounded-xl px-5">
+                  <div className="flex items-center gap-2 sm:gap-3 justify-end">
+                    <Link href="/dashboard" className="flex-1 sm:flex-none">
+                      <Button type="button" variant="outline" size="sm" className="w-full sm:w-auto rounded-xl px-4 sm:px-5 h-10">
                         {t("cancel")}
                       </Button>
                     </Link>
@@ -314,10 +315,10 @@ export default function PreferencesPage() {
                       type="submit"
                       disabled={isLoading || selectedCategories.length === 0}
                       size="sm"
-                      className="rounded-xl px-6 font-semibold"
+                      className="flex-1 sm:flex-none rounded-xl px-5 sm:px-6 font-semibold h-10"
                     >
                       {isLoading ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-center gap-2">
                           <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-primary-foreground" />
                           <span>Saving...</span>
                         </div>

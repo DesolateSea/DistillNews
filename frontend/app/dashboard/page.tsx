@@ -20,7 +20,7 @@ import {
   Send,
   Search,
 } from "lucide-react";
-import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
+import { chatApi, feedsApi, formatArticleDate, clearApiCache, type NewsItem } from "@/lib/api";
 import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeatureFlagGuard } from "@/lib/feature-flags-context";
@@ -128,7 +128,7 @@ export default function DashboardPage() {
     setPage(1);
     const catParam = selectedCategory === "All" ? undefined : selectedCategory;
     try {
-      const token = localStorage.getItem("SNAPtoken");
+      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
       const { feeds, has_more } = await feedsApi.search(cleanQuery, 1, ITEMS_PER_PAGE, catParam, token);
       const searchArticles = feeds as NewsItem[];
       setNews(searchArticles);
@@ -147,7 +147,7 @@ export default function DashboardPage() {
     setIsSearching(true);
     const catParam = selectedCategory === "All" ? undefined : selectedCategory;
     try {
-      const token = localStorage.getItem("SNAPtoken");
+      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
       const { feeds, has_more } = await feedsApi.list(token, 1, ITEMS_PER_PAGE, catParam);
       const newArticles = feeds as NewsItem[];
       setNews(newArticles);
@@ -165,7 +165,7 @@ export default function DashboardPage() {
     setPage(1);
     setIsSearching(true);
     const catParam = category === "All" ? undefined : category;
-    const token = localStorage.getItem("SNAPtoken");
+    const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
     try {
       if (searchQuery) {
         const { feeds, has_more } = await feedsApi.search(searchQuery, 1, ITEMS_PER_PAGE, catParam, token);
@@ -237,8 +237,14 @@ export default function DashboardPage() {
   }, [isChatOpen]);
 
   const handleLogout = () => {
-    localStorage.removeItem("SNAPtoken");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("SNAPtoken");
+      localStorage.removeItem("token");
+    }
+    clearApiCache();
     setIsLoggedIn(false);
+    setNews([]);
+    setPage(1);
     fetchNews(1);
   };
 
@@ -256,7 +262,7 @@ export default function DashboardPage() {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
-    const token = localStorage.getItem("SNAPtoken");
+    const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
 
     const userMessage: ChatMessage = {
       text: inputMessage,
@@ -293,32 +299,32 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-40">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2">
-            <Newspaper className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold">DistillNews</h1>
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex justify-between items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Newspaper className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">DistillNews</h1>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <LanguageToggle />
             <ThemeToggle />
             <Link href="/preferences">
-              <Button variant="outline" size="sm">
-                <Settings className="h-4 w-4 mr-2" />
-                {t("preferences")}
+              <Button variant="outline" size="sm" className="h-9 px-2.5 sm:px-3 text-xs sm:text-sm">
+                <Settings className="h-4 w-4 sm:mr-1.5" />
+                <span className="hidden sm:inline">{t("preferences")}</span>
               </Button>
             </Link>
             {!mounted ? (
-              <Skeleton className="h-8 w-20 rounded" />
+              <Skeleton className="h-8 w-16 sm:w-20 rounded" />
             ) : isLoggedIn ? (
-              <Button variant="ghost" size="sm" onClick={handleLogout}>
-                <LogOut className="h-4 w-4 mr-2" />
-                {t("sign_out")}
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="h-9 px-2.5 sm:px-3 text-xs sm:text-sm">
+                <LogOut className="h-4 w-4 sm:mr-1.5" />
+                <span className="hidden sm:inline">{t("sign_out")}</span>
               </Button>
             ) : (
               <Link href="/register">
-                <Button size="sm">
-                  <LogIn className="h-4 w-4 mr-2" />
-                  {t("sign_in")}
+                <Button size="sm" className="h-9 px-2.5 sm:px-3 text-xs sm:text-sm">
+                  <LogIn className="h-4 w-4 sm:mr-1.5" />
+                  <span className="hidden sm:inline">{t("sign_in")}</span>
                 </Button>
               </Link>
             )}
@@ -326,14 +332,14 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      <main className="flex-1 container mx-auto px-4 py-8">
+      <main className="flex-1 container mx-auto px-3 sm:px-4 py-2.5 sm:py-8">
         <HeadlinesBanner variant="full" />
 
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-3.5 sm:mb-6 gap-2.5 sm:gap-4">
           <div>
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
               {!mounted ? (
-                <Skeleton className="h-9 w-72 rounded inline-block" />
+                <Skeleton className="h-8 sm:h-9 w-60 sm:w-72 rounded inline-block" />
               ) : searchQuery ? (
                 `Search Results for "${searchQuery}"`
               ) : isLoggedIn ? (
@@ -343,7 +349,7 @@ export default function DashboardPage() {
               )}
             </h1>
             {searchQuery && (
-              <p className="text-sm text-muted-foreground mt-1 flex items-center gap-2">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1 flex items-center gap-2">
                 <span>Semantic AI vector search found {news.length} matching stories</span>
                 <button
                   onClick={clearSearch}
@@ -367,13 +373,13 @@ export default function DashboardPage() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleSearch();
                 }}
-                className="w-full pl-9 pr-16 py-2 bg-background border border-input rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
+                className="w-full pl-9 pr-24 py-2 bg-background border border-input rounded-full text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-xs"
               />
               <Button
                 size="sm"
                 onClick={() => handleSearch()}
                 disabled={isSearching}
-                className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full h-7 px-3 text-xs flex items-center justify-center min-w-[60px]"
+                className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full h-7 px-3 text-xs flex items-center justify-center min-w-[64px]"
               >
                 {isSearching ? (
                   <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-primary-foreground" />
@@ -387,16 +393,16 @@ export default function DashboardPage() {
 
         {/* Category Filter Pills Bar */}
         <FeatureFlagGuard name="category_filters">
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 mb-3.5 sm:mb-6 no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0">
             {CATEGORIES.map((cat) => {
               const isSelected = selectedCategory === cat;
               return (
                 <button
                   key={cat}
                   onClick={() => handleCategorySelect(cat)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap border ${
+                  className={`px-3.5 py-1.5 sm:px-4 rounded-full text-xs font-medium transition-all whitespace-nowrap shrink-0 border ${
                     isSelected
-                      ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                      ? "bg-primary text-primary-foreground border-primary shadow-xs"
                       : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
                   }`}
                 >
@@ -409,15 +415,15 @@ export default function DashboardPage() {
 
         <FeatureFlagGuard name="guest_banner">
           {!isLoading && !isLoggedIn && (
-            <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="mb-3.5 sm:mb-6 p-3.5 sm:p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
               <div>
                 <p className="font-semibold text-sm text-foreground">{t("browsing_as_guest")}</p>
                 <p className="text-xs text-muted-foreground">
                   {t("guest_banner_subtitle")}
                 </p>
               </div>
-              <Link href="/register">
-                <Button size="sm" className="whitespace-nowrap">
+              <Link href="/register" className="w-full sm:w-auto">
+                <Button size="sm" className="w-full sm:w-auto whitespace-nowrap">
                   <LogIn className="h-4 w-4 mr-2" />
                   {t("sign_in_to_personalize")}
                 </Button>
@@ -428,10 +434,10 @@ export default function DashboardPage() {
 
         {/* Empty state fallback */}
         {!isLoading && news.length === 0 && (
-          <div className="text-center py-12 border rounded-xl bg-card my-6">
-            <Newspaper className="h-12 w-12 mx-auto text-muted-foreground mb-4 opacity-50" />
-            <h3 className="text-lg font-semibold mb-1">{t("no_articles_found")}</h3>
-            <p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
+          <div className="text-center py-8 sm:py-12 border rounded-xl bg-card my-4 sm:my-6 px-4">
+            <Newspaper className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-muted-foreground mb-3 sm:mb-4 opacity-50" />
+            <h3 className="text-base sm:text-lg font-semibold mb-1">{t("no_articles_found")}</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground mb-4 max-w-md mx-auto">
               {t("no_articles_desc")}
             </p>
             <Button variant="outline" onClick={() => fetchNews(1)}>
@@ -440,11 +446,11 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Main News Feed Grid - Skeleton loading on initial load, otherwise News Cards */}
+        {/* Main News Feed Grid */}
         {isLoading ? (
           <NewsFeedSkeleton count={9} />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mb-4 sm:mb-8">
             {news.map((item, idx) => (
               <NewsCard key={`${item.id}-${idx}`} newsItem={item} />
             ))}
@@ -478,100 +484,109 @@ export default function DashboardPage() {
         </div>
       </main>
 
-      <footer className="border-t py-8">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
+      <footer className="border-t py-6 sm:py-8">
+        <div className="container mx-auto px-4 text-center text-xs sm:text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} DistillNews. {t("rights_reserved")}</p>
         </div>
       </footer>
 
-      {/* Floating Chat Button */}
+      {/* Floating Chat Button & Modal/Drawer */}
       <FeatureFlagGuard name="ai_chat">
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
           {!isChatOpen ? (
             <ChatFab onClick={toggleChat} />
           ) : (
-          <div
-            className="bg-card border border-border rounded-lg shadow-xl w-80 sm:w-96 flex flex-col"
-            style={{ height: "500px" }}
-          >
-            {/* Chat Header */}
-            <div className="p-4 border-b flex justify-between items-center">
-              <h3 className="font-semibold">{t("chat_assistant_title")}</h3>
-              <Button variant="ghost" size="icon" onClick={toggleChat}>
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
-
-            {/* Chat Messages */}
-            <div className="flex-1 p-4 overflow-y-auto">
-              {messages.length === 0 ? (
-                <div className="h-full flex items-center justify-center text-center text-muted-foreground">
-                  <div>
-                    <MessageCircle className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                    <p>{t("chat_ask_anything")}</p>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  {messages.map((msg, index) => (
-                    <div
-                      key={index}
-                      className={`mb-4 flex ${msg.isUser ? "justify-end" : "justify-start"}`}
-                    >
-                      <div
-                        className={`max-w-3/4 p-3 rounded-lg ${msg.isUser
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted"
-                          }`}
-                      >
-                        <ReactMarkdown>
-                          {msg.text.replaceAll("\n", "\n\n")}
-                        </ReactMarkdown>
-                        <div className="text-xs opacity-70 mt-1">
-                          {msg.timestamp.toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {isTyping && (
-                    <div className="mb-4 flex justify-start">
-                      <div className="max-w-3/4 p-3 rounded-lg bg-muted flex space-x-1">
-                        <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                        <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
-                        <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
-                      </div>
-                    </div>
-                  )}
-                  <div ref={messagesEndRef} />
-                </>
-              )}
-            </div>
-
-            {/* Chat Input */}
-            <form onSubmit={sendMessage} className="p-4 border-t flex gap-2">
-              <input
-                type="text"
-                ref={inputRef}
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                placeholder={t("chat_type_message")}
-                className="flex-1 bg-muted rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-                disabled={isTyping}
+            <>
+              {/* Mobile overlay backdrop */}
+              <div
+                className="fixed inset-0 bg-background/80 backdrop-blur-xs sm:hidden z-40"
+                onClick={toggleChat}
               />
-              <Button
-                type="submit"
-                size="icon"
-                disabled={isTyping || !inputMessage.trim()}
+              <div
+                className="fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-96 bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+                style={{ height: undefined }}
               >
-                <Send className="h-4 w-4" />
-              </Button>
-            </form>
-          </div>
-        )}
-      </div>
+                {/* Chat Header */}
+                <div className="p-3.5 sm:p-4 border-b flex justify-between items-center bg-muted/30">
+                  <h3 className="font-semibold text-sm sm:text-base">{t("chat_assistant_title")}</h3>
+                  <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={toggleChat}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                {/* Chat Messages */}
+                <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto">
+                  {messages.length === 0 ? (
+                    <div className="h-full flex items-center justify-center text-center text-muted-foreground">
+                      <div>
+                        <MessageCircle className="h-10 w-10 mx-auto mb-2 opacity-50" />
+                        <p className="text-xs sm:text-sm">{t("chat_ask_anything")}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      {messages.map((msg, index) => (
+                        <div
+                          key={index}
+                          className={`mb-4 flex ${msg.isUser ? "justify-end" : "justify-start"}`}
+                        >
+                          <div
+                            className={`max-w-[85%] sm:max-w-3/4 p-3 rounded-2xl text-xs sm:text-sm ${
+                              msg.isUser
+                                ? "bg-primary text-primary-foreground rounded-br-none"
+                                : "bg-muted rounded-bl-none"
+                            }`}
+                          >
+                            <ReactMarkdown>
+                              {msg.text.replaceAll("\n", "\n\n")}
+                            </ReactMarkdown>
+                            <div className="text-[10px] opacity-70 mt-1 text-right">
+                              {msg.timestamp.toLocaleTimeString([], {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                      {isTyping && (
+                        <div className="mb-4 flex justify-start">
+                          <div className="max-w-3/4 p-3 rounded-2xl rounded-bl-none bg-muted flex space-x-1">
+                            <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                            <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
+                            <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
+                          </div>
+                        </div>
+                      )}
+                      <div ref={messagesEndRef} />
+                    </>
+                  )}
+                </div>
+
+                {/* Chat Input */}
+                <form onSubmit={sendMessage} className="p-3 sm:p-4 border-t flex gap-2 bg-background">
+                  <input
+                    type="text"
+                    ref={inputRef}
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)}
+                    placeholder={t("chat_type_message")}
+                    className="flex-1 bg-muted rounded-xl px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    disabled={isTyping}
+                  />
+                  <Button
+                    type="submit"
+                    size="icon"
+                    className="rounded-xl h-9 w-9 shrink-0"
+                    disabled={isTyping || !inputMessage.trim()}
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </form>
+              </div>
+            </>
+          )}
+        </div>
       </FeatureFlagGuard>
     </div>
   );
@@ -586,14 +601,14 @@ function NewsCard({ newsItem }: { newsItem: NewsItem }) {
     (newsItem as any).image;
 
   return (
-    <Card className="flex flex-col justify-between hover:shadow-md transition-shadow">
+    <Card className="flex flex-col justify-between hover:shadow-md transition-shadow overflow-hidden rounded-2xl border border-border/70">
       <div>
-        <div className="p-6 pb-3 flex justify-between gap-4">
-          <div>
-            <div className="text-sm font-medium text-primary mb-1">
+        <div className="p-5 sm:p-6 pb-2.5 sm:pb-3 flex justify-between gap-3.5 sm:gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-semibold text-primary mb-1">
               {translateCategory(newsItem.category, language)}
             </div>
-            <CardTitle className="text-xl line-clamp-2">
+            <CardTitle className="text-lg sm:text-xl font-bold line-clamp-3 sm:line-clamp-2 leading-snug">
               {newsItem.title}
             </CardTitle>
           </div>
@@ -602,7 +617,7 @@ function NewsCard({ newsItem }: { newsItem: NewsItem }) {
               key={imageUrl}
               src={imageUrl}
               alt={newsItem.title}
-              className="w-28 h-28 object-cover rounded-md flex-shrink-0"
+              className="w-20 h-20 sm:w-28 sm:h-28 object-cover rounded-xl flex-shrink-0 bg-muted"
               onLoad={(e) => {
                 (e.target as HTMLElement).style.display = "block";
               }}
@@ -612,16 +627,16 @@ function NewsCard({ newsItem }: { newsItem: NewsItem }) {
             />
           )}
         </div>
-        <div className="px-6 py-2 text-sm text-muted-foreground line-clamp-3">
+        <div className="px-5 sm:px-6 py-2 text-xs sm:text-sm text-muted-foreground line-clamp-3 leading-relaxed">
           {newsItem.summary}
         </div>
       </div>
-      <CardFooter className="flex justify-between pt-2 p-6">
-        <div className="text-sm text-muted-foreground">
+      <CardFooter className="flex justify-between items-center pt-2 p-5 sm:p-6">
+        <div className="text-xs text-muted-foreground font-medium">
           {formatArticleDate(newsItem.publication_date)}
         </div>
         <Link href={`/${encodeURIComponent(newsItem.id)}`}>
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" className="h-8 px-3 text-xs rounded-lg font-medium">
             {t("read_more")}
           </Button>
         </Link>

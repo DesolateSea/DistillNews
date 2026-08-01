@@ -193,35 +193,35 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-muted/30">
-      <header className="border-b bg-background/80 backdrop-blur">
-        <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
+      <header className="border-b bg-background/80 backdrop-blur sticky top-0 z-40">
+        <div className="container mx-auto flex max-w-6xl items-center justify-between px-3 sm:px-4 py-3 sm:py-4">
           <Link href="/" className="flex items-center gap-2">
-            <Newspaper className="h-6 w-6 text-primary" />
-            <h1 className="text-xl font-bold tracking-tight">DistillNews</h1>
+            <Newspaper className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h1 className="text-lg sm:text-xl font-bold tracking-tight">DistillNews</h1>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             <LanguageToggle />
             <ThemeToggle />
           </div>
         </div>
       </header>
 
-      <main className="flex flex-1 items-center justify-center px-4 py-12">
-        <Card className="w-full max-w-md border-border/60 shadow-xl shadow-primary/5">
-          <CardHeader className="space-y-3 pb-6">
-            <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+      <main className="flex flex-1 items-center justify-center px-3 sm:px-4 py-6 sm:py-12">
+        <Card className="w-full max-w-md border-border/60 shadow-xl shadow-primary/5 rounded-2xl">
+          <CardHeader className="space-y-2 sm:space-y-3 pb-4 sm:pb-6 p-4 sm:p-6">
+            <div className="mb-1 sm:mb-2 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
               <Newspaper className="h-5 w-5" />
             </div>
-            <CardTitle className="text-2xl tracking-tight">
+            <CardTitle className="text-xl sm:text-2xl tracking-tight font-bold">
               {step === "email" ? t("auth_welcome_title") : t("otp_label")}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-xs sm:text-sm">
               {step === "email"
                 ? t("auth_register_subtitle")
                 : `We sent a 6-digit verification code to ${email}`}
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
             {step === "email" ? (
               <div className="space-y-5">
                 <form onSubmit={handleSendOtp} className="space-y-5">
