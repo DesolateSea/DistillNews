@@ -111,7 +111,7 @@ export const SYSTEM_FEATURE_FLAGS: FeatureFlag[] = [
     id: "multilingual_support",
     name: "Multilingual i18n Localization",
     description: "Language switcher and UI localization dictionary support (English, Spanish, Hindi, French, German)",
-    defaultEnabled: false,
+    defaultEnabled: true,
   },
 ];
 
