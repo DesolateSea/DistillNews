@@ -79,6 +79,10 @@ services:
     image: distillnews-frontend:latest
     ports:
       - "${FRONTEND_PORT:-3000}:3000"
+    env_file:
+      - .env
+    environment:
+      - NEXT_PUBLIC_API_URL
     depends_on:
       backend:
         condition: service_healthy

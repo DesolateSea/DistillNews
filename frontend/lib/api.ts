@@ -1,4 +1,5 @@
-const API_URL = (process.env.NEXT_PUBLIC_API_URL || "__NEXT_PUBLIC_API_URL_PLACEHOLDER__").replace(/\/$/, "");
+import { env } from "@/lib/env";
+const API_URL = env.NEXT_PUBLIC_API_URL;
 
 export type ApiRequestOptions = Omit<RequestInit, "body"> & {
   body?: unknown;

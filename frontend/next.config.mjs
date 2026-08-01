@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
-const isBuild = process.env.NODE_ENV === 'production' && process.env.BUILD_STANDALONE === 'true';
-
 const nextConfig = {
-  ...(isBuild ? { output: "standalone" } : {}),
+  output: "standalone",
   devIndicators: false,
   compress: true,
   reactStrictMode: true,
