@@ -1,5 +1,4 @@
 import { env } from "@/lib/env";
-const API_URL = env.NEXT_PUBLIC_API_URL;
 
 export type ApiRequestOptions = Omit<RequestInit, "body"> & {
   body?: unknown;
@@ -49,11 +48,20 @@ export function clearApiCache(pathPrefix?: string) {
 }
 
 function getApiUrl(path: string) {
+  console.log("window.__ENV__", typeof window !== "undefined" ? window.__ENV__ : "server");
+
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
-  let base = (process.env.NEXT_PUBLIC_API_URL || "__NEXT_PUBLIC_API_URL_PLACEHOLDER__").replace(/\/$/, "");
-  if (!base || base === "__NEXT_PUBLIC_API_URL_PLACEHOLDER__") {
+
+  let base = env.NEXT_PUBLIC_API_URL.trim();
+
+  console.log("API URL:", base);
+
+  if (!base) {
     base = "http://localhost:8000";
   }
+
+  base = base.replace(/\/$/, "");
+
   return `${base}${cleanPath}`;
 }
 
