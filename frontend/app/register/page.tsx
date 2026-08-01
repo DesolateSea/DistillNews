@@ -246,7 +246,7 @@ export default function AuthPage() {
                     <span className="w-full border-t border-border" />
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground font-medium">Or continue with</span>
+                    <span className="bg-card px-2 text-muted-foreground font-medium">{t("or_continue_with")}</span>
                   </div>
                 </div>
 
@@ -293,7 +293,7 @@ export default function AuthPage() {
                   />
                 </div>
                 <Button type="submit" className="h-11 w-full" disabled={isLoading}>
-                  {isLoading ? "Verifying..." : t("verify_otp_button")}
+                  {isLoading ? t("verifying") : t("verify_otp_button")}
                 </Button>
                 <div className="text-center">
                   <Button
@@ -311,11 +311,11 @@ export default function AuthPage() {
               </form>
             )}
           </CardContent>
-          <CardFooter className="flex flex-col items-center gap-2 border-t pt-4 text-xs text-muted-foreground">
+          <CardFooter className="flex flex-col items-center gap-2 border-t pt-4 text-xs text-muted-foreground text-center">
             <Link href="/dashboard" className="text-sm font-medium text-primary hover:underline">
-              Continue reading as Guest &rarr;
+              {t("continue_as_guest")}
             </Link>
-            <span>By continuing, you agree to our Terms and Privacy Policy.</span>
+            <span>{t("terms_privacy")}</span>
           </CardFooter>
         </Card>
       </main>

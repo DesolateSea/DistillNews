@@ -6,6 +6,8 @@ import { Flame, ChevronRight } from "lucide-react";
 import { feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { useFeatureFlag } from "@/lib/feature-flags-context";
 import { useLanguage } from "@/lib/i18n-context";
+import { translateCategory } from "@/lib/api-translator";
+import { useTranslatedArticles } from "@/hooks/use-translated-articles";
 
 interface HeadlinesBannerProps {
   variant?: "ticker" | "hero" | "full";
@@ -13,8 +15,9 @@ interface HeadlinesBannerProps {
 
 export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
   const isEnabled = useFeatureFlag("top_headlines");
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [headlines, setHeadlines] = useState<NewsItem[]>([]);
+  const { translatedArticles, isTranslating } = useTranslatedArticles(headlines);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,17 +53,17 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
 
   // Auto-cycle headlines every 5 seconds
   useEffect(() => {
-    if (headlines.length <= 1) return;
+    if (translatedArticles.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % headlines.length);
+      setCurrentIndex((prev) => (prev + 1) % translatedArticles.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [headlines.length]);
+  }, [translatedArticles.length]);
 
-  if (!isEnabled || isLoading || headlines.length === 0) return null;
+  if (!isEnabled || isLoading || isTranslating || translatedArticles.length === 0) return null;
 
-  const currentStory = headlines[currentIndex];
-  const heroStory = headlines[currentIndex];
+  const currentStory = translatedArticles[currentIndex] || headlines[currentIndex];
+  const heroStory = translatedArticles[currentIndex] || headlines[currentIndex];
 
   const heroImage =
     heroStory?.source?.image_url ||
@@ -87,16 +90,16 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
               {currentStory.title}
             </span>
             <span className="text-xs text-muted-foreground shrink-0 hidden md:inline-flex items-center gap-1">
-              <span>{currentStory.category}</span>
+              <span>{translateCategory(currentStory.category, language)}</span>
               <span>•</span>
-              <span>{formatArticleDate(currentStory.publication_date)}</span>
+              <span>{formatArticleDate(currentStory.publication_date, language)}</span>
             </span>
           </Link>
         </div>
 
-        {headlines.length > 1 && (
+        {translatedArticles.length > 1 && (
           <div className="flex items-center gap-1 shrink-0 hidden xs:flex">
-            {headlines.slice(0, 5).map((_, idx) => (
+            {translatedArticles.slice(0, 5).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
@@ -137,7 +140,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
                   {t("featured_headline")}
                 </span>
                 <span className="text-xs text-muted-foreground font-medium">
-                  {heroStory.category}
+                  {translateCategory(heroStory.category, language)}
                 </span>
               </div>
               <Link href={`/${encodeURIComponent(heroStory.id)}`}>
@@ -155,7 +158,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
                   </button>
                 </Link>
                 <span className="text-xs text-muted-foreground">
-                  {formatArticleDate(heroStory.publication_date)}
+                  {formatArticleDate(heroStory.publication_date, language)}
                 </span>
               </div>
             </div>

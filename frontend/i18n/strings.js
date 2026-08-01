@@ -61,6 +61,9 @@ export const strings = {
     in_category: "in",
     location_map: "Article Location",
     no_coordinates: "No coordinates available for this location.",
+    more_news: "More News",
+    no_other_news: "No other news available.",
+    source_label: "Source",
 
     // Headlines
     top_headlines: "Top Headlines",
@@ -86,6 +89,10 @@ export const strings = {
     already_have_account: "Already have an account?",
     register_link: "Register",
     sign_in_link: "Sign In",
+    or_continue_with: "Or continue with",
+    continue_as_guest: "Continue reading as Guest →",
+    terms_privacy: "By continuing, you agree to our Terms and Privacy Policy.",
+    verifying: "Verifying...",
 
     // Preferences Page
     set_preferences_title: "Set Your News Preferences",
@@ -161,6 +168,9 @@ export const strings = {
     in_category: "en",
     location_map: "Ubicación del Artículo",
     no_coordinates: "No hay coordenadas disponibles para esta ubicación.",
+    more_news: "Más Noticias",
+    no_other_news: "No hay más noticias disponibles.",
+    source_label: "Fuente",
 
     // Headlines
     top_headlines: "Titulares Principales",
@@ -186,6 +196,10 @@ export const strings = {
     already_have_account: "¿Ya tienes una cuenta?",
     register_link: "Registrarse",
     sign_in_link: "Iniciar Sesión",
+    or_continue_with: "O continuar con",
+    continue_as_guest: "Continuar leyendo como invitado →",
+    terms_privacy: "Al continuar, aceptas nuestros Términos y Política de Privacidad.",
+    verifying: "Verificando...",
 
     // Preferences Page
     set_preferences_title: "Configura tus Preferencias de Noticias",
@@ -261,6 +275,9 @@ export const strings = {
     in_category: "श्रेणी में",
     location_map: "लेख का स्थान",
     no_coordinates: "इस स्थान के लिए कोई निर्देशांक उपलब्ध नहीं हैं।",
+    more_news: "अधिक समाचार",
+    no_other_news: "कोई अन्य समाचार उपलब्ध नहीं है।",
+    source_label: "स्रोत",
 
     // Headlines
     top_headlines: "मुख्य समाचार",
@@ -286,6 +303,10 @@ export const strings = {
     already_have_account: "क्या आपके पास पहले से खाता है?",
     register_link: "पंजीकरण करें",
     sign_in_link: "साइन इन करें",
+    or_continue_with: "या इसके साथ जारी रखें",
+    continue_as_guest: "अतिथि के रूप में पढ़ना जारी रखें →",
+    terms_privacy: "जारी रखकर, आप हमारी शर्तों और गोपनीयता नीति से सहमत होते हैं।",
+    verifying: "सत्यापित किया जा रहा है...",
 
     // Preferences Page
     set_preferences_title: "अपनी समाचार पसंद सेट करें",
@@ -359,8 +380,11 @@ export const strings = {
     published_on: "Publié le",
     by_author: "par",
     in_category: "dans",
-    location_map: "Emplacement de l'article",
-    no_coordinates: "Aucune coordonnée disponible pour cet emplacement.",
+    location_map: "Ubicación del Artículo",
+    no_coordinates: "No hay coordenadas disponibles para esta ubicación.",
+    more_news: "Más Noticias",
+    no_other_news: "No hay más noticias disponibles.",
+    source_label: "Fuente",
 
     // Headlines
     top_headlines: "À la Une",
@@ -386,6 +410,10 @@ export const strings = {
     already_have_account: "Vous avez déjà un compte ?",
     register_link: "S'inscrire",
     sign_in_link: "Se connecter",
+    or_continue_with: "Ou continuer avec",
+    continue_as_guest: "Continuer en tant qu'invité →",
+    terms_privacy: "En continuant, vous acceptez nos conditions et notre politique de confidentialité.",
+    verifying: "Vérification...",
 
     // Preferences Page
     set_preferences_title: "Définissez vos préférences d'actualités",
@@ -459,8 +487,11 @@ export const strings = {
     published_on: "Veröffentlicht am",
     by_author: "von",
     in_category: "in Kategorie",
-    location_map: "Standort des Artikels",
+    location_map: "Artikel-Standort",
     no_coordinates: "Für diesen Standort sind keine Koordinaten verfügbar.",
+    more_news: "Weitere Nachrichten",
+    no_other_news: "Keine weiteren Nachrichten verfügbar.",
+    source_label: "Quelle",
 
     // Headlines
     top_headlines: "Top-Schlagzeilen",
@@ -486,6 +517,10 @@ export const strings = {
     already_have_account: "Bereits ein Konto?",
     register_link: "Registrieren",
     sign_in_link: "Anmelden",
+    or_continue_with: "Oder fortfahren mit",
+    continue_as_guest: "Als Gast weiterlesen →",
+    terms_privacy: "Indem Sie fortfahren, stimmen Sie unseren Bedingungen und Datenschutzbestimmungen zu.",
+    verifying: "Wird überprüft...",
 
     // Preferences Page
     set_preferences_title: "Nachrichteneinstellungen festlegen",

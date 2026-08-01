@@ -30,6 +30,8 @@ import { useLanguage } from "@/lib/i18n-context";
 import { translateCategory } from "@/lib/api-translator";
 import { ChatFab } from "@/components/ChatFab";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
+import { useTranslatedArticles } from "@/hooks/use-translated-articles";
+import { translateText } from "@/lib/client-translator";
 
 interface ChatMessage {
   text: string;
@@ -55,6 +57,7 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [news, setNews] = useState<NewsItem[]>([]);
+  const { translatedArticles, isTranslating } = useTranslatedArticles(news);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -275,18 +278,26 @@ export default function DashboardPage() {
 
     try {
       const data = await chatApi.send(inputMessage, token);
+      let replyText = data.response || "Sorry, I couldn't process your request.";
+      if (language !== "en") {
+        replyText = await translateText(replyText, language);
+      }
       const botMessage: ChatMessage = {
-        text: data.response || "Sorry, I couldn't process your request.",
+        text: replyText,
         isUser: false,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
+      let errText = "Sorry, there was an error processing your request. Please try again.";
+      if (language !== "en") {
+        errText = await translateText(errText, language);
+      }
       setMessages((prev) => [
         ...prev,
         {
-          text: "Sorry, there was an error processing your request. Please try again.",
+          text: errText,
           isUser: false,
           timestamp: new Date(),
         },
@@ -447,11 +458,11 @@ export default function DashboardPage() {
         )}
 
         {/* Main News Feed Grid */}
-        {isLoading ? (
+        {isLoading || (isTranslating && translatedArticles.length === 0) ? (
           <NewsFeedSkeleton count={9} />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mb-4 sm:mb-8">
-            {news.map((item, idx) => (
+            {translatedArticles.map((item, idx) => (
               <NewsCard key={`${item.id}-${idx}`} newsItem={item} />
             ))}
           </div>
@@ -632,7 +643,7 @@ function NewsCard({ newsItem }: { newsItem: NewsItem }) {
       </div>
       <CardFooter className="flex justify-between items-center pt-2 p-5 sm:p-6">
         <div className="text-xs text-muted-foreground font-medium">
-          {formatArticleDate(newsItem.publication_date)}
+          {formatArticleDate(newsItem.publication_date, language)}
         </div>
         <Link href={`/${encodeURIComponent(newsItem.id)}`}>
           <Button variant="ghost" size="sm" className="h-8 px-3 text-xs rounded-lg font-medium">

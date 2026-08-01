@@ -15,6 +15,9 @@ import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { ChatFab } from "@/components/ChatFab";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 import { useLanguage } from "@/lib/i18n-context";
+import { translateCategory } from "@/lib/api-translator";
+import { useTranslatedArticle, useTranslatedArticles } from "@/hooks/use-translated-articles";
+import { translateText } from "@/lib/client-translator";
 
 interface ChatMessage {
   text: string;
@@ -24,7 +27,7 @@ interface ChatMessage {
 export default function NewsDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { newsId: encodedTitle } = params;
   const newsId = decodeURIComponent(encodedTitle as string);
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -34,7 +37,9 @@ export default function NewsDetailPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [newsItem, setNewsItem] = useState<NewsItem | null>(null);
+  const { translatedArticle, isTranslating } = useTranslatedArticle(newsItem);
   const [moreNewsItems, setMoreNewsItems] = useState<NewsItem[]>([]);
+  const { translatedArticles: translatedMoreNews } = useTranslatedArticles(moreNewsItems);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const startTimeRef = useRef<number | null>(null);
@@ -50,18 +55,14 @@ export default function NewsDetailPage() {
       console.error("Failed to track article duration:", err);
     }
   };
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
+  const toggleChat = () => setIsChatOpen((prev) => !prev);
 
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!inputMessage.trim()) return;
 
     const token = localStorage.getItem("SNAPtoken");
 
-    // Add user message to chat
     const userMessage: ChatMessage = {
       text: inputMessage,
       isUser: true,
@@ -74,9 +75,13 @@ export default function NewsDetailPage() {
 
     try {
       const data = await chatApi.sendArticleChat(newsId, inputMessage, token);
+      let replyText = data.response || "Sorry, I couldn't process your request.";
+      if (language !== "en") {
+        replyText = await translateText(replyText, language);
+      }
       // Add bot response to chat
       const botMessage: ChatMessage = {
-        text: data.response || "Sorry, I couldn't process your request.",
+        text: replyText,
         isUser: false,
         timestamp: new Date(),
       };
@@ -85,9 +90,13 @@ export default function NewsDetailPage() {
     } catch (error) {
       console.error("Error sending message:", error);
 
+      let errText = "Sorry, there was an error processing your request. Please try again.";
+      if (language !== "en") {
+        errText = await translateText(errText, language);
+      }
       // Add error message
       const errorMessage: ChatMessage = {
-        text: "Sorry, there was an error processing your request. Please try again.",
+        text: errText,
         isUser: false,
         timestamp: new Date(),
       };
@@ -135,8 +144,28 @@ export default function NewsDetailPage() {
     };
   }, [router, newsId]);
 
+  const [translatedSourceName, setTranslatedSourceName] = useState("");
+
+  useEffect(() => {
+    const srcName = newsItem?.source?.title || newsItem?.source?.name;
+    if (!srcName) return;
+    let isCancelled = false;
+
+    if (language === "en") {
+      setTranslatedSourceName(srcName);
+    } else {
+      translateText(srcName, language).then((res) => {
+        if (!isCancelled) setTranslatedSourceName(res);
+      });
+    }
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [newsItem?.source?.title, newsItem?.source?.name, language]);
+
   // Loading State
-  if (loading) {
+  if (loading || isTranslating) {
     return (
       <div className="container max-w-screen-lg mx-auto px-4 sm:px-6 py-8">
         <div className="mb-6">
@@ -201,6 +230,7 @@ export default function NewsDetailPage() {
 
   // Final Fallback
   if (!newsItem) return null;
+  const displayArticle = translatedArticle || newsItem;
 
   // Render News Content
   return (
@@ -219,36 +249,36 @@ export default function NewsDetailPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 lg:gap-12">
         <div className="md:col-span-2">
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2.5 sm:mb-4 leading-tight">{newsItem.title}</h1>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2.5 sm:mb-4 leading-tight">{displayArticle.title}</h1>
           {(() => {
             const rawAuthor =
-              newsItem.author ||
-              newsItem.source?.name ||
-              (newsItem.source as any)?.source;
+              displayArticle.author ||
+              displayArticle.source?.name ||
+              (displayArticle.source as any)?.source;
             const isValidAuthor =
               rawAuthor &&
               typeof rawAuthor === "string" &&
               rawAuthor.trim() !== "" &&
               !["unknown", "unknown author", "none", "null"].includes(rawAuthor.trim().toLowerCase()) &&
-              rawAuthor.trim().toLowerCase() !== (newsItem.title || "").trim().toLowerCase();
+              rawAuthor.trim().toLowerCase() !== (displayArticle.title || "").trim().toLowerCase();
             return (
               <div className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
-                {t("published_on")} {formatArticleDate(newsItem.publication_date)}
-                {isValidAuthor ? ` ${t("by_author")} ${rawAuthor.trim()}` : ""} {t("in_category")} {newsItem.category || "General"}
+                {t("published_on")} {formatArticleDate(displayArticle.publication_date, language)}
+                {isValidAuthor ? ` ${t("by_author")} ${rawAuthor.trim()}` : ""} {t("in_category")} {translateCategory(displayArticle.category || "General", language)}
               </div>
             );
           })()}
           {(() => {
             const mainImageUrl =
-              newsItem.source?.image_url ||
-              newsItem.source?.media?.[0] ||
-              (newsItem as any)?.image_url ||
-              (newsItem as any)?.image;
+              displayArticle.source?.image_url ||
+              displayArticle.source?.media?.[0] ||
+              (displayArticle as any)?.image_url ||
+              (displayArticle as any)?.image;
             return mainImageUrl ? (
               <div className="bg-muted rounded-2xl mb-4 sm:mb-6 max-h-[280px] sm:max-h-[420px] overflow-hidden flex items-center justify-center border">
                 <img
                   src={mainImageUrl}
-                  alt={newsItem.title}
+                  alt={displayArticle.title}
                   className="object-cover w-full h-full rounded-2xl"
                 />
               </div>
@@ -256,23 +286,23 @@ export default function NewsDetailPage() {
           })()}
           <div className="prose dark:prose-invert max-w-none text-sm sm:text-base leading-relaxed overflow-x-auto break-words">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {newsItem?.markdown_content
-                ? newsItem.markdown_content.replace(/\\n/g, "\n")
-                : newsItem.content
-                  ? newsItem.content.replace(/\\n/g, "\n")
+              {displayArticle?.markdown_content
+                ? displayArticle.markdown_content.replace(/\\n/g, "\n")
+                : displayArticle.content
+                  ? displayArticle.content.replace(/\\n/g, "\n")
                   : ""}
             </ReactMarkdown>
           </div>
-          {newsItem.source?.url && (
+          {displayArticle.source?.url && (
             <p className="mt-6 text-xs sm:text-sm text-muted-foreground pt-4 border-t">
-              Source:{" "}
+              {t("source_label")}:{" "}
               <Link
-                href={newsItem.source.url}
+                href={displayArticle.source.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline font-medium"
               >
-                {newsItem.source.title || newsItem.source.name || "Link"}
+                {translatedSourceName || displayArticle.source.title || displayArticle.source.name || "Link"}
               </Link>
             </p>
           )}
@@ -281,14 +311,14 @@ export default function NewsDetailPage() {
 
         {/* More News Section */}
         <div className="md:col-span-1 border-t md:border-t-0 pt-6 md:pt-0">
-          <h2 className="text-lg sm:text-xl font-bold mb-4">More News</h2>
-          {moreNewsItems.length === 0 ? (
+          <h2 className="text-lg sm:text-xl font-bold mb-4">{t("more_news")}</h2>
+          {translatedMoreNews.length === 0 ? (
             <p className="text-muted-foreground text-xs sm:text-sm">
-              No other news available.
+              {t("no_other_news")}
             </p>
           ) : (
             <ul className="space-y-3">
-              {moreNewsItems.map((item) => {
+              {translatedMoreNews.map((item) => {
                 const itemImageUrl = item.source?.image_url || item.source?.media?.[0];
                 return (
                   <li key={item._id || item.id}>
