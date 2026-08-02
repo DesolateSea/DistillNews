@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
@@ -22,7 +21,6 @@ import {
 } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, clearApiCache, type NewsItem } from "@/lib/api";
 import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
-import { Skeleton } from "@/components/ui/skeleton";
 import { FeatureFlagGuard } from "@/lib/feature-flags-context";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
@@ -51,9 +49,7 @@ const CATEGORIES = [
 ];
 
 export default function DashboardPage() {
-  const router = useRouter();
   const { t, language } = useLanguage();
-  const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -80,7 +76,6 @@ export default function DashboardPage() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setMounted(true);
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
       setIsLoggedIn(!!token);
@@ -324,9 +319,7 @@ export default function DashboardPage() {
                 <span className="hidden sm:inline">{t("preferences")}</span>
               </Button>
             </Link>
-            {!mounted ? (
-              <Skeleton className="h-8 w-16 sm:w-20 rounded" />
-            ) : isLoggedIn ? (
+            {isLoggedIn ? (
               <Button variant="ghost" size="sm" onClick={handleLogout} className="h-9 px-2.5 sm:px-3 text-xs sm:text-sm">
                 <LogOut className="h-4 w-4 sm:mr-1.5" />
                 <span className="hidden sm:inline">{t("sign_out")}</span>
@@ -344,37 +337,32 @@ export default function DashboardPage() {
       </header>
 
       <main className="flex-1 container mx-auto px-3 sm:px-4 py-2.5 sm:py-8">
-        <HeadlinesBanner variant="full" />
-
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-3.5 sm:mb-6 gap-2.5 sm:gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-              {!mounted ? (
-                <Skeleton className="h-8 sm:h-9 w-60 sm:w-72 rounded inline-block" />
-              ) : searchQuery ? (
-                `Search Results for "${searchQuery}"`
-              ) : isLoggedIn ? (
-                t("personalized_feed")
-              ) : (
-                t("latest_news")
-              )}
-            </h1>
-            {searchQuery && (
-              <p className="text-xs sm:text-sm text-muted-foreground mt-1 flex items-center gap-2">
-                <span>Semantic AI vector search found {news.length} matching stories</span>
-                <button
-                  onClick={clearSearch}
-                  className="text-xs text-primary hover:underline font-medium"
-                >
-                  {t("clear_search")}
-                </button>
-              </p>
-            )}
-          </div>
+        <div className="flex flex-col lg:flex-row lg:items-center gap-2.5 sm:gap-4 mb-3.5 sm:mb-6">
+          {/* Category Filter Pills Bar */}
+          <FeatureFlagGuard name="category_filters">
+            <div className="flex-1 min-w-0 flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0">
+              {CATEGORIES.map((cat) => {
+                const isSelected = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => handleCategorySelect(cat)}
+                    className={`px-3.5 py-1.5 sm:px-4 rounded-full text-xs font-medium transition-all whitespace-nowrap shrink-0 border ${
+                      isSelected
+                        ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                        : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
+                    }`}
+                  >
+                    {translateCategory(cat, language)}
+                  </button>
+                );
+              })}
+            </div>
+          </FeatureFlagGuard>
 
           {/* Semantic Search Bar */}
           <FeatureFlagGuard name="semantic_search">
-            <div className="relative w-full md:w-96">
+            <div className="relative w-full lg:w-96 lg:shrink-0">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
@@ -402,27 +390,19 @@ export default function DashboardPage() {
           </FeatureFlagGuard>
         </div>
 
-        {/* Category Filter Pills Bar */}
-        <FeatureFlagGuard name="category_filters">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 mb-3.5 sm:mb-6 no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0">
-            {CATEGORIES.map((cat) => {
-              const isSelected = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => handleCategorySelect(cat)}
-                  className={`px-3.5 py-1.5 sm:px-4 rounded-full text-xs font-medium transition-all whitespace-nowrap shrink-0 border ${
-                    isSelected
-                      ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                      : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                >
-                  {translateCategory(cat, language)}
-                </button>
-              );
-            })}
-          </div>
-        </FeatureFlagGuard>
+        {searchQuery && (
+          <p className="text-xs sm:text-sm text-muted-foreground mb-3.5 sm:mb-6 flex items-center gap-2">
+            <span>Semantic AI vector search found {news.length} matching stories</span>
+            <button
+              onClick={clearSearch}
+              className="text-xs text-primary hover:underline font-medium"
+            >
+              {t("clear_search")}
+            </button>
+          </p>
+        )}
+
+        <HeadlinesBanner variant="full" />
 
         <FeatureFlagGuard name="guest_banner">
           {!isLoading && !isLoggedIn && (

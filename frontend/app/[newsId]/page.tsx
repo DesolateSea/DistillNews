@@ -14,6 +14,7 @@ import { MessageCircle, X, Send } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { ChatFab } from "@/components/ChatFab";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
+import { useFeatureFlag } from "@/lib/feature-flags-context";
 import { useLanguage } from "@/lib/i18n-context";
 import { translateCategory } from "@/lib/api-translator";
 import { useTranslatedArticle, useTranslatedArticles } from "@/hooks/use-translated-articles";
@@ -43,6 +44,8 @@ export default function NewsDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const startTimeRef = useRef<number | null>(null);
+  const isSimilarNewsEnabled = useFeatureFlag("similar_news");
+  const isLargeArticleChatWindowEnabled = useFeatureFlag("article_chat_large_window");
 
   const sendDuration = async () => {
     if (!startTimeRef.current) return;
@@ -318,7 +321,7 @@ export default function NewsDetailPage() {
             </p>
           ) : (
             <ul className="space-y-3">
-              {translatedMoreNews.map((item) => {
+              {(isSimilarNewsEnabled ? translatedMoreNews.slice(0, 6) : translatedMoreNews).map((item) => {
                 const itemImageUrl = item.source?.image_url || item.source?.media?.[0];
                 return (
                   <li key={item._id || item.id}>
@@ -361,7 +364,7 @@ export default function NewsDetailPage() {
               onClick={toggleChat}
             />
             <div
-              className="fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-[400px] sm:h-[550px] bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+              className={`fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 ${isLargeArticleChatWindowEnabled ? "sm:w-[520px] sm:h-[700px]" : "sm:w-[400px] sm:h-[550px]"} bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden`}
             >
               {/* Chat Header */}
               <div className="p-3.5 sm:p-4 border-b flex justify-between items-center bg-muted/30">

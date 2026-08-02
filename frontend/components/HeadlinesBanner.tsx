@@ -74,6 +74,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
   return (
     <div className="w-full space-y-2.5 sm:space-y-4 mb-3 sm:mb-6">
       {/* Headlines Ticker Bar */}
+      {(variant === "ticker") && (
       <div className="bg-card/90 border border-border/80 rounded-2xl p-2.5 sm:p-3.5 sm:px-5 shadow-xs flex items-center gap-2.5 sm:gap-3.5 overflow-hidden backdrop-blur">
         <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-500/10 text-red-600 dark:text-red-400 text-xs font-bold rounded-lg uppercase tracking-wider shrink-0 animate-pulse">
           <Flame className="h-3.5 w-3.5 fill-current" />
@@ -112,6 +113,7 @@ export function HeadlinesBanner({ variant = "full" }: HeadlinesBannerProps) {
           </div>
         )}
       </div>
+      )}
 
       {/* Featured Hero Story Card (For 'hero' or 'full' variant) */}
       {(variant === "hero" || variant === "full") && heroStory && (
