@@ -45,7 +45,7 @@ export const SYSTEM_FEATURE_FLAGS: FeatureFlag[] = [
     id: "guest_banner",
     name: "Guest Notice Banner",
     description: "Informational banner displayed to unauthenticated guest users",
-    defaultEnabled: true,
+    defaultEnabled: false,
   },
   {
     id: "weather_widget",

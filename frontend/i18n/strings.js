@@ -275,7 +275,8 @@ export const strings = {
     in_category: "श्रेणी में",
     location_map: "लेख का स्थान",
     no_coordinates: "इस स्थान के लिए कोई निर्देशांक उपलब्ध नहीं हैं।",
-    more_news: "अधिक समाचार",
+    more_news: "और समाचार",
+    similar_news: "समान समाचार",
     no_other_news: "कोई अन्य समाचार उपलब्ध नहीं है।",
     source_label: "स्रोत",
 

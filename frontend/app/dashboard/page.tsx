@@ -27,6 +27,7 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n-context";
 import { translateCategory } from "@/lib/api-translator";
 import { ChatFab } from "@/components/ChatFab";
+import { ChatWindow } from "@/components/ChatWindow";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
 import { useTranslatedArticles } from "@/hooks/use-translated-articles";
 import { translateText } from "@/lib/client-translator";
@@ -347,11 +348,10 @@ export default function DashboardPage() {
                   <button
                     key={cat}
                     onClick={() => handleCategorySelect(cat)}
-                    className={`px-3.5 py-1.5 sm:px-4 rounded-full text-xs font-medium transition-all whitespace-nowrap shrink-0 border ${
-                      isSelected
+                    className={`px-3.5 py-1.5 sm:px-4 rounded-full text-xs font-medium transition-all whitespace-nowrap shrink-0 border ${isSelected
                         ? "bg-primary text-primary-foreground border-primary shadow-xs"
                         : "bg-card text-muted-foreground border-border/60 hover:bg-accent hover:text-accent-foreground"
-                    }`}
+                      }`}
                   >
                     {translateCategory(cat, language)}
                   </button>
@@ -484,98 +484,20 @@ export default function DashboardPage() {
       {/* Floating Chat Button & Modal/Drawer */}
       <FeatureFlagGuard name="ai_chat">
         <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
-          {!isChatOpen ? (
-            <ChatFab onClick={toggleChat} />
-          ) : (
-            <>
-              {/* Mobile overlay backdrop */}
-              <div
-                className="fixed inset-0 bg-background/80 backdrop-blur-xs sm:hidden z-40"
-                onClick={toggleChat}
-              />
-              <div
-                className="fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-[400px] sm:h-[550px] bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
-              >
-                {/* Chat Header */}
-                <div className="p-3.5 sm:p-4 border-b flex justify-between items-center bg-muted/30">
-                  <h3 className="font-semibold text-sm sm:text-base">{t("chat_assistant_title")}</h3>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={toggleChat}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-
-                {/* Chat Messages */}
-                <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto">
-                  {messages.length === 0 ? (
-                    <div className="h-full flex items-center justify-center text-center text-muted-foreground">
-                      <div>
-                        <MessageCircle className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                        <p className="text-xs sm:text-sm">{t("chat_ask_anything")}</p>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      {messages.map((msg, index) => (
-                        <div
-                          key={index}
-                          className={`mb-4 flex ${msg.isUser ? "justify-end" : "justify-start"}`}
-                        >
-                          <div
-                            className={`max-w-[85%] sm:max-w-3/4 p-3 rounded-2xl text-xs sm:text-sm ${
-                              msg.isUser
-                                ? "bg-primary text-primary-foreground rounded-br-none"
-                                : "bg-muted rounded-bl-none"
-                            }`}
-                          >
-                            <ReactMarkdown>
-                              {msg.text.replaceAll("\n", "\n\n")}
-                            </ReactMarkdown>
-                            <div className="text-[10px] opacity-70 mt-1 text-right">
-                              {msg.timestamp.toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                      {isTyping && (
-                        <div className="mb-4 flex justify-start">
-                          <div className="max-w-3/4 p-3 rounded-2xl rounded-bl-none bg-muted flex space-x-1">
-                            <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                            <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
-                            <div className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
-                          </div>
-                        </div>
-                      )}
-                      <div ref={messagesEndRef} />
-                    </>
-                  )}
-                </div>
-
-                {/* Chat Input */}
-                <form onSubmit={sendMessage} className="p-3 sm:p-4 border-t flex gap-2 bg-background">
-                  <input
-                    type="text"
-                    ref={inputRef}
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    placeholder={t("chat_type_message")}
-                    className="flex-1 bg-muted rounded-xl px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    disabled={isTyping}
-                  />
-                  <Button
-                    type="submit"
-                    size="icon"
-                    className="rounded-xl h-9 w-9 shrink-0"
-                    disabled={isTyping || !inputMessage.trim()}
-                  >
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </form>
-              </div>
-            </>
-          )}
+          <ChatWindow
+            isOpen={isChatOpen}
+            onClose={toggleChat}
+            messages={messages}
+            isTyping={isTyping}
+            inputMessage={inputMessage}
+            setInputMessage={setInputMessage}
+            sendMessage={sendMessage}
+            messagesEndRef={messagesEndRef}
+            inputRef={inputRef}
+            title={t("chat_assistant_title")}
+            placeholder={t("chat_type_message")}
+            emptyStateText={t("chat_ask_anything")}
+          />
         </div>
       </FeatureFlagGuard>
     </div>
