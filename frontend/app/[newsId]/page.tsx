@@ -14,6 +14,7 @@ import { MessageCircle, X, Send } from "lucide-react";
 import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { ChatFab } from "@/components/ChatFab";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
+import { useFeatureFlag } from "@/lib/feature-flags-context";
 import { useLanguage } from "@/lib/i18n-context";
 import { translateCategory } from "@/lib/api-translator";
 import { useTranslatedArticle, useTranslatedArticles } from "@/hooks/use-translated-articles";
@@ -24,35 +25,6 @@ interface ChatMessage {
   isUser: boolean;
   timestamp: Date;
 }
-
-const IRRELEVANT_LOCATION_TOKENS = [
-  "unknown",
-  "n/a",
-  "na",
-  "none",
-  "null",
-  "global",
-  "worldwide",
-  "international",
-  "various locations",
-  "multiple locations",
-  "not specified",
-  "unspecified",
-  "remote",
-  "online",
-  "web",
-  "internet",
-];
-
-function isRelevantLocation(value?: string | null): boolean {
-  if (!value || typeof value !== "string") return false;
-  const normalized = value.trim().toLowerCase();
-  if (!normalized || normalized.length < 2) return false;
-  if (IRRELEVANT_LOCATION_TOKENS.includes(normalized)) return false;
-  if (!/[a-zA-ZÀ-ɏḀ-ỿ]/.test(normalized)) return false;
-  return true;
-}
-
 export default function NewsDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -72,6 +44,8 @@ export default function NewsDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const startTimeRef = useRef<number | null>(null);
+  const isSimilarNewsEnabled = useFeatureFlag("similar_news");
+  const isLargeArticleChatWindowEnabled = useFeatureFlag("article_chat_large_window");
 
   const sendDuration = async () => {
     if (!startTimeRef.current) return;
@@ -276,8 +250,8 @@ export default function NewsDetailPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 lg:gap-12">
+        <div className="md:col-span-2">
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2.5 sm:mb-4 leading-tight">{displayArticle.title}</h1>
           {(() => {
             const rawAuthor =
@@ -335,48 +309,47 @@ export default function NewsDetailPage() {
               </Link>
             </p>
           )}
-          {isRelevantLocation(newsItem?.location) && <Location location={newsItem.location || null} />}
-
-          {/* Similar News Section */}
-          <div className="border-t pt-6 mt-6">
-            <h2 className="text-lg sm:text-xl font-bold mb-4">Similar News</h2>
-            {translatedMoreNews.length === 0 ? (
-              <p className="text-muted-foreground text-xs sm:text-sm">
-                {t("no_other_news")}
-              </p>
-            ) : (
-              <ul className="space-y-3">
-                {translatedMoreNews.slice(0, 6).map((item) => {
-                  const itemImageUrl = item.source?.image_url || item.source?.media?.[0];
-                  return (
-                    <li key={item._id || item.id}>
-                      <Link
-                        href={`/${encodeURIComponent(item.id)}`}
-                        className="flex items-center hover:bg-accent rounded-xl p-2.5 transition-colors border border-border/50 bg-card/60 gap-3"
-                      >
-                        {itemImageUrl && (
-                          <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 overflow-hidden rounded-lg bg-muted">
-                            <img
-                              src={itemImageUrl}
-                              alt={item.title}
-                              className="object-cover w-full h-full"
-                            />
-                          </div>
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-xs sm:text-sm font-semibold leading-snug line-clamp-2">
-                            {item.title}
-                          </h3>
-                        </div>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
+          {newsItem?.location && <Location location={newsItem.location} />}
         </div>
 
+        {/* More News Section */}
+        <div className="md:col-span-1 border-t md:border-t-0 pt-6 md:pt-0">
+          <h2 className="text-lg sm:text-xl font-bold mb-4">{t("more_news")}</h2>
+          {translatedMoreNews.length === 0 ? (
+            <p className="text-muted-foreground text-xs sm:text-sm">
+              {t("no_other_news")}
+            </p>
+          ) : (
+            <ul className="space-y-3">
+              {(isSimilarNewsEnabled ? translatedMoreNews.slice(0, 6) : translatedMoreNews).map((item) => {
+                const itemImageUrl = item.source?.image_url || item.source?.media?.[0];
+                return (
+                  <li key={item._id || item.id}>
+                    <Link
+                      href={`/${encodeURIComponent(item.id)}`}
+                      className="flex items-center hover:bg-accent rounded-xl p-2.5 transition-colors border border-border/50 bg-card/60 gap-3"
+                    >
+                      {itemImageUrl && (
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 overflow-hidden rounded-lg bg-muted">
+                          <img
+                            src={itemImageUrl}
+                            alt={item.title}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xs sm:text-sm font-semibold leading-snug line-clamp-2">
+                          {item.title}
+                        </h3>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
       </div>
 
       {/* Floating Chat Button & Mobile Drawer */}
@@ -391,7 +364,7 @@ export default function NewsDetailPage() {
               onClick={toggleChat}
             />
             <div
-              className="fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-[400px] sm:h-[550px] bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+              className={`fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 ${isLargeArticleChatWindowEnabled ? "sm:w-[520px] sm:h-[700px]" : "sm:w-[400px] sm:h-[550px]"} bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden`}
             >
               {/* Chat Header */}
               <div className="p-3.5 sm:p-4 border-b flex justify-between items-center bg-muted/30">

@@ -102,6 +102,18 @@ export const SYSTEM_FEATURE_FLAGS: FeatureFlag[] = [
     defaultEnabled: true,
   },
   {
+    id: "similar_news",
+    name: "Similar News Logic",
+    description: "Limit article page recommendations for future embedding-based similar-news rollout",
+    defaultEnabled: false,
+  },
+  {
+    id: "article_chat_large_window",
+    name: "Article Chat Large Window",
+    description: "Use expanded desktop chat drawer dimensions on article pages",
+    defaultEnabled: true,
+  },
+  {
     id: "ai_chat_robot_design",
     name: "AI Chat: Robot Button Design",
     description: "Show animated robot avatar button for chat. When off, shows a plain icon button instead.",
