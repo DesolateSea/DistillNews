@@ -43,6 +43,27 @@ services:
     networks:
       - default
 
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    ports:
+      - "8002:8002"
+    environment:
+      EMBEDDING_SERVICE_URL: http://embedding-server:8001
+      DB_URL: ${DB_URL:-mongodb://mongo:27017/evolution}
+      ARTICLE_STORE_BACKEND: file
+      RAG_BACKEND: memory
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - embedding-server
+    restart: unless-stopped
+    networks:
+      - default
+
   backend:
     build:
       context: .

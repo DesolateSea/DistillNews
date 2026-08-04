@@ -6,11 +6,12 @@ key, as well as other compatible services.
 """
 
 import os
+import json
 from config import config
-from service.agents.base import AgentProvider, CompletionResult
+from service.agents.base import ToolCallingProvider, CompletionResult, ToolDefinition, ToolCall, AgentMessage
 
 
-class OpenAIAgent(AgentProvider):
+class OpenAIAgent(ToolCallingProvider):
     """AgentProvider backed by an OpenAI-compatible chat completions API.
 
     Constructor args can override env-var defaults via config.
@@ -64,6 +65,60 @@ class OpenAIAgent(AgentProvider):
         return CompletionResult(
             content=content,
             raw=response.model_dump(),
+        )
+        
+    def chat_with_tools(
+        self,
+        messages: list[AgentMessage],
+        tools: list[ToolDefinition] | None = None,
+        tool_choice: str | dict = "auto",
+    ) -> AgentMessage:
+        openai_messages = []
+        for msg in messages:
+            m = {"role": msg.role}
+            if msg.content is not None:
+                m["content"] = msg.content
+            if msg.tool_call_id is not None:
+                m["tool_call_id"] = msg.tool_call_id
+            if msg.tool_calls:
+                m["tool_calls"] = [
+                    {
+                        "id": tc.id,
+                        "type": "function",
+                        "function": {
+                            "name": tc.name,
+                            "arguments": json.dumps(tc.arguments)
+                        }
+                    } for tc in msg.tool_calls
+                ]
+            openai_messages.append(m)
+
+        kwargs = {
+            "model": self._model,
+            "messages": openai_messages,
+        }
+        
+        if tools:
+            kwargs["tools"] = [t.to_openai_schema() for t in tools]
+            kwargs["tool_choice"] = tool_choice
+
+        response = self._client.chat.completions.create(**kwargs)
+        resp_msg = response.choices[0].message
+        
+        parsed_tool_calls = None
+        if resp_msg.tool_calls:
+            parsed_tool_calls = []
+            for tc in resp_msg.tool_calls:
+                parsed_tool_calls.append(ToolCall(
+                    id=tc.id,
+                    name=tc.function.name,
+                    arguments=json.loads(tc.function.arguments)
+                ))
+                
+        return AgentMessage(
+            role=resp_msg.role,
+            content=resp_msg.content,
+            tool_calls=parsed_tool_calls,
         )
 
     # complete_from_template() uses the default base-class implementation,

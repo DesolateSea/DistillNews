@@ -13,6 +13,7 @@ from pipeline.embeddings.providers.sentence_transformers import (
 )
 from service.rag.base import Document, DocumentStore, SearchResult
 from service.rag.factory import create_doc_store
+from service.agents.base import ToolCallingProvider, ToolDefinition, AgentMessage
 
 
 class KeywordEmbedder(EmbeddingProvider):
@@ -37,15 +38,21 @@ class StaticDocumentStore(DocumentStore):
         ]
 
 
-class FakeAgent:
+class FakeToolCallingAgent(ToolCallingProvider):
     def __init__(self):
         self.calls = []
 
-    def complete_from_template(self, template_path, input_data):
-        self.calls.append((Path(template_path).name, input_data))
-        if Path(template_path).name == "filter_prompt.yaml":
-            return CompletionResult(content="climate")
-        return CompletionResult(content=f"Grounded answer: {input_data['content']}")
+    def complete(self, system_prompt: str, user_prompt: str) -> CompletionResult:
+        return CompletionResult(content="dummy")
+
+    def chat_with_tools(
+        self,
+        messages: list[AgentMessage],
+        tools: list[ToolDefinition] | None = None,
+        tool_choice: str | dict = "auto",
+    ) -> AgentMessage:
+        self.calls.append(("chat_with_tools", messages))
+        return AgentMessage(role="assistant", content="Grounded answer: Climate article excerpt")
 
 
 def test_memory_store_uses_injected_embedder_and_preserves_metadata():
@@ -100,7 +107,7 @@ def test_noop_embedding_provider_makes_no_vectors():
 
 def test_embedding_backends_are_not_rag_backends():
     for backend in ("openai", "foundry", "sentence_transformers", "in_memory"):
-        with pytest.raises(ValueError, match="Available: memory, bm25, julep, none"):
+        with pytest.raises(ValueError, match="Available: memory, bm25, none"):
             create_doc_store(backend)
 
 
@@ -151,16 +158,20 @@ def test_sentence_transformers_provider_uses_a_local_model():
 
 
 def test_chatbot_only_depends_on_agent_and_document_store():
-    agent = FakeAgent()
+    agent = FakeToolCallingAgent()
     chatbot = ChatbotService(
         agent=agent,
         document_store=StaticDocumentStore(),
-        prompts_dir=Path("chatbot/prompts"),
     )
 
     response = chatbot.get_response("What happened?", user_id="reader-1")
 
     assert response == "Grounded answer: Climate article excerpt"
-    assert agent.calls[0][0] == "filter_prompt.yaml"
-    assert agent.calls[1][1]["content"] == "Climate article excerpt"
-    assert agent.calls[1][1]["memory"] == ""
+    assert len(agent.calls) > 0
+    assert agent.calls[0][0] == "chat_with_tools"
+    # messages[0] = system prompt, messages[1] = user message
+    messages = agent.calls[0][1]
+    user_messages = [m for m in messages if m.role == "user"]
+    assert len(user_messages) == 1
+    assert user_messages[0].content == "What happened?"
+

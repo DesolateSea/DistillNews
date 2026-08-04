@@ -57,6 +57,7 @@ if [ "$DO_INSTALL" = true ]; then
     $VENV_PYTHON -m pip install -r server/requirements.txt \
                                -r embedding_server/requirements.txt \
                                -r pipeline/requirements.txt \
+                               -r mcp_server/requirements.txt \
                                pytest pytest-asyncio email-validator azure-storage-blob
     if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
         echo -e "${CYAN}📦 Installing frontend npm dependencies...${NC}"
@@ -81,7 +82,7 @@ PIDS=()
 
 cleanup() {
     trap - INT TERM EXIT
-    echo -e "\n${CYAN}🛑 Stopping local servers...${NC}"
+    echo -e "\n${CYAN}D Stopping local servers...${NC}"
     for pid in "${PIDS[@]}"; do
         if kill -0 "$pid" 2>/dev/null; then
             kill -TERM "$pid" 2>/dev/null || true
@@ -103,6 +104,13 @@ trap cleanup INT TERM EXIT
 echo -e "${CYAN}🧠 Starting Embedding Server on http://localhost:8001...${NC}"
 $VENV_PYTHON -m uvicorn embedding_server.app:app --host 0.0.0.0 --port 8001 &
 PIDS+=($!)
+
+# Start MCP Server (SSE) in background
+if $VENV_PYTHON -c "import mcp" 2>/dev/null; then
+    echo -e "${CYAN}🔌 Starting MCP Server (SSE) on http://localhost:8002...${NC}"
+    $VENV_PYTHON -c "from mcp_server.app import mcp; mcp.run(transport='sse', port=8002)" &
+    PIDS+=($!)
+fi
 
 # Start Web Backend Server with Hot-Reloading in background
 echo -e "${CYAN}🌐 Starting Web Backend Server (hot-reloading) on http://localhost:8000...${NC}"
