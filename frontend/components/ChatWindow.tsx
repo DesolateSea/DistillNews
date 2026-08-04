@@ -125,7 +125,7 @@ export function ChatWindow({
           width: `${size.width}px`,
           height: `${size.height}px`,
         }}
-        className="fixed inset-x-3 bottom-3 top-14 sm:top-auto sm:left-auto sm:right-0 sm:bottom-0 max-w-[95vw] max-h-[90vh] sm:max-w-none sm:max-h-none bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden transition-none"
+        className="fixed inset-x-2 bottom-2 sm:top-auto sm:left-auto sm:right-0 sm:bottom-0 max-w-[calc(100vw-1rem)] sm:max-w-none max-h-[85vh] sm:max-h-none bg-card border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden transition-none"
       >
         {/* Top-Left Resize Handle */}
         <div

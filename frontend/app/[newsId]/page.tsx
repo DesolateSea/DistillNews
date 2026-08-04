@@ -238,7 +238,7 @@ export default function NewsDetailPage() {
 
   // Render News Content
   return (
-    <div className="container max-w-screen-lg mx-auto px-3 sm:px-6 py-2.5 sm:py-8">
+    <div className="max-w-[1400px] mx-auto px-3 sm:px-6 py-6 sm:py-8">
       <HeadlinesBanner variant="ticker" />
 
       <div className="mb-3 sm:mb-6">
@@ -251,8 +251,8 @@ export default function NewsDetailPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 lg:gap-12">
-        <div className="md:col-span-2">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-6 lg:gap-8">
+        <div className="order-1 md:order-2">
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2.5 sm:mb-4 leading-tight">{displayArticle.title}</h1>
           {(() => {
             const rawAuthor =
@@ -314,7 +314,7 @@ export default function NewsDetailPage() {
         </div>
 
         {/* More News Section */}
-        <div className="md:col-span-1 border-t md:border-t-0 pt-6 md:pt-0">
+        <div className="border-t md:border-t-0 pt-6 md:pt-0 order-2 md:order-1">
           <h2 className="text-lg sm:text-xl font-bold mb-4">{t("more_news")}</h2>
           {translatedMoreNews.length === 0 ? (
             <p className="text-muted-foreground text-xs sm:text-sm">
@@ -351,6 +351,8 @@ export default function NewsDetailPage() {
             </ul>
           )}
         </div>
+        {/* Right spacer to keep article centered */}
+        <div className="hidden md:block order-3" />
       </div>
 
       {/* Floating Chat Button & Mobile Drawer */}
