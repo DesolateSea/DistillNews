@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "DistillNews - AI-Powered News Aggregator",
   description: "Get personalized, unbiased news updates curated by AI",
   generator: "v0.dev",
+  verification: {
+    google: "bXi3KBr2xxscbMEqu8L-9YpLCoJZfGcvd45r-NcThHc",
+  },
 };
 
 export default function RootLayout({
