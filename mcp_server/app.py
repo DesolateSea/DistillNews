@@ -1,6 +1,24 @@
+import os
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("DistillNews Engine")
+default_host = os.environ.get("FASTMCP_HOST", "0.0.0.0")
+default_port = int(os.environ.get("MCP_PORT") or os.environ.get("FASTMCP_PORT", "8002"))
+
+mcp = FastMCP("DistillNews Engine", host=default_host, port=default_port)
+
+# Wrap run() for backwards-compatibility with port/host kwargs
+_orig_run = mcp.run
+
+
+def _run(transport: str = "stdio", mount_path: str | None = None, **kwargs):
+    if "port" in kwargs:
+        mcp.settings.port = int(kwargs.pop("port"))
+    if "host" in kwargs:
+        mcp.settings.host = str(kwargs.pop("host"))
+    return _orig_run(transport=transport, mount_path=mount_path, **kwargs)
+
+
+mcp.run = _run
 
 @mcp.tool()
 def news_search(query: str, limit: int = 5, category: str | None = None) -> list[dict]:
@@ -26,7 +44,30 @@ def get_article_count() -> dict:
     return count_articles()
 
 def main():
-    mcp.run(transport="stdio")
+    import argparse
+    parser = argparse.ArgumentParser(description="DistillNews MCP Server")
+    parser.add_argument(
+        "--transport",
+        default=os.environ.get("MCP_TRANSPORT", "stdio"),
+        choices=["stdio", "sse", "streamable-http"],
+        help="MCP transport protocol (stdio, sse, streamable-http)",
+    )
+    parser.add_argument(
+        "--host",
+        default=os.environ.get("FASTMCP_HOST", default_host),
+        help="Host to bind for SSE/HTTP",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=int(os.environ.get("MCP_PORT") or os.environ.get("FASTMCP_PORT", default_port)),
+        help="Port to bind for SSE/HTTP",
+    )
+    args, _ = parser.parse_known_args()
+
+    mcp.settings.host = args.host
+    mcp.settings.port = args.port
+    mcp.run(transport=args.transport)
 
 if __name__ == "__main__":
     main()
