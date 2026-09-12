@@ -11,5 +11,6 @@ venv
 .pytest_cache/
 pytest-of-*/
 data/
+api_data/
 tests/prompt_eval/results/*.md
 

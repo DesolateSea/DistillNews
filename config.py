@@ -284,6 +284,38 @@ class Config:
         self.set_source_enabled(source_name, new_status)
         return new_status
 
+    # ------------------------------------------------------------------
+    # Pipeline Stage Toggles
+    # ------------------------------------------------------------------
+
+    @property
+    def DISABLED_PIPELINE_STAGES(self) -> set[str]:
+        raw = os.getenv("DISABLED_PIPELINE_STAGES", "")
+        if not raw:
+            return set()
+        return {s.strip().lower() for s in raw.split(",") if s.strip()}
+
+    def is_stage_enabled(self, stage_name: str) -> bool:
+        """Check whether a pipeline stage (e.g., 'fetch') is enabled."""
+        name = stage_name.strip().lower()
+        return name not in self.DISABLED_PIPELINE_STAGES
+
+    def set_stage_enabled(self, stage_name: str, enabled: bool) -> None:
+        """Dynamically enable or disable a pipeline stage at runtime."""
+        name = stage_name.strip().lower()
+        disabled = self.DISABLED_PIPELINE_STAGES
+        if enabled:
+            disabled.discard(name)
+        else:
+            disabled.add(name)
+        os.environ["DISABLED_PIPELINE_STAGES"] = ",".join(sorted(disabled))
+
+    def toggle_stage(self, stage_name: str) -> bool:
+        """Toggle a pipeline stage between enabled and disabled at runtime. Returns new status."""
+        new_status = not self.is_stage_enabled(stage_name)
+        self.set_stage_enabled(stage_name, new_status)
+        return new_status
+
     @property
     def DEBUG(self) -> bool:
         """Returns True if DEBUG environment variable is enabled ('true', '1', 'yes')."""
