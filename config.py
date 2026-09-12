@@ -72,22 +72,6 @@ class Config:
             or os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
         )
 
-    # Julep Provider
-    @property
-    def JULEP_API_KEY(self) -> str | None:
-        return os.getenv("JULEP_API_KEY")
-
-    @property
-    def JULEP_MODEL(self) -> str:
-        return (
-            os.getenv("AGENT_MODEL")
-            or os.getenv("JULEP_MODEL", "claude-3.5-sonnet")
-        )
-
-    @property
-    def JULEP_ENVIRONMENT(self) -> str:
-        return os.getenv("JULEP_ENVIRONMENT", "production")
-
     # ------------------------------------------------------------------
     # Local Sentence Transformers Settings
     # ------------------------------------------------------------------
@@ -165,6 +149,8 @@ class Config:
         url = os.getenv("DB_URL")
         if url and not os.path.exists("/.dockerenv"):
             url = url.replace("://mongo:", "://127.0.0.1:").replace("@mongo:", "@127.0.0.1:")
+            if ":27017" in url and str(self.MONGO_PORT) != "27017":
+                url = url.replace(":27017", f":{self.MONGO_PORT}")
         return url
 
     @property
@@ -176,6 +162,8 @@ class Config:
         url = os.getenv("REDIS_URL", "redis://redis:6379/0")
         if url and not os.path.exists("/.dockerenv"):
             url = url.replace("://redis:", "://127.0.0.1:").replace("@redis:", "@127.0.0.1:")
+            if ":6379" in url and str(self.REDIS_PORT) != "6379":
+                url = url.replace(":6379", f":{self.REDIS_PORT}")
         return url
 
     @property
@@ -184,6 +172,38 @@ class Config:
         if url and not os.path.exists("/.dockerenv"):
             url = url.replace("://embedding-server:", "://127.0.0.1:")
         return url
+
+    # ------------------------------------------------------------------
+    # Service Ports & Networking Settings
+    # ------------------------------------------------------------------
+
+    @property
+    def PORT(self) -> int:
+        return int(os.getenv("PORT") or os.getenv("BACKEND_PORT", "8000"))
+
+    @property
+    def BACKEND_PORT(self) -> int:
+        return int(os.getenv("BACKEND_PORT") or os.getenv("PORT", "8000"))
+
+    @property
+    def FRONTEND_PORT(self) -> int:
+        return int(os.getenv("FRONTEND_PORT", "3000"))
+
+    @property
+    def EMBEDDING_PORT(self) -> int:
+        return int(os.getenv("EMBEDDING_PORT", "8001"))
+
+    @property
+    def MCP_PORT(self) -> int:
+        return int(os.getenv("MCP_PORT") or os.getenv("FASTMCP_PORT", "8002"))
+
+    @property
+    def MONGO_PORT(self) -> int:
+        return int(os.getenv("MONGO_PORT", "27017"))
+
+    @property
+    def REDIS_PORT(self) -> int:
+        return int(os.getenv("REDIS_PORT", "6379"))
 
     # ------------------------------------------------------------------
     # Article Store Settings

@@ -57,6 +57,7 @@ if [ "$DO_INSTALL" = true ]; then
     $VENV_PYTHON -m pip install -r server/requirements.txt \
                                -r embedding_server/requirements.txt \
                                -r pipeline/requirements.txt \
+                               -r mcp_server/requirements.txt \
                                pytest pytest-asyncio email-validator azure-storage-blob
     if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
         echo -e "${CYAN}📦 Installing frontend npm dependencies...${NC}"
@@ -72,6 +73,24 @@ fi
 # 3. Start Infrastructure & Local Servers
 # ------------------------------------------------------------------
 echo -e "${CYAN}🚀 Starting DistillNews Local Hybrid Development Environment (Python 3.13)...${NC}"
+
+# Safely load configuration from .env if present
+if [ -f ".env" ]; then
+    eval "$($PYTHON_BIN -c "
+import dotenv, shlex
+config = dotenv.dotenv_values('.env')
+for k, v in config.items():
+    if v is not None:
+        print(f'export {k}={shlex.quote(v)}')
+" 2>/dev/null || true)"
+fi
+
+BACKEND_PORT="${BACKEND_PORT:-${PORT:-8000}}"
+FRONTEND_PORT="${FRONTEND_PORT:-3000}"
+EMBEDDING_PORT="${EMBEDDING_PORT:-8001}"
+MCP_PORT="${MCP_PORT:-${FASTMCP_PORT:-8002}}"
+MONGO_PORT="${MONGO_PORT:-27017}"
+REDIS_PORT="${REDIS_PORT:-6379}"
 
 # Start MongoDB and Redis in Docker
 echo -e "${CYAN}📦 Ensuring Mongo & Redis containers are running...${NC}"
@@ -100,19 +119,26 @@ cleanup() {
 trap cleanup INT TERM EXIT
 
 # Start Embedding Server in background
-echo -e "${CYAN}🧠 Starting Embedding Server on http://localhost:8001...${NC}"
-$VENV_PYTHON -m uvicorn embedding_server.app:app --host 0.0.0.0 --port 8001 &
+echo -e "${CYAN}🧠 Starting Embedding Server on http://localhost:${EMBEDDING_PORT}...${NC}"
+$VENV_PYTHON -m uvicorn embedding_server.app:app --host 0.0.0.0 --port "${EMBEDDING_PORT}" &
 PIDS+=($!)
 
+# Start MCP Server (SSE) in background
+if $VENV_PYTHON -c "import mcp" 2>/dev/null; then
+    echo -e "${CYAN}🔌 Starting MCP Server (SSE) on http://localhost:${MCP_PORT}...${NC}"
+    $VENV_PYTHON -m mcp_server --transport sse --host 0.0.0.0 --port "${MCP_PORT}" &
+    PIDS+=($!)
+fi
+
 # Start Web Backend Server with Hot-Reloading in background
-echo -e "${CYAN}🌐 Starting Web Backend Server (hot-reloading) on http://localhost:8000...${NC}"
-$VENV_PYTHON -m uvicorn server.app:app --reload --host 0.0.0.0 --port 8000 &
+echo -e "${CYAN}🌐 Starting Web Backend Server (hot-reloading) on http://localhost:${BACKEND_PORT}...${NC}"
+$VENV_PYTHON -m uvicorn server.app:app --reload --host 0.0.0.0 --port "${BACKEND_PORT}" &
 PIDS+=($!)
 
 # Start Next.js Frontend if available and not disabled
 if [ "$NO_FRONTEND" = false ] && [ -d "frontend/node_modules" ]; then
-    echo -e "${CYAN}🎨 Starting Next.js Frontend UI on http://localhost:3000...${NC}"
-    (cd frontend && npm run dev) &
+    echo -e "${CYAN}🎨 Starting Next.js Frontend UI on http://localhost:${FRONTEND_PORT}...${NC}"
+    (cd frontend && PORT="${FRONTEND_PORT}" npm run dev -- -p "${FRONTEND_PORT}") &
     PIDS+=($!)
 fi
 

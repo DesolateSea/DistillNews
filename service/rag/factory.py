@@ -16,11 +16,7 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
     """
     backend = (backend or config.RAG_BACKEND).lower()
 
-    if backend == "julep":
-        from .backends.julep import JulepDocStore
-
-        return JulepDocStore(**kwargs)
-    elif backend == "memory":
+    if backend == "memory":
         from .backends.memory import InMemoryVectorStore
 
         embedder = kwargs.pop("embedder", None)
@@ -42,5 +38,5 @@ def create_doc_store(backend: str | None = None, **kwargs) -> DocumentStore:
     else:
         raise ValueError(
             f"Unknown RAG backend: {backend!r}. "
-            "Available: memory, bm25, julep, none"
+            "Available: memory, bm25, none"
         )

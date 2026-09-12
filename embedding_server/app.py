@@ -68,4 +68,7 @@ def embed_many(request: EmbedManyRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=8001)
+    port = int(os.environ.get("EMBEDDING_PORT") or os.environ.get("PORT", "8001"))
+    host = os.environ.get("EMBEDDING_HOST", "0.0.0.0")
+    uvicorn.run("app:app", host=host, port=port)
+

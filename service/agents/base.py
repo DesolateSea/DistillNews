@@ -17,6 +17,41 @@ class CompletionResult:
     raw: dict | None = field(default=None, repr=False)  # Provider-specific raw response
 
 
+@dataclass
+class ToolDefinition:
+    """Schema definition for a tool the LLM can invoke."""
+    name: str
+    description: str
+    parameters: dict  # JSON Schema
+
+    def to_openai_schema(self) -> dict:
+        return {
+            "type": "function",
+            "function": {
+                "name": self.name,
+                "description": self.description,
+                "parameters": self.parameters,
+            },
+        }
+
+
+@dataclass
+class ToolCall:
+    """A tool invocation returned by the LLM."""
+    id: str
+    name: str
+    arguments: dict
+
+
+@dataclass
+class AgentMessage:
+    """A single message in a multi-turn tool-calling conversation."""
+    role: str  # system | user | assistant | tool
+    content: str | None = None
+    tool_calls: list[ToolCall] | None = None
+    tool_call_id: str | None = None
+
+
 class AgentProvider(ABC):
     """Abstract base for LLM completion backends.
 
@@ -100,3 +135,16 @@ class AgentProvider(ABC):
             return re.sub(r"\{steps\[0\]\.input\.(\w+)\}", _replacer, text)
 
         return _substitute(system_content), _substitute(user_content)
+
+
+class ToolCallingProvider(AgentProvider):
+    """Extended provider supporting native tool / function calling."""
+
+    @abstractmethod
+    def chat_with_tools(
+        self,
+        messages: list[AgentMessage],
+        tools: list[ToolDefinition] | None = None,
+        tool_choice: str | dict = "auto",
+    ) -> AgentMessage:
+        """Execute a chat completion with optional tool definitions."""

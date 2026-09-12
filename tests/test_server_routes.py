@@ -53,7 +53,7 @@ async def test_send_otp_failure_logging_output(capsys):
             captured = capsys.readouterr()
             out = captured.out
 
-            assert "[ INFO ]" in out
-            assert "[ FAIL ]" in out
-            assert "[ WARN ]" in out
+            assert " INFO " in out
+            assert " FAIL " in out
+            assert " WARN " in out
             assert "Email delivery failed" in out

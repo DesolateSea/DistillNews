@@ -58,7 +58,7 @@ def truncate(text: str, max_len: int = MAX_INLINE) -> str:
 
 def _badge(label: str, bg: str, fg: str = _C.WHITE) -> str:
     padded = label.center(6)
-    return f"{bg}{fg}{_C.BOLD}[{padded}]{_C.RESET}"
+    return f"{bg}{fg}{_C.BOLD} {padded} {_C.RESET}"
 
 
 # ── Logger class ────────────────────────────────────────────────────────────
@@ -106,7 +106,7 @@ class Logger:
 
     @staticmethod
     def _print(badge_key: str, message: str, detail: str | None = None, truncate_detail: bool = True):
-        badge = Logger._BADGES.get(badge_key, f"[{badge_key.upper()}]")
+        badge = Logger._BADGES.get(badge_key, f" {badge_key.upper()} ")
         line = f"{badge} {message}"
         if detail is not None:
             detail_str = truncate(detail) if truncate_detail else str(detail).replace("\n", " ").replace("\r", "")

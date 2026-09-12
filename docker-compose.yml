@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     attach: false
     ports:
-      - "27017:27017"
+      - "${MONGO_PORT:-27017}:27017"
     volumes:
       - mongo_data:/data/db
     healthcheck:
@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
     attach: false
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT:-6379}:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -36,9 +36,34 @@ services:
       dockerfile: Dockerfile.embedding
     image: distillnews-embedding:latest
     ports:
-      - "8001:8001"
+      - "${EMBEDDING_PORT:-8001}:8001"
     environment:
       EMBEDDING_MODEL_NAME: sentence-transformers/all-MiniLM-L6-v2
+    restart: unless-stopped
+    networks:
+      - default
+
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    ports:
+      - "${MCP_PORT:-8002}:8002"
+    environment:
+      EMBEDDING_SERVICE_URL: http://embedding-server:8001
+      DB_URL: ${DB_URL:-mongodb://mongo:27017/evolution}
+      ARTICLE_STORE_BACKEND: file
+      RAG_BACKEND: memory
+      MCP_PORT: ${MCP_PORT:-8002}
+      FASTMCP_PORT: ${MCP_PORT:-8002}
+      FASTMCP_HOST: 0.0.0.0
+      MCP_TRANSPORT: sse
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - embedding-server
     restart: unless-stopped
     networks:
       - default
@@ -49,7 +74,7 @@ services:
       dockerfile: Dockerfile.backend
     image: distillnews-backend:latest
     ports:
-      - "${BACKEND_PORT:-8000}:8000"
+      - "${BACKEND_PORT:-${PORT:-8000}}:8000"
     env_file:
       - .env
     volumes:
