@@ -11,6 +11,7 @@ from service.agents.base import (
     ToolCall,
     AgentMessage
 )
+from service.agents.orchestrator import AgentOrchestrator
 
 
 class DummyAgent(AgentProvider):
@@ -88,20 +89,44 @@ def test_tool_calling_provider_interface():
 
 
 def test_orchestrator_basic_flow():
+    called = []
+    def dummy_tool_fn(arg: str):
+        called.append(arg)
+        return {"status": "ok", "echo": arg}
+
     agent = FakeToolCallingAgent()
     tool = ToolDefinition(name="test_tool", description="test", parameters={})
-    
-    messages = [AgentMessage(role="user", content="do something")]
-    response1 = agent.chat_with_tools(messages, tools=[tool])
-    
-    assert response1.role == "assistant"
-    assert response1.tool_calls is not None
-    assert len(response1.tool_calls) == 1
-    assert response1.tool_calls[0].name == "test_tool"
-    
-    messages.append(response1)
-    messages.append(AgentMessage(role="tool", content="success", tool_call_id=response1.tool_calls[0].id))
-    
-    response2 = agent.chat_with_tools(messages, tools=[tool])
-    assert response2.role == "assistant"
-    assert response2.content == "final result"
+    orchestrator = AgentOrchestrator(
+        agent=agent,
+        tools={"test_tool": (tool, dummy_tool_fn)},
+        max_turns=3
+    )
+
+    result = orchestrator.run(user_prompt="do something", system_prompt="system prompt")
+    assert result == "final result"
+    assert called == ["val"]
+
+
+def test_orchestrator_handles_unknown_tool():
+    class UnknownToolAgent(ToolCallingProvider):
+        def complete(self, system_prompt: str, user_prompt: str) -> CompletionResult:
+            return CompletionResult(content="dummy")
+
+        def chat_with_tools(self, messages: list[AgentMessage], tools: list[ToolDefinition] | None = None, tool_choice: str | dict = "auto") -> AgentMessage:
+            has_tool_call = any(m.role == "assistant" and m.tool_calls for m in messages)
+            if not has_tool_call:
+                return AgentMessage(
+                    role="assistant",
+                    tool_calls=[ToolCall(id="call_999", name="non_existent_tool", arguments={})]
+                )
+            return AgentMessage(role="assistant", content="handled unknown tool")
+
+    orchestrator = AgentOrchestrator(
+        agent=UnknownToolAgent(),
+        tools={},
+        max_turns=3
+    )
+
+    # Should not raise KeyError
+    result = orchestrator.run(user_prompt="trigger unknown tool", system_prompt="system")
+    assert result == "handled unknown tool"

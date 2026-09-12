@@ -109,10 +109,15 @@ class OpenAIAgent(ToolCallingProvider):
         if resp_msg.tool_calls:
             parsed_tool_calls = []
             for tc in resp_msg.tool_calls:
+                raw_args = tc.function.arguments or "{}"
+                try:
+                    args = json.loads(raw_args) if isinstance(raw_args, str) else raw_args
+                except (json.JSONDecodeError, TypeError):
+                    args = {"raw_arguments": raw_args}
                 parsed_tool_calls.append(ToolCall(
                     id=tc.id,
                     name=tc.function.name,
-                    arguments=json.loads(tc.function.arguments)
+                    arguments=args
                 ))
                 
         return AgentMessage(

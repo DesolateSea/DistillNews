@@ -35,11 +35,15 @@ class AgentOrchestrator:
                 return response.content or ""
 
             for call in response.tool_calls:
-                _, fn = self._tools[call.name]
-                try:
-                    result = fn(**call.arguments)
-                except Exception as e:
-                    result = {"error": str(e)}
+                tool_entry = self._tools.get(call.name)
+                if not tool_entry:
+                    result = {"error": f"Tool '{call.name}' not found."}
+                else:
+                    _, fn = tool_entry
+                    try:
+                        result = fn(**call.arguments)
+                    except Exception as e:
+                        result = {"error": str(e)}
                 messages.append(AgentMessage(
                     role="tool",
                     tool_call_id=call.id,
