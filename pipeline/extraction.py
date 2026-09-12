@@ -93,7 +93,7 @@ def _extract_news(input_data, prompt, source=None, debug=None, article_id=None, 
     return parsed
 
 
-def _is_news(input_data, prompt="is_news.yaml") -> bool | None:
+def _is_news(input_data, prompt="is_news.prompt.md") -> bool | None:
     """Classify whether input is a newsworthy post."""
     log.ai_call("classify_is_news", input_data["title"])
     result = agent.complete_from_template(prompts_dir / prompt, input_data)
@@ -109,7 +109,7 @@ def _is_news(input_data, prompt="is_news.yaml") -> bool | None:
     return is_news
 
 
-def _format_news(content, prompt="markdown_formatter.yaml", debug=None) -> str | None:
+def _format_news(content, prompt="markdown_formatter.prompt.md", debug=None) -> str | None:
     """Format plain-text news content as Markdown."""
     if debug is None:
         debug = config.DEBUG
@@ -180,7 +180,7 @@ if __name__ == "__main__":
         extract_news(
             post,
             parser=reddit_parser,
-            prompt="news_from_reddit_post.yaml",
+            prompt="news_from_reddit_post.prompt.md",
             assured_news=False,
             debug=True,
         )
@@ -191,7 +191,7 @@ if __name__ == "__main__":
         extract_news(
             news,
             parser=rapid_news_parser,
-            prompt="news_from_html_type1.yaml",
+            prompt="news_from_html.prompt.md",
             debug=True,
         )
 
@@ -201,7 +201,7 @@ if __name__ == "__main__":
         extract_news(
             news,
             parser=media_stack_parser,
-            prompt="news_from_html_type1.yaml",
+            prompt="news_from_html.prompt.md",
             debug=True,
         )
 
@@ -211,7 +211,7 @@ if __name__ == "__main__":
         extract_news(
             news,
             parser=gnews_parser,
-            prompt="news_from_html_type1.yaml",
+            prompt="news_from_html.prompt.md",
             debug=True,
         )
 
@@ -219,6 +219,6 @@ if __name__ == "__main__":
         extract_news(
             sys.argv[1],
             parser=clean_html,
-            prompt="news_from_html_type1.yaml",
+            prompt="news_from_html.prompt.md",
             debug=True,
         )

@@ -2,11 +2,13 @@
 Abstract base class for all LLM chat completions.
 """
 
+from __future__ import annotations
 import re
 import yaml
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 
 @dataclass
@@ -70,19 +72,26 @@ class AgentProvider(ABC):
     # ------------------------------------------------------------------
 
     def complete_from_template(
-        self, template_path: str | Path, input_data: dict
+        self, template_path: str | Path | Any, input_data: dict
     ) -> CompletionResult:
-        """Load a YAML prompt template, substitute variables, call ``complete()``.
+        """Load a prompt template (.prompt.md or legacy .yaml), substitute variables, call ``complete()``.
 
-        The default implementation:
-        1. Reads the YAML file.
-        2. Extracts the system and user message content.
-        3. Replaces ``{steps[0].input.<key>}`` with the corresponding
-           value from *input_data*.
-        4. Delegates to ``self.complete()``.
-
-        Providers with native template execution (Julep) should override this.
+        Supports:
+        - Passing a ``Prompt`` object
+        - Passing a path to a ``.prompt.md`` file
+        - Passing a path to a legacy ``.yaml`` file
         """
+        from service.agents.prompt import Prompt
+
+        if isinstance(template_path, Prompt):
+            filled = template_path.fill(**input_data)
+            return self.complete(filled.system, filled.user)
+
+        path = Path(template_path)
+        if path.suffix == ".md" or str(path).endswith(".prompt.md"):
+            prompt = Prompt(path).fill(**input_data)
+            return self.complete(prompt.system, prompt.user)
+
         system_prompt, user_prompt = self._render_template(template_path, input_data)
         return self.complete(system_prompt, user_prompt)
 

@@ -35,12 +35,12 @@ def passthrough_parser(item, no_repeat=True):
 
 # Map API names to (parser_function, prompt_filename, news_items_key, assured_news)
 API_CONFIGS = {
-    "reddit": (reddit_parser, "news_from_reddit_post.yaml", None, False),
-    "rapid_news": (rapid_news_parser, "news_from_html_type1.yaml", "data", True),
-    "gnews": (gnews_parser, "news_from_html_type1.yaml", "articles", True),
-    "media_stack": (media_stack_parser, "news_from_html_type1.yaml", "data", True),
-    "core": (gnews_parser, "news_from_html_type1.yaml", None, True),
-    "scraped": (passthrough_parser, "news_from_html_type1.yaml", None, True),
+    "reddit": (reddit_parser, "news_from_reddit_post.prompt.md", None, False),
+    "rapid_news": (rapid_news_parser, "news_from_html.prompt.md", "data", True),
+    "gnews": (gnews_parser, "news_from_html.prompt.md", "articles", True),
+    "media_stack": (media_stack_parser, "news_from_html.prompt.md", "data", True),
+    "core": (gnews_parser, "news_from_html.prompt.md", None, True),
+    "scraped": (passthrough_parser, "news_from_html.prompt.md", None, True),
 }
 
 
