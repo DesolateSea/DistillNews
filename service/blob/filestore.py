@@ -110,14 +110,16 @@ class FileStore:
     # --- Low-level JSON Helpers ---
 
     @classmethod
-    def write_json(cls, filepath: Path, data: dict | list) -> Path:
+    def write_json(cls, filepath: Path | str, data: dict | list) -> Path:
+        filepath = Path(filepath)
         filepath.parent.mkdir(parents=True, exist_ok=True)
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         return filepath
 
     @classmethod
-    def read_json(cls, filepath: Path) -> dict | list | None:
+    def read_json(cls, filepath: Path | str) -> dict | list | None:
+        filepath = Path(filepath)
         if not filepath.exists():
             return None
         with open(filepath, "r", encoding="utf-8") as f:

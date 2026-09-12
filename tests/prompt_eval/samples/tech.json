@@ -1,0 +1,8 @@
+{
+  "id": "tech",
+  "expected_type": "news",
+  "expected_category": "Technology",
+  "title": "OpenAI Unveils New Voice and Real-Time Reasoning Engine in Enterprise Rollout",
+  "publication_date": "2026-05-10T16:20:00Z",
+  "content": "SAN FRANCISCO — OpenAI announced on Thursday a major update to its enterprise suite, debuting low-latency voice integration and deep multimodal reasoning APIs across 50 international regions.\n\nThe new models demonstrate significant improvements in complex multi-step workflows, reducing latency by nearly 40% compared to previous generations. Chief Technology Officer Mira Murati noted during the presentation that the infrastructure relies on newly deployed cluster architectures with specialized accelerators.\n\nIndustry analysts predict this upgrade will accelerate enterprise adoption in customer support automation, coding assistance, and legal research environments."
+}
