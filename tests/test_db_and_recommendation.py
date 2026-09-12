@@ -18,7 +18,8 @@ def test_mongo_handle_lifecycle():
         MongoHandle.get_db()
 
 
-def test_file_store_repository():
+def test_file_store_repository(tmp_path, monkeypatch):
+    monkeypatch.setattr(FileStore, "_default_root_dir", tmp_path)
     title = "Test Headline"
     pub_date = "2026-07-24"
     article_id = FileStore.compute_article_id(title, pub_date)
