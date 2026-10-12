@@ -39,7 +39,9 @@ def _init_parsers():
 
     def core_parser(payload, no_repeat=False):
         """Passthrough parser for Core API items (already structured)."""
-        return payload, payload
+        clean_item = {k: v for k, v in payload.items() if not str(k).startswith('_')}
+        source_meta = {'name': 'Core', 'source': 'core', 'title': payload.get('title', '')}
+        return clean_item, source_meta
 
     PARSER_REGISTRY.update({
         'reddit': reddit_parser,

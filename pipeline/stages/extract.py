@@ -40,7 +40,12 @@ def extract(classify: dict, ctx: PipelineContext) -> dict:
         raise DropArticle(f"JSON parse error in extraction: {e}")
 
     # Enrich with metadata
-    parsed['source'] = classify.get('_source_meta', classify)
+    source_info = classify.get('_source_meta')
+    if not source_info or source_info is classify:
+        source_info = classify.get('source', 'unknown')
+    if isinstance(source_info, dict):
+        source_info = {k: v for k, v in source_info.items() if not str(k).startswith('_')}
+    parsed['source'] = source_info
     parsed['prompt_used'] = prompt_name
     parsed['agent_provider'] = getattr(ctx.agent, 'provider_name', config.AGENT_PROVIDER)
     parsed['_article_id'] = article_id

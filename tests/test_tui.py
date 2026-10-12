@@ -444,3 +444,23 @@ async def test_tui_panel_titles_red():
         assert "panel-title-red" in lbl_manager.classes
 
 
+@pytest.mark.asyncio
+async def test_tui_task_row_spacing_and_alignment():
+    """Verify ample spacing between long status like 'WAITING FOR format_markdown' and description."""
+    app = DistillNewsApp()
+    async with app.run_test() as pilot:
+        row_embed = pilot.app.query_one("#row-embed", TaskRow)
+        row_embed.set_waiting("format_markdown")
+
+        lbl_embed = pilot.app.query_one("#lbl-embed", Static)
+        rendered = str(lbl_embed._render())
+
+        assert "WAITING FOR format_markdown" in rendered
+        assert row_embed.description in rendered
+
+        # Check there are multiple spaces separating status and description
+        idx_status = rendered.find("WAITING FOR format_markdown")
+        idx_desc = rendered.find(row_embed.description)
+        spacing = idx_desc - (idx_status + len("WAITING FOR format_markdown"))
+        # Must have at least 8 spaces of room
+        assert spacing >= 8

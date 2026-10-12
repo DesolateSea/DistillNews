@@ -80,11 +80,14 @@ def _get_stage_description(stage_id: str) -> str:
     return STAGE_FALLBACK_DOCS.get(stage_id, "")
 
 
+STATUS_COL_WIDTH = 38
+
+
 class TaskRow(Widget):
     """
     btop-style Task Manager Row without progress bars.
     Format:
-    <display_name:20>  <items_text:20>  <elapsed_text:16>  <status:28>  <description>
+    <display_name:20>  <items_text:20>  <elapsed_text:16>  <status:38>  <description>
     """
 
     def __init__(
@@ -114,7 +117,7 @@ class TaskRow(Widget):
         desc = f"[dim]{escape(self.description)}[/dim]" if self.description else ""
         if getattr(self, "stage_disabled", False) or "Disabled" in status:
             plain_status = "Disabled"
-            pad = " " * max(2, 28 - len(plain_status))
+            pad = " " * max(4, STATUS_COL_WIDTH - len(plain_status))
             status_col = f"[dim]Disabled[/dim]{pad}"
             return f"[bold #58a6ff]{name_col}[/bold #58a6ff]  {'-':<20}  {'-':<16}  {status_col}{desc}"
         items_col = f"{self.done_count} items parsed".ljust(20)
@@ -126,7 +129,7 @@ class TaskRow(Widget):
             el = 0.0
         elapsed_col = f"{el:.1f}s elapsed".ljust(16)
         plain_status = re.sub(r"\[.*?\]", "", status)
-        pad = " " * max(2, 28 - len(plain_status))
+        pad = " " * max(4, STATUS_COL_WIDTH - len(plain_status))
         status_col = f"{status}{pad}"
         return f"[bold #58a6ff]{name_col}[/bold #58a6ff]  {items_col}  {elapsed_col}  {status_col}{desc}"
 

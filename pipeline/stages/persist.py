@@ -17,8 +17,8 @@ def persist(embed: dict, ctx: PipelineContext) -> dict:
 
     article_id = embed.get('_article_id')
 
-    # Clean internal pipeline metadata before persisting
-    clean = {k: v for k, v in embed.items() if not k.startswith('_')}
+    # Clean internal pipeline metadata and break any cycles before persisting
+    clean = ctx.article_store.sanitize_article_data(embed) or {}
 
     saved_id = ctx.article_store.save_article(clean, article_id=article_id)
     clean['id'] = saved_id

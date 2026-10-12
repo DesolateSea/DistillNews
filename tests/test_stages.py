@@ -99,6 +99,9 @@ class TestParseStage:
         assert result["title"] == "Paper 1"
         assert result["content"] == "Abstract text"
         assert result["_assured_news"] is True
+        assert result["_source_meta"] is not result
+        # Must be JSON serializable without circular reference error
+        assert json.dumps(result) is not None
 
     def test_parse_unknown_source_raises_drop(self):
         from pipeline.stages.parse import parse
@@ -233,6 +236,27 @@ class TestPersistStage:
         assert "_internal_flag" not in saved
         assert "_article_id" not in saved
         assert store.load_article("art_100") is not None
+
+    def test_persist_handles_circular_references_gracefully(self):
+        from pipeline.stages.persist import persist
+
+        store = InMemoryArticleStore()
+        ctx = PipelineContext(article_store=store)
+
+        item = {
+            "title": "Cyclic Article",
+            "content": "Final content",
+            "_article_id": "art_cyclic",
+        }
+        # Inject artificial cycle
+        item["self_cycle"] = item
+        item["nested"] = {"back_to_root": item}
+
+        saved = persist(item, ctx)
+        assert saved["id"] == "art_cyclic"
+        # json.dumps must succeed without Circular reference detected error
+        dumped = json.dumps(saved)
+        assert "Cyclic Article" in dumped
 
 
 # ═══════════════════════════════════════════════════════════════════

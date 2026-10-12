@@ -150,6 +150,7 @@ class FileArticleStore(ArticleStore):
         return (self._dir / f"{article_id}.json").exists()
 
     def save_article(self, article_data: dict, article_id: str | None = None) -> str:
+        article_data = self.sanitize_article_data(article_data) or {}
         if not article_id:
             article_id = self.compute_article_id(
                 article_data.get("title", ""),
@@ -161,7 +162,7 @@ class FileArticleStore(ArticleStore):
 
         filepath = self._dir / f"{article_id}.json"
         with open(filepath, "w", encoding="utf-8") as f:
-            json.dump(article_data, f, indent=2)
+            json.dump(article_data, f, indent=2, default=str)
 
         return article_id
 
