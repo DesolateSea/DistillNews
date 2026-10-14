@@ -35,7 +35,7 @@ class Config:
     def RAG_BACKEND(self) -> str:
         # Keep retrieval opt-in so starting a service does not unexpectedly
         # make embedding requests. Use ``memory`` for the local in-process
-        # vector store, or ``julep`` for Julep-managed retrieval.
+        # vector store.
         return os.getenv("RAG_BACKEND", "none")
 
     @property
@@ -296,4 +296,3 @@ class Config:
 
 # Shared singleton configuration instance
 config = Config()
-

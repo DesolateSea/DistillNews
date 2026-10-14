@@ -1,4 +1,5 @@
 from datetime import datetime
+from urllib.parse import urlencode, urlsplit
 from config import config
 from service.db import FileStore
 from pipeline.sources.config import MEDIA_STACK_CATEGORIES
@@ -10,30 +11,32 @@ except ImportError:
 
 
 class MediaStack:
-    def __init__(self, access_key: str = None, base_url: str = "http://api.mediastack.com/v1"):
+    def __init__(self, access_key: str = None, base_url: str = "https://api.mediastack.com/v1"):
         self.access_key = access_key or config.MEDIASTACK_API_KEY
         if not self.access_key:
             raise ValueError("MediaStack API key not found. Set MEDIASTACK_API_KEY in your .env file.")
+        if urlsplit(base_url).scheme != "https":
+            raise ValueError("MediaStack requires HTTPS")
         self.base_url = base_url
 
     def build_url(self, endpoint: str, **params) -> str:
-        query = f"access_key={self.access_key}"
+        query = {"access_key": self.access_key}
         for key, value in params.items():
             if isinstance(value, list):
                 value = ",".join(value)
-            query += f"&{key}={value}"
-        return f"{self.base_url}/{endpoint}?{query}"
+            query[key] = value
+        return f"{self.base_url}/{endpoint}?{urlencode(query)}"
 
     def get_news(self, **filters):
         import requests
         url = self.build_url("news", **filters)
         if log:
             log.fetch_start("MediaStack", str(filters))
-        response = requests.get(url)
+        response = requests.get(url, timeout=15, allow_redirects=False)
         if response.status_code != 200:
             if log:
                 log.fetch_fail("MediaStack", f"HTTP {response.status_code}")
-            raise Exception(f"API Error: {response.status_code} - {response.text}")
+            raise Exception(f"API Error: HTTP {response.status_code}")
         return response.json()
 
     def save_data(self, data: dict, topic: str, base_path: str = "api_data/Media_stack", run_timestamp=None):

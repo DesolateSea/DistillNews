@@ -1,6 +1,17 @@
 const WEBSITE_URL = process.env.WEBSITE_URL;
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+function safeURL(value) {
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol) && !url.username && !url.password ? url.href : "#";
+  } catch { return "#"; }
+}
 function generateNewsEmailHTML(newsItems) {
-  const grouped = {};
+  const grouped = Object.create(null);
 
   // Group news by category
   for (const item of newsItems) {
@@ -183,24 +194,22 @@ function generateNewsEmailHTML(newsItems) {
                  </div>`;
 
   for (const [category, articles] of Object.entries(grouped)) {
-    html += `<h2 class="category">${category}</h2>`;
+    html += `<h2 class="category">${escapeHTML(category)}</h2>`;
     for (const article of articles) {
       html += `
         <div class="article">
           <h3 class="headline">
-            <a href="${process.env.CLIENT}/${
-        article.id
-      }" style="color: black; text-decoration: none;">
-              ${article.title || "Untitled"}
+            <a href="${escapeHTML(safeURL(`${process.env.CLIENT}/${encodeURIComponent(article.id)}`))}" style="color: black; text-decoration: none;">
+              ${escapeHTML(article.title || "Untitled")}
             </a>
           </h3>
           <div class="metadata">
             Published: ${
-              article.publication_date?.slice(0, 10) || "N/A"
-            } | Location: ${article.location || "Unknown"}
+              escapeHTML(String(article.publication_date || "N/A").slice(0, 10))
+            } | Location: ${escapeHTML(article.location || "Unknown")}
           </div>
           <div class="summary">
-            ${article.summary || "No summary available."}
+            ${escapeHTML(article.summary || "No summary available.")}
           </div>
         </div>
       `;
@@ -208,7 +217,7 @@ function generateNewsEmailHTML(newsItems) {
   }
 
   html += `
-    <a href='${WEBSITE_URL}'>View more news</a>
+    <a href='${escapeHTML(safeURL(WEBSITE_URL))}'>View more news</a>
     </body>
     </html>
     `;

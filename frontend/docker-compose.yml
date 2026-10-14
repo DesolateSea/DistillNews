@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:?Set NEXT_PUBLIC_API_URL before building}
+        BACKEND_URL: ${BACKEND_URL:?Set private BACKEND_URL before building}
     image: distillnews-frontend:latest
     ports:
       - "${FRONTEND_PORT:-3000}:3000"

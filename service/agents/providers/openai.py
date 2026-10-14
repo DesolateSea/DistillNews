@@ -32,7 +32,7 @@ class OpenAIAgent(ToolCallingProvider):
         if not self._api_key:
             raise ValueError("An API key is required. Set FOUNDRY_API_KEY or OPENAI_API_KEY.")
 
-        client_kwargs: dict = {"api_key": self._api_key}
+        client_kwargs: dict = {"api_key": self._api_key, "timeout": 20.0, "max_retries": 0}
         if self._base_url:
             client_kwargs["base_url"] = self._base_url
 
@@ -47,6 +47,7 @@ class OpenAIAgent(ToolCallingProvider):
         try:
             response = self._client.chat.completions.create(
                 model=self._model,
+                max_tokens=2048,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt},
@@ -95,6 +96,7 @@ class OpenAIAgent(ToolCallingProvider):
 
         kwargs = {
             "model": self._model,
+            "max_tokens": 2048,
             "messages": openai_messages,
         }
         

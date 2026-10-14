@@ -1,5 +1,4 @@
-mcp>=1.0.0
-fastmcp
+mcp>=1.0.0,<2
 pymongo
 requests
 python-dotenv

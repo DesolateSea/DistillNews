@@ -19,7 +19,7 @@ import {
   Send,
   Search,
 } from "lucide-react";
-import { chatApi, feedsApi, formatArticleDate, clearApiCache, type NewsItem } from "@/lib/api";
+import { authApi, sessionHint, chatApi, feedsApi, formatArticleDate, clearApiCache, type NewsItem } from "@/lib/api";
 import { NewsFeedSkeleton } from "@/components/NewsFeedSkeleton";
 import { FeatureFlagGuard } from "@/lib/feature-flags-context";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -78,13 +78,14 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+      const token = sessionHint();
+      authApi.session().then(() => setIsLoggedIn(true)).catch(() => setIsLoggedIn(false));
       setIsLoggedIn(!!token);
     }
   }, []);
 
   const fetchNews = useCallback(async (pageNum: number, catOverride?: string) => {
-    const token = typeof window !== "undefined" ? (localStorage.getItem("SNAPtoken") || localStorage.getItem("token")) : null;
+    const token = sessionHint();
     setIsLoggedIn(!!token);
     const catToUse = catOverride !== undefined ? catOverride : selectedCategory;
     const catParam = catToUse === "All" ? undefined : catToUse;
@@ -127,7 +128,7 @@ export default function DashboardPage() {
     setPage(1);
     const catParam = selectedCategory === "All" ? undefined : selectedCategory;
     try {
-      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+      const token = sessionHint();
       const { feeds, has_more } = await feedsApi.search(cleanQuery, 1, ITEMS_PER_PAGE, catParam, token);
       const searchArticles = feeds as NewsItem[];
       setNews(searchArticles);
@@ -146,7 +147,7 @@ export default function DashboardPage() {
     setIsSearching(true);
     const catParam = selectedCategory === "All" ? undefined : selectedCategory;
     try {
-      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+      const token = sessionHint();
       const { feeds, has_more } = await feedsApi.list(token, 1, ITEMS_PER_PAGE, catParam);
       const newArticles = feeds as NewsItem[];
       setNews(newArticles);
@@ -164,7 +165,7 @@ export default function DashboardPage() {
     setPage(1);
     setIsSearching(true);
     const catParam = category === "All" ? undefined : category;
-    const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+    const token = sessionHint();
     try {
       if (searchQuery) {
         const { feeds, has_more } = await feedsApi.search(searchQuery, 1, ITEMS_PER_PAGE, catParam, token);
@@ -235,10 +236,12 @@ export default function DashboardPage() {
     if (isChatOpen) inputRef.current?.focus();
   }, [isChatOpen]);
 
-  const handleLogout = () => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("SNAPtoken");
-      localStorage.removeItem("token");
+  const handleLogout = async () => {
+    try {
+      await authApi.logout();
+    } catch {
+      alert("Sign-out failed. Please try again.");
+      return;
     }
     clearApiCache();
     setIsLoggedIn(false);
@@ -261,7 +264,7 @@ export default function DashboardPage() {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
-    const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+    const token = sessionHint();
 
     const userMessage: ChatMessage = {
       text: inputMessage,

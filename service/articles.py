@@ -276,6 +276,11 @@ async def get_article_by_id(article_id: str, user_email: str | None = None):
     3. Store in Redis with 12-hour TTL
     4. Record user reading history list 'history:user:{email}' (LTRIM 0 99)
     """
+    from service.blob.article_store import validate_article_id
+    try:
+        validate_article_id(article_id)
+    except ValueError:
+        raise HTTPException(422, "Invalid article identifier")
     body_key = f"article:body:{article_id}"
     r = None
     try:

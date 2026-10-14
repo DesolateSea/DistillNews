@@ -2,6 +2,11 @@
 
 Distill News is an automated news aggregation and synthesis platform powered by AI multi-agents. Its goal is to crawl, aggregate, filter, and summarize news across the internet—ranging from mainstream news APIs to public community forums—presenting content in a clean, structured, and personalized format.
 
+> This fork follows `DesolateSea/Distillnews` with adapted security fixes. Read
+> [SECURITY_CONFIGURATION.md](SECURITY_CONFIGURATION.md) before deployment:
+> sessions now use cookies through `/api`, service ports are restricted, and
+> JWT/OAuth configuration must be supplied explicitly.
+
 ## Introduction
 
 ### The Problem
@@ -81,4 +86,3 @@ For detailed architecture and subsystem documentation, refer to the documentatio
 - ⚡ **[FastAPI Web Server](doc/SERVER.md)** — REST API routes, authentication, database handles, and weather proxy.
 - 🤖 **[RAG & Chatbot Subsystem](doc/RAG_CHATBOT.md)** — Conversational QA, vector search, and unified embedding integration.
 - ⚙️ **[Ingestion Pipeline & TUI](doc/AGENT_PIPELINE.md)** — Scrapers, LLM extraction pipeline, Textual TUI dashboard, and CLI runner.
-

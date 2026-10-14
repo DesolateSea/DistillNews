@@ -1,7 +1,8 @@
 import os
 import uuid
 import json
-import random
+import secrets
+import ssl
 import smtplib
 import asyncio
 from email.mime.text import MIMEText
@@ -12,7 +13,7 @@ from service.logger import log
 
 def generate_otp() -> str:
     """Generate a random 6-digit OTP."""
-    return "".join(random.choices("0123456789", k=6))
+    return f"{secrets.randbelow(1_000_000):06d}"
 
 
 def generate_session_token() -> str:
@@ -30,7 +31,6 @@ async def store_otp(email: str, otp: str, expire_seconds: int = 300) -> str | No
         key = f"otp_session:{session_token}"
         payload = json.dumps({"email": email, "otp": otp})
         await RedisHandle.client().set(key, payload, ex=expire_seconds)
-        log.info(f"Stored OTP for {email} under session {session_token[:8]}…")
         return session_token
     except Exception as e:
         log.error(f"Failed to store OTP in Redis: {e}")
@@ -44,7 +44,8 @@ async def verify_otp(email: str, otp_to_verify: str, session_token: str) -> bool
     """
     try:
         key = f"otp_session:{session_token}"
-        raw = await RedisHandle.client().get(key)
+        # Consume atomically on every attempt: no replay or parallel guessing.
+        raw = await RedisHandle.client().getdel(key)
         if not raw:
             log.warn(f"No OTP session found for token {session_token[:8]}…")
             return False
@@ -53,11 +54,10 @@ async def verify_otp(email: str, otp_to_verify: str, session_token: str) -> bool
         if data.get("email") != email:
             log.warn(f"Email mismatch for session {session_token[:8]}…")
             return False
-        if data.get("otp") != otp_to_verify:
+        if not secrets.compare_digest(str(data.get("otp", "")), otp_to_verify):
             log.warn(f"OTP mismatch for session {session_token[:8]}…")
             return False
 
-        await RedisHandle.client().delete(key)
         log.success(f"OTP verified successfully for {email}")
         return True
     except Exception as e:
@@ -103,7 +103,7 @@ def _send_smtp(to_email: str, otp: str) -> None:
     try:
         with smtplib.SMTP("smtp.gmail.com", 587, timeout=15) as server:
             server.ehlo()
-            server.starttls()
+            server.starttls(context=ssl.create_default_context())
             server.ehlo()
             server.login(sender, password)
             server.sendmail(sender, to_email, msg.as_string())
@@ -112,7 +112,7 @@ def _send_smtp(to_email: str, otp: str) -> None:
     except Exception as e587:
         log.warn(f"Port 587 failed ({e587}), trying port 465…")
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=15) as server:
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=15, context=ssl.create_default_context()) as server:
         server.ehlo()
         server.login(sender, password)
         server.sendmail(sender, to_email, msg.as_string())

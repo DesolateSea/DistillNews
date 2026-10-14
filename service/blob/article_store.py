@@ -10,6 +10,13 @@ and returns the appropriate concrete implementation.
 from abc import ABC, abstractmethod
 from hashlib import sha256
 from datetime import datetime, timezone
+import re
+
+
+def validate_article_id(article_id):
+    if not isinstance(article_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{1,128}", article_id):
+        raise ValueError("Invalid article identifier")
+    return article_id
 
 
 class ArticleStore(ABC):
