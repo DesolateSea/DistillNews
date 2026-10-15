@@ -110,14 +110,16 @@ class FileStore:
     # --- Low-level JSON Helpers ---
 
     @classmethod
-    def write_json(cls, filepath: Path, data: dict | list) -> Path:
+    def write_json(cls, filepath: Path | str, data: dict | list) -> Path:
+        filepath = Path(filepath)
         filepath.parent.mkdir(parents=True, exist_ok=True)
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         return filepath
 
     @classmethod
-    def read_json(cls, filepath: Path) -> dict | list | None:
+    def read_json(cls, filepath: Path | str) -> dict | list | None:
+        filepath = Path(filepath)
         if not filepath.exists():
             return None
         with open(filepath, "r", encoding="utf-8") as f:
@@ -148,6 +150,7 @@ class FileArticleStore(ArticleStore):
         return (self._dir / f"{validate_article_id(article_id)}.json").exists()
 
     def save_article(self, article_data: dict, article_id: str | None = None) -> str:
+        article_data = self.sanitize_article_data(article_data) or {}
         if not article_id:
             article_id = self.compute_article_id(
                 article_data.get("title", ""),
@@ -159,7 +162,7 @@ class FileArticleStore(ArticleStore):
 
         filepath = self._dir / f"{validate_article_id(article_id)}.json"
         with open(filepath, "w", encoding="utf-8") as f:
-            json.dump(article_data, f, indent=2)
+            json.dump(article_data, f, indent=2, default=str)
 
         return article_id
 

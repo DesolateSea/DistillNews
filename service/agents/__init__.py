@@ -11,9 +11,11 @@ Usage:
 
 from .factory import create_agent
 from .base import AgentProvider, CompletionResult, ToolCallingProvider, ToolDefinition, ToolCall, AgentMessage
+from .prompt import Prompt
 
 __all__ = [
     "create_agent",
+    "Prompt",
     "AgentProvider",
     "CompletionResult",
     "ToolCallingProvider",

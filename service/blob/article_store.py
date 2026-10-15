@@ -35,6 +35,41 @@ class ArticleStore(ABC):
         key = str(title) + str(pub_date)
         return sha256(key.encode("utf-8")).hexdigest()
 
+    @staticmethod
+    def sanitize_article_data(data: object, seen: set[int] | None = None) -> object:
+        """Deep-sanitize article dictionary, removing private keys and circular references."""
+        if seen is None:
+            seen = set()
+
+        obj_id = id(data)
+        if obj_id in seen:
+            return None
+
+        if isinstance(data, dict):
+            seen.add(obj_id)
+            cleaned = {}
+            for k, v in data.items():
+                if str(k).startswith("_"):
+                    continue
+                val = ArticleStore.sanitize_article_data(v, seen)
+                if val is not None or v is None:
+                    cleaned[k] = val
+            seen.remove(obj_id)
+            return cleaned
+        elif isinstance(data, (list, tuple)):
+            seen.add(obj_id)
+            cleaned_list = []
+            for item in data:
+                val = ArticleStore.sanitize_article_data(item, seen)
+                if val is not None or item is None:
+                    cleaned_list.append(val)
+            seen.remove(obj_id)
+            return cleaned_list
+        elif isinstance(data, (str, int, float, bool)) or data is None:
+            return data
+        else:
+            return str(data)
+
     # --- Abstract Interface ---
 
     @abstractmethod
