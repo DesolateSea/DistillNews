@@ -39,21 +39,22 @@ def test_source_model_validation():
 
 
 @pytest.mark.asyncio
-async def test_send_otp_failure_logging_output(capsys):
+async def test_send_otp_failure_does_not_expose_code(capsys):
     mock_redis = MagicMock()
     mock_redis.set = AsyncMock(return_value=True)
+    mock_redis.delete = AsyncMock()
 
     with patch("service.db.redis.RedisHandle.client", return_value=mock_redis):
         with patch("server.services.otp_service._send_smtp", side_effect=OSError("[Errno -3] Temporary failure in name resolution")):
-            response = await send_otp(SendOTPRequest(email="user@example.com"))
-
-            assert "session_token" in response
-            assert response["message"] == "OTP generated (email delivery failed, check server logs)"
+            from fastapi import HTTPException
+            with pytest.raises(HTTPException) as exc:
+                await send_otp(SendOTPRequest(email="user@example.com"))
+            assert exc.value.status_code == 503
+            mock_redis.delete.assert_awaited_once()
 
             captured = capsys.readouterr()
             out = captured.out
 
-            assert " INFO " in out
             assert " FAIL " in out
-            assert " WARN " in out
-            assert "Email delivery failed" in out
+            assert "OTP=" not in out
+            assert "OTP Code" not in out

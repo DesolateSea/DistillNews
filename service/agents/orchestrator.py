@@ -34,7 +34,7 @@ class AgentOrchestrator:
             if not response.tool_calls:
                 return response.content or ""
 
-            for call in response.tool_calls:
+            for call in response.tool_calls[:10]:
                 tool_entry = self._tools.get(call.name)
                 if not tool_entry:
                     result = {"error": f"Tool '{call.name}' not found."}

@@ -1,5 +1,7 @@
 """Pipeline wiring for article ingestion and the provider-neutral chatbot."""
 
+import threading
+
 from service.agents import create_agent
 from service.db import create_article_store
 from service.chatbot.service import ChatbotService
@@ -63,14 +65,16 @@ def get_chatbot_response(query, user_id="debug", reading=None, prompt="chatbot.y
 
 
 _articles_uploaded = False
+_upload_lock = threading.Lock()
 
 
 def ensure_articles_uploaded():
     """Upload articles once for this running process."""
     global _articles_uploaded
-    if not _articles_uploaded:
-        _load_and_upload_articles()
-        _articles_uploaded = True
+    with _upload_lock:
+        if not _articles_uploaded:
+            _load_and_upload_articles()
+            _articles_uploaded = True
 
 
 if __name__ == "__main__":

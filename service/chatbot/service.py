@@ -1,6 +1,8 @@
 """Chatbot orchestration with dual-mode context: autonomous global search vs. article-focused grounding."""
 
-from collections import defaultdict, deque
+from collections import OrderedDict, deque
+import time
+import threading
 from pathlib import Path
 from typing import Any
 
@@ -85,7 +87,8 @@ class ChatbotService:
         self._agent = agent
         self._document_store = document_store
         self._logger = logger
-        self._user_memory: dict[str, deque] = defaultdict(lambda: deque(maxlen=6))
+        self._user_memory = OrderedDict()
+        self._memory_lock = threading.Lock()
 
         # Build tool executors
         self._tools = {
@@ -103,8 +106,15 @@ class ChatbotService:
         reading: str | None = None,
         prompt: str = "chatbot.yaml",  # kept for API compat, ignored in new path
     ) -> str | None:
-        self._log("chat_query", user_id, query)
-        memory = self._user_memory[user_id]
+        with self._memory_lock:
+            now = time.monotonic()
+            for key, (updated, _) in list(self._user_memory.items()):
+                if now - updated > 3600:
+                    del self._user_memory[key]
+            _, memory = self._user_memory.pop(user_id, (now, deque(maxlen=6)))
+            self._user_memory[user_id] = (now, memory)
+            while len(self._user_memory) > 1000:
+                self._user_memory.popitem(last=False)
 
         # Build system prompt based on mode
         if reading:
@@ -116,18 +126,16 @@ class ChatbotService:
         if memory:
             system_prompt += "\n\nRecent conversation history:\n" + "\n".join(memory)
 
-        self._log("ai_call", "chatbot_response", query)
         response = self._orchestrator.run(
             user_prompt=query, system_prompt=system_prompt
         )
-        self._log("chat_response", response)
 
         memory.append(f"User: {query}")
-        memory.append(f"Assistant: {response}")
+        memory.append(f"Assistant: {str(response)[:8000]}")
         return response
 
     def _execute_news_search(self, query: str, limit: int = 5) -> list[dict]:
-        self._log("rag_search", query, limit)
+        limit = max(1, min(int(limit), 10))
         results = self._document_store.search(query, limit=limit)
         return [
             {
@@ -148,7 +156,7 @@ class ChatbotService:
             return {"error": f"Article '{article_id}' not found"}
         return {
             "title": article.get("title", ""),
-            "content": article.get("content") or article.get("markdown_content") or article.get("summary", ""),
+            "content": str(article.get("content") or article.get("markdown_content") or article.get("summary", ""))[:16000],
             "category": article.get("category", ""),
             "tags": article.get("tags", []),
         }

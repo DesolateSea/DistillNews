@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:styles": "node --test tests/styles.test.cjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -37,9 +38,8 @@
     "@radix-ui/react-toggle": "^1.1.1",
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.6",
-    "@tailwindcss/postcss": "^4.1.4",
     "autoprefixer": "^10.4.20",
-    "axios": "^1.8.4",
+    "axios": "^1.20.0",
     "baseline-browser-mapping": "^2.11.6",
     "caniuse-lite": "^1.0.30001806",
     "class-variance-authority": "^0.7.1",
@@ -51,12 +51,12 @@
     "input-otp": "1.4.1",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.454.0",
-    "next": "15.2.4",
+    "next": "15.5.27",
     "next-themes": "^0.4.4",
     "node-releases": "^2.0.51",
-    "react": "19.2.0",
-    "react-day-picker": "8.10.1",
-    "react-dom": "19.2.0",
+    "react": "19.3.0",
+    "react-day-picker": "9.14.0",
+    "react-dom": "19.3.0",
     "react-hook-form": "^7.54.1",
     "react-leaflet": "^5.0.0",
     "react-markdown": "^10.1.0",
@@ -64,18 +64,26 @@
     "recharts": "2.15.0",
     "remark-gfm": "^4.0.1",
     "sonner": "^1.7.1",
-    "tailwind-merge": "^2.6.1",
+    "tailwind-merge": "^3.7.0",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^0.9.6",
+    "vaul": "^1.1.2",
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/leaflet": "^1.9.22",
+    "@tailwindcss/typography": "0.5.20",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.17",
+    "postcss": "^8.5.30",
+    "tailwindcss": "4.3.3",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss-selector-parser": "7.1.6",
+    "@radix-ui/react-use-effect-event": "0.0.2",
+    "postcss": "$postcss",
+    "sharp": "0.35.5"
   }
 }

@@ -24,8 +24,6 @@ async function loadTemplate(filePath, replacements) {
     throw error;
   }
 }
-console.log("process.env.EMAIL:", process.env.EMAIL);
-console.log("process.env.PASS:", process.env.PASS);
 // Configure Nodemailer
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -37,7 +35,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.PASS,
   },
   tls: {
-    rejectUnauthorized: false,
+    rejectUnauthorized: true,
   },
 });
 // const generateArticlesHTML = (articles) => {
@@ -62,8 +60,7 @@ const transporter = nodemailer.createTransport({
 
 
 const sendOTPEmail = async (recipientEmail, otp) => {
-console.log("process.env.EMAIL:", process.env.EMAIL);
-console.log("process.env.PASS:", process.env.PASS);
+  if (!/^\d{6}$/.test(String(otp))) throw new Error("Invalid OTP format");
 
   try {
     const htmlContent = `
@@ -128,7 +125,7 @@ const mode = process.argv[2]; // "otp" or email recipient
 const recipient = process.argv[3];
 const otpValue = process.argv[4];
 
-if (mode === "otp") {
+if (require.main === module && mode === "otp") {
   if (!recipient || !otpValue) {
     console.error("Usage: node sendEmail.js otp <email> <otp>");
     process.exit(1);
@@ -139,9 +136,9 @@ if (mode === "otp") {
       console.error(err);
       process.exit(1);
     });
-} else {
+} else if (require.main === module && mode) {
   // Fallback mode for backward compatibility
-  const emailToSend = mode || "nishant040305@gmail.com";
+  const emailToSend = mode;
   sendNewsLetterEmail(emailToSend)
     .then(() => process.exit(0))
     .catch((err) => {
