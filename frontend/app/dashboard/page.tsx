@@ -79,7 +79,7 @@ export default function DashboardPage() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = sessionHint();
-      authApi.session().then(() => setIsLoggedIn(true)).catch(() => setIsLoggedIn(false));
+      authApi.session().then((session) => setIsLoggedIn(session.authenticated)).catch(() => setIsLoggedIn(false));
       setIsLoggedIn(!!token);
     }
   }, []);

@@ -24,6 +24,7 @@ def security_env(monkeypatch):
     monkeypatch.setenv("JWT_SECRET", "test-secret-" * 4)
     monkeypatch.setenv("CORS_ORIGINS", "http://localhost:3000")
     monkeypatch.setenv("GOOGLE_CLIENT_ID", "test-client")
+    monkeypatch.setenv("COOKIE_SECURE", "true")
     yield
     app.dependency_overrides.clear()
 
@@ -64,15 +65,38 @@ def test_short_session_claims_and_legacy_rejection():
         decode_session(legacy)
 
 
-def test_anonymous_cannot_chat_track_or_use_legacy_bearer():
+def test_anonymous_cannot_track_or_use_legacy_bearer():
     client = TestClient(app)
-    for path, body in (("/chat", {"message": "Hello"}),
-                       ("/chat/article", {"message": "Hello"}),
-                       ("/feeds/article/track_time", {"durationMs": 5000})):
+    for path, body in (("/feeds/article/track_time", {"durationMs": 5000}),):
         response = client.post(path, json=body, headers={"Authorization": "Bearer arbitrary"})
         assert response.status_code == 401
     assert client.get("/store_article").status_code == 404
     assert "/store_article" not in app.openapi()["paths"]
+
+
+def test_anonymous_chat_is_allowed_and_rate_limited():
+    client = TestClient(app)
+    with patch("server.routes.chat_routes.limit_key", new=AsyncMock()) as limiter, patch(
+        "server.routes.chat_routes.get_chat_without_article", new=AsyncMock(return_value="Hello")
+    ) as general, patch(
+        "server.routes.chat_routes.get_chat", new=AsyncMock(return_value="Article reply")
+    ) as article:
+        assert client.post("/chat", json={"message": "Hello"}).json() == {"response": "Hello"}
+        assert client.post("/chat/article", json={"message": "Explain"}).json() == {"response": "Article reply"}
+        assert limiter.await_count == 2
+        assert limiter.await_args.args == ("testclient", "guest:chat", 20, 60)
+        guest = general.await_args.args[1]["_id"]
+        assert guest.startswith("guest:")
+        assert article.await_args.args[2]["_id"] != guest
+    with patch("server.routes.chat_routes.limit_key", new=AsyncMock(side_effect=HTTPException(429, "Too many requests"))):
+        assert client.post("/chat", json={"message": "Hello"}).status_code == 429
+
+
+def test_anonymous_session_status():
+    client = TestClient(app)
+    response = client.get("/session")
+    assert response.status_code == 200
+    assert response.json() == {"authenticated": False}
 
 
 def test_session_csrf_origin_and_revocation():

@@ -27,7 +27,7 @@ class OpenAIAgent(ToolCallingProvider):
 
         self._api_key = api_key or config.OPENAI_API_KEY
         self._model = model or config.OPENAI_MODEL
-        self._base_url = base_url or config.OPENAI_BASE_URL
+        self._base_url = self._normalize_base_url(base_url or config.OPENAI_BASE_URL)
 
         if not self._api_key:
             raise ValueError("An API key is required. Set FOUNDRY_API_KEY or OPENAI_API_KEY.")
@@ -38,6 +38,18 @@ class OpenAIAgent(ToolCallingProvider):
 
         self._client = OpenAI(**client_kwargs)
 
+    @staticmethod
+    def _normalize_base_url(base_url: str | None) -> str | None:
+        """SDK base URLs must not contain an individual API operation."""
+        if not base_url:
+            return None
+        url = base_url.rstrip("/")
+        for suffix in ("/chat/completions", "/responses"):
+            if url.endswith(suffix):
+                url = url[:-len(suffix)]
+                break
+        return url + "/"
+
     # ------------------------------------------------------------------
     # AgentProvider interface
     # ------------------------------------------------------------------
@@ -47,7 +59,7 @@ class OpenAIAgent(ToolCallingProvider):
         try:
             response = self._client.chat.completions.create(
                 model=self._model,
-                max_tokens=2048,
+                **self._token_limit(),
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt},
@@ -68,6 +80,12 @@ class OpenAIAgent(ToolCallingProvider):
             raw=response.model_dump(),
         )
         
+    def _token_limit(self) -> dict:
+        # Reasoning models reject the legacy max_tokens parameter.
+        if self._model.startswith(("gpt-5", "o1", "o3", "o4")):
+            return {"max_completion_tokens": 2048}
+        return {"max_tokens": 2048}
+
     def chat_with_tools(
         self,
         messages: list[AgentMessage],
@@ -96,7 +114,7 @@ class OpenAIAgent(ToolCallingProvider):
 
         kwargs = {
             "model": self._model,
-            "max_tokens": 2048,
+            **self._token_limit(),
             "messages": openai_messages,
         }
         

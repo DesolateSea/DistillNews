@@ -105,6 +105,44 @@ def test_noop_embedding_provider_makes_no_vectors():
     assert create_embedding_provider("none").embed("anything") == []
 
 
+@pytest.mark.parametrize("model,parameter", [("gpt-5-mini", "max_completion_tokens"), ("gpt-4o-mini", "max_tokens")])
+def test_chat_provider_token_limit_matches_model(model, parameter):
+    from service.agents.providers.openai import OpenAIAgent
+    agent = object.__new__(OpenAIAgent)
+    agent._model = model
+    assert agent._token_limit() == {parameter: 2048}
+
+
+@pytest.mark.parametrize("suffix", ["", "/", "/responses", "/responses/", "/chat/completions"])
+def test_chat_provider_normalizes_operation_urls(suffix):
+    from service.agents.providers.openai import OpenAIAgent
+    root = "https://example.services.ai.azure.com/openai/v1"
+    assert OpenAIAgent._normalize_base_url(root + suffix) == root + "/"
+
+
+def test_remote_embeddings_use_configured_api_and_bounded_batches(monkeypatch):
+    monkeypatch.setenv("EMBEDDING_SERVICE_URL", "http://127.0.0.1:8001")
+    monkeypatch.setenv("EMBEDDING_REQUEST_TIMEOUT", "45")
+    embedder = create_embedding_provider("remote", batch_size=2)
+    calls = []
+
+    def post(url, *, json, timeout):
+        calls.append((url, json, timeout))
+        return SimpleNamespace(status_code=200, json=lambda: {"embeddings": [[float(t)] for t in json["texts"]]})
+
+    monkeypatch.setattr(embedder._client.session, "post", post)
+    assert embedder.embed_many(["1", "2", "3"]) == [[1.0], [2.0], [3.0]]
+    assert [len(call[1]["texts"]) for call in calls] == [2, 1]
+    assert all(call[0] == "http://127.0.0.1:8001/embed_many" and call[2] == 45 for call in calls)
+
+
+def test_remote_embeddings_preserve_alignment_on_invalid_response(monkeypatch):
+    embedder = create_embedding_provider("remote", batch_size=2)
+    monkeypatch.setattr(embedder._client.session, "post", lambda *a, **kw: SimpleNamespace(
+        status_code=200, json=lambda: {"embeddings": [[1.0]]}))
+    assert embedder.embed_many(["one", "two"]) == [[], []]
+
+
 def test_embedding_backends_are_not_rag_backends():
     for backend in ("openai", "foundry", "sentence_transformers", "in_memory"):
         with pytest.raises(ValueError, match="Available: memory, bm25, none"):
@@ -174,4 +212,3 @@ def test_chatbot_only_depends_on_agent_and_document_store():
     user_messages = [m for m in messages if m.role == "user"]
     assert len(user_messages) == 1
     assert user_messages[0].content == "What happened?"
-

@@ -1,4 +1,5 @@
 import asyncio
+import logging
 from typing import Optional
 from service.articles import get_article_by_id
 from fastapi import HTTPException
@@ -28,7 +29,13 @@ async def run_chat(message, user, reading):
         return await asyncio.wait_for(asyncio.shield(task), timeout=60)
     except TimeoutError:
         raise HTTPException(504, "Chat timed out")
-    except Exception:
+    except Exception as error:
+        # Avoid logging provider bodies, prompts, credentials or user messages.
+        logging.getLogger(__name__).error(
+            "Chat worker failed: type=%s status=%s code=%s",
+            type(error).__name__, getattr(error, "status_code", None),
+            getattr(error, "code", None),
+        )
         raise HTTPException(502, "Chat provider unavailable")
 
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request, Response
 from server.models.user_model import RegisterModel, LoginModel, SendOTPRequest, VerifyOTPRequest, GoogleLoginRequest
 from server.services.user_service import register_user, login_user, send_otp, verify_otp_and_login, google_login_user
-from server.auth import check_origin, get_current_user
+from server.auth import check_origin, get_current_user, get_optional_user
 from server.security import set_session
 from server.limits import limit_key
 from service.db.mongo import MongoHandle
@@ -53,7 +53,9 @@ async def google_login_endpoint(data: GoogleLoginRequest, request: Request, resp
 
 
 @router.get("/session")
-async def session(user=Depends(get_current_user)):
+async def session(user=Depends(get_optional_user)):
+    if user is None:
+        return {"authenticated": False}
     return {"authenticated": True, "email": user["email"]}
 
 

@@ -45,10 +45,24 @@ By combining structured AI extraction, community discovery, and smart personaliz
 For instant sub-second hot-reloading without Docker container builds:
 
 ```bash
+cp .env.example .env # only if you do not already have a .env
+# Set JWT_SECRET to a random secret of at least 32 bytes and configure your AI keys.
+./dev.sh --install
 ./dev.sh
 ```
 
-This starts `mongo` & `redis` in Docker background and runs the backend & embedding server locally with auto-reload.
+Requires Python 3.11+ (3.13 recommended), Node.js 20+, and Docker with Compose.
+The installer creates `./venv` and installs Python/frontend dependencies.
+This starts `mongo` & `redis` in Docker and runs the backend, embedding server,
+optional MCP server, and frontend locally. Open **http://localhost:3000**;
+the backend health check is **http://127.0.0.1:8000/health**.
+For local HTTP, use `COOKIE_SECURE=false`,
+`CORS_ORIGINS=http://localhost:3000`, and `ARTICLE_STORE_BACKEND=file`.
+The runner uses loopback URLs for MongoDB, Redis, and embeddings; set
+`LOCAL_DB_URL` / `LOCAL_REDIS_URL` only if using different local infrastructure.
+Google login also needs `http://localhost:3000` registered as an authorized
+JavaScript origin in Google Cloud. Email login/registration needs valid SMTP credentials.
+Use `./dev.sh --no-frontend` to run just the Python services.
 
 ### Full Docker Deployment (Production VM / VPS)
 

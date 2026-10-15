@@ -34,7 +34,9 @@ Mutations require an allowed Origin and a CSRF header bound to the signed sessio
 Logout increments the user's session version, invalidating all device sessions.
 The readable CSRF cookie is only a UI hint, not authentication.
 
-Chat and tracking require authentication. Chat accepts validated JSON messages
+Chat permits guests with peer-based rate limits and isolated per-request histories;
+signed-in users retain user-scoped histories and CSRF protections. Tracking requires
+authentication. Chat accepts validated JSON messages
 up to 4,000 characters. Reading durations must be finite, positive and at most
 one hour. Pagination is bounded. `/store_article` is removed. File article IDs
 cannot traverse paths. Registration passwords require 12 characters and at most
