@@ -1,4 +1,13 @@
-import { env } from "@/lib/env";
+// Session cookies are forwarded through the same-origin /api proxy.
+export function sessionHint(): string | null {
+  if (typeof document === "undefined") return null;
+  // Remove legacy bearer credentials on migration; they are never sent again.
+  try {
+    localStorage.removeItem("SNAPtoken");
+    localStorage.removeItem("token");
+  } catch { /* browser storage may be disabled */ }
+  return document.cookie.split("; ").find((cookie) => cookie.startsWith("SNAPcsrf="))?.slice(9) || null;
+}
 
 export type ApiRequestOptions = Omit<RequestInit, "body"> & {
   body?: unknown;
@@ -48,21 +57,8 @@ export function clearApiCache(pathPrefix?: string) {
 }
 
 function getApiUrl(path: string) {
-  console.log("window.__ENV__", typeof window !== "undefined" ? window.__ENV__ : "server");
-
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
-
-  let base = env.NEXT_PUBLIC_API_URL.trim();
-
-  console.log("API URL:", base);
-
-  if (!base) {
-    base = "http://localhost:8000";
-  }
-
-  base = base.replace(/\/$/, "");
-
-  return `${base}${cleanPath}`;
+  return `/api${cleanPath}`;
 }
 
 export async function apiRequest<T>(
@@ -71,8 +67,8 @@ export async function apiRequest<T>(
 ): Promise<T> {
   const method = (options.method || "GET").toUpperCase();
   const isGet = method === "GET";
-  const shouldCache = isGet && useCache !== false && !bypassCache;
-  const cacheKey = getCacheKey(path, token);
+  const shouldCache = isGet && !path.includes("session") && !sessionHint() && useCache !== false && !bypassCache;
+  const cacheKey = getCacheKey(path, sessionHint());
 
   if (shouldCache) {
     const cached = memoryCache.get(cacheKey);
@@ -97,10 +93,12 @@ export async function apiRequest<T>(
 
   const requestHeaders = new Headers(headers);
   if (body !== undefined) requestHeaders.set("Content-Type", "application/json");
-  if (token) requestHeaders.set("Authorization", `Bearer ${token}`);
+  const csrf = sessionHint();
+  if (!isGet && csrf) requestHeaders.set("X-CSRF-Token", csrf);
 
   const response = await fetch(getApiUrl(path), {
     ...options,
+    credentials: "same-origin",
     headers: requestHeaders,
     body: body === undefined ? undefined : JSON.stringify(body),
   });
@@ -108,13 +106,14 @@ export async function apiRequest<T>(
   const data = await response.json().catch(() => null);
   if (!response.ok) {
     const message =
-      data && typeof data === "object" && "message" in data
-        ? String(data.message)
+       data && typeof data === "object" && ("detail" in data || "message" in data)
+         ? String(data.detail || data.message)
         : `Request failed with status ${response.status}`;
     throw new Error(message);
   }
 
   if (shouldCache && data !== null) {
+    if (memoryCache.size >= 100) memoryCache.delete(memoryCache.keys().next().value!);
     const entry: CacheEntry<T> = { data: data as T, timestamp: Date.now() };
     memoryCache.set(cacheKey, entry);
     if (typeof window !== "undefined" && window.sessionStorage) {
@@ -134,13 +133,18 @@ export async function apiRequest<T>(
 }
 
 export const authApi = {
+  session: () => apiRequest<{ authenticated: boolean }>("/session", { useCache: false }),
+  logout: async () => {
+    await apiRequest("/logout", { method: "POST" });
+    clearApiCache();
+  },
   login: (email: string, password: string) =>
-    apiRequest<{ access_token: string }>("/login", {
+    apiRequest<{ authenticated: boolean }>("/login", {
       method: "POST",
       body: { email, password },
     }),
   register: (email: string, password: string) =>
-    apiRequest<{ access_token: string }>("/register", {
+    apiRequest<{ authenticated: boolean }>("/register", {
       method: "POST",
       body: { email, password },
     }),
@@ -150,12 +154,12 @@ export const authApi = {
       body: { email },
     }),
   verifyOtp: (email: string, otp: string, session_token: string) =>
-    apiRequest<{ access_token: string }>("/verify-otp", {
+    apiRequest<{ authenticated: boolean }>("/verify-otp", {
       method: "POST",
       body: { email, otp, session_token },
     }),
   googleLogin: (params: { id_token?: string; access_token?: string; email?: string }) =>
-    apiRequest<{ access_token: string }>("/google-login", {
+    apiRequest<{ authenticated: boolean }>("/google-login", {
       method: "POST",
       body: params,
     }),
@@ -225,22 +229,22 @@ export const weatherApi = {
     ),
 };
 
-export function formatArticleDate(dateVal?: string | number): string {
+export function formatArticleDate(dateVal?: string | number, language = "en"): string {
   if (!dateVal || dateVal === "Unknown") return "Recently";
   try {
     if (typeof dateVal === "number") {
       const ms = dateVal < 1e11 ? dateVal * 1000 : dateVal;
-      return new Date(ms).toLocaleDateString();
+      return new Date(ms).toLocaleDateString(language);
     }
     if (typeof dateVal === "string") {
       if (!isNaN(Number(dateVal))) {
         const num = Number(dateVal);
         const ms = num < 1e11 ? num * 1000 : num;
-        return new Date(ms).toLocaleDateString();
+        return new Date(ms).toLocaleDateString(language);
       }
       const parsed = new Date(dateVal);
       if (!isNaN(parsed.getTime())) {
-        return parsed.toLocaleDateString();
+        return parsed.toLocaleDateString(language);
       }
     }
   } catch {

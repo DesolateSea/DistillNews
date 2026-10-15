@@ -1,42 +1,40 @@
+import os
+import secrets
+
 import jwt
-from typing import Optional
-from fastapi import Depends, HTTPException,Header
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from config import config
+from fastapi import Depends, HTTPException, Request
 from service.db.mongo import MongoHandle
+from server.security import decode_session
 
-JWT_SECRET = config.JWT_SECRET
-ALGORITHM = "HS256"
-security = HTTPBearer(auto_error=False)
-def get_optional_user(credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)) -> Optional[dict]:
-    """
-    Returns user payload from JWT if available and valid.
-    Otherwise, returns None (for unauthenticated users).
-    """
-    if not credentials:
-        return None
 
-    token = credentials.credentials
-    try:
-        payload = jwt.decode(token, JWT_SECRET, algorithms=[ALGORITHM])
-        return payload
-    except jwt.ExpiredSignatureError:
+def allowed_origins():
+    return [origin.strip() for origin in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",") if origin.strip()]
+
+
+def check_origin(request: Request):
+    if request.headers.get("origin") not in allowed_origins():
+        raise HTTPException(403, "Untrusted request origin")
+
+
+async def get_optional_user(request: Request):
+    token = request.cookies.get("SNAPsession")
+    if not token:
         return None
-    except jwt.InvalidTokenError:
-        return None
-async def get_current_user(authorization: str = Header(...)):
     try:
-        token = authorization.split(" ")[1] if " " in authorization else authorization
-        payload = jwt.decode(token, JWT_SECRET, algorithms=[ALGORITHM])
-        email = payload.get("email")
-        if email is None:
-            raise HTTPException(status_code=401, detail="Invalid token")
-        user = await MongoHandle.collection("SNAPUsers").find_one({"email": email})
-        if user is None:
-            raise HTTPException(status_code=401, detail="User not found")
+        payload = decode_session(token)
+        user = await MongoHandle.collection("SNAPUsers").find_one({"email": payload["sub"]})
+        if not user or payload["version"] != user.get("session_version", 0):
+            raise HTTPException(401, "Session expired")
+        if request.method not in {"GET", "HEAD", "OPTIONS"}:
+            check_origin(request)
+            if not secrets.compare_digest(request.headers.get("x-csrf-token", ""), payload["csrf"]):
+                raise HTTPException(403, "Invalid CSRF token")
         return user
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token expired")
-    except jwt.InvalidTokenError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+    except (jwt.InvalidTokenError, ValueError, TypeError, KeyError):
+        raise HTTPException(401, "Invalid session")
 
+
+async def get_current_user(user=Depends(get_optional_user)):
+    if user is None:
+        raise HTTPException(401, "Authentication required")
+    return user

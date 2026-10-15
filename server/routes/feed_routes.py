@@ -1,5 +1,6 @@
-from fastapi import APIRouter, HTTPException, Depends
-from server.auth import get_optional_user
+from fastapi import APIRouter, HTTPException, Depends, Query, Path
+from server.auth import get_optional_user, get_current_user
+from server.limits import limit_user
 from service.articles import get_all_articles, get_article_by_id, get_all_articles_pagination, search_articles
 from server.models.articles_model import DurationRequest, PaginatedArticlesResponse
 from server.utils.recommendation import update_weights
@@ -24,7 +25,7 @@ async def feeds(category: str | None = None, current_user=Depends(get_optional_u
 
 
 @router.get("/feeds/search")
-async def search_feeds(q: str = "", category: str | None = None, page: int = 1, limit: int = 20):
+async def search_feeds(q: str = Query("", max_length=500), category: str | None = None, page: int = Query(1, ge=1, le=10000), limit: int = Query(20, ge=1, le=100)):
     return await search_articles(query=q, category=category, page=page, limit=limit)
 
 
@@ -34,7 +35,8 @@ async def article(article_id: str, current_user=Depends(get_optional_user)):
 
 
 @router.post("/feeds/{article_id}/track_time")
-async def track_time(article_id: str, duration: DurationRequest, current_user=Depends(get_optional_user)):
+async def track_time(article_id: str, duration: DurationRequest, current_user=Depends(get_current_user)):
+    await limit_user(current_user, "track", 60, 60)
     article_data = await get_article_by_id(article_id)
     added_seconds = duration.durationMs / 1000
     new_duration = article_data.get("duration", 0) + added_seconds
@@ -63,12 +65,7 @@ async def track_time(article_id: str, duration: DurationRequest, current_user=De
     }
 
 
-@router.get("/store_article")
-async def store():
-    return {"message": "ArticleStore active (MongoDB article sync disabled)"}
-
-
 @router.get("/feeds/{page}/{limit}")
-async def feeds_pagination(page: int, limit: int, category: str | None = None, current_user=Depends(get_optional_user)):
+async def feeds_pagination(page: int = Path(ge=1, le=10000), limit: int = Path(ge=1, le=100), category: str | None = None, current_user=Depends(get_optional_user)):
     user_profile = await _fetch_user_profile(current_user)
     return await get_all_articles_pagination(user_profile=user_profile, page=page, limit=limit, category=category)

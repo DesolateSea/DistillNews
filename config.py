@@ -35,7 +35,7 @@ class Config:
     def RAG_BACKEND(self) -> str:
         # Keep retrieval opt-in so starting a service does not unexpectedly
         # make embedding requests. Use ``memory`` for the local in-process
-        # vector store, or ``julep`` for Julep-managed retrieval.
+        # vector store.
         return os.getenv("RAG_BACKEND", "none")
 
     @property
@@ -171,7 +171,13 @@ class Config:
         url = os.getenv("EMBEDDING_SERVICE_URL", "http://embedding-server:8001")
         if url and not os.path.exists("/.dockerenv"):
             url = url.replace("://embedding-server:", "://127.0.0.1:")
+            if ":8001" in url and self.EMBEDDING_PORT != 8001:
+                url = url.replace(":8001", f":{self.EMBEDDING_PORT}")
         return url
+
+    @property
+    def EMBEDDING_REQUEST_TIMEOUT(self) -> float:
+        return float(os.getenv("EMBEDDING_REQUEST_TIMEOUT", "45"))
 
     # ------------------------------------------------------------------
     # Service Ports & Networking Settings
@@ -296,4 +302,3 @@ class Config:
 
 # Shared singleton configuration instance
 config = Config()
-

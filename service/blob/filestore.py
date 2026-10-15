@@ -13,7 +13,7 @@ from pathlib import Path
 from hashlib import sha256
 from datetime import datetime, timezone
 
-from service.blob.article_store import ArticleStore
+from service.blob.article_store import ArticleStore, validate_article_id
 
 
 class FileStore:
@@ -77,7 +77,7 @@ class FileStore:
             article_id = cls.compute_article_id(title_or_id, pub_date)
         else:
             article_id = title_or_id
-        return (cls.processed_dir() / f"{article_id}.json").exists()
+        return (cls.processed_dir() / f"{validate_article_id(article_id)}.json").exists()
 
     @classmethod
     def save_processed_article(
@@ -90,14 +90,14 @@ class FileStore:
         if "created_at" not in article_data:
             article_data["created_at"] = datetime.now(timezone.utc).isoformat()
 
-        filepath = cls.processed_dir() / f"{article_id}.json"
+        filepath = cls.processed_dir() / f"{validate_article_id(article_id)}.json"
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(article_data, f, indent=2)
         return filepath
 
     @classmethod
     def load_processed_article(cls, article_id: str) -> dict | None:
-        filepath = cls.processed_dir() / f"{article_id}.json"
+        filepath = cls.processed_dir() / f"{validate_article_id(article_id)}.json"
         if not filepath.exists():
             return None
         with open(filepath, "r", encoding="utf-8") as f:
@@ -145,7 +145,7 @@ class FileArticleStore(ArticleStore):
             article_id = self.compute_article_id(title_or_id, pub_date)
         else:
             article_id = title_or_id
-        return (self._dir / f"{article_id}.json").exists()
+        return (self._dir / f"{validate_article_id(article_id)}.json").exists()
 
     def save_article(self, article_data: dict, article_id: str | None = None) -> str:
         if not article_id:
@@ -157,14 +157,14 @@ class FileArticleStore(ArticleStore):
         article_data["id"] = article_id
         self._ensure_created_at(article_data)
 
-        filepath = self._dir / f"{article_id}.json"
+        filepath = self._dir / f"{validate_article_id(article_id)}.json"
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(article_data, f, indent=2)
 
         return article_id
 
     def load_article(self, article_id: str) -> dict | None:
-        filepath = self._dir / f"{article_id}.json"
+        filepath = self._dir / f"{validate_article_id(article_id)}.json"
         if not filepath.exists():
             return None
         try:

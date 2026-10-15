@@ -54,12 +54,9 @@ export default function AuthPage() {
     try {
       const data = await authApi.verifyOtp(email, otp, sessionToken);
       
-      // Save JWT token
-      localStorage.setItem("SNAPtoken", data.access_token);
-
       // Check if user already has preferences to decide redirect target
       try {
-        const prefRes = await preferencesApi.get(data.access_token);
+        const prefRes = await preferencesApi.get("");
         if (prefRes.preferences && prefRes.preferences.length > 0) {
           router.push("/dashboard");
         } else {
@@ -108,8 +105,7 @@ export default function AuthPage() {
     setIsLoading(true);
     try {
       const data = await authApi.googleLogin({ id_token: response.credential });
-      localStorage.setItem("SNAPtoken", data.access_token);
-      await redirectAfterAuth(data.access_token);
+      await redirectAfterAuth("");
     } catch (err) {
       console.error("Google login error:", err);
       alert("Google Sign-In failed. Please verify your account and try again.");
@@ -122,8 +118,8 @@ export default function AuthPage() {
     setIsLoading(true);
     try {
       const data = await authApi.googleLogin({ access_token: accessToken });
-      localStorage.setItem("SNAPtoken", data.access_token);
-      await redirectAfterAuth(data.access_token);
+      window.history.replaceState(null, "", window.location.pathname);
+      await redirectAfterAuth("");
     } catch (err) {
       console.error("Google login error:", err);
     } finally {
@@ -145,11 +141,11 @@ export default function AuthPage() {
   };
 
   const getGoogleClientId = () => {
-    const id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "409464577852-upad91eg01utvi9cplmd06ket3hvihm7.apps.googleusercontent.com";
+    const id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
     if (id && !id.startsWith("http") && (id.includes(".apps.googleusercontent.com") || id.length > 20)) {
       return id;
     }
-    return "409464577852-upad91eg01utvi9cplmd06ket3hvihm7.apps.googleusercontent.com";
+    return "";
   };
 
   const handleGoogleSignIn = () => {
@@ -169,11 +165,7 @@ export default function AuthPage() {
             authApi
               .googleLogin({ access_token: response.access_token })
               .then((res) => {
-                if (res.access_token) {
-                  localStorage.setItem("SNAPtoken", res.access_token);
-                  localStorage.setItem("token", res.access_token);
-                  router.push("/preferences");
-                }
+                if (res.authenticated) redirectAfterAuth("");
               })
               .catch((err) => {
                 console.error("Google Auth failed:", err);
