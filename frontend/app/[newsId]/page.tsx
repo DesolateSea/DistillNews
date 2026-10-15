@@ -11,7 +11,7 @@ const Location = dynamic(() => import("./location"), { ssr: false });
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MessageCircle, X, Send } from "lucide-react";
-import { chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
+import { sessionHint, chatApi, feedsApi, formatArticleDate, type NewsItem } from "@/lib/api";
 import { ChatFab } from "@/components/ChatFab";
 import { ChatWindow } from "@/components/ChatWindow";
 import { HeadlinesBanner } from "@/components/HeadlinesBanner";
@@ -50,8 +50,9 @@ export default function NewsDetailPage() {
 
   const sendDuration = async () => {
     if (!startTimeRef.current) return;
-    const token = localStorage.getItem("SNAPtoken");
-    const durationMs = Date.now() - startTimeRef.current;
+    const token = sessionHint();
+    const durationMs = Math.min(3_600_000, Date.now() - startTimeRef.current);
+    startTimeRef.current = Date.now();
 
     try {
       if (token) await feedsApi.trackTime(newsId, durationMs, token);
@@ -65,7 +66,7 @@ export default function NewsDetailPage() {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
-    const token = localStorage.getItem("SNAPtoken");
+    const token = sessionHint();
 
     const userMessage: ChatMessage = {
       text: inputMessage,
@@ -113,7 +114,7 @@ export default function NewsDetailPage() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const token = localStorage.getItem("SNAPtoken");
+    const token = sessionHint();
 
     const fetchNews = async () => {
       setLoading(true);

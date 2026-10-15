@@ -47,3 +47,45 @@ def test_pipeline_source_toggles(monkeypatch):
     assert cfg2.is_source_enabled("reddit") is False
     assert cfg2.is_source_enabled("media_stack") is True
 
+
+def test_gnews_json_import(monkeypatch, tmp_path):
+    from unittest.mock import MagicMock
+    import urllib.request
+    from pipeline.sources.gnews import GNewsClient
+
+    monkeypatch.setenv("GNEWS_API_KEY", "dummy_key")
+
+    mock_resp = MagicMock()
+    mock_resp.read.return_value = b'{"articles": [{"title": "Test GNews", "url": "https://example.com"}]}'
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    monkeypatch.setattr(urllib.request, "urlopen", lambda url: mock_resp)
+
+    client = GNewsClient(base_dir=str(tmp_path))
+    articles = client.fetch_articles("test query")
+    assert len(articles) == 1
+    assert articles[0]["title"] == "Test GNews"
+
+
+def test_rapid_news_json_import(monkeypatch):
+    from unittest.mock import MagicMock
+    import http.client
+    from pipeline.sources.rapid_news import RapidNewsFetcher
+
+    monkeypatch.setenv("RAPIDAPI_KEY", "dummy_key")
+
+    mock_conn = MagicMock()
+    mock_res = MagicMock()
+    mock_res.status = 200
+    mock_res.read.return_value = b'{"data": [{"title": "Test Rapid", "link": "https://example.com"}]}'
+    mock_conn.getresponse.return_value = mock_res
+
+    monkeypatch.setattr(http.client, "HTTPSConnection", lambda host: mock_conn)
+
+    fetcher = RapidNewsFetcher()
+    result = fetcher.fetch_news("technology")
+    assert result is not None
+    assert result["data"][0]["title"] == "Test Rapid"
+
+

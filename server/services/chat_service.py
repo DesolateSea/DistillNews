@@ -1,14 +1,45 @@
 import asyncio
-import secrets
+import logging
 from typing import Optional
 from service.articles import get_article_by_id
+from fastapi import HTTPException
+
+_jobs = set()
+_users = set()
+
+
+async def run_chat(message, user, reading):
+    identity = str(user["_id"])
+    if len(_jobs) >= 2 or identity in _users:
+        raise HTTPException(503, "Chat busy; try again later")
+    _users.add(identity)
+    def work():
+        from service.chatbot.wiring import get_chatbot_response
+        return get_chatbot_response(query=message, user_id=identity, reading=reading)
+    task = asyncio.create_task(asyncio.to_thread(work))
+    _jobs.add(task)
+
+    def finished(job):
+        _jobs.discard(job)
+        _users.discard(identity)
+        if not job.cancelled():
+            job.exception()
+    task.add_done_callback(finished)
+    try:
+        return await asyncio.wait_for(asyncio.shield(task), timeout=60)
+    except TimeoutError:
+        raise HTTPException(504, "Chat timed out")
+    except Exception as error:
+        # Avoid logging provider bodies, prompts, credentials or user messages.
+        logging.getLogger(__name__).error(
+            "Chat worker failed: type=%s status=%s code=%s",
+            type(error).__name__, getattr(error, "status_code", None),
+            getattr(error, "code", None),
+        )
+        raise HTTPException(502, "Chat provider unavailable")
 
 
 async def get_chat(message: str, article_id: str, current_user: Optional[dict] = None):
-    from service.chatbot.wiring import get_chatbot_response
-    from fastapi import HTTPException
-    from service.db.mongo import MongoHandle
-
     try:
         data = await get_article_by_id(article_id)
     except Exception:
@@ -29,27 +60,8 @@ async def get_chat(message: str, article_id: str, current_user: Optional[dict] =
         f"Article Content:\n{content}"
     )
 
-    user_doc = None
-    if current_user and MongoHandle._db is not None:
-        try:
-            user_doc = await MongoHandle.collection("SNAPUsers").find_one({"email": current_user.get("email")})
-        except Exception:
-            pass
-
-    user_id = str(user_doc["_id"]) if user_doc and "_id" in user_doc else secrets.token_hex(32)
-    return await asyncio.to_thread(get_chatbot_response, query=message, user_id=user_id, reading=article_text)
+    return await run_chat(message, current_user, article_text[:16000])
 
 
 async def get_chat_without_article(message: str, current_user: Optional[dict] = None):
-    from service.chatbot.wiring import get_chatbot_response
-    from service.db.mongo import MongoHandle
-
-    user_doc = None
-    if current_user and MongoHandle._db is not None:
-        try:
-            user_doc = await MongoHandle.collection("SNAPUsers").find_one({"email": current_user.get("email")})
-        except Exception:
-            pass
-
-    user_id = str(user_doc["_id"]) if user_doc and "_id" in user_doc else secrets.token_hex(32)
-    return await asyncio.to_thread(get_chatbot_response, query=message, user_id=user_id, reading=None)
+    return await run_chat(message, current_user, None)

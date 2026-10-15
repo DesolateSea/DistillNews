@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, field_validator
 from typing import Optional, List
 from datetime import datetime
 
@@ -32,7 +32,7 @@ class ArticleModel(BaseModel):
 class ArticleInDB(ArticleModel):
     id: Optional[str] = Field(default=None, alias="_id")
 class DurationRequest(BaseModel):
-    durationMs: float
+    durationMs: float = Field(gt=0, le=3_600_000, allow_inf_nan=False)
 # Pagination wrapper
 class PaginatedArticlesResponse(BaseModel):
     page: int
@@ -41,4 +41,11 @@ class PaginatedArticlesResponse(BaseModel):
     total: Optional[int]
     feeds: List[ArticleInDB]
 class ChatMessage(BaseModel):
-    message: str
+    message: str = Field(min_length=1, max_length=4000)
+
+    @field_validator("message")
+    @classmethod
+    def nonblank(cls, value):
+        if not value.strip():
+            raise ValueError("Message must not be blank")
+        return value

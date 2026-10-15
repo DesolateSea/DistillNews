@@ -66,19 +66,26 @@ def test_pipeline_cli_help():
     result = runner.invoke(cli, ["--help"])
     assert result.exit_code == 0
     assert "DistillNews — AI-Powered News Aggregation Pipeline." in result.output
-    assert "status" in result.output
-    assert "articles" in result.output
+    assert "tui" in result.output
 
 
-def test_pipeline_cli_status():
+def test_pipeline_cli_tui_help():
     runner = CliRunner()
-    result = runner.invoke(cli, ["status"])
+    result = runner.invoke(cli, ["tui", "--help"])
     assert result.exit_code == 0
-    assert "DistillNews System Status" in result.output
-    assert "Pipeline Sources" in result.output
+    assert "Launch the interactive TUI dashboard." in result.output
 
 
-def test_pipeline_cli_articles_empty():
+def test_pipeline_cli_invokes_tui(monkeypatch):
+    import pipeline.cli as pcli
+    launched = False
+
+    def mock_launch():
+        nonlocal launched
+        launched = True
+
+    monkeypatch.setattr(pcli, "_launch_tui", mock_launch)
     runner = CliRunner()
-    result = runner.invoke(cli, ["articles"])
+    result = runner.invoke(cli, [])
     assert result.exit_code == 0
+    assert launched is True

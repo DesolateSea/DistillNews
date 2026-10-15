@@ -2,11 +2,13 @@
 Abstract base class for all LLM chat completions.
 """
 
+from __future__ import annotations
 import re
 import yaml
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 
 @dataclass
@@ -15,6 +17,41 @@ class CompletionResult:
 
     content: str  # The text response
     raw: dict | None = field(default=None, repr=False)  # Provider-specific raw response
+
+
+@dataclass
+class ToolDefinition:
+    """Schema definition for a tool the LLM can invoke."""
+    name: str
+    description: str
+    parameters: dict  # JSON Schema
+
+    def to_openai_schema(self) -> dict:
+        return {
+            "type": "function",
+            "function": {
+                "name": self.name,
+                "description": self.description,
+                "parameters": self.parameters,
+            },
+        }
+
+
+@dataclass
+class ToolCall:
+    """A tool invocation returned by the LLM."""
+    id: str
+    name: str
+    arguments: dict
+
+
+@dataclass
+class AgentMessage:
+    """A single message in a multi-turn tool-calling conversation."""
+    role: str  # system | user | assistant | tool
+    content: str | None = None
+    tool_calls: list[ToolCall] | None = None
+    tool_call_id: str | None = None
 
 
 class AgentProvider(ABC):
@@ -35,19 +72,26 @@ class AgentProvider(ABC):
     # ------------------------------------------------------------------
 
     def complete_from_template(
-        self, template_path: str | Path, input_data: dict
+        self, template_path: str | Path | Any, input_data: dict
     ) -> CompletionResult:
-        """Load a YAML prompt template, substitute variables, call ``complete()``.
+        """Load a prompt template (.prompt.md or legacy .yaml), substitute variables, call ``complete()``.
 
-        The default implementation:
-        1. Reads the YAML file.
-        2. Extracts the system and user message content.
-        3. Replaces ``{steps[0].input.<key>}`` with the corresponding
-           value from *input_data*.
-        4. Delegates to ``self.complete()``.
-
-        Providers with native template execution (Julep) should override this.
+        Supports:
+        - Passing a ``Prompt`` object
+        - Passing a path to a ``.prompt.md`` file
+        - Passing a path to a legacy ``.yaml`` file
         """
+        from service.agents.prompt import Prompt
+
+        if isinstance(template_path, Prompt):
+            filled = template_path.fill(**input_data)
+            return self.complete(filled.system, filled.user)
+
+        path = Path(template_path)
+        if path.suffix == ".md" or str(path).endswith(".prompt.md"):
+            prompt = Prompt(path).fill(**input_data)
+            return self.complete(prompt.system, prompt.user)
+
         system_prompt, user_prompt = self._render_template(template_path, input_data)
         return self.complete(system_prompt, user_prompt)
 
@@ -100,3 +144,16 @@ class AgentProvider(ABC):
             return re.sub(r"\{steps\[0\]\.input\.(\w+)\}", _replacer, text)
 
         return _substitute(system_content), _substitute(user_content)
+
+
+class ToolCallingProvider(AgentProvider):
+    """Extended provider supporting native tool / function calling."""
+
+    @abstractmethod
+    def chat_with_tools(
+        self,
+        messages: list[AgentMessage],
+        tools: list[ToolDefinition] | None = None,
+        tool_choice: str | dict = "auto",
+    ) -> AgentMessage:
+        """Execute a chat completion with optional tool definitions."""

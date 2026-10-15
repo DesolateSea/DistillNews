@@ -8,9 +8,9 @@ from service.rag.providers.remote_embedding import RemoteEmbeddingProvider as Re
 class RemoteEmbeddingProvider(EmbeddingProvider):
     """Generates text vector embeddings by making REST calls to the standalone embedding_server microservice."""
 
-    def __init__(self, service_url: str | None = None, timeout: float = 10.0):
+    def __init__(self, service_url: str | None = None, timeout: float | None = None, batch_size: int = 32):
         url = service_url or config.EMBEDDING_SERVICE_URL
-        self._client = RemoteClient(service_url=url, timeout=timeout)
+        self._client = RemoteClient(service_url=url, timeout=timeout, batch_size=batch_size)
 
     def embed(self, text: str) -> list[float]:
         return self._client.embed(text)

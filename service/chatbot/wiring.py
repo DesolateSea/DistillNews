@@ -1,6 +1,6 @@
 """Pipeline wiring for article ingestion and the provider-neutral chatbot."""
 
-from pathlib import Path
+import threading
 
 from service.agents import create_agent
 from service.db import create_article_store
@@ -9,14 +9,12 @@ from service.rag import create_doc_store
 from service.rag.base import Document
 from service.logger import log
 
-prompts_dir = Path(__file__).resolve().parent / "prompts"
-
 # Provider selection happens at the boundaries. The chatbot service itself is
 # unaware of the chat model, document store, and embedding implementation.
 agent = create_agent()
 doc_store = create_doc_store()
 article_store = create_article_store()
-chatbot = ChatbotService(agent, doc_store, prompts_dir, logger=log)
+chatbot = ChatbotService(agent, doc_store, logger=log)
 
 
 def _load_and_upload_articles():
@@ -67,14 +65,16 @@ def get_chatbot_response(query, user_id="debug", reading=None, prompt="chatbot.y
 
 
 _articles_uploaded = False
+_upload_lock = threading.Lock()
 
 
 def ensure_articles_uploaded():
     """Upload articles once for this running process."""
     global _articles_uploaded
-    if not _articles_uploaded:
-        _load_and_upload_articles()
-        _articles_uploaded = True
+    with _upload_lock:
+        if not _articles_uploaded:
+            _load_and_upload_articles()
+            _articles_uploaded = True
 
 
 if __name__ == "__main__":

@@ -22,7 +22,7 @@ import {
   CheckCheck,
   RotateCcw,
 } from "lucide-react";
-import { preferencesApi } from "@/lib/api";
+import { preferencesApi, sessionHint } from "@/lib/api";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n-context";
@@ -61,7 +61,7 @@ export default function PreferencesPage() {
       const activeVariant = storedVariant || (envVariant === "classic" ? "classic" : "minimal");
       setDesignVariant(activeVariant);
 
-      const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+      const token = sessionHint();
       if (!token) {
         router.push("/register");
         return;
@@ -113,7 +113,7 @@ export default function PreferencesPage() {
     }
 
     setIsLoading(true);
-    const token = localStorage.getItem("SNAPtoken") || localStorage.getItem("token");
+    const token = sessionHint();
 
     if (!token) {
       router.push("/register");

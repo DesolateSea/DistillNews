@@ -47,12 +47,8 @@ class MongoHandle:
         """Create database indexes for user collection."""
         if cls._db is None:
             return
-        try:
-            users_col = cls.collection("SNAPUsers")
-            await users_col.create_index("email", unique=True)
-            if log:
-                log.db("MongoDB Indexes Created", "SNAPUsers indexed successfully")
-        except Exception as e:
-            if log:
-                log.warn(f"Failed to create MongoDB indexes: {e}")
-
+        users_col = cls.collection("SNAPUsers")
+        await users_col.create_index("email", unique=True)
+        await cls.collection("rate_limits").create_index("expires", expireAfterSeconds=0)
+        if log:
+            log.db("MongoDB Indexes Created", "User and rate limit indexes ready")

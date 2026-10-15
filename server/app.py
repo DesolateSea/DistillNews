@@ -10,10 +10,16 @@ from service.db.mongo import MongoHandle
 from service.db.redis import RedisHandle
 from service.articles import prime_redis_indexes
 from service.logger import log
+from server.middleware import BodyLimitMiddleware
+from server.security import jwt_secret
+from server.auth import allowed_origins
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    jwt_secret()
+    if "*" in allowed_origins():
+        raise RuntimeError("CORS_ORIGINS must list trusted origins, not '*'")
     MongoHandle.connect()
     await RedisHandle.connect()
     await MongoHandle.create_indexes()
@@ -42,6 +48,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.add_middleware(GZipMiddleware, minimum_size=1000)
+app.add_middleware(BodyLimitMiddleware)
 
 app.include_router(auth_routes.router)
 app.include_router(user_routes.router)

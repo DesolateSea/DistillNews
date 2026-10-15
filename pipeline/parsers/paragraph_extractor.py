@@ -14,11 +14,8 @@ def clean_html(html_input, debug=None):
     if not html_input:
         return {"title": "Unknown Title", "author": "Unknown Author", "publication_date": "Unknown", "content": ""}
 
-    if isinstance(html_input, str) and os.path.exists(html_input) and os.path.isfile(html_input):
-        with open(html_input, 'r', encoding='utf-8', errors='ignore') as f:
-            soup = BeautifulSoup(f, 'html.parser')
-    else:
-        soup = BeautifulSoup(str(html_input), 'html.parser')
+    # Network content is always HTML, never an instruction to read a local file.
+    soup = BeautifulSoup(str(html_input), 'html.parser')
 
     def get_meta(name):
         tag = soup.find("meta", attrs={"name": name})

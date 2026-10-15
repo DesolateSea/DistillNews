@@ -13,6 +13,7 @@ from pipeline.embeddings.providers.sentence_transformers import (
 )
 from service.rag.base import Document, DocumentStore, SearchResult
 from service.rag.factory import create_doc_store
+from service.agents.base import ToolCallingProvider, ToolDefinition, AgentMessage
 
 
 class KeywordEmbedder(EmbeddingProvider):
@@ -37,15 +38,21 @@ class StaticDocumentStore(DocumentStore):
         ]
 
 
-class FakeAgent:
+class FakeToolCallingAgent(ToolCallingProvider):
     def __init__(self):
         self.calls = []
 
-    def complete_from_template(self, template_path, input_data):
-        self.calls.append((Path(template_path).name, input_data))
-        if Path(template_path).name == "filter_prompt.yaml":
-            return CompletionResult(content="climate")
-        return CompletionResult(content=f"Grounded answer: {input_data['content']}")
+    def complete(self, system_prompt: str, user_prompt: str) -> CompletionResult:
+        return CompletionResult(content="dummy")
+
+    def chat_with_tools(
+        self,
+        messages: list[AgentMessage],
+        tools: list[ToolDefinition] | None = None,
+        tool_choice: str | dict = "auto",
+    ) -> AgentMessage:
+        self.calls.append(("chat_with_tools", messages))
+        return AgentMessage(role="assistant", content="Grounded answer: Climate article excerpt")
 
 
 def test_memory_store_uses_injected_embedder_and_preserves_metadata():
@@ -98,9 +105,47 @@ def test_noop_embedding_provider_makes_no_vectors():
     assert create_embedding_provider("none").embed("anything") == []
 
 
+@pytest.mark.parametrize("model,parameter", [("gpt-5-mini", "max_completion_tokens"), ("gpt-4o-mini", "max_tokens")])
+def test_chat_provider_token_limit_matches_model(model, parameter):
+    from service.agents.providers.openai import OpenAIAgent
+    agent = object.__new__(OpenAIAgent)
+    agent._model = model
+    assert agent._token_limit() == {parameter: 2048}
+
+
+@pytest.mark.parametrize("suffix", ["", "/", "/responses", "/responses/", "/chat/completions"])
+def test_chat_provider_normalizes_operation_urls(suffix):
+    from service.agents.providers.openai import OpenAIAgent
+    root = "https://example.services.ai.azure.com/openai/v1"
+    assert OpenAIAgent._normalize_base_url(root + suffix) == root + "/"
+
+
+def test_remote_embeddings_use_configured_api_and_bounded_batches(monkeypatch):
+    monkeypatch.setenv("EMBEDDING_SERVICE_URL", "http://127.0.0.1:8001")
+    monkeypatch.setenv("EMBEDDING_REQUEST_TIMEOUT", "45")
+    embedder = create_embedding_provider("remote", batch_size=2)
+    calls = []
+
+    def post(url, *, json, timeout):
+        calls.append((url, json, timeout))
+        return SimpleNamespace(status_code=200, json=lambda: {"embeddings": [[float(t)] for t in json["texts"]]})
+
+    monkeypatch.setattr(embedder._client.session, "post", post)
+    assert embedder.embed_many(["1", "2", "3"]) == [[1.0], [2.0], [3.0]]
+    assert [len(call[1]["texts"]) for call in calls] == [2, 1]
+    assert all(call[0] == "http://127.0.0.1:8001/embed_many" and call[2] == 45 for call in calls)
+
+
+def test_remote_embeddings_preserve_alignment_on_invalid_response(monkeypatch):
+    embedder = create_embedding_provider("remote", batch_size=2)
+    monkeypatch.setattr(embedder._client.session, "post", lambda *a, **kw: SimpleNamespace(
+        status_code=200, json=lambda: {"embeddings": [[1.0]]}))
+    assert embedder.embed_many(["one", "two"]) == [[], []]
+
+
 def test_embedding_backends_are_not_rag_backends():
     for backend in ("openai", "foundry", "sentence_transformers", "in_memory"):
-        with pytest.raises(ValueError, match="Available: memory, bm25, julep, none"):
+        with pytest.raises(ValueError, match="Available: memory, bm25, none"):
             create_doc_store(backend)
 
 
@@ -151,16 +196,19 @@ def test_sentence_transformers_provider_uses_a_local_model():
 
 
 def test_chatbot_only_depends_on_agent_and_document_store():
-    agent = FakeAgent()
+    agent = FakeToolCallingAgent()
     chatbot = ChatbotService(
         agent=agent,
         document_store=StaticDocumentStore(),
-        prompts_dir=Path("chatbot/prompts"),
     )
 
     response = chatbot.get_response("What happened?", user_id="reader-1")
 
     assert response == "Grounded answer: Climate article excerpt"
-    assert agent.calls[0][0] == "filter_prompt.yaml"
-    assert agent.calls[1][1]["content"] == "Climate article excerpt"
-    assert agent.calls[1][1]["memory"] == ""
+    assert len(agent.calls) > 0
+    assert agent.calls[0][0] == "chat_with_tools"
+    # messages[0] = system prompt, messages[1] = user message
+    messages = agent.calls[0][1]
+    user_messages = [m for m in messages if m.role == "user"]
+    assert len(user_messages) == 1
+    assert user_messages[0].content == "What happened?"

@@ -4,11 +4,14 @@ notebooks
 __pycache__/
 *.py[cod]
 *$py.class
-/node_modules
+node_modules/
+.venv/
+debug.log
 *.env
 venv
 .cph
 .pytest_cache/
 pytest-of-*/
-data/db/
-
+data/
+api_data/
+tests/prompt_eval/results/*.md
