@@ -1,5 +1,4 @@
 import http.client
-import json
 from datetime import datetime
 from config import config
 from service.db import FileStore
@@ -39,6 +38,8 @@ class RapidNewsFetcher:
                     log.fetch_fail("RapidNews", f"HTTP {res.status} for {category}")
                 return None
             data = res.read()
+            import json
+
             return json.loads(data.decode("utf-8"))
         except Exception as e:
             if log:

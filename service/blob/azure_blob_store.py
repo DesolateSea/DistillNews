@@ -93,7 +93,6 @@ class AzureBlobArticleStore(ArticleStore):
             return False
 
     def save_article(self, article_data: dict, article_id: str | None = None) -> str:
-        article_data = self.sanitize_article_data(article_data) or {}
         if not article_id:
             article_id = self.compute_article_id(
                 article_data.get("title", ""), article_data.get("publication_date", "")
@@ -101,7 +100,7 @@ class AzureBlobArticleStore(ArticleStore):
         self._ensure_created_at(article_data)
 
         blob_client = self._container_client.get_blob_client(self._blob_name(article_id))
-        json_bytes = json.dumps(article_data, indent=2, ensure_ascii=False, default=str).encode("utf-8")
+        json_bytes = json.dumps(article_data, indent=2, ensure_ascii=False).encode("utf-8")
 
         # Encode metadata headers so list_articles() can fetch metadata in 1 single HTTP request
         title = str(article_data.get("title", "Untitled"))[:200].encode("ascii", "ignore").decode("ascii")

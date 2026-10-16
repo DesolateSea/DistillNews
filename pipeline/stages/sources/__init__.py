@@ -1,1 +1,0 @@
-"""Pipeline source stages (producers)."""

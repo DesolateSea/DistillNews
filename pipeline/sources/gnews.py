@@ -1,6 +1,5 @@
-import json
-import urllib.request
 from datetime import datetime
+import urllib.request
 from urllib.parse import urlencode
 from config import config
 from service.db import FileStore
@@ -66,6 +65,7 @@ class GNewsClient:
 
 
 if __name__ == "__main__":
+    import json
     client = GNewsClient()
     for query in GNEWS_QUERIES:
         client.fetch_articles(query)
