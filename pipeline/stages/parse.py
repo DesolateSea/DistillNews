@@ -43,6 +43,18 @@ def _init_parsers():
         source_meta = {'name': 'Core', 'source': 'core', 'title': payload.get('title', '')}
         return clean_item, source_meta
 
+    def dataset_parser(payload, no_repeat=False):
+        """Passthrough parser for dataset benchmark items."""
+        clean_item = {k: v for k, v in payload.items() if not str(k).startswith('_')}
+        source_meta = {'name': 'Dataset', 'source': 'dataset', 'title': payload.get('title', '')}
+        return clean_item, source_meta
+
+    def custom_news_parser(payload, no_repeat=False):
+        """Passthrough parser for direct-input custom news items."""
+        clean_item = {k: v for k, v in payload.items() if not str(k).startswith('_')}
+        source_meta = {'name': 'CustomNews', 'source': 'custom_news', 'title': payload.get('title', '')}
+        return clean_item, source_meta
+
     PARSER_REGISTRY.update({
         'reddit': reddit_parser,
         'gnews': gnews_parser,
@@ -51,6 +63,8 @@ def _init_parsers():
         'scrape': scrape_parser,
         'core': core_parser,
         'news_org': gnews_parser,  # NewsAPI uses same format as GNews
+        'dataset': dataset_parser,
+        'custom_news': custom_news_parser,
     })
 
 

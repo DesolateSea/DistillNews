@@ -331,6 +331,41 @@ class Config:
         """Check whether application debug mode is enabled."""
         return self.DEBUG
 
+    # ------------------------------------------------------------------
+    # Media Bias Detection Settings (Issue #37)
+    # ------------------------------------------------------------------
+
+    @property
+    def BIAS_DETECTION_MODE(self) -> str:
+        """Bias detection method: 'none', 'llm', or 'bert'."""
+        return os.getenv("BIAS_DETECTION_MODE", "none").strip().lower()
+
+    @property
+    def BIAS_BERT_MODEL(self) -> str:
+        """HuggingFace checkpoint repo ID or local path for BERT detector."""
+        return os.getenv("BIAS_BERT_MODEL", "bucketresearch/politicalBiasBERT")
+
+    @property
+    def DATASET_SOURCE_PATH(self) -> str | None:
+        """Path to offline benchmark/dataset file (CSV/JSONL) for fetch_dataset."""
+        return os.getenv("DATASET_SOURCE_PATH")
+
+    @property
+    def CUSTOM_NEWS_PATH(self) -> str | None:
+        """Path to custom news file (txt/md/json) or directory for fetch_custom_news."""
+        return os.getenv("CUSTOM_NEWS_PATH")
+
+    @property
+    def CUSTOM_NEWS_TEXT(self) -> str | None:
+        """Direct text content for custom news ingestion."""
+        return os.getenv("CUSTOM_NEWS_TEXT")
+
+    @property
+    def CUSTOM_NEWS_TITLE(self) -> str:
+        """Title for direct text custom news ingestion."""
+        return os.getenv("CUSTOM_NEWS_TITLE", "Custom Direct News")
+
 
 # Shared singleton configuration instance
 config = Config()
+

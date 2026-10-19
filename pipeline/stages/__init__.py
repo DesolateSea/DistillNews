@@ -14,6 +14,8 @@ from pipeline.stages.sources import (  # noqa: F401
     media_stack,
     news_org,
     core,
+    dataset,
+    custom_news,
 )
 
 # Transform stages
@@ -23,6 +25,8 @@ from pipeline.stages import (  # noqa: F401
     classify as _classify,
     extract as _extract,
     format as _format,
+    detect_bias as _detect_bias,
     embed as _embed,
     persist as _persist,
 )
+

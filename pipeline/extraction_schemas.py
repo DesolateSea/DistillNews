@@ -63,3 +63,52 @@ MARKDOWN_FORMAT_TOOL = ToolDefinition(
         "required": ["markdown"],
     },
 )
+
+NEWS_BIAS_DETECTION_TOOL = ToolDefinition(
+    name="submit_news_bias_analysis",
+    description="Submit structured media bias analysis for a news article, evaluating overall biasness score, bias types, and favored/disfavored entities.",
+    parameters={
+        "type": "object",
+        "properties": {
+            "bias_score": {
+                "type": "number",
+                "description": "Overall biasness score from 0.0 (completely neutral, balanced, factual) to 1.0 (heavily biased, one-sided, or propagandistic).",
+            },
+            "bias_types": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "political",
+                        "linguistic",
+                        "cognitive",
+                        "commercial",
+                        "geopolitical",
+                        "selection_omission",
+                        "demographic",
+                    ],
+                },
+                "description": "Types of bias identified in the article.",
+            },
+            "who_it_favors": {
+                "type": "string",
+                "description": "Who or what the article's narrative favors (e.g. a political party, government, corporation, social group, or 'none / neutral').",
+            },
+            "who_it_opposes": {
+                "type": "string",
+                "description": "Who or what the article's narrative disfavors, criticizes, or marginalizes (or 'none / neutral').",
+            },
+            "loaded_language": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Specific words, adjectives, or loaded verbs exhibiting subjective bias or spin.",
+            },
+            "reasoning": {
+                "type": "string",
+                "description": "Detailed explanation justifying the bias score, identified bias types, and framing choices.",
+            },
+        },
+        "required": ["bias_score", "bias_types", "who_it_favors", "reasoning"],
+    },
+)
+
