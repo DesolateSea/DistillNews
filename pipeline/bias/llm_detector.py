@@ -8,6 +8,7 @@ Evaluates overall biasness score (0.0 to 1.0), types of bias, and who the narrat
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any
 
 from pipeline.extraction_schemas import NEWS_BIAS_DETECTION_TOOL
@@ -244,3 +245,146 @@ Article Content: {content[:3000]}"""
             "reasoning": f"Analysis failed: {e}",
             "error": str(e),
         }
+
+
+PROMPTS_DIR = Path(__file__).resolve().parent.parent / "prompts"
+
+
+def classify_article_bias_with_llm(
+    article: dict[str, Any],
+    agent: AgentProvider,
+    candidate_labels: list[str] | tuple[str, ...],
+) -> dict[str, Any]:
+    """Classify an article into discrete categorical bias labels matching BERT format.
+
+    Uses pipeline/prompts/bias_benchmark_classification.prompt.md to generate
+    BERT-like categorical output (predicted_label, confidence, scores, reasoning)
+    from an LLM agent for benchmarking and comparative evaluation.
+
+    Args:
+        article: Article dictionary with title and content.
+        agent: AgentProvider instance.
+        candidate_labels: Allowed target classes (e.g. ['LEFT', 'CENTER', 'RIGHT']).
+
+    Returns:
+        Dictionary with method='llm_classifier', predicted_label, confidence,
+        scores dict, and reasoning.
+    """
+    title = str(article.get("title", "")).strip()
+    content = str(
+        article.get("content")
+        or article.get("markdown_content")
+        or article.get("summary")
+        or ""
+    ).strip()
+
+    labels_list = [str(lbl).strip() for lbl in candidate_labels]
+    labels_str = ", ".join(labels_list)
+
+    if not title and not content:
+        default_pred = labels_list[0] if labels_list else "UNKNOWN"
+        return {
+            "method": "llm_classifier",
+            "predicted_label": default_pred,
+            "confidence": 0.0,
+            "scores": {lbl: 0.0 for lbl in labels_list},
+            "reasoning": "Empty content provided.",
+        }
+
+    # Truncate content to 6000 chars if exceedingly long
+    if len(content) > 6000:
+        content = content[:6000] + "\n\n[... content truncated for benchmark classification ...]"
+
+    from service.agents.prompt import Prompt
+    template_path = PROMPTS_DIR / "bias_benchmark_classification.prompt.md"
+
+    try:
+        prompt = Prompt(template_path).fill(
+            candidate_labels=labels_str,
+            title=title or "Untitled",
+            content=content,
+        )
+        res = agent.complete(prompt.system, prompt.user)
+        raw_text = res.content.strip()
+    except Exception as e:
+        default_pred = labels_list[0] if labels_list else "UNKNOWN"
+        return {
+            "method": "llm_classifier",
+            "predicted_label": default_pred,
+            "confidence": 0.0,
+            "scores": {lbl: 0.0 for lbl in labels_list},
+            "reasoning": f"LLM execution failed: {e}",
+            "error": str(e),
+        }
+
+    # Extract JSON from LLM response
+    parsed_json = {}
+    try:
+        start = raw_text.find("{")
+        end = raw_text.rfind("}")
+        if start != -1 and end != -1 and end > start:
+            parsed_json = json.loads(raw_text[start : end + 1])
+    except Exception:
+        pass
+
+    # Normalize predicted_label against candidate_labels
+    raw_pred = str(parsed_json.get("predicted_label", "")).strip()
+    matched_pred = None
+    for lbl in labels_list:
+        if raw_pred.upper() == lbl.upper():
+            matched_pred = lbl
+            break
+
+    # If raw_pred didn't match directly, try substring
+    if not matched_pred:
+        for lbl in labels_list:
+            if lbl.upper() in raw_pred.upper():
+                matched_pred = lbl
+                break
+
+    # Parse scores dictionary
+    raw_scores = parsed_json.get("scores", {})
+    normalized_scores: dict[str, float] = {}
+    if isinstance(raw_scores, dict):
+        for lbl in labels_list:
+            score_val = 0.0
+            for k, v in raw_scores.items():
+                if str(k).strip().upper() == lbl.upper():
+                    try:
+                        score_val = float(v)
+                    except (ValueError, TypeError):
+                        score_val = 0.0
+                    break
+            normalized_scores[lbl] = max(0.0, score_val)
+
+    # Normalize probabilities so they sum to 1.0
+    total_score = sum(normalized_scores.values())
+    if total_score > 0:
+        normalized_scores = {k: round(v / total_score, 4) for k, v in normalized_scores.items()}
+    else:
+        if matched_pred:
+            normalized_scores = {lbl: (1.0 if lbl == matched_pred else 0.0) for lbl in labels_list}
+        else:
+            uniform = round(1.0 / max(1, len(labels_list)), 4)
+            normalized_scores = {lbl: uniform for lbl in labels_list}
+
+    # If predicted_label was not resolved from text, take argmax of normalized_scores
+    if not matched_pred:
+        matched_pred = max(normalized_scores.keys(), key=lambda k: normalized_scores[k])
+
+    try:
+        conf = float(parsed_json.get("confidence", normalized_scores.get(matched_pred, 0.0)))
+        conf = max(0.0, min(1.0, conf))
+    except (ValueError, TypeError):
+        conf = normalized_scores.get(matched_pred, 0.0)
+
+    reasoning = str(parsed_json.get("reasoning", "")).strip()
+
+    return {
+        "method": "llm_classifier",
+        "predicted_label": matched_pred,
+        "confidence": round(conf, 4),
+        "scores": normalized_scores,
+        "reasoning": reasoning,
+    }
+

@@ -3,7 +3,7 @@
 Evaluates and compares BERT sequence classification models and LLM agent detectors
 against labeled media bias datasets (e.g. AllSides, BABE, MBIB).
 Computes classification accuracy, class-level precision/recall/F1,
-score distributions, latency statistics, and confusion matrices.
+latency statistics, confusion matrices, and head-to-head model comparisons.
 """
 
 from __future__ import annotations
@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 import json
 import logging
 from pathlib import Path
+import tempfile
 import time
 from typing import Any
 
@@ -21,7 +22,7 @@ import click
 
 from pipeline.stages.sources.dataset import load_dataset_records
 from pipeline.bias.bert_detector import analyze_article_bias_with_bert
-from pipeline.bias.llm_detector import analyze_article_bias_with_llm
+from pipeline.bias.llm_detector import classify_article_bias_with_llm
 
 logger = logging.getLogger(__name__)
 
@@ -84,6 +85,7 @@ class BenchmarkReport:
     detector: str
     bert_metrics: dict[str, Any] | None = None
     llm_metrics: dict[str, Any] | None = None
+    comparison_metrics: dict[str, Any] | None = None
     samples: list[dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
@@ -94,6 +96,7 @@ class BenchmarkReport:
             "detector": self.detector,
             "bert_metrics": self.bert_metrics,
             "llm_metrics": self.llm_metrics,
+            "comparison_metrics": self.comparison_metrics,
             "samples": self.samples,
         }
 
@@ -145,6 +148,93 @@ def compute_classification_metrics(y_true: list[str], y_pred: list[str], labels:
     }
 
 
+def resolve_benchmark_dataset(dataset_spec: str | Path) -> Path:
+    """Resolve dataset alias ('babe', 'allsides', 'sample') or file path."""
+    spec_str = str(dataset_spec).strip()
+    spec_lower = spec_str.lower()
+    temp_dir = Path(tempfile.gettempdir())
+
+    if spec_lower in ("babe", "mediabiasgroup/babe"):
+        candidates = [
+            Path("pipeline/data/benchmarks/babe_benchmark.csv"),
+            temp_dir / "babe_benchmark.csv",
+        ]
+        for c in candidates:
+            if c.is_file():
+                return c
+        return _fetch_and_prepare_babe()
+
+    if spec_lower in ("allsides", "all-sides", "liyucheng/allsides"):
+        candidates = [
+            Path("pipeline/data/benchmarks/allsides_benchmark.csv"),
+            temp_dir / "allsides_benchmark.csv",
+        ]
+        for c in candidates:
+            if c.is_file():
+                return c
+        return _fetch_and_prepare_allsides()
+
+    if spec_lower in ("sample", "default"):
+        return Path("pipeline/data/benchmarks/sample_bias_benchmark.csv")
+
+    path = Path(dataset_spec)
+    if not path.is_file():
+        repo_candidate = Path("pipeline/data/benchmarks") / spec_str
+        if repo_candidate.is_file():
+            return repo_candidate
+        tmp_candidate = temp_dir / spec_str
+        if tmp_candidate.is_file():
+            return tmp_candidate
+    return path
+
+
+def _fetch_and_prepare_babe() -> Path:
+    """Download and format BABE benchmark (1,000 sentences) from Hugging Face."""
+    out_path = Path(tempfile.gettempdir()) / "babe_benchmark.csv"
+    if out_path.is_file():
+        return out_path
+    try:
+        from huggingface_hub import hf_hub_download
+        import pandas as pd
+        p = hf_hub_download(repo_id="mediabiasgroup/BABE", filename="data/test-00000-of-00001.parquet", repo_type="dataset")
+        df = pd.read_parquet(p)
+        clean_df = pd.DataFrame({
+            "title": df["topic"].fillna("News").astype(str),
+            "text": df["text"],
+            "label": df["label"].map({0: "Non-biased", 1: "Biased"}),
+        })
+        clean_df.to_csv(out_path, index=False)
+        return out_path
+    except Exception as e:
+        logger.error("Failed to fetch BABE dataset from Hugging Face: %s", e)
+        raise
+
+
+def _fetch_and_prepare_allsides() -> Path:
+    """Download and format AllSides benchmark (714 balanced articles) from Hugging Face."""
+    out_path = Path(tempfile.gettempdir()) / "allsides_benchmark.csv"
+    if out_path.is_file():
+        return out_path
+    try:
+        from huggingface_hub import hf_hub_download
+        import pandas as pd
+        p = hf_hub_download(repo_id="liyucheng/allsides", filename="data/train-00000-of-00001-da1e7ddeb6190432.parquet", repo_type="dataset")
+        df = pd.read_parquet(p)
+        valid = df[df["articles"].str.len() > 50].copy()
+        valid["clean_label"] = valid["camp"].map({"lefts": "Left", "centers": "Center", "rights": "Right"})
+        valid = valid.dropna(subset=["clean_label"])
+        clean_df = pd.DataFrame({
+            "title": valid["title"],
+            "text": valid["articles"],
+            "label": valid["clean_label"],
+        })
+        clean_df.to_csv(out_path, index=False)
+        return out_path
+    except Exception as e:
+        logger.error("Failed to fetch AllSides dataset from Hugging Face: %s", e)
+        raise
+
+
 def evaluate_bias_benchmark(
     dataset_path: str | Path,
     detector: str = "both",
@@ -152,10 +242,10 @@ def evaluate_bias_benchmark(
     limit: int | None = None,
     agent: Any = None,
 ) -> BenchmarkReport:
-    """Run benchmark evaluation against a dataset file.
+    """Run benchmark evaluation against a dataset file or alias ('babe', 'allsides', 'sample').
 
     Args:
-        dataset_path: CSV or JSONL file path.
+        dataset_path: CSV or JSONL file path, or alias name.
         detector: 'bert', 'llm', or 'both'.
         model_name: Hugging Face checkpoint name for BERT.
         limit: Optional maximum number of records to evaluate.
@@ -164,7 +254,7 @@ def evaluate_bias_benchmark(
     Returns:
         Populated BenchmarkReport object.
     """
-    path = Path(dataset_path)
+    path = resolve_benchmark_dataset(dataset_path)
     records = list(load_dataset_records(path, limit=limit))
     if not records:
         raise ValueError(f"No records found in dataset file: {path}")
@@ -175,10 +265,12 @@ def evaluate_bias_benchmark(
     bert_y_pred: list[str] = []
     bert_latencies: list[float] = []
 
-    llm_scores: list[float] = []
-    llm_types_counter: Counter[str] = Counter()
+    llm_y_true: list[str] = []
+    llm_y_pred: list[str] = []
     llm_latencies: list[float] = []
-    llm_scores_by_ground_truth: dict[str, list[float]] = defaultdict(list)
+
+    all_bert_preds: list[str] = []
+    all_llm_preds: list[str] = []
 
     samples_detail: list[dict[str, Any]] = []
 
@@ -188,70 +280,78 @@ def evaluate_bias_benchmark(
         agent = create_agent()
 
     # Determine BERT model label space upfront if BERT enabled
-    bert_labels: list[str] = []
+    target_labels: list[str] = []
     if detector in ("bert", "both"):
         from pipeline.bias.bert_detector import load_bert_model_and_tokenizer
         try:
             _, _, label_map = load_bert_model_and_tokenizer(model_name)
-            bert_labels = [label_map[i] for i in sorted(label_map.keys())]
+            target_labels = [label_map[i] for i in sorted(label_map.keys())]
         except Exception:
-            bert_labels = ["LEFT", "CENTER", "RIGHT"]
+            target_labels = ["LEFT", "CENTER", "RIGHT"]
+    else:
+        # If running only LLM, inspect dataset records to infer label space or default to 3-class
+        sample_gts = {rec.get("ground_truth") for rec in records if rec.get("ground_truth")}
+        is_binary = any(str(g).upper() in ("BIASED", "NON-BIASED", "1", "0") for g in sample_gts)
+        target_labels = ["NON-BIASED", "BIASED"] if is_binary else ["LEFT", "CENTER", "RIGHT"]
 
-    target_labels_set = set(bert_labels)
+    target_labels_set = set(target_labels)
 
     for idx, rec in enumerate(records, 1):
         raw_gt = rec.get("ground_truth")
         title = rec.get("title", f"Article {idx}")
+        norm_gt = normalize_ground_truth(raw_gt, target_labels_set) if raw_gt else None
+
         sample_log: dict[str, Any] = {
             "index": idx,
             "title": title,
             "raw_ground_truth": raw_gt,
+            "normalized_truth": norm_gt,
         }
 
         # 1. BERT Evaluation
+        pred_bert = None
         if detector in ("bert", "both"):
             t0 = time.perf_counter()
             bert_res = analyze_article_bias_with_bert(rec, model_name=model_name)
             bert_latency_ms = (time.perf_counter() - t0) * 1000.0
             bert_latencies.append(bert_latency_ms)
 
-            pred_label = bert_res.get("predicted_label", "UNKNOWN")
-            norm_gt = normalize_ground_truth(raw_gt, target_labels_set) if raw_gt else None
+            pred_bert = bert_res.get("predicted_label", "UNKNOWN")
+            all_bert_preds.append(pred_bert)
 
             sample_log["bert"] = {
-                "predicted": pred_label,
+                "predicted": pred_bert,
                 "confidence": bert_res.get("confidence", 0.0),
-                "normalized_truth": norm_gt,
+                "scores": bert_res.get("scores", {}),
                 "latency_ms": round(bert_latency_ms, 1),
             }
 
             if norm_gt:
                 bert_y_true.append(norm_gt)
-                bert_y_pred.append(pred_label)
+                bert_y_pred.append(pred_bert)
 
-        # 2. LLM Evaluation
+        # 2. LLM Categorical Evaluation
+        pred_llm = None
         if detector in ("llm", "both"):
             t0 = time.perf_counter()
-            llm_res = analyze_article_bias_with_llm(rec, agent)
+            llm_res = classify_article_bias_with_llm(rec, agent, candidate_labels=target_labels)
             llm_latency_ms = (time.perf_counter() - t0) * 1000.0
             llm_latencies.append(llm_latency_ms)
 
-            b_score = llm_res.get("bias_score", 0.0)
-            b_types = llm_res.get("bias_types", [])
-            llm_scores.append(b_score)
-            for t in b_types:
-                llm_types_counter[t] += 1
-
-            if raw_gt:
-                llm_scores_by_ground_truth[str(raw_gt).upper()].append(b_score)
+            pred_llm = llm_res.get("predicted_label", "UNKNOWN")
+            all_llm_preds.append(pred_llm)
 
             sample_log["llm"] = {
-                "bias_score": b_score,
-                "bias_types": b_types,
-                "favors": llm_res.get("who_it_favors", "none / neutral"),
-                "opposes": llm_res.get("who_it_opposes", "none / neutral"),
+                "predicted": pred_llm,
+                "confidence": llm_res.get("confidence", 0.0),
+                "scores": llm_res.get("scores", {}),
+                "reasoning": llm_res.get("reasoning", ""),
                 "latency_ms": round(llm_latency_ms, 1),
             }
+
+            if norm_gt:
+                llm_y_true.append(norm_gt)
+                llm_y_pred.append(pred_llm)
 
         samples_detail.append(sample_log)
 
@@ -260,7 +360,7 @@ def evaluate_bias_benchmark(
     # Compute BERT metrics
     bert_metrics = None
     if detector in ("bert", "both"):
-        cls_metrics = compute_classification_metrics(bert_y_true, bert_y_pred, bert_labels)
+        cls_metrics = compute_classification_metrics(bert_y_true, bert_y_pred, target_labels)
         bert_metrics = {
             "model_name": model_name,
             **cls_metrics,
@@ -271,18 +371,29 @@ def evaluate_bias_benchmark(
     # Compute LLM metrics
     llm_metrics = None
     if detector in ("llm", "both"):
-        avg_score = sum(llm_scores) / len(llm_scores) if llm_scores else 0.0
-        scores_by_gt = {
-            gt: round(sum(scores) / len(scores), 3)
-            for gt, scores in llm_scores_by_ground_truth.items()
-            if scores
-        }
+        cls_metrics = compute_classification_metrics(llm_y_true, llm_y_pred, target_labels)
         llm_metrics = {
-            "avg_bias_score": round(avg_score, 3),
-            "bias_types_distribution": dict(llm_types_counter.most_common()),
-            "avg_score_by_ground_truth": scores_by_gt,
+            "agent_provider": getattr(agent, "provider_name", "llm"),
+            **cls_metrics,
             "avg_latency_ms": round(sum(llm_latencies) / len(llm_latencies), 1) if llm_latencies else 0.0,
             "p95_latency_ms": round(sorted(llm_latencies)[int(0.95 * len(llm_latencies))], 1) if llm_latencies else 0.0,
+        }
+
+    # Compute Head-to-Head Comparison if both were executed
+    comparison_metrics = None
+    if detector == "both" and all_bert_preds and all_llm_preds:
+        agreement_count = sum(
+            1 for b, l in zip(all_bert_preds, all_llm_preds) if b.upper() == l.upper()
+        )
+        total_p = len(all_bert_preds)
+        agreement_rate = agreement_count / total_p if total_p > 0 else 0.0
+        comparison_metrics = {
+            "agreement_rate": round(agreement_rate, 4),
+            "agreement_count": agreement_count,
+            "total_pairs": total_p,
+            "accuracy_difference": round(
+                (llm_metrics.get("accuracy", 0.0) - bert_metrics.get("accuracy", 0.0)), 4
+            ) if (llm_metrics and bert_metrics) else 0.0,
         }
 
     return BenchmarkReport(
@@ -292,6 +403,7 @@ def evaluate_bias_benchmark(
         detector=detector,
         bert_metrics=bert_metrics,
         llm_metrics=llm_metrics,
+        comparison_metrics=comparison_metrics,
         samples=samples_detail,
     )
 
@@ -307,7 +419,7 @@ def print_benchmark_report(report: BenchmarkReport) -> None:
     click.echo(f"  Duration:     {report.duration_seconds:.2f}s (throughput: {report.total_samples / max(0.001, report.duration_seconds):.1f} arts/s)")
     click.echo(f"  Engine Mode:  {report.detector.upper()}")
 
-    # BERT Metrics
+    # 1. BERT Metrics
     if report.bert_metrics:
         bm = report.bert_metrics
         click.echo("\n" + "-" * 72)
@@ -345,28 +457,70 @@ def print_benchmark_report(report: BenchmarkReport) -> None:
                 row_str = f"    {row_label:<14}" + "".join(f"{matrix[row_label].get(col, 0):>10}" for col in classes)
                 click.echo(row_str)
 
-    # LLM Metrics
+    # 2. LLM Metrics
     if report.llm_metrics:
         lm = report.llm_metrics
         click.echo("\n" + "-" * 72)
-        click.echo(click.style(" LLM Agent Detection Analytics", fg="cyan", bold=True))
+        click.echo(click.style(f" LLM Agent Classification Performance ({lm.get('agent_provider')})", fg="cyan", bold=True))
         click.echo("-" * 72)
 
-        click.echo(f"  Average Bias Score: {lm.get('avg_bias_score'):.3f} / 1.0")
-        click.echo(f"  Average Latency:    {lm.get('avg_latency_ms')} ms/article (p95: {lm.get('p95_latency_ms')} ms)")
+        acc = lm.get("accuracy", 0.0)
+        macro_f1 = lm.get("macro_f1", 0.0)
+        eval_count = lm.get("total_evaluated", 0)
+        correct = lm.get("correct", 0)
 
-        by_gt = lm.get("avg_score_by_ground_truth", {})
-        if by_gt:
-            click.echo("\n  Average LLM Bias Score by Ground-Truth Category:")
-            for gt_cat, avg_s in sorted(by_gt.items()):
-                score_color = "green" if avg_s <= 0.25 else "yellow" if avg_s <= 0.55 else "red"
-                click.echo(f"    {gt_cat:<16}: " + click.style(f"{avg_s:.3f}", fg=score_color, bold=True))
+        click.echo(f"  Overall Accuracy: " + click.style(f"{acc:.1%}", fg="green" if acc >= 0.70 else "yellow", bold=True) + f" ({correct}/{eval_count} samples)")
+        click.echo(f"  Macro F1-Score:   " + click.style(f"{macro_f1:.3f}", fg="green" if macro_f1 >= 0.70 else "yellow", bold=True))
+        click.echo(f"  Average Latency:  {lm.get('avg_latency_ms')} ms/article (p95: {lm.get('p95_latency_ms')} ms)")
 
-        dist = lm.get("bias_types_distribution", {})
-        if dist:
-            click.echo("\n  Detected Bias Types Frequency:")
-            for btype, cnt in dist.items():
-                click.echo(f"    {btype:<20}: {cnt} occurrences")
+        per_class = lm.get("per_class", {})
+        if per_class:
+            click.echo("\n  Per-Class Metrics:")
+            click.echo("    Class          Precision    Recall       F1-Score     Support")
+            click.echo("    " + "-" * 56)
+            for cls_name, vals in per_class.items():
+                p = vals.get("precision", 0.0)
+                r = vals.get("recall", 0.0)
+                f1 = vals.get("f1", 0.0)
+                sup = vals.get("support", 0)
+                click.echo(f"    {cls_name:<14} {p:>9.1%}   {r:>9.1%}   {f1:>10.3f}   {sup:>7}")
+
+        matrix = lm.get("confusion_matrix")
+        if matrix:
+            classes = list(matrix.keys())
+            click.echo("\n  Confusion Matrix (Rows: Ground Truth, Cols: Predicted):")
+            header = "    " + " " * 14 + "".join(f"{c:>10}" for c in classes)
+            click.echo(header)
+            for row_label in classes:
+                row_str = f"    {row_label:<14}" + "".join(f"{matrix[row_label].get(col, 0):>10}" for col in classes)
+                click.echo(row_str)
+
+    # 3. Head-to-Head Comparison (if both evaluated)
+    if report.comparison_metrics and report.bert_metrics and report.llm_metrics:
+        cm = report.comparison_metrics
+        bm = report.bert_metrics
+        lm = report.llm_metrics
+
+        click.echo("\n" + "=" * 72)
+        click.echo(click.style(" HEAD-TO-HEAD BENCHMARK COMPARISON (BERT vs LLM)", fg="bright_magenta", bold=True))
+        click.echo("=" * 72)
+        click.echo(f"  {'Metric':<25} {'BERT':<22} {'LLM Agent':<22}")
+        click.echo("  " + "-" * 68)
+
+        b_acc = f"{bm.get('accuracy', 0.0):.1%} ({bm.get('correct', 0)}/{bm.get('total_evaluated', 0)})"
+        l_acc = f"{lm.get('accuracy', 0.0):.1%} ({lm.get('correct', 0)}/{lm.get('total_evaluated', 0)})"
+        click.echo(f"  {'Overall Accuracy':<25} {b_acc:<22} {l_acc:<22}")
+
+        b_f1 = f"{bm.get('macro_f1', 0.0):.3f}"
+        l_f1 = f"{lm.get('macro_f1', 0.0):.3f}"
+        click.echo(f"  {'Macro F1-Score':<25} {b_f1:<22} {l_f1:<22}")
+
+        b_lat = f"{bm.get('avg_latency_ms', 0.0):.1f} ms"
+        l_lat = f"{lm.get('avg_latency_ms', 0.0):.1f} ms"
+        click.echo(f"  {'Average Latency':<25} {b_lat:<22} {l_lat:<22}")
+
+        agr = cm.get('agreement_rate', 0.0)
+        click.echo(f"\n  Inter-Model Agreement: " + click.style(f"{agr:.1%}", fg="cyan", bold=True) + f" ({cm.get('agreement_count')}/{cm.get('total_pairs')} samples predicted identically)")
 
     click.echo("\n" + "=" * 72 + "\n")
 

@@ -52,14 +52,14 @@ MAIN_HELP_EPILOG = f"""{click.style('Examples:', fg='bright_yellow', bold=True)}
   {click.style('2. Launch TUI dashboard with Azure Blob Storage backend:', fg='cyan', bold=True)}
      $ python pipeline/cli.py tui --storage azure
 
-  {click.style('3. Direct news text analysis with multidimensional LLM detector:', fg='cyan', bold=True)}
-     $ python pipeline/cli.py analyze --text "The legislation passed amid controversy."
+  {click.style('3. Audit stored articles for media bias and persist results to store:', fg='cyan', bold=True)}
+     $ python pipeline/cli.py analyze --storage azure --limit 10 --save
 
-  {click.style('4. Dynamic BERT stance classification with custom Hugging Face model:', fg='cyan', bold=True)}
-     $ python pipeline/cli.py analyze --detector bert --model mediabiasgroup/roberta-babe-ft --text "..."
+  {click.style('4. Batch analyze articles dataset with custom Hugging Face model:', fg='cyan', bold=True)}
+     $ python pipeline/cli.py analyze --dataset pipeline/data/benchmarks/sample_bias_benchmark.csv --detector bert --model mediabiasgroup/roberta-babe-ft
 
-  {click.style('5. Batch evaluate benchmark dataset (CSV/JSONL) with BERT or LLM:', fg='cyan', bold=True)}
-     $ python pipeline/cli.py analyze --dataset pipeline/data/benchmarks/allsides.csv --detector bert
+  {click.style('5. Head-to-head BERT vs LLM benchmark evaluation comparison:', fg='cyan', bold=True)}
+     $ python pipeline/cli.py benchmark --detector both --dataset pipeline/data/benchmarks/sample_bias_benchmark.csv
 """
 
 ANALYZE_HELP_EPILOG = f"""{click.style('Examples:', fg='bright_yellow', bold=True)}
@@ -352,10 +352,10 @@ def analyze(storage, detector, model, dataset_file, article_id, limit, text, tit
 @cli.command(cls=ColoredCommand, epilog=BENCHMARK_HELP_EPILOG)
 @click.option(
     "--dataset", "-d", "dataset_path",
-    type=click.Path(exists=True, dir_okay=False),
+    type=str,
     default="pipeline/data/benchmarks/sample_bias_benchmark.csv",
     show_default=True,
-    help="Path to CSV or JSONL benchmark dataset file.",
+    help="Path to CSV/JSONL dataset file, or dataset alias ('babe', 'allsides', 'sample').",
 )
 @click.option(
     "--detector",

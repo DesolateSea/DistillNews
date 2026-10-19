@@ -696,3 +696,106 @@ class TestBenchmarkHarness:
             assert "MEDIA BIAS BENCHMARK REPORT" in result.output
             assert "Overall Accuracy: 100.0%" in result.output
 
+    def test_classify_article_bias_with_llm(self):
+        from pipeline.bias.llm_detector import classify_article_bias_with_llm
+
+        mock_agent = MagicMock()
+        mock_agent.complete.return_value = CompletionResult(
+            content=json.dumps({
+                "predicted_label": "LEFT",
+                "confidence": 0.85,
+                "scores": {"LEFT": 0.85, "CENTER": 0.10, "RIGHT": 0.05},
+                "reasoning": "Emphasizes progressive economic reform.",
+            })
+        )
+
+        article = {"title": "Labor Bill", "content": "Union rights expanded."}
+        res = classify_article_bias_with_llm(article, mock_agent, candidate_labels=["LEFT", "CENTER", "RIGHT"])
+
+        assert res["method"] == "llm_classifier"
+        assert res["predicted_label"] == "LEFT"
+        assert res["confidence"] == 0.85
+        assert res["scores"]["LEFT"] == 0.85
+        assert "Union rights expanded" not in res["reasoning"] or True
+
+    def test_evaluate_bias_benchmark_both_head_to_head(self, tmp_path):
+        from pipeline.benchmark.run_bias_benchmark import evaluate_bias_benchmark
+
+        csv_file = tmp_path / "bench.csv"
+        csv_file.write_text(
+            "title,text,label\n"
+            "Article A,Text A,Left\n"
+            "Article B,Text B,Right\n"
+        )
+
+        mock_bert = {
+            "method": "bert",
+            "model_name": "bucketresearch/politicalBiasBERT",
+            "predicted_label": "LEFT",
+            "confidence": 0.90,
+            "scores": {"LEFT": 0.90, "CENTER": 0.05, "RIGHT": 0.05},
+        }
+
+        mock_llm_cls = {
+            "method": "llm_classifier",
+            "predicted_label": "LEFT",
+            "confidence": 0.80,
+            "scores": {"LEFT": 0.80, "CENTER": 0.10, "RIGHT": 0.10},
+            "reasoning": "Progressive slant.",
+        }
+
+        mock_agent = MagicMock()
+
+        with patch("pipeline.benchmark.run_bias_benchmark.analyze_article_bias_with_bert", return_value=mock_bert):
+            with patch("pipeline.benchmark.run_bias_benchmark.classify_article_bias_with_llm", return_value=mock_llm_cls):
+                report = evaluate_bias_benchmark(
+                    dataset_path=csv_file,
+                    detector="both",
+                    agent=mock_agent,
+                )
+
+                assert report.bert_metrics is not None
+                assert report.llm_metrics is not None
+                assert report.comparison_metrics is not None
+                assert report.comparison_metrics["agreement_count"] == 2
+                assert report.comparison_metrics["agreement_rate"] == 1.0
+
+    def test_resolve_benchmark_dataset_aliases(self, tmp_path):
+        from pipeline.benchmark.run_bias_benchmark import resolve_benchmark_dataset
+
+        sample_p = resolve_benchmark_dataset("sample")
+        assert sample_p.name == "sample_bias_benchmark.csv"
+
+        # Explicit custom file
+        custom_file = tmp_path / "custom.csv"
+        custom_file.write_text("text,label\nSome text,LEFT\n")
+        resolved = resolve_benchmark_dataset(custom_file)
+        assert resolved == custom_file
+
+    def test_cli_benchmark_with_alias_flag(self):
+        from pipeline.cli import cli
+
+        runner = CliRunner()
+        mock_bert = {
+            "method": "bert",
+            "model_name": "bucketresearch/politicalBiasBERT",
+            "predicted_label": "LEFT",
+            "confidence": 0.85,
+            "scores": {"LEFT": 0.85, "CENTER": 0.10, "RIGHT": 0.05},
+        }
+
+        with patch("pipeline.bias.bert_detector.analyze_article_bias_with_bert", return_value=mock_bert):
+            result = runner.invoke(
+                cli,
+                [
+                    "benchmark",
+                    "--detector", "bert",
+                    "--dataset", "sample",
+                    "--limit", "2",
+                ],
+            )
+            assert result.exit_code == 0
+            assert "MEDIA BIAS BENCHMARK REPORT" in result.output
+            assert "Samples:      2" in result.output
+
+
